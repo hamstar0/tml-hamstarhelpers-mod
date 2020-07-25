@@ -2,6 +2,7 @@
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.NetProtocols;
+using HamstarHelpers.Items;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -18,6 +19,8 @@ namespace HamstarHelpers.Internals.Logic {
 			foreach( int buffId in this.PermaBuffsById ) {
 				player.AddBuff( buffId, 3 );
 			}
+
+			NoteItem.UpdateDisplay();
 
 			this.UpdateTml( player );
 		}

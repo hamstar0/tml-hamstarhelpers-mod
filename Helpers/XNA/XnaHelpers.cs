@@ -41,15 +41,16 @@ namespace HamstarHelpers.Helpers.XNA {
 		}
 
 		////////////////
-		
+
 		/// <summary>
-		/// Reports if `Main.SpriteBatch` has begun drawing.
+		/// Reports if the given SpriteBatch has begun drawing.
 		/// </summary>
+		/// <param name="sb"></param>
 		/// <param name="isBegun"></param>
-		/// <returns>Could not determine one way or the other.</returns>
-		public static bool IsMainSpriteBatchBegun( out bool isBegun ) {
+		/// <returns>If `false`, could not determine one way or the other.</returns>
+		public static bool IsSpriteBatchBegun( SpriteBatch sb, out bool isBegun ) {
 			var mymod = ModHelpersMod.Instance;
-			object isBegunRaw = mymod?.XnaHelpers?.SpriteBatchBegunField?.GetValue( Main.spriteBatch );
+			object isBegunRaw = mymod?.XnaHelpers?.SpriteBatchBegunField?.GetValue( sb );
 
 			if( isBegunRaw != null ) {
 				isBegun = (bool)isBegunRaw;
@@ -58,6 +59,15 @@ namespace HamstarHelpers.Helpers.XNA {
 				isBegun = false;
 				return false;
 			}
+		}
+
+		/// <summary>
+		/// Reports if `Main.SpriteBatch` has begun drawing.
+		/// </summary>
+		/// <param name="isBegun"></param>
+		/// <returns>If `false`, could not determine one way or the other.</returns>
+		public static bool IsMainSpriteBatchBegun( out bool isBegun ) {
+			return XNAHelpers.IsSpriteBatchBegun( Main.spriteBatch, out isBegun );
 		}
 
 

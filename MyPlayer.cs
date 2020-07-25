@@ -23,7 +23,11 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override bool CloneNewInstances => false;
-		
+
+
+
+		////////////////
+
 		public override void Initialize() {
 			this.Logic = new PlayerLogic();
 		}
@@ -118,11 +122,6 @@ namespace HamstarHelpers {
 			if( player.whoAmI == Main.myPlayer && Main.playerInventory ) { // Current player
 				mymod.RecipeHack.Update();
 			}
-		}
-
-
-		public override void PreUpdateMovement() {
-			this.CheckForBrambles();
 		}
 
 

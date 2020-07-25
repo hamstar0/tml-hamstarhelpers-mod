@@ -4396,16 +4396,6 @@
             Disables IP address checks from checkip.dyndns.org.
             </summary>
         </member>
-        <member name="P:HamstarHelpers.ModHelpersConfig.GeoResonantOrbSoldByDryad">
-            <summary>
-            Adds Geo-Resonant Orbs to Dryad's shop.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.ModHelpersConfig.MagiTechScrapMechBossDropsEnabled">
-            <summary>
-            Magi-Tech Scrap items drop from mech bosses.
-            </summary>
-        </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.CoalAsTile">
             <summary>
             Coal items can be placed like tiles.
@@ -4414,21 +4404,6 @@
         <member name="P:HamstarHelpers.ModHelpersConfig.AddCrimsonLeatherRecipe">
             <summary>
             Adds crimson biome alternatve recipe for leather.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.ModHelpersConfig.BrambleFriction">
-            <summary>
-            Bramble tile friction upon players.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.ModHelpersConfig.BrambleDamageTickRate">
-            <summary>
-            Rate of damage to players caught on bramble tiles.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.ModHelpersConfig.BrambleDamage">
-            <summary>
-            Amount of damage to players caught on bramble tiles.
             </summary>
         </member>
         <member name="M:HamstarHelpers.ModHelpersConfig.AcceptClientChanges(Terraria.ModLoader.Config.ModConfig,System.Int32,System.String@)">
@@ -10996,12 +10971,20 @@
             <param name="rect"></param>
             <param name="notRect"></param>
         </member>
+        <member name="M:HamstarHelpers.Helpers.XNA.XNAHelpers.IsSpriteBatchBegun(Microsoft.Xna.Framework.Graphics.SpriteBatch,System.Boolean@)">
+            <summary>
+            Reports if the given SpriteBatch has begun drawing.
+            </summary>
+            <param name="sb"></param>
+            <param name="isBegun"></param>
+            <returns>If `false`, could not determine one way or the other.</returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.XNA.XNAHelpers.IsMainSpriteBatchBegun(System.Boolean@)">
             <summary>
             Reports if `Main.SpriteBatch` has begun drawing.
             </summary>
             <param name="isBegun"></param>
-            <returns>Could not determine one way or the other.</returns>
+            <returns>If `false`, could not determine one way or the other.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.XNA.XNAHelpers.DrawBatch(System.Action{Microsoft.Xna.Framework.Graphics.SpriteBatch},System.Boolean@,System.Boolean)">
             <summary>
@@ -11193,52 +11176,33 @@
         <member name="T:HamstarHelpers.Internals.WebRequests.PostModInfo">
             @private
         </member>
-        <member name="T:HamstarHelpers.Items.CursedBrambleItem">
+        <member name="T:HamstarHelpers.Items.NoteItem">
             <summary>
-            Places a cursed bramble tile. Traps players, hard to remove, slowly decays.
+            A readable note.
+            </summary>
+            <summary>
+            A readable note.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Items.CursedBrambleItem.Width">
+        <member name="P:HamstarHelpers.Items.NoteItem.TitleText">
             <summary></summary>
         </member>
-        <member name="F:HamstarHelpers.Items.CursedBrambleItem.Height">
+        <member name="P:HamstarHelpers.Items.NoteItem.BodyTexts">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Items.CursedBrambleItem.SetStaticDefaults">
+        <member name="M:HamstarHelpers.Items.NoteItem.SetStaticDefaults">
             @private
         </member>
-        <member name="M:HamstarHelpers.Items.CursedBrambleItem.SetDefaults">
+        <member name="M:HamstarHelpers.Items.NoteItem.SetDefaults">
             @private
         </member>
-        <member name="T:HamstarHelpers.Items.GeoResonantOrbItem">
-            <summary>
-            Supplies an ingredient item meant to exist as the generic form of Orbs (e.g. Shadow Orbs). Another MacGuffin item.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Items.GeoResonantOrbItem.SetStaticDefaults">
+        <member name="M:HamstarHelpers.Items.NoteItem.NetSend(System.IO.BinaryWriter)">
             @private
         </member>
-        <member name="M:HamstarHelpers.Items.GeoResonantOrbItem.SetDefaults">
+        <member name="M:HamstarHelpers.Items.NoteItem.NetRecieve(System.IO.BinaryReader)">
             @private
         </member>
-        <member name="T:HamstarHelpers.Items.MagiTechScrapItem">
-            <summary>
-            Supplies an item for use as an ingredient for any magic/technology recipe/consumable use. A MacGuffin item.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Items.MagiTechScrapItem.Create(Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <summary></summary>
-            <param name="pos"></param>
-            <param name="stack"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Items.MagiTechScrapItem.SetStaticDefaults">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Items.MagiTechScrapItem.SetDefaults">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Items.MagiTechScrapItem.AddRecipes">
+        <member name="M:HamstarHelpers.Items.NoteItem.CanRightClick">
             @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersCustomPlayer">
@@ -11248,6 +11212,8 @@
             @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersMod">
+            @private
+            @private
             @private
             @private
             @private
@@ -11268,7 +11234,6 @@
             @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersPlayer">
-            @private
             @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersRecipe">
@@ -13265,6 +13230,29 @@
             Closes the control panel dialog.
             </summary>
         </member>
+        <member name="T:HamstarHelpers.Services.UI.FreeHUD.FreeHUD">
+            <summary>
+            Allows adding arbitrary UI elements to the HUD. Elements are interactive and non-modal.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.UI.FreeHUD.FreeHUD.Instance">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.UI.FreeHUD.FreeHUD.AddElement(System.String,Terraria.UI.UIElement)">
+            <summary></summary>
+            <param name="id"></param>
+            <param name="elem"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.UI.FreeHUD.FreeHUD.RemoveElement(System.String)">
+            <summary></summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.UI.FreeHUD.FreeHUD.GetElement(System.String)">
+            <summary></summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Services.UI.Menus.MenuContextService">
             <summary>
             Provides a way to interface with the main menu and its UI by way of "contexts".
@@ -13453,78 +13441,6 @@
         </member>
         <member name="M:HamstarHelpers.Tiles.CoalTile.NumDust(System.Int32,System.Int32,System.Boolean,System.Int32@)">
             @private
-        </member>
-        <member name="T:HamstarHelpers.Tiles.CursedBrambleTile">
-            <summary>
-            Represents a tile that works like a standard corruption/crimson/jungle bramble, but cannot be removed by melee weapons,
-            and may support additional custom behavior.
-            </summary>
-            <summary>
-            Represents a tile that works like a standard corruption/crimson/jungle bramble, but cannot be removed by melee weapons,
-            and may support additional custom behavior.
-            </summary>
-            <summary>
-            Represents a tile that works like a standard corruption/crimson/jungle bramble, but cannot be removed by melee weapons,
-            and may support additional custom behavior.
-            </summary>
-            <summary>
-            Represents a tile that works like a standard corruption/crimson/jungle bramble, but cannot be removed by melee weapons,
-            and may support additional custom behavior.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.SetDefaults">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.NumDust(System.Int32,System.Int32,System.Boolean,System.Int32@)">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.RandomUpdate(System.Int32,System.Int32)">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.CreateBramblePatchesAt(System.ValueTuple{System.Int32,System.Int32}[]@,System.Int32,System.Single)">
-            <summary>
-            Creates a cluster of brambles randomly at a given set of points.
-            </summary>
-            <param name="tilePositions">Center positions of bramble patches. Array will be shuffled.</param>
-            <param name="thickness"></param>
-            <param name="density"></param>
-        </member>
-        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.CreateBramblePatchAt(System.Int32,System.Int32,System.Int32,System.Single)">
-            <summary>
-            Creates a patch of cursed brambles at the given location with the given settings.
-            </summary>
-            <param name="tileX"></param>
-            <param name="tileY"></param>
-            <param name="thickness"></param>
-            <param name="density"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.CreateBrambleAt(System.Int32,System.Int32)">
-            <summary>
-            Creates a specific bramble tile. Preserves existing wire, wall, and liquid.
-            </summary>
-            <param name="tileX"></param>
-            <param name="tileY"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.ErodeRandomBrambleWithinRadius(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Attempts to remove a random bramble within a given radius of a given tile.
-            </summary>
-            <param name="tileX"></param>
-            <param name="tileY"></param>
-            <param name="radius"></param>
-            <returns>`true` if a bramble was found and removed.</returns>
-        </member>
-        <member name="M:HamstarHelpers.Tiles.CursedBrambleTile.FindBrambles(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Attempts to locate brambles within a given area.
-            </summary>
-            <param name="leftTile"></param>
-            <param name="topTile"></param>
-            <param name="rightTile"></param>
-            <param name="bottomTile"></param>
-            <returns></returns>
         </member>
     </members>
 </doc>

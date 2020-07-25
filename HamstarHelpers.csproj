@@ -32,4 +32,7 @@
       <HintPath>lib\NetSerializer.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Items\UI\" />
+  </ItemGroup>
 </Project>

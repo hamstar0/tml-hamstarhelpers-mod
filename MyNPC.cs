@@ -28,7 +28,7 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void SetupShop( int type, Chest shop, ref int nextSlot ) {
+		/*public override void SetupShop( int type, Chest shop, ref int nextSlot ) {
 			if( ModHelpersConfig.Instance.GeoResonantOrbSoldByDryad ) {
 				if( type == NPCID.Dryad ) {
 					var orbItem = new Item();
@@ -37,6 +37,6 @@ namespace HamstarHelpers {
 					shop.item[ nextSlot++ ] = orbItem;
 				}
 			}
-		}
+		}*/
 	}
 }

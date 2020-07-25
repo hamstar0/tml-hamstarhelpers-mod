@@ -68,20 +68,21 @@ namespace HamstarHelpers.Helpers.UI {
 					bool noFullscreenMap = false,
 					bool notShowingMouseIcon = false ) {
 			var plr = Main.LocalPlayer;
-//if( !(!notTabbedAway || !Main.hasFocus) ) { Main.NewText( "hasFocus" ); }
-//if( !(!gameNotPaused || !Main.gamePaused) ) { Main.NewText( "gamePaused" ); }
-//if( !(!keyboardNotInVanillaUI || !Main.drawingPlayerChat) ) { Main.NewText( "drawingPlayerChat" ); }
-//if( !(!keyboardNotInVanillaUI || !Main.editSign) ) { Main.NewText( "editSign" ); }
-//if( !(!keyboardNotInVanillaUI || !Main.editChest) ) { Main.NewText( "editChest" ); }
-//if( !(!keyboardNotInCustomUI || !PlayerInput.WritingText) ) { Main.NewText( "WritingText" ); }
-//if( !(!keyboardNotInCustomUI || !Main.blockInput) ) { Main.NewText( "blockInput" ); }
-//if( !(!playerAvailable || !plr.dead) ) { Main.NewText( "dead" ); }
-//if( !(!playerAvailable || !plr.CCed) ) { Main.NewText( "CCed" ); }
-//if( !(!playerNotTalkingToNPC || plr.talkNPC == -1) ) { Main.NewText( "talkNPC" ); }
-//if( !(!playerNotWieldingItem || (plr.itemTime == 0 && plr.itemAnimation == 0)) ) { Main.NewText( "itemTime" ); }
-//if( !(!noFullscreenMap || !Main.mapFullscreen) ) { Main.NewText( "mapFullscreen" ); }
-//if( !(!notShowingMouseIcon || !Main.HoveringOverAnNPC) ) { Main.NewText( "HoveringOverAnNPC" ); }
-//if( !(!notShowingMouseIcon || !plr.showItemIcon) ) { Main.NewText( "showItemIcon" ); }
+/*if( !(!notTabbedAway || Main.hasFocus) ) { Main.NewText( "hasFocus" ); }
+if( !(!gameNotPaused || !Main.gamePaused) ) { Main.NewText( "gamePaused" ); }
+if( !(!mouseNotInUse || !plr.mouseInterface) ) { Main.NewText( "mouseInterface" ); }
+if( !(!keyboardNotInVanillaUI || !Main.drawingPlayerChat) ) { Main.NewText( "drawingPlayerChat" ); }
+if( !(!keyboardNotInVanillaUI || !Main.editSign) ) { Main.NewText( "editSign" ); }
+if( !(!keyboardNotInVanillaUI || !Main.editChest) ) { Main.NewText( "editChest" ); }
+if( !(!keyboardNotInCustomUI || !PlayerInput.WritingText) ) { Main.NewText( "WritingText" ); }
+if( !(!keyboardNotInCustomUI || !Main.blockInput) ) { Main.NewText( "blockInput" ); }
+if( !(!playerAvailable || !plr.dead) ) { Main.NewText( "dead" ); }
+if( !(!playerAvailable || !plr.CCed) ) { Main.NewText( "CCed" ); }
+if( !(!playerNotTalkingToNPC || plr.talkNPC == -1) ) { Main.NewText( "talkNPC" ); }
+if( !(!playerNotWieldingItem || (plr.itemTime == 0 && plr.itemAnimation == 0)) ) { Main.NewText( "itemTime" ); }
+if( !(!noFullscreenMap || !Main.mapFullscreen) ) { Main.NewText( "mapFullscreen" ); }
+if( !(!notShowingMouseIcon || !Main.HoveringOverAnNPC) ) { Main.NewText( "HoveringOverAnNPC" ); }
+if( !(!notShowingMouseIcon || !plr.showItemIcon) ) { Main.NewText( "showItemIcon" ); }*/
 			return (!notTabbedAway || Main.hasFocus) &&
 				(!gameNotPaused || !Main.gamePaused) &&
 				(!mouseNotInUse || !plr.mouseInterface) &&

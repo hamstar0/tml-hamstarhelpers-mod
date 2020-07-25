@@ -12,26 +12,9 @@ namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersNPC : GlobalNPC {
 		public override void NPCLoot( NPC npc ) {
-//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+npc.whoAmI+":"+npc.type+"_A", 1 );
 			if( npc.lastInteraction >= 0 && npc.lastInteraction < Main.player.Length ) {
 				this.NpcKilledByPlayer( npc );
 			}
-
-			if( ModHelpersConfig.Instance.MagiTechScrapMechBossDropsEnabled ) {
-				int scrapType = ModContent.ItemType<MagiTechScrapItem>();
-
-				switch( npc.type ) {
-				case NPCID.Retinazer:
-				case NPCID.Spazmatism:
-					ItemHelpers.CreateItem( npc.position, scrapType, 5, 24, 24 );
-					break;
-				case NPCID.TheDestroyer:
-				case NPCID.SkeletronPrime:
-					ItemHelpers.CreateItem( npc.position, scrapType, 10, 24, 24 );
-					break;
-				}
-			}
-			//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+npc.whoAmI+":"+npc.type+"_B", 1 );
 		}
 
 

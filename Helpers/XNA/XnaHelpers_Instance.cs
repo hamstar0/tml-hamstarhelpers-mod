@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Helpers.Debug;
@@ -18,7 +19,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		internal XNAHelpers() {
 			if( Main.dedServ || Main.netMode == NetmodeID.Server ) { return; }
 
-			Type sbType = Main.spriteBatch.GetType();
+			Type sbType = typeof(SpriteBatch);
 			this.SpriteBatchBegunField = sbType.GetField( "inBeginEndPair", ReflectionHelpers.MostAccess );
 
 			if( this.SpriteBatchBegunField == null ) {

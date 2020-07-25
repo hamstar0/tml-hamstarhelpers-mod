@@ -1,18 +1,15 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.UI;
-using HamstarHelpers.Services.Hooks.LoadHooks;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Terraria;
 using Terraria.ModLoader.IO;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Internals.UI;
 
 
 namespace HamstarHelpers.Internals.Logic {
 	/// @private
 	partial class PlayerLogic {
-		public string OldPrivateUID { get; private set; }
-		public bool HasLoadedOldUID { get; private set; }
-
 		private ISet<int> PermaBuffsById = new HashSet<int>();
 		private ISet<int> HasBuffIds = new HashSet<int>();
 		private IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
@@ -20,6 +17,12 @@ namespace HamstarHelpers.Internals.Logic {
 		private uint TestPing = 0;
 
 		public DialogManager DialogManager = new DialogManager();
+
+
+		////////////////
+
+		public string OldPrivateUID { get; private set; }
+		public bool HasLoadedOldUID { get; private set; }
 
 		public bool HasSyncedWorldData { get; private set; }
 		public bool IsSynced { get; private set; }

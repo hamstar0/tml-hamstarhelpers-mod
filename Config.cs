@@ -341,20 +341,6 @@ namespace HamstarHelpers {
 
 
 		/// <summary>
-		/// Adds Geo-Resonant Orbs to Dryad's shop.
-		/// </summary>
-		[Header( "Reusable generic assets settings" )]
-		[Label( "Adds Geo-Resonant Orbs to Dryad's shop" )]
-		public bool GeoResonantOrbSoldByDryad { get; set; } = false;
-
-		/// <summary>
-		/// Magi-Tech Scrap items drop from mech bosses.
-		/// </summary>
-		[Label( "Adds Magi-Tech Scrap mech boss drops" )]
-		[Tooltip( "Magi-Tech Scrap items drop from mech bosses." )]
-		public bool MagiTechScrapMechBossDropsEnabled { get; set; } = false;
-
-		/// <summary>
 		/// Coal items can be placed like tiles.
 		/// </summary>
 		[ReloadRequired]
@@ -370,29 +356,12 @@ namespace HamstarHelpers {
 		[DefaultValue( true )]
 		public bool AddCrimsonLeatherRecipe { get; set; } = true;
 
-		/// <summary>
-		/// Bramble tile friction upon players.
+		/*/// <summary>
+		/// Enable writing text to books (create Note item).
 		/// </summary>
-		[Tooltip( "Bramble tile friction upon players." )]
-		[Range( 0f, 1f )]
-		[DefaultValue( 0.2f )]
-		public float BrambleFriction { get; set; } = 0.2f;
-
-		/// <summary>
-		/// Rate of damage to players caught on bramble tiles.
-		/// </summary>
-		[Tooltip( "Rate of damage to players caught on bramble tiles." )]
-		[Range( 1, 60 * 60 * 60 * 24 )]
-		[DefaultValue( 6 )]
-		public int BrambleDamageTickRate { get; set; } = 6;
-
-		/// <summary>
-		/// Amount of damage to players caught on bramble tiles.
-		/// </summary>
-		[Tooltip( "Amount of damage to players caught on bramble tiles." )]
-		[Range( 1, 9999999 )]
-		[DefaultValue( 20 )]
-		public int BrambleDamage { get; set; } = 10;
+		[Label( "Enable writing text to books (create Note item)" )]
+		[DefaultValue( true )]
+		public bool BookWritingEnabled { get; set; } = false;*/
 
 
 
