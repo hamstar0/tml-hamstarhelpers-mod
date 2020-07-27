@@ -2,15 +2,17 @@
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Services.Network;
+using HamstarHelpers.Services.Network.NetIO;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
-	class CursorPositionProtocol : PacketProtocolBroadcast {
+	class CursorPositionProtocol : NetProtocolBroadcastPayload {
 		internal static bool BroadcastCursor() {
-			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not a client." ); }
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
+				throw new ModHelpersException( "Not a client." );
+			}
 
 			short x = (short)Main.mouseX;
 			short y = (short)Main.mouseY;
@@ -23,8 +25,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			}
 
 			var protocol = new CursorPositionProtocol( (byte)Main.myPlayer, x, y );
+			NetIO.Broadcast( protocol );
 
-			protocol.SendToServer( true );
 			return true;
 		}
 
@@ -50,11 +52,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveOnClient() {
-			Client._LastKnownCursorPositions[ this.PlayerWho ] = (this.X, this.Y);
+		public override void ReceiveOnServerBeforeRebroadcast( int fromWho ) {
+			Client._LastKnownCursorPositions[this.PlayerWho] = (this.X, this.Y);
 		}
 
-		protected override void ReceiveOnServer( int fromWho ) {
+		public override void ReceiveBroadcastOnClient( int fromWho ) {
 			Client._LastKnownCursorPositions[this.PlayerWho] = (this.X, this.Y);
 		}
 	}

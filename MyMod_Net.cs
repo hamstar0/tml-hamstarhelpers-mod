@@ -9,7 +9,7 @@ using HamstarHelpers.Classes.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Services.Network;
-using HamstarHelpers.Services.Network.NetProtocol;
+using HamstarHelpers.Services.Network.NetIO;
 
 
 namespace HamstarHelpers {
@@ -17,7 +17,7 @@ namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
 		public override void HandlePacket( BinaryReader reader, int playerWho ) {
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
-			if( NetProtocol.Receive(reader, playerWho) ) {
+			if( NetIO.HandlePacket(reader, playerWho) ) {
 				return;
 			}
 
