@@ -9,7 +9,7 @@ using HamstarHelpers.Classes.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Services.Network;
-using HamstarHelpers.Classes.Protocols.Net;
+using HamstarHelpers.Services.Network.NetProtocol;
 
 
 namespace HamstarHelpers {

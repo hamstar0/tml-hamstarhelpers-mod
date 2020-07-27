@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace HamstarHelpers.Classes.Protocols.Net {
+namespace HamstarHelpers.Services.Network.NetProtocol {
 	/// @private
 	public interface INetProtocolPayload { }
 
