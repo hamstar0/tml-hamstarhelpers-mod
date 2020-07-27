@@ -20,7 +20,7 @@ namespace HamstarHelpers.Services.Network.NetProtocol {
 		////////////////
 
 		void ILoadable.OnModsLoad() {
-			IEnumerable<Type> payloadTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof(INetProtocolPayload) );
+			IEnumerable<Type> payloadTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof(NetProtocolPayload) );
 
 			this.Serializer = new Serializer( payloadTypes );
 		}

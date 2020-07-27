@@ -21,16 +21,20 @@ namespace HamstarHelpers.Services.Network.NetProtocol {
 				return false;
 			}
 
-			if( data is IBroadcastNetProtocolPayload ) {
-				NetProtocol.Receive( data as IBroadcastNetProtocolPayload, playerWho );
+			if( data is BroadcastNetProtocolPayload ) {
+				NetProtocol.Receive( data as BroadcastNetProtocolPayload, playerWho );
 				return true;
 			}
-			if( data is IServerNetProtocolPayload ) {
-				NetProtocol.Receive( data as IServerNetProtocolPayload, playerWho );
+			if( data is ServerNetProtocolPayload ) {
+				NetProtocol.Receive( data as ServerNetProtocolPayload, playerWho );
 				return true;
 			}
-			if( data is IClientNetProtocolPayload ) {
-				NetProtocol.Receive( data as IClientNetProtocolPayload, playerWho );
+			if( data is ClientNetProtocolPayload ) {
+				NetProtocol.Receive( data as ClientNetProtocolPayload, playerWho );
+				return true;
+			}
+			if( data is BidirectionalNetProtocolPayload ) {
+				NetProtocol.Receive( data as BidirectionalNetProtocolPayload, playerWho );
 				return true;
 			}
 
@@ -40,7 +44,7 @@ namespace HamstarHelpers.Services.Network.NetProtocol {
 
 		////
 
-		private static void Receive( IBroadcastNetProtocolPayload data, int playerWho ) {
+		private static void Receive( BroadcastNetProtocolPayload data, int playerWho ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				data.ReceiveBroadcastOnServer( playerWho );
 				NetProtocol.Send( data, -1, playerWho );
@@ -51,18 +55,26 @@ namespace HamstarHelpers.Services.Network.NetProtocol {
 			}
 		}
 
-		private static void Receive( IServerNetProtocolPayload data, int playerWho ) {
+		private static void Receive( ServerNetProtocolPayload data, int playerWho ) {
 			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Not server" );
 			}
 			data.ReceiveOnServer( playerWho );
 		}
 
-		private static void Receive( IClientNetProtocolPayload data, int playerWho ) {
+		private static void Receive( ClientNetProtocolPayload data, int playerWho ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}
-			data.ReceiveOnClient();
+			data.ReceiveOnClient( playerWho );
+		}
+
+		private static void Receive( BidirectionalNetProtocolPayload data, int playerWho ) {
+			if( Main.netMode == NetmodeID.MultiplayerClient ) {
+				data.ReceiveOnClient( playerWho );
+			} else if( Main.netMode == NetmodeID.Server ) {
+				data.ReceiveOnServer( playerWho );
+			}
 		}
 	}
 }

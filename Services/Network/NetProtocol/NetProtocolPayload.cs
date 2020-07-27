@@ -1,33 +1,16 @@
-﻿using System;
-
-
-namespace HamstarHelpers.Services.Network.NetProtocol {
+﻿namespace HamstarHelpers.Services.Network.NetProtocol {
 	/// @private
-	public interface INetProtocolPayload { }
-
-
-	
-	/// <summary>
-	/// Represents broadcast packets (received on server and all clients). Be sure to add a Serializable attribute.
-	/// </summary>
-	public interface IBroadcastNetProtocolPayload : INetProtocolPayload {
-		/// <summary></summary>
-		/// <param name="fromWho"></param>
-		void ReceiveBroadcastOnServer( int fromWho );
-		/// <summary></summary>
-		/// <param name="fromWho"></param>
-		void ReceiveBroadcastOnClient( int fromWho );
-	}
+	public abstract class NetProtocolPayload { }
 
 
 
 	/// <summary>
 	/// Represents server packets. Be sure to add a Serializable attribute.
 	/// </summary>
-	public interface IServerNetProtocolPayload : INetProtocolPayload {
+	public abstract class ServerNetProtocolPayload : NetProtocolPayload {
 		/// <summary></summary>
 		/// <param name="fromWho"></param>
-		void ReceiveOnServer( int fromWho );
+		public abstract void ReceiveOnServer( int fromWho );
 	}
 
 
@@ -35,8 +18,39 @@ namespace HamstarHelpers.Services.Network.NetProtocol {
 	/// <summary>
 	/// Represents client packets. Be sure to add a Serializable attribute.
 	/// </summary>
-	public interface IClientNetProtocolPayload : INetProtocolPayload {
+	public abstract class ClientNetProtocolPayload : NetProtocolPayload {
 		/// <summary></summary>
-		void ReceiveOnClient();
+		public abstract void ReceiveOnClient( int fromWho );
+	}
+
+
+
+	/// <summary>
+	/// Represents client packets. Be sure to add a Serializable attribute.
+	/// </summary>
+	public abstract class BidirectionalNetProtocolPayload : NetProtocolPayload {
+		/// <summary></summary>
+		/// <param name="fromWho"></param>
+		public abstract void ReceiveOnServer( int fromWho );
+
+		/// <summary></summary>
+		public abstract void ReceiveOnClient( int fromWho );
+	}
+
+
+
+	////
+
+	/// <summary>
+	/// Represents broadcast packets (received on server and all clients). Be sure to add a Serializable attribute.
+	/// </summary>
+	public abstract class BroadcastNetProtocolPayload : NetProtocolPayload {
+		/// <summary></summary>
+		/// <param name="fromWho"></param>
+		public abstract void ReceiveBroadcastOnServer( int fromWho );
+
+		/// <summary></summary>
+		/// <param name="fromWho"></param>
+		public abstract void ReceiveBroadcastOnClient( int fromWho );
 	}
 }
