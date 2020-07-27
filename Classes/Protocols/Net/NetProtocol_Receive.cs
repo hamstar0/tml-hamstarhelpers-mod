@@ -21,16 +21,16 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 				return false;
 			}
 
-			if( data is BroadcastNetProtocolPayload ) {
-				NetProtocol.Receive( data as BroadcastNetProtocolPayload, playerWho );
+			if( data is IBroadcastNetProtocolPayload ) {
+				NetProtocol.Receive( data as IBroadcastNetProtocolPayload, playerWho );
 				return true;
 			}
-			if( data is ServerNetProtocolPayload ) {
-				NetProtocol.Receive( data as ServerNetProtocolPayload, playerWho );
+			if( data is IServerNetProtocolPayload ) {
+				NetProtocol.Receive( data as IServerNetProtocolPayload, playerWho );
 				return true;
 			}
-			if( data is ClientNetProtocolPayload ) {
-				NetProtocol.Receive( data as ClientNetProtocolPayload, playerWho );
+			if( data is IClientNetProtocolPayload ) {
+				NetProtocol.Receive( data as IClientNetProtocolPayload, playerWho );
 				return true;
 			}
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 
 		////
 
-		private static void Receive( BroadcastNetProtocolPayload data, int playerWho ) {
+		private static void Receive( IBroadcastNetProtocolPayload data, int playerWho ) {
 			if( Main.netMode == NetmodeID.Server ) {
 				data.ReceiveBroadcastOnServer( playerWho );
 				NetProtocol.Send( data, -1, playerWho );
@@ -51,14 +51,14 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 			}
 		}
 
-		private static void Receive( ServerNetProtocolPayload data, int playerWho ) {
+		private static void Receive( IServerNetProtocolPayload data, int playerWho ) {
 			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Not server" );
 			}
 			data.ReceiveOnServer( playerWho );
 		}
 
-		private static void Receive( ClientNetProtocolPayload data, int playerWho ) {
+		private static void Receive( IClientNetProtocolPayload data, int playerWho ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}

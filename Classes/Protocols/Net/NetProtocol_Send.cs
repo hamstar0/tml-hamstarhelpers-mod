@@ -16,7 +16,7 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 		/// Sends the data to the server, and then rebroadcasts it to each (other) client.
 		/// </summary>
 		/// <param name="data"></param>
-		public static void Broadcast( BroadcastNetProtocolPayload data ) {
+		public static void Broadcast( IBroadcastNetProtocolPayload data ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 		/// Sends the data to the server.
 		/// </summary>
 		/// <param name="data"></param>
-		public static void SendToServer( ServerNetProtocolPayload data ) {
+		public static void SendToServer( IServerNetProtocolPayload data ) {
 			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Not server" );
 			}
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 		/// <param name="data"></param>
 		/// <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to. -1 for all players.</param>
 		/// <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
-		public static void SendToClients( ClientNetProtocolPayload data, int toWho=-1, int ignoreWho=-1 ) {
+		public static void SendToClients( IClientNetProtocolPayload data, int toWho=-1, int ignoreWho=-1 ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}
@@ -50,7 +50,7 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 
 		////////////////
 
-		private static void Send( NetProtocolPayload data, int toWho, int ignoreWho ) {
+		private static void Send( INetProtocolPayload data, int toWho, int ignoreWho ) {
 			var netProtocol = ModContent.GetInstance<NetProtocol>();
 			ModPacket packet = ModHelpersMod.Instance.GetPacket();
 

@@ -3,14 +3,14 @@
 
 namespace HamstarHelpers.Classes.Protocols.Net {
 	/// @private
-	public interface NetProtocolPayload { }
+	public interface INetProtocolPayload { }
 
 
 	
 	/// <summary>
 	/// Represents broadcast packets (received on server and all clients). Be sure to add a Serializable attribute.
 	/// </summary>
-	public interface BroadcastNetProtocolPayload : NetProtocolPayload {
+	public interface IBroadcastNetProtocolPayload : INetProtocolPayload {
 		/// <summary></summary>
 		/// <param name="fromWho"></param>
 		void ReceiveBroadcastOnServer( int fromWho );
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 	/// <summary>
 	/// Represents server packets. Be sure to add a Serializable attribute.
 	/// </summary>
-	public interface ServerNetProtocolPayload : NetProtocolPayload {
+	public interface IServerNetProtocolPayload : INetProtocolPayload {
 		/// <summary></summary>
 		/// <param name="fromWho"></param>
 		void ReceiveOnServer( int fromWho );
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 	/// <summary>
 	/// Represents client packets. Be sure to add a Serializable attribute.
 	/// </summary>
-	public interface ClientNetProtocolPayload : NetProtocolPayload {
+	public interface IClientNetProtocolPayload : INetProtocolPayload {
 		/// <summary></summary>
 		void ReceiveOnClient();
 	}
