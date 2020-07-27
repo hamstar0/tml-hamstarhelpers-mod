@@ -17,8 +17,8 @@ namespace HamstarHelpers.Classes.Protocols.Net {
 		/// </summary>
 		/// <param name="data"></param>
 		public static void Broadcast( BroadcastNetProtocolPayload data ) {
-			if( Main.netMode != NetmodeID.Server ) {
-				throw new ModHelpersException( "Not server" );
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
+				throw new ModHelpersException( "Not client" );
 			}
 			NetProtocol.Send( data, -1, -1 );
 		}
