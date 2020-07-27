@@ -9,6 +9,7 @@ using HamstarHelpers.Classes.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Services.Network;
+using HamstarHelpers.Classes.Protocols.Net;
 
 
 namespace HamstarHelpers {
@@ -16,6 +17,10 @@ namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
 		public override void HandlePacket( BinaryReader reader, int playerWho ) {
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+			if( NetProtocol.Receive(reader, playerWho) ) {
+				return;
+			}
+
 			try {
 				int protocolCode = reader.ReadInt32();
 				

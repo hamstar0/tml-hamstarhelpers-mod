@@ -37,8 +37,12 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			IDictionary<int, Type> protocolTypeMap = new Dictionary<int, Type>();
 
 			foreach( Type subclassType in protocolTypes ) {
-				ConstructorInfo ctorInfo = subclassType.GetConstructor( BindingFlags.Instance | BindingFlags.NonPublic, null,
-						new Type[] { }, null );
+				ConstructorInfo ctorInfo = subclassType.GetConstructor(
+					bindingAttr: BindingFlags.Instance | BindingFlags.NonPublic,
+					binder: null,
+					types: new Type[] { },
+					modifiers: null
+				);
 				if( ctorInfo == null ) {
 					throw new ModHelpersException( "Missing private constructor for " + subclassType.Name + " ("+subclassType.Namespace+")" );
 				}

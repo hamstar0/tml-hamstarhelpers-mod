@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using System.IO;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Stream;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Threading;
-using System;
-using System.IO;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {

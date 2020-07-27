@@ -1,9 +1,10 @@
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Services.UI.FreeHUD;
 using HamstarHelpers.Helpers.UI;
 using HamstarHelpers.Items.NoteItem.UI;
 using HamstarHelpers.Services.UI.LayerDisable;
+using HamstarHelpers.Services.UI.FreeHUD;
+
 
 namespace HamstarHelpers.Items.NoteItem {
 	/// <summary>
