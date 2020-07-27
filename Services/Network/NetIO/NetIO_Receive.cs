@@ -1,11 +1,11 @@
 ﻿using System;
-using System.IO;
+using System.Reflection;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Services.Network.NetIO {
@@ -44,6 +44,55 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				data.ReceiveOnClient( playerWho );
 			} else if( Main.netMode == NetmodeID.Server ) {
 				data.ReceiveOnServer( playerWho );
+			}
+		}
+
+		////
+
+		private static void Receive( NetProtocolRequestPayload data, int playerWho ) {
+			Type genericArg = null;
+			foreach( Type arg in data.GetType().GetGenericArguments() ) {
+				genericArg = arg;
+				break;
+			}
+			if( genericArg == null ) {
+				throw new ModHelpersException( "Invalid NetProtocolRequestPayload" );
+			}
+
+			object rawReply = Activator.CreateInstance(
+				genericArg,
+				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance,
+				null,
+				new object[] { },
+				null
+			);
+
+			if( Main.netMode == NetmodeID.Server ) {
+				var reply = rawReply as NetProtocolClientPayload;
+
+				if( !ReflectionHelpers.RunMethod(
+					data,
+					"PreReply",
+					new object[] { playerWho, rawReply },
+					out object _
+				) ) {
+					throw new ModHelpersException( "Could not call PreReply for "+data.GetType().Name );
+				}
+
+				NetIO.SendToClients( reply );
+			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
+				var reply = rawReply as NetProtocolServerPayload;
+				
+				if( !ReflectionHelpers.RunMethod(
+					data,
+					"PreReply",
+					new object[] { playerWho, rawReply },
+					out object _
+				) ) {
+					throw new ModHelpersException( "Could not call PreReply for "+data.GetType().Name );
+				}
+
+				NetIO.SendToServer( reply );
 			}
 		}
 	}

@@ -22,11 +22,6 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 
 	/// @private
 	public abstract class NetProtocolRequestPayload : NetProtocolPayload {
-		/// <summary>
-		/// Called before a request is replied to.
-		/// </summary>
-		/// <param name="fromWho"></param>
-		public abstract void PreReply( int fromWho );
 	}
 
 
@@ -38,7 +33,14 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// Represents a request from a client to the server.
 	/// </summary>
 	public abstract class NetProtocolRequestClientPayload<T> : NetProtocolRequestPayload
-				where T : NetProtocolServerPayload { }
+				where T : NetProtocolServerPayload {
+		/// <summary>
+		/// Called before a request is replied to.
+		/// </summary>
+		/// <param name="reply"></param>
+		/// <param name="fromWho"></param>
+		public virtual void PreReply( T reply, int fromWho ) { }
+	}
 
 
 
@@ -47,5 +49,12 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// Represents a request from the server to a client.
 	/// </summary>
 	public abstract class NetProtocolRequestServerPayload<T> : NetProtocolRequestPayload
-				where T : NetProtocolClientPayload { }
+				where T : NetProtocolClientPayload {
+		/// <summary>
+		/// Called before a request is replied to.
+		/// </summary>
+		/// <param name="reply"></param>
+		/// <param name="fromWho"></param>
+		public virtual void PreReply( T reply, int fromWho ) { }
+	}
 }
