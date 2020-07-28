@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using System.Collections.Generic;
+using Terraria;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;
-using System.Collections.Generic;
-using Terraria;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Internals.Logic {
 			PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 
 			// Receive
-			WorldDataProtocol.QuickRequest();
+			WorldDataRequestProtocol.QuickRequest();
 		}
 
 

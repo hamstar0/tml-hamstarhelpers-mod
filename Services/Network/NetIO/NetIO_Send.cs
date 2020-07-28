@@ -24,6 +24,8 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			NetIO.Send( data, -1, -1 );
 		}
 
+		////
+
 		/// <summary>
 		/// Sends the data to the server.
 		/// </summary>
@@ -46,6 +48,8 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			NetIO.Send( data, -1, -1 );
 		}
 
+		////
+
 		/// <summary>
 		/// Sends the data to the specified client(s).
 		/// </summary>
@@ -57,6 +61,18 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				throw new ModHelpersException( "Not client" );
 			}
 			NetIO.Send( data, toWho, ignoreWho );
+		}
+
+		/// <summary>
+		/// Sends the data to the specified client(s).
+		/// </summary>
+		/// <param name="data"></param>
+		/// <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
+		public static void SendToClients( NetProtocolBroadcastPayload data, int ignoreWho = -1 ) {
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
+				throw new ModHelpersException( "Not client" );
+			}
+			NetIO.Send( data, -1, ignoreWho );
 		}
 
 		/// <summary>

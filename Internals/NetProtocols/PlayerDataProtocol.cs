@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Network.NetIO;
+using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
-	class PlayerDataProtocol : PacketProtocolBroadcast {
+	class PlayerDataProtocol : NetProtocolBroadcastPayload {
 		public static void BroadcastToAll( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not client" ); }
 			
 			var protocol = new PlayerDataProtocol( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
-			
-			protocol.SendToServer( true );
+
+			NetIO.Broadcast( protocol );
 		}
 
 
@@ -43,14 +44,14 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveOnServer( int fromWho ) {
+		public override void ReceiveOnServerBeforeRebroadcast( int fromWho ) {
 			Player player = Main.player[ fromWho ];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			
 			myplayer.Logic.NetReceiveDataOnServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 		}
 
-		protected override void ReceiveOnClient() {
+		public override void ReceiveBroadcastOnClient( int fromWho ) {
 			if( this.PlayerWho < 0 || this.PlayerWho >= Main.player.Length ) {
 				//throw new HamstarException( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Invalid player index " + this.PlayerWho );
 				throw new ModHelpersException( "Invalid player index " + this.PlayerWho );

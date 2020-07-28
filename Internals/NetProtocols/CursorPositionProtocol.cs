@@ -4,6 +4,7 @@ using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Services.Network;
 using HamstarHelpers.Services.Network.NetIO;
+using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {

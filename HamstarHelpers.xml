@@ -11118,10 +11118,16 @@
         <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerNewIdProtocol">
             @private
         </member>
+        <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerOldIdRequestClientProtocol">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerOldIdProtocol">
             @private
         </member>
         <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerPermaDeathProtocol">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Internals.NetProtocols.WorldDataRequestProtocol">
             @private
         </member>
         <member name="T:HamstarHelpers.Internals.NetProtocols.WorldDataProtocol">
@@ -12931,7 +12937,15 @@
             </summary>
             <param name="callback"></param>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetProtocol.NetProtocol">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.NetIO">
+            <summary>
+            Provides functions to neatly send data (via. ModPacket) to server, clients, or both. Abstracts away serialization and
+            routing.
+            </summary>
+            <summary>
+            Provides functions to neatly send data (via. ModPacket) to server, clients, or both. Abstracts away serialization and
+            routing.
+            </summary>
             <summary>
             Provides functions to neatly send data (via. ModPacket) to server, clients, or both. Abstracts away serialization and
             routing.
@@ -12945,19 +12959,41 @@
             routing.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetProtocol.NetProtocol.Broadcast(HamstarHelpers.Services.Network.NetProtocol.IBroadcastNetProtocolPayload)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClientPayload{``0},System.Int32,System.Int32)">
+            <summary>
+            Sends a request to the given client(s).
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <param name="toWho"></param>
+            <param name="ignoreWho"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServerPayload{``0})">
+            <summary>
+            Sends a request to the server.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.Broadcast(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload)">
             <summary>
             Sends the data to the server, and then rebroadcasts it to each (other) client.
             </summary>
             <param name="data"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetProtocol.NetProtocol.SendToServer(HamstarHelpers.Services.Network.NetProtocol.IServerNetProtocolPayload)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToServer(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolServerPayload)">
             <summary>
             Sends the data to the server.
             </summary>
             <param name="data"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetProtocol.NetProtocol.SendToClients(HamstarHelpers.Services.Network.NetProtocol.IClientNetProtocolPayload,System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToServer(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload)">
+            <summary>
+            Sends the data to the server.
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClients(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolClientPayload,System.Int32,System.Int32)">
             <summary>
             Sends the data to the specified client(s).
             </summary>
@@ -12965,38 +13001,92 @@
             <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to. -1 for all players.</param>
             <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetProtocol.INetProtocolPayload">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClients(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload,System.Int32)">
+            <summary>
+            Sends the data to the specified client(s).
+            </summary>
+            <param name="data"></param>
+            <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClients(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload,System.Int32,System.Int32)">
+            <summary>
+            Sends the data to the specified client(s).
+            </summary>
+            <param name="data"></param>
+            <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to. -1 for all players.</param>
+            <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolPayload">
             @private
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetProtocol.IBroadcastNetProtocolPayload">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolServerPayload">
             <summary>
-            Represents broadcast packets (received on server and all clients). Be sure to add a Serializable attribute.
+            Represents packets meant for receipt on server.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetProtocol.IBroadcastNetProtocolPayload.ReceiveBroadcastOnServer(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolServerPayload.ReceiveOnServer(System.Int32)">
             <summary></summary>
             <param name="fromWho"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetProtocol.IBroadcastNetProtocolPayload.ReceiveBroadcastOnClient(System.Int32)">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolClientPayload">
+            <summary>
+            Represents packets meant for receipt on client.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolClientPayload.ReceiveOnClient(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload">
+            <summary>
+            Represents packets meant for receipt on server or client.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload.ReceiveOnServer(System.Int32)">
             <summary></summary>
             <param name="fromWho"></param>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetProtocol.IServerNetProtocolPayload">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload.ReceiveOnClient(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload">
             <summary>
-            Represents server packets. Be sure to add a Serializable attribute.
+            Represents broadcast packets (received on server and then all clients).
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetProtocol.IServerNetProtocolPayload.ReceiveOnServer(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload.ReceiveOnServerBeforeRebroadcast(System.Int32)">
             <summary></summary>
             <param name="fromWho"></param>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetProtocol.IClientNetProtocolPayload">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload.ReceiveBroadcastOnClient(System.Int32)">
+            <summary></summary>
+            <param name="fromWho"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayload">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClientPayload`1">
             <summary>
-            Represents client packets. Be sure to add a Serializable attribute.
+            Represents a request from a client to the server.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetProtocol.IClientNetProtocolPayload.ReceiveOnClient">
-            <summary></summary>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClientPayload`1.PreReply(`0,System.Int32)">
+            <summary>
+            Called before a request is replied to.
+            </summary>
+            <param name="reply"></param>
+            <param name="fromWho"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServerPayload`1">
+            <summary>
+            Represents a request from the server to a client.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServerPayload`1.PreReply(`0,System.Int32)">
+            <summary>
+            Called before a request is replied to.
+            </summary>
+            <param name="reply"></param>
+            <param name="fromWho"></param>
         </member>
         <member name="T:HamstarHelpers.Services.Network.Server">
             <summary>

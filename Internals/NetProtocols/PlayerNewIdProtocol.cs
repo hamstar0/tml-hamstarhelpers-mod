@@ -1,19 +1,25 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Players;
-using Terraria;
+﻿using Terraria;
 using System.Collections.Generic;
-using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Services.Network.NetIO;
+using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
-	class PlayerNewIdProtocol : PacketProtocolSentToEither {
+	class PlayerNewIdProtocol : NetProtocolBidirectionalPayload {
 		public static void QuickRequestToClient( int playerWho ) {
-			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( playerWho, -1, -1 );
+			var protocol = new PlayerNewIdProtocol();
+
+			NetIO.SendToClients( protocol, -1, -1 );
 		}
 
 		public static void QuickSendToServer() {
-			PlayerNewIdProtocol.QuickSendToServer<PlayerNewIdProtocol>();
+			var protocol = new PlayerNewIdProtocol();
+			protocol.PlayerIds[Main.myPlayer] = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer );
+
+			NetIO.SendToServer( protocol );
 		}
 
 
@@ -30,29 +36,19 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			this.PlayerIds = ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
 		}
 
-		
-		////////////////
-
-		protected override void SetClientDefaults() {
-			this.PlayerIds[ Main.myPlayer ] = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer );
-		}
-
-		protected override void SetServerDefaults( int toWho ) {
-		}
-
 
 		////////////////
-		
-		protected override void ReceiveOnServer( int fromWho ) {
+
+		public override void ReceiveOnServer( int fromWho ) {
 			string uid;
-			if( this.PlayerIds.TryGetValue( fromWho, out uid ) ) {
+			if( this.PlayerIds.TryGetValue(fromWho, out uid) ) {
 				ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ fromWho ] = uid;
 			} else {
 				LogHelpers.Warn( "No UID reported from player id'd "+fromWho );
 			}
 		}
 
-		protected override void ReceiveOnClient() {
+		public override void ReceiveOnClient( int fromWho ) {
 			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds = this.PlayerIds;
 		}
 	}

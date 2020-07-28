@@ -152,7 +152,7 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 				// Allow admins to dump on behalf of server, also
 				if( Main.netMode == NetmodeID.MultiplayerClient ) {
 					if( ModHelpersConfig.Instance.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer ) ) {
-						DataDumpProtocol.QuickRequest();
+						DataDumpRequestProtocol.QuickRequest();
 					}
 				}
 			}

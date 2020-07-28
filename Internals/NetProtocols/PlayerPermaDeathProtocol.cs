@@ -1,22 +1,22 @@
 ﻿using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Services.Network.NetIO;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
-	class PlayerPermaDeathProtocol : PacketProtocolSentToEither {
+	class PlayerPermaDeathProtocol : NetProtocolBroadcastPayload {
 		public static void BroadcastFromClient( int playerDeadWho, string msg ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}
 
 			var protocol = new PlayerPermaDeathProtocol( playerDeadWho, msg );
-
-			protocol.SendToServer( true );
+			NetIO.Broadcast( protocol );
 		}
 
 		public static void BroadcastFromServer( int playerDeadWho, string msg ) {
@@ -25,8 +25,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			}
 
 			var protocol = new PlayerPermaDeathProtocol( playerDeadWho, msg );
-
-			protocol.SendToClient( -1, -1 );
+			NetIO.SendToClients( protocol );
 		}
 
 
@@ -50,16 +49,16 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveOnServer( int fromWho ) {
+		public override void ReceiveOnServerBeforeRebroadcast( int fromWho ) {
 			//Player player = Main.player[ this.PlayerWho ];
 
 			//PlayerHelpers.ApplyPermaDeath( player, this.Msg );	?
 		}
 
-		protected override void ReceiveOnClient() {
+		public override void ReceiveBroadcastOnClient( int fromWho ) {
 			Player player = Main.player[ this.PlayerWho ];
 			if( player == null || !player.active ) {
-				LogHelpers.Log( "ModHelpers.PlayerPermaDeathProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
+				LogHelpers.Alert( "Inactive player indexed as " + this.PlayerWho );
 				return;
 			}
 
