@@ -40,7 +40,11 @@ namespace HamstarHelpers.Internals.Logic {
 
 			// Send
 			PlayerOldIdProtocol.QuickSendToServer();
-			PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+			PlayerDataProtocol.BroadcastToAll(
+				(HashSet<int>)this.PermaBuffsById,
+				(HashSet<int>)this.HasBuffIds,
+				(Dictionary<int, int>)this.EquipSlotsToItemTypes
+			);
 
 			// Receive
 			WorldDataRequestProtocol.QuickRequest();

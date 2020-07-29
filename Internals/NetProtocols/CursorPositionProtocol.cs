@@ -9,6 +9,7 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
+	[Serializable]
 	class CursorPositionProtocol : NetProtocolBroadcastPayload {
 		internal static bool BroadcastCursor() {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {

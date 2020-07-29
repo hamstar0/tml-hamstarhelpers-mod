@@ -1,10 +1,12 @@
-﻿using HamstarHelpers.Helpers.DotNET;
+﻿using System;
+using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 using HamstarHelpers.Services.Network.NetIO;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
+	[Serializable]
 	class PingProtocol : NetProtocolBidirectionalPayload {
 		public static void QuickSendToServer() {
 			NetIO.SendToServer( new PingProtocol() );

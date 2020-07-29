@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Internals.NetProtocols;
@@ -57,7 +58,11 @@ namespace HamstarHelpers.Internals.Logic {
 							return false;
 						} );
 
-						PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+						PlayerDataProtocol.BroadcastToAll(
+							(HashSet<int>)this.PermaBuffsById,
+							(HashSet<int>)this.HasBuffIds,
+							(Dictionary<int, int>)this.EquipSlotsToItemTypes
+						);
 					}
 				}
 			}
@@ -103,7 +108,11 @@ namespace HamstarHelpers.Internals.Logic {
 							return false;
 						} );
 
-						PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+						PlayerDataProtocol.BroadcastToAll(
+							(HashSet<int>)this.PermaBuffsById,
+							(HashSet<int>)this.HasBuffIds,
+							(Dictionary<int, int>)this.EquipSlotsToItemTypes
+						);
 					}
 				}
 			}
@@ -114,7 +123,11 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public void AddPermaBuff( int buffId ) {
 			if( this.PermaBuffsById.Add( buffId ) ) {
-				PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+				PlayerDataProtocol.BroadcastToAll(
+					(HashSet<int>)this.PermaBuffsById,
+					(HashSet<int>)this.HasBuffIds,
+					(Dictionary<int, int>)this.EquipSlotsToItemTypes
+				);
 			}
 		}
 
@@ -122,7 +135,11 @@ namespace HamstarHelpers.Internals.Logic {
 			if( !this.PermaBuffsById.Contains( buffId ) ) { return; }
 
 			if( this.PermaBuffsById.Remove( buffId ) ) {
-				PlayerDataProtocol.BroadcastToAll( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+				PlayerDataProtocol.BroadcastToAll(
+					(HashSet<int>)this.PermaBuffsById,
+					(HashSet<int>)this.HasBuffIds,
+					(Dictionary<int, int>)this.EquipSlotsToItemTypes
+				);
 			}
 		}
 	}

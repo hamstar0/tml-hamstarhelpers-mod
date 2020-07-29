@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
@@ -9,6 +10,7 @@ using HamstarHelpers.Services.Network.NetIO;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
+	[Serializable]
 	class PlayerPermaDeathProtocol : NetProtocolBroadcastPayload {
 		public static void BroadcastFromClient( int playerDeadWho, string msg ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {

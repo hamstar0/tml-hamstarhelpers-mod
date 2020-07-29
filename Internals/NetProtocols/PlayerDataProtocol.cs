@@ -10,8 +10,12 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
+	[Serializable]
 	class PlayerDataProtocol : NetProtocolBroadcastPayload {
-		public static void BroadcastToAll( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+		public static void BroadcastToAll(
+					HashSet<int> permaBuffsById,
+					HashSet<int> hasBuffIds,
+					Dictionary<int, int> equipSlotsToItemTypes ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not client" ); }
 			
 			var protocol = new PlayerDataProtocol( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
@@ -24,9 +28,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public int PlayerWho = 255;
-		public ISet<int> PermaBuffsById = new HashSet<int>();
-		public ISet<int> HasBuffIds = new HashSet<int>();
-		public IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
+		public HashSet<int> PermaBuffsById = new HashSet<int>();
+		public HashSet<int> HasBuffIds = new HashSet<int>();
+		public Dictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
 
 
 
@@ -34,7 +38,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		private PlayerDataProtocol() { }
 
-		private PlayerDataProtocol( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+		private PlayerDataProtocol(
+					HashSet<int> permaBuffsById,
+					HashSet<int> hasBuffIds,
+					Dictionary<int, int> equipSlotsToItemTypes ) {
 			this.PlayerWho = Main.myPlayer;
 			this.PermaBuffsById = permaBuffsById;
 			this.HasBuffIds = hasBuffIds;

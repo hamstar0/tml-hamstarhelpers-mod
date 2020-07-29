@@ -5,6 +5,7 @@ using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Helpers.DotNET.Serialization;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
@@ -22,8 +23,11 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 		void ILoadable.OnModsLoad() {
 			IEnumerable<Type> payloadTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof(NetProtocolPayload) );
+			var settings = new Settings {
+				CustomTypeSerializers = new ITypeSerializer[] { new HashSetSerializer() }
+			};
 
-			this.Serializer = new Serializer( payloadTypes );
+			this.Serializer = new Serializer( payloadTypes, settings );
 		}
 
 		void ILoadable.OnPostModsLoad() { }

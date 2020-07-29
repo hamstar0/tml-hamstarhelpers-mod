@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
@@ -9,6 +10,7 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
+	[Serializable]
 	class WorldDataRequestProtocol : NetProtocolRequestServerPayload<WorldDataProtocol> {
 		public static void QuickRequest() {
 			NetIO.RequestFromServer( new WorldDataRequestProtocol() );
@@ -19,6 +21,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 
 	/// @private
+	[Serializable]
 	class WorldDataProtocol : NetProtocolClientPayload {
 		public int HalfDays;
 		public bool HasObsoletedWorldId;

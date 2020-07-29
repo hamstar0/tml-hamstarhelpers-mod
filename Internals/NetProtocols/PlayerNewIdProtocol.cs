@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using System.Collections.Generic;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Players;
@@ -8,6 +9,7 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
+	[Serializable]
 	class PlayerNewIdProtocol : NetProtocolBidirectionalPayload {
 		public static void QuickRequestToClient( int playerWho ) {
 			var protocol = new PlayerNewIdProtocol();
@@ -26,14 +28,14 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public IDictionary<int, string> PlayerIds;
+		public Dictionary<int, string> PlayerIds;
 
 
 
 		////////////////
 
 		private PlayerNewIdProtocol() {
-			this.PlayerIds = ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
+			this.PlayerIds = (Dictionary<int, string>)ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
 		}
 
 

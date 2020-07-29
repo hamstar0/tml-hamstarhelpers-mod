@@ -4,8 +4,8 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Services.Network.NetIO {
@@ -51,12 +51,12 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 		private static void Receive( NetProtocolRequestPayload data, int playerWho ) {
 			Type genericArg = null;
-			foreach( Type arg in data.GetType().GetGenericArguments() ) {
+			foreach( Type arg in data.GetType().BaseType.GetGenericArguments() ) {
 				genericArg = arg;
 				break;
 			}
 			if( genericArg == null ) {
-				throw new ModHelpersException( "Invalid NetProtocolRequestPayload" );
+				throw new ModHelpersException( "Invalid NetProtocolRequestPayload ("+data.GetType().Name+")" );
 			}
 
 			object rawReply = Activator.CreateInstance(
@@ -69,11 +69,14 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 			if( Main.netMode == NetmodeID.Server ) {
 				var reply = rawReply as NetProtocolClientPayload;
+				if( reply == null ) {
+					throw new ModHelpersException( data.GetType().Name+" is not a NetProtocolRequestServerPayload" );
+				}
 
 				if( !ReflectionHelpers.RunMethod(
 					data,
 					"PreReply",
-					new object[] { playerWho, rawReply },
+					new object[] { reply, playerWho },
 					out object _
 				) ) {
 					throw new ModHelpersException( "Could not call PreReply for "+data.GetType().Name );
@@ -82,11 +85,14 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				NetIO.SendToClients( reply );
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				var reply = rawReply as NetProtocolServerPayload;
-				
+				if( reply == null ) {
+					throw new ModHelpersException( data.GetType().Name+" is not a NetProtocolRequestClientPayload" );
+				}
+
 				if( !ReflectionHelpers.RunMethod(
 					data,
 					"PreReply",
-					new object[] { playerWho, rawReply },
+					new object[] { reply, playerWho },
 					out object _
 				) ) {
 					throw new ModHelpersException( "Could not call PreReply for "+data.GetType().Name );

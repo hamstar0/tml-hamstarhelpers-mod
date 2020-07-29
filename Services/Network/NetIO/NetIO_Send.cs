@@ -31,8 +31,8 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		/// </summary>
 		/// <param name="data"></param>
 		public static void SendToServer( NetProtocolServerPayload data ) {
-			if( Main.netMode != NetmodeID.Server ) {
-				throw new ModHelpersException( "Not server" );
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
+				throw new ModHelpersException( "Not client" );
 			}
 			NetIO.Send( data, -1, -1 );
 		}
@@ -42,8 +42,8 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		/// </summary>
 		/// <param name="data"></param>
 		public static void SendToServer( NetProtocolBidirectionalPayload data ) {
-			if( Main.netMode != NetmodeID.Server ) {
-				throw new ModHelpersException( "Not server" );
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
+				throw new ModHelpersException( "Not client" );
 			}
 			NetIO.Send( data, -1, -1 );
 		}
@@ -57,8 +57,8 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		/// <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to. -1 for all players.</param>
 		/// <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
 		public static void SendToClients( NetProtocolClientPayload data, int toWho = -1, int ignoreWho = -1 ) {
-			if( Main.netMode != NetmodeID.MultiplayerClient ) {
-				throw new ModHelpersException( "Not client" );
+			if( Main.netMode != NetmodeID.Server ) {
+				throw new ModHelpersException( "Not server" );
 			}
 			NetIO.Send( data, toWho, ignoreWho );
 		}
@@ -69,8 +69,8 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		/// <param name="data"></param>
 		/// <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
 		public static void SendToClients( NetProtocolBroadcastPayload data, int ignoreWho = -1 ) {
-			if( Main.netMode != NetmodeID.MultiplayerClient ) {
-				throw new ModHelpersException( "Not client" );
+			if( Main.netMode != NetmodeID.Server ) {
+				throw new ModHelpersException( "Not server" );
 			}
 			NetIO.Send( data, -1, ignoreWho );
 		}
@@ -82,8 +82,8 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		/// <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to. -1 for all players.</param>
 		/// <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
 		public static void SendToClients( NetProtocolBidirectionalPayload data, int toWho = -1, int ignoreWho = -1 ) {
-			if( Main.netMode != NetmodeID.MultiplayerClient ) {
-				throw new ModHelpersException( "Not client" );
+			if( Main.netMode != NetmodeID.Server ) {
+				throw new ModHelpersException( "Not server" );
 			}
 			NetIO.Send( data, toWho, ignoreWho );
 		}

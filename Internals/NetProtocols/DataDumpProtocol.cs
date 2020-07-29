@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.User;
@@ -9,12 +10,15 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
+	[Serializable]
 	class DataDumpProtocol : NetProtocolClientPayload {
 		public override void ReceiveOnClient( int fromWho ) { }
 	}
 
 
 
+
+	[Serializable]
 	class DataDumpRequestProtocol : NetProtocolRequestServerPayload<DataDumpProtocol> {
 		public static void QuickRequest() {
 			NetIO.RequestFromServer( new DataDumpRequestProtocol() );

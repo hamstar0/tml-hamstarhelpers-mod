@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using System;
+using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
@@ -8,6 +9,7 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
+	[Serializable]
 	class PlayerOldIdRequestClientProtocol : NetProtocolClientPayload {
 		public override void ReceiveOnClient( int fromWho ) {
 			PlayerOldIdProtocol.QuickSendToServer();
@@ -18,6 +20,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 
 	/// @private
+	[Serializable]
 	class PlayerOldIdProtocol : NetProtocolBidirectionalPayload {
 		public static void QuickRequestToClient( int playerWho ) {
 			var protocol = new PlayerOldIdRequestClientProtocol();

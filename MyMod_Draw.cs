@@ -14,7 +14,7 @@ namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersMod : Mod {
 		public override void UpdateUI( GameTime gameTime ) {
-			FreeHUD.Instance?.UIContext.Update( Main._drawInterfaceGameTime );
+			FreeHUD.Instance?.UIContext?.Update( Main._drawInterfaceGameTime );
 		}
 
 
