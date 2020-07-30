@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.TModLoader;
 
 
 namespace HamstarHelpers.Classes.TileStructure {
@@ -12,46 +9,19 @@ namespace HamstarHelpers.Classes.TileStructure {
 	/// Represents an arbitrary arrangement of Tile data. No bounding size or contiguity expected.
 	/// </summary>
 	[Serializable]
-	public class TileStructure {
-		/// <summary>
-		/// Loads tile data from within a mod.
-		/// </summary>
-		/// <param name="mod"></param>
-		/// <param name="pathOfModFile"></param>
-		/// <returns></returns>
-		public static TileStructure Load( Mod mod, string pathOfModFile ) {
-			var loader = ModContent.GetInstance<TileStructureLoader>();
-			byte[] rawData = mod.GetFileBytes( pathOfModFile );
-
-			return loader.Load( rawData );
-		}
-
-		/// <summary>
-		/// Loads tile data from a file.
-		/// </summary>
-		/// <param name="systemPath"></param>
-		/// <returns></returns>
-		public static TileStructure Load( string systemPath ) {
-			var loader = ModContent.GetInstance<TileStructureLoader>();
-			byte[] rawData = FileHelpers.LoadBinaryFile( systemPath, false );
-
-			return loader.Load( rawData );
-		}
-
-
-
-		////////////////
+	public partial class TileStructure {
+		/// <summary></summary>
+		public Rectangle Bounds;
 
 		/// <summary>
 		/// 2D collection of Tile data.
 		/// </summary>
-		public Dictionary<int, Dictionary<int, SerializeableTile>> Structure { get; }
-			= new Dictionary<int, Dictionary<int, SerializeableTile>>();
+		public SerializeableTile[,] Structure;
 
 
 
 		////////////////
-		
+
 		/// <summary></summary>
 		public TileStructure() { }
 
@@ -69,32 +39,54 @@ namespace HamstarHelpers.Classes.TileStructure {
 				throw new ArgumentException( "Invalid ranges" );
 			}
 
+			int width = right - left;
+			int height = bottom - top;
+			this.Structure = new SerializeableTile[ width, height ];
+
 			for( int x=left; x<right; x++ ) {
 				for( int y=top; y<bottom; y++ ) {
 					if( pattern.Check(x, y) ) {
-						if( !this.Structure.ContainsKey(x) ) {
-							this.Structure[x] = new Dictionary<int, SerializeableTile>();
-						}
-						this.Structure[x][y] = new SerializeableTile( Main.tile[x, y] );
-						//this.Structure.Set2D( x, y, new SerializeableTile( Main.tile[x, y] ) );
+						int i = x - left;
+						int j = y - top;
+
+						this.Structure[i, j] = new SerializeableTile( Main.tile[i, j] );
 					}
 				}
 			}
+
+			this.Bounds = new Rectangle( left, top, right - left, bottom - top );
 		}
 
 
 		////////////////
 
 		/// <summary>
-		/// Saves tile data to a file.
 		/// </summary>
-		/// <param name="systemPath">Note: Use `Path.DirectorySeparatorChar` for folders.</param>
-		/// <returns>Returns `true` if file saved successfully.</returns>
-		public bool Save( string systemPath ) {
-			var loader = TmlHelpers.SafelyGetInstance<TileStructureLoader>();
-			byte[] rawData = loader.Save( this );
+		/// <param name="leftTileX"></param>
+		/// <param name="topTileY"></param>
+		/// <param name="flipHorizontally"></param>
+		/// <param name="flipVertically"></param>
+		public void PaintToWorld( int leftTileX, int topTileY, bool flipHorizontally=false, bool flipVertically=false ) {
+			int width = this.Bounds.Width;
+			int height = this.Bounds.Height;
+			int i, j;
 
-			return FileHelpers.SaveBinaryFile( rawData, systemPath, false, false );
+			for( int x=0; x<width; x++ ) {
+				for( int y=0; y<height; y++ ) {
+					if( flipHorizontally ) {
+						i = leftTileX + width - x;
+					} else {
+						i = x + leftTileX;
+					}
+					if( flipVertically ) {
+						j = topTileY + height - y;
+					} else {
+						j = y + topTileY;
+					}
+
+					Main.tile[i, j] = this.Structure[x, y].ToTile();
+				}
+			}
 		}
 	}
 }

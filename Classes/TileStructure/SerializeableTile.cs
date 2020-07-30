@@ -37,8 +37,9 @@ namespace HamstarHelpers.Classes.TileStructure {
 
 		/// <summary></summary>
 		/// <returns></returns>
-		public Tile GetTile() {
+		public Tile ToTile() {
 			return new Tile {
+				type = this.type,
 				frameY = this.frameY,
 				frameX = this.frameX,
 				bTileHeader3 = this.bTileHeader3,
