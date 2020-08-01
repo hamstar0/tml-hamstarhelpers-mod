@@ -6,21 +6,31 @@ namespace HamstarHelpers.Classes.TileStructure {
 	/// <summary></summary>
 	[Serializable]
 	public class SerializeableTile {
-		private ushort type;
-		private short frameY;
-		private short frameX;
-		private byte bTileHeader3;
-		private byte bTileHeader2;
-		private byte bTileHeader;
-		private ushort sTileHeader;
-		private byte liquid;
-		private ushort wall;
+		/// <summary></summary>
+		public ushort type;
+		/// <summary></summary>
+		public short frameY;
+		/// <summary></summary>
+		public short frameX;
+		/// <summary></summary>
+		public byte bTileHeader3;
+		/// <summary></summary>
+		public byte bTileHeader2;
+		/// <summary></summary>
+		public byte bTileHeader;
+		/// <summary></summary>
+		public ushort sTileHeader;
+		/// <summary></summary>
+		public byte liquid;
+		/// <summary></summary>
+		public ushort wall;
 
 
 
 		////////////////
 
 		/// <summary></summary>
+		/// <param name="tile"></param>
 		public SerializeableTile( Tile tile ) {
 			this.type = tile.type;
 			this.frameY = tile.frameY;
@@ -32,6 +42,14 @@ namespace HamstarHelpers.Classes.TileStructure {
 			this.liquid = tile.liquid;
 			this.wall = tile.wall;
 		}
+
+		////////////////
+
+		/// <summary></summary>
+		public bool active() {
+			return (this.sTileHeader & 32) == 32;
+		}
+
 
 		////////////////
 

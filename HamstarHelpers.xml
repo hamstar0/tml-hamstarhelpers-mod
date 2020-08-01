@@ -1246,6 +1246,21 @@
             Preset for any tile, including empty space.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.AnyForeground">
+            <summary>
+            Preset for any foreground tile (solid, platform, decorative).
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.AnyWall">
+            <summary>
+            Preset for any tile with a wall.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.AnyLiquid">
+            <summary>
+            Preset for any tile with a liquid.
+            </summary>
+        </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.AbsoluteAir">
             <summary>
             Preset for completely empty space.
@@ -1258,23 +1273,22 @@
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonActive">
             <summary>
-            Preset for any non-active tiles (at most only liquids, wire, or walls).
+            Preset for any non-active tiles (may however contain liquids, wire, or walls).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonSolid">
             <summary>
-            Preset for any non-solid tiles (includes actuated tiles and active-but-non-solid tiles).
+            Preset for any non-solid tiles (only air, actuated solids, or decorative foreground allowed).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.NonFilled">
             <summary>
-            Preset for any non-"filled" space (no actives, no solids, no liquids, no actuated tiles; walls, furniture, etc.
-            allowed).
+            Preset for any non-"filled" space (no active, liquids, or decorative tiles; walls allowed).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.CommonSolid">
             <summary>
-            Preset for common solid tiles (non-actuated).
+            Preset for common solid tiles (non-actuated). Does not include platforms.
             </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.PitchDark">
@@ -1708,8 +1722,12 @@
         </member>
         <member name="M:HamstarHelpers.Classes.TileStructure.SerializeableTile.#ctor(Terraria.Tile)">
             <summary></summary>
+            <param name="tile"></param>
         </member>
-        <member name="M:HamstarHelpers.Classes.TileStructure.SerializeableTile.GetTile">
+        <member name="M:HamstarHelpers.Classes.TileStructure.SerializeableTile.active">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.SerializeableTile.ToTile">
             <summary></summary>
             <returns></returns>
         </member>
@@ -1717,6 +1735,40 @@
             <summary>
             Represents an arbitrary arrangement of Tile data. No bounding size or contiguity expected.
             </summary>
+            <summary>
+            Represents an arbitrary arrangement of Tile data. No bounding size or contiguity expected.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.TileStructure.Bounds">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.TileStructure.Structure">
+            <summary>
+            2D collection of Tile data.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.TileStructure.TileCount">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.#ctor">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern)">
+            <summary></summary>
+            <param name="left"></param>
+            <param name="top"></param>
+            <param name="right"></param>
+            <param name="bottom"></param>
+            <param name="pattern"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.PaintToWorld(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+            <summary></summary>
+            <param name="leftTileX"></param>
+            <param name="topTileY"></param>
+            <param name="paintAir">Include 'air' tiles when painting to world.</param>
+            <param name="flipHorizontally"></param>
+            <param name="flipVertically"></param>
+            <returns>Count of painted tiles.</returns>
         </member>
         <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.Load(Terraria.ModLoader.Mod,System.String)">
             <summary>
@@ -1732,22 +1784,6 @@
             </summary>
             <param name="systemPath"></param>
             <returns></returns>
-        </member>
-        <member name="P:HamstarHelpers.Classes.TileStructure.TileStructure.Structure">
-            <summary>
-            2D collection of Tile data.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.#ctor">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern)">
-            <summary></summary>
-            <param name="left"></param>
-            <param name="top"></param>
-            <param name="right"></param>
-            <param name="bottom"></param>
-            <param name="pattern"></param>
         </member>
         <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.Save(System.String)">
             <summary>
@@ -5390,7 +5426,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.FileHelpers.SaveBinaryFile(System.Byte[],System.String,System.Boolean,System.Boolean)">
             <summary>
-            Outputs a byte array to file as binary data.
+            Outputs a byte array to file as compressed binary data.
             </summary>
             <param name="data">Object to output.</param>
             <param name="fullPath">System path to the file.</param>
@@ -5400,7 +5436,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.FileHelpers.SaveBinaryFile(System.Byte[],System.String,System.Boolean,System.Boolean,System.String@)">
             <summary>
-            Outputs a byte array to file as binary data.
+            Outputs a byte array to file as compressed binary data.
             </summary>
             <param name="data">Object to output.</param>
             <param name="fullPath">System path to the file.</param>
@@ -5411,7 +5447,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.FileHelpers.LoadBinaryFile(System.String,System.Boolean)">
             <summary>
-            Loads a binary file into the given object type.
+            Loads a compressed binary file into the given object type.
             </summary>
             <param name="fullPath">System path to the file.</param>
             <param name="isCloud">Stores the file on the cloud.</param>
@@ -5419,11 +5455,18 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.FileHelpers.LoadBinaryFile(System.String,System.Boolean,System.String@)">
             <summary>
-            Loads a binary file into the given object type.
+            Loads a compressed binary file into the given object type.
             </summary>
             <param name="fullPath">System path to the file.</param>
             <param name="isCloud">Stores the file on the cloud.</param>
             <param name="status">Reports specific information on IO result's status.</param>
+            <returns>A byte array of the input file's data. `null` if file does not exist, or error.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.FileHelpers.DecompressStreamFile(System.Byte[])">
+            <summary>
+            Decompresses a file loaded from FileHelpers.SaveBinaryFile().
+            </summary>
+            <param name="compressedFile"></param>
             <returns>A byte array of the input file's data. `null` if file does not exist, or error.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.FileHelpers.SaveTextFile(System.String,System.String,System.Boolean,System.Boolean)">

@@ -30,7 +30,7 @@ namespace HamstarHelpers.Commands {
 		public override string Usage => "/" + this.Command + " 1024 348 32 16 true true";
 		/// @private
 		public override string Description => "Saves a sample of terrain to file (see ModLoader\\Mod Specific Data\\HamstarHelpers)."
-			+ "\n   Parameters: <left tile X> <top tile Y> <width> <height> <exclude non-active> <include walls>";
+			+ "\n   Parameters: <left> <top> <width> <height> <exclude air> <include walls/walls only>";
 
 
 
@@ -65,10 +65,10 @@ namespace HamstarHelpers.Commands {
 			string output;
 
 			if( this.CheckArguments( args, out tileX, out tileY, out width, out height, out active, out walls, out output ) ) {
-				if( this.RunCommand( tileX, tileY, width, height, active, walls ) ) {
-					caller.Reply( "Success.", Color.Lime );
+				if( this.RunCommand( tileX, tileY, width, height, active, walls, out output ) ) {
+					caller.Reply( "Success. "+output+" tiles saved.", Color.Lime );
 				} else {
-					caller.Reply( "Could not save terrain sample.", Color.Yellow );
+					caller.Reply( "Could not save terrain sample. "+output+" tiles found.", Color.Yellow );
 				}
 			} else {
 				caller.Reply( output, Color.Red );
@@ -140,23 +140,24 @@ namespace HamstarHelpers.Commands {
 		}
 
 
-		private bool RunCommand( int tileX, int tileY, int width, int height, bool excludeInactive, bool includesWalls ) {
+		private bool RunCommand(
+					int tileX,
+					int tileY,
+					int width,
+					int height,
+					bool excludeAir,
+					bool includeWalls,
+					out string output ) {
 			TilePattern pattern;
-			TilePattern wallPattern = new TilePattern( new TilePatternBuilder {
-				HasWall = true
-			} );
 
-			if( excludeInactive && includesWalls ) {
+			if( excludeAir && includeWalls ) {
 				pattern = new TilePattern( new TilePatternBuilder {
-					IsActive = excludeInactive,
-					AnyPattern = new HashSet<TilePattern> { wallPattern }
+					AnyPattern = new HashSet<TilePattern> { TilePattern.AnyForeground, TilePattern.AnyWall }
 				} );
-			} else if( excludeInactive ) {
-				pattern = new TilePattern( new TilePatternBuilder {
-					IsActive = excludeInactive,
-				} );
-			} else if( includesWalls ) {
-				pattern = wallPattern;
+			} else if( excludeAir ) {
+				pattern = TilePattern.AnyForeground;
+			} else if( includeWalls ) {
+				pattern = TilePattern.AnyWall;
 			} else {
 				pattern = TilePattern.Any;
 			}
@@ -167,6 +168,7 @@ namespace HamstarHelpers.Commands {
 			string fileNameWithExt = "Tile Sample "+DateTime.UtcNow.ToFileTime()+".dat";
 			string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
 
+			output = tiles.TileCount+" tiles (from "+tiles.Bounds.Width+"x"+tiles.Bounds.Height+" area)";
 			return tiles.Save( fullPath );
 		}
 	}

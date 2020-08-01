@@ -69,7 +69,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		public bool? HasWire4 = null;
 
 		/// <summary>Tile is wholly solid.</summary>
-		[Obsolete("use HasSolidProperties and IsPlatform accordingly")]
+		[Obsolete("use HasSolidProperties and IsPlatform accordingly, instead")]
 		public bool? IsSolid = null;
 		/// <summary>Corresponds to `Main.tileSolid`.</summary>
 		public bool? HasSolidProperties = null;

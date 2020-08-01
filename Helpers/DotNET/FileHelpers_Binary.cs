@@ -10,7 +10,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 	/// </summary>
 	public partial class FileHelpers {
 		/// <summary>
-		/// Outputs a byte array to file as binary data.
+		/// Outputs a byte array to file as compressed binary data.
 		/// </summary>
 		/// <param name="data">Object to output.</param>
 		/// <param name="fullPath">System path to the file.</param>
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 		}
 
 		/// <summary>
-		/// Outputs a byte array to file as binary data.
+		/// Outputs a byte array to file as compressed binary data.
 		/// </summary>
 		/// <param name="data">Object to output.</param>
 		/// <param name="fullPath">System path to the file.</param>
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 		////
 
 		/// <summary>
-		/// Loads a binary file into the given object type.
+		/// Loads a compressed binary file into the given object type.
 		/// </summary>
 		/// <param name="fullPath">System path to the file.</param>
 		/// <param name="isCloud">Stores the file on the cloud.</param>
@@ -85,7 +85,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 		}
 
 		/// <summary>
-		/// Loads a binary file into the given object type.
+		/// Loads a compressed binary file into the given object type.
 		/// </summary>
 		/// <param name="fullPath">System path to the file.</param>
 		/// <param name="isCloud">Stores the file on the cloud.</param>
@@ -103,8 +103,20 @@ namespace HamstarHelpers.Helpers.DotNET {
 				return null;
 			}
 
-			using( var memStream = new MemoryStream( buf ) ) {
-				status = "Success.";
+			status = "Success.";
+			return FileHelpers.DecompressFileData( buf );
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Decompresses a file loaded from FileHelpers.SaveBinaryFile().
+		/// </summary>
+		/// <param name="compressedFile"></param>
+		/// <returns>A byte array of the input file's data. `null` if file does not exist, or error.</returns>
+		public static byte[] DecompressFileData( byte[] compressedFile ) {
+			using( var memStream = new MemoryStream(compressedFile) ) {
 				return StreamHelpers.FromStreamToBytes( memStream );
 				//string jsonStr = StreamHelpers.FromStream( memStream );
 				//return JsonConvert.DeserializeObject<T>( jsonStr, jsonSettings );

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Terraria;
 
 
@@ -46,6 +47,32 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		);
 
 		/// <summary>
+		/// Preset for any foreground tile (solid, platform, decorative).
+		/// </summary>
+		public readonly static TilePattern AnyForeground = new TilePattern(
+			new TilePatternBuilder { IsActive = true }
+		);
+
+		/// <summary>
+		/// Preset for any tile with a wall.
+		/// </summary>
+		public readonly static TilePattern AnyWall = new TilePattern(
+			new TilePatternBuilder { HasWall = true }
+		);
+
+		/// <summary>
+		/// Preset for any tile with a liquid.
+		/// </summary>
+		public readonly static TilePattern AnyLiquid = new TilePattern(
+			new TilePatternBuilder {
+				CustomCheck = ( x, y ) => {
+					Tile tile = Main.tile[x, y];
+					return tile.liquid != 0;
+				}
+			}
+		);
+
+		/// <summary>
 		/// Preset for completely empty space.
 		/// </summary>
 		public readonly static TilePattern AbsoluteAir = new TilePattern(
@@ -59,7 +86,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				HasWall = false,
 				HasWater = false,
 				HasHoney = false,
-				HasLava = false
+				HasLava = false,
 			}
 		);
 
@@ -74,7 +101,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		);
 
 		/// <summary>
-		/// Preset for any non-active tiles (at most only liquids, wire, or walls).
+		/// Preset for any non-active tiles (may however contain liquids, wire, or walls).
 		/// </summary>
 		public readonly static TilePattern NonActive = new TilePattern(
 			new TilePatternBuilder {
@@ -83,7 +110,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		);
 
 		/// <summary>
-		/// Preset for any non-solid tiles (includes actuated tiles and active-but-non-solid tiles).
+		/// Preset for any non-solid tiles (only air, actuated solids, or decorative foreground allowed).
 		/// </summary>
 		public readonly static TilePattern NonSolid = new TilePattern(
 			new TilePatternBuilder {
@@ -95,8 +122,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		);
 
 		/// <summary>
-		/// Preset for any non-"filled" space (no actives, no solids, no liquids, no actuated tiles; walls, furniture, etc.
-		/// allowed).
+		/// Preset for any non-"filled" space (no active, liquids, or decorative tiles; walls allowed).
 		/// </summary>
 		public readonly static TilePattern NonFilled = new TilePattern(
 			new TilePatternBuilder {
@@ -111,7 +137,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		);
 
 		/// <summary>
-		/// Preset for common solid tiles (non-actuated).
+		/// Preset for common solid tiles (non-actuated). Does not include platforms.
 		/// </summary>
 		public readonly static TilePattern CommonSolid = new TilePattern(
 			new TilePatternBuilder {

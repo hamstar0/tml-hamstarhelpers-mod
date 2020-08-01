@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Classes.Errors;
 
 
 namespace HamstarHelpers.Classes.TileStructure {
@@ -17,10 +18,18 @@ namespace HamstarHelpers.Classes.TileStructure {
 		/// <param name="pathOfModFile"></param>
 		/// <returns></returns>
 		public static TileStructure Load( Mod mod, string pathOfModFile ) {
-			var loader = ModContent.GetInstance<TileStructureLoader>();
-			byte[] rawData = mod.GetFileBytes( pathOfModFile );
+			if( !mod.FileExists(pathOfModFile) ) {
+				throw new ModHelpersException( "Mod file not found ("+pathOfModFile+")." );
+			}
 
-			return loader.Load( rawData );
+			var loader = ModContent.GetInstance<TileStructureLoader>();
+			byte[] rawCompressedData = mod.GetFileBytes( pathOfModFile );
+			byte[] rawData = FileHelpers.DecompressFileData( rawCompressedData );
+
+			TileStructure tiles = loader.Load( rawData );
+			tiles.RecountTiles();
+
+			return tiles;
 		}
 
 		/// <summary>
@@ -31,8 +40,14 @@ namespace HamstarHelpers.Classes.TileStructure {
 		public static TileStructure Load( string systemPath ) {
 			var loader = ModContent.GetInstance<TileStructureLoader>();
 			byte[] rawData = FileHelpers.LoadBinaryFile( systemPath, false );
+			if( rawData == null ) {
+				throw new ModHelpersException( "System file not found ("+systemPath+")." );
+			}
 
-			return loader.Load( rawData );
+			TileStructure tiles = loader.Load( rawData );
+			tiles.RecountTiles();
+
+			return tiles;
 		}
 
 
