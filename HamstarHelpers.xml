@@ -1720,6 +1720,33 @@
         <member name="T:HamstarHelpers.Classes.TileStructure.SerializeableTile">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.SerializeableTile.type">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.SerializeableTile.frameY">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.SerializeableTile.frameX">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.SerializeableTile.bTileHeader3">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.SerializeableTile.bTileHeader2">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.SerializeableTile.bTileHeader">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.SerializeableTile.sTileHeader">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.SerializeableTile.liquid">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.TileStructure.SerializeableTile.wall">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Classes.TileStructure.SerializeableTile.#ctor(Terraria.Tile)">
             <summary></summary>
             <param name="tile"></param>
@@ -5462,7 +5489,7 @@
             <param name="status">Reports specific information on IO result's status.</param>
             <returns>A byte array of the input file's data. `null` if file does not exist, or error.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.DotNET.FileHelpers.DecompressStreamFile(System.Byte[])">
+        <member name="M:HamstarHelpers.Helpers.DotNET.FileHelpers.DecompressFileData(System.Byte[])">
             <summary>
             Decompresses a file loaded from FileHelpers.SaveBinaryFile().
             </summary>
@@ -9518,6 +9545,14 @@
             <summary>
             Assorted static "helper" functions pertaining to tile state (slope, actuation, etc.).
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileStateHelpers.FlipSlopeHorizontally(Terraria.Tile)">
+            <summary></summary>
+            <param name="tile"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileStateHelpers.FlipSlopeVertically(Terraria.Tile)">
+            <summary></summary>
+            <param name="tile"></param>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileStateHelpers.SmartSlope(System.Int32,System.Int32,System.Boolean)">
             <summary>

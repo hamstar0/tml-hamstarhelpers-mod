@@ -1,9 +1,9 @@
 ﻿using System;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Classes.Errors;
 
 
 namespace HamstarHelpers.Classes.TileStructure {

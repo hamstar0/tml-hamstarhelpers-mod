@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Tiles;
 
 
 namespace HamstarHelpers.Classes.TileStructure {
@@ -108,12 +109,8 @@ namespace HamstarHelpers.Classes.TileStructure {
 				} else {
 					i = x + leftTileX;
 				}
-				if( i < 0 ) {
-					continue;
-				}
-				if( i >= Main.maxTilesX ) {
-					break;
-				}
+				if( i < 0 ) { continue; }
+				if( i >= Main.maxTilesX ) { break; }
 
 				for( int y=0; y<height; y++ ) {
 					if( flipVertically ) {
@@ -121,28 +118,51 @@ namespace HamstarHelpers.Classes.TileStructure {
 					} else {
 						j = y + topTileY;
 					}
-					if( j<0 || j>=Main.maxTilesY ) {
-						continue;
-					}
+					if( j < 0 ) { continue; }
+					if( j >= Main.maxTilesY ) { break; }
 
 					int idx = ( x * height ) + y;
 					SerializeableTile rawTile = this.Structure[ idx ];
 
-					if( rawTile != null ) {
-						Main.tile[i, j] = rawTile.ToTile();
-						count++;
-					} else if( paintAir ) {
-						Main.tile[i, j].active( false );
-						Main.tile[i, j].wall = 0;
-						Main.tile[i, j].type = 0;
-						Main.tile[i, j].liquid = 0;
-						Main.tile[i, j] = new Tile();
+					if( this.PaintTileToWorld(i, j, rawTile, paintAir, flipHorizontally, flipVertically) ) {
 						count++;
 					}
 				}
 			}
 
 			return count;
+		}
+
+		private bool PaintTileToWorld(
+					int i,
+					int j,
+					SerializeableTile rawTile,
+					bool paintAir = false,
+					bool flipHorizontally = false,
+					bool flipVertically = false ) {
+			if( rawTile != null ) {
+				Main.tile[i, j] = rawTile.ToTile();
+
+				if( flipHorizontally ) {
+					TileStateHelpers.FlipSlopeHorizontally( Main.tile[i, j] );
+				}
+				if( flipVertically ) {
+					TileStateHelpers.FlipSlopeVertically( Main.tile[i, j] );
+				}
+				WorldGen.SquareTileFrame( i, j );
+
+				return true;
+			} else if( paintAir ) {
+				Main.tile[i, j].active( false );
+				Main.tile[i, j].wall = 0;
+				Main.tile[i, j].type = 0;
+				Main.tile[i, j].liquid = 0;
+				//Main.tile[i, j] = new Tile();
+
+				return true;
+			}
+
+			return false;
 		}
 	}
 }

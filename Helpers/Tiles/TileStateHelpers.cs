@@ -102,6 +102,46 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// Assorted static "helper" functions pertaining to tile state (slope, actuation, etc.).
 	/// </summary>
 	public class TileStateHelpers {
+		/// <summary></summary>
+		/// <param name="tile"></param>
+		public static void FlipSlopeHorizontally( Tile tile ) {
+			switch( tile.slope() ) {
+			case 1:
+				tile.slope( 2 );
+				break;
+			case 2:
+				tile.slope( 1 );
+				break;
+			case 3:
+				tile.slope( 4 );
+				break;
+			case 4:
+				tile.slope( 3 );
+				break;
+			}
+		}
+
+		/// <summary></summary>
+		/// <param name="tile"></param>
+		public static void FlipSlopeVertically( Tile tile ) {
+			switch( tile.slope() ) {
+			case 1:
+				tile.slope( 3 );
+				break;
+			case 2:
+				tile.slope( 4 );
+				break;
+			case 3:
+				tile.slope( 1 );
+				break;
+			case 4:
+				tile.slope( 2 );
+				break;
+			}
+		}
+
+
+
 		/// <summary>
 		/// Attempts to "smartly" smooth a given tile against its adjacent tiles.
 		/// </summary>
