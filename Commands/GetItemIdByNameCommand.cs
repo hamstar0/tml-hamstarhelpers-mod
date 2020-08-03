@@ -31,7 +31,7 @@ namespace HamstarHelpers.Commands {
 			int _;
 			string itemName;
 			if( CommandsHelpers.GetQuotedStringFromArgsAt(args, 0, out _, out itemName) ) {
-				if( !ItemAttributeHelpers.DisplayNamesToIds.ContainsKey( itemName ) ) {
+				if( !ItemAttributeHelpers.DisplayNamesToIds.ContainsKey(itemName) ) {
 					throw new UsageException( "Invalid item type." );
 				}
 

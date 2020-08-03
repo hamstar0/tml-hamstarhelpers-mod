@@ -4,58 +4,9 @@ using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using HamstarHelpers.Helpers.User;
-using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers {
-	/// <summary>
-	/// Defines config settings for a specific "privileged user" entry (used by assorted APIs).
-	/// </summary>
-	[Label( "Mod Helpers \"Privileged User\" (used by some APIs)" )]
-	public class ModHelpersPrivilegedUserConfig : ModConfig {
-		/// <summary>
-		/// Gets the singleton instance of this config file.
-		/// </summary>
-		public static ModHelpersPrivilegedUserConfig Instance => ModContent.GetInstance<ModHelpersPrivilegedUserConfig>();
-
-
-
-		////////////////
-
-		/// @private
-		public override ConfigScope Mode => ConfigScope.ClientSide;
-		
-		/// <summary>
-		/// User ID of a designated privileged (admin) player. Refers to the internal player UID used by Mod Helpers.
-		/// </summary>
-		[Label( "Privileged User ID (internal UID)" )]
-		[Tooltip( "User ID of a designated privileged (admin) player. Refers to the internal player UID used by Mod Helpers." )]
-		//[ReloadRequired]
-		public string PrivilegedUserId = "";
-
-
-
-		////////////////
-
-		/// @private
-		public override void OnChanged() {
-			if( Main.gameMenu ) { return; }
-
-			base.OnChanged();
-
-			string oldVal = this.PrivilegedUserId;
-			this.PrivilegedUserId = "";
-
-			Timers.SetTimer( "ModHelpersConfigSyncPrevention", 1, true, () => {
-				this.PrivilegedUserId = oldVal;
-				return false;
-			} );
-		}
-	}
-
-
-
-
 	/// <summary>
 	/// Defines Mod Helpers config settings.
 	/// </summary>
@@ -80,9 +31,16 @@ namespace HamstarHelpers {
 		////////////////
 
 		/// <summary>
-		/// Outputs (to log) debug information relevant to specific Helpers functions (where applicable). Developers only.
+		/// Enables cheat codes. Also requires 'privileged user' status enabled.
 		/// </summary>
 		[Header( "Debug settings" )]
+		[Label( "Debug Mode - Cheats Enabled" )]
+		[Tooltip( "Enables cheat toggle command. Also requires 'privileged user' status enabled, if in multiplayer." )]
+		public bool DebugModeCheats { get; set; } = false;
+
+		/// <summary>
+		/// Outputs (to log) debug information relevant to specific Helpers functions (where applicable). Developers only.
+		/// </summary>
 		[Label( "Debug Mode - Helpers Info" )]
 		[Tooltip( "Outputs (to log) debug information relevant to Helpers functions (where applicable). Developers only." )]
 		public bool DebugModeHelpersInfo { get; set; } = false;
@@ -369,7 +327,7 @@ namespace HamstarHelpers {
 
 		/// @private
 		public override bool AcceptClientChanges( ModConfig pendingConfig, int whoAmI, ref string message ) {
-			if( UserHelpers.HasBasicServerPrivilege( Main.player[whoAmI] ) ) {
+			if( !UserHelpers.HasBasicServerPrivilege( Main.player[whoAmI] ) ) {
 				message = "Not authorized.";
 				return false;
 			}
