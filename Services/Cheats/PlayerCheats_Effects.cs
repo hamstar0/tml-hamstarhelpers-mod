@@ -69,6 +69,15 @@ namespace HamstarHelpers.Services.Cheats {
 
 		////////////////
 
+		internal static void OnHit( ref int damage, CheatModeType cheatFlags ) {
+			if( (cheatFlags & CheatModeType.MDKMode) != 0 ) {
+				damage = 100000000;//0
+			}
+		}
+
+
+		////////////////
+		
 		internal static void ModifyDrawLayers( List<PlayerLayer> layers, CheatModeType cheatFlags ) {
 			if( (cheatFlags & CheatModeType.BilboMode) != 0 ) {
 				foreach( PlayerLayer layer in layers ) {

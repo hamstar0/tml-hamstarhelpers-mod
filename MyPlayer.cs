@@ -11,7 +11,7 @@ using HamstarHelpers.Services.Debug.DataDumper;
 using HamstarHelpers.Services.UI.ControlPanel;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
-
+using HamstarHelpers.Services.Cheats;
 
 namespace HamstarHelpers {
 	/// @private
@@ -112,6 +112,25 @@ namespace HamstarHelpers {
 			if( player.whoAmI == Main.myPlayer && Main.playerInventory ) { // Current player
 				mymod.RecipeHack.Update();
 			}
+		}
+
+
+		////////////////
+
+		public override void OnHitNPC( Item item, NPC target, int damage, float knockback, bool crit ) {
+			PlayerCheats.OnHit( ref damage );
+		}
+
+		public override void OnHitNPCWithProj( Projectile proj, NPC target, int damage, float knockback, bool crit ) {
+			PlayerCheats.OnHit( ref damage );
+		}
+
+		public override void OnHitPvp( Item item, Player target, int damage, bool crit ) {
+			PlayerCheats.OnHit( ref damage );
+		}
+
+		public override void OnHitPvpWithProj( Projectile proj, Player target, int damage, bool crit ) {
+			PlayerCheats.OnHit( ref damage );
 		}
 
 
