@@ -22,8 +22,11 @@ namespace HamstarHelpers.Helpers.Players {
 		public const int VanillaInventoryLastMainSlot = 49;
 		/// <summary></summary>
 		public const int VanillaInventoryLastCoinSlot = 53;
-		/// <summary></summary>
+		/// @private
+		[Obsolete( "use VanillaInventoryLastAmmoSlot", true )]
 		public const int VanillaInventoryLastAmmolot = 57;
+		/// <summary></summary>
+		public const int VanillaInventoryLastAmmoSlot = 57;
 		/// <summary></summary>
 		public const int VanillaInventorySelectedSlot = 58;
 
