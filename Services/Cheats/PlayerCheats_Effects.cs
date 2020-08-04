@@ -1,14 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Buffs;
+using HamstarHelpers.Helpers.Players;
 
 
 namespace HamstarHelpers.Services.Cheats {
+	/// <summary>
+	/// Provides APIs for toggling or applying player cheat effects.
+	/// </summary>
 	public partial class PlayerCheats {
+		/// <summary>
+		/// Teleports a player to a given tile location. Negative tile values loop from the opposite respective side of
+		/// the world.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
 		public static void TeleportTo( Player player, int tileX, int tileY ) {
-			f
+			if( tileX < 0 ) {
+				tileX = Main.maxTilesX - tileX;
+			}
+			if( tileY < 0 ) {
+				tileY = Main.maxTilesY - tileY;
+			}
+
+			PlayerWarpHelpers.Teleport( player, new Vector2(tileX*16, tileY*16) );
 		}
 
 

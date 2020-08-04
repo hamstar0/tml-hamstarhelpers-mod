@@ -30,15 +30,15 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				return true;
 			}
 			if( data is NetProtocolClientPayload ) {
-				NetIO.Receive( data as NetProtocolClientPayload, playerWho );
+				NetIO.Receive( data as NetProtocolClientPayload );
 				return true;
 			}
 			if( data is NetProtocolBidirectionalPayload ) {
 				NetIO.Receive( data as NetProtocolBidirectionalPayload, playerWho );
 				return true;
 			}
-			if( data is NetProtocolRequestPayload ) {
-				NetIO.Receive( data as NetProtocolRequestPayload, playerWho );
+			if( data is NetProtocolRequest ) {
+				NetIO.Receive( data as NetProtocolRequest, playerWho );
 				return true;
 			}
 

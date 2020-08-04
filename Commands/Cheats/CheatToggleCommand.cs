@@ -15,7 +15,7 @@ namespace HamstarHelpers.Commands.Cheats {
 		/// @private
 		public override string Command => "mh-cheat-toggle";
 		/// @private
-		public override string Usage => "/" + this.Command + " degreelessness observer";
+		public override string Usage => "/" + this.Command + " god fly";
 		/// @private
 		public override string Description => "Toggles cheat modes."
 			+"\n  Parameters: [<mode 1> <mode 2> ...]"
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Commands.Cheats {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				LogHelpers.Log( "DegreelessnessModeCommand - Not supposed to run on client." );
+				LogHelpers.Alert( "Not supposed to run on client." );
 				return;
 			}
 
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Commands.Cheats {
 				}
 			}
 
-			if( !PlayerCheats.TryGetCheatFlags(args, out CheatModeType cheatFlags) ) {
+			if( !PlayerCheats.TryParseCheatFlags(args, out CheatModeType cheatFlags) ) {
 				caller.Reply( "Invalid cheat identifiers.", Color.Red );
 				return;
 			}

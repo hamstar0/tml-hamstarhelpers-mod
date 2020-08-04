@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Internals.NetProtocols;
 
 
 namespace HamstarHelpers.Services.Cheats {
@@ -28,31 +29,57 @@ namespace HamstarHelpers.Services.Cheats {
 
 
 
+	/// <summary>
+	/// Provides APIs for toggling or applying player cheat effects.
+	/// </summary>
 	public partial class PlayerCheats {
-		public static void ToggleCheats( Player player, CheatModeType cheats ) {
+		/// <summary>
+		/// Toggles a given set of cheats.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="cheatFlags"></param>
+		public static void ToggleCheats( Player player, CheatModeType cheatFlags ) {
 			if( Main.netMode == NetmodeID.Server ) {
-				PlayerCheatModeProtocol.SendToClient( player.whoAmI, cheats );
-			} else {
-				var myplayer = player.GetModPlayer<ModHelpersPlayer>();
-				myplayer.Logic.ToggleCheats( cheats );
+				PlayerCheatModeProtocol.SendToClients( player, cheatFlags );
+			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
+				PlayerCheatModeProtocol.BroadcastFromClient( cheatFlags );
 			}
+			
+			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
+			CheatModeType currCheats = myplayer.Logic.ActiveCheats;
+			
+			if( (currCheats & cheatFlags) == cheatFlags ) {
+				currCheats = (CheatModeType)((int)currCheats - (int)cheatFlags );
+			} else {
+				currCheats = currCheats & cheatFlags;
+			}
+			myplayer.Logic.SetCheats( currCheats );
 		}
 
-		public static bool TryGetCheatFlags( string[] cheats, out CheatModeType cheatFlags ) {
+
+		////////////////
+
+		/// <summary>
+		/// Attempts to parse cheat flags from a textual string list of cheat names.
+		/// </summary>
+		/// <param name="cheats"></param>
+		/// <param name="cheatFlags"></param>
+		/// <returns>`true` if all cheats are valid.</returns>
+		public static bool TryParseCheatFlags( string[] cheats, out CheatModeType cheatFlags ) {
 			cheatFlags = 0;
 			foreach( string cheat in cheats ) {
 				switch( cheat ) {
 				case "bilbo":
-					cheatFlags = (CheatModeType)((int)cheatFlags + (int)CheatModeType.BilboMode);
+					cheatFlags |= CheatModeType.BilboMode;
 					break;
 				case "god":
-					cheatFlags = (CheatModeType)((int)cheatFlags + (int)CheatModeType.GodMode);
+					cheatFlags |= CheatModeType.GodMode;
 					break;
 				case "mdk":
-					cheatFlags = (CheatModeType)((int)cheatFlags + (int)CheatModeType.MDKMode);
+					cheatFlags |= CheatModeType.MDKMode;
 					break;
 				case "fly":
-					cheatFlags = (CheatModeType)((int)cheatFlags + (int)CheatModeType.FlyMode);
+					cheatFlags |= CheatModeType.FlyMode;
 					break;
 				default:
 					return false;
@@ -61,11 +88,21 @@ namespace HamstarHelpers.Services.Cheats {
 			return true;
 		}
 
+		/// <summary>
+		/// Gets a string list representation of a player's active cheats.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <returns></returns>
 		public static IList<string> OutputActiveCheats( Player player ) {
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			return PlayerCheats.OutputCheatFlags( myplayer.Logic.ActiveCheats );
 		}
 
+		/// <summary>
+		/// Gets a string list representation of a given set of cheats.
+		/// </summary>
+		/// <param name="cheatFlags"></param>
+		/// <returns></returns>
 		public static IList<string> OutputCheatFlags( CheatModeType cheatFlags ) {
 			var output = new List<string>();
 

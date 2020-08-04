@@ -7,7 +7,6 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Camera;
 using HamstarHelpers.Services.Debug.DataDumper;
 using HamstarHelpers.Services.UI.ControlPanel;
 using HamstarHelpers.Internals.ControlPanel;
@@ -35,6 +34,7 @@ namespace HamstarHelpers {
 		public override void clientClone( ModPlayer clientClone ) {
 			var clone = (ModHelpersPlayer)clientClone;
 			clone.Logic = this.Logic;
+			//clone.Logic = this.Logic.Clone();
 		}
 
 
@@ -53,35 +53,25 @@ namespace HamstarHelpers {
 			}
 		}
 
-		/*public override void OnEnterWorld( Player player ) {
-//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
-			if( player.whoAmI != Main.myPlayer ) { return; }
-			if( this.player.whoAmI != Main.myPlayer ) { return; }
+		/*public override void SendClientChanges( ModPlayer clientPlayer ) {
+			var myclone = clientPlayer as ModHelpersPlayer;
 			
-			int who = player.whoAmI;
-			
-			if( Main.netMode == NetmodeID.SinglePlayer ) {
-				this.Logic.OnSingleEnterWorld( Main.player[who] );
-			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				this.Logic.OnCurrentClientEnterWorld( Main.player[who] );
+			if( !this.Logic.Equals(myclone) ) {
+				this.Logic.Sync();
 			}
-//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}*/
 
 
 		////////////////
 
 		public override void Load( TagCompound tags ) {
-//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			try {
 				this.Logic.Load( tags );
 			} catch( Exception e ) {
 				if( !(e is ModHelpersException) ) {
-					//throw new HamstarException( "!ModHelpers.ModHelpersPlayer.Load - " + e.ToString() );
 					throw new ModHelpersException( e.ToString() );
 				}
 			}
-//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}
 
 		public override TagCompound Save() {

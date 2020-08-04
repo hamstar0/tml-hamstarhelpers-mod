@@ -11,9 +11,9 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
 	[Serializable]
-	class WorldDataRequestProtocol : NetProtocolRequestServerPayload<WorldDataProtocol> {
+	class WorldDataRequestProtocol : NetProtocolRequestServer<WorldDataProtocol> {
 		public static void QuickRequest() {
-			NetIO.RequestFromServer( new WorldDataRequestProtocol() );
+			NetIO.RequestDataFromServer( new WorldDataRequestProtocol() );
 		}
 	}
 
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override void ReceiveOnClient( int fromWho ) {
+		public override void ReceiveOnClient() {
 			var mymod = ModHelpersMod.Instance;
 			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );

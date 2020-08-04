@@ -58,7 +58,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			myplayer.Logic.NetReceiveDataOnServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
 		}
 
-		public override void ReceiveBroadcastOnClient( int fromWho ) {
+		public override void ReceiveBroadcastOnClient() {
 			if( this.PlayerWho < 0 || this.PlayerWho >= Main.player.Length ) {
 				//throw new HamstarException( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Invalid player index " + this.PlayerWho );
 				throw new ModHelpersException( "Invalid player index " + this.PlayerWho );

@@ -11,7 +11,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
 	[Serializable]
 	class PlayerOldIdRequestClientProtocol : NetProtocolClientPayload {
-		public override void ReceiveOnClient( int fromWho ) {
+		public override void ReceiveOnClient() {
 			PlayerOldIdProtocol.QuickSendToServer();
 		}
 	}
@@ -53,13 +53,13 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override void ReceiveOnClient( int fromWho ) { }
-
 		public override void ReceiveOnServer( int fromWho ) {
 			Player player = Main.player[fromWho];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
 			myplayer.Logic.NetReceiveUIDOnServer( this.ClientHasUID, this.ClientPrivateUID );
 		}
+
+		public override void ReceiveOnClient() { }
 	}
 }

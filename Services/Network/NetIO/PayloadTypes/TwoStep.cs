@@ -11,8 +11,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 		public abstract void ReceiveOnServerBeforeRebroadcast( int fromWho );
 
 		/// <summary></summary>
-		/// <param name="fromWho"></param>
-		public abstract void ReceiveBroadcastOnClient( int fromWho );
+		public abstract void ReceiveBroadcastOnClient();
 	}
 
 
@@ -21,7 +20,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	////////////////
 
 	/// @private
-	public abstract class NetProtocolRequestPayload : NetProtocolPayload {
+	public abstract class NetProtocolRequest : NetProtocolPayload {
 	}
 
 
@@ -32,7 +31,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// <summary>
 	/// Represents a request from a client to the server.
 	/// </summary>
-	public abstract class NetProtocolRequestClientPayload<T> : NetProtocolRequestPayload
+	public abstract class NetProtocolRequestClient<T> : NetProtocolRequest
 				where T : NetProtocolServerPayload {
 		/// <summary>
 		/// Called before a request is replied to.
@@ -44,11 +43,10 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 
 
 
-
 	/// <summary>
 	/// Represents a request from the server to a client.
 	/// </summary>
-	public abstract class NetProtocolRequestServerPayload<T> : NetProtocolRequestPayload
+	public abstract class NetProtocolRequestServer<T> : NetProtocolRequest
 				where T : NetProtocolClientPayload {
 		/// <summary>
 		/// Called before a request is replied to.
@@ -56,5 +54,27 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 		/// <param name="reply"></param>
 		/// <param name="fromWho"></param>
 		public virtual void PreReply( T reply, int fromWho ) { }
+	}
+
+
+
+	/// <summary>
+	/// Represents a request from either client or server of its opposite.
+	/// </summary>
+	public abstract class NetProtocolRequestBidirectional<T> : NetProtocolRequest
+				where T : NetProtocolBidirectionalPayload {
+		/// <summary>
+		/// Called before a request is replied to on the server.
+		/// </summary>
+		/// <param name="reply"></param>
+		/// <param name="fromWho"></param>
+		public virtual void PreReplyOnServer( T reply, int fromWho ) { }
+
+		/// <summary>
+		/// Called before a request is replied to on the client.
+		/// </summary>
+		/// <param name="reply"></param>
+		/// <param name="fromWho"></param>
+		public virtual void PreReplyOnClient( T reply, int fromWho ) { }
 	}
 }

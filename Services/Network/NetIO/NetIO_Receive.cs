@@ -19,7 +19,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				data.ReceiveOnServerBeforeRebroadcast( playerWho );
 				NetIO.Send( data, -1, playerWho );
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				data.ReceiveBroadcastOnClient( playerWho );
+				data.ReceiveBroadcastOnClient();
 			} else {
 				throw new ModHelpersException( "Not MP" );
 			}
@@ -32,24 +32,24 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			data.ReceiveOnServer( playerWho );
 		}
 
-		private static void Receive( NetProtocolClientPayload data, int playerWho ) {
+		private static void Receive( NetProtocolClientPayload data ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}
-			data.ReceiveOnClient( playerWho );
+			data.ReceiveOnClient();
 		}
 
 		private static void Receive( NetProtocolBidirectionalPayload data, int playerWho ) {
-			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				data.ReceiveOnClient( playerWho );
-			} else if( Main.netMode == NetmodeID.Server ) {
+			if( Main.netMode == NetmodeID.Server ) {
 				data.ReceiveOnServer( playerWho );
+			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
+				data.ReceiveOnClient();
 			}
 		}
 
 		////
 
-		private static void Receive( NetProtocolRequestPayload data, int playerWho ) {
+		private static void Receive( NetProtocolRequest data, int playerWho ) {
 			Type genericArg = null;
 			foreach( Type arg in data.GetType().BaseType.GetGenericArguments() ) {
 				genericArg = arg;

@@ -18,7 +18,7 @@ namespace HamstarHelpers.Commands.Cheats {
 		/// @private
 		public override string Usage => "/" + this.Command + " 1234 567";
 		/// @private
-		public override string Description => "Teleports to the given tile coordinates."
+		public override string Description => "Teleports to the given tile coordinates. Negative values loop from opposite respective side."
 			+"\n  Parameters: <tile x> <tile y>";
 
 
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Commands.Cheats {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				LogHelpers.Log( "TeleportCommand - Not supposed to run on client." );
+				LogHelpers.Alert( "Not supposed to run on client." );
 				return;
 			}
 

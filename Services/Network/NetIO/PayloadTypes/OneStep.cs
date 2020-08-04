@@ -18,7 +18,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// </summary>
 	public abstract class NetProtocolClientPayload : NetProtocolPayload {
 		/// <summary></summary>
-		public abstract void ReceiveOnClient( int fromWho );
+		public abstract void ReceiveOnClient();
 	}
 
 
@@ -32,6 +32,6 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 		public abstract void ReceiveOnServer( int fromWho );
 
 		/// <summary></summary>
-		public abstract void ReceiveOnClient( int fromWho );
+		public abstract void ReceiveOnClient();
 	}
 }

@@ -57,7 +57,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			//PlayerHelpers.ApplyPermaDeath( player, this.Msg );	?
 		}
 
-		public override void ReceiveBroadcastOnClient( int fromWho ) {
+		public override void ReceiveBroadcastOnClient() {
 			Player player = Main.player[ this.PlayerWho ];
 			if( player == null || !player.active ) {
 				LogHelpers.Alert( "Inactive player indexed as " + this.PlayerWho );

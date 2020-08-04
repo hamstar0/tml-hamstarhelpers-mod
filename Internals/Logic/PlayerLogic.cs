@@ -4,8 +4,9 @@ using System.Linq;
 using Terraria;
 using Terraria.ModLoader.IO;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Internals.UI;
+using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Services.Cheats;
+using HamstarHelpers.Internals.UI;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -25,10 +26,10 @@ namespace HamstarHelpers.Internals.Logic {
 		public string OldPrivateUID { get; private set; }
 		public bool HasLoadedOldUID { get; private set; }
 
+		public CheatModeType ActiveCheats { get; private set; }
+
 		public bool HasSyncedWorldData { get; private set; }
 		public bool IsSynced { get; private set; }
-
-		public CheatModeType ActiveCheats { get; private set; }
 
 
 
@@ -40,6 +41,40 @@ namespace HamstarHelpers.Internals.Logic {
 			this.HasSyncedWorldData = false;
 			this.IsSynced = false;
 		}
+
+		internal PlayerLogic Clone() {
+			var clone = new PlayerLogic();
+			clone.PermaBuffsById = new HashSet<int>( this.PermaBuffsById );
+			clone.HasBuffIds = new HashSet<int>( this.HasBuffIds );
+			clone.EquipSlotsToItemTypes = new Dictionary<int, int>( this.EquipSlotsToItemTypes );
+			clone.TestPing = this.TestPing;
+			clone.DialogManager = this.DialogManager;
+			clone.OldPrivateUID = this.OldPrivateUID;
+			clone.HasLoadedOldUID = this.HasLoadedOldUID;
+			clone.HasSyncedWorldData = this.HasSyncedWorldData;
+			clone.IsSynced = this.IsSynced;
+			clone.ActiveCheats = this.ActiveCheats;
+			return clone;
+		}
+
+		////
+
+		public bool Equals( PlayerLogic clone ) {
+			if( !clone.PermaBuffsById.SetEquals(this.PermaBuffsById) ) {
+				return false;
+			}
+			if( !clone.HasBuffIds.SetEquals(this.HasBuffIds ) ) {
+				return false;
+			}
+			if( !clone.EquipSlotsToItemTypes.Compare(this.EquipSlotsToItemTypes) ) {
+				return false;
+			}
+			if( clone.ActiveCheats != this.ActiveCheats ) {
+				return false;
+			}
+			return true;
+		}
+
 
 
 		////////////////
@@ -75,12 +110,8 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////////////////
 
-		public void ToggleCheats( CheatModeType cheat ) {
-			if( (this.ActiveCheats & cheat) == cheat ) {
-				this.ActiveCheats = (CheatModeType)((int)this.ActiveCheats - (int)cheat);
-			} else {
-				this.ActiveCheats = (CheatModeType)((int)this.ActiveCheats + (int)cheat);
-			}
+		internal void SetCheats( CheatModeType cheat ) {
+			this.ActiveCheats = cheat;
 		}
 	}
 }

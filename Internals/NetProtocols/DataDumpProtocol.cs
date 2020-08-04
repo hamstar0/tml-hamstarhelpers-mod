@@ -12,16 +12,16 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
 	[Serializable]
 	class DataDumpProtocol : NetProtocolClientPayload {
-		public override void ReceiveOnClient( int fromWho ) { }
+		public override void ReceiveOnClient() { }
 	}
 
 
 
 
 	[Serializable]
-	class DataDumpRequestProtocol : NetProtocolRequestServerPayload<DataDumpProtocol> {
+	class DataDumpRequestProtocol : NetProtocolRequestServer<DataDumpProtocol> {
 		public static void QuickRequest() {
-			NetIO.RequestFromServer( new DataDumpRequestProtocol() );
+			NetIO.RequestDataFromServer( new DataDumpRequestProtocol() );
 		}
 
 

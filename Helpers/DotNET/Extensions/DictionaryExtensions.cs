@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Extensions {
@@ -21,6 +22,30 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 				return val;
 			}
 			return default( TValue );
+		}
+
+
+		////////////////
+		
+		/// <summary>
+		/// Compares two dictionaries for equality.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <typeparam name="TValue"></typeparam>
+		/// <param name="dict1"></param>
+		/// <param name="dict2"></param>
+		/// <returns></returns>
+		public static bool Compare<TKey, TValue>( this IDictionary<TKey, TValue> dict1, IDictionary<TKey, TValue> dict2 ) {
+			return dict1.Count == dict2.Count && !dict1.Except( dict2 ).Any();
+			/*if( dict1.Count != dict2.Count ) {
+				return false;
+			}
+			foreach( KeyValuePair<TKey, TValue> kv in dict1 ) {
+				if( !dict2.ContainsKey(kv.Key) || !dict2[kv.Key].Equals(kv.Value) ) {
+					return false;
+				}
+			}
+			return true;*/
 		}
 
 

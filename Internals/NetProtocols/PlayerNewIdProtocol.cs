@@ -50,7 +50,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			}
 		}
 
-		public override void ReceiveOnClient( int fromWho ) {
+		public override void ReceiveOnClient() {
 			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds = this.PlayerIds;
 		}
 	}
