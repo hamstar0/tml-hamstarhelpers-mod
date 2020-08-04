@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ModLoader.IO;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.UI;
+using HamstarHelpers.Services.Cheats;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -27,6 +28,8 @@ namespace HamstarHelpers.Internals.Logic {
 		public bool HasSyncedWorldData { get; private set; }
 		public bool IsSynced { get; private set; }
 
+		public CheatModeType ActiveCheats { get; private set; }
+
 
 
 		////////////////
@@ -43,12 +46,15 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public void Load( TagCompound tags ) {
 			try {
-				if( tags.ContainsKey( "uid" ) ) {
+				if( tags.ContainsKey("uid") ) {
 					this.OldPrivateUID = tags.GetString( "uid" );
 				}
-				if( tags.ContainsKey( "perma_buffs" ) ) {
-					var permaBuffs = tags.GetList<int>( "perma_buffs" );
+				if( tags.ContainsKey("perma_buffs") ) {
+					IList<int> permaBuffs = tags.GetList<int>( "perma_buffs" );
 					this.PermaBuffsById = new HashSet<int>( permaBuffs );
+				}
+				if( tags.ContainsKey("cheats") ) {
+					this.ActiveCheats = (CheatModeType)tags.GetInt( "cheats" );
 				}
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.ToString() );
@@ -58,10 +64,23 @@ namespace HamstarHelpers.Internals.Logic {
 		}
 
 		public void Save( TagCompound tags ) {
-			var permaBuffs = this.PermaBuffsById.ToArray();
+			int[] permaBuffs = this.PermaBuffsById.ToArray();
 
+			tags["cheat"] = this.OldPrivateUID;
 			tags["uid"] = this.OldPrivateUID;
 			tags["perma_buffs"] = permaBuffs;
+			tags["cheats"] = (int)this.ActiveCheats;
+		}
+
+
+		////////////////
+
+		public void ToggleCheats( CheatModeType cheat ) {
+			if( (this.ActiveCheats & cheat) == cheat ) {
+				this.ActiveCheats = (CheatModeType)((int)this.ActiveCheats - (int)cheat);
+			} else {
+				this.ActiveCheats = (CheatModeType)((int)this.ActiveCheats + (int)cheat);
+			}
 		}
 	}
 }

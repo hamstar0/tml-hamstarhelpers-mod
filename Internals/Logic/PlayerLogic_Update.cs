@@ -3,6 +3,7 @@ using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Items.NoteItem;
+using HamstarHelpers.Services.Cheats;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -21,6 +22,8 @@ namespace HamstarHelpers.Internals.Logic {
 			}
 
 			NoteItem.UpdateDisplay();
+
+			PlayerCheats.UpdateCheats( player, this.ActiveCheats );
 
 			this.UpdateTml( player );
 		}

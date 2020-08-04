@@ -171,13 +171,5 @@ namespace HamstarHelpers {
 			}
 			//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );
 		}
-
-
-		////////////////
-
-		public override void ModifyScreenPosition() {
-			AnimatedCamera.Instance.ApplyAnimations();
-			Camera.Instance.ApplyCameraEffects();
-		}
 	}
 }

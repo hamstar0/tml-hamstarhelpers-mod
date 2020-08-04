@@ -46,7 +46,15 @@ namespace HamstarHelpers.Commands.Cheats {
 				}
 			}
 
-			PlayerCheats.ToggleDegreelessnessMode( caller.Player );
+			if( !PlayerCheats.TryGetCheatFlags(args, out CheatModeType cheatFlags) ) {
+				caller.Reply( "Invalid cheat identifiers.", Color.Red );
+				return;
+			}
+
+			PlayerCheats.ToggleCheats( caller.Player, cheatFlags );
+
+			string cheats = string.Join( ", ", PlayerCheats.OutputActiveCheats(caller.Player) );
+			caller.Reply( "Cheats active: "+cheats, Color.Lime );
 		}
 	}
 }

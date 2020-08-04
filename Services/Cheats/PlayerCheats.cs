@@ -1,5 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 
@@ -28,37 +28,61 @@ namespace HamstarHelpers.Services.Cheats {
 
 
 
-	public class PlayerCheats {
-		public static void ToggleBilboMode( Player player ) {
+	public partial class PlayerCheats {
+		public static void ToggleCheats( Player player, CheatModeType cheats ) {
 			if( Main.netMode == NetmodeID.Server ) {
-				PlayerCheatModeProtocol.SendToClient( player.whoAmI, CheatModeType.BilboMode );
+				PlayerCheatModeProtocol.SendToClient( player.whoAmI, cheats );
 			} else {
+				var myplayer = player.GetModPlayer<ModHelpersPlayer>();
+				myplayer.Logic.ToggleCheats( cheats );
 			}
 		}
 
-		public static void ToggleDegreelessnessMode( Player player ) {
-			if( Main.netMode == NetmodeID.Server ) {
-				PlayerCheatModeProtocol.SendToClient( player.whoAmI, CheatModeType.GodMode );
-			} else {
+		public static bool TryGetCheatFlags( string[] cheats, out CheatModeType cheatFlags ) {
+			cheatFlags = 0;
+			foreach( string cheat in cheats ) {
+				switch( cheat ) {
+				case "bilbo":
+					cheatFlags = (CheatModeType)((int)cheatFlags + (int)CheatModeType.BilboMode);
+					break;
+				case "god":
+					cheatFlags = (CheatModeType)((int)cheatFlags + (int)CheatModeType.GodMode);
+					break;
+				case "mdk":
+					cheatFlags = (CheatModeType)((int)cheatFlags + (int)CheatModeType.MDKMode);
+					break;
+				case "fly":
+					cheatFlags = (CheatModeType)((int)cheatFlags + (int)CheatModeType.FlyMode);
+					break;
+				default:
+					return false;
+				}
 			}
+			return true;
 		}
 
-		public static void ToggleMDKMode( Player player ) {
-			if( Main.netMode == NetmodeID.Server ) {
-				PlayerCheatModeProtocol.SendToClient( player.whoAmI, CheatModeType.MDKMode );
-			} else {
-			}
+		public static IList<string> OutputActiveCheats( Player player ) {
+			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
+			return PlayerCheats.OutputCheatFlags( myplayer.Logic.ActiveCheats );
 		}
 
-		public static void ToggleGhostMode( Player player ) {
-			if( Main.netMode == NetmodeID.Server ) {
-				PlayerCheatModeProtocol.SendToClient( player.whoAmI, CheatModeType.FlyMode );
-			} else {
-			}
-		}
+		public static IList<string> OutputCheatFlags( CheatModeType cheatFlags ) {
+			var output = new List<string>();
 
-		public static void TeleportTo( Player player, int tileX, int tileY ) {
-			f
+			if( (cheatFlags & CheatModeType.BilboMode) != 0 ) {
+				output.Add( "bilbo" );
+			}
+			if( (cheatFlags & CheatModeType.GodMode) != 0 ) {
+				output.Add( "god" );
+			}
+			if( (cheatFlags & CheatModeType.MDKMode) != 0 ) {
+				output.Add( "mdk" );
+			}
+			if( (cheatFlags & CheatModeType.FlyMode) != 0 ) {
+				output.Add( "fly" );
+			}
+
+			return output;
 		}
 	}
 }
