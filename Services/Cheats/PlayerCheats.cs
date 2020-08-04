@@ -39,12 +39,6 @@ namespace HamstarHelpers.Services.Cheats {
 		/// <param name="player"></param>
 		/// <param name="cheatFlags"></param>
 		public static void ToggleCheats( Player player, CheatModeType cheatFlags ) {
-			if( Main.netMode == NetmodeID.Server ) {
-				PlayerCheatModeProtocol.SendToClients( player, cheatFlags );
-			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				PlayerCheatModeProtocol.BroadcastFromClient( cheatFlags );
-			}
-			
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			CheatModeType currCheats = myplayer.Logic.ActiveCheats;
 			
@@ -53,7 +47,14 @@ namespace HamstarHelpers.Services.Cheats {
 			} else {
 				currCheats = currCheats & cheatFlags;
 			}
+
 			myplayer.Logic.SetCheats( currCheats );
+
+			if( Main.netMode == NetmodeID.Server ) {
+				PlayerCheatModeProtocol.BroadcastToClients( player, currCheats );
+			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
+				PlayerCheatModeProtocol.BroadcastFromClient( currCheats );
+			}
 		}
 
 

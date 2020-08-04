@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 
-		public override void ReceiveOnClient( int fromWho ) {
+		public override void ReceiveOnClient() {
 			this.EndTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 
 			NetIO.SendToServer( this );

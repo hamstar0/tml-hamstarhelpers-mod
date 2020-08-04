@@ -11,12 +11,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
 	class PlayerCheatModeProtocol : NetProtocolBroadcastPayload {
 		public static void BroadcastFromClient( CheatModeType cheatFlags ) {
-			var protocol = new PlayerCheatModeProtocol( cheatFlags );
+			var protocol = new PlayerCheatModeProtocol( cheatFlags, Main.myPlayer );
 			NetIO.Broadcast( protocol );
 		}
 
-		public static void SendToClients( Player player, CheatModeType cheatFlags ) {
-			var protocol = new PlayerCheatModeProtocol( cheatFlags );
+		public static void BroadcastToClients( Player player, CheatModeType cheatFlags ) {
+			var protocol = new PlayerCheatModeProtocol( cheatFlags, player.whoAmI );
 			NetIO.SendToClients( protocol, player.whoAmI );
 		}
 
@@ -25,6 +25,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public CheatModeType CheatFlags;
+		public int PlayerWho;
 
 
 
@@ -32,8 +33,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		private PlayerCheatModeProtocol() { }
 
-		private PlayerCheatModeProtocol( CheatModeType cheatFlags ) {
+		private PlayerCheatModeProtocol( CheatModeType cheatFlags, int playerWho ) {
 			this.CheatFlags = cheatFlags;
+			this.PlayerWho = playerWho;
 		}
 
 
@@ -45,7 +47,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		public override void ReceiveBroadcastOnClient() {
-			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[fromWho] );
+			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[this.PlayerWho] );
 			myplayer.Logic.SetCheats( this.CheatFlags );
 		}
 	}

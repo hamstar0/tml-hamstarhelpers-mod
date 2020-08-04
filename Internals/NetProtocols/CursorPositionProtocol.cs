@@ -58,7 +58,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			Client._LastKnownCursorPositions[this.PlayerWho] = (this.X, this.Y);
 		}
 
-		public override void ReceiveBroadcastOnClient( int fromWho ) {
+		public override void ReceiveBroadcastOnClient() {
 			Client._LastKnownCursorPositions[this.PlayerWho] = (this.X, this.Y);
 		}
 	}
