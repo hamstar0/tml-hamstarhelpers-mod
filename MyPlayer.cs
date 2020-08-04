@@ -117,20 +117,8 @@ namespace HamstarHelpers {
 
 		////////////////
 
-		public override void OnHitNPC( Item item, NPC target, int damage, float knockback, bool crit ) {
-			PlayerCheats.OnHit( ref damage, this.Logic.ActiveCheats );
-		}
-
-		public override void OnHitNPCWithProj( Projectile proj, NPC target, int damage, float knockback, bool crit ) {
-			PlayerCheats.OnHit( ref damage, this.Logic.ActiveCheats );
-		}
-
-		public override void OnHitPvp( Item item, Player target, int damage, bool crit ) {
-			PlayerCheats.OnHit( ref damage, this.Logic.ActiveCheats );
-		}
-
-		public override void OnHitPvpWithProj( Projectile proj, Player target, int damage, bool crit ) {
-			PlayerCheats.OnHit( ref damage, this.Logic.ActiveCheats );
+		public override void ModifyWeaponDamage( Item item, ref float add, ref float mult, ref float flat ) {
+			PlayerCheats.OnHit( ref mult, ref flat, this.Logic.ActiveCheats );
 		}
 
 

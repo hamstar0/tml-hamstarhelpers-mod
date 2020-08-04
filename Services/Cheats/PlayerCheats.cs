@@ -40,20 +40,14 @@ namespace HamstarHelpers.Services.Cheats {
 		/// <param name="cheatFlags"></param>
 		public static void ToggleCheats( Player player, CheatModeType cheatFlags ) {
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
-			CheatModeType currCheats = myplayer.Logic.ActiveCheats;
-			
-			if( (currCheats & cheatFlags) == cheatFlags ) {
-				currCheats = (CheatModeType)((int)currCheats - (int)cheatFlags );
-			} else {
-				currCheats = currCheats & cheatFlags;
-			}
+			CheatModeType toggledCheats = myplayer.Logic.ActiveCheats ^ cheatFlags;
 
-			myplayer.Logic.SetCheats( currCheats );
+			myplayer.Logic.SetCheats( toggledCheats );
 
 			if( Main.netMode == NetmodeID.Server ) {
-				PlayerCheatModeProtocol.BroadcastToClients( player, currCheats );
+				PlayerCheatModeProtocol.BroadcastToClients( player, toggledCheats );
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				PlayerCheatModeProtocol.BroadcastFromClient( currCheats );
+				PlayerCheatModeProtocol.BroadcastFromClient( toggledCheats );
 			}
 		}
 
@@ -63,12 +57,12 @@ namespace HamstarHelpers.Services.Cheats {
 		/// <summary>
 		/// Attempts to parse cheat flags from a textual string list of cheat names.
 		/// </summary>
-		/// <param name="cheats"></param>
+		/// <param name="cheatNames"></param>
 		/// <param name="cheatFlags"></param>
 		/// <returns>`true` if all cheats are valid.</returns>
-		public static bool TryParseCheatFlags( string[] cheats, out CheatModeType cheatFlags ) {
+		public static bool TryParseCheatFlags( string[] cheatNames, out CheatModeType cheatFlags ) {
 			cheatFlags = 0;
-			foreach( string cheat in cheats ) {
+			foreach( string cheat in cheatNames ) {
 				switch( cheat ) {
 				case "bilbo":
 					cheatFlags |= CheatModeType.BilboMode;

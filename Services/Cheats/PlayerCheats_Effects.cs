@@ -60,18 +60,19 @@ namespace HamstarHelpers.Services.Cheats {
 
 		private static void UpdateCheatFlyMode( Player player ) {
 			if( player.wingTime > 0f ) {
-				player.wingTime = 1f;
+				player.wingTime = player.wingTimeMax;
 			} else if( player.rocketTime > 0 ) {
-				player.rocketTime = 1;
+				player.rocketTime = player.rocketTimeMax;
 			}
 		}
 
 
 		////////////////
 
-		internal static void OnHit( ref int damage, CheatModeType cheatFlags ) {
+		internal static void OnHit( ref float baseScale, ref float addedDamage, CheatModeType cheatFlags ) {
 			if( (cheatFlags & CheatModeType.MDKMode) != 0 ) {
-				damage = 100000000;//0
+				baseScale = 0f;
+				addedDamage = 100000000;//0
 			}
 		}
 

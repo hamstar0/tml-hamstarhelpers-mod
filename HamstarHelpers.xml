@@ -4093,6 +4093,78 @@
         <member name="M:HamstarHelpers.Classes.UI.Theme.UIThemedState.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             @private
         </member>
+        <member name="T:HamstarHelpers.Commands.Cheats.CheatToggleCommand">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.CheatToggleCommand.Type">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.CheatToggleCommand.Command">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.CheatToggleCommand.Usage">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.CheatToggleCommand.Description">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Commands.Cheats.CheatToggleCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Commands.Cheats.IdkfaCommand">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.IdkfaCommand.Type">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.IdkfaCommand.Command">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.IdkfaCommand.Usage">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.IdkfaCommand.Description">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Commands.Cheats.IdkfaCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Commands.Cheats.TeleportCommand">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.TeleportCommand.Type">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.TeleportCommand.Command">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.TeleportCommand.Usage">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.TeleportCommand.Description">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Commands.Cheats.TeleportCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Commands.Cheats.WormholeCommand">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.WormholeCommand.Type">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.WormholeCommand.Command">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.WormholeCommand.Usage">
+            @private
+        </member>
+        <member name="P:HamstarHelpers.Commands.Cheats.WormholeCommand.Description">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Commands.Cheats.WormholeCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Commands.CleanupModTilesCommand">
             @private
         </member>
@@ -4283,27 +4355,6 @@
         <member name="M:HamstarHelpers.Commands.SaveTilesCommand.Action(Terraria.ModLoader.CommandCaller,System.String,System.String[])">
             @private
         </member>
-        <member name="T:HamstarHelpers.ModHelpersPrivilegedUserConfig">
-            <summary>
-            Defines config settings for a specific "privileged user" entry (used by assorted APIs).
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.ModHelpersPrivilegedUserConfig.Instance">
-            <summary>
-            Gets the singleton instance of this config file.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.ModHelpersPrivilegedUserConfig.Mode">
-            @private
-        </member>
-        <member name="F:HamstarHelpers.ModHelpersPrivilegedUserConfig.PrivilegedUserId">
-            <summary>
-            User ID of a designated privileged (admin) player. Refers to the internal player UID used by Mod Helpers.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.ModHelpersPrivilegedUserConfig.OnChanged">
-            @private
-        </member>
         <member name="T:HamstarHelpers.ModHelpersConfig">
             <summary>
             Defines Mod Helpers config settings.
@@ -4316,6 +4367,11 @@
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.Mode">
             @private
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeCheats">
+            <summary>
+            Enables cheat codes. Also requires 'privileged user' status enabled.
+            </summary>
         </member>
         <member name="P:HamstarHelpers.ModHelpersConfig.DebugModeHelpersInfo">
             <summary>
@@ -4473,6 +4529,30 @@
             </summary>
         </member>
         <member name="M:HamstarHelpers.ModHelpersConfig.AcceptClientChanges(Terraria.ModLoader.Config.ModConfig,System.Int32,System.String@)">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.ModHelpersPrivilegedUserConfig">
+            <summary>
+            Defines config settings for a specific "privileged user" entry (used by assorted APIs).
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersPrivilegedUserConfig.Instance">
+            <summary>
+            Gets the singleton instance of this config file.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.ModHelpersPrivilegedUserConfig.Mode">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.ModHelpersPrivilegedUserConfig.PrivilegedUserId">
+            <summary>
+            User ID of a designated privileged (admin) player. Refers to the internal player UID used by Mod Helpers.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.ModHelpersPrivilegedUserConfig.OnChanged">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.ModHelpersPrivilegedUserConfig.AcceptClientChanges(Terraria.ModLoader.Config.ModConfig,System.Int32,System.String@)">
             @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Buffs.BuffAttributesHelpers">
@@ -4940,6 +5020,16 @@
             <typeparam name="TValue"></typeparam>
             <param name="dict"></param>
             <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.Compare``2(System.Collections.Generic.IDictionary{``0,``1},System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Compares two dictionaries for equality.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="dict1"></param>
+            <param name="dict2"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddOrSet``1(System.Collections.Generic.IDictionary{``0,System.Int32},``0,System.Int32)">
@@ -8045,6 +8135,9 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventoryLastAmmolot">
+            @private
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventoryLastAmmoSlot">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.Players.PlayerItemHelpers.VanillaInventorySelectedSlot">
@@ -11218,6 +11311,9 @@
         <member name="T:HamstarHelpers.Internals.NetProtocols.PingProtocol">
             @private
         </member>
+        <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerCheatModeProtocol">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerDataProtocol">
             @private
         </member>
@@ -11412,6 +11508,7 @@
             @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersPlayer">
+            @private
             @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersRecipe">
@@ -11742,6 +11839,75 @@
         </member>
         <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyShake(System.Single,System.Int32,System.Int32)">
             @private
+        </member>
+        <member name="T:HamstarHelpers.Services.Cheats.CheatModeType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Cheats.CheatModeType.BilboMode">
+            <summary>
+            Invisibility.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Cheats.CheatModeType.GodMode">
+            <summary>
+            Invincibility.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Cheats.CheatModeType.MDKMode">
+            <summary>
+            All weapons do extreme damage.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Cheats.CheatModeType.FlyMode">
+            <summary>
+            Noclip, speed, and flight.
+            </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Cheats.PlayerCheats">
+            <summary>
+            Provides APIs for toggling or applying player cheat effects.
+            </summary>
+            <summary>
+            Provides APIs for toggling or applying player cheat effects.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Cheats.PlayerCheats.ToggleCheats(Terraria.Player,HamstarHelpers.Services.Cheats.CheatModeType)">
+            <summary>
+            Toggles a given set of cheats.
+            </summary>
+            <param name="player"></param>
+            <param name="cheatFlags"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Cheats.PlayerCheats.TryParseCheatFlags(System.String[],HamstarHelpers.Services.Cheats.CheatModeType@)">
+            <summary>
+            Attempts to parse cheat flags from a textual string list of cheat names.
+            </summary>
+            <param name="cheatNames"></param>
+            <param name="cheatFlags"></param>
+            <returns>`true` if all cheats are valid.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Cheats.PlayerCheats.OutputActiveCheats(Terraria.Player)">
+            <summary>
+            Gets a string list representation of a player's active cheats.
+            </summary>
+            <param name="player"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Cheats.PlayerCheats.OutputCheatFlags(HamstarHelpers.Services.Cheats.CheatModeType)">
+            <summary>
+            Gets a string list representation of a given set of cheats.
+            </summary>
+            <param name="cheatFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Cheats.PlayerCheats.TeleportTo(Terraria.Player,System.Int32,System.Int32)">
+            <summary>
+            Teleports a player to a given tile location. Negative tile values loop from the opposite respective side of
+            the world.
+            </summary>
+            <param name="player"></param>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
         </member>
         <member name="T:HamstarHelpers.Services.DataStore.DataStore">
             <summary>
@@ -13065,7 +13231,7 @@
             routing.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClientPayload{``0},System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClient{``0},System.Int32,System.Int32)">
             <summary>
             Sends a request to the given client(s).
             </summary>
@@ -13074,7 +13240,23 @@
             <param name="toWho"></param>
             <param name="ignoreWho"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServerPayload{``0})">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional{``0},System.Int32,System.Int32)">
+            <summary>
+            Sends a request to the given client(s).
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+            <param name="toWho"></param>
+            <param name="ignoreWho"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServer{``0})">
+            <summary>
+            Sends a request to the server.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional{``0})">
             <summary>
             Sends a request to the server.
             </summary>
@@ -13139,7 +13321,7 @@
             Represents packets meant for receipt on client.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolClientPayload.ReceiveOnClient(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolClientPayload.ReceiveOnClient">
             <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload">
@@ -13151,7 +13333,7 @@
             <summary></summary>
             <param name="fromWho"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload.ReceiveOnClient(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload.ReceiveOnClient">
             <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload">
@@ -13163,33 +13345,51 @@
             <summary></summary>
             <param name="fromWho"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload.ReceiveBroadcastOnClient(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload.ReceiveBroadcastOnClient">
             <summary></summary>
-            <param name="fromWho"></param>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayload">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest">
             @private
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClientPayload`1">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClient`1">
             <summary>
             Represents a request from a client to the server.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClientPayload`1.PreReply(`0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClient`1.PreReply(`0,System.Int32)">
             <summary>
             Called before a request is replied to.
             </summary>
             <param name="reply"></param>
             <param name="fromWho"></param>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServerPayload`1">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServer`1">
             <summary>
             Represents a request from the server to a client.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServerPayload`1.PreReply(`0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServer`1.PreReply(`0,System.Int32)">
             <summary>
             Called before a request is replied to.
+            </summary>
+            <param name="reply"></param>
+            <param name="fromWho"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional`1">
+            <summary>
+            Represents a request from either client or server of its opposite.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional`1.PreReplyOnServer(`0,System.Int32)">
+            <summary>
+            Called before a request is replied to on the server.
+            </summary>
+            <param name="reply"></param>
+            <param name="fromWho"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional`1.PreReplyOnClient(`0,System.Int32)">
+            <summary>
+            Called before a request is replied to on the client.
             </summary>
             <param name="reply"></param>
             <param name="fromWho"></param>
