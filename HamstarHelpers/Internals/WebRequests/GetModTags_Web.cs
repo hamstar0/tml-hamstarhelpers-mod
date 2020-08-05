@@ -1,12 +1,13 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.Net;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Encoding;
+using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.Net;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
@@ -48,7 +49,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 			bool found = false;
 			modTagsDb = new ModTagsDatabase();
 
-			JObject respJson = JObject.Parse( jsonData );
+			string sanitizedJsonData = EncodingHelpers.SanitizeForASCII( jsonData );
+			JObject respJson = JObject.Parse( sanitizedJsonData );
 
 			if( respJson.Count > 0 ) {
 				JToken tagListToken = respJson.SelectToken( "modlist" );

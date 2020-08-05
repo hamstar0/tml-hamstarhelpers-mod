@@ -1,16 +1,17 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Terraria;
+using Terraria.ModLoader;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.DotNET.Encoding;
 using HamstarHelpers.Helpers.Info;
 using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Helpers.Net;
 using HamstarHelpers.Helpers.TModLoader.Mods;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.ModLoader;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
@@ -65,7 +66,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 				string processedOutput = "";
 
 				if( success ) {
-					JObject respJson = JObject.Parse( output );
+					string sanitizedOutput = EncodingHelpers.SanitizeForASCII( output );
+					JObject respJson = JObject.Parse( sanitizedOutput );
 					JToken data = respJson.SelectToken( "Data.html_url" );
 					JToken msg = respJson.SelectToken( "Msg" );
 

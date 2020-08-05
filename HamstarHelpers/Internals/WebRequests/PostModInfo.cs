@@ -1,9 +1,10 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Net;
+﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Encoding;
+using HamstarHelpers.Helpers.Net;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
@@ -34,7 +35,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 				string processedOutput = "";
 
 				if( success ) {
-					JObject respJson = JObject.Parse( output );
+					string sanitizedOutput = EncodingHelpers.SanitizeForASCII( output );
+					JObject respJson = JObject.Parse( sanitizedOutput );
 					JToken msg = respJson.SelectToken( "Msg" );
 
 					success = msg != null;

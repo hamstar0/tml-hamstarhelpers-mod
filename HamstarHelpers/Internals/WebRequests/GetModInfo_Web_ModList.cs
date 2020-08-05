@@ -1,15 +1,16 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.Net;
-using HamstarHelpers.Helpers.TModLoader.Mods;
-using Ionic.Zlib;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using Ionic.Zlib;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Helpers.DotNET.Encoding;
+using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.Net;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
@@ -50,11 +51,12 @@ namespace HamstarHelpers.Internals.WebRequests {
 		}
 
 
-		private static bool HandleModInfoReceipt( string jsonStr, out BasicModInfoDatabase modInfoDb, out int skipped ) {
+		private static bool HandleModInfoReceipt( string jsonData, out BasicModInfoDatabase modInfoDb, out int skipped ) {
 			modInfoDb = new BasicModInfoDatabase();
 			skipped = 0;
 
-			JObject respJson = JObject.Parse( jsonStr );
+			string sanitizedJsonData = EncodingHelpers.SanitizeForASCII( jsonData );
+			JObject respJson = JObject.Parse( sanitizedJsonData );
 			if( respJson.Count == 0 ) {
 				return false;
 			}

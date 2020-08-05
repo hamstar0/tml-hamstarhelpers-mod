@@ -44,10 +44,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 		}
 
 
-		private static bool HandleBadModsReceipt( string jsonStr, out BadModsDatabase badModsDb ) {
+		private static bool HandleBadModsReceipt( string jsonData, out BadModsDatabase badModsDb ) {
 			badModsDb = new BadModsDatabase();
 
-			JObject parsedObject = JObject.Parse( jsonStr );
+			string sanitizedJsonData = EncodingHelpers.SanitizeForASCII( jsonData );
+			JObject parsedObject = JObject.Parse( sanitizedJsonData );
 
 			if( parsedObject.Count == 0 ) {
 				return false;

@@ -16,7 +16,7 @@ namespace HamstarHelpers.Helpers.DotNET.Encoding {
 			var crypt = new SHA256Managed();
 			byte[] hashBytes = crypt.ComputeHash( System.Text.Encoding.UTF8.GetBytes( str ) );
 			string hash = Convert.ToBase64String( hashBytes );
-
+			
 			return hash;
 		}
 	}

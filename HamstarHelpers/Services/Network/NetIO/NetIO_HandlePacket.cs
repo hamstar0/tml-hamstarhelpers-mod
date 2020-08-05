@@ -16,8 +16,15 @@ namespace HamstarHelpers.Services.Network.NetIO {
 	public partial class NetIO : ILoadable {
 		internal static bool HandlePacket( BinaryReader reader, int playerWho ) {
 			var netIO = ModContent.GetInstance<NetIO>();
+			object data;
 
-			object data = netIO.Serializer.Deserialize( reader.BaseStream );
+			try {
+				data = netIO.Serializer.Deserialize( reader.BaseStream );
+			} catch( Exception e ) {
+				LogHelpers.Warn( e.Message );
+				return false;
+			}
+
 			if( data == null || data.GetType() == typeof( object ) ) {
 				return false;
 			}
