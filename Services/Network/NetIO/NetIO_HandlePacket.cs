@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
@@ -14,9 +15,9 @@ namespace HamstarHelpers.Services.Network.NetIO {
 	/// </summary>
 	public partial class NetIO : ILoadable {
 		internal static bool HandlePacket( BinaryReader reader, int playerWho ) {
-			var netProtocol = ModContent.GetInstance<NetIO>();
+			var netIO = ModContent.GetInstance<NetIO>();
 
-			object data = netProtocol.Serializer.Deserialize( reader.BaseStream );
+			object data = netIO.Serializer.Deserialize( reader.BaseStream );
 			if( data == null || data.GetType() == typeof( object ) ) {
 				return false;
 			}

@@ -1,7 +1,7 @@
 ﻿using System;
 using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 using HamstarHelpers.Services.Network.NetIO;
+using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {

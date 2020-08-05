@@ -1,4 +1,7 @@
-﻿using Terraria;
+﻿using System;
+using System.Reflection;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 using HamstarHelpers.Helpers.User;
@@ -54,6 +57,14 @@ namespace HamstarHelpers {
 		public override bool AcceptClientChanges( ModConfig pendingConfig, int whoAmI, ref string message ) {
 			if( !UserHelpers.HasBasicServerPrivilege( Main.player[whoAmI] ) ) {
 				message = "Not authorized.";
+
+				var newConfig = pendingConfig as ModHelpersPrivilegedUserConfig;
+				IEnumerable<PropertyInfo> properties = this.GetType().GetProperties( BindingFlags.Public );
+
+				foreach( PropertyInfo prop in properties ) {
+					prop.SetValue( newConfig, prop.GetValue(this) );
+				}
+
 				return false;
 			}
 			return true;

@@ -1,10 +1,11 @@
-﻿using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Services.Timers;
+﻿using System;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Services.Cheats;
+using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers.Buffs {
@@ -59,7 +60,11 @@ namespace HamstarHelpers.Buffs {
 
 		/// @private
 		public override void Update( Player player, ref int buffIndex ) {
-			this.ApplyFx( player );
+			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
+
+			if( (myplayer.Logic.ActiveCheats & CheatModeType.BilboMode) == 0 ) {
+				this.ApplyFx( player );
+			}
 
 			player.immune = true;
 
