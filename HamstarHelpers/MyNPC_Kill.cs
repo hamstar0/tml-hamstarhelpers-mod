@@ -1,12 +1,10 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items;
-using HamstarHelpers.Items;
 using HamstarHelpers.Services.Hooks.ExtendedHooks;
+
 
 namespace HamstarHelpers {
 	/// @private

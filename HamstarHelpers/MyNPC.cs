@@ -1,9 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Items;
 using HamstarHelpers.Helpers.Debug;
 
 

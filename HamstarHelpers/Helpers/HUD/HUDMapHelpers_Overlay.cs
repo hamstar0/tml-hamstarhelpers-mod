@@ -27,7 +27,9 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
 		/// boundaries.</returns>
 		public static (Vector2 ScreenPosition, bool IsOnScreen) GetOverlayMapPositionAsScreenPosition( Vector2 worldPosition ) {    //Main.mapStyle == 2
-			return HUDMapHelpers.GetOverlayMapPositionAsScreenPosition( new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 ) );
+			return HUDMapHelpers.GetOverlayMapPositionAsScreenPosition(
+				new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 )
+			);
 		}
 
 		/// <summary>
