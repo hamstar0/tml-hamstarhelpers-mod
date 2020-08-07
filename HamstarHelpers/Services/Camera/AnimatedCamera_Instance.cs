@@ -16,6 +16,9 @@ namespace HamstarHelpers.Services.Camera {
 		////////////////
 
 		/// <summary></summary>
+		public string CurrentMoveSequence { get; private set; } = "Default";
+
+		/// <summary></summary>
 		public int MoveXFrom { get; private set; } = -1;
 
 		/// <summary></summary>
@@ -40,7 +43,10 @@ namespace HamstarHelpers.Services.Camera {
 
 
 		////////////////
-		
+
+		/// <summary></summary>
+		public string CurrentZoomSequence { get; private set; } = "Default";
+
 		/// <summary></summary>
 		public float ZoomFrom { get; private set; } = -1;
 
@@ -60,6 +66,9 @@ namespace HamstarHelpers.Services.Camera {
 
 
 		////////////////
+
+		/// <summary></summary>
+		public string CurrentShakeSequence { get; private set; } = "Default";
 
 		/// <summary></summary>
 		public float ShakePeakMagnitude { get; private set; } = 0f;

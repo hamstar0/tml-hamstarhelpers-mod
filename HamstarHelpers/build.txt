@@ -1,5 +1,5 @@
 author = hamstar
-version = 5.9.0
+version = 5.9.1
 displayName = Mod Helpers
 dllReferences = NetSerializer
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*

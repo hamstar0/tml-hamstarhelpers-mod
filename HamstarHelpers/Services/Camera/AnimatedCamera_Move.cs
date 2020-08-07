@@ -12,6 +12,37 @@ namespace HamstarHelpers.Services.Camera {
 		/// <summary>
 		/// Applies motion to the camera.
 		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="moveXFrom"></param>
+		/// <param name="moveYFrom"></param>
+		/// <param name="moveXTo"></param>
+		/// <param name="moveYTo"></param>
+		/// <param name="tickDuration">How long the sequence takes to complete.</param>
+		/// <param name="lingerDuration">How long to linger at destination before reset. Set to -1 for permanent.</param>
+		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+		public static void BeginMoveSequence(
+					string name,
+					int moveXFrom,
+					int moveYFrom,
+					int moveXTo,
+					int moveYTo,
+					int tickDuration,
+					int lingerDuration,
+					int skippedTicks = 0 ) {
+			var anim = AnimatedCamera.Instance;
+			anim.CurrentMoveSequence = name;
+			anim.MoveXFrom = moveXFrom;
+			anim.MoveYFrom = moveYFrom;
+			anim.MoveXTo = moveXTo;
+			anim.MoveYTo = moveYTo;
+			anim.MoveTickDuration = tickDuration;
+			anim.MoveTicksElapsed = skippedTicks;
+			anim.MoveTicksLingerDuration = lingerDuration;
+		}
+
+		/// <summary>
+		/// Applies motion to the camera.
+		/// </summary>
 		/// <param name="moveXFrom"></param>
 		/// <param name="moveYFrom"></param>
 		/// <param name="moveXTo"></param>
@@ -27,15 +58,20 @@ namespace HamstarHelpers.Services.Camera {
 					int tickDuration,
 					int lingerDuration,
 					int skippedTicks = 0 ) {
-			var anim = AnimatedCamera.Instance;
-			anim.MoveXFrom = moveXFrom;
-			anim.MoveYFrom = moveYFrom;
-			anim.MoveXTo = moveXTo;
-			anim.MoveYTo = moveYTo;
-			anim.MoveTickDuration = tickDuration;
-			anim.MoveTicksElapsed = skippedTicks;
-			anim.MoveTicksLingerDuration = lingerDuration;
+			AnimatedCamera.BeginMoveSequence(
+				"Default",
+				moveXFrom,
+				moveYFrom,
+				moveXTo,
+				moveYTo,
+				tickDuration,
+				lingerDuration,
+				skippedTicks
+			);
 		}
+
+
+		////
 
 		/// <summary>
 		/// Gets an interpolated position between 2 points, accounting for points that refer to screen position (-1 values).
