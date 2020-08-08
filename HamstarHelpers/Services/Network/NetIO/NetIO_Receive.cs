@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
@@ -45,61 +43,6 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				data.ReceiveOnServer( playerWho );
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				data.ReceiveOnClient();
-			}
-		}
-
-		////
-
-		private static void Receive( NetProtocolRequest data, int playerWho ) {
-			Type genericArg = null;
-			foreach( Type arg in data.GetType().BaseType.GetGenericArguments() ) {
-				genericArg = arg;
-				break;
-			}
-			if( genericArg == null ) {
-				throw new ModHelpersException( "Invalid NetProtocolRequestPayload ("+data.GetType().Name+")" );
-			}
-
-			object rawReply = Activator.CreateInstance(
-				genericArg,
-				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance,
-				null,
-				new object[] { },
-				null
-			);
-
-			if( Main.netMode == NetmodeID.Server ) {
-				var reply = rawReply as NetProtocolClientPayload;
-				if( reply == null ) {
-					throw new ModHelpersException( data.GetType().Name+" is not a NetProtocolRequestServerPayload" );
-				}
-
-				if( !ReflectionHelpers.RunMethod(
-					data,
-					"PreReply",
-					new object[] { reply, playerWho },
-					out object _
-				) ) {
-					throw new ModHelpersException( "Could not call PreReply for "+data.GetType().Name );
-				}
-
-				NetIO.SendToClients( reply );
-			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				var reply = rawReply as NetProtocolServerPayload;
-				if( reply == null ) {
-					throw new ModHelpersException( data.GetType().Name+" is not a NetProtocolRequestClientPayload" );
-				}
-
-				if( !ReflectionHelpers.RunMethod(
-					data,
-					"PreReply",
-					new object[] { reply, playerWho },
-					out object _
-				) ) {
-					throw new ModHelpersException( "Could not call PreReply for "+data.GetType().Name );
-				}
-
-				NetIO.SendToServer( reply );
 			}
 		}
 	}

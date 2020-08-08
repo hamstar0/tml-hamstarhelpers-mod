@@ -8,26 +8,25 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
 	[Serializable]
-	class PlayerOldIdRequestClientProtocol : NetProtocolClientPayload {
-		public override void ReceiveOnClient() {
-			PlayerOldIdProtocol.QuickSendToServer();
+	class PlayerOldIdRequestProtocol : NetProtocolRequest<PlayerOldIdProtocol> {
+		public static void QuickRequestToClient( int playerWho ) {
+			var protocol = new PlayerOldIdRequestProtocol();
+
+			NetIO.RequestDataFromClient( protocol, playerWho );
 		}
+
+
+		////////////////
+
+		private PlayerOldIdRequestProtocol() { }
 	}
 
 
 
 
-	/// @private
 	[Serializable]
 	class PlayerOldIdProtocol : NetProtocolBidirectionalPayload {
-		public static void QuickRequestToClient( int playerWho ) {
-			var protocol = new PlayerOldIdRequestClientProtocol();
-
-			NetIO.SendToClients( protocol, -1, -1 );
-		}
-
 		public static void QuickSendToServer() {
 			var protocol = new PlayerOldIdProtocol();
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.LocalPlayer );

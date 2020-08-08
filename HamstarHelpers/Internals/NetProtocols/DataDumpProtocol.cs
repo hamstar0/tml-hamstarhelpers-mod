@@ -9,19 +9,10 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
 	[Serializable]
-	class DataDumpProtocol : NetProtocolClientPayload {
-		public override void ReceiveOnClient() { }
-	}
-
-
-
-
-	[Serializable]
-	class DataDumpRequestProtocol : NetProtocolRequestServer<DataDumpProtocol> {
+	class DataDumpRequestProtocol : NetProtocolRequestFromClientToServer<DataDumpProtocol> {
 		public static void QuickRequest() {
-			NetIO.RequestDataFromServer( new DataDumpRequestProtocol() );
+			NetIO.RequestDataFromClient( new DataDumpRequestProtocol() );
 		}
 
 
@@ -30,11 +21,20 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		private DataDumpRequestProtocol() { }
 
-		public override void PreReply( DataDumpProtocol reply, int fromWho ) {
+		public override bool PreReplyOnClient( DataDumpProtocol reply ) {
 			if( ModHelpersConfig.Instance.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer ) ) {
 				string _;
 				DataDumper.DumpToFile( out _ );
 			}
+			return false;
 		}
+	}
+
+
+
+
+	[Serializable]
+	class DataDumpProtocol : NetProtocolServerPayload {
+		public override void ReceiveOnServer( int fromWho ) { }
 	}
 }

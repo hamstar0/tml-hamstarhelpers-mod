@@ -16,8 +16,8 @@ namespace HamstarHelpers.Internals.Logic {
 			this.HasSyncedWorldData = true;
 			this.IsSynced = true;	// Technically this should only be set upon sync receipt of player's 'old' uid...
 
-			PlayerOldIdProtocol.QuickRequestToClient( player.whoAmI );
-			PlayerNewIdProtocol.QuickRequestToClient( player.whoAmI );
+			PlayerOldIdRequestProtocol.QuickRequestToClient( player.whoAmI );
+			PlayerNewIdRequestProtocol.QuickRequestToClient( player.whoAmI );
 		}
 
 		////

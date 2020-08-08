@@ -8,18 +8,28 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
 	[Serializable]
-	class PlayerNewIdProtocol : NetProtocolBidirectionalPayload {
+	class PlayerNewIdRequestProtocol : NetProtocolRequest<PlayerNewIdProtocol> {
 		public static void QuickRequestToClient( int playerWho ) {
-			var protocol = new PlayerNewIdProtocol();
+			var protocol = new PlayerNewIdRequestProtocol();
 
-			NetIO.SendToClients( protocol, -1, -1 );
+			NetIO.RequestDataFromClient( protocol, playerWho );
 		}
 
+
+		////////////////
+
+		private PlayerNewIdRequestProtocol() { }
+	}
+
+
+
+
+	[Serializable]
+	class PlayerNewIdProtocol : NetProtocolBidirectionalPayload {
 		public static void QuickSendToServer() {
 			var protocol = new PlayerNewIdProtocol();
-			protocol.PlayerIds[Main.myPlayer] = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer );
+			protocol.PlayerIds[ Main.myPlayer ] = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer );
 
 			NetIO.SendToServer( protocol );
 		}

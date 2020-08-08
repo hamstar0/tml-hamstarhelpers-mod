@@ -6,7 +6,6 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
 	[Serializable]
 	class ItemNoGrabProtocol : NetProtocolServerPayload {
 		public static void SendToServer( int itemWho, int noGrabDelayAmt ) {

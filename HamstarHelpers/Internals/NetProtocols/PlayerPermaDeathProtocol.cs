@@ -9,7 +9,6 @@ using HamstarHelpers.Services.Network.NetIO;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
 	[Serializable]
 	class PlayerPermaDeathProtocol : NetProtocolBroadcastPayload {
 		public static void BroadcastFromClient( int playerDeadWho, string msg ) {

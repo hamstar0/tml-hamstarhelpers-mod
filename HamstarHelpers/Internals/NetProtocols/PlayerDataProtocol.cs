@@ -9,7 +9,6 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
 	[Serializable]
 	class PlayerDataProtocol : NetProtocolBroadcastPayload {
 		public static void BroadcastToAll(

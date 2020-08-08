@@ -9,9 +9,8 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
 	[Serializable]
-	class WorldDataRequestProtocol : NetProtocolRequestServer<WorldDataProtocol> {
+	class WorldDataRequestProtocol : NetProtocolRequestFromServerToClient<WorldDataProtocol> {
 		public static void QuickRequest() {
 			NetIO.RequestDataFromServer( new WorldDataRequestProtocol() );
 		}
@@ -20,7 +19,6 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 
 
-	/// @private
 	[Serializable]
 	class WorldDataProtocol : NetProtocolClientPayload {
 		public int HalfDays;

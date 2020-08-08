@@ -4,6 +4,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
@@ -113,9 +114,13 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			var netProtocol = ModContent.GetInstance<NetIO>();
 			ModPacket packet = ModHelpersMod.Instance.GetPacket();
 
-			netProtocol.Serializer.Serialize( packet.BaseStream, data );
+			try {
+				netProtocol.Serializer.Serialize( packet.BaseStream, data );
 
-			packet.Send( toWho, ignoreWho );
+				packet.Send( toWho, ignoreWho );
+			} catch( Exception e ) {
+				LogHelpers.WarnOnce( e.ToString() );
+			}
 		}
 	}
 }

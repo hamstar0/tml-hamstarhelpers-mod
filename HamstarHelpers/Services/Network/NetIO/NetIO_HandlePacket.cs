@@ -46,7 +46,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				return true;
 			}
 			if( data is NetProtocolRequest ) {
-				NetIO.Receive( data as NetProtocolRequest, playerWho );
+				NetIO.ReceiveRequest( data as NetProtocolRequest, playerWho );
 				return true;
 			}
 

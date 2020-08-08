@@ -5,7 +5,6 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
 	[Serializable]
 	class PingProtocol : NetProtocolBidirectionalPayload {
 		public static void QuickSendToServer() {
