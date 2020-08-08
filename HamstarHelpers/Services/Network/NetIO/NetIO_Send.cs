@@ -91,6 +91,24 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 		////////////////
 
+		/// <summary>
+		/// Sends the data to the specified client.
+		/// </summary>
+		/// <param name="data"></param>
+		/// <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to.</param>
+		public static void SendToClient( NetProtocolBroadcastPayload data, int toWho ) {
+			if( Main.netMode != NetmodeID.Server ) {
+				throw new ModHelpersException( "Not server" );
+			}
+			if( toWho == -1 ) {
+				throw new ModHelpersException( "For use with specific clients only." );
+			}
+			NetIO.Send( data, toWho, -1 );
+		}
+
+
+		////////////////
+
 		private static void Send( NetProtocolPayload data, int toWho, int ignoreWho ) {
 			var netProtocol = ModContent.GetInstance<NetIO>();
 			ModPacket packet = ModHelpersMod.Instance.GetPacket();

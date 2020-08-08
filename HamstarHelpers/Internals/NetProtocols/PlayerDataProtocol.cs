@@ -51,11 +51,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override void ReceiveOnServerBeforeRebroadcast( int fromWho ) {
+		public override bool ReceiveOnServerBeforeRebroadcast( int fromWho ) {
 			Player player = Main.player[ fromWho ];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 			
 			myplayer.Logic.NetReceiveDataOnServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+			return true;
 		}
 
 		public override void ReceiveBroadcastOnClient() {

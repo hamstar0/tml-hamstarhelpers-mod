@@ -8,7 +8,9 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	public abstract class NetProtocolBroadcastPayload : NetProtocolPayload {
 		/// <summary></summary>
 		/// <param name="fromWho"></param>
-		public abstract void ReceiveOnServerBeforeRebroadcast( int fromWho );
+		/// <returns>`true` permits automatic rebroadcasting to clients. Otherwise, `NetIO.SendToClient(...)` must be called
+		/// manually for each active player to complete the "broadcast".</returns>
+		public abstract bool ReceiveOnServerBeforeRebroadcast( int fromWho );
 
 		/// <summary></summary>
 		public abstract void ReceiveBroadcastOnClient();

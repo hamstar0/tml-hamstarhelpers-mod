@@ -41,9 +41,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override void ReceiveOnServerBeforeRebroadcast( int fromWho ) {
+		public override bool ReceiveOnServerBeforeRebroadcast( int fromWho ) {
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[fromWho] );
 			myplayer.Logic.SetCheats( this.CheatFlags );
+			return true;
 		}
 
 		public override void ReceiveBroadcastOnClient() {

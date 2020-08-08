@@ -16,8 +16,9 @@ namespace HamstarHelpers.Services.Network.NetIO {
 	public partial class NetIO : ILoadable {
 		private static void Receive( NetProtocolBroadcastPayload data, int playerWho ) {
 			if( Main.netMode == NetmodeID.Server ) {
-				data.ReceiveOnServerBeforeRebroadcast( playerWho );
-				NetIO.Send( data, -1, playerWho );
+				if( data.ReceiveOnServerBeforeRebroadcast(playerWho) ) {
+					NetIO.Send( data, -1, playerWho );
+				}
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				data.ReceiveBroadcastOnClient();
 			} else {

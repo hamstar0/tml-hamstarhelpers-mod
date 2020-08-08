@@ -51,10 +51,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override void ReceiveOnServerBeforeRebroadcast( int fromWho ) {
+		public override bool ReceiveOnServerBeforeRebroadcast( int fromWho ) {
 			//Player player = Main.player[ this.PlayerWho ];
 
 			//PlayerHelpers.ApplyPermaDeath( player, this.Msg );	?
+			return true;
 		}
 
 		public override void ReceiveBroadcastOnClient() {
