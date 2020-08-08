@@ -41,7 +41,7 @@ namespace HamstarHelpers.Services.Camera {
 		/// <summary></summary>
 		public int MoveTicksLingerDuration { get; private set; } = 0;
 
-		/// <summary></summary>
+		/// <summary>Note: Negative values indicate moving still in progress.</summary>
 		public int MoveTicksLingerElapsed => this.MoveTicksElapsed - this.MoveTickDuration;
 
 
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Services.Camera {
 		/// <summary></summary>
 		public int ZoomTicksLingerDuration { get; private set; } = 0;
 
-		/// <summary></summary>
+		/// <summary>Note: Negative values indicate zooming still in progress.</summary>
 		public int ZoomTicksLingerElapsed => this.ZoomTicksElapsed - this.ZoomTickDuration;
 
 
