@@ -14,6 +14,10 @@ namespace HamstarHelpers.Services.Network.NetIO {
 	/// routing.
 	/// </summary>
 	public partial class NetIO : ILoadable {
+		/// <summary></summary>
+		/// <param name="reader"></param>
+		/// <param name="playerWho"></param>
+		/// <returns>`true` to be considered to have completely handled the incoming packet.</returns>
 		internal static bool HandlePacket( BinaryReader reader, int playerWho ) {
 			var netIO = ModContent.GetInstance<NetIO>();
 			object data;
@@ -22,7 +26,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				data = netIO.Serializer.Deserialize( reader.BaseStream );
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.Message );
-				return false;
+				return true;
 			}
 
 			if( data == null || data.GetType() == typeof( object ) ) {
