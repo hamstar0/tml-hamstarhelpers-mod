@@ -4884,6 +4884,18 @@
             <param name="givenType">Type to check with.</param>
             <returns>`true` if given type is a subclass of the parent type.</returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Encoding.EncodingHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to ASCII strings.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Encoding.EncodingHelpers.SanitizeForASCII(System.String)">
+            <summary>
+            Strips non-ASCII (unicode) characters from a given string.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.Encoding.HashHelpers">
             <summary>
             Assorted static "helper" functions pertaining to hash codes.
@@ -11302,39 +11314,6 @@
         <member name="T:HamstarHelpers.Internals.NetProtocols.CursorPositionProtocol">
             @private
         </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.DataDumpProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.ItemNoGrabProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.PingProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerCheatModeProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerDataProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerNewIdProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerOldIdRequestClientProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerOldIdProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.PlayerPermaDeathProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.WorldDataRequestProtocol">
-            @private
-        </member>
-        <member name="T:HamstarHelpers.Internals.NetProtocols.WorldDataProtocol">
-            @private
-        </member>
         <member name="T:HamstarHelpers.Internals.WebRequests.GlobalInboxLoadHookArguments">
             @private
         </member>
@@ -11386,99 +11365,6 @@
         </member>
         <member name="T:HamstarHelpers.Internals.WebRequests.PostModInfo">
             @private
-        </member>
-        <member name="T:HamstarHelpers.Items.NoteItem.NoteItem">
-            <summary>
-            A readable note.
-            </summary>
-            <summary>
-            A readable note.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Items.NoteItem.NoteItem.TitleText">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Items.NoteItem.NoteItem.Pages">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.SetStaticDefaults">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.SetDefaults">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.NetSend(System.IO.BinaryWriter)">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.NetRecieve(System.IO.BinaryReader)">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.CanRightClick">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.NoteItem.SetTitleAndPages(System.String,System.String[])">
-            <summary></summary>
-            <param name="title"></param>
-            <param name="pages"></param>
-        </member>
-        <member name="T:HamstarHelpers.Items.NoteItem.UI.UINote">
-            <summary></summary>
-            <summary></summary>
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.TitleElem">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.BodyElem">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.PrevPageElem">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.NextPageElem">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Items.NoteItem.UI.UINote.PageNumElem">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Items.NoteItem.UI.UINote.TitleText">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Items.NoteItem.UI.UINote.BodyText">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Items.NoteItem.UI.UINote.CurrentPage">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Items.NoteItem.UI.UINote.Pages">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.#ctor(System.String,System.String[])">
-            <summary></summary>
-            <param name="title"></param>
-            <param name="pages"></param>
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.Update(Microsoft.Xna.Framework.GameTime)">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.OnInitialize">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.SetTitle(System.String)">
-            <summary></summary>
-            <param name="text"></param>
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.SetPages(System.String[])">
-            <summary></summary>
-            <param name="pages"></param>
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.SetBody(System.String)">
-            <summary></summary>
-            <param name="text"></param>
-        </member>
-        <member name="M:HamstarHelpers.Items.NoteItem.UI.UINote.GoToPage(System.Int32)">
-            <summary></summary>
-            <param name="pageNum"></param>
         </member>
         <member name="T:HamstarHelpers.ModHelpersCustomPlayer">
             @private
@@ -11697,6 +11583,9 @@
         <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.Instance">
             <summary></summary>
         </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.CurrentMoveSequence">
+            <summary></summary>
+        </member>
         <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveXFrom">
             <summary></summary>
         </member>
@@ -11718,6 +11607,12 @@
         <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveTicksLingerDuration">
             <summary></summary>
         </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveTicksLingerElapsed">
+            <summary>Note: Negative values indicate moving still in progress.</summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.CurrentZoomSequence">
+            <summary></summary>
+        </member>
         <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomFrom">
             <summary></summary>
         </member>
@@ -11733,6 +11628,12 @@
         <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTicksLingerDuration">
             <summary></summary>
         </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTicksLingerElapsed">
+            <summary>Note: Negative values indicate zooming still in progress.</summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.CurrentShakeSequence">
+            <summary></summary>
+        </member>
         <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ShakePeakMagnitude">
             <summary></summary>
         </member>
@@ -11741,6 +11642,19 @@
         </member>
         <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ShakeTicksElapsed">
             <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginMoveSequence(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Applies motion to the camera.
+            </summary>
+            <param name="name"></param>
+            <param name="moveXFrom"></param>
+            <param name="moveYFrom"></param>
+            <param name="moveXTo"></param>
+            <param name="moveYTo"></param>
+            <param name="tickDuration">How long the sequence takes to complete.</param>
+            <param name="lingerDuration">How long to linger at destination before reset. Set to -1 for permanent.</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
         </member>
         <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginMoveSequence(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -11765,12 +11679,32 @@
             <param name="percent"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginShakeSequence(System.String,System.Single,System.Int32,System.Int32)">
+            <summary>
+            Applies a shaking motion to the camera. Fades in and out.
+            </summary>
+            <param name="name"></param>
+            <param name="peakMagnitude"></param>
+            <param name="tickDuration"></param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
         <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginShakeSequence(System.Single,System.Int32,System.Int32)">
             <summary>
             Applies a shaking motion to the camera. Fades in and out.
             </summary>
             <param name="peakMagnitude"></param>
             <param name="tickDuration"></param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginZoomSequence(System.String,System.Single,System.Single,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Applies a changing zoom to the camera over time.
+            </summary>
+            <param name="name"></param>
+            <param name="zoomFrom"></param>
+            <param name="zoomTo"></param>
+            <param name="tickDuration">How long the sequence takes to complete.</param>
+            <param name="lingerDuration">How long to linger at destination before reset. Set to -1 for permanent.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
         </member>
         <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginZoomSequence(System.Single,System.Single,System.Int32,System.Int32,System.Int32)">
@@ -13230,8 +13164,18 @@
             Provides functions to neatly send data (via. ModPacket) to server, clients, or both. Abstracts away serialization and
             routing.
             </summary>
+            <summary>
+            Provides functions to neatly send data (via. ModPacket) to server, clients, or both. Abstracts away serialization and
+            routing.
+            </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClient{``0},System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.HandlePacket(System.IO.BinaryReader,System.Int32)">
+            <summary></summary>
+            <param name="reader"></param>
+            <param name="playerWho"></param>
+            <returns>`true` to be considered to have completely handled the incoming packet.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest{``0},System.Int32,System.Int32)">
             <summary>
             Sends a request to the given client(s).
             </summary>
@@ -13240,7 +13184,7 @@
             <param name="toWho"></param>
             <param name="ignoreWho"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional{``0},System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromClient{``0},System.Int32,System.Int32)">
             <summary>
             Sends a request to the given client(s).
             </summary>
@@ -13249,14 +13193,14 @@
             <param name="toWho"></param>
             <param name="ignoreWho"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServer{``0})">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest{``0})">
             <summary>
             Sends a request to the server.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="data"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional{``0})">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromServer{``0})">
             <summary>
             Sends a request to the server.
             </summary>
@@ -13304,6 +13248,13 @@
             <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to. -1 for all players.</param>
             <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
         </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClient(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload,System.Int32)">
+            <summary>
+            Sends the data to the specified client.
+            </summary>
+            <param name="data"></param>
+            <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to.</param>
+        </member>
         <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolPayload">
             @private
         </member>
@@ -13344,6 +13295,8 @@
         <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload.ReceiveOnServerBeforeRebroadcast(System.Int32)">
             <summary></summary>
             <param name="fromWho"></param>
+            <returns>`true` permits automatic rebroadcasting to clients. Otherwise, `NetIO.SendToClient(...)` must be called
+            manually for each active player to complete the "broadcast".</returns>
         </member>
         <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload.ReceiveBroadcastOnClient">
             <summary></summary>
@@ -13351,48 +13304,50 @@
         <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest">
             @private
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClient`1">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest`1">
             <summary>
             Represents a request from a client to the server.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestClient`1.PreReply(`0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest`1.PreReplyOnClient(`0)">
             <summary>
-            Called before a request is replied to.
+            Called before a request is replied to on the client.
             </summary>
             <param name="reply"></param>
-            <param name="fromWho"></param>
+            <returns>`true` permits the reply to proceed.</returns>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServer`1">
-            <summary>
-            Represents a request from the server to a client.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestServer`1.PreReply(`0,System.Int32)">
-            <summary>
-            Called before a request is replied to.
-            </summary>
-            <param name="reply"></param>
-            <param name="fromWho"></param>
-        </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional`1">
-            <summary>
-            Represents a request from either client or server of its opposite.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional`1.PreReplyOnServer(`0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest`1.PreReplyOnServer(`0,System.Int32)">
             <summary>
             Called before a request is replied to on the server.
             </summary>
             <param name="reply"></param>
             <param name="fromWho"></param>
+            <returns>`true` permits the reply to proceed.</returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestBidirectional`1.PreReplyOnClient(`0,System.Int32)">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromClient`1">
             <summary>
-            Called before a request is replied to on the client.
+            Represents a request for data from a client to the server.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromClient`1.PreReplyOnClient(`0)">
+            <summary>
+            Called before a request is replied to.
+            </summary>
+            <param name="reply"></param>
+            <returns>`true` permits the reply to proceed.</returns>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromServer`1">
+            <summary>
+            Represents a request for data from the server to a client.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromServer`1.PreReplyOnServer(`0,System.Int32)">
+            <summary>
+            Called before a request is replied to.
             </summary>
             <param name="reply"></param>
             <param name="fromWho"></param>
+            <returns>`true` permits the reply to proceed.</returns>
         </member>
         <member name="T:HamstarHelpers.Services.Network.Server">
             <summary>

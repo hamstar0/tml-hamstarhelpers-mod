@@ -76,14 +76,18 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				} else {
 					LogHelpers.Warn( "No UID reported from player id'd "+fromWho );
 				}
-			} catch { }
+			} catch {
+				this.PlayerIds = new Dictionary<int, string>();
+				LogHelpers.Warn( "Deserialization error." );
+			}
 		}
 
 		public override void ReceiveOnClient() {
 			try {
 				this.PlayerIds.TryGetValue( 0, out string _ );
 			} catch {
-				return;
+				this.PlayerIds = new Dictionary<int, string>();
+				LogHelpers.Warn( "Deserialization error." );
 			}
 			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds = this.PlayerIds;
 		}
