@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['encodinghelpers',['EncodingHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_encoding_helpers.html',1,'HamstarHelpers::Helpers::DotNET::Encoding']]],
+  ['entitycontrols',['EntityControls',['../class_hamstar_helpers_1_1_services_1_1_entity_controls_1_1_entity_controls.html',1,'HamstarHelpers::Services::EntityControls']]],
   ['entitydata',['EntityData',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html',1,'HamstarHelpers::Services::Debug::EntityData']]],
   ['entitygroupdependencies',['EntityGroupDependencies',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_group_dependencies.html',1,'HamstarHelpers::Services::EntityGroups']]],
   ['entitygroupmatcher',['EntityGroupMatcher',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_group_matcher.html',1,'HamstarHelpers::Services::EntityGroups']]],

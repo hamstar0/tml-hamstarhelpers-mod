@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.8.1</span>
+   &#160;<span id="projectnumber">v5.9.1</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_classes_1_1_
 </div><!--header-->
 <div class="contents">
 
-<p>Implments a dictionary that cannot be modified whose values are sets.  
+<p>Implements an immutable dictionary whose values are sets.  
  <a href="class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html#details">More...</a></p>
 
 <p>Inherits IReadOnlyDictionary&lt; K, V &gt;.</p>
@@ -142,8 +142,8 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a3a79e0ded6183d9ed53fa822772ba4be"><td class="memItemLeft" align="right" valign="top">V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html#a3a79e0ded6183d9ed53fa822772ba4be">this[K key]</a> =&gt; this.Dict[key].First()</td></tr>
-<tr class="memdesc:a3a79e0ded6183d9ed53fa822772ba4be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Standard getter.  <a href="#a3a79e0ded6183d9ed53fa822772ba4be">More...</a><br /></td></tr>
+<tr class="memitem:a3a79e0ded6183d9ed53fa822772ba4be"><td class="memItemLeft" align="right" valign="top">V&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html#a3a79e0ded6183d9ed53fa822772ba4be">this[K key]</a> =&gt; this.Dict[key].FirstOrDefault()</td></tr>
+<tr class="memdesc:a3a79e0ded6183d9ed53fa822772ba4be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default getter.  <a href="#a3a79e0ded6183d9ed53fa822772ba4be">More...</a><br /></td></tr>
 <tr class="separator:a3a79e0ded6183d9ed53fa822772ba4be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdaad5e6c499539b0279f843aa42ac55"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html#abdaad5e6c499539b0279f843aa42ac55">Count</a> =&gt; this.Dict.Count</td></tr>
 <tr class="memdesc:abdaad5e6c499539b0279f843aa42ac55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count of sets in the dictionary.  <a href="#abdaad5e6c499539b0279f843aa42ac55">More...</a><br /></td></tr>
@@ -159,7 +159,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a9efad18f2331999500c652bdda6d81cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implments a dictionary that cannot be modified whose values are sets. </p>
+<div class="textblock"><p>Implements an immutable dictionary whose values are sets. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">K</td><td>Any key value.</td></tr>
@@ -392,12 +392,12 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">V <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html">HamstarHelpers.Classes.DataStructures.ReadOnlyDictionaryOfSets</a>&lt; K, V &gt;.this[K key] =&gt; this.Dict[key].First()</td>
+          <td class="memname">V <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html">HamstarHelpers.Classes.DataStructures.ReadOnlyDictionaryOfSets</a>&lt; K, V &gt;.this[K key] =&gt; this.Dict[key].FirstOrDefault()</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Standard getter. </p>
+<p>Default getter. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">key</td><td>Key of our dictionary.</td></tr>
@@ -429,7 +429,7 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>v5 (tML11)/HamstarHelpers/Classes/DataStructures/<a class="el" href="_read_only_dictionary_of_sets_8cs_source.html">ReadOnlyDictionaryOfSets.cs</a></li>
+<li>Project/HamstarHelpers/Classes/DataStructures/<a class="el" href="_read_only_dictionary_of_sets_8cs_source.html">ReadOnlyDictionaryOfSets.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

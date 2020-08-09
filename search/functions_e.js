@@ -17,6 +17,8 @@ var searchData=
   ['openmodconfigui',['OpenModConfigUI',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_main_menu_helpers.html#a219ba5decb7f3329907c374f33614bbf',1,'HamstarHelpers::Helpers::TModLoader::Menus::MainMenuHelpers']]],
   ['opentab',['OpenTab',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_control_panel_1_1_control_panel_tabs.html#ab1932fb8d254aa37316beafa821b8443',1,'HamstarHelpers::Services::UI::ControlPanel::ControlPanelTabs']]],
   ['openurl',['OpenUrl',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_system_helpers.html#a6bde655b24ac67549096b6679b759791',1,'HamstarHelpers::Helpers::DotNET::SystemHelpers']]],
+  ['outputactivecheats',['OutputActiveCheats',['../class_hamstar_helpers_1_1_services_1_1_cheats_1_1_player_cheats.html#ab53a9c1172ae9737d1b34077fcf3ca6e',1,'HamstarHelpers::Services::Cheats::PlayerCheats']]],
+  ['outputcheatflags',['OutputCheatFlags',['../class_hamstar_helpers_1_1_services_1_1_cheats_1_1_player_cheats.html#ad8a550d8cb013448122a662714f09cbf',1,'HamstarHelpers::Services::Cheats::PlayerCheats']]],
   ['overlaps',['Overlaps',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_set.html#a03aad74c17b686064f80e7f9a7396a51',1,'HamstarHelpers::Classes::DataStructures::ReadOnlySet']]],
   ['overlaychanges',['OverlayChanges',['../class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config.html#aecd9a8fb563ec5314e50fd8442ee9f09',1,'HamstarHelpers::Services::Configs::StackableModConfig']]]
 ];

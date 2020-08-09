@@ -14,6 +14,5 @@ var searchData=
   ['moddedextensionsreset',['ModdedExtensionsReset',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_mod_helpers.html#aa0391c29beb2e0badf9da19c09570fa4',1,'HamstarHelpers::Helpers::Players::PlayerModHelpers']]],
   ['modhelpersexception',['ModHelpersException',['../class_hamstar_helpers_1_1_classes_1_1_errors_1_1_mod_helpers_exception.html#a03034474522a951a29b1b7473aca81bb',1,'HamstarHelpers.Classes.Errors.ModHelpersException.ModHelpersException(string msg)'],['../class_hamstar_helpers_1_1_classes_1_1_errors_1_1_mod_helpers_exception.html#a6571c1b21db3501853c19e0c640359ec',1,'HamstarHelpers.Classes.Errors.ModHelpersException.ModHelpersException(string msg, Exception inner)']]],
   ['mouseinrectangle',['MouseInRectangle',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ac596e3a6454e577bf963f5c123999b6e',1,'HamstarHelpers::Helpers::UI::UIHelpers']]],
-  ['moveto',['MoveTo',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#aec0e4fd768ac47031c6fd88edc55c760',1,'HamstarHelpers::Services::Camera::Camera']]],
   ['mul',['Mul',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a964f330200204f6560a986448f2af52b',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]]
 ];

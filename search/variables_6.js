@@ -1,20 +1,4 @@
 var searchData=
 [
-  ['hashoney',['HasHoney',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a0ad0a1c9bc0d90d9cf5fa9e1c6d99ab7',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
-  ['haslava',['HasLava',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a6c30518015c39a8cd17fbdea1c08a97d',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
-  ['hassolidproperties',['HasSolidProperties',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a7d9da5e39db1a22cfc830a7ed579295a',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
-  ['haswall',['HasWall',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a75df07f69f714400aac393ea83b5a7e8',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
-  ['haswater',['HasWater',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#aba277f20eb1bd5c424dcda842fb2f71c',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
-  ['haswire1',['HasWire1',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#af397479114320c85a4ac64e7159cbd27',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
-  ['haswire2',['HasWire2',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a585760fcb34b657eb468bebd579f87f9',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
-  ['haswire3',['HasWire3',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#af0f48ef8b6b5f69f47b63aa546b0bb0d',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
-  ['haswire4',['HasWire4',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a1fafb32a336811916e4cabafaeead626',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternBuilder']]],
-  ['headbgcolor',['HeadBgColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a7d57fb27c668c2e870f9fb1ea0912ab7',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],
-  ['headedgecolor',['HeadEdgeColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#aa37e473e9616355ad3269e5535044ceb',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],
-  ['height',['Height',['../class_hamstar_helpers_1_1_items_1_1_cursed_bramble_item.html#a3f4e5a427d5798ac04c5c6a1513e4565',1,'HamstarHelpers::Items::CursedBrambleItem']]],
-  ['hidecode',['HideCode',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#ab81eb261a09ee73e1bf7b83d17fc0a1b',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
-  ['hideresources',['HideResources',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a516eb3aecb447084bad0cbd3651ce2a3',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
-  ['highestvanillararity',['HighestVanillaRarity',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers.html#ab6a726955094503acf282cb1c0cd370a',1,'HamstarHelpers::Helpers::Items::Attributes::ItemRarityAttributeHelpers']]],
-  ['hintcolor',['HintColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#acf422bcc5e397484c01bea166bacc572',1,'HamstarHelpers::Classes::UI::Elements::UITextInputAreaPanel']]],
-  ['homepage',['Homepage',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a35119fb385616abf96d0752ee68c6732',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]]
+  ['gamepadlockon',['GamepadLockOn',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a28a1fa947f916ff3027c1c5891afa9f8',1,'HamstarHelpers::Services::UI::LayerDisable::LayerDisable']]]
 ];

@@ -1,9 +1,14 @@
 var searchData=
 [
-  ['basefolder',['BaseFolder',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a9dda480b8c7f6e7377fd862f7eb02b94',1,'HamstarHelpers::Helpers::Misc::ModCustomDataFileHelpers']]],
+  ['basefolder',['BaseFolder',['../class_hamstar_helpers_1_1_classes_1_1_player_data_1_1_custom_player_data.html#a3c581a12626b7723c90b7bf67b3fa465',1,'HamstarHelpers.Classes.PlayerData.CustomPlayerData.BaseFolder()'],['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a9dda480b8c7f6e7377fd862f7eb02b94',1,'HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.BaseFolder()']]],
   ['beacheasttilex',['BeachEastTileX',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#ad38e42af9f155e1d6263055deaabeff7',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['beachwesttilex',['BeachWestTileX',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a2dd07a1e970f123e4482867f0ed2ec43',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['beta',['Beta',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#aa5841def65e22fee9f017fb13441cc3e',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
+  ['bounds',['Bounds',['../class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_tile_structure.html#a50f1e36818ed4f282dd869ea4920ffb1',1,'HamstarHelpers::Classes::TileStructure::TileStructure']]],
+  ['btileheader',['bTileHeader',['../class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_serializeable_tile.html#ae7a54e7a3377941dcc3ef203ccc153d9',1,'HamstarHelpers::Classes::TileStructure::SerializeableTile']]],
+  ['btileheader2',['bTileHeader2',['../class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_serializeable_tile.html#ab9a2efbfeb0d51d36c5f987b97ce1a74',1,'HamstarHelpers::Classes::TileStructure::SerializeableTile']]],
+  ['btileheader3',['bTileHeader3',['../class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_serializeable_tile.html#a4a3d82f15640943e34b8b5f31e0dfc34',1,'HamstarHelpers::Classes::TileStructure::SerializeableTile']]],
+  ['builderaccessoriesbar',['BuilderAccessoriesBar',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a2ddac3c54959ccbb1b29f7378226a003',1,'HamstarHelpers::Services::UI::LayerDisable::LayerDisable']]],
   ['buildignores',['BuildIgnores',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#aef0449989c5abefd29183efa46d2dc2f',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['buttonbgcolor',['ButtonBgColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a54fdc6f1893be9bac8ba6862f8d4e631',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],
   ['buttonbgdisabledcolor',['ButtonBgDisabledColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a8a782ff7f4d4da05e2597ca94a21f2b9',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],

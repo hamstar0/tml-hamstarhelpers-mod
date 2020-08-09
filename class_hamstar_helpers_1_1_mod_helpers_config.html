@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.8.1</span>
+   &#160;<span id="projectnumber">v5.9.1</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -99,24 +99,20 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_mod_helpers_
 
 <p>Defines Mod <a class="el" href="namespace_hamstar_helpers_1_1_helpers.html">Helpers</a> config settings.  
  <a href="class_hamstar_helpers_1_1_mod_helpers_config.html#details">More...</a></p>
-<div class="dynheader">
-Inheritance diagram for HamstarHelpers.ModHelpersConfig:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="class_hamstar_helpers_1_1_mod_helpers_config.png" usemap="#HamstarHelpers.ModHelpersConfig_map" alt=""/>
-  <map id="HamstarHelpers.ModHelpersConfig_map" name="HamstarHelpers.ModHelpersConfig_map">
-<area href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config.html" title="Helps implement mod config stacking behavior. Replace your ModConfig classes with this class." alt="HamstarHelpers.Services.Configs.StackableModConfig" shape="rect" coords="0,0,324,24"/>
-  </map>
-</div></div>
+
+<p>Inherits ModConfig.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:aadcf2533d71220e7f65b81f7944c7d4a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#aadcf2533d71220e7f65b81f7944c7d4a">Instance</a> =&gt; ModConfigStack.GetMergedConfigs&lt;<a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a>&gt;()</td></tr>
+<tr class="memitem:aadcf2533d71220e7f65b81f7944c7d4a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#aadcf2533d71220e7f65b81f7944c7d4a">Instance</a> =&gt; ModContent.GetInstance&lt;<a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a>&gt;()</td></tr>
 <tr class="memdesc:aadcf2533d71220e7f65b81f7944c7d4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the stack-merged singleton instance of this config file.  <a href="#aadcf2533d71220e7f65b81f7944c7d4a">More...</a><br /></td></tr>
 <tr class="separator:aadcf2533d71220e7f65b81f7944c7d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
+<tr class="memitem:a6ac708ad435cf9a86f08a10a687014cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#a6ac708ad435cf9a86f08a10a687014cf">DebugModeCheats</a> = false<code> [get, set]</code></td></tr>
+<tr class="memdesc:a6ac708ad435cf9a86f08a10a687014cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables cheat codes. Also requires 'privileged user' status enabled.  <a href="#a6ac708ad435cf9a86f08a10a687014cf">More...</a><br /></td></tr>
+<tr class="separator:a6ac708ad435cf9a86f08a10a687014cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfbd9b96adadf3beefa7ad7d30639cb3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#abfbd9b96adadf3beefa7ad7d30639cb3">DebugModeHelpersInfo</a> = false<code> [get, set]</code></td></tr>
 <tr class="memdesc:abfbd9b96adadf3beefa7ad7d30639cb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Outputs (to log) debug information relevant to specific <a class="el" href="namespace_hamstar_helpers_1_1_helpers.html">Helpers</a> functions (where applicable). Developers only.  <a href="#abfbd9b96adadf3beefa7ad7d30639cb3">More...</a><br /></td></tr>
 <tr class="separator:abfbd9b96adadf3beefa7ad7d30639cb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,6 +137,9 @@ Properties</h2></td></tr>
 <tr class="memitem:a7f765c930a2aa3378202ac4cfe569bdd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#a7f765c930a2aa3378202ac4cfe569bdd">DebugModeEntityGroupDisplay</a> = false<code> [get, set]</code></td></tr>
 <tr class="memdesc:a7f765c930a2aa3378202ac4cfe569bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays all entity groups in the log on mod load.  <a href="#a7f765c930a2aa3378202ac4cfe569bdd">More...</a><br /></td></tr>
 <tr class="separator:a7f765c930a2aa3378202ac4cfe569bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9111aabf8922184fc221420ebe5f743"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#af9111aabf8922184fc221420ebe5f743">DebugModeMouseInfo</a> = false<code> [get, set]</code></td></tr>
+<tr class="memdesc:af9111aabf8922184fc221420ebe5f743"><td class="mdescLeft">&#160;</td><td class="mdescRight">Displays info at the mouse's location.  <a href="#af9111aabf8922184fc221420ebe5f743">More...</a><br /></td></tr>
+<tr class="separator:af9111aabf8922184fc221420ebe5f743"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9554807cf4008d2e7f8b8066ad9c8866"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#a9554807cf4008d2e7f8b8066ad9c8866">DebugModeMiscInfo</a> = false<code> [get, set]</code></td></tr>
 <tr class="memdesc:a9554807cf4008d2e7f8b8066ad9c8866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shows misc. debug info.  <a href="#a9554807cf4008d2e7f8b8066ad9c8866">More...</a><br /></td></tr>
 <tr class="separator:a9554807cf4008d2e7f8b8066ad9c8866"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -201,39 +200,17 @@ Properties</h2></td></tr>
 <tr class="memitem:a2c6a595f25636ec4fb49d97de541b689"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#a2c6a595f25636ec4fb49d97de541b689">DisableOwnIPCheck</a> = true<code> [get, set]</code></td></tr>
 <tr class="memdesc:a2c6a595f25636ec4fb49d97de541b689"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disables IP address checks from checkip.dyndns.org.  <a href="#a2c6a595f25636ec4fb49d97de541b689">More...</a><br /></td></tr>
 <tr class="separator:a2c6a595f25636ec4fb49d97de541b689"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64bed4a47bb770d27122441c1dba9b4d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#a64bed4a47bb770d27122441c1dba9b4d">GeoResonantOrbSoldByDryad</a> = false<code> [get, set]</code></td></tr>
-<tr class="memdesc:a64bed4a47bb770d27122441c1dba9b4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds Geo-Resonant Orbs to Dryad's shop.  <a href="#a64bed4a47bb770d27122441c1dba9b4d">More...</a><br /></td></tr>
-<tr class="separator:a64bed4a47bb770d27122441c1dba9b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9d0c598db3c102b0c5277ddae5da5af"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#af9d0c598db3c102b0c5277ddae5da5af">MagiTechScrapMechBossDropsEnabled</a> = false<code> [get, set]</code></td></tr>
-<tr class="memdesc:af9d0c598db3c102b0c5277ddae5da5af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Magi-Tech Scrap items drop from mech bosses.  <a href="#af9d0c598db3c102b0c5277ddae5da5af">More...</a><br /></td></tr>
-<tr class="separator:af9d0c598db3c102b0c5277ddae5da5af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27b5a1e6eaa62ef13d4f561bb31c3492"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#a27b5a1e6eaa62ef13d4f561bb31c3492">CoalAsTile</a> = true<code> [get, set]</code></td></tr>
 <tr class="memdesc:a27b5a1e6eaa62ef13d4f561bb31c3492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Coal items can be placed like tiles.  <a href="#a27b5a1e6eaa62ef13d4f561bb31c3492">More...</a><br /></td></tr>
 <tr class="separator:a27b5a1e6eaa62ef13d4f561bb31c3492"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63834825874593e649b5a38502bf4e40"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#a63834825874593e649b5a38502bf4e40">AddCrimsonLeatherRecipe</a> = true<code> [get, set]</code></td></tr>
 <tr class="memdesc:a63834825874593e649b5a38502bf4e40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds crimson biome alternatve recipe for leather.  <a href="#a63834825874593e649b5a38502bf4e40">More...</a><br /></td></tr>
 <tr class="separator:a63834825874593e649b5a38502bf4e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa15cf8027832f9a1024666d81930825b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#aa15cf8027832f9a1024666d81930825b">BrambleFriction</a> = 0.2f<code> [get, set]</code></td></tr>
-<tr class="memdesc:aa15cf8027832f9a1024666d81930825b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bramble tile friction upon players.  <a href="#aa15cf8027832f9a1024666d81930825b">More...</a><br /></td></tr>
-<tr class="separator:aa15cf8027832f9a1024666d81930825b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeadc57c1ff47cdaeebfefc3cbbd4f155"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#aeadc57c1ff47cdaeebfefc3cbbd4f155">BrambleDamageTickRate</a> = 6<code> [get, set]</code></td></tr>
-<tr class="memdesc:aeadc57c1ff47cdaeebfefc3cbbd4f155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rate of damage to players caught on bramble tiles.  <a href="#aeadc57c1ff47cdaeebfefc3cbbd4f155">More...</a><br /></td></tr>
-<tr class="separator:aeadc57c1ff47cdaeebfefc3cbbd4f155"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac97dbaca01efc618a58c978363a05dc8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#ac97dbaca01efc618a58c978363a05dc8">BrambleDamage</a> = 10<code> [get, set]</code></td></tr>
-<tr class="memdesc:ac97dbaca01efc618a58c978363a05dc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Amount of damage to players caught on bramble tiles.  <a href="#ac97dbaca01efc618a58c978363a05dc8">More...</a><br /></td></tr>
-<tr class="separator:ac97dbaca01efc618a58c978363a05dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_methods_class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config.html">HamstarHelpers.Services.Configs.StackableModConfig</a></td></tr>
-<tr class="memitem:aecd9a8fb563ec5314e50fd8442ee9f09 inherit pub_methods_class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config.html#aecd9a8fb563ec5314e50fd8442ee9f09">OverlayChanges</a> (<a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config.html">StackableModConfig</a> changes)</td></tr>
-<tr class="memdesc:aecd9a8fb563ec5314e50fd8442ee9f09 inherit pub_methods_class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convenience method for pulling changed settings from a given config instance into (the stack of) the current one (calls <code>ModConfigStack.SetStackedConfigChangesOnlyForType(...)</code>).  <a href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config.html#aecd9a8fb563ec5314e50fd8442ee9f09">More...</a><br /></td></tr>
-<tr class="separator:aecd9a8fb563ec5314e50fd8442ee9f09 inherit pub_methods_class_hamstar_helpers_1_1_services_1_1_configs_1_1_stackable_mod_config"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Defines Mod <a class="el" href="namespace_hamstar_helpers_1_1_helpers.html">Helpers</a> config settings. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00063">63</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00016">16</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="aadcf2533d71220e7f65b81f7944c7d4a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aadcf2533d71220e7f65b81f7944c7d4a">&#9670;&nbsp;</a></span>Instance</h2>
@@ -245,7 +222,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a> HamstarHelpers.ModHelpersConfig.Instance =&gt; ModConfigStack.GetMergedConfigs&lt;<a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a>&gt;()</td>
+          <td class="memname"><a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a> HamstarHelpers.ModHelpersConfig.Instance =&gt; ModContent.GetInstance&lt;<a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html">ModHelpersConfig</a>&gt;()</td>
         </tr>
       </table>
   </td>
@@ -257,7 +234,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Gets the stack-merged singleton instance of this config file. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00067">67</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00020">20</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -284,85 +261,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Adds crimson biome alternatve recipe for leather. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00364">364</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
-
-</div>
-</div>
-<a id="ac97dbaca01efc618a58c978363a05dc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac97dbaca01efc618a58c978363a05dc8">&#9670;&nbsp;</a></span>BrambleDamage</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int HamstarHelpers.ModHelpersConfig.BrambleDamage = 10</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Amount of damage to players caught on bramble tiles. </p>
-
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00388">388</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
-
-</div>
-</div>
-<a id="aeadc57c1ff47cdaeebfefc3cbbd4f155"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeadc57c1ff47cdaeebfefc3cbbd4f155">&#9670;&nbsp;</a></span>BrambleDamageTickRate</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int HamstarHelpers.ModHelpersConfig.BrambleDamageTickRate = 6</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Rate of damage to players caught on bramble tiles. </p>
-
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00380">380</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
-
-</div>
-</div>
-<a id="aa15cf8027832f9a1024666d81930825b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa15cf8027832f9a1024666d81930825b">&#9670;&nbsp;</a></span>BrambleFriction</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">float HamstarHelpers.ModHelpersConfig.BrambleFriction = 0.2f</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Bramble tile friction upon players. </p>
-
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00372">372</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00317">317</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -388,7 +287,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Coal items can be placed like tiles. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00356">356</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00309">309</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -414,7 +313,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Control panel icon's X coordinate on screen. Negative values align the button from the right edge. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00164">164</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00131">131</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -440,7 +339,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Control panel icon's Y coordinate on screen. Negative values align the button from the bottom edge. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00173">173</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00140">140</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -466,7 +365,33 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Save custom player data as (json) text. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00232">232</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00199">199</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+
+</div>
+</div>
+<a id="a6ac708ad435cf9a86f08a10a687014cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ac708ad435cf9a86f08a10a687014cf">&#9670;&nbsp;</a></span>DebugModeCheats</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.ModHelpersConfig.DebugModeCheats = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Enables cheat codes. Also requires 'privileged user' status enabled. </p>
+
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00041">41</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -492,7 +417,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Disables logging of "silenced" exceptions. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00124">124</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00084">84</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -518,7 +443,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Allows users to invoke 'data dumps' (see DataDump service) on behalf of the server (without being the 'privileged' user). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00117">117</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00077">77</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -544,7 +469,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Displays all entity groups in the log on mod load. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00138">138</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00098">98</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -570,7 +495,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Outputs (to log) debug information relevant to specific <a class="el" href="namespace_hamstar_helpers_1_1_helpers.html">Helpers</a> functions (where applicable). Developers only. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00088">88</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00048">48</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -596,7 +521,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Displays the current menu's ID in bottom right. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00131">131</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00091">91</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -622,7 +547,33 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Shows misc. debug info. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00145">145</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00112">112</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+
+</div>
+</div>
+<a id="af9111aabf8922184fc221420ebe5f743"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9111aabf8922184fc221420ebe5f743">&#9670;&nbsp;</a></span>DebugModeMouseInfo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.ModHelpersConfig.DebugModeMouseInfo = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Displays info at the mouse's location. </p>
+
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00105">105</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -648,7 +599,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Outputs (to log) network message information (sends and receives of PacketProtocol). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00095">95</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00055">55</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -674,7 +625,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Logs PacketProtocol payload content. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00102">102</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00062">62</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -700,7 +651,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Catches and logs unhandled exceptions (before crash). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00110">110</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00070">70</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -726,7 +677,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Shorthand for disabling all internet functions </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00244">244</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00211">211</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -752,7 +703,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Disables control panel outright. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00155">155</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00122">122</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -778,7 +729,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Disable 'judgmental' mod tags. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00317">317</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00284">284</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -804,7 +755,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Disables mod tags UI for mod browser and mod info. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00302">302</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00269">269</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -830,7 +781,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Disables mod version updates overlay display in the mod menu. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00324">324</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00291">291</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -856,7 +807,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Disables mod tags UI for mod browser and mod info. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00310">310</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00277">277</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -882,33 +833,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Disables IP address checks from checkip.dyndns.org. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00333">333</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
-
-</div>
-</div>
-<a id="a64bed4a47bb770d27122441c1dba9b4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a64bed4a47bb770d27122441c1dba9b4d">&#9670;&nbsp;</a></span>GeoResonantOrbSoldByDryad</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool HamstarHelpers.ModHelpersConfig.GeoResonantOrbSoldByDryad = false</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Adds Geo-Resonant Orbs to Dryad's shop. </p>
-
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00341">341</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00300">300</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -934,7 +859,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Horizontal X coordinate of in-game inbox icon. Negative values align the button from the right edge. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00184">184</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00151">151</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -960,7 +885,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Horizontal Y coordinate of in-game inbox icon. Negative values align the button from the bottom edge. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00194">194</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00161">161</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -986,33 +911,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Server occasionally pings clients to guage their latency. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00283">283</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
-
-</div>
-</div>
-<a id="af9d0c598db3c102b0c5277ddae5da5af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9d0c598db3c102b0c5277ddae5da5af">&#9670;&nbsp;</a></span>MagiTechScrapMechBossDropsEnabled</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool HamstarHelpers.ModHelpersConfig.MagiTechScrapMechBossDropsEnabled = false</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Magi-Tech Scrap items drop from mech bosses. </p>
-
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00348">348</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00250">250</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -1038,7 +937,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Allows calling <code>Mod.Call(...)</code> via. chat/console commands. Use at your own risk! </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00260">260</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00227">227</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -1064,7 +963,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Quantity of the latest log entries to pass along with issue reports. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00205">205</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00172">172</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -1090,7 +989,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Duration (in game ticks) to wait in expectation of a reply before a retry attempt of a given packet is made. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00275">275</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00242">242</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -1116,7 +1015,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Duration between latency pings per client. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00292">292</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00259">259</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -1142,7 +1041,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Enables mod locking per world (prevents playing a world with missing mods). </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00214">214</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00181">181</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
@@ -1168,12 +1067,12 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Sets mod locking to expect only the exact set of mods it was locked with, and no more. </p>
 
-<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00222">222</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_config_8cs_source.html#l00189">189</a> of file <a class="el" href="_config_8cs_source.html">Config.cs</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>v5 (tML11)/HamstarHelpers/<a class="el" href="_config_8cs_source.html">Config.cs</a></li>
+<li>Project/HamstarHelpers/<a class="el" href="_config_8cs_source.html">Config.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

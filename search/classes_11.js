@@ -2,6 +2,7 @@ var searchData=
 [
   ['screenpercentpositiondefinition',['ScreenPercentPositionDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_percent_position_definition.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],
   ['screenpositiondefinition',['ScreenPositionDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_screen_position_definition.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],
+  ['serializeabletile',['SerializeableTile',['../class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_serializeable_tile.html',1,'HamstarHelpers::Classes::TileStructure']]],
   ['server',['Server',['../class_hamstar_helpers_1_1_services_1_1_network_1_1_server.html',1,'HamstarHelpers::Services::Network']]],
   ['sessionmenucontext',['SessionMenuContext',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menu_1_1_session_menu_context.html',1,'HamstarHelpers::Classes::UI::Menu']]],
   ['shaderhelpers',['ShaderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_shader_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],

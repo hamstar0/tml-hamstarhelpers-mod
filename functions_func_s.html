@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.8.1</span>
+   &#160;<span id="projectnumber">v5.9.1</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -130,11 +130,20 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 <li>SafeWhere&lt; TSource &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_l_i_n_q_helpers.html#aa7b24493ae19ebebdf0e2ff89f1d4c62">HamstarHelpers.Helpers.DotNET.LINQHelpers</a>
 </li>
+<li>SanitizeForASCII()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_encoding_1_1_encoding_helpers.html#a2346685e859fc30d9d48e9bbcaa9ba67">HamstarHelpers.Helpers.DotNET.Encoding.EncodingHelpers</a>
+</li>
 <li>SanitizeMarkdown()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_formatting_1_1_string_formatting_helpers.html#a99a3a844743c86ac2024b4e8b9cdd30e">HamstarHelpers.Helpers.DotNET.Formatting.StringFormattingHelpers</a>
 </li>
 <li>SanitizePath()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#abf76393ab615c90788e44cae0a6eb5ed">HamstarHelpers.Helpers.DotNET.FileHelpers</a>
+</li>
+<li>Save()
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_tile_structure.html#a8703d5288deeca4558020e70b4e47dd2">HamstarHelpers.Classes.TileStructure.TileStructure</a>
+</li>
+<li>SaveAsBinary()
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a2c990f354138b7c67d6cf8cf6854cad3">HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers</a>
 </li>
 <li>SaveAsBinaryJson&lt; T &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a632ecb007086ef0ae138aad5dcddd4e1">HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers</a>
@@ -162,12 +171,20 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 </li>
 <li>SendToClient()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a0e6ccbb124c930b81be5a1a2fcc9518d">HamstarHelpers.Classes.Protocols.Packet.PacketProtocol</a>
+, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_net_i_o.html#a649538add9e4d868ad7454b57c6cdbf9">HamstarHelpers.Services.Network.NetIO.NetIO</a>
+</li>
+<li>SendToClients()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_net_i_o.html#a43524c8c00fb54a051588eff80ec64a1">HamstarHelpers.Services.Network.NetIO.NetIO</a>
 </li>
 <li>SendToServer()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_packet_protocol.html#a8b079e4d07c6945e82b5caf9f85ae8b1">HamstarHelpers.Classes.Protocols.Packet.PacketProtocol</a>
+, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_net_i_o.html#a3f5ad902bf5f79570e6c45313844612b">HamstarHelpers.Services.Network.NetIO.NetIO</a>
 </li>
 <li>Serialize()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_data_store_1_1_data_store.html#a93251057a86ca871f1250f9dec7e9431">HamstarHelpers.Services.DataStore.DataStore</a>
+</li>
+<li>SerializeableTile()
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_serializeable_tile.html#aea5d2e35df1f4f2d21cfe563aec9d776">HamstarHelpers.Classes.TileStructure.SerializeableTile</a>
 </li>
 <li>SessionMenuContext()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menu_1_1_session_menu_context.html#a323cc7624091a15c92bfe1e74746680d">HamstarHelpers.Classes.UI.Menu.SessionMenuContext</a>
@@ -243,6 +260,9 @@ $(document).ready(function(){initNavTree('functions_func_s.html','');});
 </li>
 <li>SetStackedConfigChangesOnly&lt; T &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_configs_1_1_mod_config_stack.html#a2d824bdfe60117ad3083238533418ad5">HamstarHelpers.Services.Configs.ModConfigStack</a>
+</li>
+<li>SetTarget()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_controls_1_1_entity_controls.html#a1b5271c7437d6efe570f68203fa31dd8">HamstarHelpers.Services.EntityControls.EntityControls</a>
 </li>
 <li>SetText()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html#abc49bddd9630e89106889cae1d811cae">HamstarHelpers.Classes.UI.Elements.UITextInputElement</a>

@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['flavor',['Flavor',['../class_hamstar_helpers_1_1_services_1_1_mod_tag_definitions_1_1_mod_tag_definition.html#a1dff055ae42b8046f660160a4c2aebb3',1,'HamstarHelpers::Services::ModTagDefinitions::ModTagDefinition']]],
-  ['forcestags',['ForcesTags',['../class_hamstar_helpers_1_1_services_1_1_mod_tag_definitions_1_1_mod_tag_definition.html#ae110f83acf723de627bcd0bbface8080',1,'HamstarHelpers::Services::ModTagDefinitions::ModTagDefinition']]],
-  ['framestexture',['FramesTexture',['../class_hamstar_helpers_1_1_services_1_1_animated_texture_1_1_animated_texture.html#a692dfe0da3c54cfb09fdd1519e60d9c0',1,'HamstarHelpers::Services::AnimatedTexture::AnimatedTexture']]]
+  ['goldcoincolor',['GoldCoinColor',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#aba0bf26dfea98a436293aee900ecf92b',1,'HamstarHelpers::Helpers::Misc::MiscHelpers']]],
+  ['group',['Group',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_definition.html#a98af8213aaced32eaf6f47b9d2d6858f',1,'HamstarHelpers::Helpers::Items::ItemGroupDefinition']]],
+  ['groupname',['GroupName',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_definition.html#a2988ea5e2adbea767c76ea9183da496e',1,'HamstarHelpers::Helpers::Items::ItemGroupDefinition']]],
+  ['groups',['Groups',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#af1d7986d06f51e54259dbc443ab3fd52',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]]
 ];

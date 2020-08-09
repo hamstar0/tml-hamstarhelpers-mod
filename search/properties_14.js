@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['weakreferences',['WeakReferences',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#aa8893267f9069b89c3040dd0445b6ffc',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
-  ['willdrawownhoverelements',['WillDrawOwnHoverElements',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a5ba3ee2c4672a5c905d73d5c3a17dd66',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]],
-  ['willdrawownhoverurl',['WillDrawOwnHoverUrl',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url.html#a76c11e1753fcb5d913bf3f1efffc55fe',1,'HamstarHelpers.Classes.UI.Elements.UIImageUrl.WillDrawOwnHoverUrl()'],['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_web_url.html#a52eb367b767e5b706cbe574358c7c64b',1,'HamstarHelpers.Classes.UI.Elements.UIWebUrl.WillDrawOwnHoverUrl()']]],
-  ['worldmodlockenable',['WorldModLockEnable',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a6481872fac8c11ec7957ef6d89ed458a',1,'HamstarHelpers::ModHelpersConfig']]],
-  ['worldmodlockminimumonly',['WorldModLockMinimumOnly',['../class_hamstar_helpers_1_1_mod_helpers_config.html#af114320522431d3de0f7611951383f7e',1,'HamstarHelpers::ModHelpersConfig']]]
+  ['zoomfrom',['ZoomFrom',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#adf66c850d2fe9fec446529046c7a53cf',1,'HamstarHelpers::Services::Camera::AnimatedCamera']]],
+  ['zoomscale',['ZoomScale',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#aa17aa6b740426f896d378d81a57740d4',1,'HamstarHelpers::Services::Camera::Camera']]],
+  ['zoomtickduration',['ZoomTickDuration',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#a6c8d5cfa2b2adc54e428d105c80309ad',1,'HamstarHelpers::Services::Camera::AnimatedCamera']]],
+  ['zoomtickselapsed',['ZoomTicksElapsed',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#ac02d91300edce9b6abf1eee55326b784',1,'HamstarHelpers::Services::Camera::AnimatedCamera']]],
+  ['zoomtickslingerduration',['ZoomTicksLingerDuration',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#a1cb291f412c7a0a941f295e5dea0fb7d',1,'HamstarHelpers::Services::Camera::AnimatedCamera']]],
+  ['zoomto',['ZoomTo',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#a8744669af994e430f0a8fddc1c7106c4',1,'HamstarHelpers::Services::Camera::AnimatedCamera']]]
 ];

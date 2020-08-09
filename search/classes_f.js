@@ -12,6 +12,7 @@ var searchData=
   ['panelthemeattribute',['PanelThemeAttribute',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_panel_theme_attribute.html',1,'HamstarHelpers::Classes::UI::Theme']]],
   ['particlefxhelpers',['ParticleFxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_fx_1_1_particle_fx_helpers.html',1,'HamstarHelpers::Helpers::Fx']]],
   ['percentfloatdefinition',['PercentFloatDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_percent_float_definition.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],
+  ['playercheats',['PlayerCheats',['../class_hamstar_helpers_1_1_services_1_1_cheats_1_1_player_cheats.html',1,'HamstarHelpers::Services::Cheats']]],
   ['playerfilehelpers',['PlayerFileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_file_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerheaddrawhelpers',['PlayerHeadDrawHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_head_draw_helpers.html',1,'HamstarHelpers::Helpers::Players']]],
   ['playerhelpers',['PlayerHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html',1,'HamstarHelpers::Helpers::Players']]],

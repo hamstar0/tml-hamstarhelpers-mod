@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.8.1</span>
+   &#160;<span id="projectnumber">v5.9.1</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -104,6 +104,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a04e0d6ec9aa31b7df7d18f375b4b50c2"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html#a04e0d6ec9aa31b7df7d18f375b4b50c2">ScanRectangleWithout</a> (Func&lt; int, int, bool &gt; scanner, Rectangle rect, Rectangle? notRect)</td></tr>
 <tr class="memdesc:a04e0d6ec9aa31b7df7d18f375b4b50c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">"Scans" a rectangle with a provided custom function, returning on the function reporting success. Skips over another given rectangle, if overlapping.  <a href="#a04e0d6ec9aa31b7df7d18f375b4b50c2">More...</a><br /></td></tr>
 <tr class="separator:a04e0d6ec9aa31b7df7d18f375b4b50c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72b59d8df4a2f02488d7310b84caf588"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html#a72b59d8df4a2f02488d7310b84caf588">IsSpriteBatchBegun</a> (SpriteBatch sb, out bool isBegun)</td></tr>
+<tr class="memdesc:a72b59d8df4a2f02488d7310b84caf588"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if the given SpriteBatch has begun drawing.  <a href="#a72b59d8df4a2f02488d7310b84caf588">More...</a><br /></td></tr>
+<tr class="separator:a72b59d8df4a2f02488d7310b84caf588"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa47a761a86770bb6ac6fd835e7ddfc1c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_helpers.html#aa47a761a86770bb6ac6fd835e7ddfc1c">IsMainSpriteBatchBegun</a> (out bool isBegun)</td></tr>
 <tr class="memdesc:aa47a761a86770bb6ac6fd835e7ddfc1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports if <code>Main.SpriteBatch</code> has begun drawing.  <a href="#aa47a761a86770bb6ac6fd835e7ddfc1c">More...</a><br /></td></tr>
 <tr class="separator:aa47a761a86770bb6ac6fd835e7ddfc1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,7 +173,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if no issues occurred with the drawing.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_xna_helpers_8cs_source.html#l00074">74</a> of file <a class="el" href="_xna_helpers_8cs_source.html">XnaHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_xna_helpers_8cs_source.html#l00084">84</a> of file <a class="el" href="_xna_helpers_8cs_source.html">XnaHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -281,7 +284,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_xna_helpers_8cs_source.html#l00120">120</a> of file <a class="el" href="_xna_helpers_8cs_source.html">XnaHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_xna_helpers_8cs_source.html#l00130">130</a> of file <a class="el" href="_xna_helpers_8cs_source.html">XnaHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -316,9 +319,57 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Could not determine one way or the other.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>If <code>false</code>, could not determine one way or the other.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_xna_helpers_8cs_source.html#l00050">50</a> of file <a class="el" href="_xna_helpers_8cs_source.html">XnaHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_xna_helpers_8cs_source.html#l00069">69</a> of file <a class="el" href="_xna_helpers_8cs_source.html">XnaHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a72b59d8df4a2f02488d7310b84caf588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72b59d8df4a2f02488d7310b84caf588">&#9670;&nbsp;</a></span>IsSpriteBatchBegun()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.XNA.XNAHelpers.IsSpriteBatchBegun </td>
+          <td>(</td>
+          <td class="paramtype">SpriteBatch&#160;</td>
+          <td class="paramname"><em>sb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">out bool&#160;</td>
+          <td class="paramname"><em>isBegun</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reports if the given SpriteBatch has begun drawing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sb</td><td></td></tr>
+    <tr><td class="paramname">isBegun</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>If <code>false</code>, could not determine one way or the other.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_xna_helpers_8cs_source.html#l00051">51</a> of file <a class="el" href="_xna_helpers_8cs_source.html">XnaHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -377,8 +428,8 @@ Static Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>v5 (tML11)/HamstarHelpers/Helpers/XNA/<a class="el" href="_xna_helpers_8cs_source.html">XnaHelpers.cs</a></li>
-<li>v5 (tML11)/HamstarHelpers/Helpers/XNA/<a class="el" href="_xna_helpers___instance_8cs_source.html">XnaHelpers_Instance.cs</a></li>
+<li>Project/HamstarHelpers/Helpers/XNA/<a class="el" href="_xna_helpers_8cs_source.html">XnaHelpers.cs</a></li>
+<li>Project/HamstarHelpers/Helpers/XNA/<a class="el" href="_xna_helpers___instance_8cs_source.html">XnaHelpers_Instance.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

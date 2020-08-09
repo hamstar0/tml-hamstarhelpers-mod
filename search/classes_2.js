@@ -9,8 +9,6 @@ var searchData=
   ['context',['Context',['../class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html',1,'HamstarHelpers::Classes::Context']]],
   ['contextconfig',['ContextConfig',['../class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html',1,'HamstarHelpers::Classes::Context']]],
   ['controlpaneltabs',['ControlPanelTabs',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_control_panel_1_1_control_panel_tabs.html',1,'HamstarHelpers::Services::UI::ControlPanel']]],
-  ['cursedbrambleitem',['CursedBrambleItem',['../class_hamstar_helpers_1_1_items_1_1_cursed_bramble_item.html',1,'HamstarHelpers::Items']]],
-  ['cursedbrambletile',['CursedBrambleTile',['../class_hamstar_helpers_1_1_tiles_1_1_cursed_bramble_tile.html',1,'HamstarHelpers::Tiles']]],
   ['customhotkeys',['CustomHotkeys',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_custom_hotkeys_1_1_custom_hotkeys.html',1,'HamstarHelpers::Services::Debug::CustomHotkeys']]],
   ['customloadhooks',['CustomLoadHooks',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_custom_load_hooks.html',1,'HamstarHelpers::Services::Hooks::LoadHooks']]],
   ['customloadhookvalidator',['CustomLoadHookValidator',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_custom_load_hook_validator.html',1,'HamstarHelpers::Services::Hooks::LoadHooks']]],

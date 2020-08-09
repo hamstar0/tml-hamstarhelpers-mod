@@ -1,5 +1,6 @@
 var class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers =
 [
+    [ "DecompressFileData", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a8008186b2de9bce757568550603705fa", null ],
     [ "LoadBinaryFile", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a809e448146791a6950e2594c92abf650", null ],
     [ "LoadBinaryFile", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a18fcf6a0ad6787dcb62b94d3baa2604e", null ],
     [ "LoadTextFile", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_file_helpers.html#a6c49a09f75cd582c707efca7157e9a3b", null ],

@@ -1,0 +1,5 @@
+var class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_protocol_broadcast_payload =
+[
+    [ "ReceiveBroadcastOnClient", "class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_protocol_broadcast_payload.html#aca91caf0c959b03af777d143f9e216f9", null ],
+    [ "ReceiveOnServerBeforeRebroadcast", "class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_protocol_broadcast_payload.html#a4eb33133815e519c1551a3d6445c8853", null ]
+];

@@ -1,6 +1,23 @@
 var searchData=
 [
-  ['brambledamage',['BrambleDamage',['../class_hamstar_helpers_1_1_mod_helpers_config.html#ac97dbaca01efc618a58c978363a05dc8',1,'HamstarHelpers::ModHelpersConfig']]],
-  ['brambledamagetickrate',['BrambleDamageTickRate',['../class_hamstar_helpers_1_1_mod_helpers_config.html#aeadc57c1ff47cdaeebfefc3cbbd4f155',1,'HamstarHelpers::ModHelpersConfig']]],
-  ['bramblefriction',['BrambleFriction',['../class_hamstar_helpers_1_1_mod_helpers_config.html#aa15cf8027832f9a1024666d81930825b',1,'HamstarHelpers::ModHelpersConfig']]]
+  ['category',['Category',['../class_hamstar_helpers_1_1_services_1_1_mod_tag_definitions_1_1_mod_tag_definition.html#aef250b4799739560b4f632ef5e26a6ad',1,'HamstarHelpers::Services::ModTagDefinitions::ModTagDefinition']]],
+  ['children',['Children',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree_node.html#ac15a3c74a9e2669926f63b5c06bcb4a1',1,'HamstarHelpers::Classes::DataStructures::BTree::BTreeNode']]],
+  ['coalastile',['CoalAsTile',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a27b5a1e6eaa62ef13d4f561bb31c3492',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['colorduration',['ColorDuration',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#ac068330e95e25b36806d81e25c2a72f3',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],
+  ['colors',['Colors',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#a9c31a075e51dc40e8cdfe0fe9904dab7',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]],
+  ['configopenbutton',['ConfigOpenButton',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a57f71f7db61ce1483493d891948ebe88',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]],
+  ['configresetbutton',['ConfigResetButton',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a70417023e694e5cc00fd0684c8ae7f10',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]],
+  ['contextname',['ContextName',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_menu_context.html#ad001b00526c0f37ad38bd735c33d9ca0',1,'HamstarHelpers::Classes::UI::Menus::MenuContext']]],
+  ['controlpaneliconx',['ControlPanelIconX',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a2cb5ead492e70d30adff243fdef807e3',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['controlpanelicony',['ControlPanelIconY',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a7692892875b9e2d6996c1fd03b9da48f',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['coppercoincolor',['CopperCoinColor',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#a121d130f9f83145be5f8dbd45fe1ca48',1,'HamstarHelpers::Helpers::Misc::MiscHelpers']]],
+  ['currentframe',['CurrentFrame',['../class_hamstar_helpers_1_1_services_1_1_animated_texture_1_1_animated_texture.html#a4b967c5617bbda736567c22f96fddf4c',1,'HamstarHelpers::Services::AnimatedTexture::AnimatedTexture']]],
+  ['currentframetickselapsed',['CurrentFrameTicksElapsed',['../class_hamstar_helpers_1_1_services_1_1_animated_texture_1_1_animated_texture.html#a84e6e759f86886a35525742145339f53',1,'HamstarHelpers::Services::AnimatedTexture::AnimatedTexture']]],
+  ['currentmovesequence',['CurrentMoveSequence',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#abccea4ee4c559d818238a0eefc57b891',1,'HamstarHelpers::Services::Camera::AnimatedCamera']]],
+  ['currentshakesequence',['CurrentShakeSequence',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#a43244d545b3a0c2bbd3325012ef8ff1f',1,'HamstarHelpers::Services::Camera::AnimatedCamera']]],
+  ['currentzoomsequence',['CurrentZoomSequence',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#a69e360100d4a04edc431366b40bc3245',1,'HamstarHelpers::Services::Camera::AnimatedCamera']]],
+  ['cursoranimation',['CursorAnimation',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#aaf96c9fae74dbfa3d5bafd0a2bce9db5',1,'HamstarHelpers::Classes::UI::Elements::UITextInputAreaPanel']]],
+  ['cursorpos',['CursorPos',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a7a1a056c823fb4f125353112f746d1dd',1,'HamstarHelpers::Classes::UI::Elements::UITextInputAreaPanel']]],
+  ['customplayerdataastext',['CustomPlayerDataAsText',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a1ee262a78eccd52c47a6893e749bd51f',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['cycleposition',['CyclePosition',['../class_hamstar_helpers_1_1_services_1_1_animated_color_1_1_animated_colors.html#afeabd18a8397bb10b36d9b61bd325870',1,'HamstarHelpers::Services::AnimatedColor::AnimatedColors']]]
 ];

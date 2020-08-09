@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['magitechscrapitem',['MagiTechScrapItem',['../class_hamstar_helpers_1_1_items_1_1_magi_tech_scrap_item.html',1,'HamstarHelpers::Items']]],
   ['mainmenuhelpers',['MainMenuHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_main_menu_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
   ['menucontext',['MenuContext',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_menu_context.html',1,'HamstarHelpers::Classes::UI::Menus']]],
   ['menucontextservice',['MenuContextService',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_menus_1_1_menu_context_service.html',1,'HamstarHelpers::Services::UI::Menus']]],

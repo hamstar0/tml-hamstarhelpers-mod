@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.8.1</span>
+   &#160;<span id="projectnumber">v5.9.1</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -94,6 +94,9 @@ $(document).ready(function(){initNavTree('functions_func_t.html','');});
 <li>Teleport()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#ab910b6c5d6ba8f39370f2012cca69c61">HamstarHelpers.Helpers.Players.PlayerWarpHelpers</a>
 </li>
+<li>TeleportTo()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_cheats_1_1_player_cheats.html#a1cb4049ce9a3e16f692e547c8af7505b">HamstarHelpers.Services.Cheats.PlayerCheats</a>
+</li>
 <li>TextEventHandler()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html#a22ce82eaaf8999d67f666131184ac9d6">HamstarHelpers.Classes.UI.Elements.UITextInputAreaPanel</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html#a996db7c1065ac90967d861cd91b3a712">HamstarHelpers.Classes.UI.Elements.UITextInputElement</a>
@@ -103,10 +106,13 @@ $(document).ready(function(){initNavTree('functions_func_t.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#ac2403410766a8ba2e98b91b4801a235e">HamstarHelpers.Classes.Tiles.TilePattern.TilePattern</a>
 </li>
 <li>TilePatternConfig()
-: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a9cc3d2b97bac41793e62d75775c40b03">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig</a>
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a4726a40b8b129360dd3616206cae117c">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig</a>
 </li>
 <li>TileSectionPacketSubscriber()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a5ebcb77bde5756d1238bb82d77c419e6">HamstarHelpers.Services.Network.Client</a>
+</li>
+<li>TileStructure()
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_tile_structure.html#ade276707b65c3d6b08f422217da2d237">HamstarHelpers.Classes.TileStructure.TileStructure</a>
 </li>
 <li>TimeStamp()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_system_helpers.html#a32e14afa6b45cb0c59808901be481fa5">HamstarHelpers.Helpers.DotNET.SystemHelpers</a>
@@ -120,11 +126,17 @@ $(document).ready(function(){initNavTree('functions_func_t.html','');});
 <li>ToContext()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#a60ac84e330e44993c24fdf889607663c">HamstarHelpers.Classes.Context.ContextConfig</a>
 </li>
+<li>ToggleCheats()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_cheats_1_1_player_cheats.html#a0c8dc9b609614b20bd565a676873c048">HamstarHelpers.Services.Cheats.PlayerCheats</a>
+</li>
 <li>ToShortString()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_vector2_string_extensions.html#a7c12b71cceae7ce6b72629d466d362ee">HamstarHelpers.Helpers.DotNET.Extensions.Vector2StringExtensions</a>
 </li>
 <li>ToStream()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html#a2148b40e52f54b47017c8c3fa24376a7">HamstarHelpers.Helpers.DotNET.StreamHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html#a1ea38a7a6a758c9cc5a10c0adb4c04e9">HamstarHelpers.Helpers.DotNET.StreamHelpers</a>
+</li>
+<li>ToTile()
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_serializeable_tile.html#a300b41db78d90b5596717277a9b95624">HamstarHelpers.Classes.TileStructure.SerializeableTile</a>
 </li>
 <li>ToTilePattern()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a807b35b5304895f1d606114597fea56c">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig</a>
@@ -172,11 +184,14 @@ $(document).ready(function(){initNavTree('functions_func_t.html','');});
 <li>TryGetValues()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_read_only_dictionary_of_sets.html#a14876fdb2890122d019fd4e4afb58526">HamstarHelpers.Classes.DataStructures.ReadOnlyDictionaryOfSets&lt; K, V &gt;</a>
 </li>
+<li>TryParseCheatFlags()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_cheats_1_1_player_cheats.html#a7ef33f8da32f81ca225030ce8d4a7b9e">HamstarHelpers.Services.Cheats.PlayerCheats</a>
+</li>
 <li>TryPrecisePlace()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_placement_helpers.html#a459886bce7e4c67d1ec83bfe445df01b">HamstarHelpers.Helpers.Tiles.TilePlacementHelpers</a>
 </li>
 <li>TypeFromUniqueKey()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#a3fcf21b2c95d646d2a0ca3cd2a209b4a">HamstarHelpers.Helpers.NPCs.NPCIdentityHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#a17d314aab29ae2a4d6faef0e790caaf6">HamstarHelpers.Helpers.NPCs.NPCIdentityHelpers</a>
 </li>
 </ul>
 </div><!-- contents -->

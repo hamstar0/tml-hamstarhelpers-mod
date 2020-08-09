@@ -1,6 +1,7 @@
 var class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers =
 [
     [ "GetHoverTipPosition", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ae6707f41ca95484651ab8152408a86a3", null ],
+    [ "IsUIAvailable", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a7614cf974f82437ca80cd420cf7ba65b", null ],
     [ "JustPressedKey", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a65e00ac6558ce577e080495580b1fad1", null ],
     [ "MouseInRectangle", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ac596e3a6454e577bf963f5c123999b6e", null ],
     [ "MaxScreenHeight", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a574afdf16d7f0edd752eb8660ec322af", null ],

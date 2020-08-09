@@ -1,7 +1,6 @@
 var functions_prop =
 [
     [ "a", "functions_prop.html", null ],
-    [ "b", "functions_prop_b.html", null ],
     [ "c", "functions_prop_c.html", null ],
     [ "d", "functions_prop_d.html", null ],
     [ "e", "functions_prop_e.html", null ],
@@ -20,5 +19,6 @@ var functions_prop =
     [ "t", "functions_prop_t.html", null ],
     [ "u", "functions_prop_u.html", null ],
     [ "v", "functions_prop_v.html", null ],
-    [ "w", "functions_prop_w.html", null ]
+    [ "w", "functions_prop_w.html", null ],
+    [ "z", "functions_prop_z.html", null ]
 ];

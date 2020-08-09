@@ -1,0 +1,28 @@
+var dir_4ef1166b4e173f0b492333534d384436 =
+[
+    [ "Buffs", "dir_53b5061593a88435f4bd6b0151dc858f.html", "dir_53b5061593a88435f4bd6b0151dc858f" ],
+    [ "Collisions", "dir_4707615747f9ad50b85b04bfe700cd48.html", "dir_4707615747f9ad50b85b04bfe700cd48" ],
+    [ "Debug", "dir_fc463a006104a4e503bc3eb299db7f1a.html", "dir_fc463a006104a4e503bc3eb299db7f1a" ],
+    [ "DotNET", "dir_64f8a9a7cf0df807089c27d42abd2fb3.html", "dir_64f8a9a7cf0df807089c27d42abd2fb3" ],
+    [ "Draw", "dir_26b80696daef6bb1b73740f0bad6ae68.html", "dir_26b80696daef6bb1b73740f0bad6ae68" ],
+    [ "Dusts", "dir_19f685b73f4c39acb55b6105e14baff1.html", "dir_19f685b73f4c39acb55b6105e14baff1" ],
+    [ "Entities", "dir_144ba83f2481bea291cadef920df3b3f.html", "dir_144ba83f2481bea291cadef920df3b3f" ],
+    [ "Fx", "dir_d99dc7225a110a6659dcf431d3d3fa3a.html", "dir_d99dc7225a110a6659dcf431d3d3fa3a" ],
+    [ "HUD", "dir_a5ca89f0b71f23aecb283d5d288457da.html", "dir_a5ca89f0b71f23aecb283d5d288457da" ],
+    [ "Info", "dir_12df26e4d128bf95ac14f7c59938bab8.html", "dir_12df26e4d128bf95ac14f7c59938bab8" ],
+    [ "Items", "dir_0f383e0880b44e3d34dc793999b3813c.html", "dir_0f383e0880b44e3d34dc793999b3813c" ],
+    [ "Misc", "dir_1615b8230097dbac34964ecd3fcf8a08.html", "dir_1615b8230097dbac34964ecd3fcf8a08" ],
+    [ "ModHelpers", "dir_00d1e136aa49e40c87d61cb19214eec9.html", "dir_00d1e136aa49e40c87d61cb19214eec9" ],
+    [ "Net", "dir_0362294de917757aa1d5557771913dc1.html", "dir_0362294de917757aa1d5557771913dc1" ],
+    [ "NPCs", "dir_cee51d1d76895d17ad0e02c426ef63ce.html", "dir_cee51d1d76895d17ad0e02c426ef63ce" ],
+    [ "Players", "dir_8ed79d28863edf4e4d04f230905db877.html", "dir_8ed79d28863edf4e4d04f230905db877" ],
+    [ "Projectiles", "dir_1f14fe562688b372040033627b26cc48.html", "dir_1f14fe562688b372040033627b26cc48" ],
+    [ "Recipes", "dir_c67cfa3652f493aeaeae3630019e7d64.html", "dir_c67cfa3652f493aeaeae3630019e7d64" ],
+    [ "Steam", "dir_c1b019c9bcca59cef18ebcdfe851afb4.html", "dir_c1b019c9bcca59cef18ebcdfe851afb4" ],
+    [ "Tiles", "dir_070d3c69ee6d97eb7d68a64dbfc73b6e.html", "dir_070d3c69ee6d97eb7d68a64dbfc73b6e" ],
+    [ "TModLoader", "dir_241e447319bcf1cfedf92cd1cc603a29.html", "dir_241e447319bcf1cfedf92cd1cc603a29" ],
+    [ "UI", "dir_1115dcaf98cb672a421e14cdeb8a23f4.html", "dir_1115dcaf98cb672a421e14cdeb8a23f4" ],
+    [ "User", "dir_437eabb15cdbcbba781ddc5c0314cee3.html", "dir_437eabb15cdbcbba781ddc5c0314cee3" ],
+    [ "World", "dir_dd570a26c72d62c6f588709375eae9cf.html", "dir_dd570a26c72d62c6f588709375eae9cf" ],
+    [ "XNA", "dir_df8281262fc2f42ff47d0ca03bd664d8.html", "dir_df8281262fc2f42ff47d0ca03bd664d8" ]
+];

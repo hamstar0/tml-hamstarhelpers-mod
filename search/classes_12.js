@@ -19,6 +19,7 @@ var searchData=
   ['tileplacementhelpers',['TilePlacementHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_placement_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tileresourcehelpers',['TileResourceHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_resource_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilestatehelpers',['TileStateHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_state_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
+  ['tilestructure',['TileStructure',['../class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_tile_structure.html',1,'HamstarHelpers::Classes::TileStructure']]],
   ['tilewallgroupidentityhelpers',['TileWallGroupIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_walls_1_1_tile_wall_group_identity_helpers.html',1,'HamstarHelpers::Helpers::Tiles::Walls']]],
   ['tilewallresourcehelpers',['TileWallResourceHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_walls_1_1_tile_wall_resource_helpers.html',1,'HamstarHelpers::Helpers::Tiles::Walls']]],
   ['tileworldhelpers',['TileWorldHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],

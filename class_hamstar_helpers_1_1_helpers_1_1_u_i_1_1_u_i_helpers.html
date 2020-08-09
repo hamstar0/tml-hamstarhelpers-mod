@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.8.1</span>
+   &#160;<span id="projectnumber">v5.9.1</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -105,6 +105,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a65e00ac6558ce577e080495580b1fad1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a65e00ac6558ce577e080495580b1fad1">JustPressedKey</a> (Keys key)</td></tr>
 <tr class="memdesc:a65e00ac6558ce577e080495580b1fad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports whether a given keyboard key was just pressed. Used primarily for text field inputs.  <a href="#a65e00ac6558ce577e080495580b1fad1">More...</a><br /></td></tr>
 <tr class="separator:a65e00ac6558ce577e080495580b1fad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7614cf974f82437ca80cd420cf7ba65b"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#a7614cf974f82437ca80cd420cf7ba65b">IsUIAvailable</a> (bool notTabbedAway=true, bool gameNotPaused=false, bool mouseNotInUse=false, bool keyboardNotInVanillaUI=false, bool keyboardNotInCustomUI=false, bool playerAvailable=false, bool playerNotWieldingItem=false, bool playerNotTalkingToNPC=false, bool noFullscreenMap=false, bool notShowingMouseIcon=false)</td></tr>
+<tr class="memdesc:a7614cf974f82437ca80cd420cf7ba65b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if game/player conditions are suitable for a <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> to be available.  <a href="#a7614cf974f82437ca80cd420cf7ba65b">More...</a><br /></td></tr>
+<tr class="separator:a7614cf974f82437ca80cd420cf7ba65b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6707f41ca95484651ab8152408a86a3"><td class="memItemLeft" align="right" valign="top">static Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html#ae6707f41ca95484651ab8152408a86a3">GetHoverTipPosition</a> (string str)</td></tr>
 <tr class="memdesc:ae6707f41ca95484651ab8152408a86a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the position to use to display a given string of text near the mouse position so as to fit on screen.  <a href="#ae6707f41ca95484651ab8152408a86a3">More...</a><br /></td></tr>
 <tr class="separator:ae6707f41ca95484651ab8152408a86a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,7 +172,111 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00049">49</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00111">111</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7614cf974f82437ca80cd420cf7ba65b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7614cf974f82437ca80cd420cf7ba65b">&#9670;&nbsp;</a></span>IsUIAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool HamstarHelpers.Helpers.UI.UIHelpers.IsUIAvailable </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>notTabbedAway</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>gameNotPaused</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>mouseNotInUse</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>keyboardNotInVanillaUI</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>keyboardNotInCustomUI</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>playerAvailable</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>playerNotWieldingItem</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>playerNotTalkingToNPC</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>noFullscreenMap</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>notShowingMouseIcon</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Determines if game/player conditions are suitable for a <a class="el" href="namespace_hamstar_helpers_1_1_helpers_1_1_u_i.html">UI</a> to be available. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">notTabbedAway</td><td></td></tr>
+    <tr><td class="paramname">gameNotPaused</td><td></td></tr>
+    <tr><td class="paramname">mouseNotInUse</td><td><code>!Player.mouseInterface</code></td></tr>
+    <tr><td class="paramname">keyboardNotInVanillaUI</td><td>No chat input, sign editing, or chest label editing.</td></tr>
+    <tr><td class="paramname">keyboardNotInCustomUI</td><td></td></tr>
+    <tr><td class="paramname">playerAvailable</td><td>Not dead or stunned.</td></tr>
+    <tr><td class="paramname">playerNotWieldingItem</td><td></td></tr>
+    <tr><td class="paramname">playerNotTalkingToNPC</td><td></td></tr>
+    <tr><td class="paramname">noFullscreenMap</td><td></td></tr>
+    <tr><td class="paramname">notShowingMouseIcon</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00059">59</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -243,7 +350,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00068">68</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_helpers_8cs_source.html#l00130">130</a> of file <a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -457,8 +564,8 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>v5 (tML11)/HamstarHelpers/Helpers/UI/<a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a></li>
-<li>v5 (tML11)/HamstarHelpers/Helpers/UI/<a class="el" href="_u_i_helpers___obsolete_8cs_source.html">UIHelpers_Obsolete.cs</a></li>
+<li>Project/HamstarHelpers/Helpers/UI/<a class="el" href="_u_i_helpers_8cs_source.html">UIHelpers.cs</a></li>
+<li>Project/HamstarHelpers/Helpers/UI/<a class="el" href="_u_i_helpers___obsolete_8cs_source.html">UIHelpers_Obsolete.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -1,6 +1,7 @@
 var searchData=
 [
   ['baitpower',['BaitPower',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868ad760a1d276525252aebeef633b2092ae',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['bilbomode',['BilboMode',['../namespace_hamstar_helpers_1_1_services_1_1_cheats.html#a5d29e167c1491ea76d02aac73cdbf6d7af428118ee7ea8793b17b0c2440199ca7',1,'HamstarHelpers::Services::Cheats']]],
   ['bloodmoon',['BloodMoon',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da7ce38b6c90a9d12ada855c5b8d395987',1,'HamstarHelpers::Helpers::NPCs']]],
   ['bottomleftslope',['BottomLeftSlope',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ad9dc7f9fde8248e260c4f8031bef1807a1a80760532157243ecbc9fa4344d3033',1,'HamstarHelpers.Helpers.Tiles.BottomLeftSlope()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#a863f4642d2fd475088d39815d1445ae8a1a80760532157243ecbc9fa4344d3033',1,'HamstarHelpers.Helpers.Tiles.BottomLeftSlope()']]],
   ['bottomrightslope',['BottomRightSlope',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ad9dc7f9fde8248e260c4f8031bef1807a49ba774a62d12cfb98e54f5c1a4d9268',1,'HamstarHelpers.Helpers.Tiles.BottomRightSlope()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#a863f4642d2fd475088d39815d1445ae8a49ba774a62d12cfb98e54f5c1a4d9268',1,'HamstarHelpers.Helpers.Tiles.BottomRightSlope()']]],

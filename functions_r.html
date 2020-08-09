@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.8.1</span>
+   &#160;<span id="projectnumber">v5.9.1</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -94,6 +94,9 @@ $(document).ready(function(){initNavTree('functions_r.html','');});
 <li>RadDeg
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_dot_net_helpers.html#a4e072273c2ec401180b022f533241535">HamstarHelpers.Helpers.DotNET.DotNetHelpers</a>
 </li>
+<li>RadialHotbars
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#ab8b3a19cc7dac653006503e3ca8cda1d">HamstarHelpers.Services.UI.LayerDisable.LayerDisable</a>
+</li>
 <li>RarityColor
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_rarity_attribute_helpers.html#a6a124d09d5eacb3aad300db584a695b0">HamstarHelpers.Helpers.Items.Attributes.ItemRarityAttributeHelpers</a>
 </li>
@@ -145,15 +148,25 @@ $(document).ready(function(){initNavTree('functions_r.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_client.html#afe60ada22383a651a3a29a92743038e8">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToClient</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_send_to_server.html#ad6fc9a0d0fc843e621c7431986090eec">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToServer</a>
 </li>
+<li>ReceiveBroadcastOnClient()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_protocol_broadcast_payload.html#aca91caf0c959b03af777d143f9e216f9">HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload</a>
+</li>
 <li>ReceiveOnClient()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_broadcast.html#ad82865a4bfe326892dadfd2896e69d93">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html#aa2444ef3e3a9808aa46e2d762be90b2e">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sync_client.html#accefda8493d6852a2427fa98b71517ef">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient</a>
+, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_protocol_bidirectional_payload.html#aa1ea750ee7675642c5ae3057c61b716d">HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload</a>
+, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_protocol_client_payload.html#ae266a71dbf9c060e920b393a64b9ac16">HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolClientPayload</a>
 </li>
 <li>ReceiveOnServer()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_broadcast.html#ac689f3bd934545be7bbaf794f4366b13">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolBroadcast</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sent_to_either.html#a11236bf0cd94eb55e05eca36a0020fcb">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSentToEither</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_sync_client.html#ae476df365cd9b9e2b7416696b34db35e">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient</a>
+, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_protocol_bidirectional_payload.html#a7c3d26ac4c3768039409925b21c301fc">HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload</a>
+, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_protocol_server_payload.html#ae6f027790cc75b78c4c5ac5483ae22cc">HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolServerPayload</a>
+</li>
+<li>ReceiveOnServerBeforeRebroadcast()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_protocol_broadcast_payload.html#a4eb33133815e519c1551a3d6445c8853">HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload</a>
 </li>
 <li>ReceiveReply()
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_packet_1_1_interfaces_1_1_packet_protocol_request_to_client.html#ac7879ada7f517fef3ebfd58fa6237fe8">HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolRequestToClient</a>
@@ -248,6 +261,9 @@ $(document).ready(function(){initNavTree('functions_r.html','');});
 <li>RemoveAt&lt; T &gt;()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_array_extensions.html#a46cef71ebd976a42677cd794d5848c7e">HamstarHelpers.Helpers.DotNET.Extensions.ArrayExtensions</a>
 </li>
+<li>RemoveElement()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_u_i_1_1_free_h_u_d_1_1_free_h_u_d.html#ac35391677eab9a17ca62838fea4b56cc">HamstarHelpers.Services.UI.FreeHUD.FreeHUD</a>
+</li>
 <li>RemoveInventoryItemQuantity()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_item_helpers.html#a55b3cc742f3ea7e80dd8ca601dbd1f0e">HamstarHelpers.Helpers.Players.PlayerItemHelpers</a>
 </li>
@@ -278,6 +294,12 @@ $(document).ready(function(){initNavTree('functions_r.html','');});
 <li>RenderTickDuration()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#a352e39f03b22e4d4213ab7aa48888b7e">HamstarHelpers.Helpers.Misc.MiscHelpers</a>
 </li>
+<li>RequestDataFromClient&lt; T &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_net_i_o.html#a437fd54ea4c7443a79c7261a283a5430">HamstarHelpers.Services.Network.NetIO.NetIO</a>
+</li>
+<li>RequestDataFromServer&lt; T &gt;()
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_net_i_o.html#af8f234d319d99a63afd270fd99fd9122">HamstarHelpers.Services.Network.NetIO.NetIO</a>
+</li>
 <li>ResetAll()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#a629971232b7d1e0259b333c3d5d519d7">HamstarHelpers.Services.Timers.Timers</a>
 </li>
@@ -286,6 +308,9 @@ $(document).ready(function(){initNavTree('functions_r.html','');});
 </li>
 <li>ResetOnceMessage()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#ac9434f59b02765fbda2a598028335652">HamstarHelpers.Helpers.Debug.LogHelpers</a>
+</li>
+<li>ResourceBars
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#aabfecb9a98488b3cd061975c489a0c68">HamstarHelpers.Services.UI.LayerDisable.LayerDisable</a>
 </li>
 <li>RockLayerBottomTileY
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a37ba6321b6306ff5b40eaec2d082ae77">HamstarHelpers.Helpers.World.WorldHelpers</a>
@@ -296,11 +321,14 @@ $(document).ready(function(){initNavTree('functions_r.html','');});
 <li>Root
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_b_tree_1_1_b_tree.html#a8f16b79ea998507fdf5b7a0ba8d26fcb">HamstarHelpers.Classes.DataStructures.BTree.BTree&lt; TK, TP &gt;</a>
 </li>
+<li>Ruler
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a8aac8dc73917c961f8171be88b73ec73">HamstarHelpers.Services.UI.LayerDisable.LayerDisable</a>
+</li>
 <li>Run()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_threading_1_1_task_launcher.html#ac0f338f145a45360e3c5fbafa68bd82f">HamstarHelpers.Helpers.DotNET.Threading.TaskLauncher</a>
 </li>
 <li>RunMethod&lt; T &gt;()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#af597e8fb6ac99eac9024b5eee113cad1">HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers.html#a02e235ac3f0cbe8bb523ae3ed9323f17">HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers</a>
 </li>
 <li>RunNow()
 : <a class="el" href="class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html#a5743e5670726c46cc3f6a4f22ea26d00">HamstarHelpers.Services.Timers.Timers</a>
