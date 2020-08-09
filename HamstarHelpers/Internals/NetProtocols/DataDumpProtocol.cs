@@ -10,7 +10,7 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class DataDumpRequestProtocol : NetProtocolRequestFromClientToServer<DataDumpProtocol> {
+	class DataDumpRequestProtocol : NetProtocolRequestPayloadFromClient<DataDumpProtocol> {
 		public static void QuickRequest() {
 			NetIO.RequestDataFromClient( new DataDumpRequestProtocol() );
 		}

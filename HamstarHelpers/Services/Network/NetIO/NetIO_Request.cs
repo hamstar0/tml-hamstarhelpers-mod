@@ -34,7 +34,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		/// <param name="data"></param>
 		/// <param name="toWho"></param>
 		/// <param name="ignoreWho"></param>
-		public static void RequestDataFromClient<T>( NetProtocolRequestFromClientToServer<T> data, int toWho = -1, int ignoreWho = -1 )
+		public static void RequestDataFromClient<T>( NetProtocolRequestPayloadFromClient<T> data, int toWho = -1, int ignoreWho = -1 )
 					where T : NetProtocolServerPayload {
 			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Not server" );
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="data"></param>
-		public static void RequestDataFromServer<T>( NetProtocolRequestFromServerToClient<T> data )
+		public static void RequestDataFromServer<T>( NetProtocolRequestPayloadFromServer<T> data )
 					where T : NetProtocolClientPayload {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );

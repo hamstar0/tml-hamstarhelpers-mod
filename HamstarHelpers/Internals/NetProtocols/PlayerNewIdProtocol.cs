@@ -20,6 +20,12 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		private PlayerNewIdRequestProtocol() { }
+
+
+		public override bool PreReplyOnClient( PlayerNewIdProtocol reply ) {
+			reply.PlayerIds = (Dictionary<int, string>)ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
+			return true;
+		}
 	}
 
 
@@ -28,7 +34,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
 	class PlayerNewIdProtocol : NetProtocolBidirectionalPayload {
 		public static void QuickSendToServer() {
-			var protocol = new PlayerNewIdProtocol();
+			var protocol = new PlayerNewIdProtocol(
+				(Dictionary<int, string>)ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds
+			);
 			protocol.PlayerIds[ Main.myPlayer ] = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer );
 
 			NetIO.SendToServer( protocol );
@@ -45,22 +53,38 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		private PlayerNewIdProtocol() {
-			this.PlayerIds = (Dictionary<int, string>)ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
+			this.PlayerIds = new Dictionary<int, string>();
+		}
+
+		private PlayerNewIdProtocol( Dictionary<int, string> playerIds ) {
+			if( playerIds == null ) {
+				this.PlayerIds = new Dictionary<int, string>();
+
+				LogHelpers.Warn( "Player ids not specified." );
+				return;
+			}
+			this.PlayerIds = playerIds;
 		}
 
 
 		////////////////
 
 		public override void ReceiveOnServer( int fromWho ) {
-			string uid;
-			if( this.PlayerIds.TryGetValue(fromWho, out uid) ) {
-				ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ fromWho ] = uid;
-			} else {
-				LogHelpers.Warn( "No UID reported from player id'd "+fromWho );
-			}
+			try {
+				if( this.PlayerIds.TryGetValue(fromWho, out string uid) ) {
+					ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ fromWho ] = uid;
+				} else {
+					LogHelpers.Warn( "No UID reported from player id'd "+fromWho );
+				}
+			} catch { }
 		}
 
 		public override void ReceiveOnClient() {
+			try {
+				this.PlayerIds.TryGetValue( 0, out string _ );
+			} catch {
+				return;
+			}
 			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds = this.PlayerIds;
 		}
 	}

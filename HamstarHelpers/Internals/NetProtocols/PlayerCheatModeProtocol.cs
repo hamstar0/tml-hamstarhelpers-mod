@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public CheatModeType CheatFlags;
+		public int CheatFlags;
 		public int PlayerWho;
 
 
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		private PlayerCheatModeProtocol() { }
 
 		private PlayerCheatModeProtocol( CheatModeType cheatFlags, int playerWho ) {
-			this.CheatFlags = cheatFlags;
+			this.CheatFlags = (int)cheatFlags;
 			this.PlayerWho = playerWho;
 		}
 
@@ -42,13 +42,13 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		public override bool ReceiveOnServerBeforeRebroadcast( int fromWho ) {
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[fromWho] );
-			myplayer.Logic.SetCheats( this.CheatFlags );
+			myplayer.Logic.SetCheats( (CheatModeType)this.CheatFlags );
 			return true;
 		}
 
 		public override void ReceiveBroadcastOnClient() {
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[this.PlayerWho] );
-			myplayer.Logic.SetCheats( this.CheatFlags );
+			myplayer.Logic.SetCheats( (CheatModeType)this.CheatFlags );
 		}
 	}
 }

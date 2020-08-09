@@ -60,7 +60,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// <summary>
 	/// Represents a request for data from a client to the server.
 	/// </summary>
-	public abstract class NetProtocolRequestFromClientToServer<T> : NetProtocolRequest
+	public abstract class NetProtocolRequestPayloadFromClient<T> : NetProtocolRequest
 				where T : NetProtocolServerPayload {
 		/// <summary>
 		/// Called before a request is replied to.
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// <summary>
 	/// Represents a request for data from the server to a client.
 	/// </summary>
-	public abstract class NetProtocolRequestFromServerToClient<T> : NetProtocolRequest
+	public abstract class NetProtocolRequestPayloadFromServer<T> : NetProtocolRequest
 				where T : NetProtocolClientPayload {
 		/// <summary>
 		/// Called before a request is replied to.

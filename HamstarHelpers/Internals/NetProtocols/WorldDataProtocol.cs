@@ -10,7 +10,7 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class WorldDataRequestProtocol : NetProtocolRequestFromServerToClient<WorldDataProtocol> {
+	class WorldDataRequestProtocol : NetProtocolRequestPayloadFromServer<WorldDataProtocol> {
 		public static void QuickRequest() {
 			NetIO.RequestDataFromServer( new WorldDataRequestProtocol() );
 		}

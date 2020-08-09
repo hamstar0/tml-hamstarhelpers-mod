@@ -36,26 +36,32 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				var toClientReply = rawReply as NetProtocolClientPayload;
 				if( toClientReply != null ) {
 					NetIO.ProcessRequestOnServer( data, playerWho, toClientReply );
+					return;
 				}
 
 				var toBiClientReply = rawReply as NetProtocolBidirectionalPayload;
 				if( toBiClientReply != null ) {
 					NetIO.ProcessRequestOnServer( data, playerWho, toBiClientReply );
-				} else {
-					throw new ModHelpersException( data.GetType().Name + " is not a NetProtocolRequest<T> server payload" );
+					return;
 				}
+
+				throw new ModHelpersException( data.GetType().Name + " is not a valid client NetProtocolRequest"
+					+" (indicates reply of "+(rawReply?.GetType().Name ?? "unknown type")+")" );
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				var toServerReply = rawReply as NetProtocolServerPayload;
 				if( toServerReply != null ) {
 					NetIO.ProcessRequestOnClient( data, toServerReply );
+					return;
 				}
 
 				var toBiServerReply = rawReply as NetProtocolBidirectionalPayload;
 				if( toBiServerReply != null ) {
 					NetIO.ProcessRequestOnClient( data, toBiServerReply );
-				} else {
-					throw new ModHelpersException( data.GetType().Name + " is not a NetProtocolRequest<T> client payload" );
+					return;
 				}
+
+				throw new ModHelpersException( data.GetType().Name + " is not a valid server NetProtocolRequest"
+					+ " (indicates reply of " + (rawReply?.GetType().Name ?? "unknown type") + ")" );
 			}
 		}
 
