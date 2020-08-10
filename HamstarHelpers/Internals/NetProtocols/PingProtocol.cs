@@ -1,14 +1,13 @@
-﻿using System;
+﻿using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
+using HamstarHelpers.Classes.Protocols;
 using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	[Serializable]
-	class PingProtocol : NetProtocolBidirectionalPayload {
+	/// @private
+	class PingProtocol : PacketProtocolSentToEither {
 		public static void QuickSendToServer() {
-			NetIO.SendToServer( new PingProtocol() );
+			PacketProtocolSentToEither.QuickSendToServer<PingProtocol>();
 		}
 
 
@@ -22,31 +21,45 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private PingProtocol() {
-			this.StartTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
-		}
+		[ProtocolIgnore]
+		public override bool IsVerbose => false;
+
 
 
 		////////////////
 
-		public override void ReceiveOnServer( int fromWho ) {
+		private PingProtocol() { }
+
+
+		////////////////
+
+		protected override void SetClientDefaults() {
+			this.StartTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
+		}
+
+		protected override void SetServerDefaults( int fromWho ) { }
+
+
+		////////////////
+
+		protected override void ReceiveOnServer( int fromWho ) {
 			if( this.EndTime == -1 ) {
-				NetIO.SendToClients( this, fromWho, -1 );
+				this.SendToClient( fromWho, -1 );
 			} else {
-				int delta = (int)( this.EndTime - this.StartTime );
-				ModHelpersMod.Instance.NetHelpers.UpdatePing( delta );
+				ModHelpersMod.Instance.Server.UpdatePingAverage( (int)( this.EndTime - this.StartTime ) );
 			}
 		}
 
 
-		public override void ReceiveOnClient() {
-			this.EndTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
+		protected override void ReceiveOnClient() {
+			var now = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 
-			NetIO.SendToServer( this );
+			this.EndTime = now;
+
+			this.SendToServer( false );
 
 			if( this.StartTime != -1 ) {
-				int delta = (int)( this.EndTime - this.StartTime );
-				ModHelpersMod.Instance.NetHelpers.UpdatePing( delta );
+				ModHelpersMod.Instance.NetHelpers.UpdatePing( (int)( now - this.StartTime ) );
 			}
 		}
 	}

@@ -5,6 +5,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// <summary>
 	/// Represents broadcast packets (received on server and then all clients).
 	/// </summary>
+	[Serializable]
 	public abstract class NetProtocolBroadcastPayload : NetProtocolPayload {
 		/// <summary></summary>
 		/// <param name="fromWho"></param>
@@ -22,6 +23,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	////////////////
 
 	/// @private
+	[Serializable]
 	public abstract class NetProtocolRequest : NetProtocolPayload {
 	}
 
@@ -33,6 +35,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// <summary>
 	/// Represents a request from a client to the server.
 	/// </summary>
+	[Serializable]
 	public abstract class NetProtocolRequest<T> : NetProtocolRequest
 				where T : NetProtocolBidirectionalPayload {
 		/// <summary>
@@ -60,6 +63,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// <summary>
 	/// Represents a request for data from a client to the server.
 	/// </summary>
+	[Serializable]
 	public abstract class NetProtocolRequestPayloadFromClient<T> : NetProtocolRequest
 				where T : NetProtocolServerPayload {
 		/// <summary>
@@ -77,6 +81,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// <summary>
 	/// Represents a request for data from the server to a client.
 	/// </summary>
+	[Serializable]
 	public abstract class NetProtocolRequestPayloadFromServer<T> : NetProtocolRequest
 				where T : NetProtocolClientPayload {
 		/// <summary>

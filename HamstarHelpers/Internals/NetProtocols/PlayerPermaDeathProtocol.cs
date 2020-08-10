@@ -1,23 +1,22 @@
-﻿using System;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Players;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
-using HamstarHelpers.Services.Network.NetIO;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	[Serializable]
-	class PlayerPermaDeathProtocol : NetProtocolBroadcastPayload {
+	/// @private
+	class PlayerPermaDeathProtocol : PacketProtocolSentToEither {
 		public static void BroadcastFromClient( int playerDeadWho, string msg ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}
 
 			var protocol = new PlayerPermaDeathProtocol( playerDeadWho, msg );
-			NetIO.Broadcast( protocol );
+
+			protocol.SendToServer( true );
 		}
 
 		public static void BroadcastFromServer( int playerDeadWho, string msg ) {
@@ -26,7 +25,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			}
 
 			var protocol = new PlayerPermaDeathProtocol( playerDeadWho, msg );
-			NetIO.SendToClients( protocol );
+
+			protocol.SendToClient( -1, -1 );
 		}
 
 
@@ -50,17 +50,16 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override bool ReceiveOnServerBeforeRebroadcast( int fromWho ) {
+		protected override void ReceiveOnServer( int fromWho ) {
 			//Player player = Main.player[ this.PlayerWho ];
 
 			//PlayerHelpers.ApplyPermaDeath( player, this.Msg );	?
-			return true;
 		}
 
-		public override void ReceiveBroadcastOnClient() {
-			Player player = Main.player[ this.PlayerWho ];
+		protected override void ReceiveOnClient() {
+			Player player = Main.player[this.PlayerWho];
 			if( player == null || !player.active ) {
-				LogHelpers.Alert( "Inactive player indexed as " + this.PlayerWho );
+				LogHelpers.Log( "ModHelpers.PlayerPermaDeathProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
 				return;
 			}
 

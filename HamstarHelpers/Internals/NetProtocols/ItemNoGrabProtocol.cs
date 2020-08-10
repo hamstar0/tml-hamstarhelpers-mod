@@ -1,16 +1,15 @@
-﻿using System;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
+using System;
 using Terraria;
-using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	[Serializable]
-	class ItemNoGrabProtocol : NetProtocolServerPayload {
+	/// @private
+	class ItemNoGrabProtocol : PacketProtocolSendToServer {
 		public static void SendToServer( int itemWho, int noGrabDelayAmt ) {
 			var protocol = new ItemNoGrabProtocol( itemWho, noGrabDelayAmt );
-			NetIO.SendToServer( protocol );
+			protocol.SendToServer( false );
 		}
 
 
@@ -31,14 +30,18 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			this.NoGrabDelayAmt = noGrabDelayAmt;
 		}
 
+		////
+
+		protected override void InitializeClientSendData() { }
+
 
 		////////////////
 
-		public override void ReceiveOnServer( int fromWho ) {
-			Item item = Main.item[ this.ItemWho ];
+		protected override void Receive( int fromWho ) {
+			Item item = Main.item[this.ItemWho];
 			if( item == null /*|| !item.active*/ ) {
 				//throw new HamstarException( "!ModHelpers.ItemNoGrabProtocol.ReceiveWithServer - Invalid item indexed at "+this.ItemWho );
-				throw new ModHelpersException( "Invalid item indexed at "+this.ItemWho );
+				throw new ModHelpersException( "Invalid item indexed at " + this.ItemWho );
 			}
 
 			item.noGrabDelay = this.NoGrabDelayAmt;

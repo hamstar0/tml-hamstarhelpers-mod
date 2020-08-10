@@ -30,7 +30,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private PlayerCheatModeProtocol() { }
+		public PlayerCheatModeProtocol() { }
 
 		private PlayerCheatModeProtocol( CheatModeType cheatFlags, int playerWho ) {
 			this.CheatFlags = (int)cheatFlags;

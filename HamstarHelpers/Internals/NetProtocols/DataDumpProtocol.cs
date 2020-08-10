@@ -1,40 +1,37 @@
-﻿using System;
-using Terraria;
-using HamstarHelpers.Classes.Errors;
+﻿using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.User;
 using HamstarHelpers.Services.Debug.DataDumper;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using Terraria;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	[Serializable]
-	class DataDumpRequestProtocol : NetProtocolRequestPayloadFromClient<DataDumpProtocol> {
+	/// @private
+	class DataDumpProtocol : PacketProtocolRequestToServer {
 		public static void QuickRequest() {
-			NetIO.RequestDataFromClient( new DataDumpRequestProtocol() );
+			PacketProtocolRequestToServer.QuickRequest<DataDumpProtocol>( -1 );
 		}
 
 
 
 		////////////////
 
-		private DataDumpRequestProtocol() { }
+		private DataDumpProtocol() { }
 
-		public override bool PreReplyOnClient( DataDumpProtocol reply ) {
+		protected override void InitializeServerSendData( int fromWho ) { }
+
+		////////////////
+
+		protected override bool ReceiveRequestWithServer( int fromWho ) {
 			if( ModHelpersConfig.Instance.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer ) ) {
 				string _;
 				DataDumper.DumpToFile( out _ );
 			}
+
 			return false;
 		}
-	}
 
-
-
-
-	[Serializable]
-	class DataDumpProtocol : NetProtocolServerPayload {
-		public override void ReceiveOnServer( int fromWho ) { }
+		protected override void ReceiveReply() { }
 	}
 }

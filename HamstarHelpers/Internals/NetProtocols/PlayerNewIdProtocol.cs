@@ -1,94 +1,58 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Players;
 using Terraria;
 using System.Collections.Generic;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Players;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	[Serializable]
-	class PlayerNewIdRequestProtocol : NetProtocolRequest<PlayerNewIdProtocol> {
+	/// @private
+	class PlayerNewIdProtocol : PacketProtocolSentToEither {
 		public static void QuickRequestToClient( int playerWho ) {
-			var protocol = new PlayerNewIdRequestProtocol();
-
-			NetIO.RequestDataFromClient( protocol, playerWho );
+			PacketProtocolSentToEither.QuickRequestToClient<PlayerNewIdProtocol>( playerWho, -1, -1 );
 		}
 
-
-		////////////////
-
-		private PlayerNewIdRequestProtocol() { }
-
-
-		public override bool PreReplyOnClient( PlayerNewIdProtocol reply ) {
-			reply.PlayerIds = (Dictionary<int, string>)ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
-			return true;
-		}
-	}
-
-
-
-
-	[Serializable]
-	class PlayerNewIdProtocol : NetProtocolBidirectionalPayload {
 		public static void QuickSendToServer() {
-			var protocol = new PlayerNewIdProtocol(
-				(Dictionary<int, string>)ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds
-			);
-			protocol.PlayerIds[ Main.myPlayer ] = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer );
-
-			NetIO.SendToServer( protocol );
+			PlayerNewIdProtocol.QuickSendToServer<PlayerNewIdProtocol>();
 		}
 
 
 
 		////////////////
 
-		public Dictionary<int, string> PlayerIds;
+		public IDictionary<int, string> PlayerIds;
 
 
 
 		////////////////
 
 		private PlayerNewIdProtocol() {
-			this.PlayerIds = new Dictionary<int, string>();
-		}
-
-		private PlayerNewIdProtocol( Dictionary<int, string> playerIds ) {
-			if( playerIds == null ) {
-				this.PlayerIds = new Dictionary<int, string>();
-
-				LogHelpers.Warn( "Player ids not specified." );
-				return;
-			}
-			this.PlayerIds = playerIds;
+			this.PlayerIds = ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds;
 		}
 
 
 		////////////////
 
-		public override void ReceiveOnServer( int fromWho ) {
-			try {
-				if( this.PlayerIds.TryGetValue(fromWho, out string uid) ) {
-					ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[ fromWho ] = uid;
-				} else {
-					LogHelpers.Warn( "No UID reported from player id'd "+fromWho );
-				}
-			} catch {
-				this.PlayerIds = new Dictionary<int, string>();
-				LogHelpers.Warn( "Deserialization error." );
+		protected override void SetClientDefaults() {
+			this.PlayerIds[Main.myPlayer] = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer );
+		}
+
+		protected override void SetServerDefaults( int toWho ) {
+		}
+
+
+		////////////////
+
+		protected override void ReceiveOnServer( int fromWho ) {
+			string uid;
+			if( this.PlayerIds.TryGetValue( fromWho, out uid ) ) {
+				ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[fromWho] = uid;
+			} else {
+				LogHelpers.Warn( "No UID reported from player id'd " + fromWho );
 			}
 		}
 
-		public override void ReceiveOnClient() {
-			try {
-				this.PlayerIds.TryGetValue( 0, out string _ );
-			} catch {
-				this.PlayerIds = new Dictionary<int, string>();
-				LogHelpers.Warn( "Deserialization error." );
-			}
+		protected override void ReceiveOnClient() {
 			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds = this.PlayerIds;
 		}
 	}

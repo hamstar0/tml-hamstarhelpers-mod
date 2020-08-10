@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Collections.Generic;
 using NetSerializer;
 using Terraria;
@@ -24,12 +26,27 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		////////////////
 
 		void ILoadable.OnModsLoad() {
-			IEnumerable<Type> payloadTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods(
-				typeof( NetProtocolPayload )
-			).SafeOrderBy( t => t.FullName );
+			IList<Type> payloadTypes = ReflectionHelpers
+				.GetAllAvailableSubTypesFromMods( typeof(NetProtocolPayload) )
+				.SafeOrderBy( t => t.FullName )
+				.ToList();
 			var settings = new Settings {
 				CustomTypeSerializers = new ITypeSerializer[] { new HashSetSerializer() }
 			};
+
+			foreach( Type payloadType in payloadTypes.ToArray() ) {
+				if( !payloadType.IsSerializable ) {
+					payloadTypes.Remove( payloadType );
+					LogHelpers.Warn( "Invalid payload type "+payloadType.Name );
+					continue;
+				}
+				foreach( FieldInfo field in payloadType.GetFields() ) {
+					if( !field.FieldType.IsSerializable && !field.IsNotSerialized ) {
+						payloadTypes.Remove( payloadType );
+						LogHelpers.Warn( "Invalid payload type "+payloadType.Name+"; field "+field.Name+" not serializeable." );
+					}
+				}
+			}
 
 			this.Serializer = new Serializer( payloadTypes, settings );
 		}

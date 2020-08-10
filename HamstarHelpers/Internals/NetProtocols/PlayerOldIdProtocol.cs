@@ -1,39 +1,19 @@
-﻿using System;
+﻿using HamstarHelpers.Helpers.Debug;
 using Terraria;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	[Serializable]
-	class PlayerOldIdRequestProtocol : NetProtocolRequest<PlayerOldIdProtocol> {
+	/// @private
+	class PlayerOldIdProtocol : PacketProtocolSentToEither {
 		public static void QuickRequestToClient( int playerWho ) {
-			var protocol = new PlayerOldIdRequestProtocol();
-
-			NetIO.RequestDataFromClient( protocol, playerWho );
+			PacketProtocolSentToEither.QuickRequestToClient<PlayerOldIdProtocol>( playerWho, -1, -1 );
 		}
 
-
-		////////////////
-
-		private PlayerOldIdRequestProtocol() { }
-	}
-
-
-
-
-	[Serializable]
-	class PlayerOldIdProtocol : NetProtocolBidirectionalPayload {
 		public static void QuickSendToServer() {
-			var protocol = new PlayerOldIdProtocol();
-			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.LocalPlayer );
-			protocol.ClientPrivateUID = myplayer.Logic.OldPrivateUID;
-			protocol.ClientHasUID = myplayer.Logic.HasLoadedOldUID;
-
-			NetIO.SendToServer( protocol );
+			PlayerNewIdProtocol.QuickSendToServer<PlayerOldIdProtocol>();
 		}
 
 
@@ -49,16 +29,37 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		private PlayerOldIdProtocol() { }
 
+		////
+
+		protected override void SetClientDefaults() {
+			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer(
+				Main.LocalPlayer,
+				ModHelpersMod.Instance,
+				"ModHelpersPlayer"
+			);
+
+			this.ClientPrivateUID = myplayer.Logic.OldPrivateUID;
+			this.ClientHasUID = myplayer.Logic.HasLoadedOldUID;
+		}
+
+		protected override void SetServerDefaults( int toWho ) { }
+
 
 		////////////////
 
-		public override void ReceiveOnServer( int fromWho ) {
+		protected override bool ReceiveRequestWithServer( int fromWho ) {
+			throw new ModHelpersException( "Not implemented." );
+		}
+
+		////
+
+		protected override void ReceiveOnClient() { }
+
+		protected override void ReceiveOnServer( int fromWho ) {
 			Player player = Main.player[fromWho];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
 			myplayer.Logic.NetReceiveUIDOnServer( this.ClientHasUID, this.ClientPrivateUID );
 		}
-
-		public override void ReceiveOnClient() { }
 	}
 }

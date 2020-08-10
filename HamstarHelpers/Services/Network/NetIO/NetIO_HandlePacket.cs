@@ -20,13 +20,16 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		/// <returns>`true` to be considered to have completely handled the incoming packet.</returns>
 		internal static bool HandlePacket( BinaryReader reader, int playerWho ) {
 			var netIO = ModContent.GetInstance<NetIO>();
+			long oldStreamPos = reader.BaseStream.Position;
 			object data;
 
 			try {
 				data = netIO.Serializer.Deserialize( reader.BaseStream );
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.Message );
-				return true;
+
+				reader.BaseStream.Seek( oldStreamPos, SeekOrigin.Begin );
+				return false;
 			}
 
 			if( data == null || data.GetType() == typeof( object ) ) {
@@ -54,6 +57,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				return true;
 			}
 
+			reader.BaseStream.Seek( oldStreamPos, SeekOrigin.Begin );
 			return false;
 		}
 	}
