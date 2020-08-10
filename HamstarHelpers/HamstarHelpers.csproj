@@ -32,4 +32,12 @@
     <Folder Include="..\..\v5 %2528tML11%2529\HamstarHelpers\Items\NoteItem\UI\" />
     <Folder Include="lib\" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="AnySerializer">
+      <HintPath>lib\AnySerializer\AnySerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="TypeSupport">
+      <HintPath>lib\AnySerializer\TypeSupport.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

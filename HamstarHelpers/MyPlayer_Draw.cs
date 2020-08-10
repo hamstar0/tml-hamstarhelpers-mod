@@ -12,7 +12,7 @@ namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersPlayer : ModPlayer {
 		public override void ModifyScreenPosition() {
-			AnimatedCamera.Instance.ApplyAnimations();
+			CameraAnimationManager.Instance.ApplyAnimations();
 			Camera.Instance.ApplyCameraEffects();
 		}
 
