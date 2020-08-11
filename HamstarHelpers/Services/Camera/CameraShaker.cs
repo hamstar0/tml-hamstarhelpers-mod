@@ -4,9 +4,9 @@ using Terraria;
 
 namespace HamstarHelpers.Services.Camera {
 	/// <summary>
-	/// Represents a shaking animation sequence for the player's 'camera' (screen position).
+	/// Represents a shaking animation sequence for the player's 'camera'.
 	/// </summary>
-	public class CameraShaker {
+	public class CameraShaker : CameraAnimator {
 		/// <summary></summary>
 		public static CameraShaker Current {
 			get => CameraAnimationManager.Instance.CurrentShaker;
@@ -16,89 +16,42 @@ namespace HamstarHelpers.Services.Camera {
 
 
 		////////////////
-
-		/// <summary></summary>
-		public string Name { get; private set; }
-
-		////
-
+		
 		/// <summary></summary>
 		public float ShakePeakMagnitude { get; private set; } = 0f;
 
-		////
-
-		/// <summary></summary>
-		public int TickDuration { get; private set; } = 0;
-
-		/// <summary></summary>
-		public int TicksElapsed { get; private set; } = 0;
-
-		/// <summary></summary>
-		public int TicksLingerDuration { get; private set; } = 0;
-
-		/// <summary>Note: Negative values indicate shaking still in progress.</summary>
-		public int TicksLingerElapsed => this.TicksElapsed - this.TickDuration;
-
-
+		
 
 		////////////////
 
 		/// <summary></summary>
 		/// <param name="name"></param>
 		/// <param name="peakMagnitude"></param>
-		/// <param name="tickDuration"></param>
-		/// <param name="lingerDuration"></param>
+		/// <param name="toDuration">How long (in ticks) the camera takes to reach max shake magnitude.</param>
+		/// <param name="lingerDuration">How long (in ticks) to linger at max magnitude.</param>
+		/// <param name="froDuration">How long (in ticks) the camera takes to return to 0 magnitude.</param>
+		/// <param name="onTraversed">Function to call on reaching max magnitude.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
 		public CameraShaker(
 					string name,
 					float peakMagnitude,
-					int tickDuration,
+					int toDuration,
 					int lingerDuration,
-					int skippedTicks = 0 ) {
-			this.Name = name;
+					int froDuration,
+					Action onTraversed,
+					int skippedTicks = 0 )
+					: base( name, toDuration, lingerDuration, froDuration, onTraversed, skippedTicks ) {
 			this.ShakePeakMagnitude = peakMagnitude;
-			this.TickDuration = tickDuration;
-			this.TicksElapsed = skippedTicks;
-			this.TicksLingerDuration = lingerDuration;
-		}
-
-
-		////////////////
-
-		/// <summary></summary>
-		/// <returns></returns>
-		public bool IsAnimating() {
-			return this.TicksElapsed < this.TickDuration
-				&& (this.TicksLingerElapsed <= 0 || this.TicksLingerElapsed < this.TicksLingerDuration);
+			this.OnTraversed = onTraversed;
 		}
 
 
 		////////////////
 		
 		/// <summary></summary>
-		public void Stop() {
-			this.TicksElapsed = 0;
-			this.TickDuration = 0;
-			this.TicksLingerDuration = 0;
-		}
-
-
-		////////////////
-
-		internal bool Animate() {
-			if( this.TicksElapsed++ >= (this.TickDuration + this.TicksLingerDuration) ) {
-				this.Stop();
-				Camera.ApplyShake( 0f );
-				return false;
-			}
-
-			float shakeScale = Math.Min( (float)this.TicksElapsed / (float)this.TickDuration, 1f );
-			shakeScale = shakeScale - 0.5f;
-			shakeScale = 0.5f - Math.Abs( shakeScale );
-			shakeScale *= 2f;
-
-			Camera.ApplyShake( this.ShakePeakMagnitude * shakeScale );
-			return true;
+		/// <param name="percent"></param>
+		protected override void RunAnimation( float percent ) {
+			Camera.ApplyShake( this.ShakePeakMagnitude * percent );
 		}
 	}
 }

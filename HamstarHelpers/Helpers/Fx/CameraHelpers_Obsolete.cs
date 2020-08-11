@@ -28,7 +28,7 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// @private
 		[Obsolete( "use `AnimatedCamera.ShakeTickDuration`", true )]
 		public static int GetShakeDuration() {
-			return AnimatedCamera.Instance.ShakeTickDuration;
+			return CameraShaker.Current?.ToTickDuration ?? 0;
 		}
 
 

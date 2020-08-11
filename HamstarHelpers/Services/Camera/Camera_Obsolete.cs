@@ -15,7 +15,7 @@ namespace HamstarHelpers.Services.Camera {
 		/// @private
 		[Obsolete( "use AnimatedCamera.BeginShakeSequence", true )]
 		public static void ApplyShake( float magnitude, int tickDuration, int skippedTicks = 0 ) {
-			AnimatedCamera.BeginShakeSequence( magnitude, tickDuration, skippedTicks );
+			CameraShaker.Current = new CameraShaker( "ObsoleteDefault", magnitude, tickDuration, 0, 0, null, skippedTicks );
 		}
 	}
 }
