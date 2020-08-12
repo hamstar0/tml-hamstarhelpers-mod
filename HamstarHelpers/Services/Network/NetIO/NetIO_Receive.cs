@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
@@ -12,7 +13,13 @@ namespace HamstarHelpers.Services.Network.NetIO {
 	/// routing.
 	/// </summary>
 	public partial class NetIO : ILoadable {
-		private static void Receive( NetProtocolBroadcastPayload data, int playerWho ) {
+		private static void Receive( NetIOBroadcastPayload data, int playerWho ) {
+			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
+				LogHelpers.Log( "<" + data.GetType().Name + " "
+					+ ( Main.netMode == NetmodeID.MultiplayerClient ? "on client" : "on server" )
+				);
+			}
+
 			if( Main.netMode == NetmodeID.Server ) {
 				if( data.ReceiveOnServerBeforeRebroadcast(playerWho) ) {
 					NetIO.Send( data, -1, playerWho );
@@ -24,21 +31,41 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			}
 		}
 
-		private static void Receive( NetProtocolServerPayload data, int playerWho ) {
+		private static void Receive( NetIOServerPayload data, int playerWho ) {
 			if( Main.netMode != NetmodeID.Server ) {
 				throw new ModHelpersException( "Not server" );
 			}
+
+			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
+				LogHelpers.Log( "<" + data.GetType().Name + " "
+					+ (Main.netMode == NetmodeID.MultiplayerClient ? "from client" : "from server")
+				);
+			}
+
 			data.ReceiveOnServer( playerWho );
 		}
 
-		private static void Receive( NetProtocolClientPayload data ) {
+		private static void Receive( NetIOClientPayload data ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not client" );
 			}
+
+			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
+				LogHelpers.Log( "<" + data.GetType().Name + " "
+					+ (Main.netMode == NetmodeID.MultiplayerClient ? "from client" : "from server")
+				);
+			}
+
 			data.ReceiveOnClient();
 		}
 
-		private static void Receive( NetProtocolBidirectionalPayload data, int playerWho ) {
+		private static void Receive( NetIOBidirectionalPayload data, int playerWho ) {
+			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
+				LogHelpers.Log( "<" + data.GetType().Name + " "
+					+ (Main.netMode == NetmodeID.MultiplayerClient ? "from client" : "from server")
+				);
+			}
+
 			if( Main.netMode == NetmodeID.Server ) {
 				data.ReceiveOnServer( playerWho );
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {

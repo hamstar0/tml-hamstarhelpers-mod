@@ -8,7 +8,7 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class PlayerCheatModeProtocol : NetProtocolBroadcastPayload {
+	class PlayerCheatModeProtocol : NetIOBroadcastPayload {
 		public static void BroadcastFromClient( CheatModeType cheatFlags ) {
 			var protocol = new PlayerCheatModeProtocol( cheatFlags, Main.myPlayer );
 			NetIO.Broadcast( protocol );

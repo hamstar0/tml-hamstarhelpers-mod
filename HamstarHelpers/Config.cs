@@ -51,7 +51,7 @@ namespace HamstarHelpers {
 		/// Outputs (to log) network message information (sends and receives of PacketProtocol).
 		/// </summary>
 		[Label( "Debug Mode - Net Info" )]
-		[Tooltip( "Outputs (to log) network message information (sends and receives of PacketProtocol)." )]
+		[Tooltip( "Outputs (to log) network message information (sends and receives of PacketProtocol, NetIO)." )]
 		public bool DebugModeNetInfo { get; set; } = false;
 
 		/// <summary>

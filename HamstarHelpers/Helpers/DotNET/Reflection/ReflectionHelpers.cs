@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using System.Reflection;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
@@ -18,6 +18,18 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
 	public partial class ReflectionHelpers {
+		/*/// <summary>
+		/// Defines a parameter (to be passed into RunMethod) to properly identify generic parameters.
+		/// </summary>
+		public class ReflectionParameter {
+			/// <summary></summary>
+			public object ParamData;
+			/// <summary></summary>
+			public Type GenericType;
+		}*/
+
+
+
 		/// <summary>
 		/// Handy preset for accessing any member of the given name (regardless of access restrictions).
 		/// </summary>

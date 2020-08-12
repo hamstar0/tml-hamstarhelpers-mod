@@ -191,8 +191,9 @@ namespace NetSerializer
 		}
 
 		/// <summary>
-		/// Get a Dictionary<> containing a mapping of all the serializer's Types to TypeIDs
+		/// Get a `Dictionary` containing a mapping of all the serializer's Types to TypeIDs
 		/// </summary>
+		/// <returns></returns>
 		public Dictionary<Type, uint> GetTypeMap()
 		{
 			lock (m_modifyLock)
@@ -267,11 +268,17 @@ namespace NetSerializer
 			Debug.Assert(System.Threading.Monitor.IsEntered(m_modifyLock));
 		}
 
+		/// <summary></summary>
+		/// <param name="stream"></param>
+		/// <param name="ob"></param>
 		public void Serialize(Stream stream, object ob)
 		{
 			ObjectSerializer.Serialize(this, stream, ob);
 		}
 
+		/// <summary></summary>
+		/// <param name="stream"></param>
+		/// <returns></returns>
 		public object Deserialize(Stream stream)
 		{
 			object ob;
@@ -279,6 +286,9 @@ namespace NetSerializer
 			return ob;
 		}
 
+		/// <summary></summary>
+		/// <param name="stream"></param>
+		/// <param name="ob"></param>
 		public void Deserialize(Stream stream, out object ob)
 		{
 			ObjectSerializer.Deserialize(this, stream, out ob);

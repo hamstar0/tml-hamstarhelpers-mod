@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
@@ -14,7 +15,13 @@ namespace HamstarHelpers.Services.Network.NetIO {
 	/// routing.
 	/// </summary>
 	public partial class NetIO : ILoadable {
-		private static void ReceiveRequest( NetProtocolRequest data, int playerWho ) {
+		private static void ReceiveRequest( NetIORequest data, int playerWho ) {
+			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
+				LogHelpers.Log( "<" + data.GetType().Name + " "
+					+ (Main.netMode == NetmodeID.MultiplayerClient ? "from client" : "from server")
+				);
+			}
+
 			Type genericArg = null;
 			foreach( Type arg in data.GetType().BaseType.GetGenericArguments() ) {
 				genericArg = arg;
@@ -33,13 +40,13 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			);
 
 			if( Main.netMode == NetmodeID.Server ) {
-				var toClientReply = rawReply as NetProtocolClientPayload;
+				var toClientReply = rawReply as NetIOClientPayload;
 				if( toClientReply != null ) {
 					NetIO.ProcessRequestOnServer( data, playerWho, toClientReply );
 					return;
 				}
 
-				var toBiClientReply = rawReply as NetProtocolBidirectionalPayload;
+				var toBiClientReply = rawReply as NetIOBidirectionalPayload;
 				if( toBiClientReply != null ) {
 					NetIO.ProcessRequestOnServer( data, playerWho, toBiClientReply );
 					return;
@@ -48,13 +55,13 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				throw new ModHelpersException( data.GetType().Name + " is not a valid client NetProtocolRequest"
 					+" (indicates reply of "+(rawReply?.GetType().Name ?? "unknown type")+")" );
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				var toServerReply = rawReply as NetProtocolServerPayload;
+				var toServerReply = rawReply as NetIOServerPayload;
 				if( toServerReply != null ) {
 					NetIO.ProcessRequestOnClient( data, toServerReply );
 					return;
 				}
 
-				var toBiServerReply = rawReply as NetProtocolBidirectionalPayload;
+				var toBiServerReply = rawReply as NetIOBidirectionalPayload;
 				if( toBiServerReply != null ) {
 					NetIO.ProcessRequestOnClient( data, toBiServerReply );
 					return;
@@ -68,10 +75,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 		////////////////
 
-		private static void ProcessRequestOnServer(
-					NetProtocolRequest data,
-					int playerWho,
-					NetProtocolClientPayload reply ) {
+		private static void ProcessRequestOnServer( NetIORequest data, int playerWho, NetIOClientPayload reply ) {
 			bool success;
 
 			if( !ReflectionHelpers.RunMethod(
@@ -92,9 +96,9 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		}
 
 		private static void ProcessRequestOnServer(
-					NetProtocolRequest data,
+					NetIORequest data,
 					int playerWho,
-					NetProtocolBidirectionalPayload reply ) {
+					NetIOBidirectionalPayload reply ) {
 			bool success;
 
 			if( !ReflectionHelpers.RunMethod(
@@ -116,7 +120,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 		////
 
-		private static void ProcessRequestOnClient( NetProtocolRequest data, NetProtocolServerPayload reply ) {
+		private static void ProcessRequestOnClient( NetIORequest data, NetIOServerPayload reply ) {
 			bool success;
 
 			if( !ReflectionHelpers.RunMethod(
@@ -136,7 +140,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			}
 		}
 
-		private static void ProcessRequestOnClient( NetProtocolRequest data, NetProtocolBidirectionalPayload reply ) {
+		private static void ProcessRequestOnClient( NetIORequest data, NetIOBidirectionalPayload reply ) {
 			bool success;
 
 			if( !ReflectionHelpers.RunMethod(

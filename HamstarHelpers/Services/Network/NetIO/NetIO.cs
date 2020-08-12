@@ -7,7 +7,6 @@ using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.DotNET.Serialization;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
@@ -19,7 +18,9 @@ namespace HamstarHelpers.Services.Network.NetIO {
 	/// routing.
 	/// </summary>
 	public partial class NetIO : ILoadable {
-		private Serializer Serializer;
+		private IDictionary<int, Type> PayloadCodeToType = new Dictionary<int, Type>();
+		private IDictionary<Type, int> PayloadTypeToCode = new Dictionary<Type, int>();
+		private IDictionary<int, Serializer> PayloadCodeToSerializer = new Dictionary<int, Serializer>();
 
 
 
@@ -27,13 +28,14 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 		void ILoadable.OnModsLoad() {
 			IList<Type> payloadTypes = ReflectionHelpers
-				.GetAllAvailableSubTypesFromMods( typeof(NetProtocolPayload) )
-				.SafeOrderBy( t => t.FullName )
+				.GetAllAvailableSubTypesFromMods( typeof(NetIOPayload) )
+				.OrderBy( t => t.Namespace + "." + t.Name )
 				.ToList();
 			var settings = new Settings {
 				CustomTypeSerializers = new ITypeSerializer[] { new HashSetSerializer() }
 			};
 
+			int i = 0;
 			foreach( Type payloadType in payloadTypes.ToArray() ) {
 				if( !payloadType.IsSerializable ) {
 					payloadTypes.Remove( payloadType );
@@ -46,9 +48,12 @@ namespace HamstarHelpers.Services.Network.NetIO {
 						LogHelpers.Warn( "Invalid payload type "+payloadType.Name+"; field "+field.Name+" not serializeable." );
 					}
 				}
-			}
 
-			this.Serializer = new Serializer( payloadTypes, settings );
+				this.PayloadCodeToType[i] = payloadType;
+				this.PayloadTypeToCode[payloadType] = i;
+				this.PayloadCodeToSerializer[i] = new Serializer( new Type[] { payloadType }, settings );
+				i++;
+			}
 		}
 
 		void ILoadable.OnPostModsLoad() { }

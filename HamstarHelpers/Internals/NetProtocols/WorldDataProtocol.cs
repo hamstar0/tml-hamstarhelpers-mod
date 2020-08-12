@@ -1,22 +1,28 @@
-﻿using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
+﻿using System;
+using Terraria;
+using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.World;
-using Terraria;
-using Terraria.ModLoader;
+using HamstarHelpers.Services.Network.NetIO;
+using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
-	class WorldDataProtocol : PacketProtocolRequestToServer {
+	[Serializable]
+	class WorldDataRequestProtocol : NetIORequestPayloadFromServer<WorldDataProtocol> {
 		public static void QuickRequest() {
-			PacketProtocolRequestToServer.QuickRequest<WorldDataProtocol>( -1 );
+			NetIO.RequestDataFromServer( new WorldDataRequestProtocol() );
 		}
 
+		public WorldDataRequestProtocol() { }
+	}
 
 
-		////////////////
 
+
+	[Serializable]
+	class WorldDataProtocol : NetIOClientPayload {
 		public int HalfDays;
 		public bool HasObsoletedWorldId;
 		public string ObsoletedWorldId;
@@ -25,12 +31,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		private WorldDataProtocol() { }
-
-
-		////////////////
-
-		protected override void InitializeServerSendData( int fromWho ) {
+		public WorldDataProtocol() {
 			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 
 			this.HalfDays = WorldStateHelpers.GetElapsedHalfDays();
@@ -41,7 +42,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveReply() {
+		public override void ReceiveOnClient() {
 			var mymod = ModHelpersMod.Instance;
 			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );

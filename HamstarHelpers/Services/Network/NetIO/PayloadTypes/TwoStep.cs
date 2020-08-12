@@ -6,7 +6,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// Represents broadcast packets (received on server and then all clients).
 	/// </summary>
 	[Serializable]
-	public abstract class NetProtocolBroadcastPayload : NetProtocolPayload {
+	public abstract class NetIOBroadcastPayload : NetIOPayload {
 		/// <summary></summary>
 		/// <param name="fromWho"></param>
 		/// <returns>`true` permits automatic rebroadcasting to clients. Otherwise, `NetIO.SendToClient(...)` must be called
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 
 	/// @private
 	[Serializable]
-	public abstract class NetProtocolRequest : NetProtocolPayload {
+	public abstract class NetIORequest : NetIOPayload {
 	}
 
 
@@ -36,8 +36,8 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// Represents a request from a client to the server.
 	/// </summary>
 	[Serializable]
-	public abstract class NetProtocolRequest<T> : NetProtocolRequest
-				where T : NetProtocolBidirectionalPayload {
+	public abstract class NetIORequest<T> : NetIORequest
+				where T : NetIOBidirectionalPayload {
 		/// <summary>
 		/// Called before a request is replied to on the client.
 		/// </summary>
@@ -64,8 +64,8 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// Represents a request for data from a client to the server.
 	/// </summary>
 	[Serializable]
-	public abstract class NetProtocolRequestPayloadFromClient<T> : NetProtocolRequest
-				where T : NetProtocolServerPayload {
+	public abstract class NetIORequestPayloadFromClient<T> : NetIORequest
+				where T : NetIOServerPayload {
 		/// <summary>
 		/// Called before a request is replied to.
 		/// </summary>
@@ -82,8 +82,8 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// Represents a request for data from the server to a client.
 	/// </summary>
 	[Serializable]
-	public abstract class NetProtocolRequestPayloadFromServer<T> : NetProtocolRequest
-				where T : NetProtocolClientPayload {
+	public abstract class NetIORequestPayloadFromServer<T> : NetIORequest
+				where T : NetIOClientPayload {
 		/// <summary>
 		/// Called before a request is replied to.
 		/// </summary>

@@ -11566,157 +11566,6 @@
             <param name="origin"></param>
             <param name="spriteFx"></param>
         </member>
-        <member name="T:HamstarHelpers.Services.Camera.AnimatedCamera">
-            <summary>
-            Supplies a set of controls for manipulating changes of state for the player's 'camera' (screen position).
-            </summary>
-            <summary>
-            Supplies a set of controls for manipulating changes of state for the player's 'camera' (screen position).
-            </summary>
-            <summary>
-            Supplies a set of controls for manipulating changes of state for the player's 'camera' (screen position).
-            </summary>
-            <summary>
-            Supplies a set of controls for manipulating changes of state for the player's 'camera' (screen position).
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.Instance">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.CurrentMoveSequence">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveXFrom">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveYFrom">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveXTo">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveYTo">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveTickDuration">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveTicksElapsed">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveTicksLingerDuration">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.MoveTicksLingerElapsed">
-            <summary>Note: Negative values indicate moving still in progress.</summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.CurrentZoomSequence">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomFrom">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTo">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTickDuration">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTicksElapsed">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTicksLingerDuration">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ZoomTicksLingerElapsed">
-            <summary>Note: Negative values indicate zooming still in progress.</summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.CurrentShakeSequence">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ShakePeakMagnitude">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ShakeTickDuration">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.AnimatedCamera.ShakeTicksElapsed">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginMoveSequence(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Applies motion to the camera.
-            </summary>
-            <param name="name"></param>
-            <param name="moveXFrom"></param>
-            <param name="moveYFrom"></param>
-            <param name="moveXTo"></param>
-            <param name="moveYTo"></param>
-            <param name="tickDuration">How long the sequence takes to complete.</param>
-            <param name="lingerDuration">How long to linger at destination before reset. Set to -1 for permanent.</param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginMoveSequence(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Applies motion to the camera.
-            </summary>
-            <param name="moveXFrom"></param>
-            <param name="moveYFrom"></param>
-            <param name="moveXTo"></param>
-            <param name="moveYTo"></param>
-            <param name="tickDuration">How long the sequence takes to complete.</param>
-            <param name="lingerDuration">How long to linger at destination before reset. Set to -1 for permanent.</param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single)">
-            <summary>
-            Gets an interpolated position between 2 points, accounting for points that refer to screen position (-1 values).
-            </summary>
-            <param name="fromX"></param>
-            <param name="fromY"></param>
-            <param name="toX"></param>
-            <param name="toY"></param>
-            <param name="percent"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginShakeSequence(System.String,System.Single,System.Int32,System.Int32)">
-            <summary>
-            Applies a shaking motion to the camera. Fades in and out.
-            </summary>
-            <param name="name"></param>
-            <param name="peakMagnitude"></param>
-            <param name="tickDuration"></param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginShakeSequence(System.Single,System.Int32,System.Int32)">
-            <summary>
-            Applies a shaking motion to the camera. Fades in and out.
-            </summary>
-            <param name="peakMagnitude"></param>
-            <param name="tickDuration"></param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginZoomSequence(System.String,System.Single,System.Single,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Applies a changing zoom to the camera over time.
-            </summary>
-            <param name="name"></param>
-            <param name="zoomFrom"></param>
-            <param name="zoomTo"></param>
-            <param name="tickDuration">How long the sequence takes to complete.</param>
-            <param name="lingerDuration">How long to linger at destination before reset. Set to -1 for permanent.</param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.AnimatedCamera.BeginZoomSequence(System.Single,System.Single,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Applies a changing zoom to the camera over time.
-            </summary>
-            <param name="zoomFrom"></param>
-            <param name="zoomTo"></param>
-            <param name="tickDuration">How long the sequence takes to complete.</param>
-            <param name="lingerDuration">How long to linger at destination before reset. Set to -1 for permanent.</param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
         <member name="T:HamstarHelpers.Services.Camera.Camera">
             <summary>
             Supplies a set of controls for manipulating the player's 'camera' (screen position).
@@ -11773,6 +11622,171 @@
         </member>
         <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyShake(System.Single,System.Int32,System.Int32)">
             @private
+        </member>
+        <member name="T:HamstarHelpers.Services.Camera.CameraAnimator">
+            <summary>
+            Represents a sequence of controlled behavior for the player's 'camera'.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Camera.CameraAnimator.OnTraversed">
+            <summary>Called while camera is at destination.</summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.Name">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.IsPaused">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.ToTickDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.LingerTicksDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.FroTickDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.TotalTickDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.TicksElapsed">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.TicksLingerElapsed">
+            <summary>Note: Negative values indicate moving still in progress.</summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Action,System.Int32)">
+            <summary></summary>
+            <param name="name"></param>
+            <param name="toDuration">How long (in ticks) the camera state takes to go from A to B.</param>
+            <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
+            <param name="froDuration">How long (in ticks) the camera state takes to go back from B to A.</param>
+            <param name="onTraversed">Function to call on reaching destination (B).</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.IsAnimating">
+            <summary></summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Skip(System.Int32)">
+            <summary>Skips the given number of ticks into the animation. Accepts negative numbers.</summary>
+            <param name="ticks"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Pause(System.Boolean)">
+            <summary></summary>
+            <param name="pause"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Reset">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Stop">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.RunAnimation(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Camera.CameraMover">
+            <summary>
+            Represents a sequence of controlled movement for the player's 'camera'.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraMover.Current">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraMover.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Gets an interpolated position between 2 points, accounting for points that refer to screen position (-1 values).
+            </summary>
+            <param name="fromX"></param>
+            <param name="fromY"></param>
+            <param name="toX"></param>
+            <param name="toY"></param>
+            <param name="percent"></param>
+            <returns></returns>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraMover.MoveXFrom">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraMover.MoveYFrom">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraMover.MoveXTo">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraMover.MoveYTo">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Action,System.Int32)">
+            <summary></summary>
+            <param name="name"></param>
+            <param name="moveXFrom"></param>
+            <param name="moveYFrom"></param>
+            <param name="moveXTo"></param>
+            <param name="moveYTo"></param>
+            <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
+            <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
+            <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
+            <param name="onTraversed">Function to call on reaching destination (B).</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraMover.RunAnimation(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Camera.CameraShaker">
+            <summary>
+            Represents a shaking animation sequence for the player's 'camera'.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraShaker.Current">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraShaker.ShakePeakMagnitude">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraShaker.#ctor(System.String,System.Single,System.Int32,System.Int32,System.Int32,System.Action,System.Int32)">
+            <summary></summary>
+            <param name="name"></param>
+            <param name="peakMagnitude"></param>
+            <param name="toDuration">How long (in ticks) the camera takes to reach max shake magnitude.</param>
+            <param name="lingerDuration">How long (in ticks) to linger at max magnitude.</param>
+            <param name="froDuration">How long (in ticks) the camera takes to return to 0 magnitude.</param>
+            <param name="onTraversed">Function to call on reaching max magnitude.</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraShaker.RunAnimation(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Camera.CameraZoomer">
+            <summary>
+            Represents a zooming animation sequence for the player's 'camera'.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraZoomer.Current">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraZoomer.ZoomFrom">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.CameraZoomer.ZoomTo">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraZoomer.#ctor(System.String,System.Single,System.Single,System.Int32,System.Int32,System.Int32,System.Action,System.Int32)">
+            <summary></summary>
+            <param name="name"></param>
+            <param name="zoomFrom"></param>
+            <param name="zoomTo"></param>
+            <param name="toDuration">How long (in ticks) the camera takes to reach peak zoom.</param>
+            <param name="lingerDuration">How long (in ticks) to linger at peak zoom.</param>
+            <param name="froDuration">How long (in ticks) the camera takes to return to start zoom.</param>
+            <param name="onTraversed">Function to call on reaching peak zoom.</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraZoomer.RunAnimation(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
         </member>
         <member name="T:HamstarHelpers.Services.Cheats.CheatModeType">
             <summary></summary>
@@ -13175,7 +13189,7 @@
             <param name="playerWho"></param>
             <returns>`true` to be considered to have completely handled the incoming packet.</returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest{``0},System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequest{``0},System.Int32,System.Int32)">
             <summary>
             Sends a request to the given client(s).
             </summary>
@@ -13184,7 +13198,7 @@
             <param name="toWho"></param>
             <param name="ignoreWho"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromClient{``0},System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromClient``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequestPayloadFromClient{``0},System.Int32,System.Int32)">
             <summary>
             Sends a request to the given client(s).
             </summary>
@@ -13193,39 +13207,39 @@
             <param name="toWho"></param>
             <param name="ignoreWho"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest{``0})">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequest{``0})">
             <summary>
             Sends a request to the server.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="data"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromServer{``0})">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.RequestDataFromServer``1(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequestPayloadFromServer{``0})">
             <summary>
             Sends a request to the server.
             </summary>
             <typeparam name="T"></typeparam>
             <param name="data"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.Broadcast(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.Broadcast(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBroadcastPayload)">
             <summary>
             Sends the data to the server, and then rebroadcasts it to each (other) client.
             </summary>
             <param name="data"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToServer(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolServerPayload)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToServer(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOServerPayload)">
             <summary>
             Sends the data to the server.
             </summary>
             <param name="data"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToServer(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToServer(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBidirectionalPayload)">
             <summary>
             Sends the data to the server.
             </summary>
             <param name="data"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClients(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolClientPayload,System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClients(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOClientPayload,System.Int32,System.Int32)">
             <summary>
             Sends the data to the specified client(s).
             </summary>
@@ -13233,14 +13247,14 @@
             <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to. -1 for all players.</param>
             <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClients(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClients(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBroadcastPayload,System.Int32)">
             <summary>
             Sends the data to the specified client(s).
             </summary>
             <param name="data"></param>
             <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClients(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload,System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClients(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBidirectionalPayload,System.Int32,System.Int32)">
             <summary>
             Sends the data to the specified client(s).
             </summary>
@@ -13248,75 +13262,75 @@
             <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to. -1 for all players.</param>
             <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClient(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.NetIO.SendToClient(HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBroadcastPayload,System.Int32)">
             <summary>
             Sends the data to the specified client.
             </summary>
             <param name="data"></param>
             <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to.</param>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolPayload">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOPayload">
             @private
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolServerPayload">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOServerPayload">
             <summary>
             Represents packets meant for receipt on server.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolServerPayload.ReceiveOnServer(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOServerPayload.ReceiveOnServer(System.Int32)">
             <summary></summary>
             <param name="fromWho"></param>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolClientPayload">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOClientPayload">
             <summary>
             Represents packets meant for receipt on client.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolClientPayload.ReceiveOnClient">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOClientPayload.ReceiveOnClient">
             <summary></summary>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBidirectionalPayload">
             <summary>
             Represents packets meant for receipt on server or client.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload.ReceiveOnServer(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBidirectionalPayload.ReceiveOnServer(System.Int32)">
             <summary></summary>
             <param name="fromWho"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBidirectionalPayload.ReceiveOnClient">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBidirectionalPayload.ReceiveOnClient">
             <summary></summary>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBroadcastPayload">
             <summary>
             Represents broadcast packets (received on server and then all clients).
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload.ReceiveOnServerBeforeRebroadcast(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBroadcastPayload.ReceiveOnServerBeforeRebroadcast(System.Int32)">
             <summary></summary>
             <param name="fromWho"></param>
             <returns>`true` permits automatic rebroadcasting to clients. Otherwise, `NetIO.SendToClient(...)` must be called
             manually for each active player to complete the "broadcast".</returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolBroadcastPayload.ReceiveBroadcastOnClient">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOBroadcastPayload.ReceiveBroadcastOnClient">
             <summary></summary>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequest">
             @private
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest`1">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequest`1">
             <summary>
             Represents a request from a client to the server.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest`1.PreReplyOnClient(`0)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequest`1.PreReplyOnClient(`0)">
             <summary>
             Called before a request is replied to on the client.
             </summary>
             <param name="reply"></param>
             <returns>`true` permits the reply to proceed.</returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequest`1.PreReplyOnServer(`0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequest`1.PreReplyOnServer(`0,System.Int32)">
             <summary>
             Called before a request is replied to on the server.
             </summary>
@@ -13324,24 +13338,24 @@
             <param name="fromWho"></param>
             <returns>`true` permits the reply to proceed.</returns>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromClient`1">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequestPayloadFromClient`1">
             <summary>
             Represents a request for data from a client to the server.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromClient`1.PreReplyOnClient(`0)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequestPayloadFromClient`1.PreReplyOnClient(`0)">
             <summary>
             Called before a request is replied to.
             </summary>
             <param name="reply"></param>
             <returns>`true` permits the reply to proceed.</returns>
         </member>
-        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromServer`1">
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequestPayloadFromServer`1">
             <summary>
             Represents a request for data from the server to a client.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetProtocolRequestPayloadFromServer`1.PreReplyOnServer(`0,System.Int32)">
+        <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequestPayloadFromServer`1.PreReplyOnServer(`0,System.Int32)">
             <summary>
             Called before a request is replied to.
             </summary>
@@ -14062,6 +14076,153 @@
         </member>
         <member name="M:HamstarHelpers.Tiles.CoalTile.NumDust(System.Int32,System.Int32,System.Boolean,System.Int32@)">
             @private
+        </member>
+        <member name="M:NetSerializer.Helpers.CreateSerializeDelegate(System.Type,NetSerializer.TypeData)">
+            <summary>
+            Create delegate that calls writer either directly, or via a trampoline
+            </summary>
+        </member>
+        <member name="M:NetSerializer.Helpers.CreateDeserializeDelegate(System.Type,NetSerializer.TypeData)">
+            <summary>
+            Create delegate that calls reader either directly, or via a trampoline
+            </summary>
+        </member>
+        <member name="M:NetSerializer.ITypeSerializer.Handles(System.Type)">
+            <summary>
+            Returns if this TypeSerializer handles the given type
+            </summary>
+        </member>
+        <member name="M:NetSerializer.ITypeSerializer.GetSubtypes(System.Type)">
+            <summary>
+            Return types that are needed to serialize the given type
+            </summary>
+        </member>
+        <member name="M:NetSerializer.IStaticTypeSerializer.GetStaticWriter(System.Type)">
+            <summary>
+            Get static method used to serialize the given type
+            </summary>
+        </member>
+        <member name="M:NetSerializer.IStaticTypeSerializer.GetStaticReader(System.Type)">
+            <summary>
+            Get static method used to deserialize the given type
+            </summary>
+        </member>
+        <member name="M:NetSerializer.IDynamicTypeSerializer.GenerateWriterMethod(NetSerializer.Serializer,System.Type,System.Reflection.Emit.ILGenerator)">
+            <summary>
+            Generate code to serialize the given type
+            </summary>
+        </member>
+        <member name="M:NetSerializer.IDynamicTypeSerializer.GenerateReaderMethod(NetSerializer.Serializer,System.Type,System.Reflection.Emit.ILGenerator)">
+            <summary>
+            Generate code to deserialize the given type
+            </summary>
+        </member>
+        <member name="M:NetSerializer.Serializer.#ctor(System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Initialize NetSerializer
+            </summary>
+            <param name="rootTypes">Types to be (de)serialized</param>
+        </member>
+        <member name="M:NetSerializer.Serializer.#ctor(System.Collections.Generic.IEnumerable{System.Type},NetSerializer.Settings)">
+            <summary>
+            Initialize NetSerializer
+            </summary>
+            <param name="rootTypes">Types to be (de)serialized</param>
+            <param name="settings">Settings</param>
+        </member>
+        <member name="M:NetSerializer.Serializer.#ctor(System.Collections.Generic.Dictionary{System.Type,System.UInt32})">
+            <summary>
+            Initialize NetSerializer
+            </summary>
+            <param name="typeMap">Type -> typeID map</param>
+        </member>
+        <member name="M:NetSerializer.Serializer.#ctor(System.Collections.Generic.Dictionary{System.Type,System.UInt32},NetSerializer.Settings)">
+            <summary>
+            Initialize NetSerializer
+            </summary>
+            <param name="typeMap">Type -> typeID map</param>
+            <param name="settings">Settings</param>
+        </member>
+        <member name="M:NetSerializer.Serializer.GetTypeMap">
+            <summary>
+            Get a `Dictionary` containing a mapping of all the serializer's Types to TypeIDs
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NetSerializer.Serializer.AddTypes(System.Collections.Generic.IEnumerable{System.Type})">
+            <summary>
+            Add rootTypes and all their subtypes, and return a mapping of all added types to typeIDs
+            </summary>
+        </member>
+        <member name="M:NetSerializer.Serializer.AddTypes(System.Collections.Generic.Dictionary{System.Type,System.UInt32})">
+            <summary>
+            Add types obtained by a call to AddTypes in another Serializer instance
+            </summary>
+        </member>
+        <member name="M:NetSerializer.Serializer.GetSHA256">
+            <summary>
+            Get SHA256 of the serializer type data. The SHA includes TypeIDs and Type's full names.
+            The SHA can be used as a relatively good check to verify that two serializers
+            (e.g. client and server) have the same type data.
+            </summary>
+        </member>
+        <member name="M:NetSerializer.Serializer.Serialize(System.IO.Stream,System.Object)">
+            <summary></summary>
+            <param name="stream"></param>
+            <param name="ob"></param>
+        </member>
+        <member name="M:NetSerializer.Serializer.Deserialize(System.IO.Stream)">
+            <summary></summary>
+            <param name="stream"></param>
+            <returns></returns>
+        </member>
+        <member name="M:NetSerializer.Serializer.Deserialize(System.IO.Stream,System.Object@)">
+            <summary></summary>
+            <param name="stream"></param>
+            <param name="ob"></param>
+        </member>
+        <member name="M:NetSerializer.Serializer.SerializeDirect``1(System.IO.Stream,``0)">
+            <summary>
+            Serialize object graph without writing the type-id of the root type. This can be useful e.g. when
+            serializing a known value type, as this will avoid boxing.
+            </summary>
+        </member>
+        <member name="M:NetSerializer.Serializer.DeserializeDirect``1(System.IO.Stream,``0@)">
+            <summary>
+            Deserialize object graph serialized with SerializeDirect(). Type T must match the type used when
+            serializing.
+            </summary>
+        </member>
+        <member name="F:NetSerializer.Settings.CustomTypeSerializers">
+            <summary>
+            Array of custom TypeSerializers
+            </summary>
+        </member>
+        <member name="F:NetSerializer.Settings.SupportIDeserializationCallback">
+            <summary>
+            Support IDeserializationCallback
+            </summary>
+        </member>
+        <member name="F:NetSerializer.Settings.SupportSerializationCallbacks">
+            <summary>
+            Support OnSerializing, OnSerialized, OnDeserializing, OnDeserialized attributes
+            </summary>
+        </member>
+        <member name="T:NetSerializer.TypeDictionary">
+            <summary>
+            Threadsafe Type -> T dictionary, which supports lockless reading.
+            </summary>
+        </member>
+        <member name="T:NetSerializer.TypeIDList">
+            <summary>
+            Threadsafe TypeID -> TypeData list, which supports lockless reading.
+            </summary>
+        </member>
+        <member name="T:NetSerializer.NoOpSerializer">
+            <summary>
+            A "no-op" TypeSerializer which can be used to make the NetSerializer ignore fields of certain type.
+            For example, Delegates cannot be serializer by default, and NoOpSerializer could be used to ignore all subclasses of Delegate
+            </summary>
         </member>
     </members>
 </doc>

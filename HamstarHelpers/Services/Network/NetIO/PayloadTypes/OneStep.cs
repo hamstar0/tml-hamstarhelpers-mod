@@ -6,7 +6,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// Represents packets meant for receipt on server.
 	/// </summary>
 	[Serializable]
-	public abstract class NetProtocolServerPayload : NetProtocolPayload {
+	public abstract class NetIOServerPayload : NetIOPayload {
 		/// <summary></summary>
 		/// <param name="fromWho"></param>
 		public abstract void ReceiveOnServer( int fromWho );
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// Represents packets meant for receipt on client.
 	/// </summary>
 	[Serializable]
-	public abstract class NetProtocolClientPayload : NetProtocolPayload {
+	public abstract class NetIOClientPayload : NetIOPayload {
 		/// <summary></summary>
 		public abstract void ReceiveOnClient();
 	}
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	/// Represents packets meant for receipt on server or client.
 	/// </summary>
 	[Serializable]
-	public abstract class NetProtocolBidirectionalPayload : NetProtocolPayload {
+	public abstract class NetIOBidirectionalPayload : NetIOPayload {
 		/// <summary></summary>
 		/// <param name="fromWho"></param>
 		public abstract void ReceiveOnServer( int fromWho );

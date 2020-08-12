@@ -84,16 +84,46 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="generics">Generic type parameters (if applicable).</param>
 		/// <param name="returnVal">Return value of method.</param>
 		/// <returns>`true` if method found and invoked successfully.</returns>
-		public static bool RunMethod<T>( Type classType, Object instance, string methodName, object[] args, Type[] generics, out T returnVal ) {
+		public static bool RunMethod<T>(
+					Type classType,
+					Object instance,
+					string methodName,
+					object[] args,
+					Type[] generics,
+					out T returnVal ) {
 			returnVal = default( T );
 
 			Type[] paramTypes = args?.SafeSelect( o => o.GetType() ).ToArray()
 				?? new Type[] { };
 
-			MethodInfo method = classType.GetMethod( methodName, ReflectionHelpers.MostAccess, null, paramTypes, null );
+			/*for( int i=0; i<paramTypes.Length; i++ ) {
+				Type p = paramTypes[i];
+				if( p != typeof(ReflectionParameter) ) {
+					continue;
+				}
+
+				var refP = args[i] as ReflectionParameter;
+				//Type.MakeGenericSignatureType
+			}*/
+
+			MethodInfo method = classType.GetMethod(
+				name: methodName,
+				bindingAttr: ReflectionHelpers.MostAccess,
+				binder: null,
+				types: paramTypes,
+				modifiers: null
+			);
+
 			if( method == null ) {
 				if( classType.BaseType != null && classType.BaseType != typeof(object) ) {
-					return ReflectionHelpers.RunMethod<T>( classType.BaseType, instance, methodName, args, generics, out returnVal );
+					return ReflectionHelpers.RunMethod<T>(
+						classType: classType.BaseType,
+						instance: instance,
+						methodName: methodName,
+						args: args,
+						generics: generics,
+						returnVal: out returnVal
+					);
 				}
 				return false;
 			}

@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.Protocols.Packet.Interfaces;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Network.NetIO;
+using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
-	/// @private
-	class PlayerDataProtocol : PacketProtocolBroadcast {
-		public static void BroadcastToAll( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+	[Serializable]
+	class PlayerDataProtocol : NetIOBroadcastPayload {
+		public static void BroadcastToAll(
+					HashSet<int> permaBuffsById,
+					HashSet<int> hasBuffIds,
+					Dictionary<int, int> equipSlotsToItemTypes ) {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not client" ); }
 
 			var protocol = new PlayerDataProtocol( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
 
-			protocol.SendToServer( true );
+			NetIO.Broadcast( protocol );
 		}
 
 
@@ -23,17 +27,20 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public int PlayerWho = 255;
-		public ISet<int> PermaBuffsById = new HashSet<int>();
-		public ISet<int> HasBuffIds = new HashSet<int>();
-		public IDictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
+		public HashSet<int> PermaBuffsById = new HashSet<int>();
+		public HashSet<int> HasBuffIds = new HashSet<int>();
+		public Dictionary<int, int> EquipSlotsToItemTypes = new Dictionary<int, int>();
 
 
 
 		////////////////
 
-		private PlayerDataProtocol() { }
+		public PlayerDataProtocol() { }
 
-		private PlayerDataProtocol( ISet<int> permaBuffsById, ISet<int> hasBuffIds, IDictionary<int, int> equipSlotsToItemTypes ) {
+		private PlayerDataProtocol(
+					HashSet<int> permaBuffsById,
+					HashSet<int> hasBuffIds,
+					Dictionary<int, int> equipSlotsToItemTypes ) {
 			this.PlayerWho = Main.myPlayer;
 			this.PermaBuffsById = permaBuffsById;
 			this.HasBuffIds = hasBuffIds;
@@ -43,14 +50,15 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		protected override void ReceiveOnServer( int fromWho ) {
+		public override bool ReceiveOnServerBeforeRebroadcast( int fromWho ) {
 			Player player = Main.player[fromWho];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
 			myplayer.Logic.NetReceiveDataOnServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
+			return true;
 		}
 
-		protected override void ReceiveOnClient() {
+		public override void ReceiveBroadcastOnClient() {
 			if( this.PlayerWho < 0 || this.PlayerWho >= Main.player.Length ) {
 				//throw new HamstarException( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Invalid player index " + this.PlayerWho );
 				throw new ModHelpersException( "Invalid player index " + this.PlayerWho );
