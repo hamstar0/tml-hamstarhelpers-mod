@@ -50,11 +50,13 @@ namespace HamstarHelpers.Services.Camera {
 		
 		/// <summary></summary>
 		/// <param name="percent"></param>
-		protected override void RunAnimation( float? percent ) {
-			if( !percent.HasValue ) {
-				percent = 0f;
-			}
-			Camera.ApplyShake( this.ShakePeakMagnitude * percent.Value );
+		protected override void ApplyAnimation( float percent ) {
+			Camera.ApplyShake( this.ShakePeakMagnitude * percent );
+		}
+		
+		/// <summary></summary>
+		protected override void EndAnimation() {
+			Camera.ApplyShake( 0f );
 		}
 	}
 }

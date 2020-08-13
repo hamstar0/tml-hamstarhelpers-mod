@@ -11627,6 +11627,9 @@
             <summary>
             Represents a sequence of controlled behavior for the player's 'camera'.
             </summary>
+            <summary>
+            Represents a sequence of controlled behavior for the player's 'camera'.
+            </summary>
         </member>
         <member name="F:HamstarHelpers.Services.Camera.CameraAnimator.OnTraversed">
             <summary>Called while camera is at destination.</summary>
@@ -11676,12 +11679,18 @@
             <summary></summary>
             <param name="pause"></param>
         </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Stop">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Reset">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.RunAnimation(System.Single)">
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.ApplyAnimation(System.Single)">
             <summary></summary>
             <param name="percent"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.EndAnimation">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Camera.CameraMover">
             <summary>
@@ -11727,9 +11736,12 @@
             <param name="onTraversed">Function to call on reaching destination (B).</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
         </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraMover.RunAnimation(System.Single)">
+        <member name="M:HamstarHelpers.Services.Camera.CameraMover.ApplyAnimation(System.Single)">
             <summary></summary>
             <param name="percent"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraMover.EndAnimation">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Camera.CameraShaker">
             <summary>
@@ -11752,9 +11764,12 @@
             <param name="onTraversed">Function to call on reaching max magnitude.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
         </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraShaker.RunAnimation(System.Single)">
+        <member name="M:HamstarHelpers.Services.Camera.CameraShaker.ApplyAnimation(System.Single)">
             <summary></summary>
             <param name="percent"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraShaker.EndAnimation">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Camera.CameraZoomer">
             <summary>
@@ -11781,9 +11796,12 @@
             <param name="onTraversed">Function to call on reaching peak zoom.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
         </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraZoomer.RunAnimation(System.Single)">
+        <member name="M:HamstarHelpers.Services.Camera.CameraZoomer.ApplyAnimation(System.Single)">
             <summary></summary>
             <param name="percent"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.CameraZoomer.EndAnimation">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Cheats.CheatModeType">
             <summary></summary>

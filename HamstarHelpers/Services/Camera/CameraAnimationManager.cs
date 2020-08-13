@@ -32,13 +32,13 @@ namespace HamstarHelpers.Services.Camera {
 
 		internal void ApplyAnimations() {
 			if( this.CurrentMover?.IsAnimating() == true ) {
-				this.CurrentMover.Animate();
+				this.CurrentMover.Update();
 			}
 			if( this.CurrentZoomer?.IsAnimating() == true ) {
-				this.CurrentZoomer.Animate();
+				this.CurrentZoomer.Update();
 			}
 			if( this.CurrentShaker?.IsAnimating() == true ) {
-				this.CurrentShaker.Animate();
+				this.CurrentShaker.Update();
 			}
 		}
 	}

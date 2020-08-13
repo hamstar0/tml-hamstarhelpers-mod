@@ -6,7 +6,7 @@ namespace HamstarHelpers.Services.Camera {
 	/// <summary>
 	/// Represents a sequence of controlled behavior for the player's 'camera'.
 	/// </summary>
-	public abstract class CameraAnimator {
+	public abstract partial class CameraAnimator {
 		/// <summary>Called while camera is at destination.</summary>
 		protected Action OnTraversed;
 
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Services.Camera {
 		/// <summary></summary>
 		public void Stop() {
 			this.TicksElapsed = this.TotalTickDuration;
-			this.RunAnimation( null );
+			this.EndAnimation();
 		}
 
 		/// <summary></summary>
@@ -116,48 +116,11 @@ namespace HamstarHelpers.Services.Camera {
 
 		////////////////
 
-		internal bool Animate() {
-			if( !this.IsPaused ) {
-				if( this.TicksElapsed >= this.TotalTickDuration ) {
-					this.RunAnimation( null );
-					return false;
-				}
-			}
-
-			float movePercent;
-			if( this.ToTickDuration > 0 ) {
-				movePercent = (float)this.TicksElapsed / (float)this.ToTickDuration;
-			} else {
-				movePercent = 1f;
-			}
-
-			if( this.TicksElapsed > this.ToTickDuration ) {
-				int fro = this.ToTickDuration + this.LingerTicksDuration;
-
-				if( this.TicksElapsed < fro ) {
-					movePercent = 1f;
-
-					this.OnTraversed?.Invoke();
-				} else {
-					if( this.FroTickDuration > 0 ) {
-						movePercent = ( this.TicksElapsed - fro ) / this.FroTickDuration;
-						movePercent = movePercent < 0f ? 0f : 1f - movePercent;
-					} else {
-						movePercent = 0f;
-					}
-				}
-			}
-
-			this.RunAnimation( movePercent );
-			this.TicksElapsed++;
-
-			return true;
-		}
-
-		////
-
 		/// <summary></summary>
 		/// <param name="percent"></param>
-		protected abstract void RunAnimation( float? percent );
+		protected abstract void ApplyAnimation( float percent );
+
+		/// <summary></summary>
+		protected abstract void EndAnimation();
 	}
 }
