@@ -101,18 +101,18 @@ namespace HamstarHelpers.Services.Camera {
 
 		/// <summary></summary>
 		/// <param name="percent"></param>
-		protected override void RunAnimation( float percent ) {
+		protected override void RunAnimation( float? percent ) {
 			Vector2 position;
 
-			if( percent == -1 ) {
-				position = new Vector2( -1 );
+			if( !percent.HasValue ) {
+				position = new Vector2( -1, -1 );
 			} else {
 				position = CameraMover.GetMovePosition(
 					this.MoveXFrom,
 					this.MoveYFrom,
 					this.MoveXTo,
 					this.MoveYTo,
-					Math.Min( percent, 1f )
+					Math.Min( percent.Value, 1f )
 				);
 			}
 

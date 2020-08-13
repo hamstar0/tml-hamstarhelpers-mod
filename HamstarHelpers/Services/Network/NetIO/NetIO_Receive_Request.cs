@@ -18,7 +18,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		private static void ReceiveRequest( NetIORequest data, int playerWho ) {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 				LogHelpers.Log( "<" + data.GetType().Name + " "
-					+ (Main.netMode == NetmodeID.MultiplayerClient ? "from client" : "from server")
+					+ (Main.netMode == NetmodeID.MultiplayerClient ? "on client" : "on server" )
 				);
 			}
 

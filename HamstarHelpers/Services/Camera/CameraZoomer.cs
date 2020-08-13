@@ -57,9 +57,13 @@ namespace HamstarHelpers.Services.Camera {
 
 		/// <summary></summary>
 		/// <param name="percent"></param>
-		protected override void RunAnimation( float percent ) {
-			float zoom = MathHelper.Lerp( this.ZoomFrom, this.ZoomTo, percent );
-			Camera.ApplyZoom( zoom );
+		protected override void RunAnimation( float? percent ) {
+			if( !percent.HasValue ) {
+				Camera.ApplyZoom( -1 );
+			} else {
+				float zoom = MathHelper.Lerp( this.ZoomFrom, this.ZoomTo, percent.Value );
+				Camera.ApplyZoom( zoom );
+			}
 		}
 	}
 }

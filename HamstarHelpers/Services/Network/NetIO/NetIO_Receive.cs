@@ -38,7 +38,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 				LogHelpers.Log( "<" + data.GetType().Name + " "
-					+ (Main.netMode == NetmodeID.MultiplayerClient ? "from client" : "from server")
+					+ (Main.netMode == NetmodeID.MultiplayerClient ? "on client" : "on server" )
 				);
 			}
 
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 				LogHelpers.Log( "<" + data.GetType().Name + " "
-					+ (Main.netMode == NetmodeID.MultiplayerClient ? "from client" : "from server")
+					+ (Main.netMode == NetmodeID.MultiplayerClient ? "on client" : "on server" )
 				);
 			}
 
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		private static void Receive( NetIOBidirectionalPayload data, int playerWho ) {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 				LogHelpers.Log( "<" + data.GetType().Name + " "
-					+ (Main.netMode == NetmodeID.MultiplayerClient ? "from client" : "from server")
+					+ (Main.netMode == NetmodeID.MultiplayerClient ? "on client" : "on server" )
 				);
 			}
 

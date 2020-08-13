@@ -11668,8 +11668,8 @@
             <summary></summary>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Skip(System.Int32)">
-            <summary>Skips the given number of ticks into the animation. Accepts negative numbers.</summary>
+        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Seek(System.Int32)">
+            <summary>Seeks to the given number of ticks into the animation. Accepts negative numbers.</summary>
             <param name="ticks"></param>
         </member>
         <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Pause(System.Boolean)">
@@ -11677,9 +11677,6 @@
             <param name="pause"></param>
         </member>
         <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Reset">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Stop">
             <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.RunAnimation(System.Single)">

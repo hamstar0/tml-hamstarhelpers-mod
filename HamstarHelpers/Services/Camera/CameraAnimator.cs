@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using Terraria;
 
 
@@ -82,9 +81,9 @@ namespace HamstarHelpers.Services.Camera {
 
 		////////////////
 
-		/// <summary>Skips the given number of ticks into the animation. Accepts negative numbers.</summary>
+		/// <summary>Seeks to the given number of ticks into the animation. Accepts negative numbers.</summary>
 		/// <param name="ticks"></param>
-		public void Skip( int ticks ) {
+		public void Seek( int ticks ) {
 			int total = this.TotalTickDuration;
 
 			this.TicksElapsed += ticks;
@@ -104,13 +103,14 @@ namespace HamstarHelpers.Services.Camera {
 		}
 
 		/// <summary></summary>
-		public void Reset() {
-			this.TicksElapsed = 0;
+		public void Stop() {
+			this.TicksElapsed = this.TotalTickDuration;
+			this.RunAnimation( null );
 		}
 
 		/// <summary></summary>
-		public void Stop() {
-			this.TicksElapsed = this.TotalTickDuration;
+		public void Reset() {
+			this.TicksElapsed = 0;
 		}
 
 
@@ -118,27 +118,38 @@ namespace HamstarHelpers.Services.Camera {
 
 		internal bool Animate() {
 			if( !this.IsPaused ) {
-				if( this.TicksElapsed++ >= this.TotalTickDuration ) {
-					this.Stop();
-					this.RunAnimation( -1 );
+				if( this.TicksElapsed >= this.TotalTickDuration ) {
+					this.RunAnimation( null );
 					return false;
 				}
 			}
 
-			float movePercent = (float)this.TicksElapsed / (float)this.ToTickDuration;
+			float movePercent;
+			if( this.ToTickDuration > 0 ) {
+				movePercent = (float)this.TicksElapsed / (float)this.ToTickDuration;
+			} else {
+				movePercent = 1f;
+			}
+
 			if( this.TicksElapsed > this.ToTickDuration ) {
 				int fro = this.ToTickDuration + this.LingerTicksDuration;
 
 				if( this.TicksElapsed < fro ) {
 					movePercent = 1f;
+
 					this.OnTraversed?.Invoke();
 				} else {
-					movePercent = (this.TicksElapsed - fro) / this.FroTickDuration;
-					movePercent = movePercent < 0f ? 0f : 1f - movePercent;
+					if( this.FroTickDuration > 0 ) {
+						movePercent = ( this.TicksElapsed - fro ) / this.FroTickDuration;
+						movePercent = movePercent < 0f ? 0f : 1f - movePercent;
+					} else {
+						movePercent = 0f;
+					}
 				}
 			}
 
 			this.RunAnimation( movePercent );
+			this.TicksElapsed++;
 
 			return true;
 		}
@@ -147,6 +158,6 @@ namespace HamstarHelpers.Services.Camera {
 
 		/// <summary></summary>
 		/// <param name="percent"></param>
-		protected abstract void RunAnimation( float percent );
+		protected abstract void RunAnimation( float? percent );
 	}
 }
