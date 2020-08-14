@@ -37,6 +37,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="lingerDuration">How long (in ticks) to linger at peak zoom.</param>
 		/// <param name="froDuration">How long (in ticks) the camera takes to return to start zoom.</param>
 		/// <param name="onTraversed">Function to call on reaching peak zoom.</param>
+		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
 		public CameraZoomer(
 					string name,
@@ -45,9 +46,10 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int toDuration,
 					int lingerDuration,
 					int froDuration,
-					Action onTraversed,
+					Action onTraversed = null,
+					Action onStop = null,
 					int skippedTicks = 0 )
-					: base( name, toDuration, lingerDuration, froDuration, onTraversed, skippedTicks ) {
+					: base( name, toDuration, lingerDuration, froDuration, onTraversed, onStop, skippedTicks ) {
 			this.ZoomFrom = zoomFrom;
 			this.ZoomTo = zoomTo;
 			this.OnTraversed = onTraversed;

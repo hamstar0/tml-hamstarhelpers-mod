@@ -21,7 +21,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <summary></summary>
 		public float ShakePeakMagnitude { get; private set; } = 0f;
 
-		
+
 
 		////////////////
 
@@ -32,6 +32,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="lingerDuration">How long (in ticks) to linger at max magnitude.</param>
 		/// <param name="froDuration">How long (in ticks) the camera takes to return to 0 magnitude.</param>
 		/// <param name="onTraversed">Function to call on reaching max magnitude.</param>
+		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
 		public CameraShaker(
 					string name,
@@ -39,9 +40,10 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int toDuration,
 					int lingerDuration,
 					int froDuration,
-					Action onTraversed,
+					Action onTraversed = null,
+					Action onStop = null,
 					int skippedTicks = 0 )
-					: base( name, toDuration, lingerDuration, froDuration, onTraversed, skippedTicks ) {
+					: base( name, toDuration, lingerDuration, froDuration, onTraversed, onStop, skippedTicks ) {
 			this.ShakePeakMagnitude = peakMagnitude;
 			this.OnTraversed = onTraversed;
 		}

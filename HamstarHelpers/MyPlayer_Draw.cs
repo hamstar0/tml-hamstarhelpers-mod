@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.CameraAnimation;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Camera;
 using HamstarHelpers.Services.Cheats;

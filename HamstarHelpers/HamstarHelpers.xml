@@ -26,6 +26,193 @@
         <member name="M:HamstarHelpers.Buffs.DegreelessnessBuff.Update(Terraria.NPC,System.Int32@)">
             @private
         </member>
+        <member name="T:HamstarHelpers.Classes.CameraAnimation.CameraAnimator">
+            <summary>
+            Represents a sequence of controlled behavior for the player's 'camera'.
+            </summary>
+            <summary>
+            Represents a sequence of controlled behavior for the player's 'camera'.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.OnTraversed">
+            <summary>Called while camera is at destination.</summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.OnStop">
+            <summary>Called while camera has stopped (not paused); either manually or by completion.</summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.Name">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.IsPaused">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.ToTickDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.LingerTicksDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.FroTickDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.TotalTickDuration">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.TicksElapsed">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.TicksLingerElapsed">
+            <summary>Note: Negative values indicate moving still in progress.</summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Action,System.Action,System.Int32)">
+            <summary></summary>
+            <param name="name"></param>
+            <param name="toDuration">How long (in ticks) the camera state takes to go from A to B.</param>
+            <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
+            <param name="froDuration">How long (in ticks) the camera state takes to go back from B to A.</param>
+            <param name="onTraversed">Function to call on reaching destination (B).</param>
+            <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.IsAnimating">
+            <summary></summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.Seek(System.Int32)">
+            <summary>Seeks to the given number of ticks into the animation. Accepts negative numbers.</summary>
+            <param name="ticks"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.Pause(System.Boolean)">
+            <summary></summary>
+            <param name="pause"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.Stop">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.Reset">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.ApplyAnimation(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.EndAnimation">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Classes.CameraAnimation.CameraMover">
+            <summary>
+            Represents a sequence of controlled movement for the player's 'camera'.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.Current">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Gets an interpolated position between 2 points, accounting for points that refer to screen position (-1 values).
+            </summary>
+            <param name="fromX"></param>
+            <param name="fromY"></param>
+            <param name="toX"></param>
+            <param name="toY"></param>
+            <param name="percent"></param>
+            <returns></returns>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.MoveXFrom">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.MoveYFrom">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.MoveXTo">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.MoveYTo">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Action,System.Action,System.Int32)">
+            <summary></summary>
+            <param name="name"></param>
+            <param name="moveXFrom"></param>
+            <param name="moveYFrom"></param>
+            <param name="moveXTo"></param>
+            <param name="moveYTo"></param>
+            <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
+            <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
+            <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
+            <param name="onTraversed">Function to call on reaching destination (B).</param>
+            <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.ApplyAnimation(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.EndAnimation">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Classes.CameraAnimation.CameraShaker">
+            <summary>
+            Represents a shaking animation sequence for the player's 'camera'.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraShaker.Current">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraShaker.ShakePeakMagnitude">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraShaker.#ctor(System.String,System.Single,System.Int32,System.Int32,System.Int32,System.Action,System.Action,System.Int32)">
+            <summary></summary>
+            <param name="name"></param>
+            <param name="peakMagnitude"></param>
+            <param name="toDuration">How long (in ticks) the camera takes to reach max shake magnitude.</param>
+            <param name="lingerDuration">How long (in ticks) to linger at max magnitude.</param>
+            <param name="froDuration">How long (in ticks) the camera takes to return to 0 magnitude.</param>
+            <param name="onTraversed">Function to call on reaching max magnitude.</param>
+            <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraShaker.ApplyAnimation(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraShaker.EndAnimation">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Classes.CameraAnimation.CameraZoomer">
+            <summary>
+            Represents a zooming animation sequence for the player's 'camera'.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.Current">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.ZoomFrom">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.ZoomTo">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.#ctor(System.String,System.Single,System.Single,System.Int32,System.Int32,System.Int32,System.Action,System.Action,System.Int32)">
+            <summary></summary>
+            <param name="name"></param>
+            <param name="zoomFrom"></param>
+            <param name="zoomTo"></param>
+            <param name="toDuration">How long (in ticks) the camera takes to reach peak zoom.</param>
+            <param name="lingerDuration">How long (in ticks) to linger at peak zoom.</param>
+            <param name="froDuration">How long (in ticks) the camera takes to return to start zoom.</param>
+            <param name="onTraversed">Function to call on reaching peak zoom.</param>
+            <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
+            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.ApplyAnimation(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.EndAnimation">
+            <summary></summary>
+        </member>
         <member name="T:HamstarHelpers.Classes.Context.Context">
             <summary>
             Defines a general-purpose context of the game.
@@ -11646,186 +11833,6 @@
         </member>
         <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyShake(System.Single,System.Int32,System.Int32)">
             @private
-        </member>
-        <member name="T:HamstarHelpers.Services.Camera.CameraAnimator">
-            <summary>
-            Represents a sequence of controlled behavior for the player's 'camera'.
-            </summary>
-            <summary>
-            Represents a sequence of controlled behavior for the player's 'camera'.
-            </summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.Camera.CameraAnimator.OnTraversed">
-            <summary>Called while camera is at destination.</summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.Name">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.IsPaused">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.ToTickDuration">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.LingerTicksDuration">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.FroTickDuration">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.TotalTickDuration">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.TicksElapsed">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraAnimator.TicksLingerElapsed">
-            <summary>Note: Negative values indicate moving still in progress.</summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Action,System.Int32)">
-            <summary></summary>
-            <param name="name"></param>
-            <param name="toDuration">How long (in ticks) the camera state takes to go from A to B.</param>
-            <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
-            <param name="froDuration">How long (in ticks) the camera state takes to go back from B to A.</param>
-            <param name="onTraversed">Function to call on reaching destination (B).</param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.IsAnimating">
-            <summary></summary>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Seek(System.Int32)">
-            <summary>Seeks to the given number of ticks into the animation. Accepts negative numbers.</summary>
-            <param name="ticks"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Pause(System.Boolean)">
-            <summary></summary>
-            <param name="pause"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Stop">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.Reset">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.ApplyAnimation(System.Single)">
-            <summary></summary>
-            <param name="percent"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraAnimator.EndAnimation">
-            <summary></summary>
-        </member>
-        <member name="T:HamstarHelpers.Services.Camera.CameraMover">
-            <summary>
-            Represents a sequence of controlled movement for the player's 'camera'.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraMover.Current">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraMover.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single)">
-            <summary>
-            Gets an interpolated position between 2 points, accounting for points that refer to screen position (-1 values).
-            </summary>
-            <param name="fromX"></param>
-            <param name="fromY"></param>
-            <param name="toX"></param>
-            <param name="toY"></param>
-            <param name="percent"></param>
-            <returns></returns>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraMover.MoveXFrom">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraMover.MoveYFrom">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraMover.MoveXTo">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraMover.MoveYTo">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Action,System.Int32)">
-            <summary></summary>
-            <param name="name"></param>
-            <param name="moveXFrom"></param>
-            <param name="moveYFrom"></param>
-            <param name="moveXTo"></param>
-            <param name="moveYTo"></param>
-            <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
-            <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
-            <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
-            <param name="onTraversed">Function to call on reaching destination (B).</param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraMover.ApplyAnimation(System.Single)">
-            <summary></summary>
-            <param name="percent"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraMover.EndAnimation">
-            <summary></summary>
-        </member>
-        <member name="T:HamstarHelpers.Services.Camera.CameraShaker">
-            <summary>
-            Represents a shaking animation sequence for the player's 'camera'.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraShaker.Current">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraShaker.ShakePeakMagnitude">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraShaker.#ctor(System.String,System.Single,System.Int32,System.Int32,System.Int32,System.Action,System.Int32)">
-            <summary></summary>
-            <param name="name"></param>
-            <param name="peakMagnitude"></param>
-            <param name="toDuration">How long (in ticks) the camera takes to reach max shake magnitude.</param>
-            <param name="lingerDuration">How long (in ticks) to linger at max magnitude.</param>
-            <param name="froDuration">How long (in ticks) the camera takes to return to 0 magnitude.</param>
-            <param name="onTraversed">Function to call on reaching max magnitude.</param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraShaker.ApplyAnimation(System.Single)">
-            <summary></summary>
-            <param name="percent"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraShaker.EndAnimation">
-            <summary></summary>
-        </member>
-        <member name="T:HamstarHelpers.Services.Camera.CameraZoomer">
-            <summary>
-            Represents a zooming animation sequence for the player's 'camera'.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraZoomer.Current">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraZoomer.ZoomFrom">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Camera.CameraZoomer.ZoomTo">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraZoomer.#ctor(System.String,System.Single,System.Single,System.Int32,System.Int32,System.Int32,System.Action,System.Int32)">
-            <summary></summary>
-            <param name="name"></param>
-            <param name="zoomFrom"></param>
-            <param name="zoomTo"></param>
-            <param name="toDuration">How long (in ticks) the camera takes to reach peak zoom.</param>
-            <param name="lingerDuration">How long (in ticks) to linger at peak zoom.</param>
-            <param name="froDuration">How long (in ticks) the camera takes to return to start zoom.</param>
-            <param name="onTraversed">Function to call on reaching peak zoom.</param>
-            <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraZoomer.ApplyAnimation(System.Single)">
-            <summary></summary>
-            <param name="percent"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Camera.CameraZoomer.EndAnimation">
-            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Cheats.CheatModeType">
             <summary></summary>

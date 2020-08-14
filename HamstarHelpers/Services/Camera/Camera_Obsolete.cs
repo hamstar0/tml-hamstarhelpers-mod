@@ -1,4 +1,5 @@
 ﻿using System;
+using HamstarHelpers.Classes.CameraAnimation;
 
 
 namespace HamstarHelpers.Services.Camera {
@@ -15,7 +16,16 @@ namespace HamstarHelpers.Services.Camera {
 		/// @private
 		[Obsolete( "use AnimatedCamera.BeginShakeSequence", true )]
 		public static void ApplyShake( float magnitude, int tickDuration, int skippedTicks = 0 ) {
-			CameraShaker.Current = new CameraShaker( "ObsoleteDefault", magnitude, tickDuration, 0, 0, null, skippedTicks );
+			CameraShaker.Current = new CameraShaker(
+				name: "ObsoleteDefault",
+				peakMagnitude: magnitude,
+				toDuration: tickDuration,
+				lingerDuration: 0,
+				froDuration: 0,
+				onTraversed: null,
+				onStop: null,
+				skippedTicks: skippedTicks
+			);
 		}
 	}
 }

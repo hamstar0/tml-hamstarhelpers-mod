@@ -78,6 +78,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
 		/// <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
 		/// <param name="onTraversed">Function to call on reaching destination (B).</param>
+		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
 		public CameraMover(
 					string name,
@@ -89,8 +90,9 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int lingerDuration,
 					int froDuration,
 					Action onTraversed = null,
+					Action onStop = null,
 					int skippedTicks = 0 )
-					: base( name, toDuration, lingerDuration, froDuration, onTraversed, skippedTicks ) {
+					: base( name, toDuration, lingerDuration, froDuration, onTraversed, onStop, skippedTicks ) {
 			this.MoveXFrom = moveXFrom;
 			this.MoveYFrom = moveYFrom;
 			this.MoveXTo = moveXTo;

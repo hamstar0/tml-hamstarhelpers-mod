@@ -1,4 +1,5 @@
 ﻿using System;
+using HamstarHelpers.Classes.CameraAnimation;
 using HamstarHelpers.Services.Camera;
 
 
