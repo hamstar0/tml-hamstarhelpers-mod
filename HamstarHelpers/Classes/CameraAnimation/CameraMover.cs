@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using HamstarHelpers.Services.Camera;
 
 
-namespace HamstarHelpers.Services.Camera {
+namespace HamstarHelpers.Classes.CameraAnimation {
 	/// <summary>
 	/// Represents a sequence of controlled movement for the player's 'camera'.
 	/// </summary>

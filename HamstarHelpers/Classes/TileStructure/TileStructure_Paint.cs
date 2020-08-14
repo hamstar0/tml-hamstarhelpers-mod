@@ -13,6 +13,7 @@ namespace HamstarHelpers.Classes.TileStructure {
 		/// <param name="leftTileX"></param>
 		/// <param name="topTileY"></param>
 		/// <param name="paintAir">Include 'air' tiles when painting to world.</param>
+		/// <param name="respectLiquids">Preserves any liquids.</param>
 		/// <param name="flipHorizontally"></param>
 		/// <param name="flipVertically"></param>
 		/// <returns>Count of painted tiles.</returns>
@@ -20,6 +21,7 @@ namespace HamstarHelpers.Classes.TileStructure {
 					int leftTileX,
 					int topTileY,
 					bool paintAir = false,
+					bool respectLiquids = false,
 					bool flipHorizontally = false,
 					bool flipVertically = false ) {
 			int width = this.Bounds.Width;
@@ -47,9 +49,23 @@ namespace HamstarHelpers.Classes.TileStructure {
 					int idx = ( x * height ) + y;
 					SerializeableTile rawTile = this.Structure[idx];
 
-					if( this.PaintTileToWorld( i, j, rawTile, paintAir, flipHorizontally, flipVertically ) ) {
+					if( this.PaintTileToWorld( i, j, rawTile, paintAir, respectLiquids, flipHorizontally, flipVertically ) ) {
 						count++;
 					}
+				}
+			}
+
+			for( int x = 0; x < width; x++ ) {
+				i = x + leftTileX;
+				if( i < 0 ) { continue; }
+				if( i >= Main.maxTilesX ) { break; }
+
+				for( int y = height - 1; y >= 0; y++ ) {
+					j = y + topTileY;
+					if( y < 0 ) { continue; }
+					if( y >= Main.maxTilesY ) { break; }
+
+					WorldGen.SquareTileFrame( i, j );
 				}
 			}
 
@@ -61,10 +77,22 @@ namespace HamstarHelpers.Classes.TileStructure {
 					int j,
 					SerializeableTile rawTile,
 					bool paintAir = false,
+					bool respectLiquids = false,
 					bool flipHorizontally = false,
 					bool flipVertically = false ) {
+			byte liquid = 0;
+			bool isHoney = false, isLava = false;
+			if( respectLiquids ) {
+				liquid = Main.tile[i, j].liquid;
+				isHoney = Main.tile[i, j].honey();
+				isLava = Main.tile[i, j].lava();
+			}
+
 			if( rawTile != null ) {
 				Main.tile[i, j] = rawTile.ToTile();
+				Main.tile[i, j].liquid = liquid;
+				Main.tile[i, j].honey( isHoney );
+				Main.tile[i, j].lava( isLava );
 
 				if( flipHorizontally ) {
 					TileStateHelpers.FlipSlopeHorizontally( Main.tile[i, j] );
@@ -72,14 +100,15 @@ namespace HamstarHelpers.Classes.TileStructure {
 				if( flipVertically ) {
 					TileStateHelpers.FlipSlopeVertically( Main.tile[i, j] );
 				}
-				WorldGen.SquareTileFrame( i, j );
 
 				return true;
 			} else if( paintAir ) {
 				Main.tile[i, j].active( false );
 				Main.tile[i, j].wall = 0;
 				Main.tile[i, j].type = 0;
-				Main.tile[i, j].liquid = 0;
+				Main.tile[i, j].liquid = liquid;
+				Main.tile[i, j].honey( isHoney );
+				Main.tile[i, j].lava( isLava );
 				//Main.tile[i, j] = new Tile();
 
 				return true;

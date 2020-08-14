@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
 
 
-namespace HamstarHelpers.Services.Camera {
+namespace HamstarHelpers.Classes.CameraAnimation {
 	class CameraAnimationManager : ILoadable {
 		public static CameraAnimationManager Instance => ModContent.GetInstance<CameraAnimationManager>();
 

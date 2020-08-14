@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Services.Camera {
+namespace HamstarHelpers.Classes.CameraAnimation {
 	/// <summary>
 	/// Represents a sequence of controlled behavior for the player's 'camera'.
 	/// </summary>
