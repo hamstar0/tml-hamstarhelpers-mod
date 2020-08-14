@@ -1765,6 +1765,9 @@
             <summary>
             Represents an arbitrary arrangement of Tile data. No bounding size or contiguity expected.
             </summary>
+            <summary>
+            Represents an arbitrary arrangement of Tile data. No bounding size or contiguity expected.
+            </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.TileStructure.TileStructure.Bounds">
             <summary></summary>
@@ -1788,11 +1791,12 @@
             <param name="bottom"></param>
             <param name="pattern"></param>
         </member>
-        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.PaintToWorld(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:HamstarHelpers.Classes.TileStructure.TileStructure.PaintToWorld(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary></summary>
             <param name="leftTileX"></param>
             <param name="topTileY"></param>
             <param name="paintAir">Include 'air' tiles when painting to world.</param>
+            <param name="respectLiquids">Preserves any liquids.</param>
             <param name="flipHorizontally"></param>
             <param name="flipVertically"></param>
             <returns>Count of painted tiles.</returns>
