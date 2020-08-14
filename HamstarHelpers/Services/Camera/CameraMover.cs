@@ -115,7 +115,7 @@ namespace HamstarHelpers.Services.Camera {
 
 		/// <summary></summary>
 		protected override void EndAnimation() {
-			Camera.ApplyPosition( new Vector2(-1, -1) );
+			Camera.ResetPosition();
 		}
 	}
 }

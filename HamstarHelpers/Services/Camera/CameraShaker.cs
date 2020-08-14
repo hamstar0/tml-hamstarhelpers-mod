@@ -56,7 +56,7 @@ namespace HamstarHelpers.Services.Camera {
 		
 		/// <summary></summary>
 		protected override void EndAnimation() {
-			Camera.ApplyShake( 0f );
+			Camera.ResetShake();
 		}
 	}
 }

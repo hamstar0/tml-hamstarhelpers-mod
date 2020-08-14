@@ -41,20 +41,57 @@ namespace HamstarHelpers.Services.Camera {
 
 
 		/// <summary>
-		/// Applies zoom to the camera. Enter -1 to revert.
+		/// Applies zoom to the camera.
 		/// </summary>
 		/// <param name="scale"></param>
 		public static void ApplyZoom( float scale ) {
 			var inst = Camera.Instance;
-			if( scale < 0f ) {
-				inst.ZoomScale = inst.OldZoomScale;
-				inst.OldZoomScale = -1;
-			} else {
-				if( inst.OldZoomScale == -1f ) {
-					inst.OldZoomScale = Main.GameZoomTarget;
-				}
-				inst.ZoomScale = scale;
+
+			if( inst.OldZoomScale == -1f ) {
+				inst.OldZoomScale = Main.GameZoomTarget;
 			}
+			inst.ZoomScale = scale;
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Resets camera shift.
+		/// </summary>
+		public static void ResetOffset() {
+			var inst = Camera.Instance;
+			inst.OffsetX = 0;
+			inst.OffsetY = 0;
+		}
+
+
+		/// <summary>
+		/// Resets camera position.
+		/// </summary>
+		public static void ResetPosition() {
+			var inst = Camera.Instance;
+			inst.WorldPosition = new Vector2( -1 );
+		}
+
+
+		/// <summary>
+		/// Reset shaking motion to the camera.
+		/// </summary>
+		public static void ResetShake() {
+			var inst = Camera.Instance;
+			inst.ShakeMagnitude = 0f;
+		}
+
+
+		/// <summary>
+		/// Resets zoom of the camera.
+		/// </summary>
+		public static void ResetZoom() {
+			var inst = Camera.Instance;
+
+			inst.ZoomScale = inst.OldZoomScale;
+			inst.OldZoomScale = -1;
 		}
 	}
 }

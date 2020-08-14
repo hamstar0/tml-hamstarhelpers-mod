@@ -12,9 +12,10 @@ namespace HamstarHelpers.Services.Camera {
 				int total = this.TotalTickDuration;
 
 				if( this.TicksElapsed == total ) {
+					this.TicksElapsed++;
 					this.EndAnimation();
 				}
-				if( this.TicksElapsed++ >= total ) {
+				if( this.TicksElapsed >= total ) {
 					return false;
 				}
 			}
@@ -44,6 +45,10 @@ namespace HamstarHelpers.Services.Camera {
 			}
 
 			this.ApplyAnimation( movePercent );
+
+			if( !this.IsPaused ) {
+				this.TicksElapsed++;
+			}
 
 			return true;
 		}

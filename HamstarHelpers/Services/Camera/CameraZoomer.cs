@@ -64,7 +64,7 @@ namespace HamstarHelpers.Services.Camera {
 
 		/// <summary></summary>
 		protected override void EndAnimation() {
-			Camera.ApplyZoom( -1f );
+			Camera.ResetZoom();
 		}
 	}
 }

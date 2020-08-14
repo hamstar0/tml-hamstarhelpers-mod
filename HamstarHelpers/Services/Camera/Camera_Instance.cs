@@ -56,10 +56,10 @@ namespace HamstarHelpers.Services.Camera {
 		////////////////
 
 		internal void ApplyCameraEffects() {
-			if( this.WorldPosition.X > 0f ) {
+			if( this.WorldPosition.X >= 0f ) {
 				Main.screenPosition.X = this.WorldPosition.X;
 			}
-			if( this.WorldPosition.Y > 0f ) {
+			if( this.WorldPosition.Y >= 0f ) {
 				Main.screenPosition.Y = this.WorldPosition.Y;
 			}
 

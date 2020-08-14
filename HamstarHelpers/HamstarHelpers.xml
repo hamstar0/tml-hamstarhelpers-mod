@@ -11595,9 +11595,29 @@
         </member>
         <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyZoom(System.Single)">
             <summary>
-            Applies zoom to the camera. Enter -1 to revert.
+            Applies zoom to the camera.
             </summary>
             <param name="scale"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ResetOffset">
+            <summary>
+            Resets camera shift.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ResetPosition">
+            <summary>
+            Resets camera position.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ResetShake">
+            <summary>
+            Reset shaking motion to the camera.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ResetZoom">
+            <summary>
+            Resets zoom of the camera.
+            </summary>
         </member>
         <member name="P:HamstarHelpers.Services.Camera.Camera.Instance">
             <summary></summary>
