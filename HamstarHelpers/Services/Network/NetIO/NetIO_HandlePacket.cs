@@ -23,8 +23,15 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		/// <returns>`true` to be considered to have completely handled the incoming packet.</returns>
 		internal static bool HandlePacket( BinaryReader reader, int playerWho ) {
 			long oldStreamPos = reader.BaseStream.Position;
+			object data = null;
 
-			if( !NetIO.DeserializeStream(reader, out object data) ) {
+			try {
+				if( !NetIO.DeserializeStream( reader, out data ) ) {
+					reader.BaseStream.Seek( oldStreamPos, SeekOrigin.Begin );
+					return false;
+				}
+			} catch( Exception e ) {
+				LogHelpers.Warn( e.Message );
 				reader.BaseStream.Seek( oldStreamPos, SeekOrigin.Begin );
 				return false;
 			}

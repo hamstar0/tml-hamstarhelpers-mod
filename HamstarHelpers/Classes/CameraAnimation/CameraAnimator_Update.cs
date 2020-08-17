@@ -9,11 +9,13 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 	public abstract partial class CameraAnimator {
 		internal bool Update() {
 			if( !this.IsPaused ) {
+				this.TicksElapsed++;
+
 				int total = this.TotalTickDuration;
 
 				if( this.TicksElapsed == total ) {
 					this.TicksElapsed++;
-					this.EndAnimation();
+					this.EndAnimation_Private();
 				}
 				if( this.TicksElapsed >= total ) {
 					return false;
@@ -45,10 +47,6 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 			}
 
 			this.ApplyAnimation( movePercent );
-
-			if( !this.IsPaused ) {
-				this.TicksElapsed++;
-			}
 
 			return true;
 		}
