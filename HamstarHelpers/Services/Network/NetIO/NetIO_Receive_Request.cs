@@ -17,9 +17,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 	public partial class NetIO : ILoadable {
 		private static void ReceiveRequest( NetIORequest data, int playerWho ) {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-				LogHelpers.Log( "<" + data.GetType().Name + " "
-					+ (Main.netMode == NetmodeID.MultiplayerClient ? "on client" : "on server" )
-				);
+				LogHelpers.Log( "<" + data.GetType().Name );
 			}
 
 			Type genericArg = null;

@@ -143,7 +143,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 
 		/// <summary>
-		/// Attempts to "smartly" smooth a given tile against its adjacent tiles.
+		/// Attempts to "smartly" smooth a given tile against its adjacent tiles. TODO: Verify correctness.
 		/// </summary>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>

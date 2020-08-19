@@ -134,9 +134,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				packet.Send( toWho, ignoreWho );
 
 				if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-					LogHelpers.Log( ">" + dataType.Name + " "
-						+(Main.netMode == NetmodeID.MultiplayerClient ? "from client" : "from server")
-					);
+					LogHelpers.Log( ">" + dataType.Name );
 				}
 
 				return true;
