@@ -26,13 +26,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 			int frameY = tile.frameY;
 			int frameCol = frameX / tileData.CoordinateFullWidth;
 			int frameRow = frameY / tileData.CoordinateFullHeight;
-			int wrap = tileData.StyleWrapLimit;
-			if( wrap == 0 ) {
-				wrap = 1;
-			}
+			int wrap = tileData.StyleWrapLimit == 0
+				? 1
+				: tileData.StyleWrapLimit;
 			int subTile = tileData.StyleHorizontal
-				? frameRow * wrap + frameCol
-				: frameCol * wrap + frameRow;
+				? (frameRow * wrap) + frameCol
+				: (frameCol * wrap) + frameRow;
 			int style = subTile / tileData.StyleMultiplier;
 			int alternate = subTile % tileData.StyleMultiplier;
 			//for( int k = 0; k < tileData.AlternatesCount; k++ ) {
@@ -45,17 +44,17 @@ namespace HamstarHelpers.Helpers.Tiles {
 			tileData = TileObjectData.GetTileData( tile.type, style, alternate + 1 );
 			int subFrameX = frameX % tileData.CoordinateFullWidth;
 			int subFrameY = frameY % tileData.CoordinateFullHeight;
-			int partX = subFrameX / ( tileData.CoordinateWidth + tileData.CoordinatePadding );
-			int partY = 0;
+			int tileOfFrameX = subFrameX / ( tileData.CoordinateWidth + tileData.CoordinatePadding );
+			int tileOfFrameY = 0;
 
 			int remainingFrameY = subFrameY;
 			while( remainingFrameY > 0 ) {
-				remainingFrameY -= tileData.CoordinateHeights[partY] + tileData.CoordinatePadding;
-				partY++;
+				remainingFrameY -= tileData.CoordinateHeights[tileOfFrameY] + tileData.CoordinatePadding;
+				tileOfFrameY++;
 			}
 
-			tileX -= partX;
-			tileY -= partY;
+			tileX -= tileOfFrameX;
+			tileY -= tileOfFrameY;
 
 			int originX = tileX + tileData.Origin.X;
 			int originY = tileY + tileData.Origin.Y;

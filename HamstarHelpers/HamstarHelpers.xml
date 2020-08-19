@@ -9494,6 +9494,19 @@
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
             @private
         </member>
+        <member name="T:HamstarHelpers.Helpers.Tiles.TileObjectHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to tile objects.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileObjectHelpers.PredictTopLeftOfObject(System.Int32,System.Int32)">
+            <summary>
+            Predicts the top left position of the given tile object of a given tile, assuming a contiguous object.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TilePlacementHelpers">
             <summary>
             Assorted static "helper" functions pertaining to tile placement (convenience bindings for WorldGen).
@@ -9852,7 +9865,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileStateHelpers.SmartSlope(System.Int32,System.Int32,System.Boolean)">
             <summary>
-            Attempts to "smartly" smooth a given tile against its adjacent tiles.
+            Attempts to "smartly" smooth a given tile against its adjacent tiles. TODO: Verify correctness.
             </summary>
             <param name="tileX"></param>
             <param name="tileY"></param>
