@@ -15,11 +15,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
 		/// <returns></returns>
-		public static Point PredictTopLeftOfObject( int tileX, int tileY ) {
+		public static Point? PredictTopLeftOfObject( int tileX, int tileY ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 			TileObjectData tileData = TileObjectData.GetTileData( tile.type, 0, 0 );
 			if( tileData == null ) {
-				return new Point( tileX, tileY );
+				return null;
 			}
 
 			int frameX = tile.frameX;
@@ -53,12 +53,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 				tileOfFrameY++;
 			}
 
-			tileX -= tileOfFrameX;
-			tileY -= tileOfFrameY;
+			int leftmostTileX = tileX - tileOfFrameX;
+			int topmostTileY = tileY - tileOfFrameY;
 
-			int originX = tileX + tileData.Origin.X;
-			int originY = tileY + tileData.Origin.Y;
-			return new Point( originX, originY );
+			//int originX = tileX + tileData.Origin.X;
+			//int originY = tileY + tileData.Origin.Y;
+			return new Point( leftmostTileX, topmostTileY );
 		}
 	}
 }
