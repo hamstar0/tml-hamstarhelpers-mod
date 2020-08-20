@@ -53,9 +53,13 @@ namespace HamstarHelpers.Helpers.Tiles {
 				tileOfFrameY++;
 			}
 
+			if( tileOfFrameX == 0 && tileOfFrameY == 0 ) {
+				return null;
+			}
+
 			int leftmostTileX = tileX - tileOfFrameX;
 			int topmostTileY = tileY - tileOfFrameY;
-
+			
 			//int originX = tileX + tileData.Origin.X;
 			//int originY = tileY + tileData.Origin.Y;
 			return new Point( leftmostTileX, topmostTileY );

@@ -13006,7 +13006,7 @@
         </member>
         <member name="T:HamstarHelpers.Services.Messages.Simple.SimpleMessage">
             <summary>
-            A simple alternative to display centered text messages on-screen.
+            A simple alternative to quickly display text messages on-screen.
             </summary>
         </member>
         <member name="F:HamstarHelpers.Services.Messages.Simple.SimpleMessage.MessageDuration">
@@ -13022,11 +13022,33 @@
             Smaller message under the bigger message.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Services.Messages.Simple.SimpleMessage.IsBordered">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Messages.Simple.SimpleMessage.Color">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Messages.Simple.SimpleMessage.Left">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Messages.Simple.SimpleMessage.Top">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Services.Messages.Simple.SimpleMessage.PostMessage(System.String,System.String,System.Int32)">
             <summary></summary>
             <param name="msg"></param>
             <param name="submsg"></param>
             <param name="duration">Tick duration.</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Messages.Simple.SimpleMessage.PostMessage(System.String,System.String,System.Int32,System.Boolean,Microsoft.Xna.Framework.Color,Terraria.UI.StyleDimension,Terraria.UI.StyleDimension)">
+            <summary></summary>
+            <param name="msg"></param>
+            <param name="submsg"></param>
+            <param name="duration">Tick duration.</param>
+            <param name="isBordered"></param>
+            <param name="color"></param>
+            <param name="left"></param>
+            <param name="top"></param>
         </member>
         <member name="T:HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat.ExtensibleInventoryCompatibilities">
             <summary>

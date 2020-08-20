@@ -25,7 +25,7 @@ namespace HamstarHelpers.Services.UI.FreeHUD {
 		/// <param name="elem"></param>
 		public static void AddElement( string id, UIElement elem ) {
 			var hud = FreeHUD.Instance;
-
+			
 			if( hud.ElemMap.ContainsKey(id) ) {
 				hud.HUDComponents.RemoveChild( elem );
 			}
