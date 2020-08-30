@@ -9919,6 +9919,23 @@
             <param name="height"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileWorldHelpers.RequestChunkFromServer(System.Int32,System.Int32)">
+            <summary>
+            Requests a given tile chunk (200x150 tile 'section') from the server.
+            </summary>
+            <param name="tileSectionX"></param>
+            <param name="tileSectionY"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileWorldHelpers.RequestChunksFromServer(Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Requests all tile chunks (200x150 tile 'sections') from the server within a given tile range.
+            </summary>
+            <param name="tileRange"></param>
+            <param name="leftPadding">In chunks.</param>
+            <param name="topPadding">In chunks.</param>
+            <param name="rightPadding">In chunks.</param>
+            <param name="bottomPadding">In chunks.</param>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.Walls.TileWallGroupIdentityHelpers">
             <summary>
             Assorted static "helper" functions pertaining to tile walls.

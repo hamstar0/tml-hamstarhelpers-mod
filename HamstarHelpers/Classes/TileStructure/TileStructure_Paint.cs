@@ -80,36 +80,38 @@ namespace HamstarHelpers.Classes.TileStructure {
 					bool respectLiquids = false,
 					bool flipHorizontally = false,
 					bool flipVertically = false ) {
+			Tile tile = Framing.GetTileSafely( i, j );
 			byte liquid = 0;
 			bool isHoney = false, isLava = false;
 			if( respectLiquids ) {
-				liquid = Main.tile[i, j].liquid;
-				isHoney = Main.tile[i, j].honey();
-				isLava = Main.tile[i, j].lava();
+				liquid = tile.liquid;
+				isHoney = tile.honey();
+				isLava = tile.lava();
 			}
 
 			if( rawTile != null ) {
-				Main.tile[i, j] = rawTile.ToTile();
-				Main.tile[i, j].liquid = liquid;
-				Main.tile[i, j].honey( isHoney );
-				Main.tile[i, j].lava( isLava );
+				tile = rawTile.ToTile();
+				tile.liquid = liquid;
+				tile.honey( isHoney );
+				tile.lava( isLava );
 
 				if( flipHorizontally ) {
-					TileStateHelpers.FlipSlopeHorizontally( Main.tile[i, j] );
+					TileStateHelpers.FlipSlopeHorizontally( tile );
 				}
 				if( flipVertically ) {
-					TileStateHelpers.FlipSlopeVertically( Main.tile[i, j] );
+					TileStateHelpers.FlipSlopeVertically( tile );
 				}
 
+				Main.tile[i, j] = tile;
 				return true;
 			} else if( paintAir ) {
-				Main.tile[i, j].active( false );
-				Main.tile[i, j].wall = 0;
-				Main.tile[i, j].type = 0;
-				Main.tile[i, j].liquid = liquid;
-				Main.tile[i, j].honey( isHoney );
-				Main.tile[i, j].lava( isLava );
-				//Main.tile[i, j] = new Tile();
+				tile.active( false );
+				tile.wall = 0;
+				tile.type = 0;
+				tile.liquid = liquid;
+				tile.honey( isHoney );
+				tile.lava( isLava );
+				//tile = new Tile();
 
 				return true;
 			}
