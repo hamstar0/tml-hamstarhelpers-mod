@@ -39,12 +39,12 @@ namespace HamstarHelpers.Commands.Cheats {
 				caller.Reply( "Cheats mode not enabled.", Color.Red );
 				return;
 			}
-			if( Main.netMode != NetmodeID.SinglePlayer ) {
+			/*if( Main.netMode != NetmodeID.SinglePlayer ) {
 				if( !UserHelpers.HasBasicServerPrivilege( caller.Player ) ) {
 					caller.Reply( "Access denied.", Color.Red );
 					return;
 				}
-			}
+			}*/
 
 			if( !PlayerCheats.TryParseCheatFlags(args, out CheatModeType cheatFlags) ) {
 				caller.Reply( "Invalid cheat identifiers.", Color.Red );

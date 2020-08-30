@@ -33,7 +33,7 @@ namespace HamstarHelpers.Services.Network.NetIO.PayloadTypes {
 	////////////////
 
 	/// <summary>
-	/// Represents a request from a client to the server.
+	/// Represents a request for data from a client to the server, or visa versa.
 	/// </summary>
 	[Serializable]
 	public abstract class NetIORequest<T> : NetIORequest
