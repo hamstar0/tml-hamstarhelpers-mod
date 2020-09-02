@@ -31,9 +31,18 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
 			bool isActive = tile.active();
-			if( this.IsActive.HasValue && this.IsActive.Value != isActive ) {
-				collideType = TileCollideType.Active;
-				return false;
+			if( this.IsActive.HasValue ) {
+				if( this.IsActive.Value != isActive ) {
+					if( !this.Invert ) {
+						collideType = TileCollideType.Active;
+						return false;
+					}
+				} else {
+					if( this.Invert ) {
+						collideType = TileCollideType.Active;
+						return false;
+					}
+				}
 			}
 
 			/*if( TileHelpers.IsAir(tile, false, false) ) {
@@ -44,9 +53,18 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				return true;
 			}*/
 
-			if( this.CustomCheck != null && !this.CustomCheck.Invoke(tileX, tileY) ) {
-				collideType = TileCollideType.Custom;
-				return false;
+			if( this.CustomCheck != null ) {
+				if( !this.CustomCheck.Invoke( tileX, tileY ) ) {
+					if( !this.Invert ) {
+						collideType = TileCollideType.Custom;
+						return false;
+					}
+				} else {
+					if( this.Invert ) {
+						collideType = TileCollideType.Custom;
+						return false;
+					}
+				}
 			}
 
 			if( this.AnyPattern != null ) {
@@ -61,22 +79,50 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				}
 
 				if( !subPatternFound ) {
-					collideType = subCollideType;
-					return false;
+					if( !this.Invert ) {
+						collideType = subCollideType;
+						return false;
+					}
+				} else {
+					if( this.Invert ) {
+						collideType = subCollideType;
+						return false;
+					}
 				}
 			}
 
 			if( isActive ) {
 				if( !this.CheckActivePoint( tileX, tileY, out collideType ) ) {
-					return false;
+					if( !this.Invert ) {
+						return false;
+					}
+				} else {
+					if( this.Invert ) {
+						return false;
+					}
 				}
 			} else {
 				if( !this.CheckNonActivePoint( tileX, tileY, out collideType) ) {
-					return false;
+					if( !this.Invert ) {
+						return false;
+					}
+				} else {
+					if( this.Invert ) {
+						return false;
+					}
 				}
 			}
 
-			return this.CheckGeneralPoint( tileX, tileY, out collideType );
+			if( this.CheckGeneralPoint( tileX, tileY, out collideType ) ) {
+				if( !this.Invert ) {
+					return true;
+				}
+			} else {
+				if( this.Invert ) {
+					return true;
+				}
+			}
+			return false;
 		}
 
 
@@ -247,7 +293,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 
 			if( this.IsNotAnyOfWallType != null && this.IsNotAnyOfWallType.Count > 0 ) {
 				if( this.IsNotAnyOfWallType.Any( w => tile.wall == w ) ) {
-					collideType = TileCollideType.WallNotType;
+					collideType = TileCollideType.WallTypeNot;
 					return false;
 				}
 			}

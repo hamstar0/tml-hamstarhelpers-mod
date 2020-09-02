@@ -18,6 +18,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		public static TilePattern CombinePositive( TilePattern pattern1, TilePattern pattern2, bool blendLight = false ) {
 			var builder = new TilePatternBuilder();
 
+			builder.Invert = pattern1.Invert || pattern2.Invert;
+
 			builder.IsActive = TilePattern.CombinePositive( pattern1.IsActive, pattern2.IsActive );
 
 			if( pattern1.IsAnyOfType != null ) {
@@ -165,6 +167,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <returns></returns>
 		public static TilePattern CombineNegative( TilePattern pattern1, TilePattern pattern2, bool blendLight = false ) {
 			var builder = new TilePatternBuilder();
+
+			builder.Invert = pattern1.Invert && pattern2.Invert;
 
 			builder.IsActive = TilePattern.CombineNegative( pattern1.IsActive, pattern2.IsActive );
 

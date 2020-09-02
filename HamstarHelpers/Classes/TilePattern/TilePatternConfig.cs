@@ -12,6 +12,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// </summary>
 	public class TilePatternConfig {
 		/// <summary></summary>
+		public bool Invert { get; set; }
+		
+		/// <summary></summary>
 		public Ref<bool> IsActive { get; set; }
 
 		/// <summary></summary>
@@ -80,6 +83,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary></summary>
 		/// <param name="builder"></param>
 		public TilePatternConfig( TilePatternBuilder builder ) {
+			this.Invert = builder.Invert;
 			this.IsActive = builder.IsActive.HasValue ? new Ref<bool>(builder.IsActive.Value) : null;
 			this.AreaFromCenter = builder.AreaFromCenter.HasValue ? new Ref<Rectangle>(builder.AreaFromCenter.Value) : null;
 			this.IsAnyOfType = builder.IsAnyOfType != null ? new HashSet<int>( builder.IsAnyOfType ) : null;
@@ -114,6 +118,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <returns></returns>
 		public TilePattern ToTilePattern() {
 			return new TilePattern( new TilePatternBuilder {
+				Invert = this.Invert,
 				IsActive = this.IsActive != null ? this.IsActive.Value : (bool?)null,
 				AreaFromCenter = this.AreaFromCenter?.Value,
 				IsAnyOfType = this.IsAnyOfType,

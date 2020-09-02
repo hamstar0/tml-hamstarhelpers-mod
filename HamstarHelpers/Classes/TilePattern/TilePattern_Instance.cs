@@ -48,6 +48,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 
 		////////////////
 
+		/// <summary>Inverts results.</summary>
+		public bool Invert = false;
+
 		/// <summary>If tile is active (not wall-only).</summary>
 		public bool? IsActive = null;
 
@@ -124,6 +127,9 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 	/// Identifies a type of tile by its attributes.
 	/// </summary>
 	public partial class TilePattern {
+		/// <summary>Inverts results.</summary>
+		public bool Invert = false;
+
 		/// <summary>If tile is active (not wall-only).</summary>
 		public bool? IsActive = null;
 
@@ -213,6 +219,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary>
 		/// </summary>
 		public TilePattern( TilePatternBuilder builder ) {
+			this.Invert = builder.Invert;
 			this.IsActive = builder.IsActive;
 			this.AreaFromCenter = builder.AreaFromCenter;
 
