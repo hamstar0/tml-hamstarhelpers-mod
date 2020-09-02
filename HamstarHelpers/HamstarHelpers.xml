@@ -1483,6 +1483,9 @@
             Preset for total blackness.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Invert">
+            <summary>Inverts results.</summary>
+        </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsActive">
             <summary>If tile is active (not wall-only).</summary>
         </member>
@@ -1662,6 +1665,9 @@
             Defines a ModConfig-friendly class for defining a TilePattern.
             </summary>
         </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.Invert">
+            <summary></summary>
+        </member>
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsActive">
             <summary></summary>
         </member>
@@ -1753,6 +1759,9 @@
             <summary></summary>
             <param name="slopeType"></param>
             <returns></returns>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.Invert">
+            <summary>Inverts results.</summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsActive">
             <summary>If tile is active (not wall-only).</summary>
@@ -1847,10 +1856,10 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.WallType">
             <summary></summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.TileNotType">
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.TileTypeNot">
             <summary></summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.WallNotType">
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.WallTypeNot">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.Solid">
