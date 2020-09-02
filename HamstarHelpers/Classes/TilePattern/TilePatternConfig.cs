@@ -23,6 +23,11 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		public HashSet<int> IsAnyOfWallType { get; set; }	// = new HashSet<int>();
 
 		/// <summary></summary>
+		public HashSet<int> IsNotAnyOfType { get; set; }	// = new HashSet<int>();
+		/// <summary></summary>
+		public HashSet<int> IsNotAnyOfWallType { get; set; }	// = new HashSet<int>();
+
+		/// <summary></summary>
 		public Ref<bool> HasWire1 { get; set; }
 		/// <summary></summary>
 		public Ref<bool> HasWire2 { get; set; }
@@ -79,6 +84,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			this.AreaFromCenter = builder.AreaFromCenter.HasValue ? new Ref<Rectangle>(builder.AreaFromCenter.Value) : null;
 			this.IsAnyOfType = builder.IsAnyOfType != null ? new HashSet<int>( builder.IsAnyOfType ) : null;
 			this.IsAnyOfWallType = builder.IsAnyOfWallType != null ? new HashSet<int>( builder.IsAnyOfWallType ) : null;
+			this.IsNotAnyOfType = builder.IsNotAnyOfType != null ? new HashSet<int>( builder.IsNotAnyOfType ) : null;
+			this.IsNotAnyOfWallType = builder.IsNotAnyOfWallType != null ? new HashSet<int>( builder.IsNotAnyOfWallType ) : null;
 			this.HasWire1 = builder.HasWire1.HasValue ? new Ref<bool>(builder.HasWire1.Value) : null;
 			this.HasWire2 = builder.HasWire2.HasValue ? new Ref<bool>(builder.HasWire2.Value) : null;
 			this.HasWire3 = builder.HasWire3.HasValue ? new Ref<bool>(builder.HasWire3.Value) : null;
@@ -111,6 +118,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				AreaFromCenter = this.AreaFromCenter?.Value,
 				IsAnyOfType = this.IsAnyOfType,
 				IsAnyOfWallType = this.IsAnyOfWallType,
+				IsNotAnyOfType = this.IsNotAnyOfType,
+				IsNotAnyOfWallType = this.IsNotAnyOfWallType,
 				HasWire1 = this.HasWire1 != null ? this.HasWire1.Value : (bool?)null,
 				HasWire2 = this.HasWire2 != null ? this.HasWire2.Value : (bool?)null,
 				HasWire3 = this.HasWire3 != null ? this.HasWire3.Value : (bool?)null,

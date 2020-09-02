@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Helpers.Tiles;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
+using HamstarHelpers.Helpers.Tiles;
 
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {
@@ -36,6 +36,24 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				}
 			} else if( pattern2.IsAnyOfWallType != null ) {
 				builder.IsAnyOfWallType = new HashSet<int>( pattern2.IsAnyOfWallType );
+			}
+
+			if( pattern1.IsNotAnyOfType != null ) {
+				builder.IsNotAnyOfType = new HashSet<int>( pattern1.IsNotAnyOfType );
+				if( pattern2.IsNotAnyOfType != null ) {
+					builder.IsNotAnyOfType.UnionWith( pattern2.IsNotAnyOfType );
+				}
+			} else if( pattern2.IsNotAnyOfType != null ) {
+				builder.IsNotAnyOfType = new HashSet<int>( pattern2.IsNotAnyOfType );
+			}
+
+			if( pattern1.IsNotAnyOfWallType != null ) {
+				builder.IsNotAnyOfWallType = new HashSet<int>( pattern1.IsNotAnyOfWallType );
+				if( pattern2.IsNotAnyOfWallType != null ) {
+					builder.IsNotAnyOfWallType.UnionWith( pattern2.IsNotAnyOfWallType );
+				}
+			} else if( pattern2.IsNotAnyOfWallType != null ) {
+				builder.IsNotAnyOfWallType = new HashSet<int>( pattern2.IsNotAnyOfWallType );
 			}
 
 			builder.HasWire1 = TilePattern.CombinePositive( pattern1.HasWire1, pattern2.HasWire1 );
@@ -166,6 +184,24 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				}
 			} else if( pattern2.IsAnyOfWallType != null ) {
 				builder.IsAnyOfWallType = new HashSet<int>( pattern2.IsAnyOfWallType );
+			}
+
+			if( pattern1.IsNotAnyOfType != null ) {
+				builder.IsNotAnyOfType = new HashSet<int>( pattern1.IsNotAnyOfType );
+				if( pattern2.IsNotAnyOfType != null ) {
+					builder.IsNotAnyOfType.UnionWith( pattern2.IsNotAnyOfType );
+				}
+			} else if( pattern2.IsNotAnyOfType != null ) {
+				builder.IsNotAnyOfType = new HashSet<int>( pattern2.IsNotAnyOfType );
+			}
+
+			if( pattern1.IsNotAnyOfWallType != null ) {
+				builder.IsNotAnyOfWallType = new HashSet<int>( pattern1.IsNotAnyOfWallType );
+				if( pattern2.IsNotAnyOfWallType != null ) {
+					builder.IsNotAnyOfWallType.UnionWith( pattern2.IsNotAnyOfWallType );
+				}
+			} else if( pattern2.IsNotAnyOfWallType != null ) {
+				builder.IsNotAnyOfWallType = new HashSet<int>( pattern2.IsNotAnyOfWallType );
 			}
 
 			builder.HasWire1 = TilePattern.CombineNegative( pattern1.HasWire1, pattern2.HasWire1 );

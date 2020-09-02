@@ -1495,6 +1495,12 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsAnyOfWallType">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsNotAnyOfType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsNotAnyOfWallType">
+            <summary></summary>
+        </member>
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.HasWire1">
             <summary></summary>
         </member>
@@ -1668,6 +1674,12 @@
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsAnyOfWallType">
             <summary></summary>
         </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsNotAnyOfType">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsNotAnyOfWallType">
+            <summary></summary>
+        </member>
         <member name="P:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.HasWire1">
             <summary></summary>
         </member>
@@ -1754,6 +1766,12 @@
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsAnyOfWallType">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsNotAnyOfType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsNotAnyOfWallType">
+            <summary></summary>
+        </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.HasWire1">
             <summary></summary>
         </member>
@@ -1827,6 +1845,12 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.WallType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.TileNotType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.WallNotType">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TileCollideType.Solid">
@@ -13418,7 +13442,7 @@
         </member>
         <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequest`1">
             <summary>
-            Represents a request from a client to the server.
+            Represents a request for data from a client to the server, or visa versa.
             </summary>
         </member>
         <member name="M:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIORequest`1.PreReplyOnClient(`0)">

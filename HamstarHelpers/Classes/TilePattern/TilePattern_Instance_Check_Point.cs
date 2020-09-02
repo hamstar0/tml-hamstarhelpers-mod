@@ -92,6 +92,13 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 				}
 			}
 
+			if( this.IsNotAnyOfType != null && this.IsNotAnyOfType.Count > 0 ) {
+				if( this.IsNotAnyOfType.Any(t => t == tile.type) ) {
+					collideType = TileCollideType.TileType;
+					return false;
+				}
+			}
+
 			if( this.IsActuated.HasValue ) {
 				if( tile.inActive() != this.IsActuated.Value ) {
 					collideType = TileCollideType.Actuated;
@@ -234,6 +241,13 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 			if( this.IsAnyOfWallType != null && this.IsAnyOfWallType.Count > 0 ) {
 				if( !this.IsAnyOfWallType.Any( w => tile.wall == w ) ) {
 					collideType = TileCollideType.WallType;
+					return false;
+				}
+			}
+
+			if( this.IsNotAnyOfWallType != null && this.IsNotAnyOfWallType.Count > 0 ) {
+				if( this.IsNotAnyOfWallType.Any( w => tile.wall == w ) ) {
+					collideType = TileCollideType.WallNotType;
 					return false;
 				}
 			}
