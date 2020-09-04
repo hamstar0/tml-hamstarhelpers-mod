@@ -107,7 +107,7 @@
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.Current">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single,Terraria.UI.StyleDimension,Terraria.UI.StyleDimension)">
             <summary>
             Gets an interpolated position between 2 points, accounting for points that refer to screen position (-1 values).
             </summary>
@@ -116,6 +116,8 @@
             <param name="toX"></param>
             <param name="toY"></param>
             <param name="percent"></param>
+            <param name="leftOffset"></param>
+            <param name="topOffset"></param>
             <returns></returns>
         </member>
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.MoveXFrom">
@@ -130,7 +132,13 @@
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.MoveYTo">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Action,System.Action,System.Int32)">
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.LeftOffset">
+            <summary>Pixel or percent offset of the screen position from its left starting point.</summary>
+        </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.TopOffset">
+            <summary>Pixel or percent offset of the screen position from its top starting point.</summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Nullable{Terraria.UI.StyleDimension},System.Nullable{Terraria.UI.StyleDimension},System.Action,System.Action,System.Int32)">
             <summary></summary>
             <param name="name"></param>
             <param name="moveXFrom"></param>
@@ -140,6 +148,8 @@
             <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
             <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
             <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
+            <param name="leftOffset">Pixel or percent offset of the screen position from its left starting point. Defaults to 50% (0.5).</param>
+            <param name="topOffset">Pixel or percent offset of the screen position from its top starting point. Defaults to 50% (0.5).</param>
             <param name="onTraversed">Function to call on reaching destination (B).</param>
             <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
@@ -10687,6 +10697,17 @@
             <summary>
             Gets the world position and range of the screen, according to the given zoom parameters.
             </summary>
+            <param name="uiZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <param name="gameZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+            removed, and applies it.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.UI.UIZoomHelpers.ConvertToScreenPosition(Microsoft.Xna.Framework.Vector2,System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+            <summary>
+            Gets the screen-space coordinates of the given world coordinates.
+            </summary>
+            <param name="worldCoords"></param>
             <param name="uiZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
             removed, and applies it.</param>
             <param name="gameZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been

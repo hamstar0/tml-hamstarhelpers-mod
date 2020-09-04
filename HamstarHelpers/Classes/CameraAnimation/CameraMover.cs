@@ -56,10 +56,10 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 				fromX + ( ( toX - fromX ) * percent ),
 				fromY + ( ( toY - fromY ) * percent )
 			);
-			pos.X += leftOffset.Pixels;
-			pos.X += Main.screenWidth * leftOffset.Percent;
-			pos.Y += topOffset.Pixels;
-			pos.Y += Main.screenHeight * topOffset.Percent;
+			pos.X -= leftOffset.Pixels;
+			pos.X -= Main.screenWidth * leftOffset.Percent;
+			pos.Y -= topOffset.Pixels;
+			pos.Y -= Main.screenHeight * topOffset.Percent;
 
 			return pos;
 		}
@@ -99,8 +99,8 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
 		/// <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
 		/// <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
-		/// <param name="leftOffset">Pixel or percent offset of the screen position from its left starting point.</param>
-		/// <param name="topOffset">Pixel or percent offset of the screen position from its top starting point.</param>
+		/// <param name="leftOffset">Pixel or percent offset of the screen position from its left starting point. Defaults to 50% (0.5).</param>
+		/// <param name="topOffset">Pixel or percent offset of the screen position from its top starting point. Defaults to 50% (0.5).</param>
 		/// <param name="onTraversed">Function to call on reaching destination (B).</param>
 		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
@@ -113,8 +113,8 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int toDuration,
 					int lingerDuration,
 					int froDuration,
-					StyleDimension leftOffset,
-					StyleDimension topOffset,
+					StyleDimension? leftOffset = null,
+					StyleDimension? topOffset = null,
 					Action onTraversed = null,
 					Action onStop = null,
 					int skippedTicks = 0 )
@@ -123,8 +123,8 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 			this.MoveYFrom = moveYFrom;
 			this.MoveXTo = moveXTo;
 			this.MoveYTo = moveYTo;
-			this.LeftOffset = leftOffset;
-			this.TopOffset = topOffset;
+			this.LeftOffset = leftOffset ?? new StyleDimension( 0f, 0.5f );
+			this.TopOffset = topOffset ?? new StyleDimension( 0f, 0.5f );
 		}
 
 
