@@ -47,6 +47,25 @@ namespace HamstarHelpers.Helpers.UI {
 		////////////////
 
 		/// <summary>
+		/// Gets the screen-space coordinates of the given world coordinates.
+		/// </summary>
+		/// <param name="worldCoords"></param>
+		/// <param name="uiZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+		/// removed, and applies it.</param>
+		/// <param name="gameZoomState">If `true`, assumes zoom is applied, and removes it. `false` assumes it has been
+		/// removed, and applies it.</param>
+		/// <returns></returns>
+		public static Vector2 ConvertToScreenPosition( Vector2 worldCoords, bool? uiZoomState, bool? gameZoomState ) {
+			var wldScrFrame = UIZoomHelpers.GetWorldFrameOfScreen( uiZoomState, gameZoomState );
+			var wldScrPos = new Vector2( wldScrFrame.X, wldScrFrame.Y );
+
+			return worldCoords - wldScrPos;
+		}
+
+
+		////////////////
+
+		/// <summary>
 		/// Applies the given zoom parameters to the given float.
 		/// </summary>
 		/// <param name="value"></param>
