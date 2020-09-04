@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.UI;
 using HamstarHelpers.Services.Camera;
 
 
@@ -27,8 +28,17 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="toX"></param>
 		/// <param name="toY"></param>
 		/// <param name="percent"></param>
+		/// <param name="leftOffset"></param>
+		/// <param name="topOffset"></param>
 		/// <returns></returns>
-		public static Vector2 GetMovePosition( float fromX, float fromY, float toX, float toY, float percent ) {
+		public static Vector2 GetMovePosition(
+					float fromX,
+					float fromY,
+					float toX,
+					float toY,
+					float percent,
+					StyleDimension leftOffset,
+					StyleDimension topOffset ) {
 			if( fromX < 0 ) {
 				fromX = Main.LocalPlayer.Center.X - ( Main.GameZoomTarget * ( (float)Main.screenWidth * 0.5f ) );
 			}
@@ -42,10 +52,16 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 				toY = Main.LocalPlayer.Center.Y - ( Main.GameZoomTarget * ( (float)Main.screenHeight * 0.5f ) );
 			}
 
-			return new Vector2(
+			var pos = new Vector2(
 				fromX + ( ( toX - fromX ) * percent ),
 				fromY + ( ( toY - fromY ) * percent )
 			);
+			pos.X += leftOffset.Pixels;
+			pos.X += Main.screenWidth * leftOffset.Percent;
+			pos.Y += topOffset.Pixels;
+			pos.Y += Main.screenHeight * topOffset.Percent;
+
+			return pos;
 		}
 
 
@@ -64,6 +80,12 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <summary></summary>
 		public int MoveYTo { get; private set; } = -1;
 
+		/// <summary>Pixel or percent offset of the screen position from its left starting point.</summary>
+		public StyleDimension LeftOffset { get; private set; } = new StyleDimension( 0f, 0f );
+
+		/// <summary>Pixel or percent offset of the screen position from its top starting point.</summary>
+		public StyleDimension TopOffset { get; private set; } = new StyleDimension( 0f, 0f );
+
 
 
 		////////////////
@@ -77,6 +99,8 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
 		/// <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
 		/// <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
+		/// <param name="leftOffset">Pixel or percent offset of the screen position from its left starting point.</param>
+		/// <param name="topOffset">Pixel or percent offset of the screen position from its top starting point.</param>
 		/// <param name="onTraversed">Function to call on reaching destination (B).</param>
 		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
@@ -89,6 +113,8 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int toDuration,
 					int lingerDuration,
 					int froDuration,
+					StyleDimension leftOffset,
+					StyleDimension topOffset,
 					Action onTraversed = null,
 					Action onStop = null,
 					int skippedTicks = 0 )
@@ -97,6 +123,8 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 			this.MoveYFrom = moveYFrom;
 			this.MoveXTo = moveXTo;
 			this.MoveYTo = moveYTo;
+			this.LeftOffset = leftOffset;
+			this.TopOffset = topOffset;
 		}
 
 
@@ -110,7 +138,9 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 				this.MoveYFrom,
 				this.MoveXTo,
 				this.MoveYTo,
-				Math.Min( percent, 1f )
+				Math.Min( percent, 1f ),
+				this.LeftOffset,
+				this.TopOffset
 			);
 
 			Camera.ApplyPosition( position );
