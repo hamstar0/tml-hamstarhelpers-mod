@@ -36,9 +36,9 @@ namespace HamstarHelpers.Helpers.Misc {
 				return false;
 			}
 
-			ModCustomDataFileHelpers.PrepareDir( mod );
-
 			try {
+				ModCustomDataFileHelpers.PrepareDir( mod );
+
 				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameNoExt + ".json" );
 				string dataJson = JsonConvert.SerializeObject( data, jsonSettings );
 
@@ -86,9 +86,9 @@ namespace HamstarHelpers.Helpers.Misc {
 				return;
 			}
 
-			ModCustomDataFileHelpers.PrepareDir( mod );
-
 			try {
+				ModCustomDataFileHelpers.PrepareDir( mod );
+
 				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
 
 				string dataJson = JsonConvert.SerializeObject( data, jsonSettings );
@@ -135,9 +135,9 @@ namespace HamstarHelpers.Helpers.Misc {
 				return;
 			}
 
-			ModCustomDataFileHelpers.PrepareDir( mod );
-
 			try {
+				ModCustomDataFileHelpers.PrepareDir( mod );
+
 				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
 
 				FileHelpers.SaveBinaryFile( data, fullPath, false, !overrides );

@@ -107,15 +107,16 @@
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.Current">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single,Terraria.UI.StyleDimension,Terraria.UI.StyleDimension)">
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,Terraria.UI.StyleDimension,Terraria.UI.StyleDimension)">
             <summary>
-            Gets an interpolated position between 2 points, accounting for points that refer to screen position (-1 values).
+            Gets an interpolated position between 2 point.
             </summary>
-            <param name="fromX"></param>
-            <param name="fromY"></param>
-            <param name="toX"></param>
-            <param name="toY"></param>
+            <param name="fromX">-1 substitutes with current screen X coord.</param>
+            <param name="fromY">-1 substitutes with current screen Y coord.</param>
+            <param name="toX">-1 substitutes with current screen X coord.</param>
+            <param name="toY">-1 substitutes with current screen Y coord.</param>
             <param name="percent"></param>
+            <param name="useGameZoom"></param>
             <param name="leftOffset"></param>
             <param name="topOffset"></param>
             <returns></returns>
@@ -132,22 +133,26 @@
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.MoveYTo">
             <summary></summary>
         </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.UseGameZoom">
+            <summary></summary>
+        </member>
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.LeftOffset">
             <summary>Pixel or percent offset of the screen position from its left starting point.</summary>
         </member>
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.TopOffset">
             <summary>Pixel or percent offset of the screen position from its top starting point.</summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Nullable{Terraria.UI.StyleDimension},System.Nullable{Terraria.UI.StyleDimension},System.Action,System.Action,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Nullable{Terraria.UI.StyleDimension},System.Nullable{Terraria.UI.StyleDimension},System.Action,System.Action,System.Int32)">
             <summary></summary>
             <param name="name"></param>
-            <param name="moveXFrom"></param>
-            <param name="moveYFrom"></param>
-            <param name="moveXTo"></param>
-            <param name="moveYTo"></param>
+            <param name="moveXFrom">World coordinates.</param>
+            <param name="moveYFrom">World coordinates.</param>
+            <param name="moveXTo">World coordinates.</param>
+            <param name="moveYTo">World coordinates.</param>
             <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
             <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
             <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
+            <param name="useGameZoomForOffset"></param>
             <param name="leftOffset">Pixel or percent offset of the screen position from its left starting point. Defaults to 50% (0.5).</param>
             <param name="topOffset">Pixel or percent offset of the screen position from its top starting point. Defaults to 50% (0.5).</param>
             <param name="onTraversed">Function to call on reaching destination (B).</param>
@@ -11856,11 +11861,12 @@
             <param name="offsetX"></param>
             <param name="offsetY"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyPosition(Microsoft.Xna.Framework.Vector2)">
+        <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyPosition(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
-            Positions the camera statically somewhere in the world. Enter -1 for an axis to use the default.
+            Positions the camera statically somewhere in the world..
             </summary>
-            <param name="position"></param>
+            <param name="worldX">`null` uses current screen position.</param>
+            <param name="worldY">`null` uses current screen position.</param>
         </member>
         <member name="M:HamstarHelpers.Services.Camera.Camera.ApplyShake(System.Single)">
             <summary>
@@ -11897,7 +11903,10 @@
         <member name="P:HamstarHelpers.Services.Camera.Camera.Instance">
             <summary></summary>
         </member>
-        <member name="P:HamstarHelpers.Services.Camera.Camera.WorldPosition">
+        <member name="P:HamstarHelpers.Services.Camera.Camera.WorldPositionX">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Camera.Camera.WorldPositionY">
             <summary></summary>
         </member>
         <member name="P:HamstarHelpers.Services.Camera.Camera.OffsetX">

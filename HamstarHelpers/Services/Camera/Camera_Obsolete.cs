@@ -1,16 +1,17 @@
 ﻿using System;
 using HamstarHelpers.Classes.CameraAnimation;
+using HamstarHelpers.Classes.Loadable;
 
 
 namespace HamstarHelpers.Services.Camera {
 	/// <summary>
 	/// Supplies a set of controls for manipulating the player's 'camera' (screen position).
 	/// </summary>
-	public partial class Camera {
+	public partial class Camera : ILoadable {
 		/// @private
 		[Obsolete( "use ApplyPosition", true )]
 		public static void MoveTo( int worldLeft, int worldTop ) {
-			Camera.ApplyPosition( new Microsoft.Xna.Framework.Vector2(worldLeft, worldTop) );
+			Camera.ApplyPosition( worldLeft, worldTop );
 		}
 
 		/// @private

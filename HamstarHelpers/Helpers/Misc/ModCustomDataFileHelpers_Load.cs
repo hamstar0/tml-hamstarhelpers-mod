@@ -23,9 +23,9 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <returns></returns>
 		public static T LoadJson<T>( Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings )
 				where T : class {
-			ModCustomDataFileHelpers.PrepareDir( mod );
-
 			try {
+				ModCustomDataFileHelpers.PrepareDir( mod );
+
 				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameNoExt + ".json" );
 				string dataStr = FileHelpers.LoadTextFile( fullPath, false );
 
@@ -68,9 +68,9 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <returns></returns>
 		public static T LoadBinaryJson<T>( Mod mod, string fileNameWithExt, JsonSerializerSettings jsonSettings )
 				where T : class {
-			ModCustomDataFileHelpers.PrepareDir( mod );
-
 			try {
+				ModCustomDataFileHelpers.PrepareDir( mod );
+
 				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
 				byte[] dataBytes = FileHelpers.LoadBinaryFile( fullPath, false );
 				if( dataBytes == null ) {

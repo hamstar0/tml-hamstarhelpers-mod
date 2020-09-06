@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
+using HamstarHelpers.Classes.Loadable;
 using Terraria;
 
 
@@ -7,7 +7,7 @@ namespace HamstarHelpers.Services.Camera {
 	/// <summary>
 	/// Supplies a set of controls for manipulating the player's 'camera' (screen position).
 	/// </summary>
-	public partial class Camera {
+	public partial class Camera : ILoadable {
 		/// <summary>
 		/// Shifts the camera from its current position by the given offset.
 		/// </summary>
@@ -21,12 +21,14 @@ namespace HamstarHelpers.Services.Camera {
 
 
 		/// <summary>
-		/// Positions the camera statically somewhere in the world. Enter -1 for an axis to use the default.
+		/// Positions the camera statically somewhere in the world..
 		/// </summary>
-		/// <param name="position"></param>
-		public static void ApplyPosition( Vector2 position ) {
+		/// <param name="worldX">`null` uses current screen position.</param>
+		/// <param name="worldY">`null` uses current screen position.</param>
+		public static void ApplyPosition( int? worldX, int? worldY ) {
 			var inst = Camera.Instance;
-			inst.WorldPosition = position;
+			inst.WorldPositionX = worldX;
+			inst.WorldPositionY = worldY;
 		}
 
 
@@ -71,7 +73,8 @@ namespace HamstarHelpers.Services.Camera {
 		/// </summary>
 		public static void ResetPosition() {
 			var inst = Camera.Instance;
-			inst.WorldPosition = new Vector2( -1 );
+			inst.WorldPositionX = null;
+			inst.WorldPositionY = null;
 		}
 
 

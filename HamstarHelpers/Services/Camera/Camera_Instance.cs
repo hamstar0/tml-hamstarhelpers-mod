@@ -21,7 +21,10 @@ namespace HamstarHelpers.Services.Camera {
 		////////////////
 
 		/// <summary></summary>
-		public Vector2 WorldPosition { get; private set; } = new Vector2( -1 );
+		public int? WorldPositionX { get; private set; } = null;
+
+		/// <summary></summary>
+		public int? WorldPositionY { get; private set; } = null;
 
 
 		/// <summary></summary>
@@ -56,13 +59,12 @@ namespace HamstarHelpers.Services.Camera {
 		////////////////
 
 		internal void ApplyCameraEffects() {
-			if( this.WorldPosition.X >= 0f ) {
-				Main.screenPosition.X = this.WorldPosition.X;
+			if( this.WorldPositionX.HasValue ) {
+				Main.screenPosition.X = Math.Max( this.WorldPositionX.Value, 0 );
 			}
-			if( this.WorldPosition.Y >= 0f ) {
-				Main.screenPosition.Y = this.WorldPosition.Y;
+			if( this.WorldPositionY.HasValue ) {
+				Main.screenPosition.Y = Math.Max( this.WorldPositionY.Value, 0 );
 			}
-
 			Main.screenPosition.X += this.OffsetX;
 			Main.screenPosition.Y += this.OffsetY;
 
