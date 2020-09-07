@@ -109,7 +109,7 @@
         </member>
         <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.GetMovePosition(System.Single,System.Single,System.Single,System.Single,System.Single,System.Boolean,Terraria.UI.StyleDimension,Terraria.UI.StyleDimension)">
             <summary>
-            Gets an interpolated position between 2 point.
+            Gets an interpolated position between 2 points.
             </summary>
             <param name="fromX">-1 substitutes with current screen X coord.</param>
             <param name="fromY">-1 substitutes with current screen Y coord.</param>
@@ -145,10 +145,10 @@
         <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Nullable{Terraria.UI.StyleDimension},System.Nullable{Terraria.UI.StyleDimension},System.Action,System.Action,System.Int32)">
             <summary></summary>
             <param name="name"></param>
-            <param name="moveXFrom">World coordinates.</param>
-            <param name="moveYFrom">World coordinates.</param>
-            <param name="moveXTo">World coordinates.</param>
-            <param name="moveYTo">World coordinates.</param>
+            <param name="moveXFrom">World coordinates. -1 substitutes with current screen X coord.</param>
+            <param name="moveYFrom">World coordinates. -1 substitutes with current screen Y coord.</param>
+            <param name="moveXTo">World coordinates. -1 substitutes with current screen X coord.</param>
+            <param name="moveYTo">World coordinates. -1 substitutes with current screen Y coord.</param>
             <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
             <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
             <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
@@ -11682,6 +11682,45 @@
         </member>
         <member name="T:HamstarHelpers.ModHelpersWorld">
             @private
+        </member>
+        <member name="T:HamstarHelpers.NPCs.PropNPC">
+            <summary>
+            Implements an NPC able to have its texture and size adjusted dynamically. Is completely passive.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.NPCs.PropNPC.Texture">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.SetStaticDefaults">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.SetDefaults">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.CanBeHitByItem(Terraria.Player,Terraria.Item)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.CanBeHitByProjectile(Terraria.Projectile)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.CanHitNPC(Terraria.NPC)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.CanHitPlayer(Terraria.Player,System.Int32@)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.CheckActive">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.FindFrame(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.PreDraw(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.NPCs.PropNPC.SetTexture(System.String)">
+            <summary></summary>
+            <param name="texturePath"></param>
         </member>
         <member name="T:HamstarHelpers.Services.AnimatedColor.AnimatedColors">
             <summary>
