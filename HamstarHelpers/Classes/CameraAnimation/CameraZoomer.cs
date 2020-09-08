@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Services.Camera;
+using HamstarHelpers.Helpers.Misc;
 
 
 namespace HamstarHelpers.Classes.CameraAnimation {
@@ -36,6 +37,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="toDuration">How long (in ticks) the camera takes to reach peak zoom.</param>
 		/// <param name="lingerDuration">How long (in ticks) to linger at peak zoom.</param>
 		/// <param name="froDuration">How long (in ticks) the camera takes to return to start zoom.</param>
+		/// <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
 		/// <param name="onTraversed">Function to call on reaching peak zoom.</param>
 		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
@@ -46,10 +48,11 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int toDuration,
 					int lingerDuration,
 					int froDuration,
+					bool isSmoothed,
 					Action onTraversed = null,
 					Action onStop = null,
 					int skippedTicks = 0 )
-					: base( name, toDuration, lingerDuration, froDuration, onTraversed, onStop, skippedTicks ) {
+					: base( name, toDuration, lingerDuration, froDuration, isSmoothed, onTraversed, onStop, skippedTicks ) {
 			this.ZoomFrom = zoomFrom;
 			this.ZoomTo = zoomTo;
 			this.OnTraversed = onTraversed;
@@ -61,7 +64,12 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <summary></summary>
 		/// <param name="percent"></param>
 		protected override void ApplyAnimation( float percent ) {
+			if( this.IsSmoothed ) {
+				percent = (float)MathHelpers.CosineInterpolate( 0d, 1d, (double)percent );
+			}
+
 			float zoom = MathHelper.Lerp( this.ZoomFrom, this.ZoomTo, percent );
+
 			Camera.ApplyZoom( zoom );
 		}
 

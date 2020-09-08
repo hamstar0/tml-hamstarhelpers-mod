@@ -1,6 +1,7 @@
 ﻿using System;
 using Terraria;
 using HamstarHelpers.Services.Camera;
+using HamstarHelpers.Helpers.Misc;
 
 
 namespace HamstarHelpers.Classes.CameraAnimation {
@@ -31,6 +32,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="toDuration">How long (in ticks) the camera takes to reach max shake magnitude.</param>
 		/// <param name="lingerDuration">How long (in ticks) to linger at max magnitude.</param>
 		/// <param name="froDuration">How long (in ticks) the camera takes to return to 0 magnitude.</param>
+		/// <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
 		/// <param name="onTraversed">Function to call on reaching max magnitude.</param>
 		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
@@ -40,10 +42,11 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int toDuration,
 					int lingerDuration,
 					int froDuration,
+					bool isSmoothed,
 					Action onTraversed = null,
 					Action onStop = null,
 					int skippedTicks = 0 )
-					: base( name, toDuration, lingerDuration, froDuration, onTraversed, onStop, skippedTicks ) {
+					: base( name, toDuration, lingerDuration, froDuration, isSmoothed, onTraversed, onStop, skippedTicks ) {
 			this.ShakePeakMagnitude = peakMagnitude;
 			this.OnTraversed = onTraversed;
 		}
@@ -54,7 +57,13 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <summary></summary>
 		/// <param name="percent"></param>
 		protected override void ApplyAnimation( float percent ) {
-			Camera.ApplyShake( this.ShakePeakMagnitude * percent );
+			if( this.IsSmoothed ) {
+				percent = (float)MathHelpers.CosineInterpolate( 0d, 1d, (double)percent );
+			}
+
+			Camera.ApplyShake(
+				magnitude: this.ShakePeakMagnitude * percent
+			);
 		}
 		
 		/// <summary></summary>

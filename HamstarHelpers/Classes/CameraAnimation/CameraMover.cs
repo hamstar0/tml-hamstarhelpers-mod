@@ -2,6 +2,7 @@
 using Terraria;
 using Terraria.UI;
 using HamstarHelpers.Services.Camera;
+using HamstarHelpers.Helpers.Misc;
 
 
 namespace HamstarHelpers.Classes.CameraAnimation {
@@ -106,6 +107,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
 		/// <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
 		/// <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
+		/// <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
 		/// <param name="useGameZoomForOffset"></param>
 		/// <param name="leftOffset">Pixel or percent offset of the screen position from its left starting point. Defaults to 50% (0.5).</param>
 		/// <param name="topOffset">Pixel or percent offset of the screen position from its top starting point. Defaults to 50% (0.5).</param>
@@ -121,13 +123,14 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int toDuration,
 					int lingerDuration,
 					int froDuration,
+					bool isSmoothed,
 					bool useGameZoomForOffset = true,
 					StyleDimension? leftOffset = null,
 					StyleDimension? topOffset = null,
 					Action onTraversed = null,
 					Action onStop = null,
 					int skippedTicks = 0 )
-					: base( name, toDuration, lingerDuration, froDuration, onTraversed, onStop, skippedTicks ) {
+					: base( name, toDuration, lingerDuration, froDuration, isSmoothed, onTraversed, onStop, skippedTicks ) {
 			this.MoveXFrom = moveXFrom;
 			this.MoveYFrom = moveYFrom;
 			this.MoveXTo = moveXTo;
@@ -143,6 +146,10 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <summary></summary>
 		/// <param name="percent"></param>
 		protected override void ApplyAnimation( float percent ) {
+			if( this.IsSmoothed ) {
+				percent = (float)MathHelpers.CosineInterpolate( 0d, 1d, (double)percent );
+			}
+
 			(int x, int y) worldPos = CameraMover.GetMovePosition(
 				fromX: this.MoveXFrom,
 				fromY: this.MoveYFrom,

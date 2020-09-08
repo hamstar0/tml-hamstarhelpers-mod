@@ -31,6 +31,8 @@ namespace HamstarHelpers.Services.UI.FreeHUD {
 			}
 			hud.HUDComponents.Append( elem );
 
+			hud.HUDComponents.Recalculate();
+
 			hud.ElemMap[ id ] = elem;
 		}
 
