@@ -23,6 +23,7 @@ namespace HamstarHelpers.Services.Camera {
 				toDuration: tickDuration,
 				lingerDuration: 0,
 				froDuration: 0,
+				isSmoothed: false,
 				onTraversed: null,
 				onStop: null,
 				skippedTicks: skippedTicks

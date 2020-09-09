@@ -46,6 +46,9 @@
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.IsPaused">
             <summary></summary>
         </member>
+        <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.IsSmoothed">
+            <summary>Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</summary>
+        </member>
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.ToTickDuration">
             <summary></summary>
         </member>
@@ -64,12 +67,13 @@
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.TicksLingerElapsed">
             <summary>Note: Negative values indicate moving still in progress.</summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Action,System.Action,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Boolean,System.Action,System.Action,System.Int32)">
             <summary></summary>
             <param name="name"></param>
             <param name="toDuration">How long (in ticks) the camera state takes to go from A to B.</param>
             <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
             <param name="froDuration">How long (in ticks) the camera state takes to go back from B to A.</param>
+            <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
             <param name="onTraversed">Function to call on reaching destination (B).</param>
             <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
@@ -142,7 +146,7 @@
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraMover.TopOffset">
             <summary>Pixel or percent offset of the screen position from its top starting point.</summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Nullable{Terraria.UI.StyleDimension},System.Nullable{Terraria.UI.StyleDimension},System.Action,System.Action,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Nullable{Terraria.UI.StyleDimension},System.Nullable{Terraria.UI.StyleDimension},System.Action,System.Action,System.Int32)">
             <summary></summary>
             <param name="name"></param>
             <param name="moveXFrom">World coordinates. -1 substitutes with current screen X coord.</param>
@@ -152,6 +156,7 @@
             <param name="toDuration">How long (in ticks) the camera takes to travel from A to B.</param>
             <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
             <param name="froDuration">How long (in ticks) the camera takes to travel back from B to A.</param>
+            <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
             <param name="useGameZoomForOffset"></param>
             <param name="leftOffset">Pixel or percent offset of the screen position from its left starting point. Defaults to 50% (0.5).</param>
             <param name="topOffset">Pixel or percent offset of the screen position from its top starting point. Defaults to 50% (0.5).</param>
@@ -177,13 +182,14 @@
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraShaker.ShakePeakMagnitude">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraShaker.#ctor(System.String,System.Single,System.Int32,System.Int32,System.Int32,System.Action,System.Action,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraShaker.#ctor(System.String,System.Single,System.Int32,System.Int32,System.Int32,System.Boolean,System.Action,System.Action,System.Int32)">
             <summary></summary>
             <param name="name"></param>
             <param name="peakMagnitude"></param>
             <param name="toDuration">How long (in ticks) the camera takes to reach max shake magnitude.</param>
             <param name="lingerDuration">How long (in ticks) to linger at max magnitude.</param>
             <param name="froDuration">How long (in ticks) the camera takes to return to 0 magnitude.</param>
+            <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
             <param name="onTraversed">Function to call on reaching max magnitude.</param>
             <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
@@ -209,7 +215,7 @@
         <member name="P:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.ZoomTo">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.#ctor(System.String,System.Single,System.Single,System.Int32,System.Int32,System.Int32,System.Action,System.Action,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.#ctor(System.String,System.Single,System.Single,System.Int32,System.Int32,System.Int32,System.Boolean,System.Action,System.Action,System.Int32)">
             <summary></summary>
             <param name="name"></param>
             <param name="zoomFrom"></param>
@@ -217,6 +223,7 @@
             <param name="toDuration">How long (in ticks) the camera takes to reach peak zoom.</param>
             <param name="lingerDuration">How long (in ticks) to linger at peak zoom.</param>
             <param name="froDuration">How long (in ticks) the camera takes to return to start zoom.</param>
+            <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
             <param name="onTraversed">Function to call on reaching peak zoom.</param>
             <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
@@ -7488,6 +7495,20 @@
             Gets the "music type" (internal identifier) of a given vanilla music box by its item id.
             </summary>
             <param name="itemType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Misc.MathHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to math.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Misc.MathHelpers.CosineInterpolate(System.Double,System.Double,System.Double)">
+            <summary>
+            Finds the value of a curved interpolation between 2 values.
+            </summary>
+            <param name="y1"></param>
+            <param name="y2"></param>
+            <param name="mu"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Misc.MiscHelpers">
