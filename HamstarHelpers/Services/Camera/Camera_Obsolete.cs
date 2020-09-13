@@ -24,7 +24,7 @@ namespace HamstarHelpers.Services.Camera {
 				lingerDuration: 0,
 				froDuration: 0,
 				isSmoothed: false,
-				onTraversed: null,
+				onRun: null,
 				onStop: null,
 				skippedTicks: skippedTicks
 			);

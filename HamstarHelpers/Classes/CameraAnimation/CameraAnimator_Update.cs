@@ -22,31 +22,31 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 				}
 			}
 
-			float movePercent;
+			float progPercent;
 			if( this.ToTickDuration > 0 ) {
-				movePercent = (float)this.TicksElapsed / (float)this.ToTickDuration;
+				progPercent = (float)this.TicksElapsed / (float)this.ToTickDuration;
 			} else {
-				movePercent = 1f;
+				progPercent = 1f;
 			}
 
 			if( this.TicksElapsed > this.ToTickDuration ) {
 				int froStart = this.ToTickDuration + this.LingerTicksDuration;
 
 				if( this.TicksElapsed < froStart ) {
-					movePercent = 1f;
-
-					this.OnTraversed?.Invoke();
+					progPercent = 1f;
 				} else {
 					if( this.FroTickDuration > 0 ) {
-						movePercent = (this.TicksElapsed - froStart) / this.FroTickDuration;
-						movePercent = movePercent < 0f ? 0f : 1f - movePercent;
+						progPercent = (this.TicksElapsed - froStart) / this.FroTickDuration;
+						progPercent = progPercent < 0f ? 0f : 1f - progPercent;
 					} else {
-						movePercent = 0f;
+						progPercent = 0f;
 					}
 				}
 			}
 
-			this.ApplyAnimation( movePercent );
+			this.OnRun?.Invoke();
+
+			this.ApplyAnimation( progPercent );
 
 			return true;
 		}

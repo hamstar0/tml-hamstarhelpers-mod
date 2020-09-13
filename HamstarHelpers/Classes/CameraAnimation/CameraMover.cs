@@ -111,7 +111,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="useGameZoomForOffset"></param>
 		/// <param name="leftOffset">Pixel or percent offset of the screen position from its left starting point. Defaults to 50% (0.5).</param>
 		/// <param name="topOffset">Pixel or percent offset of the screen position from its top starting point. Defaults to 50% (0.5).</param>
-		/// <param name="onTraversed">Function to call on reaching destination (B).</param>
+		/// <param name="onRun">Function to call while running.</param>
 		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
 		public CameraMover(
@@ -127,10 +127,10 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					bool useGameZoomForOffset = true,
 					StyleDimension? leftOffset = null,
 					StyleDimension? topOffset = null,
-					Action onTraversed = null,
+					Action onRun = null,
 					Action onStop = null,
 					int skippedTicks = 0 )
-					: base( name, toDuration, lingerDuration, froDuration, isSmoothed, onTraversed, onStop, skippedTicks ) {
+					: base( name, toDuration, lingerDuration, froDuration, isSmoothed, onRun, onStop, skippedTicks ) {
 			this.MoveXFrom = moveXFrom;
 			this.MoveYFrom = moveYFrom;
 			this.MoveXTo = moveXTo;
@@ -138,6 +138,25 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 			this.UseGameZoom = useGameZoomForOffset;
 			this.LeftOffset = leftOffset ?? new StyleDimension( 0f, 0.5f );
 			this.TopOffset = topOffset ?? new StyleDimension( 0f, 0.5f );
+		}
+
+
+		////////////////
+
+		/// <summary></summary>
+		/// <param name="moveFromX">World coordinates. -1 substitutes with current screen X coord.</param>
+		/// <param name="moveFromY">World coordinates. -1 substitutes with current screen Y coord.</param>
+		public void SetMoveFrom( int moveFromX, int moveFromY ) {
+			this.MoveXFrom = moveFromX;
+			this.MoveYFrom = moveFromY;
+		}
+
+		/// <summary></summary>
+		/// <param name="moveToX">World coordinates. -1 substitutes with current screen X coord.</param>
+		/// <param name="moveToY">World coordinates. -1 substitutes with current screen Y coord.</param>
+		public void SetMoveTo( int moveToX, int moveToY ) {
+			this.MoveXTo = moveToX;
+			this.MoveYTo = moveToY;
 		}
 
 

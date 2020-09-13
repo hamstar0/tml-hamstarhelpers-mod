@@ -38,7 +38,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="lingerDuration">How long (in ticks) to linger at peak zoom.</param>
 		/// <param name="froDuration">How long (in ticks) the camera takes to return to start zoom.</param>
 		/// <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
-		/// <param name="onTraversed">Function to call on reaching peak zoom.</param>
+		/// <param name="onRun">Function to call while running.</param>
 		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
 		public CameraZoomer(
@@ -49,13 +49,28 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int lingerDuration,
 					int froDuration,
 					bool isSmoothed,
-					Action onTraversed = null,
+					Action onRun = null,
 					Action onStop = null,
 					int skippedTicks = 0 )
-					: base( name, toDuration, lingerDuration, froDuration, isSmoothed, onTraversed, onStop, skippedTicks ) {
+					: base( name, toDuration, lingerDuration, froDuration, isSmoothed, onRun, onStop, skippedTicks ) {
 			this.ZoomFrom = zoomFrom;
 			this.ZoomTo = zoomTo;
-			this.OnTraversed = onTraversed;
+			this.OnRun = onRun;
+		}
+
+
+		////////////////
+		
+		/// <summary></summary>
+		/// <param name="percent"></param>
+		public void SetZoomFrom( float percent ) {
+			this.ZoomFrom = percent;
+		}
+		
+		/// <summary></summary>
+		/// <param name="percent"></param>
+		public void SetZoomTo( float percent ) {
+			this.ZoomTo = percent;
 		}
 
 

@@ -8,7 +8,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 	/// </summary>
 	public abstract partial class CameraAnimator {
 		/// <summary>Called while camera is at destination.</summary>
-		protected Action OnTraversed;
+		protected Action OnRun;
 
 		/// <summary>Called while camera has stopped (not paused); either manually or by completion.</summary>
 		protected Action OnStop;
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
 		/// <param name="froDuration">How long (in ticks) the camera state takes to go back from B to A.</param>
 		/// <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
-		/// <param name="onTraversed">Function to call on reaching destination (B).</param>
+		/// <param name="onRun">Function to call while running.</param>
 		/// <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
 		/// <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
 		protected CameraAnimator(
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 					int lingerDuration,
 					int froDuration,
 					bool isSmoothed,
-					Action onTraversed = null,
+					Action onRun = null,
 					Action onStop = null,
 					int skippedTicks = 0 ) {
 			this.Name = name;
@@ -76,7 +76,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 			this.LingerTicksDuration = lingerDuration;
 			this.FroTickDuration = froDuration;
 			this.IsSmoothed = isSmoothed;
-			this.OnTraversed = onTraversed;
+			this.OnRun = onRun;
 			this.OnStop = onStop;
 			this.TicksElapsed = skippedTicks;
 		}
@@ -98,12 +98,13 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		public void Seek( int ticks ) {
 			int total = this.TotalTickDuration;
 
+			if( ticks < 0 ) {
+				ticks = 0;
+			} else if( ticks > total ) {
+				ticks = Math.Max( total - 1, 0 );
+			}
+
 			this.TicksElapsed = ticks;
-			this.TicksElapsed = this.TicksElapsed < 0
-				? 0
-				: this.TicksElapsed > total
-					? total - 1
-					: this.TicksElapsed;
 		}
 
 		////
