@@ -12661,12 +12661,21 @@
             or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
             </summary>
         </member>
-        <member name="P:HamstarHelpers.Services.EntityGroups.EntityGroups.IsEnabled">
+        <member name="P:HamstarHelpers.Services.EntityGroups.EntityGroups.IsLoaded">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.EntityGroups.EntityGroups.ItemCount">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.EntityGroups.EntityGroups.NPCCount">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.EntityGroups.EntityGroups.ProjectileCount">
             <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.Enable">
             <summary>
-            Enables entity groups. Must be called before all mod load and setup functions are called.
+            Enables entity groups. Must be called before all mod load and setup functions are called (e.g. `Mod.Load()`).
             </summary>
         </member>
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.AddCustomItemGroup(System.String,System.String[],HamstarHelpers.Services.EntityGroups.ItemGroupMatcher)">
