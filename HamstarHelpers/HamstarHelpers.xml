@@ -34,7 +34,7 @@
             Represents a sequence of controlled behavior for the player's 'camera'.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.OnTraversed">
+        <member name="F:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.OnRun">
             <summary>Called while camera is at destination.</summary>
         </member>
         <member name="F:HamstarHelpers.Classes.CameraAnimation.CameraAnimator.OnStop">
@@ -74,7 +74,7 @@
             <param name="lingerDuration">How long (in ticks) to linger at destination (B).</param>
             <param name="froDuration">How long (in ticks) the camera state takes to go back from B to A.</param>
             <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
-            <param name="onTraversed">Function to call on reaching destination (B).</param>
+            <param name="onRun">Function to call while running.</param>
             <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
         </member>
@@ -160,9 +160,19 @@
             <param name="useGameZoomForOffset"></param>
             <param name="leftOffset">Pixel or percent offset of the screen position from its left starting point. Defaults to 50% (0.5).</param>
             <param name="topOffset">Pixel or percent offset of the screen position from its top starting point. Defaults to 50% (0.5).</param>
-            <param name="onTraversed">Function to call on reaching destination (B).</param>
+            <param name="onRun">Function to call while running.</param>
             <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.SetMoveFrom(System.Int32,System.Int32)">
+            <summary></summary>
+            <param name="moveFromX">World coordinates. -1 substitutes with current screen X coord.</param>
+            <param name="moveFromY">World coordinates. -1 substitutes with current screen Y coord.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.SetMoveTo(System.Int32,System.Int32)">
+            <summary></summary>
+            <param name="moveToX">World coordinates. -1 substitutes with current screen X coord.</param>
+            <param name="moveToY">World coordinates. -1 substitutes with current screen Y coord.</param>
         </member>
         <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraMover.ApplyAnimation(System.Single)">
             <summary></summary>
@@ -190,9 +200,13 @@
             <param name="lingerDuration">How long (in ticks) to linger at max magnitude.</param>
             <param name="froDuration">How long (in ticks) the camera takes to return to 0 magnitude.</param>
             <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
-            <param name="onTraversed">Function to call on reaching max magnitude.</param>
+            <param name="onRun">Function to call while running.</param>
             <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraShaker.SetPeakMagnitude(System.Single)">
+            <summary></summary>
+            <param name="magnitude"></param>
         </member>
         <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraShaker.ApplyAnimation(System.Single)">
             <summary></summary>
@@ -224,9 +238,17 @@
             <param name="lingerDuration">How long (in ticks) to linger at peak zoom.</param>
             <param name="froDuration">How long (in ticks) the camera takes to return to start zoom.</param>
             <param name="isSmoothed">Makes the animation begin and end in a smooth (sine wave, S-curve) fashion.</param>
-            <param name="onTraversed">Function to call on reaching peak zoom.</param>
+            <param name="onRun">Function to call while running.</param>
             <param name="onStop">Function to call on stop (not pause); either by completion or manual stop.</param>
             <param name="skippedTicks">How far into the sequence to skip to (in ticks).</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.SetZoomFrom(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.SetZoomTo(System.Single)">
+            <summary></summary>
+            <param name="percent"></param>
         </member>
         <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.ApplyAnimation(System.Single)">
             <summary></summary>
@@ -12638,6 +12660,9 @@
             Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs,
             or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
             </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.EntityGroups.EntityGroups.IsEnabled">
+            <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.Enable">
             <summary>

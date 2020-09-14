@@ -35,7 +35,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		////////////////
 
-		private bool IsEnabled = false;
+		private bool IsEnabledSinceLoad = false;
 
 		private IDictionary<string, IReadOnlySet<int>> ItemGroups = new Dictionary<string, IReadOnlySet<int>>();
 		private IDictionary<string, IReadOnlySet<int>> NPCGroups = new Dictionary<string, IReadOnlySet<int>>();
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		internal EntityGroups() {
 			LoadHooks.AddPostModLoadHook( () => {
-				if( !this.IsEnabled ) { return; }
+				if( !this.IsEnabledSinceLoad ) { return; }
 
 				this.InitializePools();
 				this.InitializeDefinitions();

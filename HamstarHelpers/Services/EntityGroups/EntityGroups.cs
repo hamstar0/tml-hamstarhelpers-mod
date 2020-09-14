@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Classes.DataStructures;
+﻿using System;
+using Terraria;
+using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.TModLoader;
-using System;
-using Terraria;
 
 
 namespace HamstarHelpers.Services.EntityGroups {
@@ -11,6 +11,13 @@ namespace HamstarHelpers.Services.EntityGroups {
 	/// or projectiles. Must be enabled on mod load to be used (note: collections may require memory).
 	/// </summary>
 	public partial class EntityGroups {
+		/// <summary></summary>
+		public static bool IsEnabled => ModHelpersMod.Instance.EntityGroups?.IsEnabledSinceLoad ?? false;
+
+
+
+		////////////////
+
 		/// <summary>
 		/// Enables entity groups. Must be called before all mod load and setup functions are called.
 		/// </summary>
@@ -21,7 +28,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 			}
 
 			var entGrps = mymod.EntityGroups;
-			entGrps.IsEnabled = true;
+			entGrps.IsEnabledSinceLoad = true;
 		}
 
 
@@ -36,7 +43,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// <param name="matcher">Function to use to match items for this group.</param>
 		public static void AddCustomItemGroup( string groupName, string[] groupDependencies, ItemGroupMatcher matcher ) {
 			var entGrps = ModHelpersMod.Instance.EntityGroups;
-			if( !entGrps.IsEnabled ) { throw new ModHelpersException( "Entity groups not enabled." ); }
+			if( !entGrps.IsEnabledSinceLoad ) { throw new ModHelpersException( "Entity groups not enabled." ); }
 			if( entGrps.CustomItemMatchers == null ) { throw new ModHelpersException( "Mods loaded; cannot add new groups." ); }
 
 			lock( EntityGroups.MyLock ) {
@@ -55,7 +62,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		public static void AddCustomNPCGroup( string groupName, string[] groupDependencies, NPCGroupMatcher matcher ) {
 			lock( EntityGroups.MyLock ) {
 				var entGrps = ModHelpersMod.Instance.EntityGroups;
-				if( !entGrps.IsEnabled ) { throw new Exception( "Entity groups not enabled." ); }
+				if( !entGrps.IsEnabledSinceLoad ) { throw new Exception( "Entity groups not enabled." ); }
 				if( entGrps.CustomNPCMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
 
 				var entry = new EntityGroupMatcherDefinition<NPC>( groupName, groupDependencies, matcher );
@@ -74,7 +81,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					ProjectileGroupMatcher matcher ) {
 			lock( EntityGroups.MyLock ) {
 				var entGrps = ModHelpersMod.Instance.EntityGroups;
-				if( !entGrps.IsEnabled ) { throw new Exception( "Entity groups not enabled." ); }
+				if( !entGrps.IsEnabledSinceLoad ) { throw new Exception( "Entity groups not enabled." ); }
 				if( entGrps.CustomProjMatchers == null ) { throw new Exception( "Mods loaded; cannot add new groups." ); }
 
 				var entry = new EntityGroupMatcherDefinition<Projectile>( groupName, groupDependencies, matcher );
