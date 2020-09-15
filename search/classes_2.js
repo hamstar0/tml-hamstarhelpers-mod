@@ -1,6 +1,10 @@
 var searchData=
 [
   ['camera',['Camera',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html',1,'HamstarHelpers::Services::Camera']]],
+  ['cameraanimator',['CameraAnimator',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_animator.html',1,'HamstarHelpers::Classes::CameraAnimation']]],
+  ['cameramover',['CameraMover',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_mover.html',1,'HamstarHelpers::Classes::CameraAnimation']]],
+  ['camerashaker',['CameraShaker',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_shaker.html',1,'HamstarHelpers::Classes::CameraAnimation']]],
+  ['camerazoomer',['CameraZoomer',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_zoomer.html',1,'HamstarHelpers::Classes::CameraAnimation']]],
   ['client',['Client',['../class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html',1,'HamstarHelpers::Services::Network']]],
   ['coaltile',['CoalTile',['../class_hamstar_helpers_1_1_tiles_1_1_coal_tile.html',1,'HamstarHelpers::Tiles']]],
   ['collisionhelpers',['CollisionHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_collisions_1_1_collision_helpers.html',1,'HamstarHelpers::Helpers::Collisions']]],

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.1</span>
+   &#160;<span id="projectnumber">v5.9.3</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -173,7 +173,6 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 <li>Instance
 : <a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#aadcf2533d71220e7f65b81f7944c7d4a">HamstarHelpers.ModHelpersConfig</a>
 , <a class="el" href="class_hamstar_helpers_1_1_mod_helpers_privileged_user_config.html#a083aa68c82643ad332d0fb0aec2fe157">HamstarHelpers.ModHelpersPrivilegedUserConfig</a>
-, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#ad1a2f45ecc5017f7a114c1b1f939ff8b">HamstarHelpers.Services.Camera.AnimatedCamera</a>
 , <a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#adc2ce2970e62fd7b2bef1ea663fce334">HamstarHelpers.Services.Camera.Camera</a>
 , <a class="el" href="class_hamstar_helpers_1_1_services_1_1_u_i_1_1_free_h_u_d_1_1_free_h_u_d.html#a2be39243faa8f363c37b32aa98345490">HamstarHelpers.Services.UI.FreeHUD.FreeHUD</a>
 </li>
@@ -210,6 +209,11 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html#a67c67d2c3b64e39c6150b934131ee7ed">HamstarHelpers.Helpers.Players.PlayerHelpers</a>
 , <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_identity_helpers.html#a67875ec7091bd9b42308213b138a270d">HamstarHelpers.Helpers.Players.PlayerIdentityHelpers</a>
 </li>
+<li>Invert
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a38951047fae7a53648acefda2c5c1a8d">HamstarHelpers.Classes.Tiles.TilePattern.TilePattern</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a9ba4eb5a225b00bd202912be0bcf17fb">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#ae726c85389e05ee14dbbe72491eee927">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig</a>
+</li>
 <li>IsAboveWorldSurface()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a2b2f30de75698c8add6a86390908ecae">HamstarHelpers.Helpers.World.WorldHelpers</a>
 </li>
@@ -230,6 +234,9 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 </li>
 <li>IsAir()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a7a9dc4c96cc3bf84dd3a6abee7a13ef7">HamstarHelpers.Helpers.Tiles.TileHelpers</a>
+</li>
+<li>IsAnimating()
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_animator.html#abc049c5dc6b3ab681de5caeaa26251fa">HamstarHelpers.Classes.CameraAnimation.CameraAnimator</a>
 </li>
 <li>IsAnyOfType
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#adfbb46fc363291fb849b73c125c6d09e">HamstarHelpers.Classes.Tiles.TilePattern.TilePattern</a>
@@ -261,6 +268,9 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 </li>
 <li>IsBeingInvaded()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_state_helpers.html#aa7a7169c3dd1af4fba8edae6cbc3aa48">HamstarHelpers.Helpers.World.WorldStateHelpers</a>
+</li>
+<li>IsBordered
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#a04aecbe323eef170df3722f194b03fe8">HamstarHelpers.Services.Messages.Simple.SimpleMessage</a>
 </li>
 <li>IsBoss
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html#a28f96bedc51d5721ce897b793ba47129">HamstarHelpers.Classes.Context.Context</a>
@@ -317,7 +327,8 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_definition.html#ae403257d35249c26d9859c2ad1a8973c">HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition</a>
 </li>
 <li>IsHidden
-: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html#a3a0c446135e40fdb7953486d339b562c">HamstarHelpers.Classes.UI.Elements.UITextInputElement</a>
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hideable_scrollbar.html#a6d93dac60476fe5f7456dad276e49b70">HamstarHelpers.Classes.UI.Elements.UIHideableScrollbar</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_element.html#a3a0c446135e40fdb7953486d339b562c">HamstarHelpers.Classes.UI.Elements.UITextInputElement</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_panel.html#a915ac6d9fc6e6495faf10404bfc33d37">HamstarHelpers.Classes.UI.Elements.UIThemedPanel</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_text.html#a5829903334770d9e336514e3933f2b0e">HamstarHelpers.Classes.UI.Elements.UIThemedText</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_themed_text_panel.html#acdb0609b23218221de639c88a07bd8c6">HamstarHelpers.Classes.UI.Elements.UIThemedTextPanel</a>
@@ -361,6 +372,9 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 <li>IsListModProperlyPresented()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_identity_helpers.html#a4c3623eb8d1846f3ce2389fc7dc44041">HamstarHelpers.Helpers.TModLoader.Mods.ModIdentityHelpers</a>
 </li>
+<li>IsLoaded
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a9a79aa428629d0dc0e9316afc1198e6f">HamstarHelpers.Services.EntityGroups.EntityGroups</a>
+</li>
 <li>IsLoadedModProperlyPresented()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_mod_identity_helpers.html#a6235be8c8c90e6bf97447b72dc5644dc">HamstarHelpers.Helpers.TModLoader.Mods.ModIdentityHelpers</a>
 </li>
@@ -382,6 +396,16 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html#a52f54ff81fc65c7545bda0e2a669fbc4">HamstarHelpers.Classes.Context.Context</a>
 , <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_context_1_1_context_config.html#a944d6f89e1548a36208f13a0860b4148">HamstarHelpers.Classes.Context.ContextConfig</a>
 </li>
+<li>IsNotAnyOfType
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a46bdd09531b500e9b2e696ca3ddfc287">HamstarHelpers.Classes.Tiles.TilePattern.TilePattern</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#a29d9f351ef6658297aac05b0d384e9d4">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a63834e8848e4d60c962ee2c50f449092">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig</a>
+</li>
+<li>IsNotAnyOfWallType
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a39d3cdcdbfc539fc47679afc558917b7">HamstarHelpers.Classes.Tiles.TilePattern.TilePattern</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html#ad49f8582e1c3704a43655389658762b4">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder</a>
+, <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a0ab6a18e69fa3b0496a1f83daaaba58d">HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig</a>
+</li>
 <li>IsNotVanillaBombable()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_attributes_1_1_tile_attribute_helpers.html#a0fcfac6af9d35da7cc22c85a7e7edd81">HamstarHelpers.Helpers.Tiles.Attributes.TileAttributeHelpers</a>
 </li>
@@ -400,6 +424,9 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 </li>
 <li>IsOverworld()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#ab1b2b409c698dc1396af1fd13a528067">HamstarHelpers.Helpers.World.WorldHelpers</a>
+</li>
+<li>IsPaused
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_animator.html#ac5bd51209fb76149408e30aa1829b39a">HamstarHelpers.Classes.CameraAnimation.CameraAnimator</a>
 </li>
 <li>IsPenetrator()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#ad54aea50d04106ca7bd1ba648b5bb848">HamstarHelpers.Helpers.Items.Attributes.ItemAttributeHelpers</a>
@@ -436,11 +463,17 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 <li>IsRockLayer()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a82f846235f7b728369a48767ad76f381">HamstarHelpers.Helpers.World.WorldHelpers</a>
 </li>
+<li>IsScrollbarHidden()
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hideable_scrollbar.html#a5884dd471d813f8b07220c69eb5754ab">HamstarHelpers.Classes.UI.Elements.UIHideableScrollbar</a>
+</li>
 <li>IsServerGaugingAveragePing
 : <a class="el" href="class_hamstar_helpers_1_1_mod_helpers_config.html#a3b44be454aae193fd4a05c06452976c2">HamstarHelpers.ModHelpersConfig</a>
 </li>
 <li>IsSky()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a363fa3463e6be11e0b753b5c456ada47">HamstarHelpers.Helpers.World.WorldHelpers</a>
+</li>
+<li>IsSmoothed
+: <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_animator.html#ab1b668e7538485fcc41e20fb8983fbde">HamstarHelpers.Classes.CameraAnimation.CameraAnimator</a>
 </li>
 <li>IsSolid
 : <a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a882349afa66407445a6193175be670e6">HamstarHelpers.Classes.Tiles.TilePattern.TilePattern</a>
@@ -493,7 +526,7 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html#a1e35fc1b880199b6de8055085762129f">HamstarHelpers.Helpers.Tiles.TileWorldHelpers</a>
 </li>
 <li>IsWithinTilePlacementReach()
-: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_interaction_helpers.html#acc60f4e7b7ef4a440a7b420e34f1104d">HamstarHelpers.Helpers.Players.PlayerInteractionHelpers</a>
+: <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_interaction_helpers.html#a8b29cd016a472180ebbb63df1ee3da21">HamstarHelpers.Helpers.Players.PlayerInteractionHelpers</a>
 </li>
 <li>IsWithinUnderworld()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a75f64827fe0487aefa2e8068b808c681">HamstarHelpers.Helpers.World.WorldHelpers</a>
@@ -512,6 +545,9 @@ $(document).ready(function(){initNavTree('functions_i.html','');});
 </li>
 <li>IsYoyo()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes_1_1_item_attribute_helpers.html#ac4b67968e1a1a164f3d0c461bf2e15be">HamstarHelpers.Helpers.Items.Attributes.ItemAttributeHelpers</a>
+</li>
+<li>ItemCount
+: <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#ac7ca8c93fc2007cd4a37e85315073b70">HamstarHelpers.Services.EntityGroups.EntityGroups</a>
 </li>
 <li>ItemGroupDefinition()
 : <a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_definition.html#a15fb4a03d96b71c82b499f257471b33a">HamstarHelpers.Helpers.Items.ItemGroupDefinition</a>

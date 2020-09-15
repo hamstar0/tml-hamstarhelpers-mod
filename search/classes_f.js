@@ -36,6 +36,7 @@ var searchData=
   ['projectilehelpers',['ProjectileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_helpers.html',1,'HamstarHelpers::Helpers::Projectiles']]],
   ['projectileidentityhelpers',['ProjectileIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_identity_helpers.html',1,'HamstarHelpers::Helpers::Projectiles']]],
   ['projectileresourcehelpers',['ProjectileResourceHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_projectiles_1_1_projectile_resource_helpers.html',1,'HamstarHelpers::Helpers::Projectiles']]],
+  ['propnpc',['PropNPC',['../class_hamstar_helpers_1_1_n_p_cs_1_1_prop_n_p_c.html',1,'HamstarHelpers::NPCs']]],
   ['protocolignoreattribute',['ProtocolIgnoreAttribute',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_protocol_ignore_attribute.html',1,'HamstarHelpers::Classes::Protocols']]],
   ['protocolwriteignoreclientattribute',['ProtocolWriteIgnoreClientAttribute',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_protocol_write_ignore_client_attribute.html',1,'HamstarHelpers::Classes::Protocols']]],
   ['protocolwriteignoreserverattribute',['ProtocolWriteIgnoreServerAttribute',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_protocol_write_ignore_server_attribute.html',1,'HamstarHelpers::Classes::Protocols']]]

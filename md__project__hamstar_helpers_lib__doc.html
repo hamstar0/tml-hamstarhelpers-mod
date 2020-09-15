@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.1</span>
+   &#160;<span id="projectnumber">v5.9.3</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -89,11 +89,11 @@ $(document).ready(function(){initNavTree('md__project__hamstar_helpers_lib__doc.
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">NetSerializer - A fast, simple serializer for .Net </div>  </div>
+<div class="title"><a class="el" href="namespace_net_serializer.html">NetSerializer</a> - A fast, simple serializer for .Net </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h2>Supported Types</h2>
-<p>NetSerializer supports serializing the following types:</p>
+<p><a class="el" href="namespace_net_serializer.html">NetSerializer</a> supports serializing the following types:</p>
 <ul>
 <li>All primitive types (Boolean, Byte, SByte, Int16, UInt16, Int32, UInt32, Int64, UInt64, IntPtr, UIntPtr, Char, Double, and Single)</li>
 <li>Strings</li>
@@ -109,13 +109,13 @@ $(document).ready(function(){initNavTree('md__project__hamstar_helpers_lib__doc.
 <li><code>ISerializable</code> is not supported, so not all classes marked with <code>[Serializable]</code> are supported.</li>
 <li>Versioning not supported. Any change in the types may result in incompatible data.</li>
 <li>The above also implies that if client-server architecture is used, both client and server must have the exact same types.</li>
-<li>With client-server, both client and server must set up the NetSerializer in the same way, providing the same types (and type IDs).</li>
+<li>With client-server, both client and server must set up the <a class="el" href="namespace_net_serializer.html">NetSerializer</a> in the same way, providing the same types (and type IDs).</li>
 </ul>
 <h2>Usage</h2>
 <p>The types to be serialized need to be marked with the standard <code>[Serializable]</code>. You can also use <code>[NonSerialized]</code> for fields you don't want to serialize. Nothing else needs to be done for the types to be serialized.</p>
-<p>Then you need to initialize NetSerializer by giving it a list of types you will be serializing. NetSerializer will scan through the given types, and recursively add all the types used by the given types, and assign type IDs and create (de)serialization code.</p>
-<p>All the types you will be serializing should be reachable from this list of types. If your types contain fields of base class types or interfaces, NetSerializer does not know what concrete types you will be serializing via those fields. You need to collect those types somehow and provide them to NetSerializer when initializing (See <a href="#collecting-types">Collecting Types</a>).</p>
-<p>It is important that the list of types provided to NetSerializer contains exactly the same types on all NetSerializer instances (e.g. client and server), as the type IDs are assigned according to the list.</p>
+<p>Then you need to initialize <a class="el" href="namespace_net_serializer.html">NetSerializer</a> by giving it a list of types you will be serializing. <a class="el" href="namespace_net_serializer.html">NetSerializer</a> will scan through the given types, and recursively add all the types used by the given types, and assign type IDs and create (de)serialization code.</p>
+<p>All the types you will be serializing should be reachable from this list of types. If your types contain fields of base class types or interfaces, <a class="el" href="namespace_net_serializer.html">NetSerializer</a> does not know what concrete types you will be serializing via those fields. You need to collect those types somehow and provide them to <a class="el" href="namespace_net_serializer.html">NetSerializer</a> when initializing (See <a href="#collecting-types">Collecting Types</a>).</p>
+<p>It is important that the list of types provided to <a class="el" href="namespace_net_serializer.html">NetSerializer</a> contains exactly the same types on all <a class="el" href="namespace_net_serializer.html">NetSerializer</a> instances (e.g. client and server), as the type IDs are assigned according to the list.</p>
 <p>There is also a possibility to add types later via <a href="#type-maps">type maps</a>, which is somewhat complex and only recommended if absolutely needed.</p>
 <h2>Example</h2>
 <p>Initialization:</p>
@@ -124,12 +124,12 @@ $(document).ready(function(){initNavTree('md__project__hamstar_helpers_lib__doc.
 <p>Deserializing:</p>
 <p><code>var ob = (YourType)ser.Deserialize(stream);</code></p>
 <h2>Collecting Types</h2>
-<p>There are many ways to collect the types for NetSerializer. Here is one example.</p>
+<p>There are many ways to collect the types for <a class="el" href="namespace_net_serializer.html">NetSerializer</a>. Here is one example.</p>
 <p>Let's say we have a bunch of message types we want to serialize. All those message types inherit <code>MessageBase</code>.</p>
 <p>With this helper:</p>
 <div class="fragment"><div class="line">IEnumerable&lt;Type&gt; GetSubclasses(Type type)</div><div class="line">{</div><div class="line">    return type.Assembly.GetTypes().Where(t =&gt; t.IsSubclassOf(type));</div><div class="line">}</div></div><!-- fragment --><p>we can use the following code to collect all the message types:</p>
 <div class="fragment"><div class="line">var messageTypes = GetSubclasses(typeof(MessageBase));</div><div class="line">var ser = new Serializer(messageTypes);</div></div><!-- fragment --><h2>Direct Serialization</h2>
-<p>NetSerializer supports so called direct serialization via the following methods:</p>
+<p><a class="el" href="namespace_net_serializer.html">NetSerializer</a> supports so called direct serialization via the following methods:</p>
 <div class="fragment"><div class="line">SerializeDirect&lt;T&gt;()</div><div class="line">DeserializeDirect&lt;T&gt;()</div></div><!-- fragment --><p>These methods can be used when the serializer <em>and</em> the deserializer know the exact type of the object. This has two benefits:</p>
 <ul>
 <li>No type ID will be written, saving a byte of two</li>
@@ -137,14 +137,14 @@ $(document).ready(function(){initNavTree('md__project__hamstar_helpers_lib__doc.
 </ul>
 <p>It is quite rare to need direct serialization, but if you need to serialize lots of value types, direct serialization is faster than normal serialization.</p>
 <h2>Type Maps</h2>
-<p>When NetSerializer serializes data, it uses a number (type ID) to represent the type in question, so that the deserializer knows what type to instantiate. Normally these type IDs are automatically reserved when initializing NetSerializer, and NetSerializer stores these type IDs in a type map (Type -&gt; TypeID map).</p>
-<p>For advanced use cases it is also possible for the user to manually assign type IDs for types in a type map. This type map can be provided to NetSerializer when initializing NetSerializer, or later with <code>AddTypes(Dictionary&lt;Type, uint&gt; typeMap)</code>.</p>
-<p>It is critical to keep in mind that the exact same type map must be (somehow) provided to all instances of NetSerializer (e.g. client and server). How this is communicated between the different instances depends on the use case and is out of scope of this document.</p>
+<p>When <a class="el" href="namespace_net_serializer.html">NetSerializer</a> serializes data, it uses a number (type ID) to represent the type in question, so that the deserializer knows what type to instantiate. Normally these type IDs are automatically reserved when initializing <a class="el" href="namespace_net_serializer.html">NetSerializer</a>, and <a class="el" href="namespace_net_serializer.html">NetSerializer</a> stores these type IDs in a type map (Type -&gt; TypeID map).</p>
+<p>For advanced use cases it is also possible for the user to manually assign type IDs for types in a type map. This type map can be provided to <a class="el" href="namespace_net_serializer.html">NetSerializer</a> when initializing <a class="el" href="namespace_net_serializer.html">NetSerializer</a>, or later with <code>AddTypes(Dictionary&lt;Type, uint&gt; typeMap)</code>.</p>
+<p>It is critical to keep in mind that the exact same type map must be (somehow) provided to all instances of <a class="el" href="namespace_net_serializer.html">NetSerializer</a> (e.g. client and server). How this is communicated between the different instances depends on the use case and is out of scope of this document.</p>
 <p>Alternatively types can be added at runtime with <code>AddTypes(IEnumerable&lt;Type&gt; rootTypes)</code>, which assigns type IDs automatically and returns a type map of the added types, which must then be delivered to other instances.</p>
 <h2>Settings</h2>
 <p>You can provide <code>NetSerializer.Settings</code> instance when initializing netserializer to enable support for <code>IDeserializationCallback</code> or <code>OnSerializing</code>, <code>OnSerialized</code>, <code>OnDeserializing</code>, <code>OnDeserialized</code> attributes.</p>
 <h2>Custom Serializers</h2>
-<p>NetSerializer also supports creating custom serializers. Custom serializers can be used to serialize types not directly supported by NetSerializer.</p>
+<p><a class="el" href="namespace_net_serializer.html">NetSerializer</a> also supports creating custom serializers. Custom serializers can be used to serialize types not directly supported by <a class="el" href="namespace_net_serializer.html">NetSerializer</a>.</p>
 <p>However, at the moment custom serializers are somewhat limited in functionality, and you may not be able to create efficient custom serializers. Issue #39 tracks this.</p>
 <h2>Known Issues</h2>
 <ul>

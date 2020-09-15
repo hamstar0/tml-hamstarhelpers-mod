@@ -6,6 +6,7 @@ var namespace_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements =
     [ "UICheckbox", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox" ],
     [ "UIDialog", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog" ],
     [ "UIHiddenPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hidden_panel.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hidden_panel" ],
+    [ "UIHideableScrollbar", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hideable_scrollbar.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hideable_scrollbar" ],
     [ "UIImageUrl", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url" ],
     [ "UIModData", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data" ],
     [ "UITextInputAreaPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel.html", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_text_input_area_panel" ],

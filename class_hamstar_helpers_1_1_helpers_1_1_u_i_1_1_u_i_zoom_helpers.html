@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.1</span>
+   &#160;<span id="projectnumber">v5.9.3</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -105,6 +105,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a113603f54299584fa9f5803c4c56ed61"><td class="memItemLeft" align="right" valign="top">static Rectangle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_zoom_helpers.html#a113603f54299584fa9f5803c4c56ed61">GetWorldFrameOfScreen</a> (bool? uiZoomState, bool? gameZoomState)</td></tr>
 <tr class="memdesc:a113603f54299584fa9f5803c4c56ed61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the world position and range of the screen, according to the given zoom parameters.  <a href="#a113603f54299584fa9f5803c4c56ed61">More...</a><br /></td></tr>
 <tr class="separator:a113603f54299584fa9f5803c4c56ed61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed127bf111b3865c249c0a9d24f42cb"><td class="memItemLeft" align="right" valign="top">static Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_zoom_helpers.html#afed127bf111b3865c249c0a9d24f42cb">ConvertToScreenPosition</a> (Vector2 worldCoords, bool? uiZoomState, bool? gameZoomState)</td></tr>
+<tr class="memdesc:afed127bf111b3865c249c0a9d24f42cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the screen-space coordinates of the given world coordinates.  <a href="#afed127bf111b3865c249c0a9d24f42cb">More...</a><br /></td></tr>
+<tr class="separator:afed127bf111b3865c249c0a9d24f42cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad068e04c68ecd06718892dfa60c1f257"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_zoom_helpers.html#ad068e04c68ecd06718892dfa60c1f257">ApplyZoom</a> (float value, bool? uiZoomState, bool? gameZoomState)</td></tr>
 <tr class="memdesc:ad068e04c68ecd06718892dfa60c1f257"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the given zoom parameters to the given float.  <a href="#ad068e04c68ecd06718892dfa60c1f257">More...</a><br /></td></tr>
 <tr class="separator:ad068e04c68ecd06718892dfa60c1f257"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,7 +180,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_zoom_helpers_8cs_source.html#l00058">58</a> of file <a class="el" href="_u_i_zoom_helpers_8cs_source.html">UIZoomHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_zoom_helpers_8cs_source.html#l00077">77</a> of file <a class="el" href="_u_i_zoom_helpers_8cs_source.html">UIZoomHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -232,7 +235,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_zoom_helpers_8cs_source.html#l00086">86</a> of file <a class="el" href="_u_i_zoom_helpers_8cs_source.html">UIZoomHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_zoom_helpers_8cs_source.html#l00105">105</a> of file <a class="el" href="_u_i_zoom_helpers_8cs_source.html">UIZoomHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -301,7 +304,62 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_u_i_zoom_helpers_8cs_source.html#l00119">119</a> of file <a class="el" href="_u_i_zoom_helpers_8cs_source.html">UIZoomHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_u_i_zoom_helpers_8cs_source.html#l00138">138</a> of file <a class="el" href="_u_i_zoom_helpers_8cs_source.html">UIZoomHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="afed127bf111b3865c249c0a9d24f42cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afed127bf111b3865c249c0a9d24f42cb">&#9670;&nbsp;</a></span>ConvertToScreenPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Vector2 HamstarHelpers.Helpers.UI.UIZoomHelpers.ConvertToScreenPosition </td>
+          <td>(</td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>worldCoords</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>uiZoomState</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool?&#160;</td>
+          <td class="paramname"><em>gameZoomState</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the screen-space coordinates of the given world coordinates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">worldCoords</td><td></td></tr>
+    <tr><td class="paramname">uiZoomState</td><td>If <code>true</code>, assumes zoom is applied, and removes it. <code>false</code> assumes it has been removed, and applies it.</td></tr>
+    <tr><td class="paramname">gameZoomState</td><td>If <code>true</code>, assumes zoom is applied, and removes it. <code>false</code> assumes it has been removed, and applies it.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_u_i_zoom_helpers_8cs_source.html#l00058">58</a> of file <a class="el" href="_u_i_zoom_helpers_8cs_source.html">UIZoomHelpers.cs</a>.</p>
 
 </div>
 </div>

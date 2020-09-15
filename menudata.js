@@ -108,8 +108,7 @@ var menudata={children:[
 {text:"v",url:"functions_vars_v.html#index_v"},
 {text:"w",url:"functions_vars_w.html#index_w"},
 {text:"x",url:"functions_vars_x.html#index_x"},
-{text:"y",url:"functions_vars_y.html#index_y"},
-{text:"z",url:"functions_vars_z.html#index_z"}]},
+{text:"y",url:"functions_vars_y.html#index_y"}]},
 {text:"Properties",url:"functions_prop.html",children:[
 {text:"a",url:"functions_prop.html#index_a"},
 {text:"c",url:"functions_prop_c.html#index_c"},

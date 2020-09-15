@@ -2,6 +2,7 @@ var searchData=
 [
   ['wall',['wall',['../class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_serializeable_tile.html#a8c1cd9ac020a5669cf07b73492bf5141',1,'HamstarHelpers.Classes.TileStructure.SerializeableTile.wall()'],['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a94e8a499539d1a472f3b5dbbb85508c0',1,'HamstarHelpers.Classes.Tiles.TilePattern.Wall()']]],
   ['walltype',['WallType',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_definition.html#ae9260dbb9f4a75f2602e8bc64bada6ba',1,'HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.WallType()'],['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a738ce52e71a260bb0f9911441cfb67d6',1,'HamstarHelpers.Classes.Tiles.TilePattern.WallType()']]],
+  ['walltypenot',['WallTypeNot',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141ad4498d97cf4ed0365f5afa15ce73465e',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['wandconsumes',['WandConsumes',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a8848831ec0a381c560d3633b06396a21',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['warn',['Warn',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a6ea1feb593e0a83f7bc29628e09030db',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
   ['warnandprintonce',['WarnAndPrintOnce',['../class_hamstar_helpers_1_1_helpers_1_1_debug_1_1_log_helpers.html#a2475bbfee8f18eb3a778daa77bf2df46',1,'HamstarHelpers::Helpers::Debug::LogHelpers']]],
@@ -32,7 +33,8 @@ var searchData=
   ['worldlocationhelpers',['WorldLocationHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_location_helpers.html',1,'HamstarHelpers::Helpers::World']]],
   ['worldmodlockenable',['WorldModLockEnable',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a6481872fac8c11ec7957ef6d89ed458a',1,'HamstarHelpers::ModHelpersConfig']]],
   ['worldmodlockminimumonly',['WorldModLockMinimumOnly',['../class_hamstar_helpers_1_1_mod_helpers_config.html#af114320522431d3de0f7611951383f7e',1,'HamstarHelpers::ModHelpersConfig']]],
-  ['worldposition',['WorldPosition',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#ad6cf3a00e1eb58279a042e521a9ee266',1,'HamstarHelpers::Services::Camera::Camera']]],
+  ['worldpositionx',['WorldPositionX',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#ab4500ba8bc121372860ee248b046b800',1,'HamstarHelpers::Services::Camera::Camera']]],
+  ['worldpositiony',['WorldPositionY',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#a4897ad148f95782664d2dda666d026cd',1,'HamstarHelpers::Services::Camera::Camera']]],
   ['worldregionflags',['WorldRegionFlags',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a5fcf9ea63edf5782b37a3ac683960694',1,'HamstarHelpers::Helpers::World']]],
   ['worldsize',['WorldSize',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#a8beedfa3dcac7b50bc266189a21be91e',1,'HamstarHelpers::Helpers::World']]],
   ['worldsizelarge',['WorldSizeLarge',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#adae016ee3e2e430e567289e1db7880c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
@@ -40,6 +42,7 @@ var searchData=
   ['worldsizesmall',['WorldSizeSmall',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a0a760f5e678427a909ae4f749abec97d',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldstatehelpers',['WorldStateHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_state_helpers.html',1,'HamstarHelpers::Helpers::World']]],
   ['worldtimehooks',['WorldTimeHooks',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_world_hooks_1_1_world_time_hooks.html',1,'HamstarHelpers::Services::Hooks::WorldHooks']]],
+  ['worldx',['worldX',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_mover.html#ae7f48f6e3b16d86ad89cdb3892cb0a9d',1,'HamstarHelpers::Classes::CameraAnimation::CameraMover']]],
   ['wormholepotionwarpstyle',['WormholePotionWarpStyle',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#accd7929b58fba4b7e7c0e6dd9dfa21e3',1,'HamstarHelpers::Helpers::Players::PlayerWarpHelpers']]],
   ['writestream',['WriteStream',['../class_hamstar_helpers_1_1_classes_1_1_protocols_1_1_stream_1_1_stream_protocol.html#a7b15aa951b307c4f7fed46476095405a',1,'HamstarHelpers::Classes::Protocols::Stream::StreamProtocol']]]
 ];

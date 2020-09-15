@@ -13,6 +13,7 @@ var searchData=
   ['tileframehelpers',['TileFrameHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_frame_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilegroupidentityhelpers',['TileGroupIdentityHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_group_identity_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilehelpers',['TileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
+  ['tileobjecthelpers',['TileObjectHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_object_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['tilepattern',['TilePattern',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['tilepatternbuilder',['TilePatternBuilder',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_builder.html',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['tilepatternconfig',['TilePatternConfig',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
@@ -24,5 +25,7 @@ var searchData=
   ['tilewallresourcehelpers',['TileWallResourceHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_walls_1_1_tile_wall_resource_helpers.html',1,'HamstarHelpers::Helpers::Tiles::Walls']]],
   ['tileworldhelpers',['TileWorldHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html',1,'HamstarHelpers::Helpers::Tiles']]],
   ['timers',['Timers',['../class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html',1,'HamstarHelpers::Services::Timers']]],
-  ['tmlhelpers',['TmlHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html',1,'HamstarHelpers::Helpers::TModLoader']]]
+  ['tmlhelpers',['TmlHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html',1,'HamstarHelpers::Helpers::TModLoader']]],
+  ['typedictionary',['TypeDictionary',['../class_net_serializer_1_1_type_dictionary.html',1,'NetSerializer']]],
+  ['typeidlist',['TypeIDList',['../class_net_serializer_1_1_type_i_d_list.html',1,'NetSerializer']]]
 ];

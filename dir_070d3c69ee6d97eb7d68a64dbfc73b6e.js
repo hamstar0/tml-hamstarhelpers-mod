@@ -17,6 +17,7 @@ var dir_070d3c69ee6d97eb7d68a64dbfc73b6e =
     [ "TileHelpers_Edit.cs", "_tile_helpers___edit_8cs_source.html", null ],
     [ "TileHelpers_Obsolete.cs", "_tile_helpers___obsolete_8cs_source.html", null ],
     [ "TileIdentityHelpers_Obsolete.cs", "_tile_identity_helpers___obsolete_8cs_source.html", null ],
+    [ "TileObjectHelpers.cs", "_tile_object_helpers_8cs_source.html", null ],
     [ "TilePlacementHelpers.cs", "_tile_placement_helpers_8cs_source.html", null ],
     [ "TileResourceHelpers.cs", "_tile_resource_helpers_8cs_source.html", null ],
     [ "TileStateHelpers.cs", "_tile_state_helpers_8cs_source.html", null ],

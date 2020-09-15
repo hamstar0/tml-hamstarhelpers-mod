@@ -4,6 +4,7 @@ var searchData=
   ['uidialog',['UIDialog',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html',1,'HamstarHelpers::Classes::UI::Elements']]],
   ['uihelpers',['UIHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html',1,'HamstarHelpers::Helpers::UI']]],
   ['uihiddenpanel',['UIHiddenPanel',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hidden_panel.html',1,'HamstarHelpers::Classes::UI::Elements']]],
+  ['uihideablescrollbar',['UIHideableScrollbar',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hideable_scrollbar.html',1,'HamstarHelpers::Classes::UI::Elements']]],
   ['uiimageurl',['UIImageUrl',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url.html',1,'HamstarHelpers::Classes::UI::Elements']]],
   ['uiinfodisplay',['UIInfoDisplay',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menu_1_1_u_i_1_1_u_i_info_display.html',1,'HamstarHelpers::Classes::UI::Menu::UI']]],
   ['uimenubutton',['UIMenuButton',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_menu_1_1_u_i_menu_button.html',1,'HamstarHelpers::Classes::UI::Elements::Menu']]],

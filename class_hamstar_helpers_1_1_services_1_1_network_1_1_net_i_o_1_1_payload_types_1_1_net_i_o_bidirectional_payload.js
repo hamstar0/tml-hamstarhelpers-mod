@@ -1,0 +1,5 @@
+var class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_i_o_bidirectional_payload =
+[
+    [ "ReceiveOnClient", "class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_i_o_bidirectional_payload.html#ad540770986c5f304f4ecb7f74c1f7c95", null ],
+    [ "ReceiveOnServer", "class_hamstar_helpers_1_1_services_1_1_network_1_1_net_i_o_1_1_payload_types_1_1_net_i_o_bidirectional_payload.html#a198a93d28a674e90a00050552afe57e6", null ]
+];

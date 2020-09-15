@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.1</span>
+   &#160;<span id="projectnumber">v5.9.3</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -100,23 +100,44 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 
 <p>Supplies a set of controls for manipulating the player's 'camera' (screen position).  
  <a href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#details">More...</a></p>
-
-<p>Inherits ILoadable.</p>
+<div class="dynheader">
+Inheritance diagram for HamstarHelpers.Services.Camera.Camera:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.png" usemap="#HamstarHelpers.Services.Camera.Camera_map" alt=""/>
+  <map id="HamstarHelpers.Services.Camera.Camera_map" name="HamstarHelpers.Services.Camera.Camera_map">
+<area href="interface_hamstar_helpers_1_1_classes_1_1_loadable_1_1_i_loadable.html" title="Affixed to classes that wish to automatically run functios on mod load, post load,..." alt="HamstarHelpers.Classes.Loadable.ILoadable" shape="rect" coords="0,0,265,24"/>
+<area href="interface_hamstar_helpers_1_1_classes_1_1_loadable_1_1_i_loadable.html" title="Affixed to classes that wish to automatically run functios on mod load, post load,..." alt="HamstarHelpers.Classes.Loadable.ILoadable" shape="rect" coords="275,0,540,24"/>
+<area href="interface_hamstar_helpers_1_1_classes_1_1_loadable_1_1_i_loadable.html" title="Affixed to classes that wish to automatically run functios on mod load, post load,..." alt="HamstarHelpers.Classes.Loadable.ILoadable" shape="rect" coords="550,0,815,24"/>
+  </map>
+</div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa81f4646de55ae92850eec0a8389d56e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#aa81f4646de55ae92850eec0a8389d56e">ApplyOffset</a> (int offsetX, int offsetY)</td></tr>
 <tr class="memdesc:aa81f4646de55ae92850eec0a8389d56e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shifts the camera from its current position by the given offset.  <a href="#aa81f4646de55ae92850eec0a8389d56e">More...</a><br /></td></tr>
 <tr class="separator:aa81f4646de55ae92850eec0a8389d56e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8646770f37aa449e57c09a1571a8aab0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#a8646770f37aa449e57c09a1571a8aab0">ApplyPosition</a> (Vector2 position)</td></tr>
-<tr class="memdesc:a8646770f37aa449e57c09a1571a8aab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positions the camera statically somewhere in the world. Enter -1 for an axis to use the default.  <a href="#a8646770f37aa449e57c09a1571a8aab0">More...</a><br /></td></tr>
-<tr class="separator:a8646770f37aa449e57c09a1571a8aab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa847206e317c4e2c3e05645e6e86444"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#afa847206e317c4e2c3e05645e6e86444">ApplyPosition</a> (int? worldX, int? worldY)</td></tr>
+<tr class="memdesc:afa847206e317c4e2c3e05645e6e86444"><td class="mdescLeft">&#160;</td><td class="mdescRight">Positions the camera statically somewhere in the world..  <a href="#afa847206e317c4e2c3e05645e6e86444">More...</a><br /></td></tr>
+<tr class="separator:afa847206e317c4e2c3e05645e6e86444"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a3952285ccf1fea7ea62e8ffb3b11c8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#a8a3952285ccf1fea7ea62e8ffb3b11c8">ApplyShake</a> (float magnitude)</td></tr>
 <tr class="memdesc:a8a3952285ccf1fea7ea62e8ffb3b11c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies a shaking motion to the camera.  <a href="#a8a3952285ccf1fea7ea62e8ffb3b11c8">More...</a><br /></td></tr>
 <tr class="separator:a8a3952285ccf1fea7ea62e8ffb3b11c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd7ca35634fe76fc88648ea2892e08fb"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#afd7ca35634fe76fc88648ea2892e08fb">ApplyZoom</a> (float scale)</td></tr>
-<tr class="memdesc:afd7ca35634fe76fc88648ea2892e08fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies zoom to the camera. Enter -1 to revert.  <a href="#afd7ca35634fe76fc88648ea2892e08fb">More...</a><br /></td></tr>
+<tr class="memdesc:afd7ca35634fe76fc88648ea2892e08fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies zoom to the camera.  <a href="#afd7ca35634fe76fc88648ea2892e08fb">More...</a><br /></td></tr>
 <tr class="separator:afd7ca35634fe76fc88648ea2892e08fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b950321f613ff276ba6f7c43b3c4f4b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#a8b950321f613ff276ba6f7c43b3c4f4b">ResetOffset</a> ()</td></tr>
+<tr class="memdesc:a8b950321f613ff276ba6f7c43b3c4f4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets camera shift.  <a href="#a8b950321f613ff276ba6f7c43b3c4f4b">More...</a><br /></td></tr>
+<tr class="separator:a8b950321f613ff276ba6f7c43b3c4f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6171adf669f6731cda0f88aa585521e"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#ae6171adf669f6731cda0f88aa585521e">ResetPosition</a> ()</td></tr>
+<tr class="memdesc:ae6171adf669f6731cda0f88aa585521e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets camera position.  <a href="#ae6171adf669f6731cda0f88aa585521e">More...</a><br /></td></tr>
+<tr class="separator:ae6171adf669f6731cda0f88aa585521e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab134ec96e880ab5f440b344dc48bd0f0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#ab134ec96e880ab5f440b344dc48bd0f0">ResetShake</a> ()</td></tr>
+<tr class="memdesc:ab134ec96e880ab5f440b344dc48bd0f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset shaking motion to the camera.  <a href="#ab134ec96e880ab5f440b344dc48bd0f0">More...</a><br /></td></tr>
+<tr class="separator:ab134ec96e880ab5f440b344dc48bd0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3af081134208b4c9f1407c02dbdff675"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#a3af081134208b4c9f1407c02dbdff675">ResetZoom</a> ()</td></tr>
+<tr class="memdesc:a3af081134208b4c9f1407c02dbdff675"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets zoom of the camera.  <a href="#a3af081134208b4c9f1407c02dbdff675">More...</a><br /></td></tr>
+<tr class="separator:a3af081134208b4c9f1407c02dbdff675"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -125,8 +146,10 @@ Static Public Attributes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:ad6cf3a00e1eb58279a042e521a9ee266"><td class="memItemLeft" align="right" valign="top">Vector2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#ad6cf3a00e1eb58279a042e521a9ee266">WorldPosition</a> = new Vector2( -1 )<code> [get]</code></td></tr>
-<tr class="separator:ad6cf3a00e1eb58279a042e521a9ee266"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4500ba8bc121372860ee248b046b800"><td class="memItemLeft" align="right" valign="top">int?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#ab4500ba8bc121372860ee248b046b800">WorldPositionX</a> = null<code> [get]</code></td></tr>
+<tr class="separator:ab4500ba8bc121372860ee248b046b800"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4897ad148f95782664d2dda666d026cd"><td class="memItemLeft" align="right" valign="top">int?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#a4897ad148f95782664d2dda666d026cd">WorldPositionY</a> = null<code> [get]</code></td></tr>
+<tr class="separator:a4897ad148f95782664d2dda666d026cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c20fe6e79183d1c3eb1a46497440bad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#a7c20fe6e79183d1c3eb1a46497440bad">OffsetX</a> = 0<code> [get]</code></td></tr>
 <tr class="separator:a7c20fe6e79183d1c3eb1a46497440bad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6c3a153ba5893cee1f639d785def0e7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#ac6c3a153ba5893cee1f639d785def0e7">OffsetY</a> = 0<code> [get]</code></td></tr>
@@ -135,6 +158,9 @@ Properties</h2></td></tr>
 <tr class="separator:a46aa795691606fd84102d03427c46c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa17aa6b740426f896d378d81a57740d4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#aa17aa6b740426f896d378d81a57740d4">ZoomScale</a> = -1<code> [get]</code></td></tr>
 <tr class="separator:aa17aa6b740426f896d378d81a57740d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Supplies a set of controls for manipulating the player's 'camera' (screen position). </p>
@@ -188,8 +214,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a8646770f37aa449e57c09a1571a8aab0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8646770f37aa449e57c09a1571a8aab0">&#9670;&nbsp;</a></span>ApplyPosition()</h2>
+<a id="afa847206e317c4e2c3e05645e6e86444"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa847206e317c4e2c3e05645e6e86444">&#9670;&nbsp;</a></span>ApplyPosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -200,9 +226,19 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname">static void HamstarHelpers.Services.Camera.Camera.ApplyPosition </td>
           <td>(</td>
-          <td class="paramtype">Vector2&#160;</td>
-          <td class="paramname"><em>position</em></td><td>)</td>
+          <td class="paramtype">int?&#160;</td>
+          <td class="paramname"><em>worldX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int?&#160;</td>
+          <td class="paramname"><em>worldY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -212,15 +248,16 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Positions the camera statically somewhere in the world. Enter -1 for an axis to use the default. </p>
+<p>Positions the camera statically somewhere in the world.. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">position</td><td></td></tr>
+    <tr><td class="paramname">worldX</td><td><code>null</code> uses current screen position.</td></tr>
+    <tr><td class="paramname">worldY</td><td><code>null</code> uses current screen position.</td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00027">27</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00028">28</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
 
 </div>
 </div>
@@ -256,7 +293,7 @@ Properties</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00037">37</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00039">39</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
 
 </div>
 </div>
@@ -284,7 +321,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Applies zoom to the camera. Enter -1 to revert. </p>
+<p>Applies zoom to the camera. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">scale</td><td></td></tr>
@@ -292,7 +329,123 @@ Properties</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00047">47</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00049">49</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
+
+</div>
+</div>
+<a id="a8b950321f613ff276ba6f7c43b3c4f4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b950321f613ff276ba6f7c43b3c4f4b">&#9670;&nbsp;</a></span>ResetOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Camera.Camera.ResetOffset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets camera shift. </p>
+
+<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00064">64</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae6171adf669f6731cda0f88aa585521e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6171adf669f6731cda0f88aa585521e">&#9670;&nbsp;</a></span>ResetPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Camera.Camera.ResetPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets camera position. </p>
+
+<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00074">74</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab134ec96e880ab5f440b344dc48bd0f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab134ec96e880ab5f440b344dc48bd0f0">&#9670;&nbsp;</a></span>ResetShake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Camera.Camera.ResetShake </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset shaking motion to the camera. </p>
+
+<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00084">84</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
+
+</div>
+</div>
+<a id="a3af081134208b4c9f1407c02dbdff675"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3af081134208b4c9f1407c02dbdff675">&#9670;&nbsp;</a></span>ResetZoom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Camera.Camera.ResetZoom </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets zoom of the camera. </p>
+
+<p class="definition">Definition at line <a class="el" href="_camera_8cs_source.html#l00093">93</a> of file <a class="el" href="_camera_8cs_source.html">Camera.cs</a>.</p>
 
 </div>
 </div>
@@ -346,7 +499,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00028">28</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00031">31</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -372,7 +525,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00031">31</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00034">34</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -398,12 +551,12 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00037">37</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00040">40</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
 
 </div>
 </div>
-<a id="ad6cf3a00e1eb58279a042e521a9ee266"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad6cf3a00e1eb58279a042e521a9ee266">&#9670;&nbsp;</a></span>WorldPosition</h2>
+<a id="ab4500ba8bc121372860ee248b046b800"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4500ba8bc121372860ee248b046b800">&#9670;&nbsp;</a></span>WorldPositionX</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -412,7 +565,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Vector2 HamstarHelpers.Services.Camera.Camera.WorldPosition = new Vector2( -1 )</td>
+          <td class="memname">int? HamstarHelpers.Services.Camera.Camera.WorldPositionX = null</td>
         </tr>
       </table>
   </td>
@@ -425,6 +578,32 @@ Properties</h2></td></tr>
 <p></p>
 
 <p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00024">24</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
+
+</div>
+</div>
+<a id="a4897ad148f95782664d2dda666d026cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4897ad148f95782664d2dda666d026cd">&#9670;&nbsp;</a></span>WorldPositionY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int? HamstarHelpers.Services.Camera.Camera.WorldPositionY = null</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00027">27</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
 
 </div>
 </div>
@@ -450,7 +629,7 @@ Properties</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00043">43</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_camera___instance_8cs_source.html#l00046">46</a> of file <a class="el" href="_camera___instance_8cs_source.html">Camera_Instance.cs</a>.</p>
 
 </div>
 </div>

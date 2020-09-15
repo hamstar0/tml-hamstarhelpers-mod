@@ -3,6 +3,7 @@ var searchData=
   ['languageversion',['LanguageVersion',['../class_hamstar_helpers_1_1_services_1_1_t_m_l_1_1_build_properties_viewer.html#a93187435f88a2062996cf7df0d92b8bc',1,'HamstarHelpers::Services::TML::BuildPropertiesViewer']]],
   ['laserruler',['LaserRuler',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a2649674e9d2b4ea42733b9b60762d649',1,'HamstarHelpers::Services::UI::LayerDisable::LayerDisable']]],
   ['lastknowncursorpositions',['LastKnownCursorPositions',['../class_hamstar_helpers_1_1_services_1_1_network_1_1_client.html#a08c25c10837f702f95577ac7a69119cd',1,'HamstarHelpers::Services::Network::Client']]],
+  ['left',['Left',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#aee57c6ea34db85825512642cc454a464',1,'HamstarHelpers::Services::Messages::Simple::SimpleMessage']]],
   ['liquid',['liquid',['../class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_serializeable_tile.html#a67da8bd8e48d0cc58c2b7d0f3839994e',1,'HamstarHelpers::Classes::TileStructure::SerializeableTile']]],
   ['liquidvolume',['LiquidVolume',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_draw_1_1_tile_draw_definition.html#a6ce3777c09aac9891a23e67cad0d70d0',1,'HamstarHelpers::Helpers::Tiles::Draw::TileDrawDefinition']]],
   ['listbgcolor',['ListBgColor',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a0aa801e4fafb52d7274b3c1353a13390',1,'HamstarHelpers::Classes::UI::Theme::UITheme']]],

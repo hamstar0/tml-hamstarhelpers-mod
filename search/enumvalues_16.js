@@ -2,6 +2,7 @@ var searchData=
 [
   ['wall',['Wall',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a94e8a499539d1a472f3b5dbbb85508c0',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['walltype',['WallType',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a738ce52e71a260bb0f9911441cfb67d6',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
+  ['walltypenot',['WallTypeNot',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141ad4498d97cf4ed0365f5afa15ce73465e',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['wandconsumes',['WandConsumes',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868a8848831ec0a381c560d3633b06396a21',1,'HamstarHelpers::Helpers::Items::Attributes']]],
   ['warning',['Warning',['../namespace_hamstar_helpers_1_1_services_1_1_mod_tag_definitions.html#af0d54f6fc3f74edb855987325841d289a0eaadb4fcb48a0a0ed7bc9868be9fbaa',1,'HamstarHelpers::Services::ModTagDefinitions']]],
   ['water',['Water',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a27634ff8002b12e75d98e07ccd005d18',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],

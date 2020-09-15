@@ -11,5 +11,6 @@ var searchData=
   ['worldsizelarge',['WorldSizeLarge',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#adae016ee3e2e430e567289e1db7880c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldsizemedium',['WorldSizeMedium',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a4da7daacfb34b919e1ca492e7c31e9c1',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['worldsizesmall',['WorldSizeSmall',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a0a760f5e678427a909ae4f749abec97d',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
+  ['worldx',['worldX',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_mover.html#ae7f48f6e3b16d86ad89cdb3892cb0a9d',1,'HamstarHelpers::Classes::CameraAnimation::CameraMover']]],
   ['wormholepotionwarpstyle',['WormholePotionWarpStyle',['../class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_warp_helpers.html#accd7929b58fba4b7e7c0e6dd9dfa21e3',1,'HamstarHelpers::Helpers::Players::PlayerWarpHelpers']]]
 ];

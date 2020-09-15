@@ -9,5 +9,6 @@ var searchData=
   ['positiony',['PositionY',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_menu_1_1_u_i_menu_button.html#a568c62c00f9ad6d08f2e02c413a48789',1,'HamstarHelpers::Classes::UI::Elements::Menu::UIMenuButton']]],
   ['pressureplates',['PressurePlates',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a86b23681aff56fd7a248930a329168dd',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],
   ['privilegeduserid',['PrivilegedUserId',['../class_hamstar_helpers_1_1_mod_helpers_privileged_user_config.html#a06a92b53401127e49cfcdf8337873126',1,'HamstarHelpers::ModHelpersPrivilegedUserConfig']]],
-  ['progress',['Progress',['../class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html#a1dea84824a078850637f09f50ae712f8',1,'HamstarHelpers::Classes::Context::Context']]]
+  ['progress',['Progress',['../class_hamstar_helpers_1_1_classes_1_1_context_1_1_context.html#a1dea84824a078850637f09f50ae712f8',1,'HamstarHelpers::Classes::Context::Context']]],
+  ['projectilecount',['ProjectileCount',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a43e557d1c2b9d2a40ee7ff59b432a784',1,'HamstarHelpers::Services::EntityGroups::EntityGroups']]]
 ];

@@ -10,5 +10,9 @@ var class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups =
     [ "TryGetItemGroup", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a03c36530be6f53b56a8d2d3933ed2c82", null ],
     [ "TryGetNpcGroup", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a0e641cfb7f8e38991b7865a5ba9cb83c", null ],
     [ "TryGetProjectileGroup", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a198ab705e7e5a3670af8e8abad9eb50b", null ],
-    [ "LoadedAllValidator", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#ad96b85019267e89adbb50d4150fb3083", null ]
+    [ "IsLoaded", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a9a79aa428629d0dc0e9316afc1198e6f", null ],
+    [ "ItemCount", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#ac7ca8c93fc2007cd4a37e85315073b70", null ],
+    [ "LoadedAllValidator", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#ad96b85019267e89adbb50d4150fb3083", null ],
+    [ "NPCCount", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a1f78a7a91a6706804b36fc2335cfa43a", null ],
+    [ "ProjectileCount", "class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a43e557d1c2b9d2a40ee7ff59b432a784", null ]
 ];

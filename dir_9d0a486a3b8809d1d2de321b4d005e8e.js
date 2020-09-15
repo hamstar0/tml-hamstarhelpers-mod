@@ -11,6 +11,7 @@ var dir_9d0a486a3b8809d1d2de321b4d005e8e =
     [ "UIDialog_Obsolete.cs", "_u_i_dialog___obsolete_8cs_source.html", null ],
     [ "UIDialog_Open.cs", "_u_i_dialog___open_8cs_source.html", null ],
     [ "UIHiddenPanel.cs", "_u_i_hidden_panel_8cs_source.html", null ],
+    [ "UIHideableScrollbar.cs", "_u_i_hideable_scrollbar_8cs_source.html", null ],
     [ "UIImageUrl.cs", "_u_i_image_url_8cs_source.html", null ],
     [ "UIModData.cs", "_u_i_mod_data_8cs_source.html", null ],
     [ "UIModData_Draw.cs", "_u_i_mod_data___draw_8cs_source.html", null ],

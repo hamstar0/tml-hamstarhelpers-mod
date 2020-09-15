@@ -47,6 +47,7 @@ var searchData=
   ['fromstreamtostring',['FromStreamToString',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_stream_helpers.html#ae228d5ae8c64ff6413dd149d227a37e7',1,'HamstarHelpers::Helpers::DotNET::StreamHelpers']]],
   ['frostlegion',['FrostLegion',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da891c220b7599486c67a5c88eb591d323',1,'HamstarHelpers::Helpers::NPCs']]],
   ['frostmoon',['FrostMoon',['../namespace_hamstar_helpers_1_1_helpers_1_1_n_p_cs.html#af735d5b05423f56ab15ebb0c3cd8824da087f162c76eb8cc6f581011d32465014',1,'HamstarHelpers::Helpers::NPCs']]],
+  ['frotickduration',['FroTickDuration',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_animator.html#a96bfd06f495fdeaaaa86cfd94bed2a48',1,'HamstarHelpers::Classes::CameraAnimation::CameraAnimator']]],
   ['fullintdefinition',['FullIntDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_full_int_definition.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],
   ['fullpercentfloatdefinition',['FullPercentFloatDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_full_percent_float_definition.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],
   ['fullscreenpercentpositiondefinition',['FullScreenPercentPositionDefinition',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_configs_1_1_full_screen_percent_position_definition.html',1,'HamstarHelpers::Helpers::TModLoader::Configs']]],

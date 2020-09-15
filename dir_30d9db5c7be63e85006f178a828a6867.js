@@ -1,5 +1,6 @@
 var dir_30d9db5c7be63e85006f178a828a6867 =
 [
+    [ "CameraAnimation", "dir_e88bc30fb3218579b82e7e59b30dad68.html", "dir_e88bc30fb3218579b82e7e59b30dad68" ],
     [ "Context", "dir_09a09e1359b3e21daa9e6a4cee09adec.html", "dir_09a09e1359b3e21daa9e6a4cee09adec" ],
     [ "CustomPlayerData", "dir_5733e84f5750c4242223c68c467fb891.html", "dir_5733e84f5750c4242223c68c467fb891" ],
     [ "DataStructures", "dir_85a10ae6d8c8a5b2101613f55cd24ed2.html", "dir_85a10ae6d8c8a5b2101613f55cd24ed2" ],

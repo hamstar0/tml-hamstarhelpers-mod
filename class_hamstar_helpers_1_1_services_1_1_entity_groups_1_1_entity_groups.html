@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.1</span>
+   &#160;<span id="projectnumber">v5.9.3</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -97,13 +97,13 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 </div><!--header-->
 <div class="contents">
 
-<p>Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs, or projectiles. Must be enabled on mod load to be used (note: collections may require memory).  
+<p>Supplies collections of named entity groups based on traits shared between entities. Groups are either items, <a class="el" href="namespace_hamstar_helpers_1_1_n_p_cs.html">NPCs</a>, or projectiles. Must be enabled on mod load to be used (note: collections may require memory).  
  <a href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a805a151c480189639038ac57c5e779bf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a805a151c480189639038ac57c5e779bf">Enable</a> ()</td></tr>
-<tr class="memdesc:a805a151c480189639038ac57c5e779bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables entity groups. Must be called before all mod load and setup functions are called.  <a href="#a805a151c480189639038ac57c5e779bf">More...</a><br /></td></tr>
+<tr class="memdesc:a805a151c480189639038ac57c5e779bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables entity groups. Must be called before all mod load and setup functions are called (e.g. <code>Mod.Load()</code>).  <a href="#a805a151c480189639038ac57c5e779bf">More...</a><br /></td></tr>
 <tr class="separator:a805a151c480189639038ac57c5e779bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a048523215339d0e13031baa766b80145"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a048523215339d0e13031baa766b80145">AddCustomItemGroup</a> (string groupName, string[] groupDependencies, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_item_group_matcher.html">ItemGroupMatcher</a> matcher)</td></tr>
 <tr class="memdesc:a048523215339d0e13031baa766b80145"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a custom item group to add to the database. Must be called after entity groups loaded, but before mods finish loading (PostSetupContent, etc.).  <a href="#a048523215339d0e13031baa766b80145">More...</a><br /></td></tr>
@@ -135,12 +135,20 @@ Static Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
+<tr class="memitem:a9a79aa428629d0dc0e9316afc1198e6f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a9a79aa428629d0dc0e9316afc1198e6f">IsLoaded</a> =&gt; ModHelpersMod.Instance.EntityGroups?.IsLoadedPostModLoad ?? false</td></tr>
+<tr class="separator:a9a79aa428629d0dc0e9316afc1198e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7ca8c93fc2007cd4a37e85315073b70"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#ac7ca8c93fc2007cd4a37e85315073b70">ItemCount</a> =&gt; ModHelpersMod.Instance.EntityGroups?.ItemGroups.Count ?? -1</td></tr>
+<tr class="separator:ac7ca8c93fc2007cd4a37e85315073b70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f78a7a91a6706804b36fc2335cfa43a"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a1f78a7a91a6706804b36fc2335cfa43a">NPCCount</a> =&gt; ModHelpersMod.Instance.EntityGroups?.ItemGroups.Count ?? -1</td></tr>
+<tr class="separator:a1f78a7a91a6706804b36fc2335cfa43a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43e557d1c2b9d2a40ee7ff59b432a784"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a43e557d1c2b9d2a40ee7ff59b432a784">ProjectileCount</a> =&gt; ModHelpersMod.Instance.EntityGroups?.ItemGroups.Count ?? -1</td></tr>
+<tr class="separator:a43e557d1c2b9d2a40ee7ff59b432a784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad96b85019267e89adbb50d4150fb3083"><td class="memItemLeft" align="right" valign="top">static readonly <a class="el" href="class_hamstar_helpers_1_1_services_1_1_hooks_1_1_load_hooks_1_1_custom_load_hook_validator.html">CustomLoadHookValidator</a>&lt; object &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#ad96b85019267e89adbb50d4150fb3083">LoadedAllValidator</a></td></tr>
 <tr class="memdesc:ad96b85019267e89adbb50d4150fb3083"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used as the identifier object for binding events (cusom load hooks) to entity group loading completion.  <a href="#ad96b85019267e89adbb50d4150fb3083">More...</a><br /></td></tr>
 <tr class="separator:ad96b85019267e89adbb50d4150fb3083"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Supplies collections of named entity groups based on traits shared between entities. Groups are either items, NPCs, or projectiles. Must be enabled on mod load to be used (note: collections may require memory). </p>
+<div class="textblock"><p>Supplies collections of named entity groups based on traits shared between entities. Groups are either items, <a class="el" href="namespace_hamstar_helpers_1_1_n_p_cs.html">NPCs</a>, or projectiles. Must be enabled on mod load to be used (note: collections may require memory). </p>
 
 <p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00013">13</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
@@ -194,7 +202,7 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00037">37</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00054">54</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
@@ -243,12 +251,12 @@ Static Public Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">groupName</td><td></td></tr>
     <tr><td class="paramname">groupDependencies</td><td>Other groups the current group references.</td></tr>
-    <tr><td class="paramname">matcher</td><td>Function to use to match NPCs for this group.</td></tr>
+    <tr><td class="paramname">matcher</td><td>Function to use to match <a class="el" href="namespace_hamstar_helpers_1_1_n_p_cs.html">NPCs</a> for this group.</td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00055">55</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00072">72</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
@@ -297,12 +305,12 @@ Static Public Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">groupName</td><td></td></tr>
     <tr><td class="paramname">groupDependencies</td><td>Other groups the current group references.</td></tr>
-    <tr><td class="paramname">matcher</td><td>Function to use to match NPCs for this group.</td></tr>
+    <tr><td class="paramname">matcher</td><td>Function to use to match <a class="el" href="namespace_hamstar_helpers_1_1_n_p_cs.html">NPCs</a> for this group.</td></tr>
   </table>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00073">73</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00090">90</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
@@ -329,9 +337,9 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Enables entity groups. Must be called before all mod load and setup functions are called. </p>
+<p>Enables entity groups. Must be called before all mod load and setup functions are called (e.g. <code>Mod.Load()</code>). </p>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00017">17</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00034">34</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
@@ -379,7 +387,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00129">129</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00146">146</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
@@ -427,7 +435,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00140">140</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00157">157</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
@@ -475,7 +483,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00151">151</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00168">168</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
@@ -523,7 +531,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00095">95</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00112">112</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
@@ -571,7 +579,7 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00106">106</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00123">123</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
@@ -619,11 +627,63 @@ Static Public Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00117">117</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00134">134</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a9a79aa428629d0dc0e9316afc1198e6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a79aa428629d0dc0e9316afc1198e6f">&#9670;&nbsp;</a></span>IsLoaded</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.Services.EntityGroups.EntityGroups.IsLoaded =&gt; ModHelpersMod.Instance.EntityGroups?.IsLoadedPostModLoad ?? false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00015">15</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac7ca8c93fc2007cd4a37e85315073b70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7ca8c93fc2007cd4a37e85315073b70">&#9670;&nbsp;</a></span>ItemCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int HamstarHelpers.Services.EntityGroups.EntityGroups.ItemCount =&gt; ModHelpersMod.Instance.EntityGroups?.ItemGroups.Count ?? -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00019">19</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
 <a id="ad96b85019267e89adbb50d4150fb3083"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad96b85019267e89adbb50d4150fb3083">&#9670;&nbsp;</a></span>LoadedAllValidator</h2>
 
@@ -647,6 +707,58 @@ Static Public Attributes</h2></td></tr>
 <p>Used as the identifier object for binding events (cusom load hooks) to entity group loading completion. </p>
 
 <p class="definition">Definition at line <a class="el" href="_entity_groups___instance_8cs_source.html#l00023">23</a> of file <a class="el" href="_entity_groups___instance_8cs_source.html">EntityGroups_Instance.cs</a>.</p>
+
+</div>
+</div>
+<a id="a1f78a7a91a6706804b36fc2335cfa43a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f78a7a91a6706804b36fc2335cfa43a">&#9670;&nbsp;</a></span>NPCCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int HamstarHelpers.Services.EntityGroups.EntityGroups.NPCCount =&gt; ModHelpersMod.Instance.EntityGroups?.ItemGroups.Count ?? -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00022">22</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
+
+</div>
+</div>
+<a id="a43e557d1c2b9d2a40ee7ff59b432a784"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43e557d1c2b9d2a40ee7ff59b432a784">&#9670;&nbsp;</a></span>ProjectileCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int HamstarHelpers.Services.EntityGroups.EntityGroups.ProjectileCount =&gt; ModHelpersMod.Instance.EntityGroups?.ItemGroups.Count ?? -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_entity_groups_8cs_source.html#l00025">25</a> of file <a class="el" href="_entity_groups_8cs_source.html">EntityGroups.cs</a>.</p>
 
 </div>
 </div>

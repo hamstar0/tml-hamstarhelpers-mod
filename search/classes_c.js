@@ -1,6 +1,7 @@
 var searchData=
 [
   ['mainmenuhelpers',['MainMenuHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_main_menu_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
+  ['mathhelpers',['MathHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_math_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
   ['menucontext',['MenuContext',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_menu_context.html',1,'HamstarHelpers::Classes::UI::Menus']]],
   ['menucontextservice',['MenuContextService',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_menus_1_1_menu_context_service.html',1,'HamstarHelpers::Services::UI::Menus']]],
   ['menuitem',['MenuItem',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menu_1_1_menu_item.html',1,'HamstarHelpers::Classes::UI::Menu']]],

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.1</span>
+   &#160;<span id="projectnumber">v5.9.3</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -107,11 +107,17 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3a299c6363c8f9f51272a8dbea9d6964"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html#a3a299c6363c8f9f51272a8dbea9d6964">GaugeBrightnessWithin</a> (int tileX, int tileY, int width, int height)</td></tr>
 <tr class="memdesc:a3a299c6363c8f9f51272a8dbea9d6964"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gauges the overall light amount within an area.  <a href="#a3a299c6363c8f9f51272a8dbea9d6964">More...</a><br /></td></tr>
 <tr class="separator:a3a299c6363c8f9f51272a8dbea9d6964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae86eb18e686954ec85c26dda9a3e0c34"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html#ae86eb18e686954ec85c26dda9a3e0c34">RequestChunkFromServer</a> (int tileSectionX, int tileSectionY)</td></tr>
+<tr class="memdesc:ae86eb18e686954ec85c26dda9a3e0c34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests a given tile chunk (200x150 tile 'section') from the server.  <a href="#ae86eb18e686954ec85c26dda9a3e0c34">More...</a><br /></td></tr>
+<tr class="separator:ae86eb18e686954ec85c26dda9a3e0c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff47b327a95ab6c50a12fd1b2770ac7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html#a5ff47b327a95ab6c50a12fd1b2770ac7">RequestChunksFromServer</a> (Rectangle tileRange, int leftPadding=0, int topPadding=0, int rightPadding=0, int bottomPadding=0)</td></tr>
+<tr class="memdesc:a5ff47b327a95ab6c50a12fd1b2770ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests all tile chunks (200x150 tile 'sections') from the server within a given tile range.  <a href="#a5ff47b327a95ab6c50a12fd1b2770ac7">More...</a><br /></td></tr>
+<tr class="separator:a5ff47b327a95ab6c50a12fd1b2770ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to tiles relative to the world. </p>
 
-<p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00008">8</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00012">12</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a3a299c6363c8f9f51272a8dbea9d6964"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a299c6363c8f9f51272a8dbea9d6964">&#9670;&nbsp;</a></span>GaugeBrightnessWithin()</h2>
@@ -171,7 +177,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00028">28</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00032">32</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -219,7 +225,122 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00019">19</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae86eb18e686954ec85c26dda9a3e0c34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae86eb18e686954ec85c26dda9a3e0c34">&#9670;&nbsp;</a></span>RequestChunkFromServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Tiles.TileWorldHelpers.RequestChunkFromServer </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileSectionX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>tileSectionY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Requests a given tile chunk (200x150 tile 'section') from the server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileSectionX</td><td></td></tr>
+    <tr><td class="paramname">tileSectionY</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00053">53</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="a5ff47b327a95ab6c50a12fd1b2770ac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ff47b327a95ab6c50a12fd1b2770ac7">&#9670;&nbsp;</a></span>RequestChunksFromServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Helpers.Tiles.TileWorldHelpers.RequestChunksFromServer </td>
+          <td>(</td>
+          <td class="paramtype">Rectangle&#160;</td>
+          <td class="paramname"><em>tileRange</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>leftPadding</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>topPadding</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>rightPadding</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bottomPadding</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Requests all tile chunks (200x150 tile 'sections') from the server within a given tile range. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tileRange</td><td></td></tr>
+    <tr><td class="paramname">leftPadding</td><td>In chunks.</td></tr>
+    <tr><td class="paramname">topPadding</td><td>In chunks.</td></tr>
+    <tr><td class="paramname">rightPadding</td><td>In chunks.</td></tr>
+    <tr><td class="paramname">bottomPadding</td><td>In chunks.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00068">68</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
 
 </div>
 </div>

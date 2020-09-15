@@ -3,6 +3,7 @@ var searchData=
   ['uicheckbox',['UICheckbox',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#abe1ba34766c48b69de3699bc422d3a8e',1,'HamstarHelpers::Classes::UI::Elements::UICheckbox']]],
   ['uidialog',['UIDialog',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a5b07960d971861e119f50c389c570042',1,'HamstarHelpers::Classes::UI::Elements::UIDialog']]],
   ['uihiddenpanel',['UIHiddenPanel',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hidden_panel.html#ad68ffccdc127bcbc44d819a451f2b91b',1,'HamstarHelpers::Classes::UI::Elements::UIHiddenPanel']]],
+  ['uihideablescrollbar',['UIHideableScrollbar',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hideable_scrollbar.html#a9a4d6951e3fc03c7fd24deb28170a18e',1,'HamstarHelpers::Classes::UI::Elements::UIHideableScrollbar']]],
   ['uiimageurl',['UIImageUrl',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url.html#a5565147660c387c716110c754f52968e',1,'HamstarHelpers::Classes::UI::Elements::UIImageUrl']]],
   ['uiinfodisplay',['UIInfoDisplay',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menu_1_1_u_i_1_1_u_i_info_display.html#a679747efcbda822417a9fb6f2022f397',1,'HamstarHelpers::Classes::UI::Menu::UI::UIInfoDisplay']]],
   ['uimenubutton',['UIMenuButton',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_menu_1_1_u_i_menu_button.html#aadc3b7bbc5c6675e872f6bc32f00ebd3',1,'HamstarHelpers::Classes::UI::Elements::Menu::UIMenuButton']]],

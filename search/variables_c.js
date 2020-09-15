@@ -35,7 +35,6 @@ var searchData=
   ['mouseitemornpchead',['MouseItemOrNPCHead',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a581620f791f7e9f69fb47e66211ce781',1,'HamstarHelpers::Services::UI::LayerDisable::LayerDisable']]],
   ['mouseover',['MouseOver',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a42e29e63208efa34d5b4c183e5edfb0b',1,'HamstarHelpers::Services::UI::LayerDisable::LayerDisable']]],
   ['mousetext',['MouseText',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a11e795c590dd514e714b0f2e71203648',1,'HamstarHelpers::Services::UI::LayerDisable::LayerDisable']]],
-  ['movetickslingerelapsed',['MoveTicksLingerElapsed',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_animated_camera.html#a5c7430214d673a699d381710dd376b8e',1,'HamstarHelpers::Services::Camera::AnimatedCamera']]],
   ['mpplayernames',['MPPlayerNames',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a427ca77ea5f0b9d5e2cedf0cfa4f44a8',1,'HamstarHelpers::Services::UI::LayerDisable::LayerDisable']]],
   ['myelement',['MyElement',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_widget_menu_context.html#a38597196d46f77bcb51977ed3d457618',1,'HamstarHelpers::Classes::UI::Menus::WidgetMenuContext']]]
 ];

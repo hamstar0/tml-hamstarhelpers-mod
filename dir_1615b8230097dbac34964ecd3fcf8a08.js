@@ -1,5 +1,6 @@
 var dir_1615b8230097dbac34964ecd3fcf8a08 =
 [
+    [ "MathHelpers.cs", "_math_helpers_8cs_source.html", null ],
     [ "MiscHelpers.cs", "_misc_helpers_8cs_source.html", null ],
     [ "ModCustomDataFileHelpers.cs", "_mod_custom_data_file_helpers_8cs_source.html", null ],
     [ "ModCustomDataFileHelpers_Load.cs", "_mod_custom_data_file_helpers___load_8cs_source.html", null ],

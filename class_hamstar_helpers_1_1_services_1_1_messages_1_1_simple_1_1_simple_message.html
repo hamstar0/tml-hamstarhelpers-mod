@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.1</span>
+   &#160;<span id="projectnumber">v5.9.3</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -97,13 +97,15 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_services_1_1
 </div><!--header-->
 <div class="contents">
 
-<p>A simple alternative to display centered text messages on-screen.  
+<p>A simple alternative to quickly display text messages on-screen.  
  <a href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a663a7d14b0769c83370d9c36d22971e7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#a663a7d14b0769c83370d9c36d22971e7">PostMessage</a> (string msg, string submsg, int duration)</td></tr>
 <tr class="separator:a663a7d14b0769c83370d9c36d22971e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa359476e4a06b63a4a9c4e5219849fc5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#aa359476e4a06b63a4a9c4e5219849fc5">PostMessage</a> (string msg, string submsg, int duration, bool isBordered, <a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#add4045d9de245aa216dffa827cf038fc">Color</a> color, StyleDimension left, StyleDimension top)</td></tr>
+<tr class="separator:aa359476e4a06b63a4a9c4e5219849fc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -115,14 +117,22 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a9305174ec893f73d55e413be5bfc05fa"><td class="memItemLeft" align="right" valign="top">static string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#a9305174ec893f73d55e413be5bfc05fa">SubMessage</a> = &quot;&quot;</td></tr>
 <tr class="memdesc:a9305174ec893f73d55e413be5bfc05fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Smaller message under the bigger message.  <a href="#a9305174ec893f73d55e413be5bfc05fa">More...</a><br /></td></tr>
 <tr class="separator:a9305174ec893f73d55e413be5bfc05fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04aecbe323eef170df3722f194b03fe8"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#a04aecbe323eef170df3722f194b03fe8">IsBordered</a> = false</td></tr>
+<tr class="separator:a04aecbe323eef170df3722f194b03fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add4045d9de245aa216dffa827cf038fc"><td class="memItemLeft" align="right" valign="top">static Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#add4045d9de245aa216dffa827cf038fc">Color</a> = Color.White</td></tr>
+<tr class="separator:add4045d9de245aa216dffa827cf038fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee57c6ea34db85825512642cc454a464"><td class="memItemLeft" align="right" valign="top">static StyleDimension&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#aee57c6ea34db85825512642cc454a464">Left</a> = new StyleDimension( 0f, 0.5f )</td></tr>
+<tr class="separator:aee57c6ea34db85825512642cc454a464"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d039e85e65e770cbd4002642b1f1a8f"><td class="memItemLeft" align="right" valign="top">static StyleDimension&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#a7d039e85e65e770cbd4002642b1f1a8f">Top</a> = new StyleDimension( 0f, 0.5f )</td></tr>
+<tr class="separator:a7d039e85e65e770cbd4002642b1f1a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A simple alternative to display centered text messages on-screen. </p>
+<div class="textblock"><p>A simple alternative to quickly display text messages on-screen. </p>
 
-<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00012">12</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00013">13</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a663a7d14b0769c83370d9c36d22971e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a663a7d14b0769c83370d9c36d22971e7">&#9670;&nbsp;</a></span>PostMessage()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a663a7d14b0769c83370d9c36d22971e7">&#9670;&nbsp;</a></span>PostMessage() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,11 +181,171 @@ Static Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00032">32</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00049">49</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa359476e4a06b63a4a9c4e5219849fc5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa359476e4a06b63a4a9c4e5219849fc5">&#9670;&nbsp;</a></span>PostMessage() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HamstarHelpers.Services.Messages.Simple.SimpleMessage.PostMessage </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>msg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>submsg</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>duration</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>isBordered</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_services_1_1_messages_1_1_simple_1_1_simple_message.html#add4045d9de245aa216dffa827cf038fc">Color</a>&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StyleDimension&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">StyleDimension&#160;</td>
+          <td class="paramname"><em>top</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">msg</td><td></td></tr>
+    <tr><td class="paramname">submsg</td><td></td></tr>
+    <tr><td class="paramname">duration</td><td>Tick duration.</td></tr>
+    <tr><td class="paramname">isBordered</td><td></td></tr>
+    <tr><td class="paramname">color</td><td></td></tr>
+    <tr><td class="paramname">left</td><td></td></tr>
+    <tr><td class="paramname">top</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00064">64</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="add4045d9de245aa216dffa827cf038fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add4045d9de245aa216dffa827cf038fc">&#9670;&nbsp;</a></span>Color</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Color HamstarHelpers.Services.Messages.Simple.SimpleMessage.Color = Color.White</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00032">32</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+
+</div>
+</div>
+<a id="a04aecbe323eef170df3722f194b03fe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04aecbe323eef170df3722f194b03fe8">&#9670;&nbsp;</a></span>IsBordered</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool HamstarHelpers.Services.Messages.Simple.SimpleMessage.IsBordered = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00029">29</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+
+</div>
+</div>
+<a id="aee57c6ea34db85825512642cc454a464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee57c6ea34db85825512642cc454a464">&#9670;&nbsp;</a></span>Left</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">StyleDimension HamstarHelpers.Services.Messages.Simple.SimpleMessage.Left = new StyleDimension( 0f, 0.5f )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00036">36</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+
+</div>
+</div>
 <a id="ad86aeaf75e18be2a65ab99436adc10b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad86aeaf75e18be2a65ab99436adc10b9">&#9670;&nbsp;</a></span>Message</h2>
 
@@ -198,7 +368,7 @@ Static Public Attributes</h2></td></tr>
 
 <p></p>
 
-<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00018">18</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00020">20</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
 
 </div>
 </div>
@@ -224,7 +394,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Tick duration of message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00016">16</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00017">17</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
 
 </div>
 </div>
@@ -250,7 +420,33 @@ Static Public Attributes</h2></td></tr>
 
 <p>Smaller message under the bigger message. </p>
 
-<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00022">22</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00025">25</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
+
+</div>
+</div>
+<a id="a7d039e85e65e770cbd4002642b1f1a8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d039e85e65e770cbd4002642b1f1a8f">&#9670;&nbsp;</a></span>Top</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">StyleDimension HamstarHelpers.Services.Messages.Simple.SimpleMessage.Top = new StyleDimension( 0f, 0.5f )</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_simple_messages_8cs_source.html#l00039">39</a> of file <a class="el" href="_simple_messages_8cs_source.html">SimpleMessages.cs</a>.</p>
 
 </div>
 </div>
