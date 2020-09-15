@@ -1,8 +1,9 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
@@ -10,6 +11,20 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
 	public partial class ReflectionHelpers {
+		/// <summary>
+		/// Simple wrapper to enable `ReflectionHelpers.RunMethod` to know parameter types. Useful for null values.
+		/// </summary>
+		public class TypedMethodParameter {
+			/// <summary></summary>
+			public Type ValueType { get; }
+
+			/// <summary></summary>
+			public object Value { get; }
+		}
+
+
+
+
 		/// <summary>
 		/// Invokes a method, first validating the supplied parameters for type consistency.
 		/// </summary>
@@ -26,7 +41,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			
 			for( int i = 0; i < paramInfos.Length; i++ ) {
 				Type paramType = paramInfos[i].ParameterType;
-				Type argType = args[i].GetType();
+				Type argType = args[i]?.GetType();
 
 				if( args[i] == null ) {
 					if( !paramType.IsClass || paramInfos[i].GetCustomAttribute<NullableAttribute>() == null ) {
@@ -48,7 +63,8 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <typeparam name="T">Invoked method's return value type.</typeparam>
 		/// <param name="instance">Class instance of class of method.</param>
 		/// <param name="methodName">Method's name.</param>
-		/// <param name="args">Method's arguments (will be validated before invoking).</param>
+		/// <param name="args">Method's arguments (will be validated before invoking).
+		/// Nullable types should always be wrapped with `TypedMethodParameter`.</param>
 		/// <param name="returnVal">Return value of method.</param>
 		/// <returns>`true` if method found and invoked successfully.</returns>
 		public static bool RunMethod<T>( Object instance, string methodName, object[] args, out T returnVal ) {
@@ -58,7 +74,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			}
 			return ReflectionHelpers.RunMethod<T>( instance.GetType(), instance, methodName, args, out returnVal );
 		}
-		
+
 		/// <summary>
 		/// Invokes a method of a given class. May invoke static methods if the given `instance` parameter is `null`.
 		/// </summary>
@@ -66,7 +82,8 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="classType">Class type of method.</param>
 		/// <param name="instance">Class instance of class of method. Use `null` for static methods.</param>
 		/// <param name="methodName">Method's name.</param>
-		/// <param name="args">Method's arguments (will be validated before invoking).</param>
+		/// <param name="args">Method's arguments (will be validated before invoking).
+		/// Nullable types should always be wrapped with `TypedMethodParameter`.</param>
 		/// <param name="returnVal">Return value of method.</param>
 		/// <returns>`true` if method found and invoked successfully.</returns>
 		public static bool RunMethod<T>( Type classType, Object instance, string methodName, object[] args, out T returnVal ) {
@@ -80,7 +97,8 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="classType">Class type of method.</param>
 		/// <param name="instance">Class instance of class of method. Use `null` for static methods.</param>
 		/// <param name="methodName">Method's name.</param>
-		/// <param name="args">Method's arguments (will be validated before invoking).</param>
+		/// <param name="args">Method's arguments (will be validated before invoking).
+		/// Nullable types should always be wrapped with `TypedMethodParameter`.</param>
 		/// <param name="generics">Generic type parameters (if applicable).</param>
 		/// <param name="returnVal">Return value of method.</param>
 		/// <returns>`true` if method found and invoked successfully.</returns>
@@ -93,8 +111,27 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 					out T returnVal ) {
 			returnVal = default( T );
 
-			Type[] paramTypes = args?.SafeSelect( o => o.GetType() ).ToArray()
-				?? new Type[] { };
+			if( args.Any(a => a == null) ) {
+				LogHelpers.AlertOnce( "`null` argument detected for "+classType.Name+"."+methodName
+					+ ". Wrap nullable arguments with `TypedMethodParameter`." );
+				return false;
+			}
+
+			IEnumerable<Type> rawParamTypes = args?.SafeSelect( a => {
+				var tp = a as TypedMethodParameter;
+				if( tp != null ) {
+					return tp.ValueType;
+				}
+				return a.GetType();
+			} );
+
+			Type[] paramTypes = rawParamTypes.ToArray() ?? new Type[] { };
+
+			for( int i=0; i<args.Length; i++ ) {
+				if( args[i]?.GetType() == typeof(TypedMethodParameter) ) {
+					args[i] = ((TypedMethodParameter)args[i]).Value;
+				}
+			}
 
 			/*for( int i=0; i<paramTypes.Length; i++ ) {
 				Type p = paramTypes[i];
