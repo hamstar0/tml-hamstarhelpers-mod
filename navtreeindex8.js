@@ -1,5 +1,8 @@
 var NAVTREEINDEX8 =
 {
+"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ae1851fd51aacb79b567dc109dd1cd92c":[1,0,0,3,19,7,4],
+"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_object_helpers.html":[1,0,0,3,19,8],
+"class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_object_helpers.html#a5d411ab97d57f1e0bb7873068caa6ee4":[1,0,0,3,19,8,0],
 "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_placement_helpers.html":[1,0,0,3,19,9],
 "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_placement_helpers.html#a06463cb018a5290e9158758412ae9bff":[1,0,0,3,19,9,18],
 "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_placement_helpers.html#a117959e81cc80145e263c33712732441":[1,0,0,3,19,9,11],
@@ -246,8 +249,5 @@ var NAVTREEINDEX8 =
 "class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a76b473d8de9bbb0fb1ac3918f04bb002":[1,0,0,6,6,1,0,3],
 "class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#adcd8cbf54b06c0d0294bb8eacff11528":[1,0,0,6,6,1,0,0],
 "class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html":[1,0,0,6,6,2,0],
-"class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html#a025dc0eeabf3804d8468abdf38fb991e":[1,0,0,6,6,2,0,1],
-"class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html#a8e02761aa0a0c66dfbfbc278acfd31db":[1,0,0,6,6,2,0,0],
-"class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html#ac3ee36d8959f36605b90bd534f596729":[1,0,0,6,6,2,0,2],
-"class_hamstar_helpers_1_1_services_1_1_entity_controls_1_1_entity_controls.html":[1,0,0,6,7,0]
+"class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html#a025dc0eeabf3804d8468abdf38fb991e":[1,0,0,6,6,2,0,1]
 };

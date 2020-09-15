@@ -98,6 +98,7 @@ var searchData=
   ['trypreciseplace',['TryPrecisePlace',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_placement_helpers.html#a459886bce7e4c67d1ec83bfe445df01b',1,'HamstarHelpers::Helpers::Tiles::TilePlacementHelpers']]],
   ['type',['type',['../class_hamstar_helpers_1_1_classes_1_1_tile_structure_1_1_serializeable_tile.html#ae8fa60e0e81c98feb473ac0ed639143c',1,'HamstarHelpers::Classes::TileStructure::SerializeableTile']]],
   ['typedictionary',['TypeDictionary',['../class_net_serializer_1_1_type_dictionary.html',1,'NetSerializer']]],
+  ['typedmethodparameter',['TypedMethodParameter',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers_1_1_typed_method_parameter.html',1,'HamstarHelpers::Helpers::DotNET::Reflection::ReflectionHelpers']]],
   ['typefromuniquekey',['TypeFromUniqueKey',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#a17d314aab29ae2a4d6faef0e790caaf6',1,'HamstarHelpers.Helpers.NPCs.NPCIdentityHelpers.TypeFromUniqueKey(string key)'],['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_identity_helpers.html#a3fcf21b2c95d646d2a0ca3cd2a209b4a',1,'HamstarHelpers.Helpers.NPCs.NPCIdentityHelpers.TypeFromUniqueKey(string mod, string name)']]],
   ['typeidlist',['TypeIDList',['../class_net_serializer_1_1_type_i_d_list.html',1,'NetSerializer']]]
 ];

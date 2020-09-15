@@ -341,6 +341,7 @@ var hierarchy =
     [ "HamstarHelpers.Services.Timers.Timers", "class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html", null ],
     [ "HamstarHelpers.Helpers.TModLoader.TmlHelpers", "class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html", null ],
     [ "NetSerializer.TypeDictionary", "class_net_serializer_1_1_type_dictionary.html", null ],
+    [ "HamstarHelpers.Helpers.DotNET.Reflection.ReflectionHelpers.TypedMethodParameter", "class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers_1_1_typed_method_parameter.html", null ],
     [ "NetSerializer.TypeIDList", "class_net_serializer_1_1_type_i_d_list.html", null ],
     [ "HamstarHelpers.Helpers.UI.UIHelpers", "class_hamstar_helpers_1_1_helpers_1_1_u_i_1_1_u_i_helpers.html", null ],
     [ "HamstarHelpers.Classes.UI.Elements.UIHiddenPanel", "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_hidden_panel.html", null ],
