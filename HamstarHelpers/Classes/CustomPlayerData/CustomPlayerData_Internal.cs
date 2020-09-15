@@ -10,6 +10,7 @@ using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Helpers.TModLoader;
 
 
 namespace HamstarHelpers.Classes.PlayerData {
@@ -42,7 +43,13 @@ namespace HamstarHelpers.Classes.PlayerData {
 					singleton.DataMap.Set2D( playerWho, plrDataType, plrData );
 				}
 
-				plrData.OnEnter( data );
+				ReflectionHelpers.RunMethod(
+					instance: plrData,
+					methodName: "OnEnter",
+					args: new object[] { data },
+					returnVal: out object _
+				);
+				plrData.OnEnter( Main.myPlayer == playerWho, data );
 			}
 		}
 
@@ -69,9 +76,13 @@ namespace HamstarHelpers.Classes.PlayerData {
 
 		////////////////
 
-		private static void UpdateAll() {
+		internal static void UpdateAll() {
 			bool isNotMenu = Main.netMode == NetmodeID.Server ? true : !Main.gameMenu;
-			var singleton = ModContent.GetInstance<CustomPlayerData>();
+			var singleton = TmlHelpers.SafelyGetInstance<CustomPlayerData>();
+			if( singleton == null ) {
+				return;
+			}
+
 			Player player;
 			
 			for( int plrWho = 0; plrWho < Main.maxPlayers; plrWho++ ) {

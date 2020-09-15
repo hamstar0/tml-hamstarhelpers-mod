@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Classes.PlayerData {
@@ -47,8 +47,6 @@ namespace HamstarHelpers.Classes.PlayerData {
 				throw new ModHelpersException( "Attempted multiple calls." );
 			}
 			this.CalledOnModsLoad = true;
-			
-			Main.OnTick += CustomPlayerData.UpdateAll;
 		}
 
 		/// @private
@@ -57,8 +55,6 @@ namespace HamstarHelpers.Classes.PlayerData {
 				throw new ModHelpersException( "Attempted multiple calls." );
 			}
 			this.CalledOnModsUnload = true;
-
-			Main.OnTick -= CustomPlayerData.UpdateAll;
 		}
 
 		/// @private

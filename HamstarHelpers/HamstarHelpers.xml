@@ -381,6 +381,9 @@
             <summary>
             An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
             </summary>
+            <summary>
+            An alternative to ModPlayer for basic per-player, per-game data storage and Update use.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.GetPlayerData``1(System.Int32)">
             <summary>
@@ -393,10 +396,11 @@
         <member name="P:HamstarHelpers.Classes.PlayerData.CustomPlayerData.BaseFolder">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnEnter(System.Object)">
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnEnter(System.Boolean,System.Object)">
             <summary>
             Player enters the game.
             </summary>
+            <param name="isCurrentPlayer"></param>
             <param name="data">Data loaded for the current player from file.</param>
         </member>
         <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnExit">
@@ -425,6 +429,9 @@
             @private
         </member>
         <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.PlayerData.CustomPlayerData.OnEnter(System.Object)">
             @private
         </member>
         <member name="T:HamstarHelpers.Classes.DataStructures.BTree.BTree`2">
@@ -2908,6 +2915,21 @@
             Handles mouse hover detection; nothing to draw.
             </summary>
             <param name="spriteBatch">Unused.</param>
+        </member>
+        <member name="T:HamstarHelpers.Classes.UI.Elements.UIHideableScrollbar">
+            <summary>Implements a scrollbar designed to hide like it's parent element.</summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIHideableScrollbar.IsScrollbarHidden(System.Int32,Terraria.UI.UIElement)">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Classes.UI.Elements.UIHideableScrollbar.IsHidden">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIHideableScrollbar.#ctor(Terraria.GameContent.UI.Elements.UIList,System.Boolean)">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIHideableScrollbar.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UIImageUrl">
             <summary>
@@ -11696,6 +11718,7 @@
             @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersMod">
+            @private
             @private
             @private
             @private

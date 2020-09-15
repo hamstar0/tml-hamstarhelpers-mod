@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Classes.Loadable;
-using System;
+﻿using System;
 using Terraria;
+using HamstarHelpers.Classes.Loadable;
 
 
 namespace HamstarHelpers.Classes.PlayerData {
@@ -11,8 +11,9 @@ namespace HamstarHelpers.Classes.PlayerData {
 		/// <summary>
 		/// Player enters the game.
 		/// </summary>
+		/// <param name="isCurrentPlayer"></param>
 		/// <param name="data">Data loaded for the current player from file.</param>
-		protected virtual void OnEnter( object data ) { }
+		protected virtual void OnEnter( bool isCurrentPlayer, object data ) { }
 
 		/// <summary>
 		/// Player exits the game.
