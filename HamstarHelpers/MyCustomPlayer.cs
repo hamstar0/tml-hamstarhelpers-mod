@@ -19,7 +19,7 @@ namespace HamstarHelpers {
 		protected ModHelpersCustomPlayer() { }
 
 
-		protected override void OnEnter( object data ) {
+		protected override void OnEnter( bool isCurrentPlayer, object data ) {
 			if( Main.netMode != NetmodeID.Server ) {
 				if( this.PlayerWho != Main.myPlayer ) {
 					return;

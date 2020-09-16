@@ -9,7 +9,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 	/// </summary>
 	public partial class CustomPlayerData : ILoadable {
 		/// @private
-		[Obsolete("use OnEnter(bool, object)", true)]
+		[Obsolete("use `OnEnter(bool, object)`", true)]
 		protected virtual void OnEnter( object data ) { }
 	}
 }

@@ -46,7 +46,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 				ReflectionHelpers.RunMethod(
 					instance: plrData,
 					methodName: "OnEnter",
-					args: new object[] { data },
+					args: new object[] { new TypedMethodParameter( typeof(object), data ) },
 					returnVal: out object _
 				);
 				plrData.OnEnter( Main.myPlayer == playerWho, data );

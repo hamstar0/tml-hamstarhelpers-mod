@@ -6181,7 +6181,8 @@
             <typeparam name="T">Invoked method's return value type.</typeparam>
             <param name="instance">Class instance of class of method.</param>
             <param name="methodName">Method's name.</param>
-            <param name="args">Method's arguments (will be validated before invoking).</param>
+            <param name="args">Method's arguments (will be validated before invoking).
+            Nullable types should always be wrapped with `TypedMethodParameter`.</param>
             <param name="returnVal">Return value of method.</param>
             <returns>`true` if method found and invoked successfully.</returns>
         </member>
@@ -6193,7 +6194,8 @@
             <param name="classType">Class type of method.</param>
             <param name="instance">Class instance of class of method. Use `null` for static methods.</param>
             <param name="methodName">Method's name.</param>
-            <param name="args">Method's arguments (will be validated before invoking).</param>
+            <param name="args">Method's arguments (will be validated before invoking).
+            Nullable types should always be wrapped with `TypedMethodParameter`.</param>
             <param name="returnVal">Return value of method.</param>
             <returns>`true` if method found and invoked successfully.</returns>
         </member>
@@ -6205,7 +6207,8 @@
             <param name="classType">Class type of method.</param>
             <param name="instance">Class instance of class of method. Use `null` for static methods.</param>
             <param name="methodName">Method's name.</param>
-            <param name="args">Method's arguments (will be validated before invoking).</param>
+            <param name="args">Method's arguments (will be validated before invoking).
+            Nullable types should always be wrapped with `TypedMethodParameter`.</param>
             <param name="generics">Generic type parameters (if applicable).</param>
             <param name="returnVal">Return value of method.</param>
             <returns>`true` if method found and invoked successfully.</returns>
@@ -6256,6 +6259,20 @@
             <param name="asses"></param>
             <param name="parentType"></param>
             <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Reflection.TypedMethodParameter">
+            <summary>
+            Simple wrapper to enable `ReflectionHelpers.RunMethod` to know parameter types. Useful for null values.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.DotNET.Reflection.TypedMethodParameter.ValueType">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.DotNET.Reflection.TypedMethodParameter.Value">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Reflection.TypedMethodParameter.#ctor(System.Type,System.Object)">
+            <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Serialization.HashSetSerializer.Handles(System.Type)">
             <summary>

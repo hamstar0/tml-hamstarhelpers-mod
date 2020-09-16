@@ -8,23 +8,34 @@ using HamstarHelpers.Helpers.Debug;
 
 namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	/// <summary>
+	/// Simple wrapper to enable `ReflectionHelpers.RunMethod` to know parameter types. Useful for null values.
+	/// </summary>
+	public class TypedMethodParameter {
+		/// <summary></summary>
+		public Type ValueType { get; }
+
+		/// <summary></summary>
+		public object Value { get; }
+
+
+
+		////////////////
+
+		/// <summary></summary>
+		public TypedMethodParameter( Type valueType, object value ) {
+			this.ValueType = valueType;
+			this.Value = value;
+		}
+	}
+
+
+
+
+
+	/// <summary>
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
 	public partial class ReflectionHelpers {
-		/// <summary>
-		/// Simple wrapper to enable `ReflectionHelpers.RunMethod` to know parameter types. Useful for null values.
-		/// </summary>
-		public class TypedMethodParameter {
-			/// <summary></summary>
-			public Type ValueType { get; }
-
-			/// <summary></summary>
-			public object Value { get; }
-		}
-
-
-
-
 		/// <summary>
 		/// Invokes a method, first validating the supplied parameters for type consistency.
 		/// </summary>
@@ -38,17 +49,27 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			if( args.Length != paramInfos.Length ) {
 				throw new ModHelpersException( "Mismatched input argument quantity. (for call " + method.Name + ")" );
 			}
-			
+
 			for( int i = 0; i < paramInfos.Length; i++ ) {
 				Type paramType = paramInfos[i].ParameterType;
 				Type argType = args[i]?.GetType();
 
 				if( args[i] == null ) {
 					if( !paramType.IsClass || paramInfos[i].GetCustomAttribute<NullableAttribute>() == null ) {
-						throw new ModHelpersException( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found null (for call "+method.Name+")" );
+						throw new ModHelpersException(
+							"Invalid param "+paramInfos[i].Name+" (#"+i+"): "
+							+"Expected "+paramType.Name+", found null (for call "+method.Name+")"
+							+" - Set parameter to use `NullableAttribute` or wrap value with `TypedMethodParameter`."
+						);
 					}
 				} else if( argType.Name != paramType.Name && !argType.IsSubclassOf( paramType ) ) {
-					throw new ModHelpersException( "Invalid param " + paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+argType.Name+" (for call "+method.Name+")" );
+					throw new ModHelpersException( "Invalid param "+paramInfos[i].Name+" (#"+i+"): Expected "+paramType.Name+", found "+argType.Name+" (for call "+method.Name+")" );
+				}
+			}
+
+			for( int i = 0; i < args.Length; i++ ) {
+				if( args[i]?.GetType() == typeof( TypedMethodParameter ) ) {
+					args[i] = ( (TypedMethodParameter)args[i] ).Value;
 				}
 			}
 
@@ -126,12 +147,6 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			} );
 
 			Type[] paramTypes = rawParamTypes.ToArray() ?? new Type[] { };
-
-			for( int i=0; i<args.Length; i++ ) {
-				if( args[i]?.GetType() == typeof(TypedMethodParameter) ) {
-					args[i] = ((TypedMethodParameter)args[i]).Value;
-				}
-			}
 
 			/*for( int i=0; i<paramTypes.Length; i++ ) {
 				Type p = paramTypes[i];
