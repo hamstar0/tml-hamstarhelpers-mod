@@ -31,7 +31,6 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 
 
-
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>

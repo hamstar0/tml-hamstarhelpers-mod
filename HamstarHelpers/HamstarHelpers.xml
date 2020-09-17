@@ -7322,24 +7322,20 @@
             <param name="buyValue"></param>
             <returns></returns>
         </member>
-        <member name="T:HamstarHelpers.Helpers.Items.ItemGroupDefinition">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Helpers.Items.ItemGroupDefinition.GroupName">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Helpers.Items.ItemGroupDefinition.Group">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Items.ItemGroupDefinition.#ctor(System.String,System.Collections.Generic.ISet{System.Int32})">
-            <summary></summary>
-            <param name="groupName"></param>
-            <param name="group"></param>
-        </member>
         <member name="T:HamstarHelpers.Helpers.Items.ItemGroupIdentityHelpers">
             <summary>
             Assorted static "helper" functions pertaining to item identification.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to item identification.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.ItemGroupIdentityHelpers.GetVanillaContainerItemTypes(System.String)">
+            <summary>
+            Gets all vanilla item types of a given "container context".
+            </summary>
+            <param name="context">Contexts include: bossBag, crate, herbBag, goodieBag, lockBox, present</param>
+            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Items.ItemGroupIdentityHelpers.GetCommonItemGroups">
             <summary>
@@ -7432,12 +7428,24 @@
             All vanilla dyes.
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Items.ItemGroupIdentityHelpers.GetVanillaContainerItemTypes(System.String)">
+        <member name="P:HamstarHelpers.Helpers.Items.ItemGroupIdentityHelpers.Banners">
             <summary>
-            Gets all vanilla item types of a given "container context".
+            All banner types.
             </summary>
-            <param name="context">Contexts include: bossBag, crate, herbBag, goodieBag, lockBox, present</param>
-            <returns></returns>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Items.ItemGroupDefinition">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Items.ItemGroupDefinition.GroupName">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Items.ItemGroupDefinition.Group">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.ItemGroupDefinition.#ctor(System.String,System.Collections.Generic.ISet{System.Int32})">
+            <summary></summary>
+            <param name="groupName"></param>
+            <param name="group"></param>
         </member>
         <member name="T:HamstarHelpers.Helpers.Items.ItemHelpers">
             <summary>
@@ -8413,6 +8421,15 @@
             <summary>
             Assorted static "helper" functions pertaining to unique player identification.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Players.PlayerItemFinderHelpers.CountTotalOfEach(Terraria.Player,System.Collections.Generic.ISet{System.Int32},System.Boolean)">
+            <summary>
+            Counts the total of a given set of items owned by a given player.
+            </summary>
+            <param name="player"></param>
+            <param name="itemTypes"></param>
+            <param name="includeBanks"></param>
+            <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Players.PlayerItemFinderHelpers.FindFirstOfPossessedItemFor(Terraria.Player,System.Collections.Generic.ISet{System.Int32},System.Boolean)">
             <summary>

@@ -1,14 +1,14 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
+using Terraria;
+using Terraria.UI;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.Messages.Inbox;
 using HamstarHelpers.Services.Hooks.LoadHooks;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
-using System;
-using Terraria;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
@@ -22,8 +22,18 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		private static Vector2 TogglerPosition {
 			get {
 				var config = ModHelpersConfig.Instance;
-				int x = config.ControlPanelIconX < 0 ? Main.screenWidth + config.ControlPanelIconX : config.ControlPanelIconX;
-				int y = config.ControlPanelIconY < 0 ? Main.screenHeight + config.ControlPanelIconY : config.ControlPanelIconY;
+				int x = config.ControlPanelIconX < 0
+					? Main.screenWidth + config.ControlPanelIconX
+					: config.ControlPanelIconX;
+				int y = config.ControlPanelIconY < 0
+					? Main.screenHeight + config.ControlPanelIconY
+					: config.ControlPanelIconY;
+
+				if( x == 0 && y == 0 ) {
+					if( Main.LocalPlayer.InfoAccMechShowWires && Main.LocalPlayer.rulerLine ) {
+						y += 16;
+					}
+				}
 
 				return new Vector2( x, y );
 			}

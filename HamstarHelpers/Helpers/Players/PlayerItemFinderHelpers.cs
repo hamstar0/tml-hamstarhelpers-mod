@@ -9,6 +9,26 @@ namespace HamstarHelpers.Helpers.Players {
 	/// </summary>
 	public class PlayerItemFinderHelpers {
 		/// <summary>
+		/// Counts the total of a given set of items owned by a given player.
+		/// </summary>
+		/// <param name="player"></param>
+		/// <param name="itemTypes"></param>
+		/// <param name="includeBanks"></param>
+		/// <returns></returns>
+		public static int CountTotalOfEach( Player player, ISet<int> itemTypes, bool includeBanks ) {
+			int total = ItemFinderHelpers.CountTotalOfEach( player.inventory, itemTypes );
+
+			if( includeBanks ) {
+				total += ItemFinderHelpers.CountTotalOfEach( player.bank.item, itemTypes );
+				total += ItemFinderHelpers.CountTotalOfEach( player.bank2.item, itemTypes );
+				total += ItemFinderHelpers.CountTotalOfEach( player.bank3.item, itemTypes );
+			}
+
+			return total;
+		}
+
+
+		/// <summary>
 		/// Finds first of any of a set of item types currently in the player's position.
 		/// </summary>
 		/// <param name="player"></param>

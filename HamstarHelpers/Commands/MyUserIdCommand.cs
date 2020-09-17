@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Helpers.Players;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Players;
 
 
 namespace HamstarHelpers.Commands {
