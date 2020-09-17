@@ -73,8 +73,12 @@ namespace HamstarHelpers.Services.UI.ControlPanel {
 
 		////////////////
 
+		/// <summary>
+		/// Indicates that a given tab has important new information to be seen immediate.y
+		/// </summary>
+		/// <param name="tabName"></param>
 		public static void AddTabAlert( string tabName ) {
-			f
+			ModHelpersMod.Instance.ControlPanelUI?.AddTabAlert( tabName );
 		}
 	}
 }

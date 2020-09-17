@@ -11623,6 +11623,7 @@
             @private
             @private
             @private
+            @private
         </member>
         <member name="T:HamstarHelpers.Internals.ControlPanel.UIControlPanelTab">
             @private
@@ -14039,6 +14040,12 @@
             <summary>
             Closes the control panel dialog.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.UI.ControlPanel.ControlPanelTabs.AddTabAlert(System.String)">
+            <summary>
+            Indicates that a given tab has important new information to be seen immediate.y
+            </summary>
+            <param name="tabName"></param>
         </member>
         <member name="T:HamstarHelpers.Services.UI.FreeHUD.FreeHUD">
             <summary>

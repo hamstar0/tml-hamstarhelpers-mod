@@ -155,6 +155,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		private void OpenViaToggler() {
 			if( !this.IsTogglerUpdateAlertShown( out string tabName ) ) {
 				tabName = UIControlPanel.DefaultTabName;
+			} else {
+				this.AlertTabs.Remove( tabName );
 			}
 
 			//this.Open();

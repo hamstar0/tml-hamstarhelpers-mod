@@ -7,18 +7,27 @@ using Terraria.UI;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
-
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HamstarHelpers.Internals.ControlPanel {
 	/// @private
 	partial class UIControlPanel : UIState {
 		private static Version AlertSinceVersion = new Version( 2, 0, 0 );
-		
+
+
+
+		////////////////
+
+		private ISet<string> AlertTabs = new HashSet<string>();
+
 
 
 		////////////////
 		
-		
+		public void AddTabAlert( string tabName ) {
+
+		}
 
 
 		////////////////
@@ -44,10 +53,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				return true;
 			}
 
-			//ControlPanelTabs.
-
-			tabName = null;
-			return false;
+			tabName = this.AlertTabs.FirstOrDefault();
+			return this.AlertTabs.Count > 0;
 		}
 
 
