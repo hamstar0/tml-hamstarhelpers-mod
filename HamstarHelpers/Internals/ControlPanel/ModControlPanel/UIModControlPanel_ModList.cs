@@ -1,13 +1,12 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.ModHelpers;
-using HamstarHelpers.Helpers.TModLoader.Mods;
-using HamstarHelpers.Helpers.DotNET.Threading;
-using System;
+﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using Terraria.ModLoader;
 using Terraria.UI;
+using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Threading;
+using HamstarHelpers.Helpers.ModHelpers;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
@@ -15,9 +14,9 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 	partial class UIModControlPanelTab : UIControlPanelTab {
 		public static void UpdateModList() {
 			var mymod = ModHelpersMod.Instance;
-			var uiModCtrlPanel = (UIModControlPanelTab)mymod.ControlPanel.DefaultTab;
+			var uiModCtrlPanel = (UIModControlPanelTab)mymod.ControlPanelUI.DefaultTab;
 
-			if( uiModCtrlPanel == null || !uiModCtrlPanel.ModListUpdateRequired || !mymod.ControlPanel.IsOpen ) {
+			if( uiModCtrlPanel == null || !uiModCtrlPanel.ModListUpdateRequired || !mymod.ControlPanelUI.IsOpen ) {
 				return;
 			}
 

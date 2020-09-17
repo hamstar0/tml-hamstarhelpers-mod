@@ -9,16 +9,12 @@ using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
 using HamstarHelpers.Services.Messages.Inbox;
 using HamstarHelpers.Services.Hooks.LoadHooks;
+using HamstarHelpers.Services.UI.ControlPanel;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
 	/// @private
 	partial class UIControlPanel : UIState {
-		private static Version AlertSinceVersion = new Version( 2, 0, 0 );
-
-
-		////////////////
-
 		private static Vector2 TogglerPosition {
 			get {
 				var config = ModHelpersConfig.Instance;
@@ -38,23 +34,24 @@ namespace HamstarHelpers.Internals.ControlPanel {
 				return new Vector2( x, y );
 			}
 		}
-		
+
 
 
 		////////////////
 
 		public bool IsTogglerLit { get; private set; }
 
-		
+
+
 		////////////////
 
 		private void InitializeToggler() {
 			this.IsTogglerLit = false;
 
 			LoadHooks.AddWorldLoadEachHook( () => {
-				var uiModCtrlPanel = (UIModControlPanelTab)ModHelpersMod.Instance.ControlPanel.DefaultTab;
+				var uiModCtrlPanel = (UIModControlPanelTab)ModHelpersMod.Instance.ControlPanelUI.DefaultTab;
 				int modUpdateCount = uiModCtrlPanel.GetModUpdatesAvailable();
-				
+
 				if( modUpdateCount > 0 ) {
 					InboxMessages.SetMessage( "mod_updates", modUpdateCount + " mod updates available. See mod browser.", true );
 				}
@@ -68,32 +65,11 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			return Main.playerInventory;
 		}
 
-		public bool IsTogglerUpdateAlertShown() {
-			var mymod = ModHelpersMod.Instance;
-			if( mymod.Data == null ) {
-				LogHelpers.WarnOnce( "No mod data." );
-				return false;
-			}
-
-			var ver = new Version( mymod.Data.ControlPanelNewSince );
-
-			if( ver < UIControlPanel.AlertSinceVersion ) {
-				return true;
-			}
-
-			UIModControlPanelTab uiModCtrlPanel = mymod.ControlPanel.DefaultTab;
-			if( uiModCtrlPanel.GetModUpdatesAvailable() > 0 ) {
-				return true;
-			}
-
-			return false;
-		}
-
 
 		////////////////
 
 		public void UpdateToggler() {
-			this.CheckTogglerMouseInteraction();
+			this.RunTogglerMouseInteraction();
 
 			if( this.IsTogglerLit ) {
 				Main.LocalPlayer.mouseInterface = true;
@@ -106,7 +82,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public void DrawToggler( SpriteBatch sb ) {
 			if( !this.IsTogglerShown() ) { return; }
 
-			bool alertShown = this.IsTogglerUpdateAlertShown();
+			bool alertShown = this.IsTogglerUpdateAlertShown( out string _ );
 			Texture2D tex;
 			Color color;
 
@@ -126,62 +102,72 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			if( this.IsTogglerLit ) {
 				if( alertShown ) {
-					sb.DrawString( Main.fontMouseText, "New mod updates!", new Vector2( Main.mouseX + 8, Main.mouseY + 8 ), AnimatedColors.Alert.CurrentColor );
+					sb.DrawString(
+						spriteFont: Main.fontMouseText,
+						text: "New mod updates!",
+						position: new Vector2( Main.mouseX + 8, Main.mouseY + 8 ),
+						color: AnimatedColors.Alert.CurrentColor
+					);
 				} else {
-					sb.DrawString( Main.fontMouseText, "Mod Control Panel", new Vector2( Main.mouseX + 8, Main.mouseY + 8 ), Color.White );
+					sb.DrawString(
+						spriteFont: Main.fontMouseText,
+						text: "Mod Control Panel",
+						position: new Vector2( Main.mouseX + 8, Main.mouseY + 8 ),
+						color: Color.White
+					);
 				}
 			}
 		}
 
-		
-		private void DrawTogglerAlert( SpriteBatch sb ) {
-			Color color = AnimatedColors.Alert != null ? AnimatedColors.Alert.CurrentColor : Color.White;
-			Vector2 pos = UIControlPanel.TogglerPosition;
-			pos.Y += 6f;
-			//pos.X += 56f - (Main.fontMouseText.MeasureString("New!").X * 0.5f);
-			//pos.Y -= 4f;
-
-			//sb.DrawString( Main.fontMouseText, "New!", pos, color );
-			sb.DrawString( Main.fontMouseText, "New!", pos+new Vector2(-0.35f,-0.35f), Color.Black, 0f, default( Vector2 ), 0.64f, SpriteEffects.None, 1f );
-			sb.DrawString( Main.fontMouseText, "New!", pos, color, 0f, default(Vector2), 0.6f, SpriteEffects.None, 1f );
-		}
-
 
 		////////////////
-		
-		private void CheckTogglerMouseInteraction() {
-			bool isClick = Main.mouseLeft && Main.mouseLeftRelease;
+
+		private void RunTogglerMouseInteraction() {
+			bool isClick = Main.mouseLeft && Main.mouseLeftRelease && !this.HasClicked;
 			Vector2 pos = UIControlPanel.TogglerPosition;
 			Vector2 size = UIControlPanel.ControlPanelIcon.Size();
 
 			this.IsTogglerLit = false;
 
 			if( this.IsTogglerShown() ) {
-				if( Main.mouseX >= pos.X && Main.mouseX < (pos.X + size.X) ) {
-					if( Main.mouseY >= pos.Y && Main.mouseY < (pos.Y + size.Y) ) {
-						if( isClick && !this.HasClicked ) {
-							if( this.IsOpen ) {
-								this.Close();
-							} else if( this.CanOpen() ) {
-								this.Open();
+				bool isMouseOver = Main.mouseX >= pos.X && Main.mouseX < ( pos.X + size.X )
+								&& Main.mouseY >= pos.Y && Main.mouseY < ( pos.Y + size.Y );
 
-								var mymod = ModHelpersMod.Instance;
-								Version oldVers;
-								Version newVers = UIControlPanel.AlertSinceVersion;
-
-								if( Version.TryParse(mymod.Data.ControlPanelNewSince, out oldVers) && oldVers != newVers ) {
-									mymod.Data.ControlPanelNewSince = newVers.ToString();
-									mymod.SaveModData();
-								}
-							}
+				if( isMouseOver ) {
+					if( isClick ) {
+						if( this.IsOpen ) {
+							this.Close();
+						} else if( this.CanOpen() ) {
+							this.OpenViaToggler();
 						}
-
-						this.IsTogglerLit = true;
 					}
+
+					this.IsTogglerLit = true;
 				}
 			}
 
 			this.HasClicked = isClick;
+		}
+
+
+		////
+
+		private void OpenViaToggler() {
+			if( !this.IsTogglerUpdateAlertShown( out string tabName ) ) {
+				tabName = UIControlPanel.DefaultTabName;
+			}
+
+			//this.Open();
+			ControlPanelTabs.OpenTab( tabName );
+
+			var mymod = ModHelpersMod.Instance;
+			Version oldVers;
+			Version newVers = UIControlPanel.AlertSinceVersion;
+
+			if( Version.TryParse( mymod.Data.ControlPanelNewSince, out oldVers ) && oldVers != newVers ) {
+				mymod.Data.ControlPanelNewSince = newVers.ToString();
+				mymod.SaveModData();
+			}
 		}
 	}
 }

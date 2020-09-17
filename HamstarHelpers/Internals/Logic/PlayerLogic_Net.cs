@@ -85,7 +85,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 			this.IsSynced = true;
 
-			UIModControlPanelTab uiModCtrlPanel = mymod.ControlPanel.DefaultTab;
+			UIModControlPanelTab uiModCtrlPanel = mymod.ControlPanelUI.DefaultTab;
 			uiModCtrlPanel.LoadModListAsync();
 		}
 

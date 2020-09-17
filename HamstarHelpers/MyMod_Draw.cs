@@ -110,13 +110,13 @@ namespace HamstarHelpers {
 		private void DrawCP( SpriteBatch sb ) {
 			try {
 				if( !ModHelpersConfig.Instance.DisableControlPanel ) {
-					this.ControlPanel.UpdateToggler();
-					this.ControlPanel.DrawToggler( sb );
+					this.ControlPanelUI.UpdateToggler();
+					this.ControlPanelUI.DrawToggler( sb );
 				}
 				if( this.LastSeenCPScreenWidth != Main.screenWidth || this.LastSeenCPScreenHeight != Main.screenHeight ) {
 					this.LastSeenCPScreenWidth = Main.screenWidth;
 					this.LastSeenCPScreenHeight = Main.screenHeight;
-					this.ControlPanel.RecalculateMe();
+					this.ControlPanelUI.RecalculateMe();
 				}
 
 				this.Inbox.Draw( sb );

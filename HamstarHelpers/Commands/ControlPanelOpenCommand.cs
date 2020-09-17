@@ -29,7 +29,7 @@ namespace HamstarHelpers.Commands {
 			if( ModHelpersConfig.Instance.DisableControlPanel ) {
 				caller.Reply( "Control panel disabled.", Color.Red );
 			} else {
-				ModHelpersMod.Instance.ControlPanel.Open();
+				ModHelpersMod.Instance.ControlPanelUI.Open();
 			}
 		}
 	}

@@ -94,7 +94,7 @@ namespace HamstarHelpers {
 //DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_A", 1 );
 			var mymod = (ModHelpersMod)this.mod;
 
-			mymod.ControlPanel.UpdateGlobal();
+			mymod.ControlPanelUI.UpdateGlobal();
 
 			if( Main.netMode == NetmodeID.Server ) {
 				this.Logic.PreUpdateServer( this.player );
@@ -130,8 +130,8 @@ namespace HamstarHelpers {
 
 			try {
 				if( mymod.ControlPanelHotkey != null && mymod.ControlPanelHotkey.JustPressed ) {
-					if( mymod.ControlPanel != null ) {
-						if( mymod.ControlPanel.IsOpen ) {
+					if( mymod.ControlPanelUI != null ) {
+						if( mymod.ControlPanelUI.IsOpen ) {
 							ControlPanelTabs.CloseDialog();
 						} else {
 							ControlPanelTabs.OpenTab( UIControlPanel.DefaultTabName );

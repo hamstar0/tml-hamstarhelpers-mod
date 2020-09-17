@@ -1,4 +1,8 @@
-﻿using HamstarHelpers.Internals.WebRequests;
+﻿using System;
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.ID;
+using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Menus;
 using HamstarHelpers.Internals.Menus.Support;
@@ -37,10 +41,6 @@ using HamstarHelpers.Helpers.Players;
 using HamstarHelpers.Helpers.ModHelpers;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 using HamstarHelpers.Helpers.TModLoader.Mods;
-using System;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 
 
 namespace HamstarHelpers {
@@ -96,7 +96,7 @@ namespace HamstarHelpers {
 		internal InboxControl Inbox;
 		internal GetModTags GetModTags;
 		internal GetModInfo GetModInfo;
-		internal UIControlPanel ControlPanel;
+		internal UIControlPanel ControlPanelUI;
 		internal SupportInfoDisplay SupportInfo;
 
 		
@@ -140,7 +140,7 @@ namespace HamstarHelpers {
 			this.PlayerHooks = new ExtendedPlayerHooks();
 			this.WorldTimeHooks = new WorldTimeHooks();
 			this.WorldStateHelpers = new WorldStateHelpers();
-			this.ControlPanel = new UIControlPanel();
+			this.ControlPanelUI = new UIControlPanel();
 			this.ModLock = new ModLockService();
 			this.EntityGroups = new EntityGroups();
 			this.PlayerMessages = new PlayerMessages();
@@ -193,7 +193,7 @@ namespace HamstarHelpers {
 			this.AnimatedTextures = null;
 			this.PlayerMessages = null;
 			this.Inbox = null;
-			this.ControlPanel = null;
+			this.ControlPanelUI = null;
 			this.MenuItemMngr = null;
 			this.MenuContextMngr = null;
 			this.MusicHelpers = null;

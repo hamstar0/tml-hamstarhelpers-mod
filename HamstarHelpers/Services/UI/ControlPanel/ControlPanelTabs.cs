@@ -16,7 +16,7 @@ namespace HamstarHelpers.Services.UI.ControlPanel {
 		public static void AddTab( string title, UIControlPanelTab tab ) {
 			var mymod = ModHelpersMod.Instance;
 
-			mymod.ControlPanel.AddTab( title, tab );
+			mymod.ControlPanelUI.AddTab( title, tab );
 		}
 
 		////////////////
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Services.UI.ControlPanel {
 		public static string GetCurrentTab() {
 			var mymod = ModHelpersMod.Instance;
 
-			return mymod.ControlPanel?.CurrentTabName;
+			return mymod.ControlPanelUI?.CurrentTabName;
 		}
 
 		/// <summary>
@@ -37,14 +37,15 @@ namespace HamstarHelpers.Services.UI.ControlPanel {
 		/// <param name="tabName"></param>
 		public static void OpenTab( string tabName ) {
 			var mymod = ModHelpersMod.Instance;
-
-			if( mymod.ControlPanel != null ) {
-				if( !mymod.ControlPanel.IsOpen ) {
-					mymod.ControlPanel.Open();
-				}
-
-				mymod.ControlPanel.ChangeToTab( tabName );
+			if( mymod.ControlPanelUI == null ) {
+				return;
 			}
+
+			if( !mymod.ControlPanelUI.IsOpen ) {
+				mymod.ControlPanelUI.Open();
+			}
+
+			mymod.ControlPanelUI.ChangeToTab( tabName );
 		}
 
 
@@ -55,7 +56,7 @@ namespace HamstarHelpers.Services.UI.ControlPanel {
 		/// </summary>
 		/// <returns></returns>
 		public static bool IsDialogOpen() {
-			return ModHelpersMod.Instance.ControlPanel?.IsOpen ?? false;
+			return ModHelpersMod.Instance.ControlPanelUI?.IsOpen ?? false;
 		}
 
 		/// <summary>
@@ -64,9 +65,16 @@ namespace HamstarHelpers.Services.UI.ControlPanel {
 		public static void CloseDialog() {
 			var mymod = ModHelpersMod.Instance;
 
-			mymod.ControlPanel?.Close();
+			mymod.ControlPanelUI?.Close();
 			//this.SetDialogToClose = false;
 			//this.Close();
+		}
+
+
+		////////////////
+
+		public static void AddTabAlert( string tabName ) {
+			f
 		}
 	}
 }
