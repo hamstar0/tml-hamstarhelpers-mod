@@ -47,6 +47,8 @@ namespace HamstarHelpers.Classes.PlayerData {
 				throw new ModHelpersException( "Attempted multiple calls." );
 			}
 			this.CalledOnModsLoad = true;
+
+			Main.OnTick += CustomPlayerData.UpdateAll;
 		}
 
 		/// @private
@@ -55,6 +57,8 @@ namespace HamstarHelpers.Classes.PlayerData {
 				throw new ModHelpersException( "Attempted multiple calls." );
 			}
 			this.CalledOnModsUnload = true;
+
+			Main.OnTick -= CustomPlayerData.UpdateAll;
 		}
 
 		/// @private

@@ -71,20 +71,24 @@ namespace HamstarHelpers.Classes.PlayerData {
 					CustomPlayerData.SaveFileData( plrData.GetType().Name, PlayerIdentityHelpers.GetUniqueId(), data );
 				}
 			}
+
+			singleton.DataMap.Remove( playerWho );
 		}
 
 
 		////////////////
 
 		internal static void UpdateAll() {
-			bool isNotMenu = Main.netMode == NetmodeID.Server ? true : !Main.gameMenu;
 			var singleton = TmlHelpers.SafelyGetInstance<CustomPlayerData>();
 			if( singleton == null ) {
 				return;
 			}
 
+			bool isNotMenu = Main.netMode == NetmodeID.Server
+				? true
+				: !Main.gameMenu;
 			Player player;
-			
+
 			for( int plrWho = 0; plrWho < Main.maxPlayers; plrWho++ ) {
 				player = Main.player[plrWho];
 
@@ -93,7 +97,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 					containsKey = singleton.DataMap.ContainsKey( plrWho );
 				}
 
-				if( player == null || !player.active ) {
+				if( player?.active != true ) {
 					if( containsKey ) {
 						CustomPlayerData.Exit( plrWho );
 					}
@@ -113,7 +117,8 @@ namespace HamstarHelpers.Classes.PlayerData {
 					} else {
 						IEnumerable<(Type, CustomPlayerData)> plrDataMap;
 						lock( CustomPlayerData.MyLock ) {
-							plrDataMap = singleton.DataMap[plrWho].Select( kv=>(kv.Key, kv.Value) );
+							plrDataMap = singleton.DataMap[plrWho]
+								.Select( kv => (kv.Key, kv.Value) );
 						}
 
 						foreach( (Type plrDataType, CustomPlayerData plrData) in plrDataMap ) {

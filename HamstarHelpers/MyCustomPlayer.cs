@@ -21,16 +21,16 @@ namespace HamstarHelpers {
 
 		protected override void OnEnter( bool isCurrentPlayer, object data ) {
 			if( Main.netMode != NetmodeID.Server ) {
-				if( this.PlayerWho != Main.myPlayer ) {
+				if( !isCurrentPlayer ) {
 					return;
 				}
 			}
 
-			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );
-
 			if( Main.netMode == NetmodeID.SinglePlayer ) {
+				var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );
 				myplayer.Logic.OnSingleEnterWorld( this.Player );
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
+				var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );
 				myplayer.Logic.OnCurrentClientEnterWorld( this.Player );
 			} else if( Main.netMode == NetmodeID.Server ) {
 			}

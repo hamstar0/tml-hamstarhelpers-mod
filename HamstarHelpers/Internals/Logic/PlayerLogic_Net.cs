@@ -58,12 +58,14 @@ namespace HamstarHelpers.Internals.Logic {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 				LogHelpers.Alert();
 			}
-			if( this.HasSyncedState() ) { this.FinishSyncOnClient(); }
+			if( this.HasAllSyncedState() ) {
+				this.FinishAllSyncOnLocal();
+			}
 		}
 
 		////
 
-		public bool HasSyncedState() {
+		public bool HasAllSyncedState() {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 				LogHelpers.AlertOnce(
 					"HasSyncedWorldData: " + this.HasSyncedWorldData +
@@ -74,7 +76,7 @@ namespace HamstarHelpers.Internals.Logic {
 			return this.HasSyncedWorldData && this.HasLoadedOldUID;
 		}
 
-		private void FinishSyncOnClient() {
+		private void FinishAllSyncOnLocal() {
 			if( this.IsSynced ) { return; }
 
 			var mymod = ModHelpersMod.Instance;
@@ -89,7 +91,7 @@ namespace HamstarHelpers.Internals.Logic {
 			uiModCtrlPanel.LoadModListAsync();
 		}
 
-		private void FinishSyncOnServer() {
+		private void FinishAllSyncOnServer() {
 			if( this.IsSynced ) { return; }
 
 			this.IsSynced = true;
@@ -116,7 +118,7 @@ namespace HamstarHelpers.Internals.Logic {
 			this.HasLoadedOldUID = hasUid;
 			this.OldPrivateUID = uid;
 			
-			if( this.HasSyncedState() ) { this.FinishSyncOnServer(); }
+			if( this.HasAllSyncedState() ) { this.FinishAllSyncOnServer(); }
 		}
 	}
 }
