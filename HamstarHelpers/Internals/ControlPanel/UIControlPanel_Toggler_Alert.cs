@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
@@ -7,8 +9,7 @@ using Terraria.UI;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
-using System.Collections.Generic;
-using System.Linq;
+
 
 namespace HamstarHelpers.Internals.ControlPanel {
 	/// @private
@@ -19,14 +20,14 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		private ISet<string> AlertTabs = new HashSet<string>();
+		internal ISet<string> AlertTabs = new HashSet<string>();
 
 
 
 		////////////////
-		
-		public void AddTabAlert( string tabName ) {
 
+		public void AddTabAlert( string tabName ) {
+			this.AlertTabs.Add( tabName );
 		}
 
 
