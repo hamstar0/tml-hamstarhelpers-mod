@@ -31,10 +31,13 @@ namespace HamstarHelpers.Commands {
 					CancellationToken = linkedCts.Token
 				};
 
+				int maxTilesX = Main.tile.GetLength( 0 );
+				int maxTilesY = Main.tile.GetLength( 1 );
+
 				try {
 					//for( int i = 0; i < Main.maxTilesX; i++ ) {
-					Parallel.For( 0, Main.maxTilesX, options, ( i ) => {
-						for( int j = 0; j < Main.maxTilesY; j++ ) {
+					Parallel.For( 0, maxTilesX, options, ( i ) => {
+						for( int j = 0; j < maxTilesY; j++ ) {
 							if( options.CancellationToken.IsCancellationRequested ) {
 								return;
 							}
@@ -72,7 +75,10 @@ namespace HamstarHelpers.Commands {
 			}
 
 			// No air or vanilla tiles
-			if( !tile.active() || TileID.Search.ContainsId( tile.type ) ) {
+			if( !tile.active() ) {
+				return false;
+			}
+			if( TileID.Search.ContainsId(tile.type) ) {
 				return false;
 			}
 
@@ -98,6 +104,8 @@ namespace HamstarHelpers.Commands {
 		}
 
 
+
+		////////////////
 
 		/// @private
 		public override CommandType Type {

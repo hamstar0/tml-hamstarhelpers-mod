@@ -28,8 +28,9 @@ namespace HamstarHelpers {
 		////
 
 		private bool GetChatModded( NPC npc, ref string chat ) {
-			Func<string, string> hiChatFunc = NPCChat.GetPriorityChat( npc.type );
-			string hiChat = hiChatFunc?.Invoke( chat );
+			ProcessMessage hiChatFunc = NPCChat.GetPriorityChat( npc.type );
+			string hiChat = hiChatFunc?.Invoke( chat, out bool _ );
+
 			if( hiChat != null ) {
 				chat = hiChat;
 				return true;

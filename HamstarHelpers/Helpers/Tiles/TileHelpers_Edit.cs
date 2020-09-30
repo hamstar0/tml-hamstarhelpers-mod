@@ -1,6 +1,7 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using System;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
@@ -75,46 +76,55 @@ namespace HamstarHelpers.Helpers.Tiles {
 		public static void KillTileSynced( int tileX, int tileY, bool effectOnly, bool dropsItem ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
-			if( !tile.active() ) {
+			if( tile?.active() != true ) {
 				if( Main.netMode != NetmodeID.SinglePlayer ) {
 					NetMessage.SendData( MessageID.TileChange, -1, -1, null, 4, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
 				}
 				return;
 			}
 
-			if( tile.type == TileID.Containers || tile.type == TileID.Containers2 ) {
-				int chestIdx = Chest.FindChest( tileX, tileY );
-				int chestType = 1;
-				if( tile.type == TileID.Containers2 ) {
-					chestType = 5;
-				}
+			try {
+				if( tile.type == TileID.Containers || tile.type == TileID.Containers2 ) {
+					int chestIdx = -1;
 
-				if( chestIdx != -1 && Chest.DestroyChest( tileX, tileY ) ) {
-					//if( Main.tile[x, y].type >= TileID.Count ) {
-					//	number2 = 101;
-					//}
+					chestIdx = Chest.FindChest( tileX, tileY );
+					int chestType = 1;
+					if( tile.type == TileID.Containers2 ) {
+						chestType = 5;
+					}
 
-					if( Main.netMode != NetmodeID.SinglePlayer ) {
-						NetMessage.SendData(
-							msgType: MessageID.ChestUpdates,
-							remoteClient: -1,
-							ignoreClient: -1,
-							text: null,
-							number: chestType,
-							number2: (float)tileX,
-							number3: (float)tileY,
-							number4: 0f,
-							number5: chestIdx,
-							number6: tile.type,
-							number7: 0
-						);
-						NetMessage.SendTileSquare( -1, tileX, tileY, 3, TileChangeType.None );
+					if( chestIdx != -1 && Chest.DestroyChest( tileX, tileY ) ) {
+						//if( Main.tile[x, y].type >= TileID.Count ) {
+						//	number2 = 101;
+						//}
+
+						if( Main.netMode != NetmodeID.SinglePlayer ) {
+							NetMessage.SendData(
+								msgType: MessageID.ChestUpdates,
+								remoteClient: -1,
+								ignoreClient: -1,
+								text: null,
+								number: chestType,
+								number2: (float)tileX,
+								number3: (float)tileY,
+								number4: 0f,
+								number5: chestIdx,
+								number6: tile.type,
+								number7: 0
+							);
+							NetMessage.SendTileSquare( -1, tileX, tileY, 3, TileChangeType.None );
+						}
 					}
 				}
-			}
 
-			WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
-			Main.tile[ tileX, tileY ]?.active( false );
+				WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
+				tile.active( false );
+			} catch( Exception e ) {
+				LogHelpers.WarnOnce( "Could not kill type (with sync) at "+tileX+", "+tileY
+					+" (effectOnly:"+effectOnly+", dropsItem:"+dropsItem
+					+": "+e.Message );
+				throw e;
+			}
 
 			if( !effectOnly && Main.netMode != NetmodeID.SinglePlayer ) {
 				int itemDropMode = dropsItem ? 0 : 4;

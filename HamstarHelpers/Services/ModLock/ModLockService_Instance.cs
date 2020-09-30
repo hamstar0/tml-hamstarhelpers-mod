@@ -171,7 +171,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 
 		////////////////
 
-		internal void DrawWarning( SpriteBatch sb ) {
+		internal void DrawWarningIfMismatched( SpriteBatch sb ) {
 			if( !this.IsInitialized ) { return; }
 			if( !this.IsMismatched ) { return; }
 

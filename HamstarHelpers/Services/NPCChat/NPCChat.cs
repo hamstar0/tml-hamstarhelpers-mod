@@ -10,6 +10,17 @@ using HamstarHelpers.Helpers.TModLoader;
 
 
 namespace HamstarHelpers.Services.NPCChat {
+	/// <summary>Edits or replaces the current conversation message. A non-null value also makes an NPC display an alert icon.</summary>
+	/// <param name="currentMessage">State of NPC's current intended message. Uses `null` for checking only if to show an
+	/// alert icon.</param>
+	/// <param name="showAlert">Displays an exclamation mark over NPC.</param>
+	/// <returns></returns>
+	public delegate string ProcessMessage( string currentMessage, out bool showAlert );
+
+
+
+	////////////////
+
 	/// <summary>
 	/// Provides a service for adding or removing town NPC chats (based on weight values).
 	/// </summary>
@@ -183,7 +194,7 @@ namespace HamstarHelpers.Services.NPCChat {
 		/// </summary>
 		/// <param name="npcType"></param>
 		/// <returns></returns>
-		public static Func<string, string> GetPriorityChat( int npcType ) {
+		public static ProcessMessage GetPriorityChat( int npcType ) {
 			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
 			return nc.PriorityChat.GetOrDefault( npcType );
 		}
@@ -194,7 +205,7 @@ namespace HamstarHelpers.Services.NPCChat {
 		/// <param name="npcType"></param>
 		/// <param name="chatGet">Accepts an optional parameter of the current chat, and returns the priority chat.
 		/// Return `null` if no priority chat exists.</param>
-		public static void SetPriorityChat( int npcType, Func<string, string> chatGet ) {
+		public static void SetPriorityChat( int npcType, ProcessMessage chatGet ) {
 			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
 			nc.PriorityChat[npcType] = chatGet;
 		}
@@ -203,7 +214,7 @@ namespace HamstarHelpers.Services.NPCChat {
 
 		////////////////
 
-		private IDictionary<int, Func<string, string>> PriorityChat = new Dictionary<int, Func<string, string>>();
+		private IDictionary<int, ProcessMessage> PriorityChat = new Dictionary<int, ProcessMessage>();
 		private IDictionary<int, IList<(float Weight, string Chat)>> AddedChats = new Dictionary<int, IList<(float, string)>>();
 		private IDictionary<int, IList<string>> RemovedChatFlatPatterns = new Dictionary<int, IList<string>>();
 

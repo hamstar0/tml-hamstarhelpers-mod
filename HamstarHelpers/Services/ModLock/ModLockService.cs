@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Mods;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader.Mods;
 
 
 namespace HamstarHelpers.Services.ModHelpers {

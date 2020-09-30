@@ -1,12 +1,11 @@
 ﻿using System;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.NPCChat;
 using HamstarHelpers.Services.AnimatedColor;
-using ReLogic.Graphics;
 
 
 namespace HamstarHelpers {
@@ -17,8 +16,11 @@ namespace HamstarHelpers {
 				return;
 			}
 
-			Func<string, string> hiChatFunc = NPCChat.GetPriorityChat( npc.type );
-			if( hiChatFunc?.Invoke(null) != null ) {
+			ProcessMessage hiChatFunc = NPCChat.GetPriorityChat( npc.type );
+			bool showAlert = false;
+			string _ = hiChatFunc?.Invoke( null, out showAlert );
+
+			if( showAlert ) {
 				this.DrawAlertFlag( npc, sb );
 			}
 		}
@@ -31,16 +33,16 @@ namespace HamstarHelpers {
 			scrPos.X -= 4;
 			scrPos.Y -= ( npc.height / 2 ) + 56;
 
-			sb.DrawString(
-				spriteFont: Main.fontMouseText,
+			Utils.DrawBorderStringFourWay(
+				sb: sb,
+				font: Main.fontMouseText,
 				text: "!",
-				position: scrPos,
-				color: AnimatedColors.Alert.CurrentColor,
-				rotation: 0f,
+				x: scrPos.X,
+				y: scrPos.Y,
+				textColor: AnimatedColors.Alert.CurrentColor,
+				borderColor: Color.Black,
 				origin: default( Vector2 ),
-				scale: 2f,
-				effects: SpriteEffects.None,
-				layerDepth: 1f
+				scale: 2f
 			);
 		}
 	}

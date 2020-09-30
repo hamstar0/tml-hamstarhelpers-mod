@@ -13683,6 +13683,11 @@
         <member name="P:HamstarHelpers.Services.Network.Server.AveragePing">
             <summary></summary>
         </member>
+        <member name="T:HamstarHelpers.Services.NPCChat.ProcessMessage">
+            <summary>Edits or replaces the current conversation message. A non-null value also makes an NPC display an alert icon.</summary>
+            <param name="currentMessage"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Services.NPCChat.NPCChat">
             <summary>
             Provides a service for adding or removing town NPC chats (based on weight values).
@@ -13753,7 +13758,7 @@
             <param name="npcType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.SetPriorityChat(System.Int32,System.Func{System.String,System.String})">
+        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.SetPriorityChat(System.Int32,HamstarHelpers.Services.NPCChat.ProcessMessage)">
             <summary>
             Sets the current priority chat message getter for a given NPC.
             </summary>
