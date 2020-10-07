@@ -16,7 +16,7 @@ namespace HamstarHelpers.Helpers.Collisions {
 					float maxWorldDistance,
 					Func<Vector2, bool> checkPerUnit=null,
 					Func<int, int, bool> checkPerTile=null ) {
-			return CollisionHelpers.CastRay( worldPosition, direction, maxWorldDistance, checkPerUnit, checkPerTile );
+			return CollisionHelpers.CastRay( worldPosition, direction, maxWorldDistance, false, checkPerUnit, checkPerTile );
 		}
 	}
 }
