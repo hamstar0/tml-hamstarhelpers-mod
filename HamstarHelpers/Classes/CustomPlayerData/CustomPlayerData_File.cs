@@ -105,12 +105,13 @@ namespace HamstarHelpers.Classes.PlayerData {
 				if( ModHelpersConfig.Instance.CustomPlayerDataAsText ) {
 					string fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".json" );
 					string dataJson = JsonConvert.SerializeObject( data, new JsonSerializerSettings() );
-
+					
 					return FileHelpers.SaveTextFile( dataJson, fullPath, false, true );
 				} else {
 					string _;
-					string fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".json" );
+					string fullPath = CustomPlayerData.GetFullPath( className, playerUid + ".dat" );
 					string dataJson = JsonConvert.SerializeObject( data, new JsonSerializerSettings() );
+//LogHelpers.Log( "SAVE FILE DATA: "+dataJson);
 
 					byte[] dataBytes = System.Text.Encoding.UTF8.GetBytes( dataJson );
 

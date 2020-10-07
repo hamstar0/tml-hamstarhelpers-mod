@@ -43,12 +43,21 @@ namespace HamstarHelpers.Classes.PlayerData {
 					singleton.DataMap.Set2D( playerWho, plrDataType, plrData );
 				}
 
+				var typedParam = new TypedMethodParameter( typeof( object ), data );
+
 				ReflectionHelpers.RunMethod(
 					instance: plrData,
 					methodName: "OnEnter",
-					args: new object[] { new TypedMethodParameter( typeof(object), data ) },
+					args: new object[] { typedParam },
 					returnVal: out object _
 				);
+				ReflectionHelpers.RunMethod(
+					instance: plrData,
+					methodName: "OnEnter",
+					args: new object[] { Main.myPlayer == playerWho, typedParam },
+					returnVal: out object _
+				);
+
 				plrData.OnEnter( Main.myPlayer == playerWho, data );
 			}
 		}

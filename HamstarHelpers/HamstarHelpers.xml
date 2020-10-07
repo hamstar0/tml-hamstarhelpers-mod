@@ -4900,17 +4900,24 @@
             <summary>
             Assorted static "helper" functions pertaining to general collision detecting and handling.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to general collision detecting and handling.
+            </summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Collisions.CollisionHelpers.CastRay(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Func{Microsoft.Xna.Framework.Vector2,System.Boolean},System.Func{System.Int32,System.Int32,System.Boolean})">
+        <member name="M:HamstarHelpers.Helpers.Collisions.CollisionHelpers.CastRay(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Boolean,System.Func{Microsoft.Xna.Framework.Vector2,System.Boolean},System.Func{System.Int32,System.Int32,System.Boolean})">
             <summary>
             Casts a ray from a given world point along a given heading.
             </summary>
             <param name="worldPosition"></param>
             <param name="direction"></param>
             <param name="maxWorldDistance"></param>
+            <param name="bothChecksOnly">If both checks return `true`, the cast ends.</param>
             <param name="checkPerUnit"></param>
             <param name="checkPerTile"></param>
             <returns>`true` if the checker function reports a collision (itself returns `true`).</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Collisions.CollisionHelpers.CastRay(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single,System.Func{Microsoft.Xna.Framework.Vector2,System.Boolean},System.Func{System.Int32,System.Int32,System.Boolean})">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Collisions.TileCollisionHelpers">
             <summary>
@@ -13685,7 +13692,9 @@
         </member>
         <member name="T:HamstarHelpers.Services.NPCChat.ProcessMessage">
             <summary>Edits or replaces the current conversation message. A non-null value also makes an NPC display an alert icon.</summary>
-            <param name="currentMessage"></param>
+            <param name="currentMessage">State of NPC's current intended message. Uses `null` for checking only if to show an
+            alert icon.</param>
+            <param name="showAlert">Displays an exclamation mark over NPC.</param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Services.NPCChat.NPCChat">
