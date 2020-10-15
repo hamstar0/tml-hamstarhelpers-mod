@@ -9,7 +9,7 @@ namespace HamstarHelpers.Helpers.Collisions {
 	/// </summary>
 	public partial class CollisionHelpers {
 		/// @private
-		[Obsolete("use other", true)]
+		[Obsolete("use other CastRay", true)]
 		public static bool CastRay(
 					Vector2 worldPosition,
 					Vector2 direction,
