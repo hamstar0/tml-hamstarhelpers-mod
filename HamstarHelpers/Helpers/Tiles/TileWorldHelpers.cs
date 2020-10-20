@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.NetProtocols;
-
+using HamstarHelpers.Classes.Tiles.TilePattern;
 
 namespace HamstarHelpers.Helpers.Tiles {
 	/// <summary>
@@ -91,6 +91,17 @@ namespace HamstarHelpers.Helpers.Tiles {
 					TileWorldHelpers.RequestChunkFromServer( Netplay.GetSectionX(x), Netplay.GetSectionY(y) );
 				}
 			}
+		}
+
+
+		/// <summary>
+		/// Scans the entire world to find the largest encompassing box of the given tile pattern.
+		/// </summary>
+		/// <param name="pattern"></param>
+		/// <param name="minimumMatchingNeighbors"></param>
+		/// <returns></returns>
+		public static Rectangle? FindBoxForAllOf( TilePattern pattern, int minimumMatchingNeighbors = 1 ) {
+			return TileFinderHelpers.FindBoxForAllOf( pattern, minimumMatchingNeighbors );
 		}
 	}
 }

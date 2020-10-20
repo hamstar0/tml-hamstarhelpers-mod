@@ -5,7 +5,7 @@ using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
-
+using Microsoft.Xna.Framework;
 
 namespace HamstarHelpers.Helpers.Tiles {
 	/// <summary>
@@ -13,7 +13,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// </summary>
 	public partial class TileFinderHelpers {
 		/// <summary>
-		/// Finds the top left tile of a given area of a given pattern. Assumes the area is square (checks left first).
+		/// Finds the top left tile of a given area by a given pattern. Assumes the area is square (checks left first).
 		/// </summary>
 		/// <param name="pattern"></param>
 		/// <param name="tileX"></param>
@@ -238,6 +238,86 @@ namespace HamstarHelpers.Helpers.Tiles {
 			return chartedTileMap
 				.SafeSelect( tileAt => getCoordFromCode(tileAt) )
 				.ToList();
+		}
+
+
+		/// <summary>
+		/// Scans the entire world to find the largest encompassing box of the given tile pattern. Leaves a 1 tile
+		/// padding around map edges.
+		/// </summary>
+		/// <param name="pattern"></param>
+		/// <param name="minimumMatchingNeighbors"></param>
+		/// <returns></returns>
+		public static Rectangle? FindBoxForAllOf( TilePattern pattern, int minimumMatchingNeighbors = 1 ) {
+			int countNeighbors( int x, int y ) {
+				if( minimumMatchingNeighbors == 0 ) {
+					return 0;
+				}
+
+				int count = 0;
+
+				if( pattern.Check( x - 1, y - 1 ) ) {
+					count++;
+				}
+				if( pattern.Check( x, y - 1 ) ) {
+					count++;
+				}
+				if( pattern.Check( x + 1, y - 1 ) ) {
+					count++;
+				}
+				if( pattern.Check( x - 1, y ) ) {
+					count++;
+				}
+				if( pattern.Check( x + 1, y ) ) {
+					count++;
+				}
+				if( pattern.Check( x - 1, y + 1 ) ) {
+					count++;
+				}
+				if( pattern.Check( x, y + 1 ) ) {
+					count++;
+				}
+				if( pattern.Check( x + 1, y + 1 ) ) {
+					count++;
+				}
+
+				return count;
+			}
+
+			//
+
+			var area = new Rectangle( -1, -1, 0, 0 );
+			int maxX = Main.maxTilesX - 1;
+			int maxY = Main.maxTilesY - 1;
+
+			for( int x=1; x<maxX; x++ ) {
+				for( int y=1; y<maxY; y++ ) {
+					if( !pattern.Check(x, y) ) {
+						continue;
+					}
+
+					int neighbors = countNeighbors( x, y );
+					if( neighbors < minimumMatchingNeighbors ) {
+						continue;
+					}
+
+					if( area.X == -1 ) {
+						area.X = x;
+						area.Y = y;
+					} else {
+						if( (x - area.X) > area.Width ) {
+							area.Width = (x - area.X);
+						}
+						if( (y - area.Y) > area.Height ) {
+							area.Height = (y - area.Y);
+						}
+					}
+				}
+			}
+
+			return area.X == -1
+				? null
+				: new Rectangle?(area);
 		}
 	}
 }
