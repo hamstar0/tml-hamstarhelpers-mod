@@ -9409,7 +9409,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindTopLeftOfSquare(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.ValueTuple{System.Int32,System.Int32}@)">
             <summary>
-            Finds the top left tile of a given area of a given pattern. Assumes the area is square (checks left first).
+            Finds the top left tile of a given area by a given pattern. Assumes the area is square (checks left first).
             </summary>
             <param name="pattern"></param>
             <param name="tileX"></param>
@@ -9452,6 +9452,15 @@
             <param name="unclosedTiles">All matched tiles that exceed `maxRadius` or `maxTile`, just beyond the outer edges of the result's matches.</param>
             <param name="maxRadius"></param>
             <param name="maxTiles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindBoxForAllOf(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
+            <summary>
+            Scans the entire world to find the largest encompassing box of the given tile pattern. Leaves a 1 tile
+            padding around map edges.
+            </summary>
+            <param name="pattern"></param>
+            <param name="minimumMatchingNeighbors"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindAreaMatchWithin(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Int32@,System.Int32@)">
@@ -10089,6 +10098,14 @@
             <param name="topPadding">In chunks.</param>
             <param name="rightPadding">In chunks.</param>
             <param name="bottomPadding">In chunks.</param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileWorldHelpers.FindBoxForAllOf(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
+            <summary>
+            Scans the entire world to find the largest encompassing box of the given tile pattern.
+            </summary>
+            <param name="pattern"></param>
+            <param name="minimumMatchingNeighbors"></param>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.Walls.TileWallGroupIdentityHelpers">
             <summary>
@@ -13817,14 +13834,14 @@
         </member>
         <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetPriorityChat(System.Int32)">
             <summary>
-            Retrieves the current priority chat message getter.
+            Retrieves the current priority chat message handler.
             </summary>
             <param name="npcType"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.SetPriorityChat(System.Int32,HamstarHelpers.Services.NPCChat.ProcessMessage)">
             <summary>
-            Sets the current priority chat message getter for a given NPC.
+            Sets the current priority chat message handler for a given NPC.
             </summary>
             <param name="npcType"></param>
             <param name="chatGet">Accepts an optional parameter of the current chat, and returns the priority chat.

@@ -9,22 +9,11 @@ using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.TModLoader;
 
 
-namespace HamstarHelpers.Services.NPCChat {
-	/// <summary>Edits or replaces the current conversation message. A non-null value also makes an NPC display an alert icon.</summary>
-	/// <param name="currentMessage">State of NPC's current intended message. Uses `null` for checking only if to show an
-	/// alert icon.</param>
-	/// <param name="showAlert">Displays an exclamation mark over NPC.</param>
-	/// <returns></returns>
-	public delegate string ProcessMessage( string currentMessage, out bool showAlert );
-
-
-
-	////////////////
-
+namespace HamstarHelpers.Services.Dialogue {
 	/// <summary>
 	/// Provides a service for adding or removing town NPC chats (based on weight values).
 	/// </summary>
-	public class NPCChat : ILoadable {
+	public partial class DialogueEditor : ILoadable {
 		/// <summary>
 		/// Gets a chat message for the given NPC. Pulls from its default pool and any added chats, also excludes any
 		/// default chats matching any removal patterns.
@@ -36,7 +25,7 @@ namespace HamstarHelpers.Services.NPCChat {
 		/// <returns>Returns `true` if a new chat message was picked, `false` if the no new chat was picked, or `null` if
 		/// another attempt (`npc.GetChat()`) is needed to get a new chat message.</returns>
 		public static bool? GetChat( NPC npc, ref string chat, float defaultChatsTotalWeight = 1f ) {
-			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
+			DialogueEditor nc = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 			
 			UnifiedRandom rand = TmlHelpers.SafelyGetRand();
 			float totalWeight = defaultChatsTotalWeight;
@@ -47,7 +36,7 @@ namespace HamstarHelpers.Services.NPCChat {
 			
 			if( (rand.NextFloat() * totalWeight) < defaultChatsTotalWeight ) {
 				bool isRemoved = !string.IsNullOrEmpty( chat )
-					? NPCChat.IsChatRemoved( npc.type, chat )
+					? DialogueEditor.IsChatRemoved( npc.type, chat )
 					: false;
 
 				return isRemoved
@@ -55,7 +44,7 @@ namespace HamstarHelpers.Services.NPCChat {
 					: (bool?)false;
 			}
 
-			chat = NPCChat.GetNewChat( npc.type );
+			chat = DialogueEditor.GetNewChat( npc.type );
 			if( chat == null ) {
 				throw new ModHelpersException( "No new chats available for "+npc.TypeName );
 			}
@@ -70,7 +59,7 @@ namespace HamstarHelpers.Services.NPCChat {
 		/// <param name="npcType"></param>
 		/// <returns></returns>
 		public static string GetNewChat( int npcType ) {
-			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
+			DialogueEditor nc = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 
 			float totalWeight = nc.AddedChats.GetOrDefault( npcType )?
 					.Select( wc => wc.Weight )
@@ -105,7 +94,7 @@ namespace HamstarHelpers.Services.NPCChat {
 		/// <param name="chat"></param>
 		/// <returns></returns>
 		public static bool IsChatRemoved( int npcType, string chat ) {
-			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
+			DialogueEditor nc = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 
 			if( nc.RemovedChatFlatPatterns.ContainsKey( npcType ) ) {
 				foreach( string pattern in nc.RemovedChatFlatPatterns[npcType] ) {
@@ -126,7 +115,7 @@ namespace HamstarHelpers.Services.NPCChat {
 		/// <param name="npcType"></param>
 		/// <returns></returns>
 		public static IEnumerable<(float Weight, string Chat)> GetAddedChats( int npcType ) {
-			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
+			DialogueEditor nc = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 
 			return new List<(float, string)>(
 				nc.AddedChats.GetOrDefault( npcType )
@@ -141,7 +130,7 @@ namespace HamstarHelpers.Services.NPCChat {
 		/// <param name="chat"></param>
 		/// <returns></returns>
 		public static bool RemoveAddedChat( int npcType, string chat ) {
-			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
+			DialogueEditor nc = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 			if( !nc.AddedChats.ContainsKey(npcType) ) {
 				return false;
 			}
@@ -171,7 +160,7 @@ namespace HamstarHelpers.Services.NPCChat {
 		/// <param name="weight">How much favor is given to this chat to be picked from the NPC's pool. Note: All of an
 		/// NPC's default chats have a total weight of `1f`.</param>
 		public static void AddChatForNPC( int npcType, string chat, float weight=0.1f ) {
-			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
+			DialogueEditor nc = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 			nc.AddedChats.Append2D( npcType, (weight, chat) );
 		}
 
@@ -182,41 +171,18 @@ namespace HamstarHelpers.Services.NPCChat {
 		/// <param name="npcType"></param>
 		/// <param name="chatFlatPattern"></param>
 		public static void AddChatRemoveFlatPatternForNPC( int npcType, string chatFlatPattern ) {
-			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
+			DialogueEditor nc = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 			nc.RemovedChatFlatPatterns.Append2D( npcType, chatFlatPattern );
 		}
 
 
-		////////////////
-
-		/// <summary>
-		/// Retrieves the current priority chat message getter.
-		/// </summary>
-		/// <param name="npcType"></param>
-		/// <returns></returns>
-		public static ProcessMessage GetPriorityChat( int npcType ) {
-			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
-			return nc.PriorityChat.GetOrDefault( npcType );
-		}
-
-		/// <summary>
-		/// Sets the current priority chat message getter for a given NPC.
-		/// </summary>
-		/// <param name="npcType"></param>
-		/// <param name="chatGet">Accepts an optional parameter of the current chat, and returns the priority chat.
-		/// Return `null` if no priority chat exists.</param>
-		public static void SetPriorityChat( int npcType, ProcessMessage chatGet ) {
-			NPCChat nc = TmlHelpers.SafelyGetInstance<NPCChat>();
-			nc.PriorityChat[npcType] = chatGet;
-		}
-
-
 
 		////////////////
 
-		private IDictionary<int, ProcessMessage> PriorityChat = new Dictionary<int, ProcessMessage>();
 		private IDictionary<int, IList<(float Weight, string Chat)>> AddedChats = new Dictionary<int, IList<(float, string)>>();
 		private IDictionary<int, IList<string>> RemovedChatFlatPatterns = new Dictionary<int, IList<string>>();
+
+		private IDictionary<int, DynamicDialogueHandler> DynamicDialogueHandlers = new Dictionary<int, DynamicDialogueHandler>();
 
 
 
