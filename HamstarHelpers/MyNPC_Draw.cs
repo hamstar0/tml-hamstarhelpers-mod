@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.NPCChat;
 using HamstarHelpers.Services.AnimatedColor;
+using HamstarHelpers.Services.Dialogue;
 
 
 namespace HamstarHelpers {
@@ -16,9 +16,8 @@ namespace HamstarHelpers {
 				return;
 			}
 
-			ProcessMessage hiChatFunc = NPCChat.GetPriorityChat( npc.type );
-			bool showAlert = false;
-			string _ = hiChatFunc?.Invoke( null, out showAlert );
+			DynamicDialogueHandler handler = DialogueEditor.GetDynamicDialogueHandler( npc.type );
+			bool showAlert = handler?.IsShowingAlert.Invoke() ?? false;
 
 			if( showAlert ) {
 				this.DrawAlertFlag( npc, sb );

@@ -3,47 +3,50 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.NPCChat;
 using HamstarHelpers.Services.Timers;
+using HamstarHelpers.Services.Dialogue;
 
 
 namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersNPC : GlobalNPC {
 		public override void GetChat( NPC npc, ref string chat ) {
-			this.GetChatModded( npc, ref chat );
+			this.GetModdedDialogue( npc, ref chat );
 		}
 
 		public override void OnChatButtonClicked( NPC npc, bool firstButton ) {
 			if( npc.type == NPCID.Guide ) {
 				if( firstButton ) {
 					Timers.SetTimer( "ModHelpersGuideHelp", 1, false, () => {
-						this.GetChatModdedWithoutPriorityChats( npc, ref Main.npcChatText );
+						this.GetNonDynamicModdedDialogue( npc, ref Main.npcChatText );
 						return false;
 					} );
 				}
 			}
 		}
 
-		////
 
-		private bool GetChatModded( NPC npc, ref string chat ) {
-			ProcessMessage hiChatFunc = NPCChat.GetPriorityChat( npc.type );
-			string hiChat = hiChatFunc?.Invoke( chat, out bool _ );
+		////////////////
+
+		private bool GetModdedDialogue( NPC npc, ref string chat ) {
+			bool isModdedChat = this.GetNonDynamicModdedDialogue( npc, ref chat );
+
+			DynamicDialogueHandler handler = DialogueEditor.GetDynamicDialogueHandler( npc.type );
+			string hiChat = handler?.GetDialogue.Invoke( chat );
 
 			if( hiChat != null ) {
 				chat = hiChat;
 				return true;
 			}
 
-			return this.GetChatModdedWithoutPriorityChats( npc, ref chat );
+			return isModdedChat;
 		}
 
-		private bool GetChatModdedWithoutPriorityChats( NPC npc, ref string chat ) {
+		private bool GetNonDynamicModdedDialogue( NPC npc, ref string chat ) {
 			bool? isNewChat;
 
 			while( true) {
-				isNewChat = NPCChat.GetChat( npc, ref chat );
+				isNewChat = DialogueEditor.GetChat( npc, ref chat );
 				if( isNewChat.HasValue ) {
 					break;
 				}

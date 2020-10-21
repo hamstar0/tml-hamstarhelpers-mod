@@ -13762,19 +13762,15 @@
         <member name="P:HamstarHelpers.Services.Network.Server.AveragePing">
             <summary></summary>
         </member>
-        <member name="T:HamstarHelpers.Services.NPCChat.ProcessMessage">
-            <summary>Edits or replaces the current conversation message. A non-null value also makes an NPC display an alert icon.</summary>
-            <param name="currentMessage">State of NPC's current intended message. Uses `null` for checking only if to show an
-            alert icon.</param>
-            <param name="showAlert">Displays an exclamation mark over NPC.</param>
-            <returns></returns>
-        </member>
-        <member name="T:HamstarHelpers.Services.NPCChat.NPCChat">
+        <member name="T:HamstarHelpers.Services.Dialogue.DialogueEditor">
+            <summary>
+            Provides a service for adding or removing town NPC chats (based on weight values).
+            </summary>
             <summary>
             Provides a service for adding or removing town NPC chats (based on weight values).
             </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetChat(Terraria.NPC,System.String@,System.Single)">
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetChat(Terraria.NPC,System.String@,System.Single)">
             <summary>
             Gets a chat message for the given NPC. Pulls from its default pool and any added chats, also excludes any
             default chats matching any removal patterns.
@@ -13786,14 +13782,14 @@
             <returns>Returns `true` if a new chat message was picked, `false` if the no new chat was picked, or `null` if
             another attempt (`npc.GetChat()`) is needed to get a new chat message.</returns>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetNewChat(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetNewChat(System.Int32)">
             <summary>
             Gets a random chat only from the given NPC's added chats pool.
             </summary>
             <param name="npcType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.IsChatRemoved(System.Int32,System.String)">
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.IsChatRemoved(System.Int32,System.String)">
             <summary>
             Indicates if a given chat messages is matched for removal by any of the removal patterns.
             </summary>
@@ -13801,14 +13797,14 @@
             <param name="chat"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetAddedChats(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetAddedChats(System.Int32)">
             <summary>
             Gets all added chats (and their weights) for a given NPC.
             </summary>
             <param name="npcType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.RemoveAddedChat(System.Int32,System.String)">
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.RemoveAddedChat(System.Int32,System.String)">
             <summary>
             Removes a specific added chat.
             </summary>
@@ -13816,7 +13812,7 @@
             <param name="chat"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.AddChatForNPC(System.Int32,System.String,System.Single)">
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.AddChatForNPC(System.Int32,System.String,System.Single)">
             <summary>
             Adds a new chat message for a given NPC.
             </summary>
@@ -13825,27 +13821,46 @@
             <param name="weight">How much favor is given to this chat to be picked from the NPC's pool. Note: All of an
             NPC's default chats have a total weight of `1f`.</param>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.AddChatRemoveFlatPatternForNPC(System.Int32,System.String)">
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.AddChatRemoveFlatPatternForNPC(System.Int32,System.String)">
             <summary>
             Adds a pattern to match existing (non-pool added) chats.
             </summary>
             <param name="npcType"></param>
             <param name="chatFlatPattern"></param>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.GetPriorityChat(System.Int32)">
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetDynamicDialogueHandler(System.Int32)">
             <summary>
-            Retrieves the current priority chat message handler.
+            Retrieves the current dynamic dialogue message handler.
             </summary>
             <param name="npcType"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.NPCChat.NPCChat.SetPriorityChat(System.Int32,HamstarHelpers.Services.NPCChat.ProcessMessage)">
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.SetPriorityChat(System.Int32,HamstarHelpers.Services.Dialogue.DynamicDialogueHandler)">
             <summary>
-            Sets the current priority chat message handler for a given NPC.
+            Sets the current priority dynamic dialogue message handler for a given NPC.
             </summary>
             <param name="npcType"></param>
-            <param name="chatGet">Accepts an optional parameter of the current chat, and returns the priority chat.
-            Return `null` if no priority chat exists.</param>
+            <param name="handler"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler">
+            <summary>
+            Allows editing the current NPC dialogue message.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.GetDialogue">
+            <summary>
+            Accepts the current chat message and returns an (optionally) edited version.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.IsShowingAlert">
+            <summary>
+            Indicates if the current NPC is showing an alert icon.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.#ctor(System.Func{System.String,System.String},System.Func{System.Boolean})">
+            <summary></summary>
+            <param name="getDialogue"></param>
+            <param name="isShowingAlert"></param>
         </member>
         <member name="T:HamstarHelpers.Services.OverlaySounds.OverlaySound">
             <summary>

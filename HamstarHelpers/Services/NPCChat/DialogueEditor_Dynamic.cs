@@ -14,7 +14,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <summary>
 		/// Accepts the current chat message and returns an (optionally) edited version.
 		/// </summary>
-		public Func<string, string> GetChat { get; }
+		public Func<string, string> GetDialogue { get; }
 
 		/// <summary>
 		/// Indicates if the current NPC is showing an alert icon.
@@ -23,10 +23,10 @@ namespace HamstarHelpers.Services.Dialogue {
 
 
 		/// <summary></summary>
-		/// <param name="getChat"></param>
+		/// <param name="getDialogue"></param>
 		/// <param name="isShowingAlert"></param>
-		public DynamicDialogueHandler( Func<string?, string> getChat, Func<bool> isShowingAlert ) {
-			this.GetChat = getChat;
+		public DynamicDialogueHandler( Func<string, string> getDialogue, Func<bool> isShowingAlert ) {
+			this.GetDialogue = getDialogue;
 			this.IsShowingAlert = isShowingAlert;
 		}
 	}
