@@ -1,8 +1,7 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.UI;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers {

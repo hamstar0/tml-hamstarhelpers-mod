@@ -45,8 +45,8 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="npcType"></param>
 		/// <returns></returns>
 		public static DynamicDialogueHandler GetDynamicDialogueHandler( int npcType ) {
-			DialogueEditor nc = TmlHelpers.SafelyGetInstance<DialogueEditor>();
-			return nc.DynamicDialogueHandlers.GetOrDefault( npcType );
+			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			return de.DynamicHandlers.GetOrDefault( npcType );
 		}
 
 		/// <summary>
@@ -55,8 +55,8 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="npcType"></param>
 		/// <param name="handler"></param>
 		public static void SetPriorityChat( int npcType, DynamicDialogueHandler handler ) {
-			DialogueEditor nc = TmlHelpers.SafelyGetInstance<DialogueEditor>();
-			nc.DynamicDialogueHandlers[npcType] = handler;
+			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			de.DynamicHandlers[npcType] = handler;
 		}
 	}
 }

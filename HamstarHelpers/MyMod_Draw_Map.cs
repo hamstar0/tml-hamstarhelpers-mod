@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.HUD;
+using HamstarHelpers.Services.Dialogue;
 using HamstarHelpers.Services.Maps;
 
 
@@ -17,6 +17,8 @@ namespace HamstarHelpers {
 			if( markers == null ) {
 				return;
 			}
+
+			DialogueEditor.UpdateAlertIconsOnMap();
 
 			foreach( string label in MapMarkers.GetFullScreenMapMarkerLabels() ) {
 				(int x, int y, MapMarker marker) info = MapMarkers.GetFullScreenMapMarker( label );
