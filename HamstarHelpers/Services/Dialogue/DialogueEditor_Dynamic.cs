@@ -34,7 +34,7 @@ namespace HamstarHelpers.Services.Dialogue {
 
 
 	////////////////
-
+	
 	/// <summary>
 	/// Provides a service for adding or removing town NPC chats (based on weight values).
 	/// </summary>
@@ -54,7 +54,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// </summary>
 		/// <param name="npcType"></param>
 		/// <param name="handler"></param>
-		public static void SetPriorityChat( int npcType, DynamicDialogueHandler handler ) {
+		public static void SetDynamicDialogueHandler( int npcType, DynamicDialogueHandler handler ) {
 			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 			de.DynamicHandlers[npcType] = handler;
 		}

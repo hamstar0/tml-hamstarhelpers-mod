@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HamstarHelpers.Helpers.Items;
+using Microsoft.Xna.Framework;
+using System;
 using Terraria.Localization;
 
 
@@ -7,66 +9,30 @@ namespace HamstarHelpers.Helpers.Misc {
 	/// Assorted static "helper" misc. functions.
 	/// </summary>
 	public partial class MiscHelpers {
-		/// <summary></summary>
-		public static Color PlatinumCoinColor { get; } = new Color( 220, 220, 198 );
+		/// @private
+		[Obsolete( "use ItemMoneyHelpers.PlatinumCoinColor", true )]
+		public static Color PlatinumCoinColor => ItemMoneyHelpers.PlatinumCoinColor;
 
-		/// <summary></summary>
-		public static Color GoldCoinColor { get; } = new Color( 224, 201, 92 );
+		/// @private
+		[Obsolete( "use ItemMoneyHelpers.GoldCoinColor", true )]
+		public static Color GoldCoinColor => ItemMoneyHelpers.GoldCoinColor;
 
-		/// <summary></summary>
-		public static Color SilverCoinColor { get; } = new Color( 181, 192, 193 );
+		/// @private
+		[Obsolete( "use ItemMoneyHelpers.SilverCoinColor", true )]
+		public static Color SilverCoinColor => ItemMoneyHelpers.SilverCoinColor;
 
-		/// <summary></summary>
-		public static Color CopperCoinColor { get; } = new Color( 246, 138, 96 );
+		/// @private
+		[Obsolete( "use ItemMoneyHelpers.CopperCoinColor", true )]
+		public static Color CopperCoinColor => ItemMoneyHelpers.CopperCoinColor;
 
 
 
 		////////////////
 
-		/// <summary>
-		/// Generates an English-formatted string indicating an amount of money.
-		/// </summary>
-		/// <param name="money"></param>
-		/// <returns></returns>
+		/// @private
+		[Obsolete( "use ItemMoneyHelpers.RenderMoney", true )]
 		public static string RenderMoney( int money ) {
-			string render = "";
-			string labelCopper = Language.GetTextValue( "CopperCoin" );    //Lang.inter[18];
-			string labelSilver = Language.GetTextValue( "SilverCoin" );    //Lang.inter[17];
-			string labelGold = Language.GetTextValue( "GoldCoin" );  //Lang.inter[16];
-			string labelPlat = Language.GetTextValue( "PlatinumCoin" );  //Lang.inter[15];
-
-			int plat = 0;
-			int gold = 0;
-			int silver = 0;
-			int copper = 0;
-
-			if( money < 0 ) { money = 0; }
-
-			if( money >= 1000000 ) {
-				plat = money / 1000000;
-				money -= plat * 1000000;
-			}
-			if( money >= 10000 ) {
-				gold = money / 10000;
-				money -= gold * 10000;
-			}
-			if( money >= 100 ) {
-				silver = money / 100;
-				money -= silver * 100;
-			}
-			if( money >= 1 ) {
-				copper = money;
-			}
-
-			if( plat > 0 ) { render += plat + " " + labelPlat; }
-			if( render.Length > 0 ) { render += " "; }
-			if( gold > 0 ) { render += gold + " " + labelGold; }
-			if( render.Length > 0 ) { render += " "; }
-			if( silver > 0 ) { render += silver + " " + labelSilver; }
-			if( render.Length > 0 ) { render += " "; }
-			if( copper > 0 ) { render += copper + " " + labelCopper; }
-
-			return render;
+			return ItemMoneyHelpers.RenderMoney( money );
 		}
 
 

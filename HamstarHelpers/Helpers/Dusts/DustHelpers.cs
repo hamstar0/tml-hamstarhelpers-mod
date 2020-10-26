@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Graphics.Shaders;
 
 
 namespace HamstarHelpers.Helpers.Dusts {
@@ -7,6 +9,16 @@ namespace HamstarHelpers.Helpers.Dusts {
 	/// Assorted static "helper" functions pertaining to dusts.
 	/// </summary>
 	public class DustHelpers {
+		/// <summary></summary>
+		public const int TeleportSparkleTypeID = 15;
+		
+		/// <summary></summary>
+		public const int GoldGlitterTypeID = 269;
+
+
+
+		////////////////
+
 		/// <summary>
 		/// Indicates if the given dust (in `Main.dust`) is active.
 		/// </summary>
@@ -31,6 +43,64 @@ namespace HamstarHelpers.Helpers.Dusts {
 				}
 			}
 			return list;
+		}
+
+
+		////////////////
+
+		/// <summary>
+		/// Quickly creates a bunch of dusts of a given type at a given location with the given settings.
+		/// </summary>
+		/// <param name="dustType"></param>
+		/// <param name="position"></param>
+		/// <param name="quantity"></param>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		/// <param name="noGravity"></param>
+		/// <param name="noLight"></param>
+		/// <param name="speedX"></param>
+		/// <param name="speedY"></param>
+		/// <param name="color"></param>
+		/// <param name="alpha"></param>
+		/// <param name="shader"></param>
+		/// <param name="scale"></param>
+		/// <returns></returns>
+		public static int[] CreateMany(
+					int dustType,
+					Vector2 position,
+					int quantity,
+					int width = 16,
+					int height = 16,
+					bool noGravity = false,
+					bool noLight = false,
+					float speedX = 0f,
+					float speedY = 0f,
+					Color color = default(Color),
+					byte alpha = 0,
+					ArmorShaderData shader = null,
+					float scale = 1f ) {
+			int[] dustIndices = new int[ quantity ];
+
+			for( int i=0; i<quantity; i++ ) {
+				dustIndices[i] = Dust.NewDust(
+					Position: position,
+					Width: width,
+					Height: height,
+					Type: dustType,
+					SpeedX: speedX,
+					SpeedY: speedY,
+					Alpha: alpha,
+					newColor: color,
+					Scale: scale
+				);
+
+				Dust dust = Main.dust[ dustIndices[i] ];
+				dust.noGravity = noGravity;
+				dust.noLight = noLight;
+				dust.shader = shader;
+			}
+
+			return dustIndices;
 		}
 	}
 }

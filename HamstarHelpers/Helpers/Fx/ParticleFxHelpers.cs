@@ -1,4 +1,5 @@
 ﻿using System;
+using HamstarHelpers.Helpers.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 
@@ -51,23 +52,15 @@ namespace HamstarHelpers.Helpers.Fx {
 					int width=30,
 					int height=30,
 					float scale = 1f ) {
-			int idx;
-			Dust dust;
 			void makeDust( int type, int num ) {
-				for( int i = 0; i < num; i++ ) {
-					idx = Dust.NewDust(
-						Position: position,
-						Width: width,
-						Height: height,
-						Type: type,
-						SpeedX: 0f,
-						SpeedY: 0f,
-						Alpha: 0,
-						newColor: new Color( 255, 255, 255 ),
-						Scale: scale
-					);
-					dust = Main.dust[idx];
-				}
+				DustHelpers.CreateMany(
+					dustType: type,
+					position: position,
+					quantity: num,
+					width: width,
+					height: height,
+					scale: scale
+				);
 			}
 
 			makeDust( 6, smallEmbers );
@@ -85,26 +78,41 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// <param name="height"></param>
 		/// <param name="scale"></param>
 		public static void MakeTeleportFx( Vector2 position, int quantity, int width=30, int height=30, float scale = 1f ) {
-			int idx;
-			//Dust dust;
 			void makeDust( int type, int num ) {
-				for( int i = 0; i < num; i++ ) {
-					idx = Dust.NewDust(
-						Position: position,
-						Width: width,
-						Height: height,
-						Type: type,
-						SpeedX: 0f,
-						SpeedY: 0f,
-						Alpha: 0,
-						newColor: new Color( 255, 255, 255 ),
-						Scale: scale
-					);
-					//dust = Main.dust[idx];
-				}
+				DustHelpers.CreateMany(
+					dustType: type,
+					position: position,
+					quantity: num,
+					width: width,
+					height: height,
+					scale: scale
+				);
 			}
 
-			makeDust( 15, quantity );
+			makeDust( DustHelpers.TeleportSparkleTypeID, quantity );
+		}
+
+		/// <summary>
+		/// Creates teleportation particles.
+		/// </summary>
+		/// <param name="position"></param>
+		/// <param name="quantity">Dust particles.</param>
+		/// <param name="width"></param>
+		/// <param name="height"></param>
+		/// <param name="scale"></param>
+		public static void MakeGoldGlitter( Vector2 position, int quantity, int width=30, int height=30, float scale = 1f ) {
+			void makeDust( int type, int num ) {
+				DustHelpers.CreateMany(
+					dustType: type,
+					position: position,
+					quantity: num,
+					width: width,
+					height: height,
+					scale: scale
+				);
+			}
+
+			makeDust( DustHelpers.GoldGlitterTypeID, quantity );
 		}
 
 

@@ -6445,6 +6445,12 @@
             Assorted static "helper" functions pertaining to dusts.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Helpers.Dusts.DustHelpers.TeleportSparkleTypeID">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Dusts.DustHelpers.GoldGlitterTypeID">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Helpers.Dusts.DustHelpers.IsActive(System.Int32)">
             <summary>
             Indicates if the given dust (in `Main.dust`) is active.
@@ -6456,6 +6462,25 @@
             <summary>
             Gets all active dusts (from `Main.dust`).
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Dusts.DustHelpers.CreateMany(System.Int32,Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Single,System.Single,Microsoft.Xna.Framework.Color,System.Byte,Terraria.Graphics.Shaders.ArmorShaderData,System.Single)">
+            <summary>
+            Quickly creates a bunch of dusts of a given type at a given location with the given settings.
+            </summary>
+            <param name="dustType"></param>
+            <param name="position"></param>
+            <param name="quantity"></param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="noGravity"></param>
+            <param name="noLight"></param>
+            <param name="speedX"></param>
+            <param name="speedY"></param>
+            <param name="color"></param>
+            <param name="alpha"></param>
+            <param name="shader"></param>
+            <param name="scale"></param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Entities.EntityHelpers">
@@ -6610,6 +6635,16 @@
             <param name="scale"></param>
         </member>
         <member name="M:HamstarHelpers.Helpers.Fx.ParticleFxHelpers.MakeTeleportFx(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Single)">
+            <summary>
+            Creates teleportation particles.
+            </summary>
+            <param name="position"></param>
+            <param name="quantity">Dust particles.</param>
+            <param name="width"></param>
+            <param name="height"></param>
+            <param name="scale"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Fx.ParticleFxHelpers.MakeGoldGlitter(Microsoft.Xna.Framework.Vector2,System.Int32,System.Int32,System.Int32,System.Single)">
             <summary>
             Creates teleportation particles.
             </summary>
@@ -7555,6 +7590,38 @@
         <member name="M:HamstarHelpers.Helpers.Items.ItemIdentityHelpers.GetItemDefinition(System.String)">
             @private
         </member>
+        <member name="T:HamstarHelpers.Helpers.Items.ItemMoneyHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to money items.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.PlatinumCoinColor">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.GoldCoinColor">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.SilverCoinColor">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.CopperCoinColor">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.RenderMoney(System.Int32)">
+            <summary>
+            Generates an English-formatted string indicating an amount of money.
+            </summary>
+            <param name="money"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.CountMoney(Terraria.Player,System.Boolean)">
+            <summary>
+            Totals up player's money.
+            </summary>
+            <param name="player"></param>
+            <param name="includeBanks"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Items.MusicBoxHelpers">
             <summary>
             Assorted static "helper" functions pertaining to music box items.
@@ -7593,23 +7660,19 @@
             </summary>
         </member>
         <member name="P:HamstarHelpers.Helpers.Misc.MiscHelpers.PlatinumCoinColor">
-            <summary></summary>
+            @private
         </member>
         <member name="P:HamstarHelpers.Helpers.Misc.MiscHelpers.GoldCoinColor">
-            <summary></summary>
+            @private
         </member>
         <member name="P:HamstarHelpers.Helpers.Misc.MiscHelpers.SilverCoinColor">
-            <summary></summary>
+            @private
         </member>
         <member name="P:HamstarHelpers.Helpers.Misc.MiscHelpers.CopperCoinColor">
-            <summary></summary>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Misc.MiscHelpers.RenderMoney(System.Int32)">
-            <summary>
-            Generates an English-formatted string indicating an amount of money.
-            </summary>
-            <param name="money"></param>
-            <returns></returns>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Misc.MiscHelpers.RenderTickDuration(System.Int32)">
             <summary>
@@ -12274,6 +12337,109 @@
             Dumps all Projectile data to a JSON file in the ModLoader folder.
             </summary>
         </member>
+        <member name="T:HamstarHelpers.Services.Dialogue.DialogueEditor">
+            <summary>
+            Provides a service for adding or removing town NPC chats (based on weight values).
+            </summary>
+            <summary>
+            Provides a service for adding or removing town NPC chats (based on weight values).
+            </summary>
+            <summary>
+            Provides a service for adding or removing town NPC chats (based on weight values).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetChat(Terraria.NPC,System.String@,System.Single)">
+            <summary>
+            Gets a chat message for the given NPC. Pulls from its default pool and any added chats, also excludes any
+            default chats matching any removal patterns.
+            </summary>
+            <param name="npc"></param>
+            <param name="chat">Unless removal patterns specify otherwise, may either be untouched, or else a new chat from
+            the added pool.</param>
+            <param name="defaultChatsTotalWeight"></param>
+            <returns>Returns `true` if a new chat message was picked, `false` if the no new chat was picked, or `null` if
+            another attempt (`npc.GetChat()`) is needed to get a new chat message.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetNewChat(System.Int32)">
+            <summary>
+            Gets a random chat only from the given NPC's added chats pool.
+            </summary>
+            <param name="npcType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.IsChatRemoved(System.Int32,System.String)">
+            <summary>
+            Indicates if a given chat messages is matched for removal by any of the removal patterns.
+            </summary>
+            <param name="npcType"></param>
+            <param name="chat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetAddedChats(System.Int32)">
+            <summary>
+            Gets all added chats (and their weights) for a given NPC.
+            </summary>
+            <param name="npcType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.RemoveAddedChat(System.Int32,System.String)">
+            <summary>
+            Removes a specific added chat.
+            </summary>
+            <param name="npcType"></param>
+            <param name="chat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.AddChatForNPC(System.Int32,System.String,System.Single)">
+            <summary>
+            Adds a new chat message for a given NPC.
+            </summary>
+            <param name="npcType"></param>
+            <param name="chat"></param>
+            <param name="weight">How much favor is given to this chat to be picked from the NPC's pool. Note: All of an
+            NPC's default chats have a total weight of `1f`.</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.AddChatRemoveFlatPatternForNPC(System.Int32,System.String)">
+            <summary>
+            Adds a pattern to match existing (non-pool added) chats.
+            </summary>
+            <param name="npcType"></param>
+            <param name="chatFlatPattern"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetDynamicDialogueHandler(System.Int32)">
+            <summary>
+            Retrieves the current dynamic dialogue message handler.
+            </summary>
+            <param name="npcType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.SetDynamicDialogueHandler(System.Int32,HamstarHelpers.Services.Dialogue.DynamicDialogueHandler)">
+            <summary>
+            Sets the current priority dynamic dialogue message handler for a given NPC.
+            </summary>
+            <param name="npcType"></param>
+            <param name="handler"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler">
+            <summary>
+            Allows editing the current NPC dialogue message.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.GetDialogue">
+            <summary>
+            Accepts the current chat message and returns an (optionally) edited version.
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.IsShowingAlert">
+            <summary>
+            Indicates if the current NPC is showing an alert icon.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.#ctor(System.Func{System.String,System.String},System.Func{System.Boolean})">
+            <summary></summary>
+            <param name="getDialogue"></param>
+            <param name="isShowingAlert"></param>
+        </member>
         <member name="T:HamstarHelpers.Services.EntityControls.EntityControls">
             <summary>
             Implements functions for controlling the targetting of entities.
@@ -13761,109 +13927,6 @@
         </member>
         <member name="P:HamstarHelpers.Services.Network.Server.AveragePing">
             <summary></summary>
-        </member>
-        <member name="T:HamstarHelpers.Services.Dialogue.DialogueEditor">
-            <summary>
-            Provides a service for adding or removing town NPC chats (based on weight values).
-            </summary>
-            <summary>
-            Provides a service for adding or removing town NPC chats (based on weight values).
-            </summary>
-            <summary>
-            Provides a service for adding or removing town NPC chats (based on weight values).
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetChat(Terraria.NPC,System.String@,System.Single)">
-            <summary>
-            Gets a chat message for the given NPC. Pulls from its default pool and any added chats, also excludes any
-            default chats matching any removal patterns.
-            </summary>
-            <param name="npc"></param>
-            <param name="chat">Unless removal patterns specify otherwise, may either be untouched, or else a new chat from
-            the added pool.</param>
-            <param name="defaultChatsTotalWeight"></param>
-            <returns>Returns `true` if a new chat message was picked, `false` if the no new chat was picked, or `null` if
-            another attempt (`npc.GetChat()`) is needed to get a new chat message.</returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetNewChat(System.Int32)">
-            <summary>
-            Gets a random chat only from the given NPC's added chats pool.
-            </summary>
-            <param name="npcType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.IsChatRemoved(System.Int32,System.String)">
-            <summary>
-            Indicates if a given chat messages is matched for removal by any of the removal patterns.
-            </summary>
-            <param name="npcType"></param>
-            <param name="chat"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetAddedChats(System.Int32)">
-            <summary>
-            Gets all added chats (and their weights) for a given NPC.
-            </summary>
-            <param name="npcType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.RemoveAddedChat(System.Int32,System.String)">
-            <summary>
-            Removes a specific added chat.
-            </summary>
-            <param name="npcType"></param>
-            <param name="chat"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.AddChatForNPC(System.Int32,System.String,System.Single)">
-            <summary>
-            Adds a new chat message for a given NPC.
-            </summary>
-            <param name="npcType"></param>
-            <param name="chat"></param>
-            <param name="weight">How much favor is given to this chat to be picked from the NPC's pool. Note: All of an
-            NPC's default chats have a total weight of `1f`.</param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.AddChatRemoveFlatPatternForNPC(System.Int32,System.String)">
-            <summary>
-            Adds a pattern to match existing (non-pool added) chats.
-            </summary>
-            <param name="npcType"></param>
-            <param name="chatFlatPattern"></param>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.GetDynamicDialogueHandler(System.Int32)">
-            <summary>
-            Retrieves the current dynamic dialogue message handler.
-            </summary>
-            <param name="npcType"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.SetPriorityChat(System.Int32,HamstarHelpers.Services.Dialogue.DynamicDialogueHandler)">
-            <summary>
-            Sets the current priority dynamic dialogue message handler for a given NPC.
-            </summary>
-            <param name="npcType"></param>
-            <param name="handler"></param>
-        </member>
-        <member name="T:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler">
-            <summary>
-            Allows editing the current NPC dialogue message.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.GetDialogue">
-            <summary>
-            Accepts the current chat message and returns an (optionally) edited version.
-            </summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.IsShowingAlert">
-            <summary>
-            Indicates if the current NPC is showing an alert icon.
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.#ctor(System.Func{System.String,System.String},System.Func{System.Boolean})">
-            <summary></summary>
-            <param name="getDialogue"></param>
-            <param name="isShowingAlert"></param>
         </member>
         <member name="T:HamstarHelpers.Services.OverlaySounds.OverlaySound">
             <summary>
