@@ -4845,6 +4845,50 @@
         <member name="M:HamstarHelpers.ModHelpersPrivilegedUserConfig.AcceptClientChanges(Terraria.ModLoader.Config.ModConfig,System.Int32,System.String@)">
             @private
         </member>
+        <member name="T:HamstarHelpers.Helpers.Audio.MusicHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to game music.
+            </summary>
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Audio.MusicHelpers.SetVolumeScale(System.Single)">
+            <summary>
+            Adjusts the volume scale for the currently playing music.
+            </summary>
+            <param name="scale"></param>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.Audio.SoundHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to sounds.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Audio.SoundHelpers.GetSoundDataFromSource(System.Int32,System.Int32)">
+            <summary>
+            Gets volume and pan data for a sound that would play at a given point.
+            </summary>
+            <param name="worldX"></param>
+            <param name="worldY"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Audio.SoundHelpers.PlaySound(Terraria.ModLoader.Mod,System.String,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>
+            A more flexible variant of `Main.PlaySound` to allow adjusting volume and position, in particular for
+            currently-playing sounds.
+            </summary>
+            <param name="mod"></param>
+            <param name="soundPath"></param>
+            <param name="position"></param>
+            <param name="volume"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Audio.SoundHelpers.PlaySound(System.String,Terraria.Audio.LegacySoundStyle,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>
+            A more flexible variant of `Main.PlaySound` to allow adjusting volume and position.
+            </summary>
+            <param name="name"></param>
+            <param name="sound"></param>
+            <param name="position"></param>
+            <param name="volume"></param>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Buffs.BuffAttributesHelpers">
             <summary>
             Assorted static "helper" functions pertaining to buff attributes.
@@ -7831,16 +7875,10 @@
             <param name="data"></param>
         </member>
         <member name="T:HamstarHelpers.Helpers.Misc.MusicHelpers">
-            <summary>
-            Assorted static "helper" functions pertaining to game music.
-            </summary>
             @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Misc.MusicHelpers.SetVolumeScale(System.Single)">
-            <summary>
-            Adjusts the volume scale for the currently playing music.
-            </summary>
-            <param name="scale"></param>
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Misc.PaintHelpers">
             <summary>
@@ -7867,17 +7905,10 @@
             <returns>-1 if no shader id exists for the given item.</returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Misc.SoundHelpers">
-            <summary>
-            Assorted static "helper" functions pertaining to sounds.
-            </summary>
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Misc.SoundHelpers.GetSoundDataFromSource(System.Int32,System.Int32)">
-            <summary>
-            Gets volume and pan data for a sound that would play at a given point.
-            </summary>
-            <param name="worldX"></param>
-            <param name="worldY"></param>
-            <returns></returns>
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.ModHelpers.ModFeaturesHelpers">
             <summary>

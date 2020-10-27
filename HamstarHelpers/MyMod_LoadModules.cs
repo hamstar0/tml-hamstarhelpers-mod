@@ -25,6 +25,7 @@ using HamstarHelpers.Services.ModHelpers;
 using HamstarHelpers.Services.Network;
 using HamstarHelpers.Services.RecipeHack;
 using HamstarHelpers.Services.UI.Menus;
+using HamstarHelpers.Helpers.Audio;
 using HamstarHelpers.Helpers.Misc;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.World;
@@ -85,7 +86,7 @@ namespace HamstarHelpers {
 		internal RecipeGroupHelpers RecipeGroupHelpers;
 		internal LoadHelpers LoadHelpers;
 		internal WorldStateHelpers WorldStateHelpers;
-		internal MusicHelpers MusicHelpers;
+		internal Helpers.Audio.MusicHelpers MusicHelpers;
 		internal PlayerIdentityHelpers PlayerIdentityHelpers;
 		internal ReflectionHelpers ReflectionHelpers;
 		internal XNAHelpers XnaHelpers;
@@ -149,7 +150,7 @@ namespace HamstarHelpers {
 			this.GetModTags = new GetModTags();
 			this.MenuItemMngr = new MenuItemManager();
 			this.MenuContextMngr = new MenuContextServiceManager();
-			this.MusicHelpers = new MusicHelpers();
+			this.MusicHelpers = new Helpers.Audio.MusicHelpers();
 			this.PlayerIdentityHelpers = new PlayerIdentityHelpers();
 			this.CustomHotkeys = new CustomHotkeys();
 			this.XnaHelpers = new XNAHelpers();

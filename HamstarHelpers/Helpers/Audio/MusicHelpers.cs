@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace HamstarHelpers.Helpers.Misc {
+namespace HamstarHelpers.Helpers.Audio {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to game music.
 	/// </summary>
