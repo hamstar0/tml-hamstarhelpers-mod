@@ -8357,6 +8357,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Players.PlayerAppearanceHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to player's appearance.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Players.PlayerAppearanceHelpers.IsPlayerBackSlotFilled(Terraria.Player)">
+            <summary>
+            Indicates if player has something on their back.
+            </summary>
+            <param name="plr"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.Players.PlayerFileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to player file data (.plr, .tplr).
