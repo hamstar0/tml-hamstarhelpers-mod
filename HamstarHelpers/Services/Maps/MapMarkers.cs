@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 
@@ -27,7 +28,7 @@ namespace HamstarHelpers.Services.Maps {
 			if( markers.MarkersPerLabel.ContainsKey(label) ) {
 				return false;
 			}
-			if( markers.Markers.Get2DOrDefault(tileX, tileY).ContainsKey(label) ) {
+			if( markers.Markers.Get2DOrDefault(tileX, tileY)?.ContainsKey(label) ?? false ) {
 				return false;
 			}
 

@@ -17,9 +17,7 @@ namespace HamstarHelpers {
 			}
 
 			DynamicDialogueHandler handler = DialogueEditor.GetDynamicDialogueHandler( npc.type );
-			bool showAlert = handler?.IsShowingAlert.Invoke() ?? false;
-
-			if( showAlert ) {
+			if( handler?.IsShowingAlert.Invoke() ?? false ) {
 				this.DrawAlertFlag( npc, sb );
 			}
 		}

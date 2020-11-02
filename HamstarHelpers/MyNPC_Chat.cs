@@ -45,7 +45,7 @@ namespace HamstarHelpers {
 		private bool GetNonDynamicModdedDialogue( NPC npc, ref string chat ) {
 			bool? isNewChat;
 
-			while( true) {
+			while( true ) {
 				isNewChat = DialogueEditor.GetChat( npc, ref chat );
 				if( isNewChat.HasValue ) {
 					break;

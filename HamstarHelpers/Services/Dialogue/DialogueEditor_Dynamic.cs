@@ -50,13 +50,23 @@ namespace HamstarHelpers.Services.Dialogue {
 		}
 
 		/// <summary>
-		/// Sets the current priority dynamic dialogue message handler for a given NPC.
+		/// Sets the current dynamic dialogue message handler for a given NPC.
 		/// </summary>
 		/// <param name="npcType"></param>
 		/// <param name="handler"></param>
 		public static void SetDynamicDialogueHandler( int npcType, DynamicDialogueHandler handler ) {
 			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 			de.DynamicHandlers[npcType] = handler;
+		}
+
+		/// <summary>
+		/// Removes any dynamic dialogue message handler for a given NPC.
+		/// </summary>
+		/// <param name="npcType"></param>
+		/// <returns></returns>
+		public static bool RemoveDynamicDialogueHandler( int npcType ) {
+			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			return de.DynamicHandlers.Remove( npcType );
 		}
 	}
 }

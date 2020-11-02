@@ -39,13 +39,15 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			foreach( Type payloadType in payloadTypes.ToArray() ) {
 				if( !payloadType.IsSerializable ) {
 					payloadTypes.Remove( payloadType );
-					LogHelpers.Warn( "Invalid payload type "+payloadType.Name );
+					LogHelpers.Warn( "Invalid payload type "+payloadType.Name+" "
+						+"(in "+payloadType.Assembly.GetName().Name+")" );
 					continue;
 				}
 				foreach( FieldInfo field in payloadType.GetFields() ) {
 					if( !field.FieldType.IsSerializable && !field.IsNotSerialized ) {
 						payloadTypes.Remove( payloadType );
-						LogHelpers.Warn( "Invalid payload type "+payloadType.Name+"; field "+field.Name+" not serializeable." );
+						LogHelpers.Warn( "Invalid payload type "+payloadType.Name+"; field "+field.Name+" not serializeable "
+							+"(in "+payloadType.Assembly.GetName().Name+")" );
 					}
 				}
 

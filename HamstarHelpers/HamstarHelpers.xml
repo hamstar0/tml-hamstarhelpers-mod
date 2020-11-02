@@ -12458,10 +12458,17 @@
         </member>
         <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.SetDynamicDialogueHandler(System.Int32,HamstarHelpers.Services.Dialogue.DynamicDialogueHandler)">
             <summary>
-            Sets the current priority dynamic dialogue message handler for a given NPC.
+            Sets the current dynamic dialogue message handler for a given NPC.
             </summary>
             <param name="npcType"></param>
             <param name="handler"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Dialogue.DialogueEditor.RemoveDynamicDialogueHandler(System.Int32)">
+            <summary>
+            Removes any dynamic dialogue message handler for a given NPC.
+            </summary>
+            <param name="npcType"></param>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Services.Dialogue.DynamicDialogueHandler">
             <summary>
