@@ -16,8 +16,9 @@ namespace HamstarHelpers {
 
 			if( !Main.gameMenu || Main.netMode == NetmodeID.Server ) {
 				eth.CallKillTileHooks( i, j, type, ref fail, ref effectOnly, ref noItem );
+				eth.CallKillMultiTileHooks( i, j, type );
 			}
-			eth.CallKillMultiTileHooks( i, j, type );
+			// why was CallKillMultiTileHooks here instead, previously?
 		}
 	}
 

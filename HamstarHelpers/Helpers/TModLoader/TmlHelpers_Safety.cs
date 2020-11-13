@@ -62,7 +62,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 				object rawInstance = genericMethod.Invoke( null, new object[] { } );
 				if( rawInstance == null ) {
-					throw new ModHelpersException( "Could not get singleton of "+classType.Name );
+					throw new ModHelpersException( "Could not get ModContent singleton of "+classType.Name );
 				}
 
 				return rawInstance;

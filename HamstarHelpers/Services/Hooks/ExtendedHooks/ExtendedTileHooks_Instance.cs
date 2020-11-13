@@ -129,7 +129,15 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 			}
 
 			foreach( KillTileDelegate deleg in hooks ) {
-				deleg.Invoke( i, j, type, ref fail, ref effectOnly, ref noItem, this.KillTileSkipCondition?.Invoke() ?? false );
+				deleg.Invoke(
+					i: i,
+					j: j,
+					type: type,
+					fail: ref fail,
+					effectOnly: ref effectOnly,
+					noItem: ref noItem,
+					nonGameplay: this.KillTileSkipCondition?.Invoke() ?? false
+				);
 			}
 
 			this.CheckedTiles.Add( tileToCheck );

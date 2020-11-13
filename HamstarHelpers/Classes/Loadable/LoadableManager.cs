@@ -21,6 +21,7 @@ namespace HamstarHelpers.Classes.Loadable {
 
 
 		public void OnModsLoad() {
+			Type iLoadableType = typeof( ILoadable );
 			IEnumerable<Assembly> asses = ModLoader.Mods
 				.SafeSelect( mod => mod.Code )
 				.SafeWhere( code => code != null );
@@ -32,12 +33,11 @@ namespace HamstarHelpers.Classes.Loadable {
 							continue;
 						}
 
-						Type iloadableType = classType.GetInterface( "ILoadable" );
-						if( iloadableType == null ) {
+						if( !typeof(ILoadable).IsAssignableFrom(classType) ) {
 							continue;
 						}
 
-						var loadable = (ILoadable)TmlHelpers.SafelyGetInstanceForType( classType );
+						var loadable = TmlHelpers.SafelyGetInstanceForType( classType ) as ILoadable;
 						if( loadable == null ) {
 							continue;
 						}

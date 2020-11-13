@@ -16,7 +16,7 @@
     <DocumentationFile>C:\Users\Spinach\Documents\Projects\DotNET\Projects\Mod Helpers\Project\HamstarHelpers\HamstarHelpers.xml</DocumentationFile>
   </PropertyGroup>
   <Target Name="BuildMod" AfterTargets="Build">
-    <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -define &quot;$(DefineConstants)&quot; -unsafe $(AllowUnsafeBlocks)" />
+    <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -unsafe $(AllowUnsafeBlocks)" />
   </Target>
   <ItemGroup>
     <None Remove=".gitattributes" />

@@ -14079,6 +14079,14 @@
             <param name="func">Return `true` to repeat timer.</param>
             <param name="runsWhilePaused"></param>
         </member>
+        <member name="M:HamstarHelpers.Services.Timers.Timers.RunUntil(System.Func{System.Boolean},System.Int32,System.Boolean)">
+            <summary>
+            Convenience method to repeatedly run a given action 'now' (AKA a 0 delay timer) the indicated number of times, or until indicated otherwise.
+            </summary>
+            <param name="func">Return `true` to repeat timer.</param>
+            <param name="times"></param>
+            <param name="runsWhilePaused"></param>
+        </member>
         <member name="M:HamstarHelpers.Services.Timers.Timers.SetTimer(System.Int32,System.Boolean,System.Func{System.Boolean})">
             <summary>
             Creates a 'timer' that waits the given amount of ticks before running the given action. Not multi-threaded,
@@ -14108,8 +14116,8 @@
             <param name="name">Identifier of timer. Re-assigning with this identifier replaces any existing timer.</param>
             <param name="tickDuration"></param>
             <param name="runsWhilePaused"></param>
-            <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
-            given tick duration.</param>
+            <param name="action">Action to run. Returns a value of ticks to indicate the next duration of the next timer
+            loop. Return `0` to terminate loop.</param>
         </member>
         <member name="M:HamstarHelpers.Services.Timers.Timers.GetTimerTickDuration(System.String)">
             <summary>

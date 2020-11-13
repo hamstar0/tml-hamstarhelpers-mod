@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.TModLoader;
 
 
 namespace HamstarHelpers.Services.Timers {
@@ -73,6 +73,22 @@ namespace HamstarHelpers.Services.Timers {
 			} );
 		}
 
+		/// <summary>
+		/// Convenience method to repeatedly run a given action 'now' (AKA a 0 delay timer) the indicated number of times, or until indicated otherwise.
+		/// </summary>
+		/// <param name="func">Return `true` to repeat timer.</param>
+		/// <param name="times"></param>
+		/// <param name="runsWhilePaused"></param>
+		public static void RunUntil( Func<bool> func, int times, bool runsWhilePaused ) {
+			string ctx = TmlHelpers.SafelyGetRand().NextDouble() + "_" + func.GetHashCode();
+			Timers.SetTimer( ctx, 1, runsWhilePaused, () => {
+				if( !func() ) {
+					return false;
+				}
+				return times-- > 0;
+			} );
+		}
+
 
 		////////////////
 
@@ -116,8 +132,8 @@ namespace HamstarHelpers.Services.Timers {
 		/// <param name="name">Identifier of timer. Re-assigning with this identifier replaces any existing timer.</param>
 		/// <param name="tickDuration"></param>
 		/// <param name="runsWhilePaused"></param>
-		/// <param name="action">Action to run. Returns `true` to make the action repeat after another period of the
-		/// given tick duration.</param>
+		/// <param name="action">Action to run. Returns a value of ticks to indicate the next duration of the next timer
+		/// loop. Return `0` to terminate loop.</param>
 		public static void SetTimer( string name, int tickDuration, bool runsWhilePaused, Func<int> action ) {
 			var timers = ModHelpersMod.Instance?.Timers;
 			if( timers == null ) { return; }
