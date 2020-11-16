@@ -19,8 +19,17 @@ namespace HamstarHelpers.Services.Dialogue {
 		internal static void UpdateAlertIconsOnMap() {
 			var dialogEdit = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 			IDictionary<int, DynamicDialogueHandler> handlers = dialogEdit.DynamicHandlers;
+
+			var uniques = new HashSet<int>();
 			IDictionary<int, int> townNpcWhos = Main.npc
-				.SafeWhere( n => n?.active == true && n.townNPC )
+				.SafeWhere( n => {
+					if( n?.active != true ) { return false; }
+					if( !n.townNPC ) { return false; }
+
+					if( uniques.Contains( n.type ) ) { return false; }
+					uniques.Add( n.type );
+					return true;
+				} )
 				.ToDictionary( n => n.type, n => n.whoAmI );
 
 			foreach( (int townNpcType, int townNpcWho) in townNpcWhos ) {

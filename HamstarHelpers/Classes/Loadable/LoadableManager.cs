@@ -37,7 +37,7 @@ namespace HamstarHelpers.Classes.Loadable {
 							continue;
 						}
 
-						var loadable = TmlHelpers.SafelyGetInstanceForType( classType ) as ILoadable;
+						var loadable = TmlHelpers.SafelyGetInstanceForType(classType) as ILoadable;
 						if( loadable == null ) {
 							continue;
 						}
