@@ -19,6 +19,9 @@ namespace HamstarHelpers.Services.Dialogue {
 		internal static void UpdateAlertIconsOnMap() {
 			var dialogEdit = TmlHelpers.SafelyGetInstance<DialogueEditor>();
 			IDictionary<int, DynamicDialogueHandler> handlers = dialogEdit.DynamicHandlers;
+			if( handlers.Count == 0 ) {
+				return;
+			}
 
 			var uniques = new HashSet<int>();
 			IDictionary<int, int> townNpcWhos = Main.npc
