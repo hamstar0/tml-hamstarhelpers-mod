@@ -11272,6 +11272,9 @@
             Assorted static "helper" functions pertaining to world generation.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Helpers.World.WorldGenHelpers.VanillaWorldGenTaskNames">
+            <summary></summary>
+        </member>
         <member name="M:HamstarHelpers.Helpers.World.WorldGenHelpers.GetWorldGenPasses">
             <summary>
             Gets the full list of world gen passes.

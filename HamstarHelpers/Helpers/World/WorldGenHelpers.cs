@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.GameContent.Generation;
 using Terraria.World.Generation;
 using HamstarHelpers.Helpers.DotNET.Reflection;
 
@@ -12,7 +11,7 @@ namespace HamstarHelpers.Helpers.World {
 	/// </summary>
 	public class WorldGenHelpers {
 		/// <summary></summary>
-		public readonly string[] VanillaWorldGenTaskNames = new string[] {
+		public static readonly string[] VanillaWorldGenTaskNames = new string[] {
 			"Reset",
 			"Terrain",
 			"Tunnels",
