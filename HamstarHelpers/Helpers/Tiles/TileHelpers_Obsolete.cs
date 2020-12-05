@@ -21,6 +21,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 		}
 
 		/// @private
+		[Obsolete( "use other KillTileSynced", true )]
+		public static void KillTileSynced( int tileX, int tileY, bool effectOnly, bool dropsItem ) {
+			TileHelpers.KillTileSynced( tileX, tileY, effectOnly, dropsItem, true, false );
+		}
+
+		/// @private
 		[Obsolete( "use Swap1x1Synced", true )]
 		public static void Swap1x1( int fromTileX, int fromTileY, int toTileX, int toTileY, bool preserveWall = false, bool preserveWire = false, bool preserveLiquid = false ) {
 			TileHelpers.Swap1x1Synced( fromTileX, fromTileY, toTileX, toTileY, preserveWall, preserveWire, preserveLiquid );

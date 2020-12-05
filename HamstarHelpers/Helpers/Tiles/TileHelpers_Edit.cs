@@ -73,14 +73,23 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="tileY"></param>
 		/// <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
 		/// <param name="dropsItem"></param>
-		public static void KillTileSynced( int tileX, int tileY, bool effectOnly, bool dropsItem ) {
+		/// <param name="forceSyncIfUnchanged"></param>
+		/// <param name="supressErrors"></param>
+		/// <returns>`true` when no complications occurred during removal. Does not force tile to be removed, if complications occurs.</returns>
+		public static bool KillTileSynced(
+					int tileX,
+					int tileY,
+					bool effectOnly,
+					bool dropsItem,
+					bool forceSyncIfUnchanged,
+					bool supressErrors=true ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
 			if( tile?.active() != true ) {
-				if( Main.netMode != NetmodeID.SinglePlayer ) {
+				if( forceSyncIfUnchanged && Main.netMode != NetmodeID.SinglePlayer ) {
 					NetMessage.SendData( MessageID.TileChange, -1, -1, null, 4, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
 				}
-				return;
+				return false;
 			}
 
 			try {
@@ -120,16 +129,23 @@ namespace HamstarHelpers.Helpers.Tiles {
 				WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
 				tile.active( false );
 			} catch( Exception e ) {
-				LogHelpers.WarnOnce( "Could not kill type (with sync) at "+tileX+", "+tileY
-					+" (effectOnly:"+effectOnly+", dropsItem:"+dropsItem
-					+": "+e.Message );
-				throw e;
+				if( !supressErrors ) {
+					LogHelpers.WarnOnce( "Could not kill type (with sync) at "+tileX+", "+tileY
+						+" (effectOnly:"+effectOnly+", dropsItem:"+dropsItem
+						+": "+e.Message );
+					throw e;
+				}
+				return false;
 			}
 
-			if( !effectOnly && Main.netMode != NetmodeID.SinglePlayer ) {
-				int itemDropMode = dropsItem ? 0 : 4;
-				NetMessage.SendData( MessageID.TileChange, -1, -1, null, itemDropMode, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
+			if( !effectOnly ) {
+				if( Main.netMode != NetmodeID.SinglePlayer ) {
+					int itemDropMode = dropsItem ? 0 : 4;
+					NetMessage.SendData( MessageID.TileChange, -1, -1, null, itemDropMode, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
+				}
 			}
+
+			return true;
 		}
 
 

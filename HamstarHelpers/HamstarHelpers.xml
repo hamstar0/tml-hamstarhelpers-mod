@@ -6416,8 +6416,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Threading.TaskLauncher.Run(System.Action{System.Threading.CancellationToken})">
             <summary>
-            Runs a given function (via. Task.Run), supplying it with the cancellation token used when mods are unloaded. Also handles
-            waiting for the thread to close on mod unload.
+            Runs a given function (via. Task.Run), supplying it with the cancellation token used when mods are unloaded. Also
+            handles waiting for the thread to close on mod unload.
             </summary>
             <param name="action"></param>
             <returns></returns>
@@ -9724,7 +9724,7 @@
             <param name="plrWho"></param>
             <returns>`true` if tile placement succeeded.</returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.KillTileSynced(System.Int32,System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.KillTileSynced(System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Kills a given tile. Results are synced.
             </summary>
@@ -9732,6 +9732,9 @@
             <param name="tileY"></param>
             <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
             <param name="dropsItem"></param>
+            <param name="forceSyncIfUnchanged"></param>
+            <param name="supressErrors"></param>
+            <returns>`true` when no complications occurred during removal. Does not force tile to be removed, if complications occurs.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.Swap1x1Synced(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
@@ -9749,6 +9752,9 @@
             @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.KillTile(System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.KillTileSynced(System.Int32,System.Int32,System.Boolean,System.Boolean)">
             @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.Swap1x1(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
