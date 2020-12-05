@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using System;
+﻿using System;
 using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Classes.Errors;
 
 
 namespace HamstarHelpers.Helpers.TModLoader {
@@ -33,11 +33,11 @@ namespace HamstarHelpers.Helpers.TModLoader {
 				}
 
 				instance = (T)Activator.CreateInstance(
-					typeof( T ),
-					BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
-					null,
-					new object[] { },
-					null
+					type: typeof( T ),
+					bindingAttr: BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic,
+					binder: null,
+					args: new object[] { },
+					culture: null
 				);
 				if( instance == null ) {
 					throw new ModHelpersException( "Could not generate singleton for " + typeof( T ).Name );

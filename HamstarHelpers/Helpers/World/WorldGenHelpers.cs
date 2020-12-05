@@ -10,8 +10,7 @@ namespace HamstarHelpers.Helpers.World {
 	/// Assorted static "helper" functions pertaining to world generation.
 	/// </summary>
 	public class WorldGenHelpers {
-		/// <summary></summary>
-		public static readonly string[] VanillaWorldGenTaskNames = new string[] {
+		/*public static readonly string[] VanillaWorldGenTaskNames = new string[] {
 			"Reset",
 			"Terrain",
 			"Tunnels",
@@ -108,7 +107,7 @@ namespace HamstarHelpers.Helpers.World {
 			"Lihzahrd Altars",
 			"Micro Biomes",
 			"Final Cleanup",
-		};
+		};*/
 
 
 

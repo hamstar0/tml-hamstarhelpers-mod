@@ -45,25 +45,24 @@ namespace HamstarHelpers.Internals.WebRequests {
 		
 		private static void CacheAllGlobalInboxAsync() {
 			ThreadPool.QueueUserWorkItem( _ => {
-				lock( GetGlobalInbox.MyLock ) {
-					var mymod = ModHelpersMod.Instance;
-					var args = new GlobalInboxLoadHookArguments {
-						Found = false
-					};
+				//lock( GetGlobalInbox.MyLock ) {
+				var mymod = ModHelpersMod.Instance;
+				var args = new GlobalInboxLoadHookArguments {
+					Found = false
+				};
 
-					GetGlobalInbox.RetrieveGlobalInboxAsync( ( success, globalInbox ) => {
-						try {
-							if( success ) {
-								args.SetGlobalInbox( globalInbox );
-							}
-							args.Found = success;
-
-							CustomLoadHooks.TriggerHook( GetGlobalInbox.GlobalInboxReceivedHookValidator, GetGlobalInbox.GlobalInboxReceivedHookValidatorKey, args );
-						} catch( Exception e ) {
-							LogHelpers.Alert( e.ToString() );
+				GetGlobalInbox.RetrieveGlobalInboxAsync( ( success, globalInbox ) => {
+					try {
+						if( success ) {
+							args.SetGlobalInbox( globalInbox );
 						}
-					} );
-				}
+						args.Found = success;
+
+						CustomLoadHooks.TriggerHook( GetGlobalInbox.GlobalInboxReceivedHookValidator, GetGlobalInbox.GlobalInboxReceivedHookValidatorKey, args );
+					} catch( Exception e ) {
+						LogHelpers.Alert( e.ToString() );
+					}
+				} );
 			} );
 		}
 

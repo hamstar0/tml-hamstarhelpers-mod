@@ -76,12 +76,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 			bool isLocalCachedFailsafe = false;	// wtf
 
 			ThreadPool.QueueUserWorkItem( _ => {
-				lock( GetModInfo.MyLock ) {
-					if( isLocalCachedFailsafe ) { return; }
-					isLocalCachedFailsafe = true;
+				//lock( GetModInfo.MyLock ) {
+				if( isLocalCachedFailsafe ) { return; }
+				isLocalCachedFailsafe = true;
 
-					GetModInfo.CacheAllModInfoAsync();
-				}
+				GetModInfo.CacheAllModInfoAsync();
 			} );
 
 			//string username = ModMetaDataManager.GetGithubUserName( mod );

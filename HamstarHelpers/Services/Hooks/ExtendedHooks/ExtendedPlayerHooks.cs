@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Terraria;
 
 
@@ -73,30 +74,39 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		internal static void OnBuffExpire( Player player, int buffId ) {
 			var playerHooks = ModHelpersMod.Instance.PlayerHooks;
 
+			Action<Player, int>[] hooks;
 			lock( ExtendedPlayerHooks.MyLock ) {
-				foreach( var action in playerHooks.BuffExpireHooks ) {
-					action.Value( player, buffId );
-				}
+				hooks = playerHooks.BuffExpireHooks.Values.ToArray();
+			}
+
+			foreach( var action in hooks ) {
+				action( player, buffId );
 			}
 		}
 		
 		internal static void OnArmorEquip( Player player, int slot, Item item ) {
 			var playerHooks = ModHelpersMod.Instance.PlayerHooks;
 
+			Action<Player, int, Item>[] hooks;
 			lock( ExtendedPlayerHooks.MyLock ) {
-				foreach( var action in playerHooks.ArmorEquipHooks ) {
-					action.Value( player, slot, item );
-				}
+				hooks = playerHooks.ArmorEquipHooks.Values.ToArray();
+			}
+
+			foreach( var action in hooks ) {
+				action( player, slot, item );
 			}
 		}
 
 		internal static void OnArmorUnequip( Player player, int slot, int itemType ) {
 			var playerHooks = ModHelpersMod.Instance.PlayerHooks;
 
+			Action<Player, int, int>[] hooks;
 			lock( ExtendedPlayerHooks.MyLock ) {
-				foreach( var action in playerHooks.ArmorUnequipHooks ) {
-					action.Value( player, slot, itemType );
-				}
+				hooks = playerHooks.ArmorUnequipHooks.Values.ToArray();
+			}
+
+			foreach( var action in hooks ) {
+				action( player, slot, itemType );
 			}
 		}
 	}

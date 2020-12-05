@@ -15,8 +15,8 @@ namespace HamstarHelpers.Helpers.DotNET.Threading {
 	/// </summary>
 	public class TaskLauncher : ILoadable {
 		/// <summary>
-		/// Runs a given function (via. Task.Run), supplying it with the cancellation token used when mods are unloaded. Also handles
-		/// waiting for the thread to close on mod unload.
+		/// Runs a given function (via. Task.Run), supplying it with the cancellation token used when mods are unloaded. Also
+		/// handles waiting for the thread to close on mod unload.
 		/// </summary>
 		/// <param name="action"></param>
 		/// <returns></returns>

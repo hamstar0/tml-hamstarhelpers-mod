@@ -22,13 +22,17 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			uiModCtrlPanel.ModListUpdateRequired = false;
 
+			UIModData[] modDataList = null;
+
 			lock( UIModControlPanelTab.ModDataListLock ) {
 				try {
-					UIModData[] modDataList = uiModCtrlPanel.ModDataList.ToArray();
-
-					uiModCtrlPanel.SetModList( modDataList );
+					modDataList = uiModCtrlPanel.ModDataList.ToArray();
 				} catch( Exception ) { }
 			}
+
+			try {
+				uiModCtrlPanel.SetModList( modDataList );
+			} catch( Exception ) { }
 		}
 
 

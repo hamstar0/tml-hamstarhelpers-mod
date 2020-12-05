@@ -76,25 +76,24 @@ namespace HamstarHelpers.Internals.WebRequests {
 		
 		private static void CacheAllModTagsAsync() {
 			ThreadPool.QueueUserWorkItem( _ => {
-				lock( GetModTags.MyLock ) {
-					var mymod = ModHelpersMod.Instance;
-					var args = new ModTagsLoadHookArguments {
-						Found = false
-					};
+				//lock( GetModTags.MyLock ) {
+				var mymod = ModHelpersMod.Instance;
+				var args = new ModTagsLoadHookArguments {
+					Found = false
+				};
 					
-					GetModTags.RetrieveAllModTagsAsync( ( success, modTags ) => {
-						try {
-							if( success ) {
-								args.SetTagMods( modTags );
-							}
-							args.Found = success;
-
-							CustomLoadHooks.TriggerHook( GetModTags.TagsReceivedHookValidator, GetModTags.TagsReceivedHookValidatorKey, args );
-						} catch( Exception e ) {
-							LogHelpers.Alert( e.ToString() );
+				GetModTags.RetrieveAllModTagsAsync( ( success, modTags ) => {
+					try {
+						if( success ) {
+							args.SetTagMods( modTags );
 						}
-					} );
-				}
+						args.Found = success;
+
+						CustomLoadHooks.TriggerHook( GetModTags.TagsReceivedHookValidator, GetModTags.TagsReceivedHookValidatorKey, args );
+					} catch( Exception e ) {
+						LogHelpers.Alert( e.ToString() );
+					}
+				} );
 			} );
 		}
 
