@@ -27,6 +27,6 @@ var searchData=
   ['timers',['Timers',['../class_hamstar_helpers_1_1_services_1_1_timers_1_1_timers.html',1,'HamstarHelpers::Services::Timers']]],
   ['tmlhelpers',['TmlHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_tml_helpers.html',1,'HamstarHelpers::Helpers::TModLoader']]],
   ['typedictionary',['TypeDictionary',['../class_net_serializer_1_1_type_dictionary.html',1,'NetSerializer']]],
-  ['typedmethodparameter',['TypedMethodParameter',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_reflection_helpers_1_1_typed_method_parameter.html',1,'HamstarHelpers::Helpers::DotNET::Reflection::ReflectionHelpers']]],
+  ['typedmethodparameter',['TypedMethodParameter',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_reflection_1_1_typed_method_parameter.html',1,'HamstarHelpers::Helpers::DotNET::Reflection']]],
   ['typeidlist',['TypeIDList',['../class_net_serializer_1_1_type_i_d_list.html',1,'NetSerializer']]]
 ];

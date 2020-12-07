@@ -1,5 +1,6 @@
 var namespace_hamstar_helpers_1_1_helpers =
 [
+    [ "Audio", "namespace_hamstar_helpers_1_1_helpers_1_1_audio.html", "namespace_hamstar_helpers_1_1_helpers_1_1_audio" ],
     [ "Buffs", "namespace_hamstar_helpers_1_1_helpers_1_1_buffs.html", "namespace_hamstar_helpers_1_1_helpers_1_1_buffs" ],
     [ "Collisions", "namespace_hamstar_helpers_1_1_helpers_1_1_collisions.html", "namespace_hamstar_helpers_1_1_helpers_1_1_collisions" ],
     [ "Debug", "namespace_hamstar_helpers_1_1_helpers_1_1_debug.html", "namespace_hamstar_helpers_1_1_helpers_1_1_debug" ],

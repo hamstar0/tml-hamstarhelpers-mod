@@ -1,8 +1,9 @@
 var dir_4ef1166b4e173f0b492333534d384436 =
 [
+    [ "Audio", "dir_6d54f08445fe5fa19f3f70b9c61273c3.html", "dir_6d54f08445fe5fa19f3f70b9c61273c3" ],
     [ "Buffs", "dir_53b5061593a88435f4bd6b0151dc858f.html", "dir_53b5061593a88435f4bd6b0151dc858f" ],
     [ "Collisions", "dir_4707615747f9ad50b85b04bfe700cd48.html", "dir_4707615747f9ad50b85b04bfe700cd48" ],
-    [ "Debug", "dir_fc463a006104a4e503bc3eb299db7f1a.html", "dir_fc463a006104a4e503bc3eb299db7f1a" ],
+    [ "Debugging", "dir_1ce23fceda4984a3c2c209ee10f2746e.html", "dir_1ce23fceda4984a3c2c209ee10f2746e" ],
     [ "DotNET", "dir_64f8a9a7cf0df807089c27d42abd2fb3.html", "dir_64f8a9a7cf0df807089c27d42abd2fb3" ],
     [ "Draw", "dir_26b80696daef6bb1b73740f0bad6ae68.html", "dir_26b80696daef6bb1b73740f0bad6ae68" ],
     [ "Dusts", "dir_19f685b73f4c39acb55b6105e14baff1.html", "dir_19f685b73f4c39acb55b6105e14baff1" ],

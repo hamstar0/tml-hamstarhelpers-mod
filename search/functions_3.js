@@ -38,5 +38,6 @@ var searchData=
   ['dumpallnpcdatatojson',['DumpAllNpcDataToJson',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html#a025dc0eeabf3804d8468abdf38fb991e',1,'HamstarHelpers::Services::Debug::EntityData::EntityData']]],
   ['dumpallprojectiledatatojson',['DumpAllProjectileDataToJson',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_entity_data_1_1_entity_data.html#ac3ee36d8959f36605b90bd534f596729',1,'HamstarHelpers::Services::Debug::EntityData::EntityData']]],
   ['dumptofile',['DumpToFile',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#adcd8cbf54b06c0d0294bb8eacff11528',1,'HamstarHelpers::Services::Debug::DataDumper::DataDumper']]],
-  ['dumptolocalfile',['DumpToLocalFile',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a2fb095a7ce701e139e1fefa503e0d010',1,'HamstarHelpers::Services::Debug::DataDumper::DataDumper']]]
+  ['dumptolocalfile',['DumpToLocalFile',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a2fb095a7ce701e139e1fefa503e0d010',1,'HamstarHelpers::Services::Debug::DataDumper::DataDumper']]],
+  ['dynamicdialoguehandler',['DynamicDialogueHandler',['../class_hamstar_helpers_1_1_services_1_1_dialogue_1_1_dynamic_dialogue_handler.html#abe1321d44067cfddbddd8b016f9203e5',1,'HamstarHelpers::Services::Dialogue::DynamicDialogueHandler']]]
 ];

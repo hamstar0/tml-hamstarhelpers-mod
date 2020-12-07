@@ -1,6 +1,7 @@
 var searchData=
 [
   ['baitpower',['BaitPower',['../namespace_hamstar_helpers_1_1_helpers_1_1_items_1_1_attributes.html#ad2faf38551b63d6fc29eb6c2c0da8868ad760a1d276525252aebeef633b2092ae',1,'HamstarHelpers::Helpers::Items::Attributes']]],
+  ['banners',['Banners',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a2da8021409edb8a8aa724df7f74f3587',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
   ['basefolder',['BaseFolder',['../class_hamstar_helpers_1_1_classes_1_1_player_data_1_1_custom_player_data.html#a3c581a12626b7723c90b7bf67b3fa465',1,'HamstarHelpers.Classes.PlayerData.CustomPlayerData.BaseFolder()'],['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a9dda480b8c7f6e7377fd862f7eb02b94',1,'HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.BaseFolder()']]],
   ['basicmodinfo',['BasicModInfo',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html',1,'HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo'],['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_mods_1_1_basic_mod_info.html#a9dcfc814c255832c757a853728998c3c',1,'HamstarHelpers.Helpers.TModLoader.Mods.BasicModInfo.BasicModInfo()']]],
   ['beacheasttilex',['BeachEastTileX',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#ad38e42af9f155e1d6263055deaabeff7',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],

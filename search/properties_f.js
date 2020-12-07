@@ -5,5 +5,5 @@ var searchData=
   ['shakemagnitude',['ShakeMagnitude',['../class_hamstar_helpers_1_1_services_1_1_camera_1_1_camera.html#a46aa795691606fd84102d03427c46c4c',1,'HamstarHelpers::Services::Camera::Camera']]],
   ['shakepeakmagnitude',['ShakePeakMagnitude',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_shaker.html#abdd621632ecacbab2ff306cff222935c',1,'HamstarHelpers::Classes::CameraAnimation::CameraShaker']]],
   ['shape',['Shape',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#ab99435c70d18446d1b48974ebc258ee7',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePatternConfig']]],
-  ['silvercoincolor',['SilverCoinColor',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_misc_helpers.html#ab4a09c823b35058f72703354895c5c92',1,'HamstarHelpers::Helpers::Misc::MiscHelpers']]]
+  ['silvercoincolor',['SilverCoinColor',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_money_helpers.html#a503f44bf4224afe8ef5869244cd74f9c',1,'HamstarHelpers::Helpers::Items::ItemMoneyHelpers']]]
 ];

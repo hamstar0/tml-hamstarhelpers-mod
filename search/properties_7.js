@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['icon',['Icon',['../class_hamstar_helpers_1_1_services_1_1_maps_1_1_map_marker.html#ab5c8381a218885b52d3633bc243303ac',1,'HamstarHelpers::Services::Maps::MapMarker']]],
   ['iconelem',['IconElem',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_mod_data.html#a47b5d5ff7d22bc650dda2233d38de5e1',1,'HamstarHelpers::Classes::UI::Elements::UIModData']]],
   ['imageelement',['ImageElement',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_image_url.html#a95805e4d890b48be241f055da3b3c477',1,'HamstarHelpers::Classes::UI::Elements::UIImageUrl']]],
   ['inboxiconx',['InboxIconX',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a7436d188ce77da03f4a0ab400fbe7adf',1,'HamstarHelpers::ModHelpersConfig']]],
@@ -31,6 +32,7 @@ var searchData=
   ['ispaused',['IsPaused',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_animator.html#ac5bd51209fb76149408e30aa1829b39a',1,'HamstarHelpers::Classes::CameraAnimation::CameraAnimator']]],
   ['isplatform',['IsPlatform',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a5fd5186ceda80627d3c81f594d9b1e2e',1,'HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.IsPlatform()'],['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern_config.html#a9e26b6cdd7c5136020f947063143d882',1,'HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig.IsPlatform()']]],
   ['isservergaugingaverageping',['IsServerGaugingAveragePing',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a3b44be454aae193fd4a05c06452976c2',1,'HamstarHelpers::ModHelpersConfig']]],
+  ['isshowingalert',['IsShowingAlert',['../class_hamstar_helpers_1_1_services_1_1_dialogue_1_1_dynamic_dialogue_handler.html#a6abbbc521f732cedda9967fe0a7c6405',1,'HamstarHelpers::Services::Dialogue::DynamicDialogueHandler']]],
   ['issmoothed',['IsSmoothed',['../class_hamstar_helpers_1_1_classes_1_1_camera_animation_1_1_camera_animator.html#ab1b668e7538485fcc41e20fb8983fbde',1,'HamstarHelpers::Classes::CameraAnimation::CameraAnimator']]],
   ['issolid',['IsSolid',['../class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html#a882349afa66407445a6193175be670e6',1,'HamstarHelpers::Classes::Tiles::TilePattern::TilePattern']]],
   ['istextinputhidden',['IsTextInputHidden',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_slider_1_1_u_i_slider.html#a34c3bbfab5082e71336d325997162b8e',1,'HamstarHelpers::Classes::UI::Elements::Slider::UISlider']]],

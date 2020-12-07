@@ -1,5 +1,6 @@
 var namespace_hamstar_helpers_1_1_helpers_1_1_players =
 [
+    [ "PlayerAppearanceHelpers", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_appearance_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_appearance_helpers" ],
     [ "PlayerFileHelpers", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_file_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_file_helpers" ],
     [ "PlayerHeadDrawHelpers", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_head_draw_helpers.html", null ],
     [ "PlayerHelpers", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers.html", "class_hamstar_helpers_1_1_helpers_1_1_players_1_1_player_helpers" ],

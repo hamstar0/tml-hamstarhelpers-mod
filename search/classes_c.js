@@ -1,6 +1,8 @@
 var searchData=
 [
   ['mainmenuhelpers',['MainMenuHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_main_menu_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
+  ['mapmarker',['MapMarker',['../class_hamstar_helpers_1_1_services_1_1_maps_1_1_map_marker.html',1,'HamstarHelpers::Services::Maps']]],
+  ['mapmarkers',['MapMarkers',['../class_hamstar_helpers_1_1_services_1_1_maps_1_1_map_markers.html',1,'HamstarHelpers::Services::Maps']]],
   ['mathhelpers',['MathHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_math_helpers.html',1,'HamstarHelpers::Helpers::Misc']]],
   ['menucontext',['MenuContext',['../class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_menus_1_1_menu_context.html',1,'HamstarHelpers::Classes::UI::Menus']]],
   ['menucontextservice',['MenuContextService',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_menus_1_1_menu_context_service.html',1,'HamstarHelpers::Services::UI::Menus']]],
@@ -21,5 +23,5 @@ var searchData=
   ['modmenuhelpers',['ModMenuHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_t_mod_loader_1_1_menus_1_1_mod_menu_helpers.html',1,'HamstarHelpers::Helpers::TModLoader::Menus']]],
   ['modtagdefinition',['ModTagDefinition',['../class_hamstar_helpers_1_1_services_1_1_mod_tag_definitions_1_1_mod_tag_definition.html',1,'HamstarHelpers::Services::ModTagDefinitions']]],
   ['musicboxhelpers',['MusicBoxHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_music_box_helpers.html',1,'HamstarHelpers::Helpers::Items']]],
-  ['musichelpers',['MusicHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_music_helpers.html',1,'HamstarHelpers::Helpers::Misc']]]
+  ['musichelpers',['MusicHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_audio_1_1_music_helpers.html',1,'HamstarHelpers::Helpers::Audio']]]
 ];

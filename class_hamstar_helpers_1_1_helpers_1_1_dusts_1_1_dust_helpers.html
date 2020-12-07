@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.3</span>
+   &#160;<span id="projectnumber">v5.9.6</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -90,6 +90,7 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">HamstarHelpers.Helpers.Dusts.DustHelpers Class Reference</div>  </div>
@@ -107,12 +108,147 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aa14a984b416cbd63d16e0d08390e2a47"><td class="memItemLeft" align="right" valign="top">static IList&lt; Dust &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers.html#aa14a984b416cbd63d16e0d08390e2a47">GetActive</a> ()</td></tr>
 <tr class="memdesc:aa14a984b416cbd63d16e0d08390e2a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all active dusts (from <code>Main.dust</code>).  <a href="#aa14a984b416cbd63d16e0d08390e2a47">More...</a><br /></td></tr>
 <tr class="separator:aa14a984b416cbd63d16e0d08390e2a47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac967da34bfb981568ef591e9f2866cd1"><td class="memItemLeft" align="right" valign="top">static int []&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers.html#ac967da34bfb981568ef591e9f2866cd1">CreateMany</a> (int dustType, Vector2 position, int quantity, int width=16, int height=16, bool noGravity=false, bool noLight=false, float speedX=0f, float speedY=0f, Color color=default(Color), byte alpha=0, ArmorShaderData shader=null, float scale=1f)</td></tr>
+<tr class="memdesc:ac967da34bfb981568ef591e9f2866cd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quickly creates a bunch of dusts of a given type at a given location with the given settings.  <a href="#ac967da34bfb981568ef591e9f2866cd1">More...</a><br /></td></tr>
+<tr class="separator:ac967da34bfb981568ef591e9f2866cd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:ae3da4f986ba36b53f84e3e563c156e76"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers.html#ae3da4f986ba36b53f84e3e563c156e76">TeleportSparkleTypeID</a> = 15</td></tr>
+<tr class="separator:ae3da4f986ba36b53f84e3e563c156e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0079e28f847fb31a5003d2f0932aaba2"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers.html#a0079e28f847fb31a5003d2f0932aaba2">GoldGlitterTypeID</a> = 269</td></tr>
+<tr class="separator:a0079e28f847fb31a5003d2f0932aaba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to dusts. </p>
 
-<p class="definition">Definition at line <a class="el" href="_dust_helpers_8cs_source.html#l00009">9</a> of file <a class="el" href="_dust_helpers_8cs_source.html">DustHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_dust_helpers_8cs_source.html#l00011">11</a> of file <a class="el" href="_dust_helpers_8cs_source.html">DustHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ac967da34bfb981568ef591e9f2866cd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac967da34bfb981568ef591e9f2866cd1">&#9670;&nbsp;</a></span>CreateMany()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static int [] HamstarHelpers.Helpers.Dusts.DustHelpers.CreateMany </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dustType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Vector2&#160;</td>
+          <td class="paramname"><em>position</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>quantity</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>width</em> = <code>16</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>height</em> = <code>16</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>noGravity</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>noLight</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>speedX</em> = <code>0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>speedY</em> = <code>0f</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Color&#160;</td>
+          <td class="paramname"><em>color</em> = <code>default(Color)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte&#160;</td>
+          <td class="paramname"><em>alpha</em> = <code>0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ArmorShaderData&#160;</td>
+          <td class="paramname"><em>shader</em> = <code>null</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>scale</em> = <code>1f</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Quickly creates a bunch of dusts of a given type at a given location with the given settings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dustType</td><td></td></tr>
+    <tr><td class="paramname">position</td><td></td></tr>
+    <tr><td class="paramname">quantity</td><td></td></tr>
+    <tr><td class="paramname">width</td><td></td></tr>
+    <tr><td class="paramname">height</td><td></td></tr>
+    <tr><td class="paramname">noGravity</td><td></td></tr>
+    <tr><td class="paramname">noLight</td><td></td></tr>
+    <tr><td class="paramname">speedX</td><td></td></tr>
+    <tr><td class="paramname">speedY</td><td></td></tr>
+    <tr><td class="paramname">color</td><td></td></tr>
+    <tr><td class="paramname">alpha</td><td></td></tr>
+    <tr><td class="paramname">shader</td><td></td></tr>
+    <tr><td class="paramname">scale</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_dust_helpers_8cs_source.html#l00068">68</a> of file <a class="el" href="_dust_helpers_8cs_source.html">DustHelpers.cs</a>.</p>
+
+</div>
+</div>
 <a id="aa14a984b416cbd63d16e0d08390e2a47"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa14a984b416cbd63d16e0d08390e2a47">&#9670;&nbsp;</a></span>GetActive()</h2>
 
@@ -139,7 +275,7 @@ Static Public Member Functions</h2></td></tr>
 <p>Gets all active dusts (from <code>Main.dust</code>). </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_dust_helpers_8cs_source.html#l00024">24</a> of file <a class="el" href="_dust_helpers_8cs_source.html">DustHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_dust_helpers_8cs_source.html#l00036">36</a> of file <a class="el" href="_dust_helpers_8cs_source.html">DustHelpers.cs</a>.</p>
 
 </div>
 </div>
@@ -176,7 +312,44 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_dust_helpers_8cs_source.html#l00015">15</a> of file <a class="el" href="_dust_helpers_8cs_source.html">DustHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_dust_helpers_8cs_source.html#l00027">27</a> of file <a class="el" href="_dust_helpers_8cs_source.html">DustHelpers.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a0079e28f847fb31a5003d2f0932aaba2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0079e28f847fb31a5003d2f0932aaba2">&#9670;&nbsp;</a></span>GoldGlitterTypeID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Dusts.DustHelpers.GoldGlitterTypeID = 269</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_dust_helpers_8cs_source.html#l00016">16</a> of file <a class="el" href="_dust_helpers_8cs_source.html">DustHelpers.cs</a>.</p>
+
+</div>
+</div>
+<a id="ae3da4f986ba36b53f84e3e563c156e76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3da4f986ba36b53f84e3e563c156e76">&#9670;&nbsp;</a></span>TeleportSparkleTypeID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int HamstarHelpers.Helpers.Dusts.DustHelpers.TeleportSparkleTypeID = 15</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+
+<p class="definition">Definition at line <a class="el" href="_dust_helpers_8cs_source.html#l00013">13</a> of file <a class="el" href="_dust_helpers_8cs_source.html">DustHelpers.cs</a>.</p>
 
 </div>
 </div>

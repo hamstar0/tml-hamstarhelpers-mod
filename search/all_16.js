@@ -29,6 +29,7 @@ var searchData=
   ['worlddictionary',['WorldDictionary',['../class_hamstar_helpers_1_1_classes_1_1_data_structures_1_1_world_dictionary.html',1,'HamstarHelpers::Classes::DataStructures']]],
   ['worldedge',['WorldEdge',['../namespace_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern.html#a7988faad5bf73e0f322b548c47cd4141a5c8519c4be70160dc8d787a4b734bad5',1,'HamstarHelpers::Classes::Tiles::TilePattern']]],
   ['worldfilehelpers',['WorldFileHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_file_helpers.html',1,'HamstarHelpers::Helpers::World']]],
+  ['worldgenhelpers',['WorldGenHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_gen_helpers.html',1,'HamstarHelpers::Helpers::World']]],
   ['worldhelpers',['WorldHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html',1,'HamstarHelpers::Helpers::World']]],
   ['worldlocationhelpers',['WorldLocationHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_location_helpers.html',1,'HamstarHelpers::Helpers::World']]],
   ['worldmodlockenable',['WorldModLockEnable',['../class_hamstar_helpers_1_1_mod_helpers_config.html#a6481872fac8c11ec7957ef6d89ed458a',1,'HamstarHelpers::ModHelpersConfig']]],

@@ -29,7 +29,6 @@ var searchData=
   ['npcattributehelpers',['NPCAttributeHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_attributes_1_1_n_p_c_attribute_helpers.html',1,'HamstarHelpers::Helpers::NPCs::Attributes']]],
   ['npcbannerhelpers',['NPCBannerHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_banner_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],
   ['npcbanners',['NpcBanners',['../class_hamstar_helpers_1_1_helpers_1_1_recipes_1_1_recipe_group_helpers.html#a4e965425920414e72591c9a74f85a8a9',1,'HamstarHelpers::Helpers::Recipes::RecipeGroupHelpers']]],
-  ['npcchat',['NPCChat',['../class_hamstar_helpers_1_1_services_1_1_n_p_c_chat_1_1_n_p_c_chat.html',1,'HamstarHelpers::Services::NPCChat']]],
   ['npccount',['NPCCount',['../class_hamstar_helpers_1_1_services_1_1_entity_groups_1_1_entity_groups.html#a1f78a7a91a6706804b36fc2335cfa43a',1,'HamstarHelpers::Services::EntityGroups::EntityGroups']]],
   ['npcdrawhelpers',['NPCDrawHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_draw_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],
   ['npcfinderhelpers',['NPCFinderHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_n_p_cs_1_1_n_p_c_finder_helpers.html',1,'HamstarHelpers::Helpers::NPCs']]],

@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.3</span>
+   &#160;<span id="projectnumber">v5.9.6</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -116,9 +116,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a19c7f692e1748b220046918a542fffa9"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a19c7f692e1748b220046918a542fffa9">PlaceTileSynced</a> (int tileX, int tileY, int tileType, int placeStyle=0, bool muted=false, bool forced=false, int plrWho=-1)</td></tr>
 <tr class="memdesc:a19c7f692e1748b220046918a542fffa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Places a given tile of a given type. Synced.  <a href="#a19c7f692e1748b220046918a542fffa9">More...</a><br /></td></tr>
 <tr class="separator:a19c7f692e1748b220046918a542fffa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae1851fd51aacb79b567dc109dd1cd92c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ae1851fd51aacb79b567dc109dd1cd92c">KillTileSynced</a> (int tileX, int tileY, bool effectOnly, bool dropsItem)</td></tr>
-<tr class="memdesc:ae1851fd51aacb79b567dc109dd1cd92c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kills a given tile. Results are synced.  <a href="#ae1851fd51aacb79b567dc109dd1cd92c">More...</a><br /></td></tr>
-<tr class="separator:ae1851fd51aacb79b567dc109dd1cd92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a521cbdc0bd4ede5023b07b05a725d499"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a521cbdc0bd4ede5023b07b05a725d499">KillTileSynced</a> (int tileX, int tileY, bool effectOnly, bool dropsItem, bool forceSyncIfUnchanged, bool supressErrors=true)</td></tr>
+<tr class="memdesc:a521cbdc0bd4ede5023b07b05a725d499"><td class="mdescLeft">&#160;</td><td class="mdescRight">Kills a given tile. Results are synced.  <a href="#a521cbdc0bd4ede5023b07b05a725d499">More...</a><br /></td></tr>
+<tr class="separator:a521cbdc0bd4ede5023b07b05a725d499"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba69c5053fed731822e8d3732de0dfbf"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#aba69c5053fed731822e8d3732de0dfbf">Swap1x1Synced</a> (int fromTileX, int fromTileY, int toTileX, int toTileY, bool preserveWall=false, bool preserveWire=false, bool preserveLiquid=false)</td></tr>
 <tr class="memdesc:aba69c5053fed731822e8d3732de0dfbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps 1x1 tiles. Destructive.  <a href="#aba69c5053fed731822e8d3732de0dfbf">More...</a><br /></td></tr>
 <tr class="separator:aba69c5053fed731822e8d3732de0dfbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -323,8 +323,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae1851fd51aacb79b567dc109dd1cd92c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae1851fd51aacb79b567dc109dd1cd92c">&#9670;&nbsp;</a></span>KillTileSynced()</h2>
+<a id="a521cbdc0bd4ede5023b07b05a725d499"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a521cbdc0bd4ede5023b07b05a725d499">&#9670;&nbsp;</a></span>KillTileSynced()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -333,7 +333,7 @@ Static Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void HamstarHelpers.Helpers.Tiles.TileHelpers.KillTileSynced </td>
+          <td class="memname">static bool HamstarHelpers.Helpers.Tiles.TileHelpers.KillTileSynced </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>tileX</em>, </td>
@@ -354,7 +354,19 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>dropsItem</em>&#160;</td>
+          <td class="paramname"><em>dropsItem</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>forceSyncIfUnchanged</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>supressErrors</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -376,11 +388,14 @@ Static Public Member Functions</h2></td></tr>
     <tr><td class="paramname">tileY</td><td></td></tr>
     <tr><td class="paramname">effectOnly</td><td>Only a visual effect; tile is not actually killed (nothing to sync).</td></tr>
     <tr><td class="paramname">dropsItem</td><td></td></tr>
+    <tr><td class="paramname">forceSyncIfUnchanged</td><td></td></tr>
+    <tr><td class="paramname">supressErrors</td><td></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> when no complications occurred during removal. Does not force tile to be removed, if complications occurs.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_helpers___edit_8cs_source.html#l00075">75</a> of file <a class="el" href="_tile_helpers___edit_8cs_source.html">TileHelpers_Edit.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_helpers___edit_8cs_source.html#l00079">79</a> of file <a class="el" href="_tile_helpers___edit_8cs_source.html">TileHelpers_Edit.cs</a>.</p>
 
 </div>
 </div>
@@ -463,7 +478,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if tile placement succeeded.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_helpers___edit_8cs_source.html#l00022">22</a> of file <a class="el" href="_tile_helpers___edit_8cs_source.html">TileHelpers_Edit.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_helpers___edit_8cs_source.html#l00023">23</a> of file <a class="el" href="_tile_helpers___edit_8cs_source.html">TileHelpers_Edit.cs</a>.</p>
 
 </div>
 </div>
@@ -545,7 +560,7 @@ Static Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_tile_helpers___edit_8cs_source.html#l00136">136</a> of file <a class="el" href="_tile_helpers___edit_8cs_source.html">TileHelpers_Edit.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_tile_helpers___edit_8cs_source.html#l00162">162</a> of file <a class="el" href="_tile_helpers___edit_8cs_source.html">TileHelpers_Edit.cs</a>.</p>
 
 </div>
 </div>

@@ -38,6 +38,7 @@ var searchData=
   ['destroyworlditem',['DestroyWorldItem',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_helpers.html#a5d763fd05187c502d80d4a637d98a1ce',1,'HamstarHelpers::Helpers::Items::ItemHelpers']]],
   ['diagnosenet',['DiagnoseNet',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a82eec044eb2e2746e9a6037e9b1bfbd3',1,'HamstarHelpers::Services::UI::LayerDisable::LayerDisable']]],
   ['diagnosevideo',['DiagnoseVideo',['../class_hamstar_helpers_1_1_services_1_1_u_i_1_1_layer_disable_1_1_layer_disable.html#a0d89923f785598762f73b1c9467884a4',1,'HamstarHelpers::Services::UI::LayerDisable::LayerDisable']]],
+  ['dialogueeditor',['DialogueEditor',['../class_hamstar_helpers_1_1_services_1_1_dialogue_1_1_dialogue_editor.html',1,'HamstarHelpers::Services::Dialogue']]],
   ['dictionaryextensions',['DictionaryExtensions',['../class_hamstar_helpers_1_1_helpers_1_1_dot_n_e_t_1_1_extensions_1_1_dictionary_extensions.html',1,'HamstarHelpers::Helpers::DotNET::Extensions']]],
   ['differencergb',['DifferenceRGB',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#ab6bd5ff862de32570ff5e96478b79065',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
   ['differencergba',['DifferenceRGBA',['../class_hamstar_helpers_1_1_helpers_1_1_x_n_a_1_1_x_n_a_color_helpers.html#a3b88f7b21db5f1581318d5fa72c55e6b',1,'HamstarHelpers::Helpers::XNA::XNAColorHelpers']]],
@@ -95,5 +96,6 @@ var searchData=
   ['dumptolocalfile',['DumpToLocalFile',['../class_hamstar_helpers_1_1_services_1_1_debug_1_1_data_dumper_1_1_data_dumper.html#a2fb095a7ce701e139e1fefa503e0d010',1,'HamstarHelpers::Services::Debug::DataDumper::DataDumper']]],
   ['dungeon',['Dungeon',['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#adc67de7c4a50810164b8548dd09fd117acd701b6fb06d4e424da1010f9bf86fe3',1,'HamstarHelpers.Helpers.World.Dungeon()'],['../namespace_hamstar_helpers_1_1_helpers_1_1_world.html#abc5187c3be2fd50d3708509c6f8e8db1acd701b6fb06d4e424da1010f9bf86fe3',1,'HamstarHelpers.Helpers.World.Dungeon()']]],
   ['duration',['Duration',['../class_hamstar_helpers_1_1_services_1_1_messages_1_1_player_1_1_player_label_text.html#afa66b0d294f8f30e8c765e96d8be5a5c',1,'HamstarHelpers::Services::Messages::Player::PlayerLabelText']]],
-  ['dusthelpers',['DustHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers.html',1,'HamstarHelpers::Helpers::Dusts']]]
+  ['dusthelpers',['DustHelpers',['../class_hamstar_helpers_1_1_helpers_1_1_dusts_1_1_dust_helpers.html',1,'HamstarHelpers::Helpers::Dusts']]],
+  ['dynamicdialoguehandler',['DynamicDialogueHandler',['../class_hamstar_helpers_1_1_services_1_1_dialogue_1_1_dynamic_dialogue_handler.html',1,'HamstarHelpers.Services.Dialogue.DynamicDialogueHandler'],['../class_hamstar_helpers_1_1_services_1_1_dialogue_1_1_dynamic_dialogue_handler.html#abe1321d44067cfddbddd8b016f9203e5',1,'HamstarHelpers.Services.Dialogue.DynamicDialogueHandler.DynamicDialogueHandler()']]]
 ];

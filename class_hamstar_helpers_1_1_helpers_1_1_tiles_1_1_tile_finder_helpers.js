@@ -1,6 +1,7 @@
 var class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers =
 [
     [ "FindAreaMatchWithin", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a6c50e64406062ee59d344dd8930702aa", null ],
+    [ "FindBoxForAllOf", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aa2d3e91e5d584a29d5bee2ce21a2e001", null ],
     [ "FindNearbyAreaFromCenter", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#aa158167e6f3f1621553b9cadd487f58a", null ],
     [ "FindNearbyRandomMatch", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#ac195d521fd45d4635580715d6eeabb6a", null ],
     [ "FindTopLeftOfSquare", "class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_finder_helpers.html#a77cd8770d0e196e2935832b8a14f5587", null ],

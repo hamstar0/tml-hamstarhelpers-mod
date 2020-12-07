@@ -3,6 +3,7 @@ var dir_dd570a26c72d62c6f588709375eae9cf =
     [ "Definitions.cs", "_definitions_8cs_source.html", null ],
     [ "Definitions_Obsolete.cs", "_definitions___obsolete_8cs_source.html", null ],
     [ "WorldFileHelpers.cs", "_world_file_helpers_8cs_source.html", null ],
+    [ "WorldGenHelpers.cs", "_world_gen_helpers_8cs_source.html", null ],
     [ "WorldHelpers.cs", "_world_helpers_8cs_source.html", null ],
     [ "WorldHelpers_Obsolete.cs", "_world_helpers___obsolete_8cs_source.html", null ],
     [ "WorldLocationHelpers_Beaches.cs", "_world_location_helpers___beaches_8cs_source.html", null ],

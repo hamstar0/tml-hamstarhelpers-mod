@@ -1,5 +1,6 @@
 var dir_8ed79d28863edf4e4d04f230905db877 =
 [
+    [ "PlayerAppearanceHelpers.cs", "_player_appearance_helpers_8cs_source.html", null ],
     [ "PlayerFileHelpers.cs", "_player_file_helpers_8cs_source.html", null ],
     [ "PlayerHeadDrawHelpers.cs", "_player_head_draw_helpers_8cs_source.html", null ],
     [ "PlayerHelpers.cs", "_player_helpers_8cs_source.html", null ],

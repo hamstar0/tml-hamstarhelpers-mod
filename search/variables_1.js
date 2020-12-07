@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['banners',['Banners',['../class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a2da8021409edb8a8aa724df7f74f3587',1,'HamstarHelpers::Helpers::Items::ItemGroupIdentityHelpers']]],
   ['basefolder',['BaseFolder',['../class_hamstar_helpers_1_1_classes_1_1_player_data_1_1_custom_player_data.html#a3c581a12626b7723c90b7bf67b3fa465',1,'HamstarHelpers.Classes.PlayerData.CustomPlayerData.BaseFolder()'],['../class_hamstar_helpers_1_1_helpers_1_1_misc_1_1_mod_custom_data_file_helpers.html#a9dda480b8c7f6e7377fd862f7eb02b94',1,'HamstarHelpers.Helpers.Misc.ModCustomDataFileHelpers.BaseFolder()']]],
   ['beacheasttilex',['BeachEastTileX',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#ad38e42af9f155e1d6263055deaabeff7',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],
   ['beachwesttilex',['BeachWestTileX',['../class_hamstar_helpers_1_1_helpers_1_1_world_1_1_world_helpers.html#a2dd07a1e970f123e4482867f0ed2ec43',1,'HamstarHelpers::Helpers::World::WorldHelpers']]],

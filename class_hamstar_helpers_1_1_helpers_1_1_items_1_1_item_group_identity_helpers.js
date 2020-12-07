@@ -3,6 +3,7 @@ var class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers 
     [ "GetCommonItemGroups", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a32252968ad2964655b67a5a3c4089f32", null ],
     [ "GetVanillaContainerItemTypes", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a8c173501cc7c0701149dba0d43ce58be", null ],
     [ "AllPressurePlates", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a216fb00d0dd07799824de0db2656ef09", null ],
+    [ "Banners", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a2da8021409edb8a8aa724df7f74f3587", null ],
     [ "ConveyorBeltPair", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a42ec253902f9f7c85151607c13ed963a", null ],
     [ "EvilBiomeBossDrops", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a0bc678534bd6c525f0b19086bb869784", null ],
     [ "EvilBiomeLightPets", "class_hamstar_helpers_1_1_helpers_1_1_items_1_1_item_group_identity_helpers.html#a673f215fc014009b3346351bf2b6f2fe", null ],

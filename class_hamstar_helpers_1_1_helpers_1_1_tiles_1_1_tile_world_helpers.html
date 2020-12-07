@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.3</span>
+   &#160;<span id="projectnumber">v5.9.6</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -113,12 +113,63 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a5ff47b327a95ab6c50a12fd1b2770ac7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html#a5ff47b327a95ab6c50a12fd1b2770ac7">RequestChunksFromServer</a> (Rectangle tileRange, int leftPadding=0, int topPadding=0, int rightPadding=0, int bottomPadding=0)</td></tr>
 <tr class="memdesc:a5ff47b327a95ab6c50a12fd1b2770ac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Requests all tile chunks (200x150 tile 'sections') from the server within a given tile range.  <a href="#a5ff47b327a95ab6c50a12fd1b2770ac7">More...</a><br /></td></tr>
 <tr class="separator:a5ff47b327a95ab6c50a12fd1b2770ac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec22e999f9ec7f891079c376c6b08fb"><td class="memItemLeft" align="right" valign="top">static ? Rectangle&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_world_helpers.html#abec22e999f9ec7f891079c376c6b08fb">FindBoxForAllOf</a> (<a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a> pattern, int minimumMatchingNeighbors=1)</td></tr>
+<tr class="memdesc:abec22e999f9ec7f891079c376c6b08fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scans the entire world to find the largest encompassing box of the given tile pattern.  <a href="#abec22e999f9ec7f891079c376c6b08fb">More...</a><br /></td></tr>
+<tr class="separator:abec22e999f9ec7f891079c376c6b08fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to tiles relative to the world. </p>
 
 <p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00012">12</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="abec22e999f9ec7f891079c376c6b08fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abec22e999f9ec7f891079c376c6b08fb">&#9670;&nbsp;</a></span>FindBoxForAllOf()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static ? Rectangle HamstarHelpers.Helpers.Tiles.TileWorldHelpers.FindBoxForAllOf </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_hamstar_helpers_1_1_classes_1_1_tiles_1_1_tile_pattern_1_1_tile_pattern.html">TilePattern</a>&#160;</td>
+          <td class="paramname"><em>pattern</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>minimumMatchingNeighbors</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Scans the entire world to find the largest encompassing box of the given tile pattern. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pattern</td><td></td></tr>
+    <tr><td class="paramname">minimumMatchingNeighbors</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_tile_world_helpers_8cs_source.html#l00103">103</a> of file <a class="el" href="_tile_world_helpers_8cs_source.html">TileWorldHelpers.cs</a>.</p>
+
+</div>
+</div>
 <a id="a3a299c6363c8f9f51272a8dbea9d6964"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3a299c6363c8f9f51272a8dbea9d6964">&#9670;&nbsp;</a></span>GaugeBrightnessWithin()</h2>
 

@@ -1,5 +1,17 @@
 var NAVTREEINDEX4 =
 {
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#a7333145eb6337ab9141bd2f8dc5ef6b0":[1,0,0,1,9,1,3,4],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#a9707c7d4c9f431f9beccedff0864593f":[1,0,0,1,9,1,3,5],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#aa0ac172cbd86f61c02ccdd5d1f6ef2a0":[1,0,0,1,9,1,3,8],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_checkbox.html#abe1ba34766c48b69de3699bc422d3a8e":[1,0,0,1,9,1,3,0],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html":[1,0,0,1,9,1,4],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a0b30e8bed6c981900807e9955debabfb":[1,0,0,1,9,1,4,12],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a1f9b54d2945a7e6d2ad43993909a3303":[1,0,0,1,9,1,4,11],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a2e3950807515c4db145869cc25ca5d4f":[1,0,0,1,9,1,4,16],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a31f75bc8de195786e0ca53844a151149":[1,0,0,1,9,1,4,1],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a3f59cf7ca8da566c43f811d3c3ccec00":[1,0,0,1,9,1,4,9],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a4d27070b82e38b85bbea089857a680f7":[1,0,0,1,9,1,4,7],
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a4fc5938baa6a0e0b652ef46f7f4d118e":[1,0,0,1,9,1,4,6],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a554df4e17cec2df59b4c0c91dfc36d75":[1,0,0,1,9,1,4,10],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a5b07960d971861e119f50c389c570042":[1,0,0,1,9,1,4,0],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_elements_1_1_u_i_dialog.html#a5d57d3c5ebc6a52208f611a7e879c0fd":[1,0,0,1,9,1,4,14],
@@ -237,17 +249,5 @@ var NAVTREEINDEX4 =
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a4b3603628bed7b638d37fcd6d0fd60b1":[1,0,0,1,9,5,9,2],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a4d6133ad1f45af15940b5928a30d98ac":[1,0,0,1,9,5,9,41],
 "class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a4dc29586c96376e866bdb2b93227ef62":[1,0,0,1,9,5,9,15],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a4f7b36daddfc6fd53c006c961d752d1e":[1,0,0,1,9,5,9,27],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a52e9266a947b033adf29db5cefe96c17":[1,0,0,1,9,5,9,35],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a54fdc6f1893be9bac8ba6862f8d4e631":[1,0,0,1,9,5,9,19],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a592ef4a60d8e7742bcf5367150b70b54":[1,0,0,1,9,5,9,5],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a66edc4d1c03f89bb35f1de2805fbe120":[1,0,0,1,9,5,9,23],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a68e308809022d97bd5446702f399b08b":[1,0,0,1,9,5,9,3],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a6bd3a52ce09d6b78d44422764f182447":[1,0,0,1,9,5,9,53],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a734e3231e19cee265344220861098155":[1,0,0,1,9,5,9,34],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a7640832fec4b57d0b0473a445ce5491d":[1,0,0,1,9,5,9,30],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a772c7c40dac19abbb841aec588c226ba":[1,0,0,1,9,5,9,14],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a7ae41ddf0ab9f046b6a768f57d4d0a26":[1,0,0,1,9,5,9,0],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a7b01082992a447dae7a55ab70fe4d3a6":[1,0,0,1,9,5,9,44],
-"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a7d57fb27c668c2e870f9fb1ea0912ab7":[1,0,0,1,9,5,9,28]
+"class_hamstar_helpers_1_1_classes_1_1_u_i_1_1_theme_1_1_u_i_theme.html#a4f7b36daddfc6fd53c006c961d752d1e":[1,0,0,1,9,5,9,27]
 };

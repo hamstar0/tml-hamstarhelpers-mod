@@ -31,7 +31,7 @@
   <td id="projectlogo"><img alt="Logo" src="icon.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Mod Helpers
-   &#160;<span id="projectnumber">v5.9.3</span>
+   &#160;<span id="projectnumber">v5.9.6</span>
    </div>
    <div id="projectbrief">A centralized collection of library code, helpful services, and end-user functions for mod management and information.</div>
   </td>
@@ -101,17 +101,17 @@ $(document).ready(function(){initNavTree('class_hamstar_helpers_1_1_helpers_1_1_
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:affaafa984a1bce57d2d57759889f39dc"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_collisions_1_1_collision_helpers.html#affaafa984a1bce57d2d57759889f39dc">CastRay</a> (Vector2 worldPosition, Vector2 direction, float maxWorldDistance, Func&lt; Vector2, bool &gt; checkPerUnit=null, Func&lt; int, int, bool &gt; checkPerTile=null)</td></tr>
-<tr class="memdesc:affaafa984a1bce57d2d57759889f39dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts a ray from a given world point along a given heading.  <a href="#affaafa984a1bce57d2d57759889f39dc">More...</a><br /></td></tr>
-<tr class="separator:affaafa984a1bce57d2d57759889f39dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b1db3dde6dbf89e268decd3eaa1f01f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_hamstar_helpers_1_1_helpers_1_1_collisions_1_1_collision_helpers.html#a1b1db3dde6dbf89e268decd3eaa1f01f">CastRay</a> (Vector2 worldPosition, Vector2 direction, float maxWorldDistance, bool bothChecksOnly=false, Func&lt; Vector2, bool &gt; checkPerUnit=null, Func&lt; int, int, bool &gt; checkPerTile=null)</td></tr>
+<tr class="memdesc:a1b1db3dde6dbf89e268decd3eaa1f01f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts a ray from a given world point along a given heading.  <a href="#a1b1db3dde6dbf89e268decd3eaa1f01f">More...</a><br /></td></tr>
+<tr class="separator:a1b1db3dde6dbf89e268decd3eaa1f01f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Assorted static "helper" functions pertaining to general collision detecting and handling. </p>
 
 <p class="definition">Definition at line <a class="el" href="_collision_helpers_8cs_source.html#l00010">10</a> of file <a class="el" href="_collision_helpers_8cs_source.html">CollisionHelpers.cs</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="affaafa984a1bce57d2d57759889f39dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affaafa984a1bce57d2d57759889f39dc">&#9670;&nbsp;</a></span>CastRay()</h2>
+<a id="a1b1db3dde6dbf89e268decd3eaa1f01f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b1db3dde6dbf89e268decd3eaa1f01f">&#9670;&nbsp;</a></span>CastRay()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,6 +136,12 @@ Static Public Member Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">float&#160;</td>
           <td class="paramname"><em>maxWorldDistance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bothChecksOnly</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -168,6 +174,7 @@ Static Public Member Functions</h2></td></tr>
     <tr><td class="paramname">worldPosition</td><td></td></tr>
     <tr><td class="paramname">direction</td><td></td></tr>
     <tr><td class="paramname">maxWorldDistance</td><td></td></tr>
+    <tr><td class="paramname">bothChecksOnly</td><td>If both checks return <code>true</code>, the cast ends.</td></tr>
     <tr><td class="paramname">checkPerUnit</td><td></td></tr>
     <tr><td class="paramname">checkPerTile</td><td></td></tr>
   </table>
@@ -175,12 +182,13 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if the checker function reports a collision (itself returns <code>true</code>).</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_collision_helpers_8cs_source.html#l00020">20</a> of file <a class="el" href="_collision_helpers_8cs_source.html">CollisionHelpers.cs</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_collision_helpers_8cs_source.html#l00021">21</a> of file <a class="el" href="_collision_helpers_8cs_source.html">CollisionHelpers.cs</a>.</p>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>Project/HamstarHelpers/Helpers/Collisions/<a class="el" href="_collision_helpers_8cs_source.html">CollisionHelpers.cs</a></li>
+<li>Project/HamstarHelpers/Helpers/Collisions/<a class="el" href="_collision_helpers___obsolete_8cs_source.html">CollisionHelpers_Obsolete.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

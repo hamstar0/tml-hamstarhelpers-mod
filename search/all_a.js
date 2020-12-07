@@ -9,7 +9,7 @@ var searchData=
   ['killtile',['KillTile',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a8b520b6574873fb1a4f5b566eac9597a',1,'HamstarHelpers::Helpers::Tiles']]],
   ['killtiledelegate',['KillTileDelegate',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_tile_hooks.html#aa5c276e4b5d2b7977fe7acfa397be073',1,'HamstarHelpers::Services::Hooks::ExtendedHooks::ExtendedTileHooks']]],
   ['killtilenoitem',['KillTileNoItem',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a28819c7d44907f4d37b6e4459ca171cd',1,'HamstarHelpers::Helpers::Tiles']]],
-  ['killtilesynced',['KillTileSynced',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#ae1851fd51aacb79b567dc109dd1cd92c',1,'HamstarHelpers::Helpers::Tiles::TileHelpers']]],
+  ['killtilesynced',['KillTileSynced',['../class_hamstar_helpers_1_1_helpers_1_1_tiles_1_1_tile_helpers.html#a521cbdc0bd4ede5023b07b05a725d499',1,'HamstarHelpers::Helpers::Tiles::TileHelpers']]],
   ['killwall',['KillWall',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a4541e1c8c5d3e90b260b2347cf53c99e',1,'HamstarHelpers::Helpers::Tiles']]],
   ['killwalldelegate',['KillWallDelegate',['../class_hamstar_helpers_1_1_services_1_1_hooks_1_1_extended_hooks_1_1_extended_tile_hooks.html#a8dc94f85ccba74bb04b2f5b55501e57b',1,'HamstarHelpers::Services::Hooks::ExtendedHooks::ExtendedTileHooks']]],
   ['killwire',['KillWire',['../namespace_hamstar_helpers_1_1_helpers_1_1_tiles.html#ac3ed90e72f90b862e397c68a971f2150a6d9561bf394989161179bf9838d757f1',1,'HamstarHelpers::Helpers::Tiles']]],
