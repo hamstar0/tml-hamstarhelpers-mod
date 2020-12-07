@@ -53,12 +53,5 @@ namespace HamstarHelpers.Helpers.World {
 		/// @private
 		[Obsolete( "use BeachWest", true )]
 		public static int IsBeachEast => WorldHelpers.BeachEastTileX;
-
-		/// @private
-		[Obsolete( "use BeachOceanWestTileX; this is erroneous", true )]
-		public static int BeachWestTileX => 380;
-		/// @private
-		[Obsolete( "use BeachOceanEastTileX; this is erroneous", true )]
-		public static int BeachEastTileX => Main.maxTilesX - 380;
 	}
 }
