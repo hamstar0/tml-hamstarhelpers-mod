@@ -57,10 +57,10 @@ namespace HamstarHelpers.Helpers.World {
 
 
 		/// <summary></summary>
-		public static int BeachWestTileX => 380;
+		public static int BeachOceanEastTileX => 380;
 
 		/// <summary></summary>
-		public static int BeachEastTileX => Main.maxTilesX - 380;
+		public static int BeachOceanWestTileX => Main.maxTilesX - 380;
 
 
 
@@ -120,9 +120,9 @@ namespace HamstarHelpers.Helpers.World {
 			} else if( WorldHelpers.IsAboveWorldSurface(worldPos) ) {
 				where |= WorldRegionFlags.Overworld;
 
-				if( WorldHelpers.BeachEastTileX < (worldPos.Y/16) ) {
+				if( WorldHelpers.BeachOceanEastTileX < (worldPos.Y/16) ) {
 					where |= WorldRegionFlags.OceanEast;
-				} else if( WorldHelpers.BeachWestTileX > (worldPos.Y/16) ) {
+				} else if( WorldHelpers.BeachOceanWestTileX > (worldPos.Y/16) ) {
 					where |= WorldRegionFlags.OceanWest;
 				}
 			} else {
