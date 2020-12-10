@@ -13637,6 +13637,64 @@
             Unlocks the current world.
             </summary>
         </member>
+        <member name="T:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService">
+            <summary>
+            Provides a snapshot of boss information from the BossChecklist mod (must be enabled).
+            </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.UniqueKey">
+            <summary>
+            Equal to ModName BossClassName
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.ModName">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.BossClassName">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.BossDisplayName">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.ProgressionValue">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.IsDowned">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.IsBoss">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.IsMiniboss">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.IsEvent">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.SegmentNpcIDs">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.SpawnItemTypes">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.LootItemTypes">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.CollectiblesLootItemTypes">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.MinimumBossChecklistVersion">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfoTable">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.#ctor">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition">
             <summary>
             Describes a basic attribute of a given mod. Meant to be combined in sets to create a comprehensive

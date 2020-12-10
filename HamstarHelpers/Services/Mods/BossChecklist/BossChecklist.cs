@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using HamstarHelpers.Helpers.DotNET.Extensions;
 using Terraria.ModLoader;
+using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Services.Hooks.LoadHooks;
 
 
 namespace HamstarHelpers.Services.Mods.BossChecklist {
 	/// <summary>
 	/// Provides a snapshot of boss information from the BossChecklist mod (must be enabled).
 	/// </summary>
-	public class BossChecklistService {
+	public class BossChecklistService : ILoadable {
 		// Boss Checklist might add new features, so a version is passed into GetBossInfo.
 		// If a new version of the GetBossInfo Call is implemented, find this class in the Boss Checklist Github once again and
 		// replace this version with the new version:
@@ -55,6 +57,11 @@ namespace HamstarHelpers.Services.Mods.BossChecklist {
 		/// <summary></summary>
 		public static readonly Version MinimumBossChecklistVersion = new Version( 1, 1 );
 
+		////
+
+		/// <summary></summary>
+		public static IReadOnlyDictionary<string, BossInfo> BossInfoTable { get; private set;  }
+
 
 
 		////////////////
@@ -62,19 +69,24 @@ namespace HamstarHelpers.Services.Mods.BossChecklist {
 		private IDictionary<string, BossInfo> _BossInfoTable = new Dictionary<string, BossInfo>();
 
 
-		////////////////
-
-		/// <summary></summary>
-		public IReadOnlyDictionary<string, BossInfo> BossInfoTable { get; }
-
-
 
 		////////////////
 
-		/// @private
-		public BossChecklistService() {
-			this.BossInfoTable = new ReadOnlyDictionary<string, BossInfo>( this._BossInfoTable );
+		void ILoadable.OnModsLoad() {
+			BossChecklistService.BossInfoTable = new ReadOnlyDictionary<string, BossInfo>( this._BossInfoTable );
+		}
 
+		void ILoadable.OnPostModsLoad() {
+			LoadHooks.AddPostModLoadHook( this.OnPostAddRecipes );
+		}
+
+		void ILoadable.OnModsUnload() {
+			BossChecklistService.BossInfoTable = null;
+		}
+
+		////
+
+		internal void OnPostAddRecipes() {
 			Mod bcMod = ModLoader.GetMod( "BossChecklist" );
 			Version bcMinVers = BossChecklistService.MinimumBossChecklistVersion;
 			if( bcMod == null || bcMod.Version < bcMinVers ) {
