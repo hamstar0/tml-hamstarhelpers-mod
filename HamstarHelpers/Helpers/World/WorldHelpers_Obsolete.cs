@@ -46,6 +46,7 @@ namespace HamstarHelpers.Helpers.World {
 		/// @private
 		[Obsolete( "use UnderworldLayerBottomTileY", true )]
 		public static int UnderworldLayerBottom => WorldHelpers.UnderworldLayerBottomTileY;
+
 		/// @private
 		[Obsolete("use BeachWest", true)]
 		public static int IsBeachWest => WorldHelpers.BeachWestTileX;

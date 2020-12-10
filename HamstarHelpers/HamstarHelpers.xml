@@ -11331,10 +11331,10 @@
         <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.UnderworldLayerBottomTileY">
             <summary></summary>
         </member>
-        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.BeachOceanEastTileX">
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.BeachWestTileX">
             <summary></summary>
         </member>
-        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.BeachOceanWestTileX">
+        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.BeachEastTileX">
             <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.World.WorldHelpers.GetUniqueIdForCurrentWorld(System.Boolean)">
@@ -11483,12 +11483,6 @@
             @private
         </member>
         <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.IsBeachEast">
-            @private
-        </member>
-        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.BeachWestTileX">
-            @private
-        </member>
-        <member name="P:HamstarHelpers.Helpers.World.WorldHelpers.BeachEastTileX">
             @private
         </member>
         <member name="T:HamstarHelpers.Helpers.World.WorldLocationHelpers">
