@@ -47,7 +47,7 @@ namespace HamstarHelpers {
 				color: Color.White,
 				rotation: 0f,
 				origin: origin,
-				scale: 0.25f,
+				scale: marker.Scale,
 				effects: SpriteEffects.None,
 				layerDepth: 1f
 			);

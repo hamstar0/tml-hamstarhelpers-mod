@@ -20,10 +20,11 @@ namespace HamstarHelpers.Services.Maps {
 		/// <param name="tileY"></param>
 		/// <param name="label">Must be unique.</param>
 		/// <param name="icon"></param>
+		/// <param name="scale"></param>
 		/// <returns>`false` if a marker of the given label already exists.</returns>
-		public static bool AddFullScreenMapMarker( int tileX, int tileY, string label, Texture2D icon ) {
+		public static bool AddFullScreenMapMarker( int tileX, int tileY, string label, Texture2D icon, float scale ) {
 			var markers = ModContent.GetInstance<MapMarkers>();
-			var marker = new MapMarker( label, icon );
+			var marker = new MapMarker( label, icon, scale );
 			
 			if( markers.MarkersPerLabel.ContainsKey(label) ) {
 				return false;

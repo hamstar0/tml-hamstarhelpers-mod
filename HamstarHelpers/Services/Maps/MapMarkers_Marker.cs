@@ -11,15 +11,21 @@ namespace HamstarHelpers.Services.Maps {
 		/// <summary></summary>
 		public Texture2D Icon { get; private set; }
 
+		/// <summary></summary>
+		public float Scale { get; private set; }
+
 
 
 		////////////////
 
 		/// <summary></summary>
-		public MapMarker( string label, Texture2D icon ) {
+		public MapMarker( string label, Texture2D icon, float scale ) {
 			this.Label = label;
 			this.Icon = icon;
+			this.Scale = scale;
 		}
+
+		////
 
 		/// <summary></summary>
 		/// <returns></returns>

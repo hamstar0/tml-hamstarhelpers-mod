@@ -13441,13 +13441,17 @@
             <summary>
             Provides functions for adding markers to the map.
             </summary>
+            <summary>
+            Provides functions for adding markers to the map.
+            </summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Maps.MapMarkers.AddFullScreenMapMarker(System.Int32,System.Int32,System.String,Microsoft.Xna.Framework.Graphics.Texture2D)">
+        <member name="M:HamstarHelpers.Services.Maps.MapMarkers.AddFullScreenMapMarker(System.Int32,System.Int32,System.String,Microsoft.Xna.Framework.Graphics.Texture2D,System.Single)">
             <summary></summary>
             <param name="tileX"></param>
             <param name="tileY"></param>
             <param name="label">Must be unique.</param>
             <param name="icon"></param>
+            <param name="scale"></param>
             <returns>`false` if a marker of the given label already exists.</returns>
         </member>
         <member name="M:HamstarHelpers.Services.Maps.MapMarkers.RemoveFullScreenMapMarker(System.String)">
@@ -13459,9 +13463,10 @@
             <summary></summary>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Services.Maps.MapMarkers.GetFullScreenMapMarker(System.String)">
+        <member name="M:HamstarHelpers.Services.Maps.MapMarkers.TryGetFullScreenMapMarker(System.String,System.ValueTuple{System.Int32,System.Int32,HamstarHelpers.Services.Maps.MapMarker}@)">
             <summary></summary>
             <param name="label"></param>
+            <param name="markerAt"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Services.Maps.MapMarkers.GetFullScreenMapMakersAt(System.Int32,System.Int32)">
@@ -13469,6 +13474,12 @@
             <param name="tileX"></param>
             <param name="tileY"></param>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Maps.MapMarkers.GetFullScreenMapMarker(System.String)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Maps.MapMarkers.AddFullScreenMapMarker(System.Int32,System.Int32,System.String,Microsoft.Xna.Framework.Graphics.Texture2D)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Services.Maps.MapMarker">
             <summary></summary>
@@ -13479,7 +13490,10 @@
         <member name="P:HamstarHelpers.Services.Maps.MapMarker.Icon">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Services.Maps.MapMarker.#ctor(System.String,Microsoft.Xna.Framework.Graphics.Texture2D)">
+        <member name="P:HamstarHelpers.Services.Maps.MapMarker.Scale">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Maps.MapMarker.#ctor(System.String,Microsoft.Xna.Framework.Graphics.Texture2D,System.Single)">
             <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Services.Maps.MapMarker.GetHashCode">
