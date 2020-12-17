@@ -20,10 +20,11 @@ namespace HamstarHelpers {
 
 			DialogueEditor.UpdateAlertIconsOnMap();
 
+			(int x, int y, MapMarker marker) info;
 			foreach( string label in MapMarkers.GetFullScreenMapMarkerLabels() ) {
-				(int x, int y, MapMarker marker) info = MapMarkers.GetFullScreenMapMarker( label );
-
-				this.DrawFullScreenMapMarker( info.x, info.y, info.marker );
+				if( MapMarkers.TryGetFullScreenMapMarker(label, out info) ) {
+					this.DrawFullScreenMapMarker( info.x, info.y, info.marker );
+				}
 			}
 		}
 

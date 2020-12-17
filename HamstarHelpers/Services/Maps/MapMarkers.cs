@@ -14,7 +14,7 @@ namespace HamstarHelpers.Services.Maps {
 	/// <summary>
 	/// Provides functions for adding markers to the map.
 	/// </summary>
-	public class MapMarkers : ILoadable {
+	public partial class MapMarkers : ILoadable {
 		/// <summary></summary>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
@@ -51,9 +51,14 @@ namespace HamstarHelpers.Services.Maps {
 		/// <returns></returns>
 		public static bool RemoveFullScreenMapMarker( string label ) {
 			var markers = ModContent.GetInstance<MapMarkers>();
-			(int x, int y, MapMarker marker) marker = MapMarkers.GetFullScreenMapMarker( label );
 
 			markers.MarkersPerLabel.Remove( label );
+
+			(int x, int y, MapMarker marker) marker;
+			if( !MapMarkers.TryGetFullScreenMapMarker( label, out marker ) ) {
+				return false;
+			}
+
 			IDictionary<string, MapMarker> markersAt = markers.Markers.Get2DOrDefault( marker.x, marker.y );
 
 			return markersAt?.Remove(label) ?? false;
@@ -72,10 +77,12 @@ namespace HamstarHelpers.Services.Maps {
 
 		/// <summary></summary>
 		/// <param name="label"></param>
+		/// <param name="markerAt"></param>
 		/// <returns></returns>
-		public static (int tileX, int tileY, MapMarker marker) GetFullScreenMapMarker( string label ) {
+		public static bool TryGetFullScreenMapMarker( string label, out (int tileX, int tileY, MapMarker marker) markerAt ) {
 			var markers = ModContent.GetInstance<MapMarkers>();
-			return markers.MarkersPerLabel.GetOrDefault( label );
+
+			return markers.MarkersPerLabel.TryGetValue( label, out markerAt );
 		}
 
 
