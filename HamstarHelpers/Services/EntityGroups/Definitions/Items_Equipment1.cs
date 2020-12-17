@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Items.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Items.Attributes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -12,6 +12,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 		public const string AnyWeapon = "Any Weapon";
 		/// <summary></summary>
 		public const string AnyTool = "Any Tool";
+		/// <summary></summary>
+		public const string AnyFishingPole = "Any Fishing Pole";
 		/// <summary></summary>
 		public const string AnyVanillaExplosive = "Any Vanilla Explosive";
 		/// <summary></summary>
@@ -55,6 +57,13 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return ItemAttributeHelpers.IsTool( item );
+				} )
+			) );
+			defs.Add( new EntityGroupMatcherDefinition<Item>(
+				grpName: ItemGroupIDs.AnyFishingPole,
+				grpDeps: null,
+				matcher: new ItemGroupMatcher( ( item, grps ) => {
+					return item.fishingPole > 0;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(

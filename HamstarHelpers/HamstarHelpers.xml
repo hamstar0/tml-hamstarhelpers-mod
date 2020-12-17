@@ -5395,6 +5395,16 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddOrSet``1(System.Collections.Generic.IDictionary{``0,System.Int64},``0,System.Int64)">
+            <summary>
+            Adds to a given value (or sets it, if not present) in a dictionary at a given key.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddOrSet``1(System.Collections.Generic.IDictionary{``0,System.Single},``0,System.Single)">
             <summary>
             Adds to a given value (or sets it, if not present) in a dictionary at a given key.
@@ -5447,6 +5457,27 @@
             <param name="value"></param>
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Int32}},``0,``1,System.Int32)">
+            <summary>
+            Adds to a value to a nested dictionary in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey1"></typeparam>
+            <typeparam name="TKey2"></typeparam>
+            <param name="dict"></param>
+            <param name="key1"></param>
+            <param name="key2"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``1(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.List{System.Int64}},``0,System.Int32,System.Int64)">
+            <summary>
+            Adds to a value to a nested collection in the given dictionary at the given key.
+            </summary>
+            <typeparam name="TKey"></typeparam>
+            <param name="dict"></param>
+            <param name="key"></param>
+            <param name="idx"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions.AddToValue2D``2(System.Collections.Generic.IDictionary{``0,System.Collections.Generic.IDictionary{``1,System.Int64}},``0,``1,System.Int32)">
             <summary>
             Adds to a value to a nested dictionary in the given dictionary at the given key.
             </summary>
@@ -13691,9 +13722,6 @@
         </member>
         <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfoTable">
             <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.#ctor">
-            @private
         </member>
         <member name="T:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition">
             <summary>

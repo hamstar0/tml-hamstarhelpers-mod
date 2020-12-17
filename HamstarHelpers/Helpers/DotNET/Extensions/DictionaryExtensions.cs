@@ -76,6 +76,23 @@ namespace HamstarHelpers.Helpers.DotNET.Extensions {
 		/// <param name="key"></param>
 		/// <param name="value"></param>
 		/// <returns></returns>
+		public static bool AddOrSet<TKey>( this IDictionary<TKey, long> dict, TKey key, long value ) {
+			if( dict.ContainsKey(key) ) {
+				dict[key] += value;
+				return true;
+			} else {
+				dict[key] = value;
+				return false;
+			}
+		}
+		/// <summary>
+		/// Adds to a given value (or sets it, if not present) in a dictionary at a given key.
+		/// </summary>
+		/// <typeparam name="TKey"></typeparam>
+		/// <param name="dict"></param>
+		/// <param name="key"></param>
+		/// <param name="value"></param>
+		/// <returns></returns>
 		public static bool AddOrSet<TKey>( this IDictionary<TKey, float> dict, TKey key, float value ) {
 			if( dict.ContainsKey( key ) ) {
 				dict[key] += value;

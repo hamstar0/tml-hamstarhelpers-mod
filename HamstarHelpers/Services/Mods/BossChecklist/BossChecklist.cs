@@ -93,7 +93,7 @@ namespace HamstarHelpers.Services.Mods.BossChecklist {
 				return;
 			}
 
-			var rawBossInfoTable = bcMod.Call( "GetBossInfoDictionary", this, bcMinVers.ToString() )
+			var rawBossInfoTable = bcMod.Call( "GetBossInfoDictionary", ModHelpersMod.Instance, bcMinVers.ToString() )
 				as Dictionary<string, Dictionary<string, object>>;
 			if( rawBossInfoTable == null ) {
 				return;

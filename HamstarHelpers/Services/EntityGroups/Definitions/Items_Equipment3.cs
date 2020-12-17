@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items.Attributes;
-using HamstarHelpers.Helpers.Recipes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Helpers.Items.Attributes;
+using HamstarHelpers.Helpers.Recipes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
