@@ -1,18 +1,22 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
+﻿using System;
+using Terraria;
+using Terraria.GameContent.UI.Elements;
+using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext;
 using HamstarHelpers.Internals.ModTags.ModInfo.MenuContext;
 using HamstarHelpers.Services.Timers;
-using System;
-using Terraria;
-using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Internals.Menus.Support {
 	/// @private
 	internal partial class SupportInfoDisplay {
 		public void Update() {
+			if( !Main.hasFocus ) {
+				return;
+			}
+
 			bool isClicking = Main.mouseLeft && !this.IsClicking;
 
 			this.IsClicking = Main.mouseLeft;

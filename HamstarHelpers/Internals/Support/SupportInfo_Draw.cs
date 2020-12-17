@@ -16,6 +16,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 	/// @private
 	internal partial class SupportInfoDisplay {
 		private static bool CanDraw() {
+			if( !Main.hasFocus ) { return false; }
 			if( !Main.gameMenu ) { return false; }
 			if( Main.spriteBatch == null ) {
 				return false;

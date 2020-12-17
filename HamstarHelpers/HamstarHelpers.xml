@@ -12674,6 +12674,9 @@
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyTool">
             <summary></summary>
         </member>
+        <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyFishingPole">
+            <summary></summary>
+        </member>
         <member name="F:HamstarHelpers.Services.EntityGroups.Definitions.ItemGroupIDs.AnyVanillaExplosive">
             <summary></summary>
         </member>
