@@ -28,13 +28,15 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
 		/// boundaries.</returns>
 		public static (Vector2 ScreenPosition, bool IsOnScreen) GetFullMapPositionAsScreenPosition( Vector2 worldPosition ) {    //Main.mapFullscreen
-			return HUDMapHelpers.GetFullMapPositionAsScreenPosition( new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 ) );
+			return HUDMapHelpers.GetFullMapPositionAsScreenPosition(
+				new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 )
+			);
 		}
 
 		/// <summary>
 		/// Returns a screen position of a given world position as if projected onto the fullscreen map.
 		/// </summary>
-		/// <param name="worldArea"></param>
+		/// <param name="worldArea">An area in world coordinates.</param>
 		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
 		/// boundaries.</returns>
 		public static (Vector2 ScreenPosition, bool IsOnScreen) GetFullMapPositionAsScreenPosition( Rectangle worldArea ) {    //Main.mapFullscreen
@@ -50,8 +52,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float mapX = -mapFullscrX + (float)(Main.screenWidth / 2);
 			float mapY = -mapFullscrY + (float)(Main.screenHeight / 2);
 
-			float originMidX = (worldArea.X / 16f) * mapScale;
-			float originMidY = (worldArea.Y / 16f) * mapScale;
+			float originMidX = ((worldArea.X + (worldArea.Width / 2)) / 16f) * mapScale;
+			float originMidY = ((worldArea.Y + (worldArea.Height / 2)) / 16f) * mapScale;
 
 			originMidX += mapX;
 			originMidY += mapY;

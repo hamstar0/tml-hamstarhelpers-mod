@@ -15,21 +15,23 @@ namespace HamstarHelpers.Services.Maps {
 	/// Provides functions for adding markers to the map.
 	/// </summary>
 	public partial class MapMarkers : ILoadable {
-		/// <summary></summary>
+		/// <summary>Adds or updates a given map marker by id.</summary>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
-		/// <param name="label">Must be unique.</param>
+		/// <param name="id">Must be unique.</param>
 		/// <param name="icon"></param>
 		/// <param name="scale"></param>
 		/// <returns>`false` if a marker of the given label already exists.</returns>
-		public static bool AddFullScreenMapMarker( int tileX, int tileY, string label, Texture2D icon, float scale ) {
+		public static bool AddFullScreenMapMarker( int tileX, int tileY, string id, Texture2D icon, float scale ) {
 			var markers = ModContent.GetInstance<MapMarkers>();
-			var marker = new MapMarker( label, icon, scale );
+			var marker = new MapMarker( id, icon, scale );
 			
-			if( markers.MarkersPerLabel.ContainsKey(label) ) {
-				return false;
+			if( markers.MarkersPerLabel.ContainsKey(id) ) {
+				MapMarkers.RemoveFullScreenMapMarker( id );
+				//return false;
 			}
-			if( markers.Markers.Get2DOrDefault(tileX, tileY)?.ContainsKey(label) ?? false ) {
+
+			if( markers.Markers.Get2DOrDefault(tileX, tileY)?.ContainsKey(id) ?? false ) {
 				return false;
 			}
 
@@ -40,29 +42,29 @@ namespace HamstarHelpers.Services.Maps {
 				markers.Markers[ tileX ][ tileY ] = new Dictionary<string, MapMarker>();
 			}
 
-			markers.Markers[tileX][tileY][label] = marker;
-			markers.MarkersPerLabel[label] = ( tileX, tileY, marker );
+			markers.Markers[tileX][tileY][id] = marker;
+			markers.MarkersPerLabel[id] = ( tileX, tileY, marker );
 
 			return true;
 		}
 
 
 		/// <summary></summary>
-		/// <param name="label"></param>
+		/// <param name="id"></param>
 		/// <returns></returns>
-		public static bool RemoveFullScreenMapMarker( string label ) {
+		public static bool RemoveFullScreenMapMarker( string id ) {
 			var markers = ModContent.GetInstance<MapMarkers>();
 
-			markers.MarkersPerLabel.Remove( label );
+			markers.MarkersPerLabel.Remove( id );
 
 			(int x, int y, MapMarker marker) marker;
-			if( !MapMarkers.TryGetFullScreenMapMarker( label, out marker ) ) {
+			if( !MapMarkers.TryGetFullScreenMapMarker( id, out marker ) ) {
 				return false;
 			}
 
 			IDictionary<string, MapMarker> markersAt = markers.Markers.Get2DOrDefault( marker.x, marker.y );
 
-			return markersAt?.Remove(label) ?? false;
+			return markersAt?.Remove(id) ?? false;
 		}
 
 
@@ -77,13 +79,13 @@ namespace HamstarHelpers.Services.Maps {
 
 
 		/// <summary></summary>
-		/// <param name="label"></param>
+		/// <param name="id"></param>
 		/// <param name="markerAt"></param>
 		/// <returns></returns>
-		public static bool TryGetFullScreenMapMarker( string label, out (int tileX, int tileY, MapMarker marker) markerAt ) {
+		public static bool TryGetFullScreenMapMarker( string id, out (int tileX, int tileY, MapMarker marker) markerAt ) {
 			var markers = ModContent.GetInstance<MapMarkers>();
 
-			return markers.MarkersPerLabel.TryGetValue( label, out markerAt );
+			return markers.MarkersPerLabel.TryGetValue( id, out markerAt );
 		}
 
 

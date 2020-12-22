@@ -6,7 +6,7 @@ namespace HamstarHelpers.Services.Maps {
 	/// <summary></summary>
 	public class MapMarker {
 		/// <summary></summary>
-		public string Label { get; private set; }
+		public string ID { get; private set; }
 
 		/// <summary></summary>
 		public Texture2D Icon { get; private set; }
@@ -15,12 +15,22 @@ namespace HamstarHelpers.Services.Maps {
 		public float Scale { get; private set; }
 
 
+		////
+
+		/// @private
+		[Obsolete( "use ID", true )]
+		public string Label {
+			get => this.ID;
+			private set => this.ID = value;
+		}
+
+
 
 		////////////////
 
 		/// <summary></summary>
-		public MapMarker( string label, Texture2D icon, float scale ) {
-			this.Label = label;
+		public MapMarker( string id, Texture2D icon, float scale ) {
+			this.ID = id;
 			this.Icon = icon;
 			this.Scale = scale;
 		}
@@ -30,7 +40,7 @@ namespace HamstarHelpers.Services.Maps {
 		/// <summary></summary>
 		/// <returns></returns>
 		public override int GetHashCode() {
-			return this.Label.GetHashCode() + this.Icon.GetHashCode();
+			return this.ID.GetHashCode() + this.Icon.GetHashCode();
 		}
 
 		/// <summary></summary>

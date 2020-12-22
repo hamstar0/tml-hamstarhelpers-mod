@@ -42,7 +42,7 @@ namespace HamstarHelpers.Services.Dialogue {
 					MapMarkers.AddFullScreenMapMarker(
 						tileX: (int)( npc.position.X / 16f ),
 						tileY: (int)( npc.position.Y / 16f ),
-						label: "ModHelpersDialogueAlert_" + townNpcType,
+						id: "ModHelpersDialogueAlert_" + townNpcType,
 						icon: Main.chatTexture,
 						scale: 0.75f
 					);
