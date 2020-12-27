@@ -7685,7 +7685,7 @@
         <member name="P:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.CopperCoinColor">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.RenderMoneyDenominations(System.Int32,System.Boolean,System.Boolean)">
+        <member name="M:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.RenderMoneyDenominations(System.Int64,System.Boolean,System.Boolean)">
             <summary>
             Generates an English-formatted string indicating an amount of money.
             </summary>

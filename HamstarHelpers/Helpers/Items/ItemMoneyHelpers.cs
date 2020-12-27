@@ -40,31 +40,30 @@ namespace HamstarHelpers.Helpers.Items {
 			long gold = 0;
 			long silver = 0;
 			long copper = 0;
+			long absMoney = Math.Abs( money );
 
-			if( money < 0 ) { money = 0; }
-
-			if( money >= 1000000 ) {
+			if( absMoney >= 1000000 ) {
 				plat = money / 1000000;
-				money -= plat * 1000000;
+				absMoney -= Math.Abs(plat) * 1000000;
 			}
-			if( money >= 10000 ) {
+			if( absMoney >= 10000 ) {
 				gold = money / 10000;
-				money -= gold * 10000;
+				absMoney -= Math.Abs(gold) * 10000;
 			}
-			if( money >= 100 ) {
+			if( absMoney >= 100 ) {
 				silver = money / 100;
-				money -= silver * 100;
+				absMoney -= Math.Abs(silver) * 100;
 			}
-			if( money >= 1 ) {
-				copper = money;
+			if( absMoney >= 1 ) {
+				copper = absMoney;
 			}
 
 			var rendered = new List<string>( 4 );
 
-			if( copper > 0 ) {
+			if( copper != 0 ) {
 				string render = copper.ToString();
 				if( addDenom ) {
-					render += " " + Language.GetTextValue( "CopperCoin" );    //Lang.inter[18];
+					render += " " + Language.GetTextValue( "Currency.Copper" );    //Lang.inter[18];
 				}
 				if( addColors ) {
 					string colorHex = MiscHelpers.RenderColorHex( ItemMoneyHelpers.CopperCoinColor );
@@ -72,10 +71,10 @@ namespace HamstarHelpers.Helpers.Items {
 				}
 				rendered.Add( render );
 			}
-			if( silver > 0 ) {
+			if( silver != 0 ) {
 				string render = silver.ToString();
 				if( addDenom ) {
-					render += " " + Language.GetTextValue( "SilverCoin" );    //Lang.inter[17];
+					render += " " + Language.GetTextValue( "Currency.Silver" );    //Lang.inter[17];
 				}
 				if( addColors ) {
 					string colorHex = MiscHelpers.RenderColorHex( ItemMoneyHelpers.SilverCoinColor );
@@ -83,10 +82,10 @@ namespace HamstarHelpers.Helpers.Items {
 				}
 				rendered.Add( render );
 			}
-			if( gold > 0 ) {
+			if( gold != 0 ) {
 				string render = gold.ToString();
 				if( addDenom ) {
-					render += " " + Language.GetTextValue( "GoldCoin" );    //Lang.inter[16];
+					render += " " + Language.GetTextValue( "Currency.Gold" );    //Lang.inter[16];
 				}
 				if( addColors ) {
 					string colorHex = MiscHelpers.RenderColorHex( ItemMoneyHelpers.GoldCoinColor );
@@ -94,10 +93,10 @@ namespace HamstarHelpers.Helpers.Items {
 				}
 				rendered.Add( render );
 			}
-			if( plat > 0 ) {
+			if( plat != 0 ) {
 				string render = plat.ToString();
 				if( addDenom ) {
-					render += " " + Language.GetTextValue( "PlatinumCoin" );    //Lang.inter[15];
+					render += " " + Language.GetTextValue( "Currency.Platinum" );    //Lang.inter[15];
 				}
 				if( addColors ) {
 					string colorHex = MiscHelpers.RenderColorHex( ItemMoneyHelpers.PlatinumCoinColor );

@@ -1,8 +1,5 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Localization;
-using HamstarHelpers.Helpers.Players;
 
 
 namespace HamstarHelpers.Helpers.Items {
@@ -11,7 +8,7 @@ namespace HamstarHelpers.Helpers.Items {
 	/// </summary>
 	public partial class ItemMoneyHelpers {
 		/// @private
-		[Obsolete("use alt", true)]
+		[Obsolete( "use RenderMoneyDenominations(long, bool, bool)", true)]
 		public static string RenderMoney( int money ) {
 			return string.Join( " ", ItemMoneyHelpers.RenderMoneyDenominations(money, true, false) );
 		}
