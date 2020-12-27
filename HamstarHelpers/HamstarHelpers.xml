@@ -7669,6 +7669,9 @@
             <summary>
             Assorted static "helper" functions pertaining to money items.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to money items.
+            </summary>
         </member>
         <member name="P:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.PlatinumCoinColor">
             <summary></summary>
@@ -7682,11 +7685,13 @@
         <member name="P:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.CopperCoinColor">
             <summary></summary>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.RenderMoney(System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.RenderMoneyDenominations(System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Generates an English-formatted string indicating an amount of money.
             </summary>
             <param name="money"></param>
+            <param name="addDenom"></param>
+            <param name="addColors"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.CountMoney(Terraria.Player,System.Boolean)">
@@ -7696,6 +7701,9 @@
             <param name="player"></param>
             <param name="includeBanks"></param>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.ItemMoneyHelpers.RenderMoney(System.Int32)">
+            @private
         </member>
         <member name="T:HamstarHelpers.Helpers.Items.MusicBoxHelpers">
             <summary>
