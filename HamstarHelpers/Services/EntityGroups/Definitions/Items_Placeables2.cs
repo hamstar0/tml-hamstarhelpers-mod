@@ -139,7 +139,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Stations
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Workbench",
+				grpName: ItemGroupIDs.AnyWorkbench,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == TileID.WorkBenches;
@@ -147,35 +147,38 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			) );
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Anvil",
+				grpName: ItemGroupIDs.AnyAnvil,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == TileID.Anvils || item.createTile == TileID.MythrilAnvil;
+					return item.createTile == TileID.Anvils
+						|| item.createTile == TileID.MythrilAnvil;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Forge",
+				grpName: ItemGroupIDs.AnyForge,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == TileID.WorkBenches;
+					return item.createTile == TileID.AdamantiteForge
+						|| item.createTile == TileID.Furnaces;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Table",
+				grpName: ItemGroupIDs.AnyTable,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == TileID.Tables;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Alchemy Station",
+				grpName: ItemGroupIDs.AnyAlchemyStation,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == TileID.Bottles || item.createTile == TileID.AlchemyTable;
+					return item.createTile == TileID.Bottles
+						|| item.createTile == TileID.AlchemyTable;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Hardmode Crafting Station",
+				grpName: ItemGroupIDs.AnyHardmodeCraftingStation,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.createTile ) {
@@ -193,7 +196,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Vanilla Themed Crafting Station",
+				grpName: ItemGroupIDs.AnyVanillaThemedCraftingStation,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
@@ -213,7 +216,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Misc Crafting Station",
+				grpName: ItemGroupIDs.AnyMiscCraftingStation,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.createTile ) {
@@ -234,7 +237,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Chests
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Chest",
+				grpName: ItemGroupIDs.AnyChest,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == TileID.Containers;
@@ -244,7 +247,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Wire
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Wire Component",
+				grpName: ItemGroupIDs.AnyWireComponent,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( item.createTile == -1 ) { return false; }
@@ -252,14 +255,14 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Trap Chest",
+				grpName: ItemGroupIDs.AnyTrapChest,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == TileID.FakeContainers;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Vanilla Wire Trap",
+				grpName: ItemGroupIDs.AnyVanillaWireTrap,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
@@ -285,7 +288,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Vanilla Wire Switch",
+				grpName: ItemGroupIDs.AnyVanillaWireSwitch,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.type ) {
@@ -324,7 +327,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 			// Lights
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Light",
+				grpName: ItemGroupIDs.AnyLight,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.createTile ) {
@@ -357,7 +360,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Candle",
+				grpName: ItemGroupIDs.AnyCandle,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					switch( item.createTile ) {
@@ -371,24 +374,25 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Wall Torch",
+				grpName: ItemGroupIDs.AnyWallTorch,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == TileID.Torches;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Campfire",
+				grpName: ItemGroupIDs.AnyCampfire,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.createTile == TileID.Campfire || item.createTile == TileID.Fireplace;
+					return item.createTile == TileID.Campfire
+						|| item.createTile == TileID.Fireplace;
 				} )
 			) );
 
 			// Misc
 
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
-				grpName: "Any Statue",
+				grpName: ItemGroupIDs.AnyStatue,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					return item.createTile == TileID.Statues;

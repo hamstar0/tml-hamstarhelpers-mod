@@ -45,8 +45,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 		////////////////
 
 		/// <summary>
-		/// Defines a custom item group to add to the database. Must be called after entity groups loaded, but before mods
-		/// finish loading (PostSetupContent, etc.).
+		/// Defines a custom item group to add to the database.
+		/// 
+		/// Reminder: Must be called after EntityGroups.Enable(), but before mods finish loading (PostSetupContent,
+		/// PostAddRecipes, etc.).
 		/// </summary>
 		/// <param name="groupName"></param>
 		/// <param name="groupDependencies">Other groups the current group references.</param>
@@ -63,8 +65,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 		/// <summary>
-		/// Defines a custom NPC group to add to the database. Must be called after entity groups loaded, but before mods
-		/// finish loading (PostSetupContent, etc.).
+		/// Defines a custom NPC group to add to the database.
+		/// 
+		/// Reminder: Must be called after EntityGroups.Enable(), but before mods finish loading (PostSetupContent,
+		/// PostAddRecipes, etc.).
 		/// </summary>
 		/// <param name="groupName"></param>
 		/// <param name="groupDependencies">Other groups the current group references.</param>
@@ -81,8 +85,10 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 
 		/// <summary>
-		/// Defines a custom Projectile group to add to the database. Must be called after entity groups loaded, but
-		/// before mods finish loading (PostSetupContent, etc.).
+		/// Defines a custom Projectile group to add to the database.
+		/// 
+		/// Reminder: Must be called after EntityGroups.Enable(), but before mods finish loading (PostSetupContent,
+		/// PostAddRecipes, etc.).
 		/// </summary>
 		/// <param name="groupName"></param>
 		/// <param name="groupDependencies">Other groups the current group references.</param>
@@ -105,6 +111,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		/// <summary>
 		/// Retrieves an item group by its name.
+		/// 
+		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+		/// loaded (after PostSetupContent and PostAddRecipes).
 		/// </summary>
 		/// <param name="name"></param>
 		/// <param name="group"></param>
@@ -116,6 +125,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 		/// <summary>
 		/// Retrieves an NPC group by its name.
+		/// 
+		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+		/// loaded (after PostSetupContent and PostAddRecipes).
 		/// </summary>
 		/// <param name="name"></param>
 		/// <param name="group"></param>
@@ -127,6 +139,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 		/// <summary>
 		/// Retrieves a projectile group by its name.
+		/// 
+		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+		/// loaded (after PostSetupContent and PostAddRecipes).
 		/// </summary>
 		/// <param name="name"></param>
 		/// <param name="group"></param>
@@ -139,6 +154,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 
 		/// <summary>
 		/// Retrieves all groups (names) of a given item (type).
+		/// 
+		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+		/// loaded (after PostSetupContent and PostAddRecipes).
 		/// </summary>
 		/// <param name="itemType"></param>
 		/// <param name="groupNames"></param>
@@ -150,6 +168,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 		/// <summary>
 		/// Retrieves all groups (names) of a given NPC (type).
+		/// 
+		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+		/// loaded (after PostSetupContent and PostAddRecipes).
 		/// </summary>
 		/// <param name="npcType"></param>
 		/// <param name="groupNames"></param>
@@ -161,6 +182,9 @@ namespace HamstarHelpers.Services.EntityGroups {
 		}
 		/// <summary>
 		/// Retrieves all groups (names) of a given projectile (type).
+		/// 
+		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+		/// loaded (after PostSetupContent and PostAddRecipes).
 		/// </summary>
 		/// <param name="projType"></param>
 		/// <param name="groupNames"></param>

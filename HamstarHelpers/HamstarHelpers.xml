@@ -13037,8 +13037,10 @@
         </member>
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.AddCustomItemGroup(System.String,System.String[],HamstarHelpers.Services.EntityGroups.ItemGroupMatcher)">
             <summary>
-            Defines a custom item group to add to the database. Must be called after entity groups loaded, but before mods
-            finish loading (PostSetupContent, etc.).
+            Defines a custom item group to add to the database.
+            
+            Reminder: Must be called after EntityGroups.Enable(), but before mods finish loading (PostSetupContent,
+            PostAddRecipes, etc.).
             </summary>
             <param name="groupName"></param>
             <param name="groupDependencies">Other groups the current group references.</param>
@@ -13046,8 +13048,10 @@
         </member>
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.AddCustomNPCGroup(System.String,System.String[],HamstarHelpers.Services.EntityGroups.NPCGroupMatcher)">
             <summary>
-            Defines a custom NPC group to add to the database. Must be called after entity groups loaded, but before mods
-            finish loading (PostSetupContent, etc.).
+            Defines a custom NPC group to add to the database.
+            
+            Reminder: Must be called after EntityGroups.Enable(), but before mods finish loading (PostSetupContent,
+            PostAddRecipes, etc.).
             </summary>
             <param name="groupName"></param>
             <param name="groupDependencies">Other groups the current group references.</param>
@@ -13055,8 +13059,10 @@
         </member>
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.AddCustomProjectileGroup(System.String,System.String[],HamstarHelpers.Services.EntityGroups.ProjectileGroupMatcher)">
             <summary>
-            Defines a custom Projectile group to add to the database. Must be called after entity groups loaded, but
-            before mods finish loading (PostSetupContent, etc.).
+            Defines a custom Projectile group to add to the database.
+            
+            Reminder: Must be called after EntityGroups.Enable(), but before mods finish loading (PostSetupContent,
+            PostAddRecipes, etc.).
             </summary>
             <param name="groupName"></param>
             <param name="groupDependencies">Other groups the current group references.</param>
@@ -13065,6 +13071,9 @@
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetItemGroup(System.String,HamstarHelpers.Classes.DataStructures.IReadOnlySet{System.Int32}@)">
             <summary>
             Retrieves an item group by its name.
+            
+            Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+            loaded (after PostSetupContent and PostAddRecipes).
             </summary>
             <param name="name"></param>
             <param name="group"></param>
@@ -13073,6 +13082,9 @@
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetNpcGroup(System.String,HamstarHelpers.Classes.DataStructures.IReadOnlySet{System.Int32}@)">
             <summary>
             Retrieves an NPC group by its name.
+            
+            Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+            loaded (after PostSetupContent and PostAddRecipes).
             </summary>
             <param name="name"></param>
             <param name="group"></param>
@@ -13081,6 +13093,9 @@
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetProjectileGroup(System.String,HamstarHelpers.Classes.DataStructures.IReadOnlySet{System.Int32}@)">
             <summary>
             Retrieves a projectile group by its name.
+            
+            Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+            loaded (after PostSetupContent and PostAddRecipes).
             </summary>
             <param name="name"></param>
             <param name="group"></param>
@@ -13089,6 +13104,9 @@
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetGroupsPerItem(System.Int32,HamstarHelpers.Classes.DataStructures.IReadOnlySet{System.String}@)">
             <summary>
             Retrieves all groups (names) of a given item (type).
+            
+            Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+            loaded (after PostSetupContent and PostAddRecipes).
             </summary>
             <param name="itemType"></param>
             <param name="groupNames"></param>
@@ -13097,6 +13115,9 @@
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetGroupsPerNPC(System.Int32,HamstarHelpers.Classes.DataStructures.IReadOnlySet{System.String}@)">
             <summary>
             Retrieves all groups (names) of a given NPC (type).
+            
+            Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+            loaded (after PostSetupContent and PostAddRecipes).
             </summary>
             <param name="npcType"></param>
             <param name="groupNames"></param>
@@ -13105,6 +13126,9 @@
         <member name="M:HamstarHelpers.Services.EntityGroups.EntityGroups.TryGetGroupsPerProjectile(System.Int32,HamstarHelpers.Classes.DataStructures.IReadOnlySet{System.String}@)">
             <summary>
             Retrieves all groups (names) of a given projectile (type).
+            
+            Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
+            loaded (after PostSetupContent and PostAddRecipes).
             </summary>
             <param name="projType"></param>
             <param name="groupNames"></param>
