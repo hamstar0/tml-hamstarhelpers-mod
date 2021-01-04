@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.EntityGroups.Definitions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.EntityGroups.Definitions;
 
 
 namespace HamstarHelpers.Services.EntityGroups {

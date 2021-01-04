@@ -113,7 +113,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// Retrieves an item group by its name.
 		/// 
 		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
-		/// loaded (after PostSetupContent and PostAddRecipes).
+		/// loaded (use CustomLoadHooks with EntityGroups.LoadedAllValidator).
 		/// </summary>
 		/// <param name="name"></param>
 		/// <param name="group"></param>
@@ -127,7 +127,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// Retrieves an NPC group by its name.
 		/// 
 		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
-		/// loaded (after PostSetupContent and PostAddRecipes).
+		/// loaded (use CustomLoadHooks with EntityGroups.LoadedAllValidator).
 		/// </summary>
 		/// <param name="name"></param>
 		/// <param name="group"></param>
@@ -141,7 +141,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// Retrieves a projectile group by its name.
 		/// 
 		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
-		/// loaded (after PostSetupContent and PostAddRecipes).
+		/// loaded (use CustomLoadHooks with EntityGroups.LoadedAllValidator).
 		/// </summary>
 		/// <param name="name"></param>
 		/// <param name="group"></param>
@@ -156,7 +156,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// Retrieves all groups (names) of a given item (type).
 		/// 
 		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
-		/// loaded (after PostSetupContent and PostAddRecipes).
+		/// loaded (use CustomLoadHooks with EntityGroups.LoadedAllValidator).
 		/// </summary>
 		/// <param name="itemType"></param>
 		/// <param name="groupNames"></param>
@@ -170,7 +170,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// Retrieves all groups (names) of a given NPC (type).
 		/// 
 		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
-		/// loaded (after PostSetupContent and PostAddRecipes).
+		/// loaded (use CustomLoadHooks with EntityGroups.LoadedAllValidator).
 		/// </summary>
 		/// <param name="npcType"></param>
 		/// <param name="groupNames"></param>
@@ -184,7 +184,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// Retrieves all groups (names) of a given projectile (type).
 		/// 
 		/// Reminder: This must be called after entity groups are initialized (EntityGroups.Enable()), and then after mods are
-		/// loaded (after PostSetupContent and PostAddRecipes).
+		/// loaded (use CustomLoadHooks with EntityGroups.LoadedAllValidator).
 		/// </summary>
 		/// <param name="projType"></param>
 		/// <param name="groupNames"></param>

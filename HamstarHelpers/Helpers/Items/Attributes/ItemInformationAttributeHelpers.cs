@@ -119,14 +119,29 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 	/// </summary>
 	public class ItemInformationAttributeHelpers {
 		/// <summary>
-		/// Convenience function (meant to be called in any ModifyTooltips hook) add a tooltip to an item in a specific
-		/// position. Adapts to item context.
+		/// Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at the end of its
+		/// list. Adapts to item context.
+		/// </summary>
+		/// <param name="tooltips"></param>
+		/// <param name="tip"></param>
+		/// <returns>`true` if tooltip added.</returns>
+		public static bool AppendTooltip( IList<TooltipLine> tooltips, TooltipLine tip ) {
+			if( !ItemInformationAttributeHelpers.ApplyTooltipAt( tooltips, tip, VanillaTooltipName.Tooltip, true) ) {
+				return ItemInformationAttributeHelpers.ApplyTooltipAt( tooltips, tip, VanillaTooltipName.Material, true );
+			}
+			return false;
+		}
+
+
+		/// <summary>
+		/// Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at a specific
+		/// list position. Adapts to item context.
 		/// </summary>
 		/// <param name="tooltips"></param>
 		/// <param name="tip"></param>
 		/// <param name="insertAt"></param>
 		/// <param name="insertAfter"></param>
-		/// <returns></returns>
+		/// <returns>`true` if tooltip added.</returns>
 		public static bool ApplyTooltipAt(
 					IList<TooltipLine> tooltips,
 					TooltipLine tip,
@@ -144,7 +159,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 					}
 				}
 
-				if( insertAt == nameType ) {
+				if( (insertAt & nameType) == nameType ) {
 					if( insertAfter ) {
 						tooltips.Insert( i+1, tip );
 					} else {
@@ -168,14 +183,14 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 
 
 		/// <summary>
-		/// Convenience function (meant to be called in any ModifyTooltips hook) add a tooltip to an item in a specific
-		/// position. Adapts to item context.
+		/// Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at a specific
+		/// list position. Adapts to item context.
 		/// </summary>
 		/// <param name="tooltips"></param>
 		/// <param name="tip"></param>
 		/// <param name="insertAt"></param>
 		/// <param name="insertAfter"></param>
-		/// <returns></returns>
+		/// <returns>`true` if tooltip added.</returns>
 		public static bool ApplyTooltipAt(
 					IList<TooltipLine> tooltips,
 					TooltipLine tip,
