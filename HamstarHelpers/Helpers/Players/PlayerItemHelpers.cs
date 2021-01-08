@@ -51,27 +51,27 @@ namespace HamstarHelpers.Helpers.Players {
 		/// </summary>
 		/// <param name="player"></param>
 		/// <param name="itemType"></param>
-		/// <param name="quantity"></param>
+		/// <param name="quantityToRemove"></param>
 		/// <returns>Amount removed.</returns>
-		public static int RemoveInventoryItemQuantity( Player player, int itemType, int quantity ) {
+		public static int RemoveInventoryItemQuantity( Player player, int itemType, int quantityToRemove ) {
 			int removed = 0;
 
 			for( int i = 0; i < player.inventory.Length; i++ ) {
 				Item item = player.inventory[i];
-				if( item == null || item.IsAir || item.type != itemType ) { continue; }
+				if( item?.active != true || item.type != itemType ) { continue; }
 
 				int stack = item.stack;
 
-				if( stack > quantity ) {
-					item.stack -= quantity;
-					removed += quantity;
+				if( stack > quantityToRemove ) {
+					item.stack -= quantityToRemove;
+					removed += quantityToRemove;
 					break;
 				} else {
-					quantity -= stack;
+					quantityToRemove -= stack;
 					removed += stack;
 					player.inventory[i] = new Item();
 
-					if( quantity == 0 ) { break; }
+					if( quantityToRemove <= 0 ) { break; }
 				}
 			}
 

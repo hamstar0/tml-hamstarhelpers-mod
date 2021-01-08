@@ -64,7 +64,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: ItemGroupIDs.AnyFishingPole,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return item.fishingPole != 0;
+					return item.fishingPole > 0;
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(

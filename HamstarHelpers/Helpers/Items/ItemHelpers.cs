@@ -41,7 +41,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <returns></returns>
 		public static int CreateItem( Vector2 pos, int type, int stack, int width, int height, int prefix = 0 ) {
 			int idx = Item.NewItem( (int)pos.X, (int)pos.Y, width, height, type, stack, false, prefix, true, false );
-			if( Main.netMode != NetmodeID.SinglePlayer ) {
+			if( idx >= 0 && Main.netMode != NetmodeID.SinglePlayer ) {
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 1f, 0f, 0f, 0, 0, 0 );
 			}
 			return idx;

@@ -44,7 +44,7 @@ namespace HamstarHelpers.Services.Dialogue {
 						tileY: (int)( npc.position.Y / 16f ),
 						id: "ModHelpersDialogueAlert_" + townNpcType,
 						icon: Main.chatTexture,
-						scale: 0.75f
+						scale: 2f
 					);
 				} else {
 					MapMarkers.RemoveFullScreenMapMarker( "ModHelpersDialogueAlert_" + townNpcType );

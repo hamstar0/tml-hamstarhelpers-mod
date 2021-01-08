@@ -8670,7 +8670,7 @@
             </summary>
             <param name="player"></param>
             <param name="itemType"></param>
-            <param name="quantity"></param>
+            <param name="quantityToRemove"></param>
             <returns>Amount removed.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Players.PlayerItemHelpers.DropInventoryItem(Terraria.Player,System.Int32,System.Int32)">
