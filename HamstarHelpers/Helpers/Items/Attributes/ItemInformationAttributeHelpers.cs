@@ -139,7 +139,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		/// </summary>
 		/// <param name="tooltips"></param>
 		/// <param name="tip"></param>
-		/// <param name="insertAt"></param>
+		/// <param name="insertAt">Vanilla-standard tooltip type. Does not accept bit flags.</param>
 		/// <param name="insertAfter"></param>
 		/// <returns>`true` if tooltip added.</returns>
 		public static bool ApplyTooltipAt(
@@ -159,7 +159,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 					}
 				}
 
-				if( (insertAt & nameType) == nameType ) {
+				if( insertAt == nameType ) {
 					if( insertAfter ) {
 						tooltips.Insert( i+1, tip );
 					} else {
