@@ -19,9 +19,19 @@ namespace HamstarHelpers.Services.Maps {
 		}
 
 		/// @private
-		[Obsolete( "use `AddFullScreenMapMarker(int tileX, int tileY, string label, Texture2D, float)`", true )]
+		[Obsolete( "use `SetFullScreenMapMarker(string label, int tileX, int tileY, Texture2D, float)`", true )]
 		public static bool AddFullScreenMapMarker( int tileX, int tileY, string label, Texture2D icon ) {
-			return MapMarkers.AddFullScreenMapMarker( tileX, tileY, label, icon, 0.25f );
+			bool hasMarker = MapMarkers.TryGetFullScreenMapMarker( label, out _ );
+			MapMarkers.SetFullScreenMapMarker( label, tileX, tileY, icon, 0.25f );
+			return hasMarker;
+		}
+
+		/// @private
+		[Obsolete( "use `SetFullScreenMapMarker(string label, int tileX, int tileY, Texture2D, float)`", true )]
+		public static bool AddFullScreenMapMarker( int tileX, int tileY, string id, Texture2D icon, float scale ) {
+			bool hasMarker = MapMarkers.TryGetFullScreenMapMarker( id, out _ );
+			MapMarkers.SetFullScreenMapMarker( id, tileX, tileY, icon, scale );
+			return hasMarker;
 		}
 	}
 }

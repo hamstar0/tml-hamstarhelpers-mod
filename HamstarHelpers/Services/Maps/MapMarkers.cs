@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
 using Microsoft.Xna.Framework.Graphics;
+using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.Debug;
@@ -16,23 +17,17 @@ namespace HamstarHelpers.Services.Maps {
 	/// </summary>
 	public partial class MapMarkers : ILoadable {
 		/// <summary>Adds or updates a given map marker by id.</summary>
+		/// <param name="id">Must be unique.</param>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
-		/// <param name="id">Must be unique.</param>
 		/// <param name="icon"></param>
 		/// <param name="scale"></param>
-		/// <returns>`false` if a marker of the given label already exists.</returns>
-		public static bool AddFullScreenMapMarker( int tileX, int tileY, string id, Texture2D icon, float scale ) {
+		public static void SetFullScreenMapMarker( string id, int tileX, int tileY, Texture2D icon, float scale ) {
 			var markers = ModContent.GetInstance<MapMarkers>();
 			var marker = new MapMarker( id, icon, scale );
 			
 			if( markers.MarkersPerLabel.ContainsKey(id) ) {
 				MapMarkers.RemoveFullScreenMapMarker( id );
-				//return false;
-			}
-
-			if( markers.Markers.Get2DOrDefault(tileX, tileY)?.ContainsKey(id) ?? false ) {
-				return false;
 			}
 
 			if( !markers.Markers.ContainsKey(tileX) ) {
@@ -42,10 +37,8 @@ namespace HamstarHelpers.Services.Maps {
 				markers.Markers[ tileX ][ tileY ] = new Dictionary<string, MapMarker>();
 			}
 
-			markers.Markers[tileX][tileY][id] = marker;
-			markers.MarkersPerLabel[id] = ( tileX, tileY, marker );
-
-			return true;
+			markers.Markers[ tileX ][ tileY ][ id ] = marker;
+			markers.MarkersPerLabel[ id ] = ( tileX, tileY, marker );
 		}
 
 
@@ -55,16 +48,16 @@ namespace HamstarHelpers.Services.Maps {
 		public static bool RemoveFullScreenMapMarker( string id ) {
 			var markers = ModContent.GetInstance<MapMarkers>();
 
-			markers.MarkersPerLabel.Remove( id );
-
 			(int x, int y, MapMarker marker) marker;
-			if( !MapMarkers.TryGetFullScreenMapMarker( id, out marker ) ) {
+			if( !markers.MarkersPerLabel.TryGetValue( id, out marker ) ) {
 				return false;
 			}
 
-			IDictionary<string, MapMarker> markersAt = markers.Markers.Get2DOrDefault( marker.x, marker.y );
-
-			return markersAt?.Remove(id) ?? false;
+			IDictionary<string, MapMarker> markersByIds = markers.Markers.Get2DOrDefault( marker.x, marker.y );
+			
+			bool hadMarkerPerLabel = markers.MarkersPerLabel.Remove( id );
+			bool hadMarkerById = markersByIds?.Remove(id) ?? false;
+			return hadMarkerPerLabel && hadMarkerById;
 		}
 
 

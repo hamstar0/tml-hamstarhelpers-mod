@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
 using Terraria;
+using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
 using HamstarHelpers.Helpers.DotNET;
@@ -27,27 +28,30 @@ namespace HamstarHelpers.Services.Dialogue {
 			IDictionary<int, int> townNpcWhos = Main.npc
 				.SafeWhere( n => {
 					if( n?.active != true ) { return false; }
-					if( !n.townNPC ) { return false; }
-
+					if( !n.townNPC && n.type != NPCID.OldMan ) { return false; }
 					if( uniques.Contains( n.type ) ) { return false; }
+
 					uniques.Add( n.type );
+
 					return true;
 				} )
 				.ToDictionary( n => n.type, n => n.whoAmI );
 
 			foreach( (int townNpcType, int townNpcWho) in townNpcWhos ) {
-				if( handlers.ContainsKey(townNpcType) && handlers[townNpcType].IsShowingAlert() ) {
+				string alertId = "ModHelpersDialogueAlert_" + townNpcType;
+
+				if( handlers.ContainsKey(townNpcType) && (handlers[townNpcType].IsShowingAlert?.Invoke() ?? false) ) {
 					NPC npc = Main.npc[townNpcWho];
 
-					MapMarkers.AddFullScreenMapMarker(
+					MapMarkers.SetFullScreenMapMarker(
+						id: alertId,
 						tileX: (int)( npc.position.X / 16f ),
 						tileY: (int)( npc.position.Y / 16f ),
-						id: "ModHelpersDialogueAlert_" + townNpcType,
 						icon: Main.chatTexture,
-						scale: 2f
+						scale: 1.35f
 					);
 				} else {
-					MapMarkers.RemoveFullScreenMapMarker( "ModHelpersDialogueAlert_" + townNpcType );
+					MapMarkers.RemoveFullScreenMapMarker( alertId );
 				}
 			}
 		}

@@ -2,6 +2,7 @@
 using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.TModLoader;
 
@@ -56,7 +57,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="handler"></param>
 		public static void SetDynamicDialogueHandler( int npcType, DynamicDialogueHandler handler ) {
 			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
-			de.DynamicHandlers[npcType] = handler;
+			de.DynamicHandlers[ npcType ] = handler;
 		}
 
 		/// <summary>
