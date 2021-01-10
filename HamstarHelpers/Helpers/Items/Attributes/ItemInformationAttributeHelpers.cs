@@ -152,7 +152,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 				VanillaTooltipName nameType;
 
 				if( !Enum.TryParse(name, out nameType) ) {
-					if( name.StartsWith( "Tooltip" ) ) {
+					if( name.StartsWith("Tooltip") ) {
 						nameType = VanillaTooltipName.Tooltip;
 					} else {
 						continue;

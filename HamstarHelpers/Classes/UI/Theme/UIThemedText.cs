@@ -1,8 +1,13 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent.UI.Elements;
+using ReLogic.Graphics;
+using Terraria;
 using Terraria.UI;
+using Terraria.UI.Chat;
+using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -17,6 +22,13 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		/// <summary></summary>
 		public bool IsHidden { get; protected set; }
+
+
+		////////////////
+
+		private float ScaleCopy;
+		private bool LargeCopy;
+		private Vector2 SizeCopy;
 
 
 
@@ -35,6 +47,15 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					bool large=false )
 				: base( text, textScale, large ) {
 			this.Theme = theme;
+
+			this.ScaleCopy = textScale;
+			this.LargeCopy = large;
+
+			DynamicSpriteFont font = large ? Main.fontDeathText : Main.fontMouseText;
+			this.SizeCopy = new Vector2(
+				font.MeasureString( text.ToString() ).X,
+				large ? 32f : 16f
+			) * textScale;
 
 			if( !skipThemeRefreshNow ) {
 				theme.ApplyText( this );
@@ -108,6 +129,57 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		public override void Draw( SpriteBatch spriteBatch ) {
 			if( !this.IsHidden ) {
 				base.Draw( spriteBatch );
+			}
+		}
+
+		/// @private
+		protected override void DrawSelf( SpriteBatch sb ) {
+			CalculatedStyle innerDimensions = base.GetInnerDimensions();
+			DynamicSpriteFont font = this.LargeCopy ? Main.fontDeathText : Main.fontMouseText;
+			Vector2 pos = innerDimensions.Position();
+
+			pos.X += ( innerDimensions.Width - this.SizeCopy.X ) * 0.5f;
+			if( this.LargeCopy ) {
+				pos.Y -= 10f * this.ScaleCopy;
+			} else {
+				pos.Y -= 2f * this.ScaleCopy;
+			}
+
+			string[] textLines = this.Text.Split( '\n' );
+			float largestSnippetScaleOfLine = 0f;
+
+			for( int i=0; i<textLines.Length; i++ ) {
+				TextSnippet[] snippets = ChatManager.ParseMessage( textLines[i], this.TextColor ).ToArray();
+
+				for( int j=0; j<snippets.Length; j++ ) {
+					string[] sublines = snippets[j].Text.Split( '\n' );
+					if( sublines.Length > 1 ) {
+						string rejoined = string.Join( "", sublines );
+
+						snippets[j] = snippets[j].CopyMorph( rejoined );
+					}
+
+					if( largestSnippetScaleOfLine < snippets[j].Scale ) {
+						largestSnippetScaleOfLine = snippets[j].Scale;
+					}
+				}
+
+				ChatManager.DrawColorCodedStringWithShadow(
+					spriteBatch: sb,
+					font: font,
+					snippets: snippets,
+					position: pos,
+					rotation: 0f,
+					origin: Vector2.Zero,
+					baseScale: new Vector2( this.ScaleCopy ),
+					hoveredSnippet: out _,
+					maxWidth: -1f,
+					spread: 2f
+				);
+
+				pos.Y += (float)font.LineSpacing * largestSnippetScaleOfLine * this.ScaleCopy;
+
+				largestSnippetScaleOfLine = 0f;
 			}
 		}
 	}

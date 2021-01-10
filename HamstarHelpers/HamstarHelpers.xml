@@ -3696,6 +3696,9 @@
         <member name="M:HamstarHelpers.Classes.UI.Elements.UIThemedText.Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
             @private
         </member>
+        <member name="M:HamstarHelpers.Classes.UI.Elements.UIThemedText.DrawSelf(Microsoft.Xna.Framework.Graphics.SpriteBatch)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Classes.UI.Elements.UIThemedTextPanel">
             <summary>
             Theme-able UITextPanel.
@@ -7330,7 +7333,7 @@
             </summary>
             <param name="tooltips"></param>
             <param name="tip"></param>
-            <param name="insertAt"></param>
+            <param name="insertAt">Vanilla-standard tooltip type. Does not accept bit flags.</param>
             <param name="insertAfter"></param>
             <returns>`true` if tooltip added.</returns>
         </member>
