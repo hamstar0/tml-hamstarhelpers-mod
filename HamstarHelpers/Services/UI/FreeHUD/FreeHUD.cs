@@ -60,6 +60,14 @@ namespace HamstarHelpers.Services.UI.FreeHUD {
 			return hud.ElemMap.GetOrDefault( id );
 		}
 
+		/////
+
+		/// <summary>Calls `Recalculate()` on FreeHUD's container.</summary>
+		public static void RefreshElements() {
+			var hud = FreeHUD.Instance;
+			hud.UIContext.Recalculate();
+		}
+
 
 
 		////////////////

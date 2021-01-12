@@ -27,6 +27,39 @@ namespace HamstarHelpers.Helpers.Items {
 
 
 		////////////////
+		
+		/// <summary></summary>
+		/// <param name="money"></param>
+		/// <returns></returns>
+		public static (long platinum, long gold, long silver, long copper) GetMoneyDenominations( long money ) {
+			long plat = 0;
+			long gold = 0;
+			long silver = 0;
+			long copper = 0;
+			long absMoney = Math.Abs( money );
+
+			if( absMoney >= 1000000 ) {
+				plat = money / 1000000;
+				money -= plat * 1000000;
+				absMoney -= Math.Abs(plat) * 1000000;
+			}
+			if( absMoney >= 10000 ) {
+				gold = money / 10000;
+				money -= gold * 10000;
+				absMoney -= Math.Abs(gold) * 10000;
+			}
+			if( absMoney >= 100 ) {
+				silver = money / 100;
+				money -= silver * 100;
+				absMoney -= Math.Abs(silver) * 100;
+			}
+			if( absMoney >= 1 ) {
+				copper = absMoney;
+			}
+
+			return (plat, gold, silver, copper);
+		}
+
 
 		/// <summary>
 		/// Generates an English-formatted string indicating an amount of money.
@@ -36,32 +69,11 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <param name="addColors"></param>
 		/// <returns></returns>
 		public static string[] RenderMoneyDenominations( long money, bool addDenom, bool addColors ) {
-			long plat = 0;
-			long gold = 0;
-			long silver = 0;
-			long copper = 0;
-			long absMoney = Math.Abs( money );
-
-			if( absMoney >= 1000000 ) {
-				plat = money / 1000000;
-				absMoney -= Math.Abs(plat) * 1000000;
-			}
-			if( absMoney >= 10000 ) {
-				gold = money / 10000;
-				absMoney -= Math.Abs(gold) * 10000;
-			}
-			if( absMoney >= 100 ) {
-				silver = money / 100;
-				absMoney -= Math.Abs(silver) * 100;
-			}
-			if( absMoney >= 1 ) {
-				copper = absMoney;
-			}
-
+			var denoms = GetMoneyDenominations( money );
 			var rendered = new List<string>( 4 );
 
-			if( copper != 0 ) {
-				string render = copper.ToString();
+			if( denoms.copper != 0 ) {
+				string render = denoms.copper.ToString();
 				if( addDenom ) {
 					render += " " + Language.GetTextValue( "Currency.Copper" );    //Lang.inter[18];
 				}
@@ -71,8 +83,8 @@ namespace HamstarHelpers.Helpers.Items {
 				}
 				rendered.Add( render );
 			}
-			if( silver != 0 ) {
-				string render = silver.ToString();
+			if( denoms.silver != 0 ) {
+				string render = denoms.silver.ToString();
 				if( addDenom ) {
 					render += " " + Language.GetTextValue( "Currency.Silver" );    //Lang.inter[17];
 				}
@@ -82,8 +94,8 @@ namespace HamstarHelpers.Helpers.Items {
 				}
 				rendered.Add( render );
 			}
-			if( gold != 0 ) {
-				string render = gold.ToString();
+			if( denoms.gold != 0 ) {
+				string render = denoms.gold.ToString();
 				if( addDenom ) {
 					render += " " + Language.GetTextValue( "Currency.Gold" );    //Lang.inter[16];
 				}
@@ -93,8 +105,8 @@ namespace HamstarHelpers.Helpers.Items {
 				}
 				rendered.Add( render );
 			}
-			if( plat != 0 ) {
-				string render = plat.ToString();
+			if( denoms.platinum != 0 ) {
+				string render = denoms.platinum.ToString();
 				if( addDenom ) {
 					render += " " + Language.GetTextValue( "Currency.Platinum" );    //Lang.inter[15];
 				}

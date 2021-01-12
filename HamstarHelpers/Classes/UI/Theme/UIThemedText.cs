@@ -7,7 +7,6 @@ using Terraria.UI;
 using Terraria.UI.Chat;
 using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -173,7 +172,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					origin: Vector2.Zero,
 					baseScale: new Vector2( this.ScaleCopy ),
 					hoveredSnippet: out _,
-					maxWidth: -1f,
+					maxWidth: -1f,	//Main.screenWidth; TODO?
 					spread: 2f
 				);
 

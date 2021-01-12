@@ -14463,6 +14463,9 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Services.UI.FreeHUD.FreeHUD.RefreshElements">
+            <summary>Calls `Recalculate()` on FreeHUD's container.</summary>
+        </member>
         <member name="T:HamstarHelpers.Services.UI.LayerDisable.LayerDisable">
             <summary>
             Allows remotely disabling interface layers (via. ModifyInterfaceLayers).
