@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -105,8 +106,11 @@ namespace HamstarHelpers.Helpers.Items {
 			}
 
 			// Only world items need sync?
-			if( Main.netMode != NetmodeID.SinglePlayer && item.whoAmI > 0 ) {
-				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, item.whoAmI, 0f, 0f, 0f, 0, 0, 0 );
+			if( Main.netMode != NetmodeID.SinglePlayer ) {
+				int idx = Array.FindIndex( Main.item, i => i == item );
+				if( idx != -1 ) {
+					NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx, 0f, 0f, 0f, 0, 0, 0 );
+				}
 			}
 		}
 
@@ -117,7 +121,6 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <param name="amt"></param>
 		public static void ReduceWorldItemStack( int idx, int amt ) {
 			Item item = Main.item[ idx ];
-			item.whoAmI = idx;	//needed?
 
 			ItemHelpers.ReduceStack( item, amt );
 		}
