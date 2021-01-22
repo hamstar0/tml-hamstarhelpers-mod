@@ -13176,6 +13176,36 @@
         <member name="M:HamstarHelpers.Services.Hooks.Draw.DrawHooksInternal.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
             @ private
         </member>
+        <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedItemHooks">
+            <summary>
+            Supplies custom tModLoader-like, delegate-based hooks for item-relevant functions not currently available in
+            tModLoader.
+            </summary>
+            <summary>
+            Supplies custom tModLoader-like, delegate-based hooks for item-relevant functions not currently available in
+            tModLoader.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedItemHooks.AddNPCLootHook(HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedItemHooks.NPCLootDelegate)">
+            <summary>
+            Allows binding actions to NPC loot deaths, with knowledge of loots dropped.
+            </summary>
+            <param name="hook"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedItemHooks.NPCLootDelegate">
+            <summary></summary>
+            <param name="npc"></param>
+            <param name="itemWhos">List of index values of loot items in `Main.item`.</param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedItemHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnModsLoad">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedItemHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnModsUnload">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedItemHooks.HamstarHelpers#Classes#Loadable#ILoadable#OnPostModsLoad">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Services.Hooks.ExtendedHooks.ExtendedPlayerHooks">
             <summary>
             Supplies custom tModLoader-like, delegate-based hooks for player-relevant functions not currently available in

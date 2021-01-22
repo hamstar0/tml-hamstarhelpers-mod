@@ -9,7 +9,14 @@ using HamstarHelpers.Services.Hooks.ExtendedHooks;
 namespace HamstarHelpers {
 	/// @private
 	partial class ModHelpersNPC : GlobalNPC {
+		public override bool PreNPCLoot( NPC npc ) {
+			ExtendedItemHooks.BeginScanningForLootDrops( npc );
+			return base.PreNPCLoot( npc );
+		}
+
 		public override void NPCLoot( NPC npc ) {
+			ExtendedItemHooks.FinishScanningForLootDropsAndThenRunHooks();
+
 			if( npc.lastInteraction >= 0 && npc.lastInteraction < Main.player.Length ) {
 				this.NpcKilledByPlayer( npc );
 			}

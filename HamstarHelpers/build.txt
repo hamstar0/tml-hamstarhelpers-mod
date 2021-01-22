@@ -1,5 +1,5 @@
 author = hamstar
-version = 5.9.7
+version = 5.10.0
 displayName = Mod Helpers
 buildIgnore = *.csproj, *.user, *.bat, obj\*, bin\*, .vs\*, .git\*
 homepage = https://forums.terraria.org/index.php?threads/mod-helpers.63670/
