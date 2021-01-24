@@ -53,6 +53,9 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 			foreach( NPCLootDelegate hook in eih.OnNPCLootHooks ) {
 				hook( eih.LootNPC, newItemWhos );
 			}
+
+			eih.LootNPC = null;
+			eih.ItemsSnapshot = null;
 		}
 
 
@@ -61,9 +64,9 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 
 		private ISet<NPCLootDelegate> OnNPCLootHooks = new HashSet<NPCLootDelegate>();
 
-		private NPC LootNPC;
+		private NPC LootNPC = null;
 
-		private Item[] ItemsSnapshot;
+		private Item[] ItemsSnapshot = null;
 
 
 

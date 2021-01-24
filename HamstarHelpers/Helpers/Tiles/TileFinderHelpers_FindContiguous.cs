@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
-using Microsoft.Xna.Framework;
+
 
 namespace HamstarHelpers.Helpers.Tiles {
 	/// <summary>
@@ -246,11 +247,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// padding around map edges.
 		/// </summary>
 		/// <param name="pattern"></param>
-		/// <param name="minimumMatchingNeighbors"></param>
+		/// <param name="minimumAdjacentMatchesPerTileMatch"></param>
 		/// <returns></returns>
-		public static Rectangle? FindBoxForAllOf( TilePattern pattern, int minimumMatchingNeighbors = 1 ) {
+		public static Rectangle? FindBoxForAllOf( TilePattern pattern, int minimumAdjacentMatchesPerTileMatch = 1 ) {
 			int countNeighbors( int x, int y ) {
-				if( minimumMatchingNeighbors == 0 ) {
+				if( minimumAdjacentMatchesPerTileMatch == 0 ) {
 					return 0;
 				}
 
@@ -286,9 +287,13 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 			//
 
-			var area = new Rectangle( -1, -1, 0, 0 );
 			int maxX = Main.maxTilesX - 1;
 			int maxY = Main.maxTilesY - 1;
+
+			int leftX = maxX;
+			int rightX = 0;
+			int topY = maxY;
+			int botY = 0;
 
 			for( int x=1; x<maxX; x++ ) {
 				for( int y=1; y<maxY; y++ ) {
@@ -297,27 +302,31 @@ namespace HamstarHelpers.Helpers.Tiles {
 					}
 
 					int neighbors = countNeighbors( x, y );
-					if( neighbors < minimumMatchingNeighbors ) {
+					if( neighbors < minimumAdjacentMatchesPerTileMatch ) {
 						continue;
 					}
 
-					if( area.X == -1 ) {
-						area.X = x;
-						area.Y = y;
-					} else {
-						if( (x - area.X) > area.Width ) {
-							area.Width = (x - area.X);
-						}
-						if( (y - area.Y) > area.Height ) {
-							area.Height = (y - area.Y);
-						}
+					if( x < leftX ) {
+						leftX = x;
+					}
+					if( x > rightX ) {
+						rightX = x;
+					}
+					if( y < topY ) {
+						topY = y;
+					}
+					if( y > botY ) {
+						botY = y;
 					}
 				}
 			}
 
-			return area.X == -1
-				? null
-				: new Rectangle?(area);
+			return new Rectangle(
+				x: leftX,
+				y: topY,
+				width: Math.Max( (1 + rightX) - leftX, 0 ),
+				height: Math.Max( (1 + botY) - topY, 0 )
+			);
 		}
 	}
 }

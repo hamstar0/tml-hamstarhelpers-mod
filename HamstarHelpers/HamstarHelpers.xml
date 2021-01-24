@@ -9622,7 +9622,7 @@
             padding around map edges.
             </summary>
             <param name="pattern"></param>
-            <param name="minimumMatchingNeighbors"></param>
+            <param name="minimumAdjacentMatchesPerTileMatch"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindAreaMatchWithin(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Int32@,System.Int32@)">
