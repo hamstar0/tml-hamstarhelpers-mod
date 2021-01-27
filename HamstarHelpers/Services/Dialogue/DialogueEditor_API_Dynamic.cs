@@ -34,8 +34,7 @@ namespace HamstarHelpers.Services.Dialogue {
 
 
 
-	////////////////
-	
+
 	/// <summary>
 	/// Provides a service for adding or removing town NPC chats (based on weight values).
 	/// </summary>
@@ -67,6 +66,9 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <returns></returns>
 		public static bool RemoveDynamicDialogueHandler( int npcType ) {
 			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+
+			de.MarkerCleanupNeeded = true;
+
 			return de.DynamicHandlers.Remove( npcType );
 		}
 	}

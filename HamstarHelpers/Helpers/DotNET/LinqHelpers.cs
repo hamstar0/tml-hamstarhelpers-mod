@@ -10,8 +10,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 	/// </summary>
 	public static class LINQHelpers {
 		/// <summary>
-		/// Wraps a LINQ `Select(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `Select(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <typeparam name="TResult"></typeparam>
@@ -29,8 +29,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 			return output;
 		}
 		/// <summary>
-		/// Wraps a LINQ `Select(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `Select(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <typeparam name="TResult"></typeparam>
@@ -50,8 +50,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 
 
 		/// <summary>
-		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <typeparam name="TResult"></typeparam>
@@ -69,8 +69,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 			return output;
 		}
 		/// <summary>
-		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <typeparam name="TCollection"></typeparam>
@@ -90,8 +90,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 			return output;
 		}
 		/// <summary>
-		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <typeparam name="TCollection"></typeparam>
@@ -111,8 +111,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 			return output;
 		}
 		/// <summary>
-		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `SelectMany(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <typeparam name="TResult"></typeparam>
@@ -132,8 +132,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 
 
 		/// <summary>
-		/// Wraps a LINQ `Where(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `Where(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <param name="source"></param>
@@ -150,8 +150,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 			return output;
 		}
 		/// <summary>
-		/// Wraps a LINQ `Where(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `Where(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <param name="source"></param>
@@ -170,8 +170,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 
 
 		/// <summary>
-		/// Wraps a LINQ `OrderBy(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `OrderBy(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <typeparam name="TKey"></typeparam>
@@ -190,8 +190,8 @@ namespace HamstarHelpers.Helpers.DotNET {
 			return output;
 		}
 		/// <summary>
-		/// Wraps a LINQ `OrderBy(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-		/// empty collection to not interrupt program flow.
+		/// Wraps a LINQ `OrderBy(...)` call with an exception catcher that both reports the exception as a log error, and
+		/// returns an empty collection to not interrupt program flow.
 		/// </summary>
 		/// <typeparam name="TSource"></typeparam>
 		/// <typeparam name="TKey"></typeparam>

@@ -19,10 +19,12 @@ namespace HamstarHelpers.Services.Dialogue {
 	public partial class DialogueEditor : ILoadable {
 		internal static void UpdateAlertIconsOnMap() {
 			var dialogEdit = TmlHelpers.SafelyGetInstance<DialogueEditor>();
-			IDictionary<int, DynamicDialogueHandler> handlers = dialogEdit.DynamicHandlers;
-			if( handlers.Count == 0 ) {
+			IDictionary<int, DynamicDialogueHandler> dynHandlers = dialogEdit.DynamicHandlers;
+			if( dynHandlers.Count == 0 && !dialogEdit.MarkerCleanupNeeded ) {
 				return;
 			}
+
+			dialogEdit.MarkerCleanupNeeded = false;
 
 			var uniques = new HashSet<int>();
 			IDictionary<int, int> townNpcWhos = Main.npc
@@ -40,13 +42,13 @@ namespace HamstarHelpers.Services.Dialogue {
 			foreach( (int townNpcType, int townNpcWho) in townNpcWhos ) {
 				string alertId = "ModHelpersDialogueAlert_" + townNpcType;
 
-				if( handlers.ContainsKey(townNpcType) && (handlers[townNpcType].IsShowingAlert?.Invoke() ?? false) ) {
+				if( dynHandlers.ContainsKey(townNpcType) && (dynHandlers[townNpcType].IsShowingAlert?.Invoke() ?? false) ) {
 					NPC npc = Main.npc[townNpcWho];
 
 					MapMarkers.SetFullScreenMapMarker(
 						id: alertId,
-						tileX: (int)( npc.position.X / 16f ),
-						tileY: (int)( npc.position.Y / 16f ),
+						tileX: (int)npc.position.X / 16,
+						tileY: ((int)npc.position.Y / 16) - 1,
 						icon: Main.chatTexture,
 						scale: 1.35f
 					);
@@ -63,7 +65,9 @@ namespace HamstarHelpers.Services.Dialogue {
 		private IDictionary<int, IList<(float Weight, string Chat)>> AddedChats = new Dictionary<int, IList<(float, string)>>();
 		private IDictionary<int, IList<string>> RemovedChatFlatPatterns = new Dictionary<int, IList<string>>();
 
-		internal IDictionary<int, DynamicDialogueHandler> DynamicHandlers = new ConcurrentDictionary<int, DynamicDialogueHandler>();
+		private IDictionary<int, DynamicDialogueHandler> DynamicHandlers = new ConcurrentDictionary<int, DynamicDialogueHandler>();
+
+		private bool MarkerCleanupNeeded = false;
 
 
 
