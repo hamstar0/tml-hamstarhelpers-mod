@@ -73,7 +73,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 
 			Tile tile = Main.tile[ leftTileX, bottomTileY ];
 
-			if( !this.NoWall ) {
+			if( !this.SkipWall ) {
 				tile.wall = this.WallType;
 			}
 

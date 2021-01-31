@@ -9316,7 +9316,7 @@
         <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.NotActive">
             <summary>TileTyle and TileStyle are ignored</summary>
         </member>
-        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.NoWall">
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.SkipWall">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.TileType">
