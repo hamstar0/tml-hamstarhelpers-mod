@@ -9314,7 +9314,7 @@
             </summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.TileType">
-            <summary></summary>
+            <summary>-1 is air.</summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.WallType">
             <summary></summary>

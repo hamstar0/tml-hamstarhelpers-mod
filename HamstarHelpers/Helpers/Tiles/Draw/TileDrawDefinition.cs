@@ -8,8 +8,10 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 	/// Defines a basic tile.
 	/// </summary>
 	public class TileDrawDefinition {
-		/// <summary>-1 is air.</summary>
-		public short TileType = -1;
+		/// <summary>TileTyle and TileStyle are ignored</summary>
+		public bool NotActive = false;
+		/// <summary></summary>
+		public ushort TileType = 0;
 		/// <summary></summary>
 		public ushort WallType = 0;
 		/// <summary></summary>
@@ -38,11 +40,11 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="bottomTileY"></param>
 		/// <returns></returns>
 		public bool Place( int leftTileX, int bottomTileY ) {
-			if( this.TileType >= 0 ) {
+			if( this.NotActive ) {
 				bool placed = TilePlacementHelpers.PlaceObject(
 					leftX: leftTileX,
 					bottomY: bottomTileY,
-					type: (ushort)this.TileType,
+					type: this.TileType,
 					style: this.TileStyle,
 					direction: this.Direction,
 					forced: false
