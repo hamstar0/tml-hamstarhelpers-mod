@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using Terraria;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.Tiles.Draw {
@@ -8,8 +8,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 	/// Defines a basic tile.
 	/// </summary>
 	public class TileDrawDefinition {
-		/// <summary></summary>
-		public ushort TileType;
+		/// <summary>-1 is air.</summary>
+		public short TileType = -1;
 		/// <summary></summary>
 		public ushort WallType = 0;
 		/// <summary></summary>
@@ -38,15 +38,36 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="bottomTileY"></param>
 		/// <returns></returns>
 		public bool Place( int leftTileX, int bottomTileY ) {
-			bool placed = TilePlacementHelpers.PlaceObject( leftTileX, bottomTileY, this.TileType, this.TileStyle, this.Direction, false );
-			if( !placed ) {
-				if( !WorldGen.PlaceTile(leftTileX, bottomTileY, this.TileType, false, true, -1, this.TileStyle) ) {
-					return false;
+			if( this.TileType >= 0 ) {
+				bool placed = TilePlacementHelpers.PlaceObject(
+					leftX: leftTileX,
+					bottomY: bottomTileY,
+					type: (ushort)this.TileType,
+					style: this.TileStyle,
+					direction: this.Direction,
+					forced: false
+				);
+
+				if( !placed ) {
+					placed = WorldGen.PlaceTile(
+						i: leftTileX,
+						j: bottomTileY,
+						type: this.TileType,
+						mute: false,
+						forced: true,
+						plr: -1,
+						style: this.TileStyle
+					);
+
+					if( !placed ) {
+						return false;
+					}
+
+					WorldGen.SquareTileFrame( leftTileX, bottomTileY );
 				}
-				WorldGen.SquareTileFrame( leftTileX, bottomTileY );
 			}
 
-			Tile tile = Main.tile[leftTileX, bottomTileY];
+			Tile tile = Main.tile[ leftTileX, bottomTileY ];
 
 			tile.wall = this.WallType;
 
