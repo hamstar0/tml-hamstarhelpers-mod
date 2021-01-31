@@ -11,6 +11,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <summary>TileTyle and TileStyle are ignored</summary>
 		public bool NotActive = false;
 		/// <summary></summary>
+		public bool NoWall = false;
+		/// <summary></summary>
 		public ushort TileType = 0;
 		/// <summary></summary>
 		public ushort WallType = 0;
@@ -71,7 +73,9 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 
 			Tile tile = Main.tile[ leftTileX, bottomTileY ];
 
-			tile.wall = this.WallType;
+			if( !this.NoWall ) {
+				tile.wall = this.WallType;
+			}
 
 			if( this.Slope.HasValue ) {
 				tile.slope( (byte)this.Slope.Value );
