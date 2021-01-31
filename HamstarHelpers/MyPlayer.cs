@@ -5,13 +5,15 @@ using Terraria.ID;
 using Terraria.GameInput;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using HamstarHelpers.Buffs;
+using HamstarHelpers.Internals.ControlPanel;
+using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Debug.DataDumper;
 using HamstarHelpers.Services.UI.ControlPanel;
-using HamstarHelpers.Internals.ControlPanel;
-using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Cheats;
+
 
 namespace HamstarHelpers {
 	/// @private
@@ -112,6 +114,17 @@ namespace HamstarHelpers {
 			if( player.whoAmI == Main.myPlayer && Main.playerInventory ) { // Current player
 				mymod.RecipeHack.Update();
 			}
+		}
+
+
+		////////////////
+
+		public override bool CanBeHitByNPC( NPC npc, ref int cooldownSlot ) {
+			return !this.player.HasBuff( ModContent.BuffType<DegreelessnessBuff>() );
+		}
+
+		public override bool CanBeHitByProjectile( Projectile proj ) {
+			return !this.player.HasBuff( ModContent.BuffType<DegreelessnessBuff>() );
 		}
 
 

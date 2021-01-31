@@ -58,9 +58,9 @@ namespace HamstarHelpers.Commands.Cheats {
 			i = PlayerItemHelpers.VanillaInventoryLastCoinSlot - 3;
 			this.GiveInventoryItem( caller.Player, ItemID.PlatinumCoin, i++, 99 );
 			i = PlayerItemHelpers.VanillaInventoryLastAmmoSlot - 3;
-			this.GiveInventoryItem( caller.Player, ItemID.ChlorophyteBullet, i++ );
-			this.GiveInventoryItem( caller.Player, ItemID.ChlorophyteBullet, i++ );
-			this.GiveInventoryItem( caller.Player, ItemID.ChlorophyteBullet, i++ );
+			this.GiveInventoryItem( caller.Player, ItemID.ChlorophyteBullet, i++, 999 );
+			this.GiveInventoryItem( caller.Player, ItemID.ChlorophyteBullet, i++, 999 );
+			this.GiveInventoryItem( caller.Player, ItemID.ChlorophyteBullet, i++, 999 );
 
 			i = 0;
 			this.GiveArmorItem( caller.Player, ItemID.SolarFlareHelmet, i++ );

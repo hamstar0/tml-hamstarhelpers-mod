@@ -6018,8 +6018,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelect``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
-            Wraps a LINQ `Select(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `Select(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <typeparam name="TResult"></typeparam>
@@ -6029,8 +6029,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelect``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,``1})">
             <summary>
-            Wraps a LINQ `Select(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `Select(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <typeparam name="TResult"></typeparam>
@@ -6040,8 +6040,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelectMany``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}})">
             <summary>
-            Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `SelectMany(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <typeparam name="TResult"></typeparam>
@@ -6051,8 +6051,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
             <summary>
-            Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `SelectMany(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <typeparam name="TCollection"></typeparam>
@@ -6064,8 +6064,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
             <summary>
-            Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `SelectMany(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <typeparam name="TCollection"></typeparam>
@@ -6077,8 +6077,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeSelectMany``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}})">
             <summary>
-            Wraps a LINQ `SelectMany(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `SelectMany(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <typeparam name="TResult"></typeparam>
@@ -6088,8 +6088,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeWhere``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Boolean})">
             <summary>
-            Wraps a LINQ `Where(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `Where(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <param name="source"></param>
@@ -6098,8 +6098,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeWhere``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})">
             <summary>
-            Wraps a LINQ `Where(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `Where(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <param name="source"></param>
@@ -6108,8 +6108,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeOrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})">
             <summary>
-            Wraps a LINQ `OrderBy(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `OrderBy(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <typeparam name="TKey"></typeparam>
@@ -6120,8 +6120,8 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.DotNET.LINQHelpers.SafeOrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
             <summary>
-            Wraps a LINQ `OrderBy(...)` call with an exception catcher that both pipes the exception as a log error, and returns an
-            empty collection to not interrupt program flow.
+            Wraps a LINQ `OrderBy(...)` call with an exception catcher that both reports the exception as a log error, and
+            returns an empty collection to not interrupt program flow.
             </summary>
             <typeparam name="TSource"></typeparam>
             <typeparam name="TKey"></typeparam>

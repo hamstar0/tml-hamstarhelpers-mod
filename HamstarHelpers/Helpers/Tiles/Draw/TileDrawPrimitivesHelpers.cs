@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.TModLoader;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Utilities;
+using HamstarHelpers.Classes.Tiles.TilePattern;
+using HamstarHelpers.Helpers.TModLoader;
 
 
 namespace HamstarHelpers.Helpers.Tiles.Draw {
@@ -16,9 +16,9 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <summary>
 		/// Draws a rectangle (from top to bottom) of a given tile type (where the filter allows).
 		/// </summary>
-		/// <param name="filter"></param>
-		/// <param name="area"></param>
-		/// <param name="hollow"></param>
+		/// <param name="filter">Condition for applying each tile `place`ment.</param>
+		/// <param name="area">Area to attempt to `place` tiles.</param>
+		/// <param name="hollow">Area to not attempt to `place` tiles.</param>
 		/// <param name="place">Return `null` to skip tile placing.</param>
 		/// <returns></returns>
 		public static ISet<(int TileX, int TileY)> DrawRectangle(
