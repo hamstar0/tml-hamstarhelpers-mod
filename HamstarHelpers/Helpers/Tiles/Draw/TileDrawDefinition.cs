@@ -11,7 +11,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <summary>TileTyle and TileStyle are ignored</summary>
 		public bool NotActive = false;
 		/// <summary></summary>
-		public bool NoWall = false;
+		public bool SkipWall = false;
 		/// <summary></summary>
 		public ushort TileType = 0;
 		/// <summary></summary>
