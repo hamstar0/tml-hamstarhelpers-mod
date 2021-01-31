@@ -9313,8 +9313,11 @@
             Defines a basic tile.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.NotActive">
+            <summary>TileTyle and TileStyle are ignored</summary>
+        </member>
         <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.TileType">
-            <summary>-1 is air.</summary>
+            <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.WallType">
             <summary></summary>

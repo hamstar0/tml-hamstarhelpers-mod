@@ -40,14 +40,14 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <param name="bottomTileY"></param>
 		/// <returns></returns>
 		public bool Place( int leftTileX, int bottomTileY ) {
-			if( this.NotActive ) {
+			if( !this.NotActive ) {
 				bool placed = TilePlacementHelpers.PlaceObject(
 					leftX: leftTileX,
 					bottomY: bottomTileY,
 					type: this.TileType,
 					style: this.TileStyle,
 					direction: this.Direction,
-					forced: false
+					forced: true
 				);
 
 				if( !placed ) {
