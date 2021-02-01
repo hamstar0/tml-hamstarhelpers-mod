@@ -2,136 +2,39 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.Items.Attributes {
 	/// <summary>
-	/// A type of common vanilla tooltip.
-	/// </summary>
-	public enum VanillaTooltipName {
-		/// <summary></summary>
-		ItemName,
-		/// <summary></summary>
-		Favorite,
-		/// <summary></summary>
-		FavoriteDesc,
-		/// <summary></summary>
-		Social,
-		/// <summary></summary>
-		SocialDesc,
-		/// <summary></summary>
-		Damage,
-		/// <summary></summary>
-		CritChance,
-		/// <summary></summary>
-		Speed,
-		/// <summary></summary>
-		Knockback,
-		/// <summary></summary>
-		FishingPower,
-		/// <summary></summary>
-		NeedsBait,
-		/// <summary></summary>
-		BaitPower,
-		/// <summary></summary>
-		Equipable,
-		/// <summary></summary>
-		WandConsumes,
-		/// <summary></summary>
-		Quest,
-		/// <summary></summary>
-		Vanity,
-		/// <summary></summary>
-		Defense,
-		/// <summary></summary>
-		PickPower,
-		/// <summary></summary>
-		AxePowe,
-		/// <summary></summary>
-		HammerPower,
-		/// <summary></summary>
-		TileBoost,
-		/// <summary></summary>
-		HealLife,
-		/// <summary></summary>
-		HealMana,
-		/// <summary></summary>
-		UseMana,
-		/// <summary></summary>
-		Placeable,
-		/// <summary></summary>
-		Ammo,
-		/// <summary></summary>
-		Consumable,
-		/// <summary></summary>
-		Material,
-		/// <summary></summary>
-		Tooltip,
-		/// <summary></summary>
-		EtherianManaWarning,
-		/// <summary></summary>
-		WellFedExpert,
-		/// <summary></summary>
-		BuffTime,
-		/// <summary></summary>
-		OneDropLogo,
-		/// <summary></summary>
-		PrefixDamage,
-		/// <summary></summary>
-		PrefixSpeed,
-		/// <summary></summary>
-		PrefixCritChance,
-		/// <summary></summary>
-		PrefixUseMana,
-		/// <summary></summary>
-		PrefixSize,
-		/// <summary></summary>
-		PrefixShootSpeed,
-		/// <summary></summary>
-		PrefixKnockback,
-		/// <summary></summary>
-		PrefixAccDefense,
-		/// <summary></summary>
-		PrefixAccMaxMana,
-		/// <summary></summary>
-		PrefixAccCritChance,
-		/// <summary></summary>
-		PrefixAccDamage,
-		/// <summary></summary>
-		PrefixAccMoveSpeed,
-		/// <summary></summary>
-		PrefixAccMeleeSpeed,
-		/// <summary></summary>
-		SetBonus,
-		/// <summary></summary>
-		Expert,
-		/// <summary></summary>
-		SpecialPrice,
-		/// <summary></summary>
-		Price
-	}
-
-
-
-
-	/// <summary>
 	/// Assorted static "helper" functions pertaining to information attributes of items (e.g. tooltips).
 	/// </summary>
-	public class ItemInformationAttributeHelpers {
+	public partial class ItemInformationAttributeHelpers {
 		/// <summary>
-		/// Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at the end of its
-		/// list. Adapts to item context.
+		/// Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at
+		/// the end of its list. Adapts to item context.
 		/// </summary>
 		/// <param name="tooltips"></param>
 		/// <param name="tip"></param>
 		/// <returns>`true` if tooltip added.</returns>
-		public static bool AppendTooltip( IList<TooltipLine> tooltips, TooltipLine tip ) {
-			if( !ItemInformationAttributeHelpers.ApplyTooltipAt( tooltips, tip, VanillaTooltipName.Tooltip, true) ) {
-				return ItemInformationAttributeHelpers.ApplyTooltipAt( tooltips, tip, VanillaTooltipName.Material, true );
-			}
-			return false;
+		public static bool AppendTooltipToFurthest( IList<TooltipLine> tooltips, TooltipLine tip ) {
+			return ItemInformationAttributeHelpers.ApplyTooltipAtFurthest(
+				tooltips,
+				tip,
+				new HashSet<VanillaTooltipName> {
+					VanillaTooltipName.Tooltip,
+					VanillaTooltipName.Material,
+					VanillaTooltipName.Consumable,
+					VanillaTooltipName.HammerPower,
+					VanillaTooltipName.AxePower,
+					VanillaTooltipName.PickPower
+				},
+				true
+			);
 		}
 
+
+		////
 
 		/// <summary>
 		/// Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at a specific
@@ -214,6 +117,62 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 			}
 
 			return false;
+		}
+
+
+		/// <summary>
+		/// Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at
+		/// a specific list position. Adapts to item context.
+		/// </summary>
+		/// <param name="tooltips"></param>
+		/// <param name="tip"></param>
+		/// <param name="insertAts">A set of vanilla-standard tooltip types.</param>
+		/// <param name="insertAfter">If `true`, inserts after the highest indexed tooltip. Otherwise the lowest.</param>
+		/// <returns>`true` if any specified insertion points were found, and the tip was then inserted.</returns>
+		public static bool ApplyTooltipAtFurthest(
+					IList<TooltipLine> tooltips,
+					TooltipLine tip,
+					ISet<VanillaTooltipName> insertAts,
+					bool insertAfter = true ) {
+			int maxIdx = tooltips.Count - 1;
+			int highestIdx = 0;
+			int lowestIdx = maxIdx;
+
+			bool foundSpecificInertionPoint = false;
+
+			for( int i = maxIdx; i >= 0; i-- ) {
+				string name = tooltips[i].Name;
+				VanillaTooltipName nameType;
+
+				if( !Enum.TryParse( name, out nameType ) ) {
+					if( name.StartsWith( "Tooltip" ) ) {
+						nameType = VanillaTooltipName.Tooltip;
+					} else {
+						continue;
+					}
+				}
+
+				if( insertAts.Contains( nameType ) ) {
+					foundSpecificInertionPoint = true;
+
+					if( i > highestIdx ) {
+						highestIdx = i;
+					}
+					if( i < lowestIdx ) {
+						lowestIdx = i;
+					}
+				}
+			}
+
+			if( foundSpecificInertionPoint ) {
+				if( insertAfter ) {
+					tooltips.Insert( highestIdx + 1, tip );
+				} else {
+					tooltips.Insert( lowestIdx, tip );
+				}
+			}
+
+			return foundSpecificInertionPoint;
 		}
 	}
 }

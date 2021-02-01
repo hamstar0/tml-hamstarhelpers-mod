@@ -14274,16 +14274,18 @@
             Note: As of yet, outgoing byte data is not yet captured; only `NetMessage.SendData(...)` parameter values.
             </summary>
         </member>
-        <member name="F:HamstarHelpers.Services.Network.Scraper.Scraper.IsScrappingSentData">
+        <member name="F:HamstarHelpers.Services.Network.Scraper.Scraper.IsScrapingSentData">
+            <summary>Indicates the capturing state of sent data (via. `NetMessage.SendData(...)`).
+            
+            Note: As of yet, only `SendData` parameter values are captured.</summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.Scraper.IsScrapingReceivedData">
+            <summary>Indicates the capturing state of receuved data (via. `MessageBuffer.GetData(...)`).</summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.ScrapedSentData">
             <summary></summary>
         </member>
-        <member name="F:HamstarHelpers.Services.Network.Scraper.Scraper.IsScrappingReceivedData">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.SentDataView">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.ReceivedDataView">
+        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.ScrapedReceivedData">
             <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Services.Network.Scraper.Scraper.AddSendDataListener(System.Action{HamstarHelpers.Services.Network.Scraper.ScrapedSentData})">
