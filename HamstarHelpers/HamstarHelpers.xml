@@ -11972,6 +11972,7 @@
             @private
             @private
             @private
+            @private
         </member>
         <member name="T:HamstarHelpers.ModHelpersData">
             @private
@@ -13779,6 +13780,15 @@
             <summary>
             Provides a snapshot of boss information from the BossChecklist mod (must be enabled).
             </summary>
+            <summary>
+            Provides a snapshot of boss information from the BossChecklist mod (must be enabled).
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.MinimumBossChecklistVersion">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfoTable">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo">
             <summary></summary>
@@ -13822,12 +13832,6 @@
             <summary></summary>
         </member>
         <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfo.CollectiblesLootItemTypes">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.MinimumBossChecklistVersion">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Mods.BossChecklist.BossChecklistService.BossInfoTable">
             <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.ModTagDefinitions.ModTagDefinition">
@@ -14179,6 +14183,103 @@
             <param name="reply"></param>
             <param name="fromWho"></param>
             <returns>`true` permits the reply to proceed.</returns>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.Scraper.ScrapedReceivedData">
+            <summary>
+            Represents scraped data for the settings of a received network packet. Interpretation of raw byte data is
+            up to the user.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedReceivedData.MessageType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedReceivedData.Data">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedReceivedData.PlayerNumber">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.Scraper.ScrapedReceivedData.#ctor(System.Byte,System.IO.BinaryReader,System.Int32)">
+            <summary></summary>
+            <param name="messageType"></param>
+            <param name="reader"></param>
+            <param name="playerNumber"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.Scraper.ScrapedSentData">
+            <summary>
+            Represents scraped data for the settings of a sent network packet. The actual payload of the generated
+            packet is internal to `NetMessage.Send(...)`.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.WhoAmI">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.MsgType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.RemoteClient">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.IgnoreClient">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.Text">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.Number">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.Number2">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.Number3">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.Number4">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.Number5">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.Number6">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.Number7">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,Terraria.Localization.NetworkText,System.Int32,System.Single,System.Single,System.Single,System.Int32,System.Int32,System.Int32)">
+            <summary></summary>
+            <param name="whoAmI"></param>
+            <param name="msgType"></param>
+            <param name="remoteClient"></param>
+            <param name="ignoreClient"></param>
+            <param name="text"></param>
+            <param name="number"></param>
+            <param name="number2"></param>
+            <param name="number3"></param>
+            <param name="number4"></param>
+            <param name="number5"></param>
+            <param name="number6"></param>
+            <param name="number7"></param>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.Scraper.Scraper">
+            <summary>
+            Implements a rudimentary network scraper.
+            
+            Note: As of yet, outgoing byte data is not yet captured; only `NetMessage.SendData(...)` parameter values.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.Scraper.IsScrappingSentData">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Services.Network.Scraper.Scraper.IsScrappingReceivedData">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.SentData">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.ReceivedData">
+            <summary></summary>
         </member>
         <member name="T:HamstarHelpers.Services.Network.Server">
             <summary>
