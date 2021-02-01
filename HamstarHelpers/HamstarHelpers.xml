@@ -14268,6 +14268,11 @@
             
             Note: As of yet, outgoing byte data is not yet captured; only `NetMessage.SendData(...)` parameter values.
             </summary>
+            <summary>
+            Implements a rudimentary network scraper.
+            
+            Note: As of yet, outgoing byte data is not yet captured; only `NetMessage.SendData(...)` parameter values.
+            </summary>
         </member>
         <member name="F:HamstarHelpers.Services.Network.Scraper.Scraper.IsScrappingSentData">
             <summary></summary>
@@ -14275,11 +14280,27 @@
         <member name="F:HamstarHelpers.Services.Network.Scraper.Scraper.IsScrappingReceivedData">
             <summary></summary>
         </member>
-        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.SentData">
+        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.SentDataView">
             <summary></summary>
         </member>
-        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.ReceivedData">
+        <member name="P:HamstarHelpers.Services.Network.Scraper.Scraper.ReceivedDataView">
             <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.Scraper.Scraper.AddSendDataListener(System.Action{HamstarHelpers.Services.Network.Scraper.ScrapedSentData})">
+            <summary></summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.Scraper.Scraper.AddReceiveDataListener(System.Action{HamstarHelpers.Services.Network.Scraper.ScrapedReceivedData})">
+            <summary></summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.Scraper.Scraper.RemoveSendDataListener(System.Action{HamstarHelpers.Services.Network.Scraper.ScrapedSentData})">
+            <summary></summary>
+            <param name="listener"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.Scraper.Scraper.RemoveReceiveDataListener(System.Action{HamstarHelpers.Services.Network.Scraper.ScrapedReceivedData})">
+            <summary></summary>
+            <param name="listener"></param>
         </member>
         <member name="T:HamstarHelpers.Services.Network.Server">
             <summary>

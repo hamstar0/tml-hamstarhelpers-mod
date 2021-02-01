@@ -11,21 +11,23 @@ namespace HamstarHelpers.Services.Network.Scraper {
 	/// Note: As of yet, outgoing byte data is not yet captured; only `NetMessage.SendData(...)` parameter values.
 	/// </summary>
 	public partial class Scraper : ILoadable {
-		/// <summary></summary>
-		public static bool IsScrappingSentData = false;
+		/// <summary>Indicates the capturing state of sent data (via. `NetMessage.SendData(...)`).
+		/// 
+		/// Note: As of yet, only `SendData` parameter values are captured.</summary>
+		public static bool IsScrapingSentData = false;
 
-		/// <summary></summary>
-		public static bool IsScrappingReceivedData = false;
+		/// <summary>Indicates the capturing state of receuved data (via. `MessageBuffer.GetData(...)`).</summary>
+		public static bool IsScrapingReceivedData = false;
 
 
 		////////////////
 
 		/// <summary></summary>
-		public static IReadOnlyList<ScrapedSentData> SentDataView
+		public static IReadOnlyList<ScrapedSentData> ScrapedSentData
 			=> ModContent.GetInstance<Scraper>().SentData.AsReadOnly();
 
 		/// <summary></summary>
-		public static IReadOnlyList<ScrapedReceivedData> ReceivedDataView
+		public static IReadOnlyList<ScrapedReceivedData> ScrapedReceivedData
 			=> ModContent.GetInstance<Scraper>().ReceivedData.AsReadOnly();
 
 
