@@ -50,7 +50,7 @@ namespace HamstarHelpers.Services.Network.Scraper {
 		/// <param name="number5"></param>
 		/// <param name="number6"></param>
 		/// <param name="number7"></param>
-		public ScrapedSentData(
+		internal ScrapedSentData(
 					int whoAmI,
 					int msgType,
 					int remoteClient,

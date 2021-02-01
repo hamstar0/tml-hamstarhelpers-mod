@@ -14208,7 +14208,7 @@
         <member name="T:HamstarHelpers.Services.Network.Scraper.ScrapedSentData">
             <summary>
             Represents scraped data for the settings of a sent network packet. The actual payload of the generated
-            packet is internal to `NetMessage.Send(...)`.
+            packet is internal to `NetMessage.SendData(...)` (for now).
             </summary>
         </member>
         <member name="F:HamstarHelpers.Services.Network.Scraper.ScrapedSentData.WhoAmI">

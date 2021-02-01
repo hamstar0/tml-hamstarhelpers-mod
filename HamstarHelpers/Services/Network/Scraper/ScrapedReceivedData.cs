@@ -23,7 +23,7 @@ namespace HamstarHelpers.Services.Network.Scraper {
 		/// <param name="messageType"></param>
 		/// <param name="reader"></param>
 		/// <param name="playerNumber"></param>
-		public ScrapedReceivedData( byte messageType, BinaryReader reader, int playerNumber ) {
+		internal ScrapedReceivedData( byte messageType, BinaryReader reader, int playerNumber ) {
 			long pos = reader.BaseStream.Position;
 
 			this.MessageType = messageType;
