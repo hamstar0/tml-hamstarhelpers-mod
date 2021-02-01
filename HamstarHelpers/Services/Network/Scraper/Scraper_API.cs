@@ -45,5 +45,20 @@ namespace HamstarHelpers.Services.Network.Scraper {
 			var scraper = ModContent.GetInstance<Scraper>();
 			scraper.OnReceived.Add( listener );
 		}
+
+
+		/// <summary></summary>
+		/// <param name="listener"></param>
+		public static bool RemoveSendDataListener( Action<ScrapedSentData> listener ) {
+			var scraper = ModContent.GetInstance<Scraper>();
+			return scraper.OnSent.Remove( listener );
+		}
+
+		/// <summary></summary>
+		/// <param name="listener"></param>
+		public static bool RemoveReceiveDataListener( Action<ScrapedReceivedData> listener ) {
+			var scraper = ModContent.GetInstance<Scraper>();
+			return scraper.OnReceived.Remove( listener );
+		}
 	}
 }
