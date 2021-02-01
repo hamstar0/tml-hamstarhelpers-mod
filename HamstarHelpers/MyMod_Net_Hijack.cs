@@ -29,7 +29,7 @@ namespace HamstarHelpers {
 					int number6,
 					int number7 ) {
 			if( Scraper.IsScrappingSentData ) {
-				Scraper.SentData.Add( new ScrapedSentData(
+				Scraper.AddSentData( new ScrapedSentData(
 					whoAmI,
 					msgType,
 					remoteClient,
@@ -50,7 +50,7 @@ namespace HamstarHelpers {
 
 		public override bool HijackGetData( ref byte messageType, ref BinaryReader reader, int playerNumber ) {
 			if( Scraper.IsScrappingReceivedData ) {
-				Scraper.ReceivedData.Add( new ScrapedReceivedData(messageType, reader, playerNumber) );
+				Scraper.AddReceiveData( new ScrapedReceivedData(messageType, reader, playerNumber) );
 			}
 
 			if( messageType == MessageID.TileSection ) {
