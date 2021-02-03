@@ -7157,6 +7157,59 @@
             <param name="includeCoins">Includes coin items (defaults to `false`).</param>
             <returns></returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to information attributes of items (e.g. tooltips).
+            </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to information attributes of items (e.g. tooltips).
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.AppendTooltipToFurthest(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine)">
+            <summary>
+            Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at
+            the end of its list. Adapts to item context.
+            </summary>
+            <param name="tooltips"></param>
+            <param name="tip"></param>
+            <returns>`true` if tooltip added.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.ApplyTooltipAt(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine,HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName,System.Boolean)">
+            <summary>
+            Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at a specific
+            list position. Adapts to item context.
+            </summary>
+            <param name="tooltips"></param>
+            <param name="tip"></param>
+            <param name="insertAt">Vanilla-standard tooltip type. Does not accept bit flags.</param>
+            <param name="insertAfter"></param>
+            <returns>`true` if tooltip added.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.ApplyTooltipAt(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine,System.String,System.Boolean)">
+            <summary>
+            Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at a specific
+            list position. Adapts to item context.
+            </summary>
+            <param name="tooltips"></param>
+            <param name="tip"></param>
+            <param name="insertAt"></param>
+            <param name="insertAfter"></param>
+            <returns>`true` if tooltip added.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.ApplyTooltipAtFurthest(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine,System.Collections.Generic.ISet{HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName},System.Boolean)">
+            <summary>
+            Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at
+            a specific list position. Adapts to item context.
+            </summary>
+            <param name="tooltips"></param>
+            <param name="tip"></param>
+            <param name="insertAts">A set of vanilla-standard tooltip types.</param>
+            <param name="insertAfter">If `true`, inserts after the highest indexed tooltip. Otherwise the lowest.</param>
+            <returns>`true` if any specified insertion points were found, and the tip was then inserted.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.AppendTooltip(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine)">
+            @private
+        </member>
         <member name="T:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName">
             <summary>
             A type of common vanilla tooltip.
@@ -7216,7 +7269,7 @@
         <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.PickPower">
             <summary></summary>
         </member>
-        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.AxePowe">
+        <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.AxePower">
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.HammerPower">
@@ -7311,42 +7364,6 @@
         </member>
         <member name="F:HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName.Price">
             <summary></summary>
-        </member>
-        <member name="T:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers">
-            <summary>
-            Assorted static "helper" functions pertaining to information attributes of items (e.g. tooltips).
-            </summary>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.AppendTooltip(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine)">
-            <summary>
-            Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at the end of its
-            list. Adapts to item context.
-            </summary>
-            <param name="tooltips"></param>
-            <param name="tip"></param>
-            <returns>`true` if tooltip added.</returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.ApplyTooltipAt(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine,HamstarHelpers.Helpers.Items.Attributes.VanillaTooltipName,System.Boolean)">
-            <summary>
-            Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at a specific
-            list position. Adapts to item context.
-            </summary>
-            <param name="tooltips"></param>
-            <param name="tip"></param>
-            <param name="insertAt">Vanilla-standard tooltip type. Does not accept bit flags.</param>
-            <param name="insertAfter"></param>
-            <returns>`true` if tooltip added.</returns>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Items.Attributes.ItemInformationAttributeHelpers.ApplyTooltipAt(System.Collections.Generic.IList{Terraria.ModLoader.TooltipLine},Terraria.ModLoader.TooltipLine,System.String,System.Boolean)">
-            <summary>
-            Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at a specific
-            list position. Adapts to item context.
-            </summary>
-            <param name="tooltips"></param>
-            <param name="tip"></param>
-            <param name="insertAt"></param>
-            <param name="insertAfter"></param>
-            <returns>`true` if tooltip added.</returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.Items.Attributes.ItemRarityAttributeHelpers">
             <summary>
@@ -9795,8 +9812,20 @@
             <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
             <param name="dropsItem"></param>
             <param name="forceSyncIfUnchanged"></param>
-            <param name="supressErrors"></param>
-            <returns>`true` when no complications occurred during removal. Does not force tile to be removed, if complications occurs.</returns>
+            <param name="suppressErrors"></param>
+            <returns>`true` when no complications occurred during removal. Does not force tile to be removed, if
+            complications occur.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.KillContainerTileSynced(System.Int32,System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            Kills a given container tile. Results are synced.
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
+            <param name="dropsItem"></param>
+            <returns>`true` when no complications occurred during removal. Does not force tile to be removed, if
+            complications occur.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.Swap1x1Synced(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>

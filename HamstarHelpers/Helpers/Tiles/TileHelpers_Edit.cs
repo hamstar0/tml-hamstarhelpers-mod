@@ -74,62 +74,37 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
 		/// <param name="dropsItem"></param>
 		/// <param name="forceSyncIfUnchanged"></param>
-		/// <param name="supressErrors"></param>
-		/// <returns>`true` when no complications occurred during removal. Does not force tile to be removed, if complications occurs.</returns>
+		/// <param name="suppressErrors"></param>
+		/// <returns>`true` when no complications occurred during removal. Does not force tile to be removed, if
+		/// complications occur.</returns>
 		public static bool KillTileSynced(
 					int tileX,
 					int tileY,
 					bool effectOnly,
 					bool dropsItem,
 					bool forceSyncIfUnchanged,
-					bool supressErrors=true ) {
+					bool suppressErrors=true ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
 
-			if( tile?.active() != true ) {
+			if( !tile.active() ) {
 				if( forceSyncIfUnchanged && Main.netMode != NetmodeID.SinglePlayer ) {
 					NetMessage.SendData( MessageID.TileChange, -1, -1, null, 4, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
 				}
 				return false;
 			}
 
+			bool isTileKilled = false;
+			bool isContainer = tile.type == TileID.Containers || tile.type == TileID.Containers2;
+
 			try {
-				if( tile.type == TileID.Containers || tile.type == TileID.Containers2 ) {
-					int chestIdx = -1;
-
-					chestIdx = Chest.FindChest( tileX, tileY );
-					int chestType = 1;
-					if( tile.type == TileID.Containers2 ) {
-						chestType = 5;
-					}
-
-					if( chestIdx != -1 && Chest.DestroyChest( tileX, tileY ) ) {
-						//if( Main.tile[x, y].type >= TileID.Count ) {
-						//	number2 = 101;
-						//}
-
-						if( Main.netMode != NetmodeID.SinglePlayer ) {
-							NetMessage.SendData(
-								msgType: MessageID.ChestUpdates,
-								remoteClient: -1,
-								ignoreClient: -1,
-								text: null,
-								number: chestType,
-								number2: (float)tileX,
-								number3: (float)tileY,
-								number4: 0f,
-								number5: chestIdx,
-								number6: tile.type,
-								number7: 0
-							);
-							NetMessage.SendTileSquare( -1, tileX, tileY, 3, TileChangeType.None );
-						}
-					}
+				if( isContainer ) {
+					isTileKilled = TileHelpers.KillContainerTileSynced( tileX, tileY, effectOnly, dropsItem );
+				} else {
+					WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
+					isTileKilled = effectOnly || !Main.tile[ tileX, tileY ].active();
 				}
-
-				WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
-				tile.active( false );
 			} catch( Exception e ) {
-				if( !supressErrors ) {
+				if( !suppressErrors ) {
 					LogHelpers.WarnOnce( "Could not kill type (with sync) at "+tileX+", "+tileY
 						+" (effectOnly:"+effectOnly+", dropsItem:"+dropsItem
 						+": "+e.Message );
@@ -138,14 +113,71 @@ namespace HamstarHelpers.Helpers.Tiles {
 				return false;
 			}
 
-			if( !effectOnly ) {
+			if( !isContainer && !effectOnly ) {
 				if( Main.netMode != NetmodeID.SinglePlayer ) {
-					int itemDropMode = dropsItem ? 0 : 4;
-					NetMessage.SendData( MessageID.TileChange, -1, -1, null, itemDropMode, (float)tileX, (float)tileY, 0f, 0, 0, 0 );
+					NetMessage.SendData(
+						msgType: MessageID.TileChange,
+						remoteClient: -1,
+						ignoreClient: -1,
+						text: null,
+						number: dropsItem ? 0 : 4,
+						number2: (float)tileX,
+						number3: (float)tileY,
+						number4: 0f,
+						number5: 0,
+						number6: 0,
+						number7: 0
+					);
 				}
 			}
 
-			return true;
+			return isTileKilled;
+		}
+
+
+		/// <summary>
+		/// Kills a given container tile. Results are synced.
+		/// </summary>
+		/// <param name="tileX"></param>
+		/// <param name="tileY"></param>
+		/// <param name="effectOnly">Only a visual effect; tile is not actually killed (nothing to sync).</param>
+		/// <param name="dropsItem"></param>
+		/// <returns>`true` when no complications occurred during removal. Does not force tile to be removed, if
+		/// complications occur.</returns>
+		public static bool KillContainerTileSynced( int tileX, int tileY, bool effectOnly, bool dropsItem ) {
+			Tile tile = Framing.GetTileSafely( tileX, tileY );
+			if( tile.type != TileID.Containers && tile.type != TileID.Containers2 ) {
+				return false;
+			}
+
+			int chestIdx = Chest.FindChest( tileX, tileY );
+			int chestType = tile.type == TileID.Containers2 ? 5 : 1;
+
+			if( chestIdx != -1 && Chest.DestroyChest(tileX, tileY) ) {
+				//if( Main.tile[x, y].type >= TileID.Count ) {
+				//	number2 = 101;
+				//}
+
+				if( Main.netMode != NetmodeID.SinglePlayer ) {
+					NetMessage.SendData(
+						msgType: MessageID.ChestUpdates,
+						remoteClient: -1,
+						ignoreClient: -1,
+						text: null,
+						number: chestType,
+						number2: (float)tileX,
+						number3: (float)tileY,
+						number4: 0f,
+						number5: chestIdx,
+						number6: tile.type,
+						number7: 0
+					);
+					NetMessage.SendTileSquare( -1, tileX, tileY, 3, TileChangeType.None );
+				}
+			}
+
+			WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
+			return effectOnly || !Main.tile[ tileX, tileY ].active();
 		}
 
 
