@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
 using HamstarHelpers.Helpers.Debug;
@@ -144,7 +143,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="pattern"></param>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
-		/// <param name="unclosedTiles">All matched tiles that exceed `maxRadius` or `maxTile`, just beyond the outer edges of the result's matches.</param>
+		/// <param name="unclosedTiles">All matched tiles that exceed `maxRadius` or `maxTiles`, just beyond the outer
+		/// edges of the result's matches.</param>
 		/// <param name="maxRadius"></param>
 		/// <param name="maxTiles"></param>
 		/// <returns></returns>
@@ -239,94 +239,6 @@ namespace HamstarHelpers.Helpers.Tiles {
 			return chartedTileMap
 				.SafeSelect( tileAt => getCoordFromCode(tileAt) )
 				.ToList();
-		}
-
-
-		/// <summary>
-		/// Scans the entire world to find the largest encompassing box of the given tile pattern. Leaves a 1 tile
-		/// padding around map edges.
-		/// </summary>
-		/// <param name="pattern"></param>
-		/// <param name="minimumAdjacentMatchesPerTileMatch"></param>
-		/// <returns></returns>
-		public static Rectangle? FindBoxForAllOf( TilePattern pattern, int minimumAdjacentMatchesPerTileMatch = 1 ) {
-			int countNeighbors( int x, int y ) {
-				if( minimumAdjacentMatchesPerTileMatch == 0 ) {
-					return 0;
-				}
-
-				int count = 0;
-
-				if( pattern.Check( x - 1, y - 1 ) ) {
-					count++;
-				}
-				if( pattern.Check( x, y - 1 ) ) {
-					count++;
-				}
-				if( pattern.Check( x + 1, y - 1 ) ) {
-					count++;
-				}
-				if( pattern.Check( x - 1, y ) ) {
-					count++;
-				}
-				if( pattern.Check( x + 1, y ) ) {
-					count++;
-				}
-				if( pattern.Check( x - 1, y + 1 ) ) {
-					count++;
-				}
-				if( pattern.Check( x, y + 1 ) ) {
-					count++;
-				}
-				if( pattern.Check( x + 1, y + 1 ) ) {
-					count++;
-				}
-
-				return count;
-			}
-
-			//
-
-			int maxX = Main.maxTilesX - 1;
-			int maxY = Main.maxTilesY - 1;
-
-			int leftX = maxX;
-			int rightX = 0;
-			int topY = maxY;
-			int botY = 0;
-
-			for( int x=1; x<maxX; x++ ) {
-				for( int y=1; y<maxY; y++ ) {
-					if( !pattern.Check(x, y) ) {
-						continue;
-					}
-
-					int neighbors = countNeighbors( x, y );
-					if( neighbors < minimumAdjacentMatchesPerTileMatch ) {
-						continue;
-					}
-
-					if( x < leftX ) {
-						leftX = x;
-					}
-					if( x > rightX ) {
-						rightX = x;
-					}
-					if( y < topY ) {
-						topY = y;
-					}
-					if( y > botY ) {
-						botY = y;
-					}
-				}
-			}
-
-			return new Rectangle(
-				x: leftX,
-				y: topY,
-				width: Math.Max( (1 + rightX) - leftX, 0 ),
-				height: Math.Max( (1 + botY) - topY, 0 )
-			);
 		}
 	}
 }
