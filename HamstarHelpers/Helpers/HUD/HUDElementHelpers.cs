@@ -19,15 +19,33 @@ namespace HamstarHelpers.Helpers.HUD {
 
 
 		/// <summary>
-		/// Top left screen position of player's accessories.
+		/// Top left screen position of player's accessories (`player.armor[3+]`).
 		/// </summary>
+		/// <param name="slot">Accessory (not `armor` index) slot number.</param>
 		/// <returns></returns>
 		public static Vector2 GetVanillaAccessorySlotScreenPosition( int slot ) {
+			/*int mapOffsetY = 0;
+			if( Main.mapEnabled ) {
+				if( !Main.mapFullscreen && Main.mapStyle == 1 ) {
+					mapOffsetY = 256;
+				}
+			}
+
+			if( (mapOffsetY + Main.instance.RecommendedEquipmentAreaPushUp) > Main.screenHeight ) {
+				mapOffsetY = Main.screenHeight - Main.instance.RecommendedEquipmentAreaPushUp;
+			}
+
+			int x = Main.screenWidth - 64 - 28;
+			int y = 178 + mapOffsetY;
+			y += slot * 56;
+
+			return new Vector2( x, y );*/
+
 			var pos = new Vector2( Main.screenWidth - 92, 318 );
-			pos.Y += ( 48 * slot );
+			pos.Y += 48 * slot;
 
 			if( Main.mapStyle == 1 ) {
-				pos.Y += Main.screenHeight - 600;
+				pos.Y += Main.screenHeight - Main.instance.RecommendedEquipmentAreaPushUp;	//600
 				//pos.Y += 104;
 			}
 

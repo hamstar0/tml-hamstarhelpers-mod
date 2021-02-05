@@ -6757,8 +6757,9 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDElementHelpers.GetVanillaAccessorySlotScreenPosition(System.Int32)">
             <summary>
-            Top left screen position of player's accessories.
+            Top left screen position of player's accessories (`player.armor[3+]`).
             </summary>
+            <param name="slot">Accessory (not `armor` index) slot number.</param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDElementHelpers.GetVanillaBuffIconRectanglesByPosition(System.Boolean)">
@@ -9568,6 +9569,9 @@
             <summary>
             Assorted static "helper" functions pertaining to tile finding.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to tile finding.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetPlayerRangeTilesAt(System.Int32,System.Int32)">
             <summary>
@@ -9634,18 +9638,32 @@
             <param name="pattern"></param>
             <param name="tileX"></param>
             <param name="tileY"></param>
-            <param name="unclosedTiles">All matched tiles that exceed `maxRadius` or `maxTile`, just beyond the outer edges of the result's matches.</param>
+            <param name="unclosedTiles">All matched tiles that exceed `maxRadius` or `maxTiles`, just beyond the outer
+            edges of the result's matches.</param>
             <param name="maxRadius"></param>
             <param name="maxTiles"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindBoxForAllOf(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
             <summary>
-            Scans the entire world to find the largest encompassing box of the given tile pattern. Leaves a 1 tile
+            Scans the entire world to find the encompassing box of the given tile pattern. Leaves a 1 tile
             padding around map edges.
+            
+            Note: This does NOT check for contiguity.
             </summary>
             <param name="pattern"></param>
             <param name="minimumAdjacentMatchesPerTileMatch"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindBoxesOfAllContiguousMatches(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Finds all `Rectangle`s encompassing contiguous matches of the given `pattern`.
+            </summary>
+            <param name="pattern"></param>
+            <param name="minTileX"></param>
+            <param name="minTileY"></param>
+            <param name="maxTileX"></param>
+            <param name="maxTileY"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindAreaMatchWithin(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Int32@,System.Int32@)">
