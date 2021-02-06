@@ -143,102 +143,132 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="pattern"></param>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
-		/// <param name="unclosedTiles">All matched tiles that exceed `maxRadius` or `maxTiles`, just beyond the outer
-		/// edges of the result's matches.</param>
+		/// <param name="excessTiles">All matched tiles that exceed `maxRadius` or `maxTiles`.</param>
 		/// <param name="maxRadius"></param>
-		/// <param name="maxTiles"></param>
+		/// <param name="tileQuota"></param>
 		/// <returns></returns>
 		public static IList<(ushort TileX, ushort TileY)> GetAllContiguousMatchingTiles(
 					TilePattern pattern,
 					int tileX,
 					int tileY,
-					out IList<(ushort TileX, ushort TileY)> unclosedTiles,
+					out IList<(ushort TileX, ushort TileY)> excessTiles,
 					int maxRadius = -1,
-					int maxTiles = -1 ) {
-			int getCodeFromCoord( int x, int y ) => x + (y << 16);
+					int tileQuota = -1 ) {
+			int getCodeFromCoord( int x, int y )
+				=> x + (y << 16);
 
 			(ushort, ushort) getCoordFromCode( int code ) => (
 				(ushort)((code << 16) >> 16),
 				(ushort)(code >> 16)
 			);
 
-			////
+			//
 
 			TileCollideType collide;
 			if( !pattern.Check(tileX, tileY, out collide) ) {
-				unclosedTiles = new (ushort, ushort)[0];
+				excessTiles = new (ushort, ushort)[ 0 ];
 				return new (ushort, ushort)[ 0 ];
 			}
 
-			ISet<int> edgeTileMap = new HashSet<int>();
-			ISet<int> unchartedTileMap = new HashSet<int>{ getCodeFromCoord(tileX, tileY) };
-			ISet<int> newUnchartedTileMap = new HashSet<int>();
-			ISet<int> chartedTileMap = new HashSet<int>();
+			ISet<int> excessTileCodes = new HashSet<int>();
+			ISet<int> unchartedTileCodes = new HashSet<int> { getCodeFromCoord(tileX, tileY) };
+			ISet<int> newUnchartedTileCodes = new HashSet<int>();
+			ISet<int> chartedTileCodes = new HashSet<int>();
 
 			int maxRadiusSqr = maxRadius * maxRadius;
-			int distX, distY, distSqr;
-			(ushort x, ushort y) coord;
 
 			do {
-				bool isMaxTiles = false;
-
-				foreach( int tileAt in unchartedTileMap ) {
-					bool isMaxRadius = false;
-
-					coord = getCoordFromCode( tileAt );
-					int x = (int)coord.x;
-					int y = (int)coord.y;
-
-					if( maxTiles > 0 && chartedTileMap.Count >= maxTiles ) {
-						isMaxTiles = true;
-					}
-
-					if( maxRadius > 0 ) {
-						distX = x - tileX;
-						distY = y - tileY;
-						distSqr = (distX * distX) + (distY * distY);
-
-						if( distSqr >= maxRadiusSqr ) {
-							isMaxRadius = true;
-						}
-					}
-
-					if( pattern.Check(x, y) ) {
-						if( !isMaxRadius && !isMaxTiles ) {
-							chartedTileMap.Add( tileAt );
-							newUnchartedTileMap.Add( getCodeFromCoord(x, y - 1) );
-							newUnchartedTileMap.Add( getCodeFromCoord(x - 1, y) );
-							newUnchartedTileMap.Add( getCodeFromCoord(x + 1, y) );
-							newUnchartedTileMap.Add( getCodeFromCoord(x, y + 1) );
-						} else {
-							edgeTileMap.Add( tileAt );
-						}
-					}
+				foreach( int unchartedTileCode in unchartedTileCodes ) {
+					TileFinderHelpers.GetAllContiguousMatchingTileCodesAt(
+						pattern: pattern,
+						srcTileX: tileX,
+						srcTileY: tileY,
+						unchartedTileCode: unchartedTileCode,
+						maxRadiusSqr: maxRadiusSqr,
+						tileQuota: tileQuota,
+						excessTileCodes: ref excessTileCodes,
+						chartedTileCodes: ref chartedTileCodes,
+						unchartedTileCodes: ref newUnchartedTileCodes
+					);
 				}
 
-				unchartedTileMap.Clear();
+				unchartedTileCodes.Clear();
 
-				foreach( int tileAt in newUnchartedTileMap ) {
-					if( chartedTileMap.Contains(tileAt) ) {
+				foreach( int tileAt in newUnchartedTileCodes ) {
+					if( chartedTileCodes.Contains(tileAt) ) {
 						continue;
 					}
-					unchartedTileMap.Add( tileAt );
+					unchartedTileCodes.Add( tileAt );
 				}
 
-				newUnchartedTileMap.Clear();
-			} while( unchartedTileMap.Count > 0 );
+				newUnchartedTileCodes.Clear();
+			} while( unchartedTileCodes.Count > 0 );
 
-			if( edgeTileMap.Count > 0 ) {
-				unclosedTiles = edgeTileMap
+			if( excessTileCodes.Count > 0 ) {
+				excessTiles = excessTileCodes
 					.SafeSelect( tileAt => getCoordFromCode(tileAt) )
 					.ToList();
 			} else {
-				unclosedTiles = new (ushort, ushort)[0];
+				excessTiles = new (ushort, ushort)[0];
 			}
 
-			return chartedTileMap
+			return chartedTileCodes
 				.SafeSelect( tileAt => getCoordFromCode(tileAt) )
 				.ToList();
+		}
+
+
+		private static void GetAllContiguousMatchingTileCodesAt(
+					TilePattern pattern,
+					int srcTileX,
+					int srcTileY,
+					int unchartedTileCode,
+					int maxRadiusSqr,
+					int tileQuota,
+					ref ISet<int> excessTileCodes,
+					ref ISet<int> chartedTileCodes,
+					ref ISet<int> unchartedTileCodes ) {
+			int getCodeFromCoord( int x, int y )
+				=> x + ( y << 16 );
+
+			(ushort, ushort) getCoordFromCode( int code ) => (
+				(ushort)( (code << 16) >> 16 ),
+				(ushort)( code >> 16 )
+			);
+
+			//
+
+			int distX, distY, distSqr;
+
+			bool isAtTileQuota = tileQuota > 0 && chartedTileCodes.Count >= tileQuota;
+
+			(ushort x, ushort y) coord = getCoordFromCode( unchartedTileCode );
+			int x = (int)coord.x;
+			int y = (int)coord.y;
+
+			bool isOutOfRange = false;
+
+			if( maxRadiusSqr > 0 ) {
+				distX = x - srcTileX;
+				distY = y - srcTileY;
+				distSqr = ( distX * distX ) + ( distY * distY );
+
+				if( distSqr >= maxRadiusSqr ) {
+					isOutOfRange = true;
+				}
+			}
+
+			if( pattern.Check( x, y ) ) {
+				if( !isOutOfRange && !isAtTileQuota ) {
+					chartedTileCodes.Add( unchartedTileCode );
+					unchartedTileCodes.Add( getCodeFromCoord( x, y - 1 ) );
+					unchartedTileCodes.Add( getCodeFromCoord( x - 1, y ) );
+					unchartedTileCodes.Add( getCodeFromCoord( x + 1, y ) );
+					unchartedTileCodes.Add( getCodeFromCoord( x, y + 1 ) );
+				} else {
+					excessTileCodes.Add( unchartedTileCode );
+				}
+			}
 		}
 	}
 }
