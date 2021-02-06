@@ -97,7 +97,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		////
 
 		/// <summary>
-		/// Gets the nearest matching tile to a given point (as a world coordinate).
+		/// Gets the nearest matching tile to a given point.
 		/// </summary>
 		/// <param name="worldPos"></param>
 		/// <param name="pattern"></param>
@@ -151,7 +151,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 
 		/// <summary>
-		/// Gets the nearest matching tile to a given point.
+		/// Gets the nearest matching tile to a given tile.
 		/// </summary>
 		/// <param name="tileX"></param>
 		/// <param name="tileY"></param>
@@ -164,7 +164,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				TilePattern pattern,
 				int maxTileRadius = Int32.MaxValue ) {
 			if( pattern.Check(tileX, tileY) ) {
-				return (tileX, tileY);
+				return ( tileX, tileY );
 			}
 
 			int midTileX = tileX;

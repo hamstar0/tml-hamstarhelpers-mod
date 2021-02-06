@@ -75,6 +75,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 
 			if( !this.SkipWall ) {
 				tile.wall = this.WallType;
+
+				WorldGen.SquareWallFrame( leftTileX, bottomTileY );
 			}
 
 			if( this.Slope.HasValue ) {

@@ -9711,7 +9711,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetNearestTile(Microsoft.Xna.Framework.Vector2,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
             <summary>
-            Gets the nearest matching tile to a given point (as a world coordinate).
+            Gets the nearest matching tile to a given point.
             </summary>
             <param name="worldPos"></param>
             <param name="pattern"></param>
@@ -9720,7 +9720,7 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetNearestTile(System.Int32,System.Int32,HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
             <summary>
-            Gets the nearest matching tile to a given point.
+            Gets the nearest matching tile to a given tile.
             </summary>
             <param name="tileX"></param>
             <param name="tileY"></param>

@@ -34,8 +34,8 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 			for( int y = area.Y; y < maxY; y++ ) {
 				for( int x=area.X; x<maxX; x++ ) {
 					if( hollow.HasValue ) {
-						if( x >= myHollow.X && x < myHollow.X + myHollow.Width ) {
-							if( y >= myHollow.Y && y < myHollow.Y + myHollow.Height ) {
+						if( x >= myHollow.X && x < (myHollow.X + myHollow.Width) ) {
+							if( y >= myHollow.Y && y < (myHollow.Y + myHollow.Height) ) {
 								continue;
 							}
 						}

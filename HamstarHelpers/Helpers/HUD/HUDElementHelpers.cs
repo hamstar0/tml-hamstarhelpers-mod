@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Helpers.UI;
-using Microsoft.Xna.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
+using HamstarHelpers.Helpers.UI;
 
 
 namespace HamstarHelpers.Helpers.HUD {
