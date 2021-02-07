@@ -118,12 +118,12 @@ namespace HamstarHelpers.Helpers.Tiles {
 					int minTileY = 1,
 					int maxTileX = -1,
 					int maxTileY = -1 ) {
-			maxTileX = maxTileX < 0 ? Main.maxTilesX - 1 : maxTileX;
-			maxTileY = maxTileY < 0 ? Main.maxTilesY - 1 : maxTileY;
+			ushort myMaxTileX = maxTileX < 0 ? (ushort)(Main.maxTilesX - 1): (ushort)maxTileX;
+			ushort myMaxTileY = maxTileY < 0 ? (ushort)(Main.maxTilesY - 1): (ushort)maxTileY;
 
 			//
 
-			Rectangle getRect( IList<(ushort x, ushort y)> matches ) {
+			Rectangle getRect( IEnumerable<(ushort x, ushort y)> matches ) {
 				int leftX = Main.maxTilesX - 1;
 				int rightX = 1;
 				int topY = Main.maxTilesY - 1;
@@ -144,23 +144,43 @@ namespace HamstarHelpers.Helpers.Tiles {
 					}
 				}
 
-				return new Rectangle( leftX, topY, rightX - leftX, botY - topY );
+				return new Rectangle(
+					leftX,
+					topY,
+					(rightX - leftX) + 1,
+					(botY - topY) + 1
+				);
 			}
 
 			//
 
 			var rects = new HashSet<Rectangle>();
+			var matchesList = new List<ISet<(ushort, ushort)>>();
 
-			for( int x=minTileX; x<maxTileX; x++ ) {
-				for( int y=minTileY; y<maxTileY; y++ ) {
-					IList<(ushort x, ushort y)> matches = TileFinderHelpers.GetAllContiguousMatchingTiles(
-						pattern, x, y, out _ );
+			for( ushort x=(ushort)minTileX; x<myMaxTileX; x++ ) {
+				for( ushort y=(ushort)minTileY; y<myMaxTileY; y++ ) {
+					foreach( ISet<(ushort x, ushort y)> prevMatches in matchesList ) {
+						if( prevMatches.Contains( (x, y) ) ) {
+							goto SKIP;
+						}
+					}
+
+					ISet<(ushort x, ushort y)> matches = new HashSet<(ushort, ushort)>(
+						TileFinderHelpers.GetAllContiguousMatchingTiles( pattern, x, y, out _ )
+					);
 
 					if( matches.Count > 0 ) {
 						Rectangle rect = getRect( matches );
 						rects.Add( rect );
 					}
+
+					while( matches.Contains( (x, ++y) ) && y < myMaxTileY ) { }
+					y--;
+
+					matchesList.Add( matches );
 				}
+
+				SKIP: continue;
 			}
 
 			return rects;

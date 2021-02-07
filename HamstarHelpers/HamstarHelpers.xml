@@ -9572,6 +9572,9 @@
             <summary>
             Assorted static "helper" functions pertaining to tile finding.
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to tile finding.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetPlayerRangeTilesAt(System.Int32,System.Int32)">
             <summary>
@@ -9638,10 +9641,9 @@
             <param name="pattern"></param>
             <param name="tileX"></param>
             <param name="tileY"></param>
-            <param name="unclosedTiles">All matched tiles that exceed `maxRadius` or `maxTiles`, just beyond the outer
-            edges of the result's matches.</param>
+            <param name="excessTiles">All matched tiles that exceed `maxRadius` or `maxTiles`.</param>
             <param name="maxRadius"></param>
-            <param name="maxTiles"></param>
+            <param name="tileQuota"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindBoxForAllOf(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
