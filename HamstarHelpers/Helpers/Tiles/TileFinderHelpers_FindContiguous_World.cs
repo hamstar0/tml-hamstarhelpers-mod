@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.World.Generation;
 using HamstarHelpers.Classes.Tiles.TilePattern;
 using HamstarHelpers.Helpers.Debug;
 
@@ -111,13 +112,15 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="minTileY"></param>
 		/// <param name="maxTileX"></param>
 		/// <param name="maxTileY"></param>
+		/// <param name="progress"></param>
 		/// <returns></returns>
 		public static ISet<Rectangle> FindBoxesOfAllContiguousMatches(
 					TilePattern pattern,
 					int minTileX = 1,
 					int minTileY = 1,
 					int maxTileX = -1,
-					int maxTileY = -1 ) {
+					int maxTileY = -1,
+					GenerationProgress progress = null ) {
 			ushort myMaxTileX = maxTileX < 0 ? (ushort)(Main.maxTilesX - 1): (ushort)maxTileX;
 			ushort myMaxTileY = maxTileY < 0 ? (ushort)(Main.maxTilesY - 1): (ushort)maxTileY;
 
@@ -157,8 +160,17 @@ namespace HamstarHelpers.Helpers.Tiles {
 			var rects = new HashSet<Rectangle>();
 			var matchesList = new List<ISet<(ushort, ushort)>>();
 
+			int cols = myMaxTileX - minTileX;
+			int rows = myMaxTileY - minTileY;
+
 			for( ushort x=(ushort)minTileX; x<myMaxTileX; x++ ) {
 				for( ushort y=(ushort)minTileY; y<myMaxTileY; y++ ) {
+					if( progress != null ) {
+						float maxProgress = cols * rows;
+						float currProgress = (x * rows) + y;
+						progress.Value = currProgress / maxProgress;
+					}
+
 					foreach( ISet<(ushort x, ushort y)> prevMatches in matchesList ) {
 						if( prevMatches.Contains( (x, y) ) ) {
 							goto SKIP;

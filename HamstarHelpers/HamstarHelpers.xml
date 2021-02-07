@@ -9660,7 +9660,7 @@
             <param name="minimumAdjacentMatchesPerTileMatch"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindBoxesOfAllContiguousMatches(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindBoxesOfAllContiguousMatches(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32,Terraria.World.Generation.GenerationProgress)">
             <summary>
             Finds all `Rectangle`s encompassing contiguous matches of the given `pattern`.
             </summary>
@@ -9669,6 +9669,7 @@
             <param name="minTileY"></param>
             <param name="maxTileX"></param>
             <param name="maxTileY"></param>
+            <param name="progress"></param>
             <returns></returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindAreaMatchWithin(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,Microsoft.Xna.Framework.Rectangle,System.Int32,System.Int32,System.Int32@,System.Int32@)">
