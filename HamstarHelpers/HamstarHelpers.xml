@@ -9634,7 +9634,7 @@
             <param name="ceilY">Last matching tile before hitting the ceiling.</param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetAllContiguousMatchingTiles(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.UInt16,System.UInt16}}@,System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetAllContiguousMatchingTilesAt(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Collections.Generic.ISet{System.ValueTuple{System.UInt16,System.UInt16}}@,System.Int32,System.Int32)">
             <summary>
             Gets a list of all contiguous tiles matching the given pattern.
             </summary>
@@ -9645,6 +9645,9 @@
             <param name="maxRadius"></param>
             <param name="tileQuota"></param>
             <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.GetAllContiguousMatchingTiles(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Collections.Generic.IList{System.ValueTuple{System.UInt16,System.UInt16}}@,System.Int32,System.Int32)">
+            @private
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindBoxForAllOf(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32)">
             <summary>

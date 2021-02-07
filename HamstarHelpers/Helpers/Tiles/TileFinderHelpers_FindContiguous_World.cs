@@ -165,22 +165,23 @@ namespace HamstarHelpers.Helpers.Tiles {
 						}
 					}
 
-					ISet<(ushort x, ushort y)> matches = new HashSet<(ushort, ushort)>(
-						TileFinderHelpers.GetAllContiguousMatchingTiles( pattern, x, y, out _ )
-					);
-
-					if( matches.Count > 0 ) {
-						Rectangle rect = getRect( matches );
-						rects.Add( rect );
+					ISet<(ushort, ushort)> matches;
+					matches = TileFinderHelpers.GetAllContiguousMatchingTilesAt( pattern, x, y, out _ );
+					if( matches.Count == 0 ) {
+						continue;
 					}
+//LogHelpers.Log( "x: "+x+", y: "+y+" - "+ matches.Count);
+
+					Rectangle rect = getRect( matches );
+					rects.Add( rect );
 
 					while( matches.Contains( (x, ++y) ) && y < myMaxTileY ) { }
 					y--;
 
 					matchesList.Add( matches );
-				}
 
-				SKIP: continue;
+					SKIP: continue;
+				}
 			}
 
 			return rects;

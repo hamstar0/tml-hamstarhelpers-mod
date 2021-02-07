@@ -4,7 +4,6 @@ using System.Linq;
 using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
 
 
 namespace HamstarHelpers.Helpers.Tiles {
@@ -12,17 +11,6 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// Assorted static "helper" functions pertaining to tile finding.
 	/// </summary>
 	public partial class TileFinderHelpers {
-		private static int GetCodeFromCoord( int x, int y )
-			=> x + ( y << 16 );
-
-		private static (ushort, ushort) GetCoordFromCode( int code ) => (
-			(ushort)( ( code << 16 ) >> 16 ),
-			(ushort)( code >> 16 )
-		);
-
-
-		////////////////
-
 		/// <summary>
 		/// Gets a list of all contiguous tiles matching the given pattern.
 		/// </summary>
@@ -33,6 +21,44 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="maxRadius"></param>
 		/// <param name="tileQuota"></param>
 		/// <returns></returns>
+		public static ISet<(ushort TileX, ushort TileY)> GetAllContiguousMatchingTilesAt(
+					TilePattern pattern,
+					int tileX,
+					int tileY,
+					out ISet<(ushort TileX, ushort TileY)> excessTiles,
+					int maxRadius = -1,
+					int tileQuota = -1 ) {
+			if( !pattern.Check(tileX, tileY, out _) ) {
+				excessTiles = new HashSet<(ushort, ushort)>();
+				return new HashSet<(ushort, ushort)>();
+			}
+
+			ISet<(ushort, ushort)> chartedTiles = new HashSet<(ushort, ushort)>();
+			ISet<(ushort, ushort)> unchartedTiles = new HashSet<(ushort, ushort)> { ((ushort)tileX, (ushort)tileY) };
+			excessTiles = new HashSet<(ushort, ushort)>();
+
+			int maxRadiusSqr = maxRadius > 0
+				? maxRadius * maxRadius
+				: 0;
+
+			do {
+				TileFinderHelpers.IterateChartingContiguousMatchingTiles(
+					pattern: pattern,
+					srcTileX: tileX,
+					srcTileY: tileY,
+					maxRadiusSqr: maxRadiusSqr,
+					tileQuota: tileQuota,
+					excessTiles: ref excessTiles,
+					chartedTiles: ref chartedTiles,
+					unchartedTiles: ref unchartedTiles
+				);
+			} while( unchartedTiles.Count > 0 );
+			
+			return chartedTiles;
+		}
+
+		/// @private
+		[Obsolete( "use GetAllContiguousMatchingTilesAt", true )]
 		public static IList<(ushort TileX, ushort TileY)> GetAllContiguousMatchingTiles(
 					TilePattern pattern,
 					int tileX,
@@ -40,123 +66,100 @@ namespace HamstarHelpers.Helpers.Tiles {
 					out IList<(ushort TileX, ushort TileY)> excessTiles,
 					int maxRadius = -1,
 					int tileQuota = -1 ) {
-			TileCollideType collide;
-			if( !pattern.Check(tileX, tileY, out collide) ) {
-				excessTiles = new (ushort, ushort)[ 0 ];
-				return new (ushort, ushort)[ 0 ];
-			}
+			ISet<(ushort TileX, ushort TileY)> excessTileSet;
+			var matches = TileFinderHelpers.GetAllContiguousMatchingTilesAt(
+				pattern, tileX, tileY, out excessTileSet, maxRadius, tileQuota
+			);
 
-			ISet<int> excessTileCodes = new HashSet<int>();
-			ISet<int> unchartedTileCodes = new HashSet<int> { TileFinderHelpers.GetCodeFromCoord( tileX, tileY) };
-			ISet<int> newUnchartedTileCodes = new HashSet<int>();
-			ISet<int> chartedTileCodes = new HashSet<int>();
-
-			int maxRadiusSqr = maxRadius * maxRadius;
-
-			do {
-				TileFinderHelpers.IterateChartingContiguousMatchingTilesByCode(
-					pattern: pattern,
-					srcTileX: tileX,
-					srcTileY: tileY,
-					maxRadiusSqr: maxRadiusSqr,
-					tileQuota: tileQuota,
-					excessTileCodes: ref excessTileCodes,
-					chartedTileCodes: ref chartedTileCodes,
-					unchartedTileCodes: ref unchartedTileCodes
-				);
-			} while( unchartedTileCodes.Count > 0 );
-			
-			if( excessTileCodes.Count > 0 ) {
-				excessTiles = excessTileCodes
-					.SafeSelect( tileAt => TileFinderHelpers.GetCoordFromCode( tileAt) )
-					.ToList();
-			} else {
-				excessTiles = new (ushort, ushort)[0];
-			}
-
-			return chartedTileCodes
-				.SafeSelect( tileAt => TileFinderHelpers.GetCoordFromCode(tileAt) )
-				.ToList();
+			excessTiles = excessTileSet.ToList();
+			return matches.ToList();
 		}
 
 
 		////////////////
 
-		private static void IterateChartingContiguousMatchingTilesByCode(
+		private static void IterateChartingContiguousMatchingTiles(
 					TilePattern pattern,
 					int srcTileX,
 					int srcTileY,
 					int maxRadiusSqr,
 					int tileQuota,
-					ref ISet<int> excessTileCodes,
-					ref ISet<int> chartedTileCodes,
-					ref ISet<int> unchartedTileCodes ) {
-			foreach( int unchartedTileCode in unchartedTileCodes ) {
-				TileFinderHelpers.GetAllContiguousMatchingTileCodesAt(
+					ref ISet<(ushort, ushort)> excessTiles,
+					ref ISet<(ushort, ushort)> chartedTiles,
+					ref ISet<(ushort, ushort)> unchartedTiles ) {
+			ISet<(ushort, ushort)> nextToScanTiles = new HashSet<(ushort, ushort)>();
+
+			foreach( (ushort x, ushort y) unchartedTile in unchartedTiles ) {
+				TileFinderHelpers.StepChartingTileMatchAt(
 					pattern: pattern,
 					srcTileX: srcTileX,
 					srcTileY: srcTileY,
-					unchartedTileCode: unchartedTileCode,
+					unchartedTile: unchartedTile,
 					maxRadiusSqr: maxRadiusSqr,
 					tileQuota: tileQuota,
-					excessTileCodes: ref excessTileCodes,
-					chartedTileCodes: ref chartedTileCodes,
-					unchartedTileCodes: ref unchartedTileCodes
+					excessTiles: ref excessTiles,
+					chartedTiles: ref chartedTiles,
+					nextToScanTiles: ref nextToScanTiles
 				);
 			}
 
-			unchartedTileCodes.Clear();
+			unchartedTiles.Clear();
 
-			foreach( int tileAt in unchartedTileCodes ) {
-				if( chartedTileCodes.Contains( tileAt ) ) {
-					continue;
+			foreach( (ushort, ushort) tileAt in nextToScanTiles ) {
+				if( !chartedTiles.Contains(tileAt) && !excessTiles.Contains(tileAt) ) {
+					unchartedTiles.Add( tileAt );
 				}
-				unchartedTileCodes.Add( tileAt );
 			}
-
-			unchartedTileCodes.Clear();
 		}
 
 
-		private static void GetAllContiguousMatchingTileCodesAt(
+		private static void StepChartingTileMatchAt(
 					TilePattern pattern,
 					int srcTileX,
 					int srcTileY,
-					int unchartedTileCode,
+					(ushort x , ushort y) unchartedTile,
 					int maxRadiusSqr,
 					int tileQuota,
-					ref ISet<int> excessTileCodes,
-					ref ISet<int> chartedTileCodes,
-					ref ISet<int> unchartedTileCodes ) {
+					ref ISet<(ushort, ushort)> excessTiles,
+					ref ISet<(ushort, ushort)> chartedTiles,
+					ref ISet<(ushort, ushort)> nextToScanTiles ) {
 			int distX, distY, distSqr;
 
-			bool isAtTileQuota = tileQuota > 0 && chartedTileCodes.Count >= tileQuota;
+			int x = (int)unchartedTile.x;
+			int y = (int)unchartedTile.y;
 
-			(ushort x, ushort y) coord = TileFinderHelpers.GetCoordFromCode( unchartedTileCode );
-			int x = (int)coord.x;
-			int y = (int)coord.y;
-
+			bool isAtTileQuota = tileQuota > 0 && chartedTiles.Count >= tileQuota;
 			bool isOutOfRange = false;
 
 			if( maxRadiusSqr > 0 ) {
 				distX = x - srcTileX;
 				distY = y - srcTileY;
-				distSqr = ( distX * distX ) + ( distY * distY );
+				distSqr = (distX * distX) + (distY * distY);
 
 				if( distSqr >= maxRadiusSqr ) {
 					isOutOfRange = true;
 				}
 			}
 
-			if( pattern.Check( x, y ) ) {
+			if( pattern.Check(x, y) ) {
+//LogHelpers.Log( "  x:"+x+", y:"+y+" = "+TileID.GetUniqueKey( Main.tile[x, y].type )+" ? "+isOutOfRange+", "+isAtTileQuota );
 				if( !isOutOfRange && !isAtTileQuota ) {
-					chartedTileCodes.Add( unchartedTileCode );
-					unchartedTileCodes.Add( TileFinderHelpers.GetCodeFromCoord( x, y - 1 ) );
-					unchartedTileCodes.Add( TileFinderHelpers.GetCodeFromCoord( x - 1, y ) );
-					unchartedTileCodes.Add( TileFinderHelpers.GetCodeFromCoord( x + 1, y ) );
-					unchartedTileCodes.Add( TileFinderHelpers.GetCodeFromCoord( x, y + 1 ) );
+					chartedTiles.Add( unchartedTile );
+
+					if( y > 0 ) {
+						nextToScanTiles.Add( ((ushort)x, (ushort)(y - 1)) );
+					}
+					if( x > 0 ) {
+						nextToScanTiles.Add( ((ushort)(x - 1), (ushort)y ) );
+					}
+					if( x < Main.maxTilesX - 1 ) {
+						nextToScanTiles.Add( ((ushort)( x + 1 ), (ushort)y) );
+					}
+					if( y < Main.maxTilesY - 1 ) {
+						nextToScanTiles.Add( ((ushort)x, (ushort)( y + 1 )) );
+					}
 				} else {
-					excessTileCodes.Add( unchartedTileCode );
+					excessTiles.Add( unchartedTile );
 				}
 			}
 		}
