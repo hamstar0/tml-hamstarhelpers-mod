@@ -21,13 +21,13 @@ namespace HamstarHelpers.Classes.PlayerData {
 		private static void Enter( int playerWho ) {
 			Player player = Main.player[playerWho];
 
-			if( ModHelpersConfig.Instance.DebugModeHelpersInfo ) {
-				LogHelpers.Alert( "Player "+player.name+" ("+playerWho+") entered the game." );
-			}
-
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
 			IEnumerable<Type> plrDataTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof( CustomPlayerData ) );
 			string uid = PlayerIdentityHelpers.GetUniqueId( player );
+
+			if( ModHelpersConfig.Instance.DebugModeHelpersInfo ) {
+				LogHelpers.Alert( "Player "+player.name+" ("+playerWho+"; "+uid+") entered the game." );
+			}
 
 			foreach( Type plrDataType in plrDataTypes ) {
 				object data = CustomPlayerData.LoadFileData( plrDataType.Name, uid );
@@ -64,7 +64,14 @@ namespace HamstarHelpers.Classes.PlayerData {
 
 		private static void Exit( int playerWho ) {
 			if( ModHelpersConfig.Instance.DebugModeHelpersInfo ) {
-				LogHelpers.Alert( "Player " + Main.player[playerWho].name + " (" + playerWho + ") exited the game." );
+				Player plr = Main.player[playerWho];
+				string uid = "";
+
+				if( plr != null ) {
+					uid = PlayerIdentityHelpers.GetUniqueId( Main.player[playerWho] );
+				}
+
+				LogHelpers.Alert( "Player "+(plr?.name ?? "null")+" ("+playerWho+", "+uid+") exited the game." );
 			}
 
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
@@ -81,7 +88,9 @@ namespace HamstarHelpers.Classes.PlayerData {
 				}
 			}
 
-			singleton.DataMap.Remove( playerWho );
+			lock( CustomPlayerData.MyLock ) {
+				singleton.DataMap.Remove( playerWho );
+			}
 		}
 
 

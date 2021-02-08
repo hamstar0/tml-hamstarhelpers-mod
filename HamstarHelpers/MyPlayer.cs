@@ -10,9 +10,9 @@ using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Cheats;
 using HamstarHelpers.Services.Debug.DataDumper;
 using HamstarHelpers.Services.UI.ControlPanel;
-using HamstarHelpers.Services.Cheats;
 
 
 namespace HamstarHelpers {

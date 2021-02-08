@@ -59,7 +59,12 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////
 
-		public bool Equals( PlayerLogic clone ) {
+		public override bool Equals( object obj ) {
+			var clone = obj as PlayerLogic;
+			if( clone == null ) {
+				return false;
+			}
+
 			if( !clone.PermaBuffsById.SetEquals(this.PermaBuffsById) ) {
 				return false;
 			}
@@ -72,9 +77,43 @@ namespace HamstarHelpers.Internals.Logic {
 			if( clone.ActiveCheats != this.ActiveCheats ) {
 				return false;
 			}
+			if( clone.TestPing != this.TestPing ) {
+				return false;
+			}
+			if( clone.DialogManager != this.DialogManager ) {
+				return false;
+			}
+			if( clone.OldPrivateUID != this.OldPrivateUID ) {
+				return false;
+			}
+			if( clone.HasLoadedOldUID != this.HasLoadedOldUID ) {
+				return false;
+			}
+			if( clone.HasSyncedWorldData != this.HasSyncedWorldData ) {
+				return false;
+			}
+			if( clone.IsSynced != this.IsSynced ) {
+				return false;
+			}
+			if( clone.ActiveCheats != this.ActiveCheats ) {
+				return false;
+			}
 			return true;
 		}
 
+		public override int GetHashCode() {
+			return this.PermaBuffsById.GetHashCode()
+				+ this.HasBuffIds.GetHashCode()
+				+ this.EquipSlotsToItemTypes.GetHashCode()
+				+ this.ActiveCheats.GetHashCode()
+				+ this.TestPing.GetHashCode()
+				+ this.DialogManager.GetHashCode()
+				+ this.OldPrivateUID.GetHashCode()
+				+ this.HasLoadedOldUID.GetHashCode()
+				+ this.HasSyncedWorldData.GetHashCode()
+				+ this.IsSynced.GetHashCode()
+				+ this.ActiveCheats.GetHashCode();
+		}
 
 
 		////////////////
