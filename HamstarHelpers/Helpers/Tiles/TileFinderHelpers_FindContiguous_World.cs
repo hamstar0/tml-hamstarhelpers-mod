@@ -112,6 +112,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="minTileY"></param>
 		/// <param name="maxTileX"></param>
 		/// <param name="maxTileY"></param>
+		/// <param name="skip">Tiles to skip over when scanning. `1` is no skipping.</param>
 		/// <param name="progress"></param>
 		/// <returns></returns>
 		public static ISet<Rectangle> FindBoxesOfAllContiguousMatches(
@@ -120,6 +121,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 					int minTileY = 1,
 					int maxTileX = -1,
 					int maxTileY = -1,
+					ushort skip = 1,
 					GenerationProgress progress = null ) {
 			ushort myMaxTileX = maxTileX < 0 ? (ushort)(Main.maxTilesX - 1): (ushort)maxTileX;
 			ushort myMaxTileY = maxTileY < 0 ? (ushort)(Main.maxTilesY - 1): (ushort)maxTileY;
@@ -163,8 +165,8 @@ namespace HamstarHelpers.Helpers.Tiles {
 			int cols = myMaxTileX - minTileX;
 			int rows = myMaxTileY - minTileY;
 
-			for( ushort x=(ushort)minTileX; x<myMaxTileX; x++ ) {
-				for( ushort y=(ushort)minTileY; y<myMaxTileY; y++ ) {
+			for( ushort x=(ushort)minTileX; x<myMaxTileX; x+=skip ) {
+				for( ushort y=(ushort)minTileY; y<myMaxTileY; y+=skip ) {
 					if( progress != null ) {
 						float maxProgress = cols * rows;
 						float currProgress = (x * rows) + y;
