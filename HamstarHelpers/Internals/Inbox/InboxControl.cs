@@ -92,7 +92,7 @@ namespace HamstarHelpers.Internals.Inbox {
 
 			var rect = new Rectangle( (int)this.IconPos.X, (int)this.IconPos.Y, this.Icon.Width, this.Icon.Height );
 			bool isHover = UIHelpers.MouseInRectangle( rect );
-			Vector2 mousePos = new Vector2( Main.mouseX + 16, Main.mouseY );
+			Vector2 mousePos = new Vector2( Main.mouseX + 16, Main.mouseY + 12 );
 
 			if( Main.mouseLeft && isHover ) {
 				if( !this.IsIconClicked ) {

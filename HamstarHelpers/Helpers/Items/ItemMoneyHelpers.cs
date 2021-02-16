@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.Localization;
 using HamstarHelpers.Helpers.Players;
 using HamstarHelpers.Helpers.Misc;
+using HamstarHelpers.Helpers.XNA;
 
 
 namespace HamstarHelpers.Helpers.Items {
@@ -67,29 +68,36 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <param name="money"></param>
 		/// <param name="addDenom"></param>
 		/// <param name="addColors"></param>
+		/// <param name="addColorPulse">Adds Terraria's standard text pulsing to rendered colors.</param>
 		/// <returns></returns>
-		public static string[] RenderMoneyDenominations( long money, bool addDenom, bool addColors ) {
-			var denoms = GetMoneyDenominations( money );
+		public static string[] RenderMoneyDenominations( long money, bool addDenom, bool addColors, bool addColorPulse=false ) {
+			float colorPulse = addColorPulse
+				? ( (float)Main.mouseTextColor / 255f )
+				: 1f;
+
+			return ItemMoneyHelpers.RenderMoneyDenominations( money, addDenom, addColors, Color.White * colorPulse );
+		}
+
+		/// <summary>
+		/// Generates an English-formatted string indicating an amount of money.
+		/// </summary>
+		/// <param name="money"></param>
+		/// <param name="addDenom"></param>
+		/// <param name="addColors"></param>
+		/// <param name="tint"></param>
+		/// <returns></returns>
+		public static string[] RenderMoneyDenominations( long money, bool addDenom, bool addColors, Color tint ) {
+			var denoms = ItemMoneyHelpers.GetMoneyDenominations( money );
 			var rendered = new List<string>( 4 );
 
-			if( denoms.copper != 0 ) {
-				string render = denoms.copper.ToString();
+			if( denoms.platinum != 0 ) {
+				string render = denoms.platinum.ToString();
 				if( addDenom ) {
-					render += " " + Language.GetTextValue( "Currency.Copper" );    //Lang.inter[18];
+					render += " " + Language.GetTextValue( "Currency.Platinum" );    //Lang.inter[15];
 				}
 				if( addColors ) {
-					string colorHex = MiscHelpers.RenderColorHex( ItemMoneyHelpers.CopperCoinColor );
-					render = "[c/"+colorHex+":"+render+"]";
-				}
-				rendered.Add( render );
-			}
-			if( denoms.silver != 0 ) {
-				string render = denoms.silver.ToString();
-				if( addDenom ) {
-					render += " " + Language.GetTextValue( "Currency.Silver" );    //Lang.inter[17];
-				}
-				if( addColors ) {
-					string colorHex = MiscHelpers.RenderColorHex( ItemMoneyHelpers.SilverCoinColor );
+					Color color = XNAColorHelpers.Mul( ItemMoneyHelpers.PlatinumCoinColor, tint );
+					string colorHex = MiscHelpers.RenderColorHex( color );
 					render = "[c/"+colorHex+":"+render+"]";
 				}
 				rendered.Add( render );
@@ -100,18 +108,32 @@ namespace HamstarHelpers.Helpers.Items {
 					render += " " + Language.GetTextValue( "Currency.Gold" );    //Lang.inter[16];
 				}
 				if( addColors ) {
-					string colorHex = MiscHelpers.RenderColorHex( ItemMoneyHelpers.GoldCoinColor );
+					Color color = XNAColorHelpers.Mul( ItemMoneyHelpers.GoldCoinColor, tint );
+					string colorHex = MiscHelpers.RenderColorHex( color );
 					render = "[c/"+colorHex+":"+render+"]";
 				}
 				rendered.Add( render );
 			}
-			if( denoms.platinum != 0 ) {
-				string render = denoms.platinum.ToString();
+			if( denoms.silver != 0 ) {
+				string render = denoms.silver.ToString();
 				if( addDenom ) {
-					render += " " + Language.GetTextValue( "Currency.Platinum" );    //Lang.inter[15];
+					render += " " + Language.GetTextValue( "Currency.Silver" );    //Lang.inter[17];
 				}
 				if( addColors ) {
-					string colorHex = MiscHelpers.RenderColorHex( ItemMoneyHelpers.PlatinumCoinColor );
+					Color color = XNAColorHelpers.Mul( ItemMoneyHelpers.SilverCoinColor, tint );
+					string colorHex = MiscHelpers.RenderColorHex( color );
+					render = "[c/"+colorHex+":"+render+"]";
+				}
+				rendered.Add( render );
+			}
+			if( denoms.copper != 0 ) {
+				string render = denoms.copper.ToString();
+				if( addDenom ) {
+					render += " " + Language.GetTextValue( "Currency.Copper" );    //Lang.inter[18];
+				}
+				if( addColors ) {
+					Color color = XNAColorHelpers.Mul( ItemMoneyHelpers.CopperCoinColor, tint );
+					string colorHex = MiscHelpers.RenderColorHex( color );
 					render = "[c/"+colorHex+":"+render+"]";
 				}
 				rendered.Add( render );

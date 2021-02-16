@@ -12,5 +12,11 @@ namespace HamstarHelpers.Helpers.Items {
 		public static string RenderMoney( int money ) {
 			return string.Join( " ", ItemMoneyHelpers.RenderMoneyDenominations(money, true, false) );
 		}
+
+		/// @private
+		[Obsolete( "use RenderMoneyDenominations(long, bool, bool, bool)", true)]
+		public static string[] RenderMoneyDenominations( long money, bool addDenom, bool addColors ) {
+			return ItemMoneyHelpers.RenderMoneyDenominations( money, true, false, false );
+		}
 	}
 }

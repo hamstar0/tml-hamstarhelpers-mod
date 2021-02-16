@@ -257,6 +257,38 @@
         <member name="M:HamstarHelpers.Classes.CameraAnimation.CameraZoomer.EndAnimation">
             <summary></summary>
         </member>
+        <member name="T:HamstarHelpers.Classes.Config.SimpleLayeredConfig">
+            <summary>
+            Allows programmatically storing config field/property values that are not saved to the .json file, and do not affect existing user
+            settings. In short, you can now use your configs for data API use.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Config.SimpleLayeredConfig.Get``1(System.String)">
+            <summary>
+            Gets a given config field by its string name. Recommend using `nameof` to catch mismatched fields/properties at compile time.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="propName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Config.SimpleLayeredConfig.Get``1(System.String,System.Boolean@)">
+            <summary>
+            Gets a given config field by its string name. Recommend using `nameof` to catch mismatched fields/properties at compile time.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="propName"></param>
+            <param name="isOverride">Reports if the field/property has been overridden.</param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Config.SimpleLayeredConfig.SetLayered``1(System.String,``0)">
+            <summary>
+            Sets a field or property to have a new (layered) value. Preserves the underlying ModConfig user data by storing into a separate
+            layer.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="propName"></param>
+            <param name="value"></param>
+        </member>
         <member name="T:HamstarHelpers.Classes.Context.Context">
             <summary>
             Defines a general-purpose context of the game.
@@ -9660,7 +9692,7 @@
             <param name="minimumAdjacentMatchesPerTileMatch"></param>
             <returns></returns>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindBoxesOfAllContiguousMatches(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32,Terraria.World.Generation.GenerationProgress)">
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileFinderHelpers.FindBoxesOfAllContiguousMatches(HamstarHelpers.Classes.Tiles.TilePattern.TilePattern,System.Int32,System.Int32,System.Int32,System.Int32,System.UInt16,Terraria.World.Generation.GenerationProgress)">
             <summary>
             Finds all `Rectangle`s encompassing contiguous matches of the given `pattern`.
             </summary>
@@ -9669,6 +9701,7 @@
             <param name="minTileY"></param>
             <param name="maxTileX"></param>
             <param name="maxTileY"></param>
+            <param name="skip">Tiles to skip over when scanning. `1` is no skipping.</param>
             <param name="progress"></param>
             <returns></returns>
         </member>
