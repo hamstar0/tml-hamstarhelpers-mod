@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Helpers.UI;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Helpers.HUD {
@@ -41,12 +42,18 @@ namespace HamstarHelpers.Helpers.HUD {
 
 			return new Vector2( x, y );*/
 
-			var pos = new Vector2( Main.screenWidth - 92, 318 );
-			pos.Y += 48 * slot;
+			var pos = new Vector2(
+				Main.screenWidth - 92,
+				318 + (48 * slot)
+			);
 
 			if( Main.mapStyle == 1 ) {
-				pos.Y += Main.screenHeight - Main.instance.RecommendedEquipmentAreaPushUp;	//600
-				//pos.Y += 104;
+				int mapOffsetY = Main.screenHeight - Main.instance.RecommendedEquipmentAreaPushUp;  //600
+				if( mapOffsetY > 256 ) {
+					mapOffsetY = 255;
+				}
+//DebugHelpers.Print( "acc", "pos: "+(int)pos.Y+", sh: "+Main.screenHeight+", re: "+Main.instance.RecommendedEquipmentAreaPushUp );
+				pos.Y += mapOffsetY;
 			}
 
 			return pos;
