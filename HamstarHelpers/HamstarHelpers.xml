@@ -6856,6 +6856,14 @@
             <summary>
             Assorted static "helper" functions pertaining to general HUD. 
             </summary>
+            <summary>
+            Assorted static "helper" functions pertaining to general HUD. 
+            </summary>
+        </member>
+        <member name="P:HamstarHelpers.Helpers.HUD.HUDHelpers.IsMouseInterfacingWithUI">
+            <summary>
+            Indicates if `Main.LocalPlayer.mouseInterface` was true at the end of the previous tick.
+            </summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.HUD.HUDHelpers.DrawBorderedRect(Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Color,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Int32)">
             @private

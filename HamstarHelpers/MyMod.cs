@@ -38,6 +38,12 @@ namespace HamstarHelpers {
 
 
 		////////////////
+		
+		public bool MouseInterface { get; private set; }
+
+
+
+		////////////////
 
 		public ModHelpersMod() {
 			ModHelpersMod.Instance = this;
@@ -150,6 +156,13 @@ namespace HamstarHelpers {
 
 		public override void PreSaveAndQuit() {
 			this.LoadHooks.PreSaveAndExit();
+		}
+
+
+		////////////////
+
+		public override void PostUpdateEverything() {
+			this.MouseInterface = Main.LocalPlayer.mouseInterface;
 		}
 
 

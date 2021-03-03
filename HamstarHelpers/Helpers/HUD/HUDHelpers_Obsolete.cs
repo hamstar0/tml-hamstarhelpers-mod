@@ -1,17 +1,17 @@
-﻿using HamstarHelpers.Helpers.Draw;
+﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
+using HamstarHelpers.Helpers.Draw;
 
 
 namespace HamstarHelpers.Helpers.HUD {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to general HUD. 
 	/// </summary>
-	public class HUDHelpers {
+	public partial class HUDHelpers {
 		/// @private
-		[Obsolete("use DrawHelpers", true)]
+		[Obsolete( "use DrawHelpers", true )]
 		public static void DrawBorderedRect( SpriteBatch sb, Color bgColor, Color borderColor, Vector2 position, Vector2 size, int borderWidth ) {
 			DrawHelpers.DrawBorderedRect( sb, bgColor, borderColor, position, size, borderWidth );
 		}
