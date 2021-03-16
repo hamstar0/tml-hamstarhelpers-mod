@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			//this.MainElement.BorderColor = ControlPanelUI.MainEdgeColor;
 			this.Append( this.OuterContainer );
 
-			this.RecalculateContainer();
+			this.RecalculateContainerDimensions();
 
 			this.InnerContainer = this.CurrentTab;
 			this.InnerContainer.Width.Set( 0f, 1f );

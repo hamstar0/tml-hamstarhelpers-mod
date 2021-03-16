@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using Terraria;
+using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
+using Terraria.UI;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
-using Terraria;
-using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
-using Terraria.UI;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {

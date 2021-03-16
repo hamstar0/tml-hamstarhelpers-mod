@@ -105,26 +105,6 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		private bool _IsRecalculating = false;
-
-		public override void Recalculate() {
-			if( !this._IsRecalculating && this.Backend != null ) {
-				this._IsRecalculating = true;
-
-				this.Backend.Recalculate();
-			} else {
-				//if( this.OuterContainer != null ) {
-				//	this.RecalculateContainer();
-				//}
-				base.Recalculate();
-			}
-
-			this._IsRecalculating = false;
-		}
-
-
-		////////////////
-
 		public override void Draw( SpriteBatch sb ) {
 			if( !this.IsOpen ) { return; }
 
