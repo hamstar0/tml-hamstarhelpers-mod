@@ -29,7 +29,7 @@ namespace HamstarHelpers.Helpers.Players {
 
 
 		/// <summary>
-		/// Finds first of any of a set of item types currently in the player's position.
+		/// Finds first of any of a set of item types currently in the player's possession.
 		/// </summary>
 		/// <param name="player"></param>
 		/// <param name="itemTypes"></param>

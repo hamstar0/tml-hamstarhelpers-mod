@@ -1,16 +1,16 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
+﻿using System.Collections.Generic;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.UI;
+using Terraria.GameContent.UI.Elements;
+using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.Timers;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
-using Terraria;
-using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
+using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 
 
 namespace HamstarHelpers.Internals.ControlPanel {
@@ -105,20 +105,21 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		////////////////
 
-		public void RecalculateMe() {
-			if( this.Backend != null ) {
-				this.Backend.Recalculate();
-			} else {
-				this.Recalculate();
-			}
-		}
+		private bool _IsRecalculating = false;
 
 		public override void Recalculate() {
-			base.Recalculate();
+			if( !this._IsRecalculating && this.Backend != null ) {
+				this._IsRecalculating = true;
 
-			if( this.OuterContainer != null ) {
-				this.RecalculateContainer();
+				this.Backend.Recalculate();
+			} else {
+				//if( this.OuterContainer != null ) {
+				//	this.RecalculateContainer();
+				//}
+				base.Recalculate();
 			}
+
+			this._IsRecalculating = false;
 		}
 
 

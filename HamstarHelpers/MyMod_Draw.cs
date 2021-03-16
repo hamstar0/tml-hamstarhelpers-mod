@@ -116,7 +116,7 @@ namespace HamstarHelpers {
 				if( this.LastSeenCPScreenWidth != Main.screenWidth || this.LastSeenCPScreenHeight != Main.screenHeight ) {
 					this.LastSeenCPScreenWidth = Main.screenWidth;
 					this.LastSeenCPScreenHeight = Main.screenHeight;
-					this.ControlPanelUI.RecalculateMe();
+					this.ControlPanelUI.Recalculate();
 				}
 
 				this.Inbox.Draw( sb );
