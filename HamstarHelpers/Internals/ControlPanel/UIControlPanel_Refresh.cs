@@ -6,7 +6,7 @@ using HamstarHelpers.Helpers.Debug;
 namespace HamstarHelpers.Internals.ControlPanel {
 	/// @private
 	partial class UIControlPanel : UIState {
-		private bool _IsRecalculating = false;
+		/*private bool _IsRecalculating = false;
 
 		public override void Recalculate() {
 			if( !this._IsRecalculating && this.Backend != null ) {
@@ -21,6 +21,21 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			}
 
 			this._IsRecalculating = false;
+		}*/
+		public void RecalculateMe() {
+			if( this.Backend != null ) {
+				this.Backend.Recalculate();
+			} else {
+				this.Recalculate();
+			}
+		}
+
+		public override void Recalculate() {
+			base.Recalculate();
+
+			if( this.OuterContainer != null ) {
+				this.RecalculateContainerDimensions();
+			}
 		}
 
 

@@ -38,9 +38,9 @@ namespace HamstarHelpers.Helpers.Debug {
 					StackFrame frame = frames[i];
 					MethodBase method = frame.GetMethod();
 
-					string context = method.DeclaringType.Name + "." + method.Name;
+					string context = (method?.DeclaringType?.Name ?? "<Unknown>") + "." + method.Name;
 					if( !omitNamespace ) {
-						string namespaceBase = method.DeclaringType.Namespace.Split( '.' )[0];
+						string namespaceBase = method?.DeclaringType?.Namespace?.Split( '.' )[0] + "<Unknown>";
 						context = namespaceBase + "." + context;
 					}
 

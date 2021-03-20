@@ -23,7 +23,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			this.Backend = Main.InGameUI;
 
-			this.Recalculate();
+			//this.Recalculate();
+			this.RecalculateMe();
 		}
 
 
