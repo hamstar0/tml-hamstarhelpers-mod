@@ -11483,6 +11483,21 @@
             <param name="all"></param>
             <param name="percentChance"></param>
         </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestFillDefinition.#ctor(System.ValueTuple{System.Single,HamstarHelpers.Helpers.World.ChestFillItemDefinition}[],System.Single)">
+            <summary></summary>
+            <param name="any"></param>
+            <param name="percentChance"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestFillDefinition.#ctor(HamstarHelpers.Helpers.World.ChestFillItemDefinition[],System.Single)">
+            <summary></summary>
+            <param name="all"></param>
+            <param name="percentChance"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestFillDefinition.#ctor(HamstarHelpers.Helpers.World.ChestFillItemDefinition,System.Single)">
+            <summary></summary>
+            <param name="single"></param>
+            <param name="percentChance"></param>
+        </member>
         <member name="M:HamstarHelpers.Helpers.World.ChestFillDefinition.Fill(Terraria.Chest)">
             <summary>
             Attempts to fill a given chest according to the current specifications.
@@ -11522,7 +11537,7 @@
             <summary></summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.World.ChestTypeDefinition.TileFrame">
-            <summary></summary>
+            <summary>See `TileFrameHelpers.VanillaChestTypeNamesByFrame` (value is `chestTile.frameX / 36`).</summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.World.ChestTypeDefinition.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary></summary>

@@ -21,7 +21,7 @@ namespace HamstarHelpers.Helpers.World {
 					ChestTypeDefinition chestDef,
 					Rectangle? within=null ) {
 			var modifiedChestIndexes = new List<Chest>();
-
+			
 			foreach( Chest chest in Main.chest ) {
 				if( within.HasValue ) {
 					if( !within.Value.Contains(chest.x, chest.y) ) {

@@ -29,11 +29,39 @@ namespace HamstarHelpers.Helpers.World {
 		/// <param name="any"></param>
 		/// <param name="all"></param>
 		/// <param name="percentChance"></param>
-		public ChestFillDefinition( (float Weight, ChestFillItemDefinition ItemDef)[] any,
+		public ChestFillDefinition(
+					(float Weight, ChestFillItemDefinition ItemDef)[] any,
 					ChestFillItemDefinition[] all,
 					float percentChance=1f ) {
 			this.Any = any;
 			this.All = all;
+			this.PercentChance = percentChance;
+		}
+		
+		/// <summary></summary>
+		/// <param name="any"></param>
+		/// <param name="percentChance"></param>
+		public ChestFillDefinition( (float Weight, ChestFillItemDefinition ItemDef)[] any, float percentChance=1f ) {
+			this.Any = any;
+			this.All = new ChestFillItemDefinition[ 0 ];
+			this.PercentChance = percentChance;
+		}
+
+		/// <summary></summary>
+		/// <param name="all"></param>
+		/// <param name="percentChance"></param>
+		public ChestFillDefinition( ChestFillItemDefinition[] all, float percentChance=1f ) {
+			this.Any = new (float, ChestFillItemDefinition)[ 0 ];
+			this.All = all;
+			this.PercentChance = percentChance;
+		}
+
+		/// <summary></summary>
+		/// <param name="single"></param>
+		/// <param name="percentChance"></param>
+		public ChestFillDefinition( ChestFillItemDefinition single, float percentChance=1f ) {
+			this.Any = new (float, ChestFillItemDefinition)[ 0 ];
+			this.All = new ChestFillItemDefinition[] { single };
 			this.PercentChance = percentChance;
 		}
 	}
@@ -80,8 +108,8 @@ namespace HamstarHelpers.Helpers.World {
 	public struct ChestTypeDefinition {
 		/// <summary></summary>
 		public int? TileType;
-		/// <summary></summary>
-		public int? TileFrame;  //chestTile.frameX / 36
+		/// <summary>See `TileFrameHelpers.VanillaChestTypeNamesByFrame` (value is `chestTile.frameX / 36`).</summary>
+		public int? TileFrame;
 
 
 
