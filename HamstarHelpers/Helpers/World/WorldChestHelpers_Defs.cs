@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using Terraria;
+using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Helpers.Tiles;
 
 
 namespace HamstarHelpers.Helpers.World {
@@ -112,19 +115,57 @@ namespace HamstarHelpers.Helpers.World {
 
 	/// <summary></summary>
 	public struct ChestTypeDefinition {
-		/// <summary></summary>
-		public int? TileType;
 		/// <summary>See `TileFrameHelpers.VanillaChestTypeNamesByFrame` (value is `chestTile.frameX / 36`).</summary>
-		public int? TileFrame;
+		public (int? TileType, int? TileFrame)[] Tiles;
 
 
 
 		////////////////
 
 		/// <summary></summary>
+		public ChestTypeDefinition(
+					(int? tileType, int? tileFrame)[] tiles,
+					bool alsoUndergroundChests=false,
+					bool alsoDungeonAndTempleChests=false ) {
+			this.Tiles = tiles;
+
+			if( alsoUndergroundChests ) {
+				return;
+			}
+
+			var addTiles = new List<(int?, int?)>( tiles );
+
+			foreach( (string name, int frame) in TileFrameHelpers.VanillaChestFramesByTypeName ) {
+				switch( name ) {
+				case "Chest":
+					break;
+				//case "Locked Gold Chest":
+				case "Locked Shadow Chest":
+				case "Lihzahrd Chest":
+				case "Locked Jungle Chest":
+				case "Locked Corruption Chest":
+				case "Locked Crimson Chest":
+				case "Locked Hallowed Chest":
+				case "Locked Frozen Chest":
+				case "Locked Green Dungeon Chest":
+				case "Locked Pink Dungeon Chest":
+				case "Locked Blue Dungeon Chest":
+					if( alsoDungeonAndTempleChests ) {
+						addTiles.Add( (null, frame) );
+					}
+					break;
+				default:
+					addTiles.Add( (null, frame) );
+					break;
+				}
+			}
+
+			this.Tiles = addTiles.ToArray();
+		}
+
+		/// <summary></summary>
 		public ChestTypeDefinition( int? tileType, int? tileFrame ) {
-			this.TileType = tileType;
-			this.TileFrame = tileFrame;
+			this.Tiles = new (int?, int?)[] { (tileType, tileFrame) };
 		}
 
 
@@ -142,14 +183,16 @@ namespace HamstarHelpers.Helpers.World {
 				return false;
 			}
 
-			if( this.TileType.HasValue ) {
-				if( tile.type != this.TileType.Value ) {
-					return false;
+			foreach( (int? tileType, int? frame) in this.Tiles ) {
+				if( tileType.HasValue ) {
+					if( tile.type != tileType.Value ) {
+						return false;
+					}
 				}
-			}
-			if( this.TileFrame.HasValue ) {
-				if( (tile.frameX / 36) == this.TileFrame.Value ) {
-					return false;
+				if( frame.HasValue ) {
+					if( (tile.frameX / 36) == frame.Value ) {
+						return false;
+					}
 				}
 			}
 			return true;

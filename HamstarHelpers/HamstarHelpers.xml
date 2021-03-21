@@ -11572,11 +11572,11 @@
         <member name="T:HamstarHelpers.Helpers.World.ChestTypeDefinition">
             <summary></summary>
         </member>
-        <member name="F:HamstarHelpers.Helpers.World.ChestTypeDefinition.TileType">
-            <summary></summary>
-        </member>
-        <member name="F:HamstarHelpers.Helpers.World.ChestTypeDefinition.TileFrame">
+        <member name="F:HamstarHelpers.Helpers.World.ChestTypeDefinition.Tiles">
             <summary>See `TileFrameHelpers.VanillaChestTypeNamesByFrame` (value is `chestTile.frameX / 36`).</summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestTypeDefinition.#ctor(System.ValueTuple{System.Nullable{System.Int32},System.Nullable{System.Int32}}[],System.Boolean,System.Boolean)">
+            <summary></summary>
         </member>
         <member name="M:HamstarHelpers.Helpers.World.ChestTypeDefinition.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary></summary>
