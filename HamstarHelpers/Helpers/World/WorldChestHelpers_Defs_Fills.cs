@@ -38,16 +38,7 @@ namespace HamstarHelpers.Helpers.World {
 			}
 
 			bool isModified = false;
-
-			//
-
-			Item CreateItem( ChestFillItemDefinition def ) {
-				return !removeOnly
-					? def.CreateItem()
-					: new Item();
-			}
-
-			//
+			ChestFillDefinition self = this;
 
 			float maxWeight = this.Any
 				.Select( kv => kv.Weight )
@@ -61,23 +52,17 @@ namespace HamstarHelpers.Helpers.World {
 					continue;
 				}
 
-				int idx = this.GetSlotIdx( chest, def.ItemType );
-				if( idx == -1 ) {
+				if( !this.EditNextItem(chest, def, removeOnly) ) {
 					return (isModified, false);
 				}
-
-				chest.item[idx] = CreateItem( def );
 				isModified = true;
 				break;
 			}
 
 			foreach( ChestFillItemDefinition def in this.All ) {
-				int idx = this.GetSlotIdx( chest, def.ItemType );
-				if( idx == -1 ) {
+				if( !this.EditNextItem(chest, def, removeOnly) ) {
 					return (isModified, false);
 				}
-
-				chest.item[idx] = CreateItem( def );
 				isModified = true;
 			}
 
@@ -86,6 +71,23 @@ namespace HamstarHelpers.Helpers.World {
 
 
 		////////////////
+
+		private bool EditNextItem( Chest chest, ChestFillItemDefinition def, bool removeOnly ) {
+			int findItemType = removeOnly
+				? -1
+				: def.ItemType;
+			int slot = this.GetSlotIdx( chest, findItemType );
+			if( slot == -1 ) {
+				return false;
+			}
+
+			Item editItem = removeOnly
+				? new Item()
+				: def.CreateItem();
+
+			chest.item[slot] = editItem;
+			return true;
+		}
 
 		private int GetSlotIdx( Chest chest, int itemType ) {
 			bool isActive = itemType >= 0;

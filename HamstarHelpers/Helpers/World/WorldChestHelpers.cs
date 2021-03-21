@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 
@@ -14,12 +15,12 @@ namespace HamstarHelpers.Helpers.World {
 		/// <param name="fillDef"></param>
 		/// <param name="chestDef"></param>
 		/// <param name="within"></param>
-		/// <returns></returns>
-		public static int AddToWorldChests(
+		/// <returns>List of modified chests.</returns>
+		public static IList<Chest> AddToWorldChests(
 					ChestFillDefinition fillDef,
 					ChestTypeDefinition chestDef,
 					Rectangle? within=null ) {
-			int chestsModified = 0;
+			var modifiedChestIndexes = new List<Chest>();
 
 			foreach( Chest chest in Main.chest ) {
 				if( within.HasValue ) {
@@ -36,11 +37,11 @@ namespace HamstarHelpers.Helpers.World {
 
 				(bool isModified, bool completed) status = fillDef.Fill( chest);
 				if( status.isModified ) {
-					chestsModified++;
+					modifiedChestIndexes.Add( chest );
 				}
 			}
 
-			return chestsModified;
+			return modifiedChestIndexes;
 		}
 
 
@@ -50,12 +51,12 @@ namespace HamstarHelpers.Helpers.World {
 		/// <param name="fillDef"></param>
 		/// <param name="chestDef"></param>
 		/// <param name="within"></param>
-		/// <returns></returns>
-		public static int RemoveFromWorldChests(
+		/// <returns>List of modified chests.</returns>
+		public static IList<Chest> RemoveFromWorldChests(
 					ChestFillDefinition fillDef,
 					ChestTypeDefinition chestDef,
 					Rectangle? within = null ) {
-			int chestsModified = 0;
+			var modifiedChestIndexes = new List<Chest>();
 
 			foreach( Chest chest in Main.chest ) {
 				if( within.HasValue ) {
@@ -72,11 +73,11 @@ namespace HamstarHelpers.Helpers.World {
 
 				(bool isModified, bool completed) status = fillDef.Unfill( chest );
 				if( status.isModified ) {
-					chestsModified++;
+					modifiedChestIndexes.Add( chest );
 				}
 			}
 
-			return chestsModified;
+			return modifiedChestIndexes;
 		}
 	}
 }

@@ -11443,7 +11443,7 @@
             <param name="fillDef"></param>
             <param name="chestDef"></param>
             <param name="within"></param>
-            <returns></returns>
+            <returns>List of modified chests.</returns>
         </member>
         <member name="M:HamstarHelpers.Helpers.World.WorldChestHelpers.RemoveFromWorldChests(HamstarHelpers.Helpers.World.ChestFillDefinition,HamstarHelpers.Helpers.World.ChestTypeDefinition,System.Nullable{Microsoft.Xna.Framework.Rectangle})">
             <summary>
@@ -11452,7 +11452,7 @@
             <param name="fillDef"></param>
             <param name="chestDef"></param>
             <param name="within"></param>
-            <returns></returns>
+            <returns>List of modified chests.</returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.World.ChestFillDefinition">
             <summary>
