@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 
 
@@ -12,9 +13,14 @@ namespace HamstarHelpers.Helpers.World {
 		/// </summary>
 		/// <param name="fillDef"></param>
 		/// <param name="chestDef"></param>
-		public static void AddToWorldChests( ChestFillDefinition fillDef, ChestTypeDefinition chestDef ) {
+		/// <param name="within"></param>
+		public static void AddToWorldChests( ChestFillDefinition fillDef, ChestTypeDefinition chestDef, Rectangle? within=null ) {
 			foreach( Chest chest in Main.chest ) {
-				if( chest.x < 0 || chest.y < 0 ) {
+				if( within.HasValue ) {
+					if( !within.Value.Contains(chest.x, chest.y) ) {
+						continue;
+					}
+				} else if( chest.x < 0 || chest.y < 0 ) {
 					continue;
 				}
 

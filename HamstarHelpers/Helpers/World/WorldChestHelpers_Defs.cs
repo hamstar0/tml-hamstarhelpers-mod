@@ -38,6 +38,8 @@ namespace HamstarHelpers.Helpers.World {
 		}
 
 
+		////////////////
+
 		/// <summary>
 		/// Attempts to fill a given chest with the scenario to encounter.
 		/// </summary>
@@ -57,7 +59,6 @@ namespace HamstarHelpers.Helpers.World {
 				break;
 			}
 		}
-
 
 		private void FillAt( Chest chest, int idx ) {
 			float maxWeight = this.Any
@@ -83,9 +84,7 @@ namespace HamstarHelpers.Helpers.World {
 		}
 
 		private void FillAtWith( Chest chest, int idx, ChestFillItemDefinition def ) {
-			chest.item[idx] = new Item();
-			chest.item[idx].SetDefaults( def.ItemType, true );
-			chest.item[idx].stack = WorldGen.genRand.Next( def.MinQuantity, def.MaxQuantity );
+			chest.item[idx] = def.CreateItem();
 		}
 	}
 
@@ -102,11 +101,25 @@ namespace HamstarHelpers.Helpers.World {
 		public int MaxQuantity;
 
 
+
+		////////////////
+
 		/// <summary></summary>
 		public ChestFillItemDefinition( int itemType, int min, int max ) {
 			this.ItemType = itemType;
 			this.MinQuantity = min;
 			this.MaxQuantity = max;
+		}
+
+
+		////////////////
+
+		/// <summary></summary>
+		public Item CreateItem() {
+			var item = new Item();
+			item.SetDefaults( this.ItemType, true );
+			item.stack = WorldGen.genRand.Next( this.MinQuantity, this.MaxQuantity );
+			return item;
 		}
 	}
 
@@ -122,12 +135,16 @@ namespace HamstarHelpers.Helpers.World {
 
 
 
+		////////////////
+
 		/// <summary></summary>
 		public ChestTypeDefinition( int? tileType, int? tileFrame ) {
 			this.TileType = tileType;
 			this.TileFrame = tileFrame;
 		}
 
+
+		////////////////
 
 		/// <summary>
 		/// Validates if the given coordinates refactor 

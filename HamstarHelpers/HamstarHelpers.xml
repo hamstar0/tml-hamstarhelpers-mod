@@ -11431,6 +11431,89 @@
         <member name="F:HamstarHelpers.Helpers.World.VanillaSectionalBiome.Hell">
             @private
         </member>
+        <member name="T:HamstarHelpers.Helpers.World.WorldChestHelpers">
+            <summary>
+            Assorted static "helper" functions pertaining to the current world's chests.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.WorldChestHelpers.AddToWorldChests(HamstarHelpers.Helpers.World.ChestFillDefinition,HamstarHelpers.Helpers.World.ChestTypeDefinition,System.Nullable{Microsoft.Xna.Framework.Rectangle})">
+            <summary>
+            Implants a given item or items into a given chest.
+            </summary>
+            <param name="fillDef"></param>
+            <param name="chestDef"></param>
+            <param name="within"></param>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.World.ChestFillDefinition">
+            <summary>
+            Definition for how to add filling to a given chest.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.ChestFillDefinition.Any">
+            <summary>
+            Any of these items are evaluated to decide on placement.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.ChestFillDefinition.All">
+            <summary>
+            Each of the following are added until `PercentChance`.
+            </summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.ChestFillDefinition.PercentChance">
+            <summary>
+            Chance any or all of this chest's fill definition are avoided.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestFillDefinition.#ctor(System.ValueTuple{System.Single,HamstarHelpers.Helpers.World.ChestFillItemDefinition}[],HamstarHelpers.Helpers.World.ChestFillItemDefinition[],System.Single)">
+            <summary></summary>
+            <param name="any"></param>
+            <param name="all"></param>
+            <param name="percentChance"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestFillDefinition.Fill(Terraria.Chest)">
+            <summary>
+            Attempts to fill a given chest with the scenario to encounter.
+            </summary>
+            <param name="chest"></param>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.World.ChestFillItemDefinition">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.ChestFillItemDefinition.ItemType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.ChestFillItemDefinition.MinQuantity">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.ChestFillItemDefinition.MaxQuantity">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestFillItemDefinition.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestFillItemDefinition.CreateItem">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.World.ChestTypeDefinition">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.ChestTypeDefinition.TileType">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.World.ChestTypeDefinition.TileFrame">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestTypeDefinition.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestTypeDefinition.Validate(System.Int32,System.Int32)">
+            <summary>
+            Validates if the given coordinates refactor 
+            </summary>
+            <param name="tileX"></param>
+            <param name="tileY"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Helpers.World.WorldFileHelpers">
             <summary>
             Assorted static "helper" functions pertaining to world files (.wld or .twld).
