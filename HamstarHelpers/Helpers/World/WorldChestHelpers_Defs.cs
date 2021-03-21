@@ -88,6 +88,13 @@ namespace HamstarHelpers.Helpers.World {
 			this.MaxQuantity = max;
 		}
 
+		/// <summary></summary>
+		public ChestFillItemDefinition( int itemType ) {
+			this.ItemType = itemType;
+			this.MinQuantity = 1;
+			this.MaxQuantity = 1;
+		}
+
 
 		////////////////
 

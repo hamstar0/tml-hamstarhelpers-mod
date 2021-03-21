@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.World {
 		/// <returns>List of modified chests.</returns>
 		public static IList<Chest> AddToWorldChests(
 					ChestFillDefinition fillDef,
-					ChestTypeDefinition chestDef,
+					ChestTypeDefinition chestDef = new ChestTypeDefinition(),
 					Rectangle? within=null ) {
 			var modifiedChestIndexes = new List<Chest>();
 			
@@ -54,7 +54,7 @@ namespace HamstarHelpers.Helpers.World {
 		/// <returns>List of modified chests.</returns>
 		public static IList<Chest> RemoveFromWorldChests(
 					ChestFillDefinition fillDef,
-					ChestTypeDefinition chestDef,
+					ChestTypeDefinition chestDef = new ChestTypeDefinition(),
 					Rectangle? within = null ) {
 			var modifiedChestIndexes = new List<Chest>();
 
