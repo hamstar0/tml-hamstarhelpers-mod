@@ -9800,6 +9800,42 @@
             Assorted static "helper" functions pertaining to tile frames.
             </summary>
         </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.PlainChestFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.GoldChestFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.ShadowChestFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.BarrelFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.TrashCanFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.RichMahoganyFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.IvyChestFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.IceChestFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.WaterChestFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.MushroomChestFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.GraniteChestFrame">
+            <summary></summary>
+        </member>
+        <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.MarbleChestFrame">
+            <summary></summary>
+        </member>
         <member name="F:HamstarHelpers.Helpers.Tiles.TileFrameHelpers.VanillaChestTypeNamesByFrame">
             <summary>
             Gets chest type names by frame.

@@ -9,6 +9,45 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// Assorted static "helper" functions pertaining to tile frames.
 	/// </summary>
 	public class TileFrameHelpers {
+		/// <summary></summary>
+		public const int PlainChestFrame = 0;
+
+		/// <summary></summary>
+		public const int GoldChestFrame = 1;
+
+		/// <summary></summary>
+		public const int ShadowChestFrame = 3;
+
+		/// <summary></summary>
+		public const int BarrelFrame = 5;
+
+		/// <summary></summary>
+		public const int TrashCanFrame = 6;
+
+		/// <summary></summary>
+		public const int RichMahoganyFrame = 8;    // Mushroom Chest?
+
+		/// <summary></summary>
+		public const int IvyChestFrame = 10;    //Rich Mahogany Chest?
+
+		/// <summary></summary>
+		public const int IceChestFrame = 11;
+
+		/// <summary></summary>
+		public const int WaterChestFrame = 17;
+
+		/// <summary></summary>
+		public const int MushroomChestFrame = 32;
+
+		/// <summary></summary>
+		public const int GraniteChestFrame = 50;
+
+		/// <summary></summary>
+		public const int MarbleChestFrame = 51;
+
+
+		////////////////
+
 		/// <summary>
 		/// Gets chest type names by frame.
 		/// </summary>
