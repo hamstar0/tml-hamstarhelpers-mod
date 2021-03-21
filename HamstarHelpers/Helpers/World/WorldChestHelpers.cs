@@ -27,7 +27,7 @@ namespace HamstarHelpers.Helpers.World {
 					if( !within.Value.Contains(chest.x, chest.y) ) {
 						continue;
 					}
-				} else if( chest.x < 0 || chest.y < 0 ) {
+				} else if( chest.x <= 0 || chest.y <= 0 ) {
 					continue;
 				}
 
