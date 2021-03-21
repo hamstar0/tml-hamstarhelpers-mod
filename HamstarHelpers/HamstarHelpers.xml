@@ -11438,13 +11438,26 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.World.WorldChestHelpers.AddToWorldChests(HamstarHelpers.Helpers.World.ChestFillDefinition,HamstarHelpers.Helpers.World.ChestTypeDefinition,System.Nullable{Microsoft.Xna.Framework.Rectangle})">
             <summary>
-            Implants a given item or items into a given chest.
+            Implants the current item(s) from a given chest type, in a given area (if specified).
             </summary>
             <param name="fillDef"></param>
             <param name="chestDef"></param>
             <param name="within"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.WorldChestHelpers.RemoveFromWorldChests(HamstarHelpers.Helpers.World.ChestFillDefinition,HamstarHelpers.Helpers.World.ChestTypeDefinition,System.Nullable{Microsoft.Xna.Framework.Rectangle})">
+            <summary>
+            Removes the current item(s) from a given chest type, in a given area (if specified).
+            </summary>
+            <param name="fillDef"></param>
+            <param name="chestDef"></param>
+            <param name="within"></param>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.World.ChestFillDefinition">
+            <summary>
+            Definition for how to add filling to a given chest.
+            </summary>
             <summary>
             Definition for how to add filling to a given chest.
             </summary>
@@ -11472,9 +11485,17 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.World.ChestFillDefinition.Fill(Terraria.Chest)">
             <summary>
-            Attempts to fill a given chest with the scenario to encounter.
+            Attempts to fill a given chest according to the current specifications.
             </summary>
             <param name="chest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestFillDefinition.Unfill(Terraria.Chest)">
+            <summary>
+            Attempts to remove from a given chest with the scenario to encounter.
+            </summary>
+            <param name="chest"></param>
+            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.World.ChestFillItemDefinition">
             <summary></summary>

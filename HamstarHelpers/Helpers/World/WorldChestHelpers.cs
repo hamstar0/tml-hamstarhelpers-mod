@@ -14,10 +14,13 @@ namespace HamstarHelpers.Helpers.World {
 		/// <param name="fillDef"></param>
 		/// <param name="chestDef"></param>
 		/// <param name="within"></param>
-		public static void AddToWorldChests(
+		/// <returns></returns>
+		public static int AddToWorldChests(
 					ChestFillDefinition fillDef,
 					ChestTypeDefinition chestDef,
 					Rectangle? within=null ) {
+			int chestsModified = 0;
+
 			foreach( Chest chest in Main.chest ) {
 				if( within.HasValue ) {
 					if( !within.Value.Contains(chest.x, chest.y) ) {
@@ -31,8 +34,13 @@ namespace HamstarHelpers.Helpers.World {
 					continue;
 				}
 
-				fillDef.Fill( chest);
+				(bool isModified, bool completed) status = fillDef.Fill( chest);
+				if( status.isModified ) {
+					chestsModified++;
+				}
 			}
+
+			return chestsModified;
 		}
 
 
@@ -42,10 +50,13 @@ namespace HamstarHelpers.Helpers.World {
 		/// <param name="fillDef"></param>
 		/// <param name="chestDef"></param>
 		/// <param name="within"></param>
-		public static void RemoveFromWorldChests(
+		/// <returns></returns>
+		public static int RemoveFromWorldChests(
 					ChestFillDefinition fillDef,
 					ChestTypeDefinition chestDef,
 					Rectangle? within = null ) {
+			int chestsModified = 0;
+
 			foreach( Chest chest in Main.chest ) {
 				if( within.HasValue ) {
 					if( !within.Value.Contains( chest.x, chest.y ) ) {
@@ -59,8 +70,13 @@ namespace HamstarHelpers.Helpers.World {
 					continue;
 				}
 
-				fillDef.Unfill( chest );
+				(bool isModified, bool completed) status = fillDef.Unfill( chest );
+				if( status.isModified ) {
+					chestsModified++;
+				}
 			}
+
+			return chestsModified;
 		}
 	}
 }
