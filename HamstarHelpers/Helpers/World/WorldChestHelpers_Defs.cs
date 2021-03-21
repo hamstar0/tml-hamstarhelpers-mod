@@ -7,7 +7,7 @@ namespace HamstarHelpers.Helpers.World {
 	/// <summary>
 	/// Definition for how to add filling to a given chest.
 	/// </summary>
-	public struct ChestFillDefinition {
+	public partial struct ChestFillDefinition {
 		/// <summary>
 		/// Any of these items are evaluated to decide on placement.
 		/// </summary>
@@ -35,56 +35,6 @@ namespace HamstarHelpers.Helpers.World {
 			this.Any = any;
 			this.All = all;
 			this.PercentChance = percentChance;
-		}
-
-
-		////////////////
-
-		/// <summary>
-		/// Attempts to fill a given chest with the scenario to encounter.
-		/// </summary>
-		/// <param name="chest"></param>
-		public void Fill( Chest chest ) {
-			if( WorldGen.genRand.NextFloat() >= this.PercentChance ) {
-				return;
-			}
-
-			for( int i = 0; i < chest.item.Length; i++ ) {
-				Item item = chest.item[i];
-				if( item?.active == true ) {
-					continue;
-				}
-
-				this.FillAt( chest, i );
-				break;
-			}
-		}
-
-		private void FillAt( Chest chest, int idx ) {
-			float maxWeight = this.Any
-				.Select(kv=>kv.Weight)
-				.Sum();
-			float weightVal = maxWeight * WorldGen.genRand.NextFloat();
-
-			float countedWeight = 0f;
-			foreach( (float weight, ChestFillItemDefinition def) in this.Any ) {
-				countedWeight += weight;
-				if( countedWeight < weightVal ) {
-					continue;
-				}
-
-				this.FillAtWith( chest, idx, def );
-				break;
-			}
-
-			foreach( ChestFillItemDefinition def in this.All ) {
-				this.FillAtWith( chest, idx, def );
-				break;
-			}
-		}
-
-		private void FillAtWith( Chest chest, int idx, ChestFillItemDefinition def ) {
-			chest.item[idx] = def.CreateItem();
 		}
 	}
 
