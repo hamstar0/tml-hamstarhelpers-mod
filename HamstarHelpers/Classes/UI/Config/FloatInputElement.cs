@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Classes.UI.Theme;
-using System;
+﻿using System;
 using Terraria.ModLoader.Config.UI;
+using HamstarHelpers.Classes.UI.Elements;
+using HamstarHelpers.Classes.UI.Theme;
 
 
 namespace HamstarHelpers.Classes.UI.ModConfig {
@@ -30,10 +30,12 @@ namespace HamstarHelpers.Classes.UI.ModConfig {
 			this.InputElem.Left.Set( -92f, 0.5f );
 			//this.InputElem.SetPadding( 2f );
 			this.InputElem.OnMouseOver += (_, __) => {
-				this.InputElem.Opacity = 1f;
+				//this.InputElem.Opacity = 1f;
+				this.InputElem.Show();
 			};
 			this.InputElem.OnMouseOut += (_, __) => {
-				this.InputElem.Opacity = 0.2f;
+				//this.InputElem.Opacity = 0.2f;
+				this.InputElem.Hide();
 			};
 			this.InputElem.OnUnfocus += () => {
 				float val;
