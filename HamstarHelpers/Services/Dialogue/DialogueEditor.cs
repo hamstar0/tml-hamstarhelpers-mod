@@ -47,7 +47,7 @@ namespace HamstarHelpers.Services.Dialogue {
 
 					MapMarkers.SetFullScreenMapMarker(
 						id: alertId,
-						tileX: (int)npc.position.X / 16,
+						tileX: ((int)npc.position.X / 16) + 8,
 						tileY: ((int)npc.position.Y / 16) - 1,
 						icon: Main.chatTexture,
 						scale: 1.35f

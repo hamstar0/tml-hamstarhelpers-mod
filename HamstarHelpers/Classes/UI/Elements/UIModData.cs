@@ -1,14 +1,14 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Hooks.LoadHooks;
-using HamstarHelpers.Internals.WebRequests;
-using System;
-using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
-using Terraria.UI;
+﻿using System;
 using System.Collections.Generic;
+using Terraria.GameContent.UI.Elements;
+using Terraria.UI;
+using Terraria.ModLoader;
+using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.ModHelpers;
-using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Services.Hooks.LoadHooks;
+using HamstarHelpers.Internals.WebRequests;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -116,7 +116,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					this.LatestAvailableVersion = modDb[ this.Mod.Name ].Version;
 				} else {
 					if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-						LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName+"'" ); //+ "': " + reason );
+						LogHelpers.Log( "Error retrieving version number of '" + this.Mod.DisplayName+"' from mod browser" ); //+ "': " + reason );
 					}
 				}
 				return false;
