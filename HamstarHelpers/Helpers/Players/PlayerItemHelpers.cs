@@ -74,7 +74,7 @@ namespace HamstarHelpers.Helpers.Players {
 				}
 
 				if( Main.mouseItem.type == itemType && i == PlayerItemHelpers.VanillaInventorySelectedSlot ) {
-					Main.mouseItem = player.inventory[i];
+					Main.mouseItem = player.inventory[i].Clone();
 				}
 
 				if( quantityToRemove <= 0 ) {
