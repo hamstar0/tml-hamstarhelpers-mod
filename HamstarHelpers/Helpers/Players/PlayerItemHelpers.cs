@@ -445,7 +445,7 @@ namespace HamstarHelpers.Helpers.Players {
 			if( player.chest != -1 ) {
 				if( player.chest >= 0 ) {
 					isPersonalChest = false;
-					return Main.chest[player.chest].item;
+					return Main.chest[player.chest]?.item ?? new Item[ 0 ];
 				} else if( player.chest == -2 ) {
 					isPersonalChest = true;
 					return player.bank.item;

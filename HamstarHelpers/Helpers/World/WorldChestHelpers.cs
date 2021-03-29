@@ -23,6 +23,9 @@ namespace HamstarHelpers.Helpers.World {
 			var modifiedChestIndexes = new List<Chest>();
 			
 			foreach( Chest chest in Main.chest ) {
+				if( chest == null ) {
+					continue;
+				}
 				if( within.HasValue ) {
 					if( !within.Value.Contains(chest.x, chest.y) ) {
 						continue;
@@ -59,6 +62,9 @@ namespace HamstarHelpers.Helpers.World {
 			var modifiedChestIndexes = new List<Chest>();
 
 			foreach( Chest chest in Main.chest ) {
+				if( chest == null ) {
+					continue;
+				}
 				if( within.HasValue ) {
 					if( !within.Value.Contains( chest.x, chest.y ) ) {
 						continue;

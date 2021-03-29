@@ -140,7 +140,7 @@ namespace HamstarHelpers.Helpers.Items {
 			}
 
 			if( !skipBanks ) {
-				if( player.chest >= 0 ) {   // Player's current chest
+				if( player.chest >= 0 && Main.chest[player.chest] != null ) {   // Player's current chest
 					itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( Main.chest[player.chest].item, itemTypeSet );
 					if( itemIdx != -1 ) {
 						return Main.chest[player.chest].item[itemIdx];

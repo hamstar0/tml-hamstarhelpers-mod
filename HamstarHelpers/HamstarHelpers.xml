@@ -13789,6 +13789,33 @@
             <param name="callback"></param>
             <returns>`false` if the given hook has already been claimed.</returns>
         </member>
+        <member name="T:HamstarHelpers.Services.Maps.MapMarker">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Maps.MapMarker.ID">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Maps.MapMarker.Icon">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Maps.MapMarker.Scale">
+            <summary></summary>
+        </member>
+        <member name="P:HamstarHelpers.Services.Maps.MapMarker.Label">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Services.Maps.MapMarker.#ctor(System.String,Microsoft.Xna.Framework.Graphics.Texture2D,System.Single)">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Maps.MapMarker.GetHashCode">
+            <summary></summary>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Maps.MapMarker.Equals(System.Object)">
+            <summary></summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Services.Maps.MapMarkers">
             <summary>
             Provides functions for adding markers to the map.
@@ -13834,33 +13861,6 @@
         </member>
         <member name="M:HamstarHelpers.Services.Maps.MapMarkers.AddFullScreenMapMarker(System.Int32,System.Int32,System.String,Microsoft.Xna.Framework.Graphics.Texture2D,System.Single)">
             @private
-        </member>
-        <member name="T:HamstarHelpers.Services.Maps.MapMarker">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Maps.MapMarker.ID">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Maps.MapMarker.Icon">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Maps.MapMarker.Scale">
-            <summary></summary>
-        </member>
-        <member name="P:HamstarHelpers.Services.Maps.MapMarker.Label">
-            @private
-        </member>
-        <member name="M:HamstarHelpers.Services.Maps.MapMarker.#ctor(System.String,Microsoft.Xna.Framework.Graphics.Texture2D,System.Single)">
-            <summary></summary>
-        </member>
-        <member name="M:HamstarHelpers.Services.Maps.MapMarker.GetHashCode">
-            <summary></summary>
-            <returns></returns>
-        </member>
-        <member name="M:HamstarHelpers.Services.Maps.MapMarker.Equals(System.Object)">
-            <summary></summary>
-            <param name="obj"></param>
-            <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Services.Messages.Inbox.InboxMessages">
             <summary>

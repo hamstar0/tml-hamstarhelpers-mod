@@ -54,7 +54,7 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <summary>If tile is active (not wall-only).</summary>
 		public bool? IsActive = null;
 
-		/// <summary>Distance to also check adjacent tiles from a given center point.</summary>
+		/// <summary>Distance to also check adjacent tiles using the current tile as a given center point.</summary>
 		public Rectangle? AreaFromCenter = null;
 
 		/// <summary></summary>

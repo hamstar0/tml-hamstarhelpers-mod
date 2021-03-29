@@ -34,12 +34,12 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// <returns>`true` if all settings pass the test, and identify the tile as the current type.</returns>
 		public bool CheckPoint( int tileX, int tileY, out TileCollideType collideType ) {
 			if( tileX < 0 || tileX >= Main.maxTilesX ) {
-				LogHelpers.AlertOnce( "Tile out of X range." );
+				LogHelpers.AlertOnce( "Tile out of X range "+this.ToString() );
 				collideType = TileCollideType.WorldEdge;
 				return false;
 			}
 			if( tileY < 0 || tileY >= Main.maxTilesY ) {
-				LogHelpers.AlertOnce( "Tile out of Y range." );
+				LogHelpers.AlertOnce( "Tile out of Y range "+this.ToString() );
 				collideType = TileCollideType.WorldEdge;
 				return false;
 			}

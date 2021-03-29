@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Terraria;
 
 
@@ -114,8 +113,8 @@ namespace HamstarHelpers.Classes.Tiles.TilePattern {
 		/// </summary>
 		public readonly static TilePattern NonSolid = new TilePattern(
 			new TilePatternBuilder {
-				CustomCheck = (x, y) => {
-					Tile tile = Main.tile[ x, y ];
+				CustomCheck = ( x, y ) => {
+					Tile tile = Main.tile[x, y];
 					return !tile.active() || tile.inActive() || !Main.tileSolid[tile.type];
 				}
 			}
