@@ -1510,6 +1510,9 @@
             <summary>
             Identifies a type of tile by its attributes.
             </summary>
+            <summary>
+            Identifies a type of tile by its attributes.
+            </summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.Any">
             <summary>
@@ -1743,6 +1746,10 @@
             <param name="blendLight"></param>
             <returns></returns>
         </member>
+        <member name="M:HamstarHelpers.Classes.Tiles.TilePattern.TilePattern.ToString">
+            <summary></summary>
+            <returns></returns>
+        </member>
         <member name="T:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternConfig">
             <summary>
             Defines a ModConfig-friendly class for defining a TilePattern.
@@ -1850,7 +1857,7 @@
             <summary>If tile is active (not wall-only).</summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.AreaFromCenter">
-            <summary>Distance to also check adjacent tiles from a given center point.</summary>
+            <summary>Distance to also check adjacent tiles using the current tile as a given center point.</summary>
         </member>
         <member name="F:HamstarHelpers.Classes.Tiles.TilePattern.TilePatternBuilder.IsAnyOfType">
             <summary></summary>

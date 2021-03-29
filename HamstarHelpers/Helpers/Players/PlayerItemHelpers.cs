@@ -65,13 +65,20 @@ namespace HamstarHelpers.Helpers.Players {
 				if( stack > quantityToRemove ) {
 					item.stack -= quantityToRemove;
 					removed += quantityToRemove;
-					break;
-				} else {
-					quantityToRemove -= stack;
-					removed += stack;
-					player.inventory[i] = new Item();
 
-					if( quantityToRemove <= 0 ) { break; }
+					break;
+				}
+
+				quantityToRemove -= stack;
+				removed += stack;
+				player.inventory[i] = new Item();
+
+				if( Main.mouseItem.type == itemType && i == PlayerItemHelpers.VanillaInventorySelectedSlot ) {
+					Main.mouseItem = new Item();
+				}
+
+				if( quantityToRemove <= 0 ) {
+					break;
 				}
 			}
 
