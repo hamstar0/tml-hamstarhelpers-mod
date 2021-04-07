@@ -35,7 +35,10 @@ namespace HamstarHelpers {
 			Texture2D tex = marker.Icon;
 			Vector2 origin = new Vector2( tex.Width / 2, tex.Height / 2 );
 
-			var mapPos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( new Vector2(tileX*16, tileY*16) );
+			var wldPos = new Vector2( tileX * 16, tileY * 16 );
+			wldPos.X += 8f;
+			wldPos.Y += 8f;
+			var mapPos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( wldPos );
 			if( !mapPos.IsOnScreen ) {
 				return;
 			}
