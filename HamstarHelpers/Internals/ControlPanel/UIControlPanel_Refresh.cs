@@ -25,17 +25,18 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public void RecalculateMe() {
 			if( this.Backend != null ) {
 				this.Backend.Recalculate();
+				this.Recalculate();
 			} else {
 				this.Recalculate();
 			}
 		}
 
 		public override void Recalculate() {
-			base.Recalculate();
-
 			if( this.OuterContainer != null ) {
 				this.RecalculateContainerDimensions();
 			}
+
+			base.Recalculate();
 		}
 
 
@@ -45,9 +46,11 @@ namespace HamstarHelpers.Internals.ControlPanel {
 			CalculatedStyle dim = this.OuterContainer.GetDimensions();
 			float offsetX = dim.Width * -0.5f;
 			float offsetY = (dim.Height * -0.5f) + 32;
-
-			this.OuterContainer.Left.Set( offsetX * Main.UIScale, 0.5f );
-			this.OuterContainer.Top.Set( offsetY * Main.UIScale, 0.5f );
+			offsetX *= Main.UIScale;
+			offsetY *= Main.UIScale;
+			
+			this.OuterContainer.Left.Set( offsetX, 0.5f );
+			this.OuterContainer.Top.Set( offsetY, 0.5f );
 		}
 	}
 }

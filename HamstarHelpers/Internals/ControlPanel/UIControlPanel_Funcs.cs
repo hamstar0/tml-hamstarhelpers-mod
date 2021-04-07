@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamstarHelpers.Services.Timers;
+using System;
 using Terraria;
 using Terraria.UI;
 
@@ -25,6 +26,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			//this.Recalculate();
 			this.RecalculateMe();
+
+			Timers.RunNow( this.RecalculateMe );
 		}
 
 

@@ -48,7 +48,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <param name="pixels">Pixel amount from the left.</param>
 		/// <param name="percent">Percent amount from the left.</param>
-		/// <param name="originPercent">Adjusts the position within the panel to align upon.</param>
+		/// <param name="originPercent">Percent amount within the dialog (from left) to further offset by.</param>
 		public void SetLeftPosition( float pixels, float percent, float originPercent = 0.5f ) {
 			this.LeftPixels = pixels;
 			this.LeftPercent = percent;
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// </summary>
 		/// <param name="pixels">Pixel amount from the top.</param>
 		/// <param name="percent">Percent amount from the top.</param>
-		/// <param name="originPercent">Adjusts the position within the panel to align upon.</param>
+		/// <param name="originPercent">Percent amount within the dialog (from top) to further offset by.</param>
 		public void SetTopPosition( float pixels, float percent, float originPercent = 0.5f ) {
 			this.TopPixels = pixels;
 			this.TopPercent = percent;
