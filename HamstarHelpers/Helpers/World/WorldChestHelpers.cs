@@ -22,22 +22,7 @@ namespace HamstarHelpers.Helpers.World {
 					Rectangle? within=null ) {
 			var modifiedChestIndexes = new List<Chest>();
 			
-			foreach( Chest chest in Main.chest ) {
-				if( chest == null ) {
-					continue;
-				}
-				if( within.HasValue ) {
-					if( !within.Value.Contains(chest.x, chest.y) ) {
-						continue;
-					}
-				} else if( chest.x <= 0 || chest.y <= 0 ) {
-					continue;
-				}
-
-				if( !chestDef.Validate(chest.x, chest.y) ) {
-					continue;
-				}
-
+			foreach( Chest chest in chestDef.GetMatchingWorldChests(within) ) {
 				(bool isModified, bool completed) status = fillDef.Fill( chest);
 				if( status.isModified ) {
 					modifiedChestIndexes.Add( chest );
@@ -61,22 +46,7 @@ namespace HamstarHelpers.Helpers.World {
 					Rectangle? within = null ) {
 			var modifiedChestIndexes = new List<Chest>();
 
-			foreach( Chest chest in Main.chest ) {
-				if( chest == null ) {
-					continue;
-				}
-				if( within.HasValue ) {
-					if( !within.Value.Contains( chest.x, chest.y ) ) {
-						continue;
-					}
-				} else if( chest.x < 0 || chest.y < 0 ) {
-					continue;
-				}
-
-				if( !chestDef.Validate( chest.x, chest.y ) ) {
-					continue;
-				}
-
+			foreach( Chest chest in chestDef.GetMatchingWorldChests( within ) ) {
 				(bool isModified, bool completed) status = fillDef.Unfill( chest );
 				if( status.isModified ) {
 					modifiedChestIndexes.Add( chest );

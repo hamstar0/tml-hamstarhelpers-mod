@@ -9393,7 +9393,7 @@
             </summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.NotActive">
-            <summary>TileTyle and TileStyle are ignored</summary>
+            <summary>TileType and TileStyle are ignored</summary>
         </member>
         <member name="F:HamstarHelpers.Helpers.Tiles.Draw.TileDrawDefinition.SkipWall">
             <summary></summary>
@@ -11594,6 +11594,11 @@
             </summary>
             <param name="tileX"></param>
             <param name="tileY"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.World.ChestTypeDefinition.GetMatchingWorldChests(System.Nullable{Microsoft.Xna.Framework.Rectangle})">
+            <summary></summary>
+            <param name="within">Optional tile coordinate area.</param>
             <returns></returns>
         </member>
         <member name="T:HamstarHelpers.Helpers.World.WorldFileHelpers">

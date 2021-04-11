@@ -8,7 +8,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 	/// Defines a basic tile.
 	/// </summary>
 	public class TileDrawDefinition {
-		/// <summary>TileTyle and TileStyle are ignored</summary>
+		/// <summary>TileType and TileStyle are ignored</summary>
 		public bool NotActive = false;
 		/// <summary></summary>
 		public bool SkipWall = false;

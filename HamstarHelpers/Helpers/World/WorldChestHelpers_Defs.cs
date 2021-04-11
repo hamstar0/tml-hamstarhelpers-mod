@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Helpers.DotNET.Extensions;
 using HamstarHelpers.Helpers.Tiles;
@@ -170,7 +171,7 @@ namespace HamstarHelpers.Helpers.World {
 
 
 		////////////////
-
+		
 		/// <summary>
 		/// Validates if the given coordinates refactor 
 		/// </summary>
@@ -196,6 +197,33 @@ namespace HamstarHelpers.Helpers.World {
 				}
 			}
 			return true;
+		}
+
+
+		////////////////
+
+		/// <summary></summary>
+		/// <param name="within">Optional tile coordinate area.</param>
+		/// <returns></returns>
+		public IEnumerable<Chest> GetMatchingWorldChests( Rectangle? within = null ) {
+			foreach( Chest chest in Main.chest ) {
+				if( chest == null ) {
+					continue;
+				}
+				if( within.HasValue ) {
+					if( !within.Value.Contains( chest.x, chest.y ) ) {
+						continue;
+					}
+				} else if( chest.x <= 0 || chest.y <= 0 ) {
+					continue;
+				}
+
+				if( !this.Validate( chest.x, chest.y ) ) {
+					continue;
+				}
+
+				yield return chest;
+			}
 		}
 	}
 }

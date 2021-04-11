@@ -1,8 +1,8 @@
-﻿using HamstarHelpers.Classes.DataStructures;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using HamstarHelpers.Classes.DataStructures;
 
 
 namespace HamstarHelpers.Helpers.Tiles.Walls {
