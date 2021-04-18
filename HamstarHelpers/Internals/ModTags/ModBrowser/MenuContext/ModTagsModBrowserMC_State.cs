@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using Terraria.UI;
+using Terraria.GameContent.UI.Elements;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
-using System;
-using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
+using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 
 
 namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {

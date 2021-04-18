@@ -5381,6 +5381,33 @@
             <param name="reader">Source stream.</param>
             <returns>All bytes in the stream.</returns>
         </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.CollectionExtensions">
+            <summary>
+            Extensions for collection types.
+            </summary>
+        </member>
+        <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.CollectionExtensions.IterationAction`1">
+            <summary></summary>
+            <typeparam name="T"></typeparam>
+            <param name="item">Collection item.</param>
+            <param name="isBreak">If `true`, the loop breaks.</param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.CollectionExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Shorthand for a `foreach` loop.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.DotNET.Extensions.CollectionExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},HamstarHelpers.Helpers.DotNET.Extensions.CollectionExtensions.IterationAction{``0})">
+            <summary>
+            Shorthand for a `foreach` loop. `action` can optionally indicate if the loop should break.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="action"></param>
+        </member>
         <member name="T:HamstarHelpers.Helpers.DotNET.Extensions.DictionaryExtensions">
             <summary>
             Assorted static extension "helper" functions pertaining to dictionaries.

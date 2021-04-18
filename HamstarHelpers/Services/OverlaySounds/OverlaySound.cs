@@ -26,11 +26,11 @@ namespace HamstarHelpers.Services.OverlaySounds {
 		/// <param name="customCondition">Returns a volume scale float and a boolean to indicate if the sound has ended.</param>
 		/// <returns></returns>
 		public static OverlaySound Create(
-				Mod sourceMod,
-				string soundPath,
-				int fadeTicks,
-				int playDurationTicks=-1,
-				SoundLooper customCondition =null ) {
+					Mod sourceMod,
+					string soundPath,
+					int fadeTicks,
+					int playDurationTicks=-1,
+					SoundLooper customCondition =null ) {
 			return new OverlaySound( sourceMod, soundPath, fadeTicks, playDurationTicks, customCondition );
 		}
 

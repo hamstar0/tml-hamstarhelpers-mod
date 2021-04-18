@@ -116,7 +116,7 @@ namespace HamstarHelpers.Classes.Context {
 			}
 
 			if( this.IsBoss.HasValue ) {
-				if( Main.npc.Any(n=>n?.active == true && n.boss == true) != this.IsBoss.Value ) {
+				if( Main.npc.Any(n=>n?.active == true && n.boss == true && n != Main.npc[Main.maxNPCs]) != this.IsBoss.Value ) {
 					return false;
 				}
 			}
