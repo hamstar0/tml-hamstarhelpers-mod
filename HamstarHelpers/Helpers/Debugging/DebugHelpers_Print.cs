@@ -1,9 +1,9 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Graphics;
 using Terraria;
 
 
@@ -26,15 +26,31 @@ namespace HamstarHelpers.Helpers.Debug {
 		////////////////
 
 		/// <summary>
-		/// Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a message of a
-		/// given label merely update that existing message.
+		/// Prints a message to the screen for the given tick duration. Message overlaps chat area. Repeat calls to display a
+		/// message of a given label merely update that existing message.
 		/// </summary>
-		/// <param name="labelAndMsg">Identifier and message to display. Identifier is delineated by first occurrence of `.` in the
-		/// string. Calling `Print(...)` with this same identifier replaces any existing displayed message of this identifier.</param>
+		/// <param name="labelAndMsg">Identifier and message to display. Identifier is delineated by first occurrence of `.`
+		/// in the string. Calling `Print(...)` with this same identifier replaces any existing displayed message of this
+		/// identifier.</param>
 		public static void Print( string labelAndMsg ) {
 			string[] msgSplit = labelAndMsg.Split( '.' );
-			string label = msgSplit[0];
-			string msg = msgSplit.Length > 0 ? msgSplit[1] : "";
+			string label = "";
+			string msg = labelAndMsg;
+			
+			if( msgSplit.Length > 0 ) {
+				label = msgSplit[0];
+
+				string[] afterMsgSplit = new string[ msgSplit.Length - 1 ];
+				Array.Copy(
+					sourceArray: msgSplit,
+					sourceIndex: 1,
+					destinationArray: afterMsgSplit,
+					destinationIndex: 0,
+					length: afterMsgSplit.Length
+				);
+
+				msg = string.Join( ".", afterMsgSplit );
+			}
 
 			DebugHelpers.Print( label, msg );
 		}

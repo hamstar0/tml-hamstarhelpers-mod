@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Classes.Errors;
+﻿using System;
+using System.Reflection;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.DotNET;
 using HamstarHelpers.Helpers.DotNET.Reflection;
-using System;
-using System.Reflection;
 
 
 namespace HamstarHelpers.Helpers.TModLoader.Mods {
