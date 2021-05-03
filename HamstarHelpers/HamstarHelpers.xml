@@ -9992,18 +9992,6 @@
             <param name="preserveWire"></param>
             <param name="preserveLiquid"></param>
         </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.ToStream(System.IO.BinaryWriter,Terraria.Tile,System.Boolean)">
-            <summary></summary>
-            <param name="writer"></param>
-            <param name="tile"></param>
-            <param name="forceLiquids"></param>
-        </member>
-        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.FromStream(System.IO.BinaryReader,Terraria.Tile@,System.Boolean)">
-            <summary></summary>
-            <param name="reader"></param>
-            <param name="tile"></param>
-            <param name="forceLiquids"></param>
-        </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.PlaceTile(System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Int32)">
             @private
         </member>
@@ -10024,6 +10012,22 @@
         </member>
         <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.GetDamageScale(Terraria.Tile,System.Single,System.Boolean@)">
             @private
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.ToStream(System.IO.BinaryWriter,Terraria.Tile,System.Boolean,System.Boolean,System.Boolean)">
+            <summary></summary>
+            <param name="writer"></param>
+            <param name="tile"></param>
+            <param name="forceFrames"></param>
+            <param name="forceWallFrames"></param>
+            <param name="forceLiquids"></param>
+        </member>
+        <member name="M:HamstarHelpers.Helpers.Tiles.TileHelpers.FromStream(System.IO.BinaryReader,Terraria.Tile@,System.Boolean,System.Boolean,System.Boolean)">
+            <summary></summary>
+            <param name="reader"></param>
+            <param name="tile"></param>
+            <param name="forceFrames"></param>
+            <param name="forceWallFrames"></param>
+            <param name="forceLiquids"></param>
         </member>
         <member name="T:HamstarHelpers.Helpers.Tiles.TileObjectHelpers">
             <summary>

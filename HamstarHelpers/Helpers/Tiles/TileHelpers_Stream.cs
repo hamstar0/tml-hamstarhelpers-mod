@@ -13,8 +13,15 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <summary></summary>
 		/// <param name="writer"></param>
 		/// <param name="tile"></param>
+		/// <param name="forceFrames"></param>
+		/// <param name="forceWallFrames"></param>
 		/// <param name="forceLiquids"></param>
-		public static void ToStream( BinaryWriter writer, Tile tile, bool forceLiquids=false ) {
+		public static void ToStream(
+					BinaryWriter writer,
+					Tile tile,
+					bool forceFrames=false,
+					bool forceWallFrames=false,
+					bool forceLiquids=false ) {
 			BitsByte bits1 = 0;
 			BitsByte bits2 = 0;
 			byte fColor = 0;
@@ -42,21 +49,22 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 			bits2 += (byte)(tile.slope() << 4);
 
-			writer.Write( bits1 );
-			writer.Write( bits2 );
+			writer.Write( (byte)bits1 );
+			writer.Write( (byte)bits2 );
 
 			if( fColor > 0 ) {
-				writer.Write( fColor );
+				writer.Write( (byte)fColor );
 			}
 			if( wColor > 0 ) {
-				writer.Write( wColor );
+				writer.Write( (byte)wColor );
 			}
 
 			if( tile.active() ) {
-				writer.Write( tile.type );
-				if( Main.tileFrameImportant[(int)tile.type] ) {
-					writer.Write( tile.frameX );
-					writer.Write( tile.frameY );
+				writer.Write( (ushort)tile.type );
+
+				if( forceFrames || Main.tileFrameImportant[(int)tile.type] ) {
+					writer.Write( (short)tile.frameX );
+					writer.Write( (short)tile.frameY );
 				}
 			}
 
@@ -64,13 +72,18 @@ namespace HamstarHelpers.Helpers.Tiles {
 				if( ModNet.AllowVanillaClients ) {
 					writer.Write( (byte)tile.wall );
 				} else {
-					writer.Write( tile.wall );
+					writer.Write( (ushort)tile.wall );
+				}
+
+				if( forceWallFrames ) {
+					writer.Write( (short)tile.wallFrameX() );
+					writer.Write( (short)tile.wallFrameY() );
 				}
 			}
 
 			if( forceLiquids || (tile.liquid > 0 && Main.netMode == NetmodeID.Server) ) {
-				writer.Write( tile.liquid );
-				writer.Write( tile.liquidType() );
+				writer.Write( (byte)tile.liquid );
+				writer.Write( (byte)tile.liquidType() );
 			}
 		}
 
@@ -78,8 +91,15 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <summary></summary>
 		/// <param name="reader"></param>
 		/// <param name="tile"></param>
+		/// <param name="forceFrames"></param>
+		/// <param name="forceWallFrames"></param>
 		/// <param name="forceLiquids"></param>
-		public static void FromStream( BinaryReader reader, ref Tile tile, bool forceLiquids=false ) {
+		public static void FromStream(
+					BinaryReader reader,
+					ref Tile tile,
+					bool forceFrames = false,
+					bool forceWallFrames = false,
+					bool forceLiquids = false ) {
 			BitsByte bits1 = 0;
 			BitsByte bits2 = 0;
 
@@ -116,7 +136,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 				tile.type = reader.ReadUInt16();
 
-				if( Main.tileFrameImportant[(int)tile.type] ) {
+				if( forceFrames || Main.tileFrameImportant[(int)tile.type] ) {
 					tile.frameX = reader.ReadInt16();
 					tile.frameY = reader.ReadInt16();
 				} else if( !wasActive || (int)tile.type != oldTileType ) {
@@ -141,6 +161,11 @@ namespace HamstarHelpers.Helpers.Tiles {
 				tile.wall = ModNet.AllowVanillaClients
 					? reader.ReadByte()
 					: reader.ReadUInt16();
+
+				if( forceWallFrames ) {
+					tile.wallFrameX( (int)reader.ReadInt16() );
+					tile.wallFrameY( (int)reader.ReadInt16() );
+				}
 			}
 
 			if( isLiquid ) {
