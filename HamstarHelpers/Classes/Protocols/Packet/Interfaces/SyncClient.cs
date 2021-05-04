@@ -45,6 +45,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		protected sealed override bool ReceiveRequestWithServer( int fromWho ) {
 			for( int i = 0; i < Main.player.Length; i++ ) {
 				if( i == fromWho ) { continue; }
+				if( !Main.player[i].active ) { continue; }
 
 				this.InitializeServerRequestReplyDataOfClient( fromWho, i );
 				this.OnClone();

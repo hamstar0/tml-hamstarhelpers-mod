@@ -73,7 +73,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();
 				string name = mytype.Namespace + "." + mytype.Name;
-				LogHelpers.Log( "<" + name + " ReceiveBaseRequestOnClient..." );
+				LogHelpers.Log( "<" + name + " ReceiveRequestWithClientBase..." );
 			}
 			
 			this.SetClientDefaults();
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();
 				string name = mytype.Namespace + "." + mytype.Name;
-				LogHelpers.Log( "<" + name + " ReceiveBaseRequestOnServer..." );
+				LogHelpers.Log( "<" + name + " ReceiveRequestWithServerBase..." );
 			}
 			
 			this.SetServerDefaults( fromWho );

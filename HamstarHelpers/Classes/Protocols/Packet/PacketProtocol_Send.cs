@@ -48,7 +48,8 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			}
 
 			var mymod = ModHelpersMod.Instance;
-
+			
+//LogHelpers.LogOnce( "UUU "+string.Join("\n  ", DebugHelpers.GetContextSlice()) );
 			if( this.IsAsync ) {
 				TaskLauncher.Run( ( _ ) => {
 					ModPacket packet = this.GetServerPacket( false );
