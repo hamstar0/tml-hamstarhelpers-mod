@@ -1,13 +1,12 @@
-﻿using HamstarHelpers.Classes.Errors;
-using System;
+﻿using System;
 using Terraria;
+using HamstarHelpers.Classes.Errors;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
-	/// <summary>
-	/// Recommended PacketProtocol form for syncing data between clients and server.
-	/// </summary>
-	public abstract class PacketProtocolSyncClient : PacketProtocol {
+	/// @private
+	[Obsolete( "use `PacketProtocolSyncBetweenClients` or `PacketProtocolRequestToServer`", true )]
+	public abstract partial class PacketProtocolSyncClient : PacketProtocol {
 		/// <summary>
 		/// "Quick" method for syncing packets from a client to everyone else with any PacketProtocolSyncClient class.
 		/// Intended to be wrapped with a `public static` method.
@@ -16,13 +15,14 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		protected static void SyncFromMe<T>() where T : PacketProtocolSyncClient {
 			PacketProtocol.QuickSendToServer<T>();
 		}
+
 		/// <summary>
 		/// "Quick" method for syncing packets from everyone else to the current client with any PacketProtocolSyncClient
 		/// class. Intended to be wrapped with a `public static` method.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="retries">Number of times to attempt to resend the packet if it fails. -1 for perpetual retries.</param>
-		protected static void SyncToMe<T>( int retries ) where T : PacketProtocolSyncClient {
+		protected static void SyncFromClientsToMe<T>( int retries ) where T : PacketProtocolSyncClient {
 			PacketProtocol.QuickRequestToServer<T>( retries );
 		}
 
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 		/// <typeparam name="T"></typeparam>
 		/// <param name="toWho"></param>
 		/// <param name="ignoreWho"></param>
-		protected static void SyncFromServer<T>( int toWho, int ignoreWho ) where T : PacketProtocolSyncClient {
+		protected static void SyncFromServerToClients<T>( int toWho, int ignoreWho ) where T : PacketProtocolSyncClient {
 			PacketProtocol.QuickSendToClient<T>( toWho, ignoreWho );
 		}
 

@@ -1224,10 +1224,72 @@
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSendToServer.ReceiveRequestWithServer(System.Int32)">
             @private
         </member>
-        <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient">
+        <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients">
             <summary>
-            Recommended PacketProtocol form for syncing data between clients and server.
+            Recommended PacketProtocol form for syncing data between clients.
             </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.SyncFromClientsToMe``1(System.Int32)">
+            <summary>
+            "Quick" method for syncing packets from everyone else to the current client with any PacketProtocolSyncClient
+            class. Intended to be wrapped with a `public static` method.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="retries">Number of times to attempt to resend the packet if it fails. -1 for perpetual retries.</param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.SyncFromServerToClients``1(System.Int32,System.Int32)">
+            <summary>
+            "Quick" method for syncing packets from server to a given client with any PacketProtocolSyncClient class.
+            Intended to be wrapped with a `public static` method.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="toWho"></param>
+            <param name="ignoreWho"></param>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveRequestWithServer(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.InitializeClientSendData">
+            <summary>
+            Initializes packet for sending.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.SetClientDefaults">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.InitializeServerRequestReplyDataOfClient(System.Int32,System.Int32)">
+            <summary>
+            Initializes request reply packet for sending.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.SetServerDefaults(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveOnClient">
+            <summary>
+            Implements handling of received replies on the client.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveWithClient">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveOnServer(System.Int32)">
+            <summary>
+            Implements handling of received replies on the server.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveWithServer(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveWithServer(System.Int32,System.Boolean)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveRequestWithClient">
+            @private
+        </member>
+        <member name="T:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient">
+            @private
+            @private
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.SyncFromMe``1">
             <summary>
@@ -1236,7 +1298,7 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.SyncToMe``1(System.Int32)">
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.SyncFromClientsToMe``1(System.Int32)">
             <summary>
             "Quick" method for syncing packets from everyone else to the current client with any PacketProtocolSyncClient
             class. Intended to be wrapped with a `public static` method.
@@ -1244,7 +1306,7 @@
             <typeparam name="T"></typeparam>
             <param name="retries">Number of times to attempt to resend the packet if it fails. -1 for perpetual retries.</param>
         </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.SyncFromServer``1(System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.SyncFromServerToClients``1(System.Int32,System.Int32)">
             <summary>
             "Quick" method for syncing packets from server to a given client with any PacketProtocolSyncClient class.
             Intended to be wrapped with a `public static` method.
@@ -1292,6 +1354,12 @@
             @private
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.ReceiveRequestWithClient">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.SyncToMe``1(System.Int32)">
+            @private
+        </member>
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncClient.SyncFromServer``1(System.Int32,System.Int32)">
             @private
         </member>
         <member name="T:HamstarHelpers.Classes.Protocols.Packet.PacketProtocol">

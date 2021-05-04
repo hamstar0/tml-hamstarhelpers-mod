@@ -54,7 +54,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 		protected static void QuickSendToClient<T>( int toWho, int ignoreWho )
 				where T : PacketProtocol {  //, new()
 			if( Main.netMode != NetmodeID.Server ) {
-				throw new ModHelpersException( "Can only send as client." );
+				throw new ModHelpersException( "Can only send as server." );
 			}
 			
 			T t = (T)StreamProtocol.CreateInstance( typeof(T) );

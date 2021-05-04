@@ -6,6 +6,7 @@ using Terraria.ModLoader;
 using HamstarHelpers.Classes.Protocols.Packet;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Network.NetIO;
+using HamstarHelpers.Services.Network.SimplePacket;
 
 
 namespace HamstarHelpers {
@@ -13,6 +14,9 @@ namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
 		public override void HandlePacket( BinaryReader reader, int playerWho ) {
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_A", 1 );
+			if( SimplePacket.HandlePacket(reader, playerWho) ) {
+				return;
+			}
 			if( NetIO.HandlePacket(reader, playerWho) ) {
 				return;
 			}
