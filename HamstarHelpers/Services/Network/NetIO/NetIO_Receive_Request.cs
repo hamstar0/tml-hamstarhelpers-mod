@@ -17,7 +17,13 @@ namespace HamstarHelpers.Services.Network.NetIO {
 	public partial class NetIO : ILoadable {
 		private static void ReceiveRequest( NetIORequest data, int playerWho ) {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-				LogHelpers.Log( "<" + data.GetType().Name );
+				Type dataType = data.GetType();
+				bool isNoisy = dataType
+					.IsDefined( typeof( IsNoisyAttribute ), false );
+
+				if( !isNoisy ) {
+					LogHelpers.Log( "<" + dataType.Name );
+				}
 			}
 
 			Type genericArg = null;

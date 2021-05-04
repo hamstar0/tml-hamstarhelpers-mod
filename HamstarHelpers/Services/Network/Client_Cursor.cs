@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
+using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Internals.NetProtocols;
 
@@ -35,20 +36,29 @@ namespace HamstarHelpers.Services.Network {
 		/// <summary>
 		/// Begins a broadcast loop (via. Timers) every 1/4 second to tell everyone where the current player's cursor is located.
 		/// </summary>
-		/// <returns>`true` if loop not already running.</returns>
+		/// <returns>`true` if loop has begun (and wasn't already).</returns>
 		public static bool StartBroadcastingMyCursorPosition() {
-			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not a client." ); }
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
+				throw new ModHelpersException( "Not a client." );
+			}
 
+//LogHelpers.LogOnce( "UUU StartBroadcastingMyCursorPosition - "+string.Join("\n  ", DebugHelpers.GetContextSlice()) );
 			string timerName = "cursor_broadcast_" + Main.myPlayer;
 			if( Timers.Timers.GetTimerTickDuration(timerName) > 0 ) {
 				return false;
 			}
 
 			Timers.Timers.SetTimer( timerName, 15, false, () => {
-				return Main.player[ Main.myPlayer ].active
-					&& LoadHelpers.IsWorldBeingPlayed()
-					&& CursorPositionProtocol.BroadcastCursor();
+				bool canBroadcast = Main.player[Main.myPlayer].active
+					&& LoadHelpers.IsWorldBeingPlayed();
+
+				if( canBroadcast ) {
+					CursorPositionProtocol.BroadcastCursorIf();
+				}
+
+				return canBroadcast;
 			} );
+
 			return true;
 		}
 
@@ -57,7 +67,9 @@ namespace HamstarHelpers.Services.Network {
 		/// Ends the current cursor position broadcast loop.
 		/// </summary>
 		public static void StopBroadcastingMyCursorPosition() {
-			if( Main.netMode != NetmodeID.MultiplayerClient ) { throw new ModHelpersException( "Not a client." ); }
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
+				throw new ModHelpersException( "Not a client." );
+			}
 
 			string timerName = "cursor_broadcast_" + Main.myPlayer;
 

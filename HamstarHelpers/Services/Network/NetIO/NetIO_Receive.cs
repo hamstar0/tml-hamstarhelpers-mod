@@ -35,7 +35,13 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			}
 
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-				LogHelpers.Log( "<" + data.GetType().Name );
+				Type dataType = data.GetType();
+				bool isNoisy = dataType
+					.IsDefined( typeof(IsNoisyAttribute), false );
+
+				if( !isNoisy ) {
+					LogHelpers.Log( "<" + dataType.Name );
+				}
 			}
 
 			data.ReceiveOnServer( playerWho );
@@ -47,7 +53,13 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			}
 
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-				LogHelpers.Log( "<" + data.GetType().Name );
+				Type dataType = data.GetType();
+				bool isNoisy = dataType
+					.IsDefined( typeof( IsNoisyAttribute ), false );
+
+				if( !isNoisy ) {
+					LogHelpers.Log( "<" + dataType.Name );
+				}
 			}
 
 			data.ReceiveOnClient();
@@ -55,7 +67,13 @@ namespace HamstarHelpers.Services.Network.NetIO {
 
 		private static void Receive( NetIOBidirectionalPayload data, int playerWho ) {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-				LogHelpers.Log( "<" + data.GetType().Name );
+				Type dataType = data.GetType();
+				bool isNoisy = dataType
+					.IsDefined( typeof( IsNoisyAttribute ), false );
+
+				if( !isNoisy ) {
+					LogHelpers.Log( "<" + dataType.Name );
+				}
 			}
 
 			if( Main.netMode == NetmodeID.Server ) {

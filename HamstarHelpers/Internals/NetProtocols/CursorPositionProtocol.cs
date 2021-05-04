@@ -10,23 +10,22 @@ using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 namespace HamstarHelpers.Internals.NetProtocols {
 	/// @private
 	[Serializable]
+	[IsNoisy]
 	class CursorPositionProtocol : NetIOBroadcastPayload {
-		internal static bool BroadcastCursor() {
+		internal static bool BroadcastCursorIf() {
 			if( Main.netMode != NetmodeID.MultiplayerClient ) {
 				throw new ModHelpersException( "Not a client." );
 			}
 
-			short x = (short)Main.mouseX;
-			short y = (short)Main.mouseY;
-
 			if( Client.LastKnownCursorPositions.ContainsKey( Main.myPlayer ) ) {
-				(int X, int Y) lastPos = Client.LastKnownCursorPositions[Main.myPlayer];
-				if( lastPos == (x, y) ) {
+				(int X, int Y) lastPos = Client.LastKnownCursorPositions[ Main.myPlayer ];
+
+				if( lastPos.X == Main.mouseX && lastPos.Y == Main.mouseY ) {
 					return false;
 				}
 			}
 
-			var protocol = new CursorPositionProtocol( (byte)Main.myPlayer, x, y );
+			var protocol = new CursorPositionProtocol( (byte)Main.myPlayer, (short)Main.mouseX, (short)Main.mouseY );
 			NetIO.Broadcast( protocol );
 
 			return true;

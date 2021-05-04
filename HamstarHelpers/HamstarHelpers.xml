@@ -14281,7 +14281,7 @@
             <summary>
             Begins a broadcast loop (via. Timers) every 1/4 second to tell everyone where the current player's cursor is located.
             </summary>
-            <returns>`true` if loop not already running.</returns>
+            <returns>`true` if loop has begun (and wasn't already).</returns>
         </member>
         <member name="M:HamstarHelpers.Services.Network.Client.StopBroadcastingMyCursorPosition">
             <summary>
@@ -14417,6 +14417,11 @@
         </member>
         <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOPayload">
             @private
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.IsNoisyAttribute">
+            <summary>
+            Indicates a given payload will produce lots of traffic, and should be logged sparringly.
+            </summary>
         </member>
         <member name="T:HamstarHelpers.Services.Network.NetIO.PayloadTypes.NetIOServerPayload">
             <summary>

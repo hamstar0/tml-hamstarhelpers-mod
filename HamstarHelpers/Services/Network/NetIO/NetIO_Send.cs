@@ -134,7 +134,12 @@ namespace HamstarHelpers.Services.Network.NetIO {
 				packet.Send( toWho, ignoreWho );
 
 				if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-					LogHelpers.Log( ">" + dataType.Name + " "+toWho+" "+ignoreWho );
+					bool isNoisy = dataType
+						.IsDefined( typeof(IsNoisyAttribute), false );
+
+					if( !isNoisy ) {
+						LogHelpers.Log( ">" + dataType.Name + " "+toWho+" "+ignoreWho );
+					}
 				}
 
 				return true;
