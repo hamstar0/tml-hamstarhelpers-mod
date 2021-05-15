@@ -3,7 +3,7 @@
 
 namespace HamstarHelpers.Services.Network.SimplePacket {
 	/// <summary>
-	/// Payload for use with `SimplePacket`.
+	/// Payload for use with `SimplePacket` service.
 	/// </summary>
 	[Serializable]
 	public abstract class SimplePacketPayload {

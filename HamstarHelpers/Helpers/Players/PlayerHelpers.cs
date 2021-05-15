@@ -179,15 +179,20 @@ namespace HamstarHelpers.Helpers.Players {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
 				PlayerPermaDeathProtocol.BroadcastFromClient( player.whoAmI, deathMsg );
 			} else if( Main.netMode == NetmodeID.Server ) {
-				PlayerPermaDeathProtocol.BroadcastFromServer( player.whoAmI, deathMsg );
+				PlayerPermaDeathProtocol.BroadcastFromServer( player.whoAmI, deathMsg, false );
+
+				PlayerHelpers.ApplyPermaDeathState( player, deathMsg );
 			} else {
-				PlayerHelpers.ApplyPermaDeath( player, deathMsg );
+				PlayerHelpers.ApplyPermaDeathState( player, deathMsg );
 			}
 		}
 
-		internal static void ApplyPermaDeath( Player player, string deathMsg ) {
+		internal static void ApplyPermaDeathState( Player player, string deathMsg ) {
 			player.difficulty = 2;
-			player.KillMe( PlayerDeathReason.ByCustomReason( deathMsg ), 9999, 0 );
+
+			if( Main.netMode != NetmodeID.Server ) {	// Already syncs from client
+				player.KillMe( PlayerDeathReason.ByCustomReason( deathMsg ), 9999, 0 );
+			}
 		}
 
 

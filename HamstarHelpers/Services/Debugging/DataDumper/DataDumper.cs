@@ -25,6 +25,13 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 		////////////////
 
 		/// <summary></summary>
+		/// <returns></returns>
+		public static bool CanRequestDumpOnServer() {
+			return ModHelpersConfig.Instance.DebugModeDumpAlsoServer
+				|| UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer );
+		}
+
+		/// <summary></summary>
 		/// <param name="data"></param>
 		/// <param name="fileNameWithExtension"></param>
 		/// <returns></returns>
@@ -151,8 +158,8 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 			if( success ) {
 				// Allow admins to dump on behalf of server, also
 				if( Main.netMode == NetmodeID.MultiplayerClient ) {
-					if( ModHelpersConfig.Instance.DebugModeDumpAlsoServer || UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer ) ) {
-						DataDumpRequestProtocol.QuickRequest();
+					if( DataDumper.CanRequestDumpOnServer() ) {
+						DataDumpRequestProtocol.QuickRequestIf();
 					}
 				}
 			}

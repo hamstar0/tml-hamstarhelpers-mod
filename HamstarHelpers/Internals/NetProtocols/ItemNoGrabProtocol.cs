@@ -1,16 +1,15 @@
 ﻿using System;
 using Terraria;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Services.Network.SimplePacket;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class ItemNoGrabProtocol : NetIOServerPayload {
+	class ItemNoGrabProtocol : SimplePacketPayload {
 		public static void SendToServer( int itemWho, int noGrabDelayAmt ) {
 			var protocol = new ItemNoGrabProtocol( itemWho, noGrabDelayAmt );
-			NetIO.SendToServer( protocol );
+			SimplePacket.SendToServer( protocol );
 		}
 
 
@@ -44,6 +43,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			item.noGrabDelay = this.NoGrabDelayAmt;
 			item.ownIgnore = fromWho;
 			item.ownTime = this.NoGrabDelayAmt;
+		}
+
+		public override void ReceiveOnClient() {
+			throw new ModHelpersException( "Not implemented" );
 		}
 	}
 }

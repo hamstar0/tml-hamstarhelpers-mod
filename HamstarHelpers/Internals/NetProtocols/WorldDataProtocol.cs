@@ -4,25 +4,38 @@ using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Helpers.World;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Services.Network.SimplePacket;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class WorldDataRequestProtocol : NetIORequestPayloadFromServer<WorldDataProtocol> {
+	class WorldDataRequestProtocol : SimplePacketPayload {	//NetIORequestPayloadFromServer<WorldDataProtocol> {
 		public static void QuickRequest() {
-			NetIO.RequestDataFromServer( new WorldDataRequestProtocol() );
+			SimplePacket.SendToServer( new WorldDataRequestProtocol() );
 		}
 
+
+
+		////////////////
+
 		public WorldDataRequestProtocol() { }
+
+		////////////////
+
+		public override void ReceiveOnServer( int fromWho ) {
+			SimplePacket.SendToClient( new WorldDataRequestProtocol(), fromWho, -1 );
+		}
+
+		public override void ReceiveOnClient() {
+			throw new NotImplementedException();
+		}
 	}
 
 
 
 
 	[Serializable]
-	class WorldDataProtocol : NetIOClientPayload {
+	class WorldDataProtocol : SimplePacketPayload { //NetIOClientPayload {
 		public int HalfDays;
 		public bool HasObsoletedWorldId;
 		public string ObsoletedWorldId;
@@ -41,6 +54,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 
 		////////////////
+
+		public override void ReceiveOnServer( int fromWho ) {
+			throw new NotImplementedException();
+		}
 
 		public override void ReceiveOnClient() {
 			var mymod = ModHelpersMod.Instance;

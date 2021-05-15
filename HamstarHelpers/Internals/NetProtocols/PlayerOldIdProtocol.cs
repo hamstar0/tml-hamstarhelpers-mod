@@ -3,37 +3,47 @@ using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Services.Network.SimplePacket;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class PlayerOldIdRequestProtocol : NetIORequest<PlayerOldIdProtocol> {
+	class PlayerOldIdRequestProtocol : SimplePacketPayload {	//NetIORequest<PlayerOldIdProtocol> {
 		public static void QuickRequestToClient( int playerWho ) {
 			var protocol = new PlayerOldIdRequestProtocol();
 
-			NetIO.RequestDataFromClient( protocol, playerWho );
+			SimplePacket.SendToClient( protocol, playerWho, -1 );
 		}
 
 
 		////////////////
 
 		public PlayerOldIdRequestProtocol() { }
+
+		////////////////
+
+		public override void ReceiveOnServer( int fromWho ) {
+			throw new NotImplementedException();
+		}
+
+		public override void ReceiveOnClient() {
+			PlayerOldIdProtocol.QuickSendToServer();
+		}
 	}
 
 
 
 
 	[Serializable]
-	class PlayerOldIdProtocol : NetIOBidirectionalPayload {
+	class PlayerOldIdProtocol : SimplePacketPayload {	//NetIOBidirectionalPayload {
 		public static void QuickSendToServer() {
 			var protocol = new PlayerOldIdProtocol();
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.LocalPlayer );
+
 			protocol.ClientPrivateUID = myplayer.Logic.OldPrivateUID;
 			protocol.ClientHasUID = myplayer.Logic.HasLoadedOldUID;
 
-			NetIO.SendToServer( protocol );
+			SimplePacket.SendToServer( protocol );
 		}
 
 

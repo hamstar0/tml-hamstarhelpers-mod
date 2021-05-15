@@ -1,13 +1,12 @@
-﻿using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.XNA;
-using HamstarHelpers.Services.Timers;
+﻿using System;
+using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Text;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.UI;
+using HamstarHelpers.Classes.UI.Theme;
+using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {

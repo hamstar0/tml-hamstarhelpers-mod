@@ -1,14 +1,13 @@
 ﻿using System;
 using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Services.Network.SimplePacket;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class PingProtocol : NetIOBidirectionalPayload {
+	class PingProtocol : SimplePacketPayload {
 		public static void QuickSendToServer() {
-			NetIO.SendToServer( new PingProtocol() );
+			SimplePacket.SendToServer( new PingProtocol() );
 		}
 
 
@@ -16,7 +15,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public long StartTime = -1;
-		public long EndTime = -1;
+		public long ServerBounceTime = -1;
+		public long ClientRoundTripTime = -1;
 
 
 
@@ -30,23 +30,29 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public override void ReceiveOnServer( int fromWho ) {
-			if( this.EndTime == -1 ) {
-				NetIO.SendToClients( this, fromWho, -1 );
+			this.ServerBounceTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
+
+			if( this.ClientRoundTripTime == -1 ) {
+				SimplePacket.SendToClient( this, fromWho, -1 );
 			} else {
-				int delta = (int)( this.EndTime - this.StartTime );
-				ModHelpersMod.Instance.NetHelpers.UpdatePing( delta );
+				int upSpan = (int)( this.ServerBounceTime - this.StartTime );
+				int downSpan = (int)( this.ClientRoundTripTime - this.ServerBounceTime );
+
+				ModHelpersMod.Instance.NetHelpers.UpdatePing( upSpan, downSpan );
 			}
 		}
 
 
 		public override void ReceiveOnClient() {
-			this.EndTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
+			this.ClientRoundTripTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
 
-			NetIO.SendToServer( this );
+			SimplePacket.SendToServer( this );
 
-			if( this.StartTime != -1 ) {
-				int delta = (int)( this.EndTime - this.StartTime );
-				ModHelpersMod.Instance.NetHelpers.UpdatePing( delta );
+			if( this.ServerBounceTime != -1 ) {
+				int upSpan = (int)( this.ServerBounceTime - this.StartTime );
+				int downSpan = (int)( this.ClientRoundTripTime - this.ServerBounceTime );
+
+				ModHelpersMod.Instance.NetHelpers.UpdatePing( upSpan, downSpan );
 			}
 		}
 	}

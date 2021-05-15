@@ -4,13 +4,12 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Services.Network.SimplePacket;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class PlayerDataProtocol : NetIOBroadcastPayload {
+	class PlayerDataProtocol : SimplePacketPayload {
 		public static void BroadcastToAll(
 					HashSet<int> permaBuffsById,
 					HashSet<int> hasBuffIds,
@@ -19,7 +18,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			var protocol = new PlayerDataProtocol( permaBuffsById, hasBuffIds, equipSlotsToItemTypes );
 
-			NetIO.Broadcast( protocol );
+			SimplePacket.SendToServer( protocol );
 		}
 
 
@@ -50,23 +49,24 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override bool ReceiveOnServerBeforeRebroadcast( int fromWho ) {
+		public override void ReceiveOnServer( int fromWho ) {
 			Player player = Main.player[fromWho];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
 			myplayer.Logic.NetReceiveDataOnServer( this.PermaBuffsById, this.HasBuffIds, this.EquipSlotsToItemTypes );
-			return true;
+
+			SimplePacket.SendToClient( this );
 		}
 
-		public override void ReceiveBroadcastOnClient() {
+		public override void ReceiveOnClient() {
 			if( this.PlayerWho < 0 || this.PlayerWho >= Main.player.Length ) {
-				//throw new HamstarException( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Invalid player index " + this.PlayerWho );
+//throw new HamstarException( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Invalid player index " + this.PlayerWho );
 				throw new ModHelpersException( "Invalid player index " + this.PlayerWho );
 			}
 
-			Player player = Main.player[this.PlayerWho];
+			Player player = Main.player[ this.PlayerWho ];
 			if( player == null || !player.active ) {
-				//LogHelpers.Log( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
+//LogHelpers.Log( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
 				LogHelpers.Log( DebugHelpers.GetCurrentContext() + " - Inactive player indexed as " + this.PlayerWho );
 				return;
 			}

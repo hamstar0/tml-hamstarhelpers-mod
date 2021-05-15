@@ -1,9 +1,9 @@
-﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Timers;
-using System;
+﻿using System;
 using System.Net;
 using Terraria;
+using HamstarHelpers.Classes.Errors;
+using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Services.Timers;
 
 
 namespace HamstarHelpers.Helpers.Net {
@@ -84,9 +84,9 @@ namespace HamstarHelpers.Helpers.Net {
 
 		////////////////
 
-		internal void UpdatePing( int ping ) {
+		internal void UpdatePing( int upTimeSpan, int downTimeSpan ) {
 			//this.CurrentPing = ( this.CurrentPing + this.CurrentPing + ping ) / 3;
-			this.CurrentPing = ( this.CurrentPing + ping ) / 2;
+			this.CurrentPing = (this.CurrentPing + upTimeSpan) / 2;
 		}
 	}
 }

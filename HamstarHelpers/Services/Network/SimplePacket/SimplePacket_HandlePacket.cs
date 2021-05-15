@@ -25,23 +25,30 @@ namespace HamstarHelpers.Services.Network.SimplePacket {
 
 			try {
 				if( !SimplePacket.DeserializeStream( reader, out data ) ) {
+					// Reset stream for other handlers:
 					reader.BaseStream.Seek( oldStreamPos, SeekOrigin.Begin );
+
 					return false;
 				}
 			} catch( Exception e ) {
 				LogHelpers.Warn( e.Message );
+
+				// Reset stream for other handlers:
 				reader.BaseStream.Seek( oldStreamPos, SeekOrigin.Begin );
+
 				return false;
 			}
 
-			if( data == null || data.GetType() == typeof( object ) ) {
+			if( data == null || !(data is SimplePacketPayload ) ) {
+				// Reset stream for other handlers:
+				reader.BaseStream.Seek( oldStreamPos, SeekOrigin.Begin );
+
 				return false;
 			}
 
-			SimplePacket.Receive( data, playerWho );
+			SimplePacket.Receive( (SimplePacketPayload)data, playerWho );
 
-			reader.BaseStream.Seek( oldStreamPos, SeekOrigin.Begin );
-			return false;
+			return true;
 		}
 
 

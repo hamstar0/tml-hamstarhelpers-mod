@@ -2,15 +2,14 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Services.Network.SimplePacket;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class TileSectionRequestProtocol : NetIOServerPayload {
+	class TileSectionRequestProtocol : SimplePacketPayload {	//NetIOServerPayload {
 		public static void SendToServer( int tileSectionX, int tileSectionY ) {
-			NetIO.SendToServer( new TileSectionRequestProtocol(tileSectionX, tileSectionY) );
+			SimplePacket.SendToServer( new TileSectionRequestProtocol(tileSectionX, tileSectionY) );
 		}
 
 
@@ -39,6 +38,10 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 			RemoteClient.CheckSection( fromWho, wldPos, 1 );
 			//NetMessage.SendSection( fromWho, this.TileSectionX, this.TileSectionY );
+		}
+
+		public override void ReceiveOnClient() {
+			throw new NotImplementedException();
 		}
 	}
 }

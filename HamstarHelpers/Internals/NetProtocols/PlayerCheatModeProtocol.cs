@@ -2,21 +2,20 @@
 using Terraria;
 using HamstarHelpers.Helpers.TModLoader;
 using HamstarHelpers.Services.Cheats;
-using HamstarHelpers.Services.Network.NetIO;
-using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
+using HamstarHelpers.Services.Network.SimplePacket;
 
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class PlayerCheatModeProtocol : NetIOBroadcastPayload {
+	class PlayerCheatModeProtocol : SimplePacketPayload {
 		public static void BroadcastFromClient( CheatModeType cheatFlags ) {
 			var protocol = new PlayerCheatModeProtocol( cheatFlags, Main.myPlayer );
-			NetIO.Broadcast( protocol );
+			SimplePacket.SendToServer( protocol );
 		}
 
 		public static void BroadcastToClients( Player player, CheatModeType cheatFlags ) {
 			var protocol = new PlayerCheatModeProtocol( cheatFlags, player.whoAmI );
-			NetIO.SendToClients( protocol, player.whoAmI );
+			SimplePacket.SendToClient( protocol );
 		}
 
 
@@ -40,14 +39,17 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		////////////////
 
-		public override bool ReceiveOnServerBeforeRebroadcast( int fromWho ) {
+		public override void ReceiveOnServer( int fromWho ) {
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[fromWho] );
+
 			myplayer.Logic.SetCheats( (CheatModeType)this.CheatFlags );
-			return true;
+
+			SimplePacket.SendToClient( this );
 		}
 
-		public override void ReceiveBroadcastOnClient() {
+		public override void ReceiveOnClient() {
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[this.PlayerWho] );
+
 			myplayer.Logic.SetCheats( (CheatModeType)this.CheatFlags );
 		}
 	}
