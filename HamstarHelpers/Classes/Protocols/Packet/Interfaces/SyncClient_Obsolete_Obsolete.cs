@@ -1,11 +1,10 @@
-﻿using HamstarHelpers.Classes.Errors;
-using System;
+﻿using System;
 using Terraria;
+using HamstarHelpers.Classes.Errors;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet.Interfaces {
 	/// @private
-	[Obsolete( "use `PacketProtocolSyncBetweenClients` or `PacketProtocolRequestToServer`", true )]
 	public abstract partial class PacketProtocolSyncClient : PacketProtocol {
 		/// @private
 		[Obsolete( "use `SyncFromClientsToMe`", true)]

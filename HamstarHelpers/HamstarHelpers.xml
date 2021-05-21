@@ -1257,9 +1257,9 @@
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.SetClientDefaults">
             @private
         </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.InitializeServerRequestReplyDataOfClient(System.Int32,System.Int32)">
+        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.InitializeServerRequestReply(System.Int32,System.Int32)">
             <summary>
-            Initializes request reply packet for sending.
+            Initializes request reply packet for sending to a given client.
             </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.SetServerDefaults(System.Int32)">
@@ -1272,11 +1272,6 @@
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveWithClient">
             @private
-        </member>
-        <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveOnServer(System.Int32)">
-            <summary>
-            Implements handling of received replies on the server.
-            </summary>
         </member>
         <member name="M:HamstarHelpers.Classes.Protocols.Packet.Interfaces.PacketProtocolSyncBetweenClients.ReceiveWithServer(System.Int32)">
             @private
@@ -12807,6 +12802,10 @@
             folder at "ModLoader/Logs/Dumps". Primarily used for debugging.
             </summary>
         </member>
+        <member name="M:HamstarHelpers.Services.Debug.DataDumper.DataDumper.CanRequestDumpOnServer">
+            <summary></summary>
+            <returns></returns>
+        </member>
         <member name="M:HamstarHelpers.Services.Debug.DataDumper.DataDumper.DumpToLocalFile(System.String,System.String@)">
             <summary></summary>
             <param name="data"></param>
@@ -14709,6 +14708,56 @@
         </member>
         <member name="P:HamstarHelpers.Services.Network.Server.AveragePing">
             <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.SimplePacket.SimplePacketPayload">
+            <summary>
+            Payload for use with `SimplePacket` service.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.SimplePacket.SimplePacketPayload.ReceiveOnServer(System.Int32)">
+            <summary></summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.SimplePacket.SimplePacketPayload.ReceiveOnClient">
+            <summary></summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.SimplePacket.IsNoisyAttribute">
+            <summary>
+            Indicates a given payload will produce lots of traffic, and should be logged sparringly.
+            </summary>
+        </member>
+        <member name="T:HamstarHelpers.Services.Network.SimplePacket.SimplePacket">
+            <summary>
+            Provides functions to neatly send data (via. ModPacket) to server, clients, or both. Abstracts away serialization.
+            </summary>
+            <summary>
+            Provides functions to neatly send data (via. ModPacket) to server, clients, or both. Abstracts away serialization.
+            </summary>
+            <summary>
+            Provides functions to neatly send data (via. ModPacket) to server, clients, or both. Abstracts away serialization.
+            </summary>
+            <summary>
+            Provides functions to neatly send data (via. ModPacket) to server, clients, or both. Abstracts away serialization.
+            </summary>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.SimplePacket.SimplePacket.HandlePacket(System.IO.BinaryReader,System.Int32)">
+            <summary></summary>
+            <param name="reader"></param>
+            <param name="playerWho"></param>
+            <returns>`true` to be considered to have completely handled the incoming packet.</returns>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.SimplePacket.SimplePacket.SendToServer(HamstarHelpers.Services.Network.SimplePacket.SimplePacketPayload)">
+            <summary>
+            Sends the data to the server.
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:HamstarHelpers.Services.Network.SimplePacket.SimplePacket.SendToClient(HamstarHelpers.Services.Network.SimplePacket.SimplePacketPayload,System.Int32,System.Int32)">
+            <summary>
+            Sends the data to the specified client(s).
+            </summary>
+            <param name="data"></param>
+            <param name="toWho">Main.player array index of player (`player.whoAmI`) to send to. -1 for all players.</param>
+            <param name="ignoreWho">Main.player array index of player (`player.whoAmI`) to ignore. -1 for no one.</param>
         </member>
         <member name="T:HamstarHelpers.Services.OverlaySounds.OverlaySound">
             <summary>

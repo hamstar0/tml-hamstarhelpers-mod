@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using System;
+﻿using System;
 using Terraria;
 using Terraria.ModLoader;
+using HamstarHelpers.Helpers.Debug;
 
 
 namespace HamstarHelpers.Services.Hooks.Draw {
