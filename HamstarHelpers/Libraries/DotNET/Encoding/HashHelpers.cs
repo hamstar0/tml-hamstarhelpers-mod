@@ -2,11 +2,11 @@
 using System.Security.Cryptography;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Encoding {
+namespace HamstarHelpers.Libraries.DotNET.Encoding {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to hash codes.
 	/// </summary>
-	public class HashHelpers {
+	public class HashLibraries {
 		/// <summary>
 		/// Produces a SHA256 hash from a given input string.
 		/// </summary>

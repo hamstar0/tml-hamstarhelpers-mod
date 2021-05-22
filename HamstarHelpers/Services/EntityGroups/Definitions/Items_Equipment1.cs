@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items.Attributes;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Items.Attributes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -57,7 +57,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: ItemGroupIDs.AnyTool,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return ItemAttributeHelpers.IsTool( item );
+					return ItemAttributeLibraries.IsTool( item );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(
@@ -112,7 +112,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: ItemGroupIDs.AnyArmor,
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return ItemAttributeHelpers.IsArmor( item );
+					return ItemAttributeLibraries.IsArmor( item );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(

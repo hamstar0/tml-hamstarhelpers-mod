@@ -2,8 +2,8 @@
 using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 		private void BeginModBrowserPopulateCheck( UIState modBrowserUi ) {
 			UIList uiModList;
 
-			if( !ReflectionHelpers.Get( modBrowserUi, "ModList", out uiModList ) ) {
+			if( !ReflectionLibraries.Get( modBrowserUi, "ModList", out uiModList ) ) {
 				throw new ModHelpersException( "Invalid ModList" );
 			}
 			
@@ -65,7 +65,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 		private bool IsModBrowserListPopulated( UIList uiModList ) {
 			int count;
 
-			if( !ReflectionHelpers.Get( uiModList, "Count", out count ) ) {
+			if( !ReflectionLibraries.Get( uiModList, "Count", out count ) ) {
 				throw new ModHelpersException( "Invalid modList.Count" );
 			}
 
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 
 			object modList;
 
-			if( !ReflectionHelpers.Get(uiModList, "_items", out modList) || modList == null ) {
+			if( !ReflectionLibraries.Get(uiModList, "_items", out modList) || modList == null ) {
 				throw new ModHelpersException( "Invalid modList._items" );
 			}
 
@@ -91,7 +91,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 			for( int i = 0; i < itemsArr.Length; i++ ) {
 				var item = (UIElement)itemsArr.GetValue( i );
 				if( item == null ) {
-					LogHelpers.Warn( "Invalid modList._item[" + i + "] (out of "+itemsArr.Length+")" );
+					LogLibraries.Warn( "Invalid modList._item[" + i + "] (out of "+itemsArr.Length+")" );
 					continue;
 				}
 
@@ -101,14 +101,14 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext {
 				//}
 				
 				UIElement modInfoButton;
-				if( !ReflectionHelpers.Get(item, "_moreInfoButton", out modInfoButton) || modInfoButton == null ) {
-					LogHelpers.Alert( "Invalid modList._item[" + i + "]._moreInfoButton" );
+				if( !ReflectionLibraries.Get(item, "_moreInfoButton", out modInfoButton) || modInfoButton == null ) {
+					LogLibraries.Alert( "Invalid modList._item[" + i + "]._moreInfoButton" );
 					continue;
 				}
 
 				UIElement.MouseEvent modInfoButtonClick = ( _, __ ) => {
-					if( !ReflectionHelpers.Set( modBrowserUi, "SelectedItem", item ) ) {
-						LogHelpers.Alert( "Could not set selected item from the mod browser" );
+					if( !ReflectionLibraries.Set( modBrowserUi, "SelectedItem", item ) ) {
+						LogLibraries.Alert( "Could not set selected item from the mod browser" );
 					}
 				};
 

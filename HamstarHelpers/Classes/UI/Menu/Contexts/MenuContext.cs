@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.TModLoader.Menus;
+﻿using HamstarHelpers.Libraries.TModLoader.Menus;
 using Terraria.UI;
 
 

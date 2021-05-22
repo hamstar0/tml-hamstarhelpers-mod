@@ -1,14 +1,14 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.DotNET {
+namespace HamstarHelpers.Libraries.DotNET {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to LINQ.
 	/// </summary>
-	public static class LINQHelpers {
+	public static class LINQLibraries {
 		/// <summary>
 		/// Wraps a LINQ `Select(...)` call with an exception catcher that both reports the exception as a log error, and
 		/// returns an empty collection to not interrupt program flow.
@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.Select( selector );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.Select( selector );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.SelectMany( selector );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -84,7 +84,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.SelectMany( collectionSelector, resultSelector );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.SelectMany( collectionSelector, resultSelector );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -124,7 +124,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.SelectMany( selector );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return new List<TResult>();
 			}
 			return output;
@@ -144,7 +144,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.Where( predicate );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return new List<TSource>();
 			}
 			return output;
@@ -162,7 +162,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.Where( predicate );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return new List<TSource>();
 			}
 			return output;
@@ -184,7 +184,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.OrderBy( keySelector, comparer );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return (new List<TSource>()).OrderBy( t=>t );
 			}
 			return output;
@@ -203,7 +203,7 @@ namespace HamstarHelpers.Helpers.DotNET {
 			try {
 				output = source.OrderBy( keySelector );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return ( new List<TSource>() ).OrderBy( t => t );
 			}
 			return output;

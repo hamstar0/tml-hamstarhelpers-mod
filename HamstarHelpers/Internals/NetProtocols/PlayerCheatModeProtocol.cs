@@ -1,6 +1,6 @@
 ﻿using System;
 using Terraria;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.TModLoader;
 using HamstarHelpers.Services.Cheats;
 using HamstarHelpers.Services.Network.SimplePacket;
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public override void ReceiveOnServer( int fromWho ) {
-			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[fromWho] );
+			var myplayer = TmlLibraries.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[fromWho] );
 
 			myplayer.Logic.SetCheats( (CheatModeType)this.CheatFlags );
 
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		public override void ReceiveOnClient() {
-			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[this.PlayerWho] );
+			var myplayer = TmlLibraries.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[this.PlayerWho] );
 
 			myplayer.Logic.SetCheats( (CheatModeType)this.CheatFlags );
 		}

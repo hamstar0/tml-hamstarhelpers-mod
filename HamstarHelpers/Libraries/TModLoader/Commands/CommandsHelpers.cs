@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Commands {
+namespace HamstarHelpers.Libraries.TModLoader.Commands {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to (chat or console) commands.
 	/// </summary>
-	public static class CommandsHelpers {
+	public static class CommandsLibraries {
 		/// <summary>
 		/// Parses the next quote-wrapped input string from a sequence of input argument strings.
 		/// </summary>

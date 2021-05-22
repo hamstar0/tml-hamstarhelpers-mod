@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.TModLoader;
+﻿using HamstarHelpers.Libraries.TModLoader;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 
 
@@ -8,17 +8,17 @@ namespace HamstarHelpers.Internals.Logic {
 		private void PreUpdateShared() {
 			var mymod = ModHelpersMod.Instance;
 
-			if( LoadHelpers.IsWorldLoaded() ) {
+			if( LoadLibraries.IsWorldLoaded() ) {
 				mymod.LoadHooks.FulfillWorldLoadHooks();
 			}
 
-			if( LoadHelpers.IsWorldBeingPlayed() ) {
+			if( LoadLibraries.IsWorldBeingPlayed() ) {
 				mymod.LoadHooks.FulfillWorldInPlayHooks();
 				mymod.LoadHelpers.UpdateUponWorldBeingPlayed();
 				mymod.WorldStateHelpers.UpdateUponWorldBeingPlayed();
 			}
 
-			if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
+			if( LoadLibraries.IsWorldSafelyBeingPlayed() ) {
 				this.UpdateSafelyLoaded();
 				mymod.LoadHooks.FulfillSafeWorldLoadHook();
 			}

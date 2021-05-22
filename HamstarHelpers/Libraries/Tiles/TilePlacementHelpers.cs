@@ -1,13 +1,13 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using Terraria;
 using Terraria.ObjectData;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile placement (convenience bindings for WorldGen).
 	/// </summary>
-	public partial class TilePlacementHelpers {
+	public partial class TilePlacementLibraries {
 		/// <summary>
 		/// Convenience binding to place a given tile object from its corner. Places from the bottom. Uses vanilla's
 		/// object placement method. Applies `WorldGen.SquareTileFrame(...)`.
@@ -73,55 +73,55 @@ Timers.SetTimer( "BLHA_"+ type, 5, false, () => {
 				case 1:
 					return WorldGen.PlaceTile( leftX, bottomY, type, false, false, -1, style );
 				case 2:
-					TilePlacementHelpers.Place1x2( leftX, bottomY - 1, type, style );
+					TilePlacementLibraries.Place1x2( leftX, bottomY - 1, type, style );
 					return true;
 				default:
-					TilePlacementHelpers.Place1xX( leftX, bottomY - ( height - 1 ), type, style );
+					TilePlacementLibraries.Place1xX( leftX, bottomY - ( height - 1 ), type, style );
 					return true;
 				}
 			case 2:
 				switch( height ) {
 				case 2:
-					TilePlacementHelpers.Place2x2( leftX, bottomY - 1, type, style );
+					TilePlacementLibraries.Place2x2( leftX, bottomY - 1, type, style );
 					return true;
 				default:
-					TilePlacementHelpers.Place2xX( leftX, bottomY - ( height - 1 ), type, style );
+					TilePlacementLibraries.Place2xX( leftX, bottomY - ( height - 1 ), type, style );
 					return true;
 				}
 			case 3:
 				switch( height ) {
 				case 1:
-					TilePlacementHelpers.Place3x1( leftX, bottomY, type, style );
+					TilePlacementLibraries.Place3x1( leftX, bottomY, type, style );
 					return true;
 				case 2:
-					TilePlacementHelpers.Place3x2( leftX, bottomY - 1, type, style );
+					TilePlacementLibraries.Place3x2( leftX, bottomY - 1, type, style );
 					return true;
 				case 3:
-					TilePlacementHelpers.Place3x3( leftX, bottomY - 2, type, style );
+					TilePlacementLibraries.Place3x3( leftX, bottomY - 2, type, style );
 					return true;
 				case 4:
-					TilePlacementHelpers.Place3x4( leftX, bottomY - 3, type, style );
+					TilePlacementLibraries.Place3x4( leftX, bottomY - 3, type, style );
 					return true;
 				}
 				break;
 			case 4:
 				switch( height ) {
 				case 2:
-					TilePlacementHelpers.Place4x2( leftX, bottomY - 1, type, style, direction );
+					TilePlacementLibraries.Place4x2( leftX, bottomY - 1, type, style, direction );
 					return true;
 				}
 				break;
 			case 5:
 				switch( height ) {
 				case 4:
-					TilePlacementHelpers.Place5x4( leftX, bottomY - 3, type, style );
+					TilePlacementLibraries.Place5x4( leftX, bottomY - 3, type, style );
 					return true;
 				}
 				break;
 			case 6:
 				switch( height ) {
 				case 3:
-					TilePlacementHelpers.Place6x3( leftX, bottomY - 2, type, style, direction );
+					TilePlacementLibraries.Place6x3( leftX, bottomY - 2, type, style, direction );
 					return true;
 				}
 				break;

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
 using System;

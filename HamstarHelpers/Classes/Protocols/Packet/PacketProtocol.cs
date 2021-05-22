@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Stream;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 
 		internal static IDictionary<int, Type> GetProtocolTypes() {
-			IEnumerable<Type> protocolTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof(PacketProtocol) );
+			IEnumerable<Type> protocolTypes = ReflectionLibraries.GetAllAvailableSubTypesFromMods( typeof(PacketProtocol) );
 			IDictionary<int, Type> protocolTypeMap = new Dictionary<int, Type>();
 
 			foreach( Type subclassType in protocolTypes ) {
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 				if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
 					string name = subclassType.Namespace + "." + subclassType.Name;
-					LogHelpers.Alert( name );
+					LogLibraries.Alert( name );
 				}
 
 				try {
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 					protocolTypeMap[ code ] = subclassType;
 				} catch( Exception e ) {
-					LogHelpers.Log( subclassType.Name + " - " + e.Message );
+					LogLibraries.Log( subclassType.Name + " - " + e.Message );
 				}
 			}
 

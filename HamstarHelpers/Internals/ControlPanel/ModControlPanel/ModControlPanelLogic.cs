@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
@@ -30,14 +30,14 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			Action<bool, string> wrappedOnCompletion = ( success, output ) => {
 				if( success ) {
 					Main.NewText( "Issue submit result: " + output, Color.Yellow );
-					LogHelpers.Log( "Issue submit result: " + output );
+					LogLibraries.Log( "Issue submit result: " + output );
 				}
 				onCompletion();
 			};
 
 			Action<Exception, string> onError = ( e, output ) => {
 				Main.NewText( "Issue submit error: " + e.Message, Color.Red );
-				LogHelpers.Log( e.ToString() );
+				LogLibraries.Log( e.ToString() );
 			};
 
 			PostGithubModIssueReports.ReportIssue( mod, issueTitle, issueBody, onError, wrappedOnCompletion );

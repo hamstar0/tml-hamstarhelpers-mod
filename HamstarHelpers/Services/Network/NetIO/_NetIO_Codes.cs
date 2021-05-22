@@ -5,8 +5,8 @@ using System.Collections.Generic;
 using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 

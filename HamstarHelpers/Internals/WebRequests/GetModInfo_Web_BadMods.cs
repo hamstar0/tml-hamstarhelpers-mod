@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Encoding;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.Net;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Encoding;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -15,11 +15,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 		private static void RetrieveBadModsAsync( Action<bool, BadModsDatabase> onCompletion ) {
 			Action<Exception, string> onError = ( e, jsonStr ) => {
 				if( e is JsonReaderException ) {
-					LogHelpers.Alert( "Bad JSON: " + jsonStr.Trunc(256) );
+					LogLibraries.Alert( "Bad JSON: " + jsonStr.Trunc(256) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.Message );
+					LogLibraries.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.Message );
 				} else {
-					LogHelpers.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.ToString() );
+					LogLibraries.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.ToString() );
 				}
 			};
 
@@ -40,14 +40,14 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onCompletion( success, badModsDb );
 			};
 			
-			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.BadModsUrl, e => onError(e, ""), onWrappedCompletion );
+			WebConnectionLibraries.MakeGetRequestAsync( GetModInfo.BadModsUrl, e => onError(e, ""), onWrappedCompletion );
 		}
 
 
 		private static bool HandleBadModsReceipt( string jsonData, out BadModsDatabase badModsDb ) {
 			badModsDb = new BadModsDatabase();
 
-			string sanitizedJsonData = EncodingHelpers.SanitizeForASCII( jsonData );
+			string sanitizedJsonData = EncodingLibraries.SanitizeForASCII( jsonData );
 			JObject parsedObject = JObject.Parse( sanitizedJsonData );
 
 			if( parsedObject.Count == 0 ) {
@@ -61,9 +61,9 @@ namespace HamstarHelpers.Internals.WebRequests {
 			//	}
 			//}
 
-			IDictionary<string, string> skimmed = JsonHelpers.SkimIncompatibleEntries<BadModsDatabase>( parsedObject );
+			IDictionary<string, string> skimmed = JsonLibraries.SkimIncompatibleEntries<BadModsDatabase>( parsedObject );
 			if( skimmed.Count > 0 ) {
-				LogHelpers.Alert( "Skimmed "+skimmed.Count+" bad entries from input:\n    "+string.Join(", ", skimmed.Keys) );
+				LogLibraries.Alert( "Skimmed "+skimmed.Count+" bad entries from input:\n    "+string.Join(", ", skimmed.Keys) );
 			}
 
 			badModsDb = parsedObject.ToObject<BadModsDatabase>();

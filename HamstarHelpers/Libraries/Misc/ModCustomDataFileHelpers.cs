@@ -1,16 +1,16 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using System;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Misc {
+namespace HamstarHelpers.Libraries.Misc {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to file IO for mod custom data.
 	/// </summary>
-	public partial class ModCustomDataFileHelpers {
+	public partial class ModCustomDataFileLibraries {
 		/// <summary>
 		/// ModLoader subfolder where custom mod data is stored.
 		/// </summary>
@@ -26,7 +26,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="mod"></param>
 		/// <returns></returns>
 		public static string GetRelativeDirectoryPath( Mod mod ) {
-			return ModCustomDataFileHelpers.BaseFolder + Path.DirectorySeparatorChar + mod.Name;
+			return ModCustomDataFileLibraries.BaseFolder + Path.DirectorySeparatorChar + mod.Name;
 		}
 
 		/// <summary>
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="mod"></param>
 		/// <returns></returns>
 		public static string GetFullDirectoryPath( Mod mod ) {
-			return Main.SavePath + Path.DirectorySeparatorChar + ModCustomDataFileHelpers.GetRelativeDirectoryPath(mod);
+			return Main.SavePath + Path.DirectorySeparatorChar + ModCustomDataFileLibraries.GetRelativeDirectoryPath(mod);
 		}
 
 		/// <summary>
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="fileNameHasExt"></param>
 		/// <returns></returns>
 		public static string GetFullPath( Mod mod, string fileNameHasExt ) {
-			return ModCustomDataFileHelpers.GetFullDirectoryPath( mod ) + Path.DirectorySeparatorChar + fileNameHasExt;
+			return ModCustomDataFileLibraries.GetFullDirectoryPath( mod ) + Path.DirectorySeparatorChar + fileNameHasExt;
 		}
 
 
@@ -56,14 +56,14 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// </summary>
 		/// <param name="mod"></param>
 		public static void PrepareDir( Mod mod ) {
-			string fullDir = ModCustomDataFileHelpers.GetFullDirectoryPath( mod );
+			string fullDir = ModCustomDataFileLibraries.GetFullDirectoryPath( mod );
 			
 			try {
 				Directory.CreateDirectory( Main.SavePath );
-				Directory.CreateDirectory( Main.SavePath + Path.DirectorySeparatorChar + ModCustomDataFileHelpers.BaseFolder );
+				Directory.CreateDirectory( Main.SavePath + Path.DirectorySeparatorChar + ModCustomDataFileLibraries.BaseFolder );
 				Directory.CreateDirectory( fullDir );
 			} catch( IOException e ) {
-				LogHelpers.Warn( "Failed to prepare directory: " + fullDir+" - "+e.ToString() );
+				LogLibraries.Warn( "Failed to prepare directory: " + fullDir+" - "+e.ToString() );
 				throw new IOException( "Failed to prepare directory: " + fullDir, e );
 			}
 		}

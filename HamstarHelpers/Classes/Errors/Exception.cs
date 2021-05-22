@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
 namespace HamstarHelpers.Classes.Errors {
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Classes.Errors {
 		////////////////
 
 		private void Initialize( string msg ) {
-			string context = DebugHelpers.GetCurrentContext( 3 );
+			string context = DebugLibraries.GetCurrentContext( 3 );
 			var msgCount = ModHelpersMod.Instance.ExceptionMngr.MsgCount;
 			int count = 0;
 
@@ -49,9 +49,9 @@ namespace HamstarHelpers.Classes.Errors {
 			}
 
 			if( this.InnerException != null ) {
-				LogHelpers.Log( "!"+context+" (E#" + count + ") - " + msg + " | " + this.InnerException.Message );
+				LogLibraries.Log( "!"+context+" (E#" + count + ") - " + msg + " | " + this.InnerException.Message );
 			} else {
-				LogHelpers.Log( "!"+context+" (E#" + count + ") - " + msg );
+				LogLibraries.Log( "!"+context+" (E#" + count + ") - " + msg );
 			}
 		}
 	}

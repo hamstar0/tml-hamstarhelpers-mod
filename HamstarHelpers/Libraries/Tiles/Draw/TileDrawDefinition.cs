@@ -1,9 +1,9 @@
 ﻿using System;
 using Terraria;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles.Draw {
+namespace HamstarHelpers.Libraries.Tiles.Draw {
 	/// <summary>
 	/// Defines a basic tile.
 	/// </summary>
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 		/// <returns></returns>
 		public bool Place( int leftTileX, int bottomTileY ) {
 			if( !this.NotActive ) {
-				bool placed = TilePlacementHelpers.PlaceObject(
+				bool placed = TilePlacementLibraries.PlaceObject(
 					leftX: leftTileX,
 					bottomY: bottomTileY,
 					type: this.TileType,

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Entities {
+namespace HamstarHelpers.Libraries.Entities {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to entity info.
 	/// </summary>
-	public class EntityInfoHelpers {
+	public class EntityInfoLibraries {
 		/// <summary>
 		/// Generates a table of field and property defaults of a given NPC type.
 		/// </summary>
@@ -88,7 +88,7 @@ namespace HamstarHelpers.Helpers.Entities {
 			var data = new Dictionary<int, IDictionary<string, object>>();
 
 			for( int i = 0; i < Main.npcTexture.Length; i++ ) {
-				data[i] = EntityInfoHelpers.GetNpcInfo( i );
+				data[i] = EntityInfoLibraries.GetNpcInfo( i );
 			}
 			return data;
 		}
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Helpers.Entities {
 			var data = new Dictionary<int, IDictionary<string, object>>();
 
 			for( int i = 0; i < Main.itemTexture.Length; i++ ) {
-				data[i] = EntityInfoHelpers.GetItemInfo( i );
+				data[i] = EntityInfoLibraries.GetItemInfo( i );
 			}
 			return data;
 		}
@@ -114,7 +114,7 @@ namespace HamstarHelpers.Helpers.Entities {
 			var data = new Dictionary<int, IDictionary<string, object>>();
 
 			for( int i = 0; i < Main.projectileTexture.Length; i++ ) {
-				data[i] = EntityInfoHelpers.GetProjectileInfo( i );
+				data[i] = EntityInfoLibraries.GetProjectileInfo( i );
 			}
 			return data;
 		}

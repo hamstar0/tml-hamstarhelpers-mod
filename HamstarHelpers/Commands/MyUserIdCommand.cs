@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Players;
 
 
 namespace HamstarHelpers.Commands {
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Commands {
 
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			string uid = PlayerIdentityHelpers.GetUniqueId();
+			string uid = PlayerIdentityLibraries.GetUniqueId();
 			
 			caller.Reply( "Your user ID is: " + uid, Color.Lime );
 		}

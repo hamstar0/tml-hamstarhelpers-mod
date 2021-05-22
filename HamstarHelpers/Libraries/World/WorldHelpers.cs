@@ -1,16 +1,16 @@
 ﻿using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the current world.
 	/// </summary>
-	public partial class WorldHelpers {
+	public partial class WorldLibraries {
 		/// <summary></summary>
 		public static Point WorldSizeSmall => new Point( 4200, 1200 );
 		/// <summary></summary>
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Helpers.World {
 		////////////////
 
 		/// <summary></summary>
-		public static int SurfaceLayerTopTileY => WorldHelpers.SkyLayerBottomTileY;
+		public static int SurfaceLayerTopTileY => WorldLibraries.SkyLayerBottomTileY;
 
 		/// <summary></summary>
 		public static int SurfaceLayerBottomTileY => (int)Main.worldSurface;
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Helpers.World {
 		public static int RockLayerTopTileY => (int)Main.rockLayer;
 
 		/// <summary></summary>
-		public static int RockLayerBottomTileY => WorldHelpers.UnderworldLayerTopTileY;
+		public static int RockLayerBottomTileY => WorldLibraries.UnderworldLayerTopTileY;
 
 
 		/// <summary></summary>
@@ -73,9 +73,9 @@ namespace HamstarHelpers.Helpers.World {
 		/// <returns></returns>
 		public static string GetUniqueIdForCurrentWorld( bool asFileName ) {
 			if( asFileName ) {
-				return FileHelpers.SanitizePath( Main.worldName ) + "@" + Main.worldID;
+				return FileLibraries.SanitizePath( Main.worldName ) + "@" + Main.worldID;
 			} else {
-				return FileHelpers.SanitizePath( Main.worldName ) + ":" + Main.worldID;
+				return FileLibraries.SanitizePath( Main.worldName ) + ":" + Main.worldID;
 			}
 		}
 
@@ -113,29 +113,29 @@ namespace HamstarHelpers.Helpers.World {
 		public static WorldRegionFlags GetRegion( Vector2 worldPos ) {
 			WorldRegionFlags where = 0;
 
-			if( WorldHelpers.IsSky(worldPos) ) {
+			if( WorldLibraries.IsSky(worldPos) ) {
 				where |= WorldRegionFlags.Sky;
-			} else if( WorldHelpers.IsWithinUnderworld(worldPos) ) {
+			} else if( WorldLibraries.IsWithinUnderworld(worldPos) ) {
 				where |= WorldRegionFlags.Hell;
-			} else if( WorldHelpers.IsAboveWorldSurface(worldPos) ) {
+			} else if( WorldLibraries.IsAboveWorldSurface(worldPos) ) {
 				where |= WorldRegionFlags.Overworld;
 
-				if( WorldHelpers.BeachEastTileX < (worldPos.X/16) ) {
+				if( WorldLibraries.BeachEastTileX < (worldPos.X/16) ) {
 					where |= WorldRegionFlags.OceanEast;
-				} else if( WorldHelpers.BeachWestTileX > (worldPos.X/16) ) {
+				} else if( WorldLibraries.BeachWestTileX > (worldPos.X/16) ) {
 					where |= WorldRegionFlags.OceanWest;
 				}
 			} else {
-				if( WorldHelpers.IsDirtLayer( worldPos ) ) {
+				if( WorldLibraries.IsDirtLayer( worldPos ) ) {
 					where |= WorldRegionFlags.CaveDirt;
 				} else {
-					if( WorldHelpers.IsPreRockLayer( worldPos ) ) {
+					if( WorldLibraries.IsPreRockLayer( worldPos ) ) {
 						where |= WorldRegionFlags.CavePreRock;
 					}
-					if( WorldHelpers.IsRockLayer( worldPos ) ) {
+					if( WorldLibraries.IsRockLayer( worldPos ) ) {
 						where |= WorldRegionFlags.CaveRock;
 
-						if( WorldHelpers.IsLavaLayer( worldPos ) ) {
+						if( WorldLibraries.IsLavaLayer( worldPos ) ) {
 							where |= WorldRegionFlags.CaveLava;
 						}
 					}
@@ -237,7 +237,7 @@ namespace HamstarHelpers.Helpers.World {
 		/// <param name="worldPos"></param>
 		/// <returns></returns>
 		public static bool IsBeach( Vector2 worldPos ) {
-			if( !WorldHelpers.IsOverworld( worldPos ) ) {
+			if( !WorldLibraries.IsOverworld( worldPos ) ) {
 				return false;
 			}
 			return IsBeachRegion( worldPos );
@@ -269,7 +269,7 @@ namespace HamstarHelpers.Helpers.World {
 				TilePattern ground,
 				out Vector2 groundPos ) {
 			int furthestTileY = invertGravity ? 42 : Main.maxTilesY - 42;
-			return WorldHelpers.DropToGround( worldPos, invertGravity, ground, furthestTileY, out groundPos );
+			return WorldLibraries.DropToGround( worldPos, invertGravity, ground, furthestTileY, out groundPos );
 		}
 
 

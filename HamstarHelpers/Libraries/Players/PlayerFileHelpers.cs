@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using System;
 using System.IO;
 using Terraria;
@@ -6,11 +6,11 @@ using Terraria.IO;
 using Terraria.Utilities;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player file data (.plr, .tplr).
 	/// </summary>
-	public class PlayerFileHelpers {
+	public class PlayerFileLibraries {
 		/// <summary>
 		/// Erases a given player file.
 		/// </summary>
@@ -34,9 +34,9 @@ namespace HamstarHelpers.Helpers.Players {
 
 				Main.LoadPlayers();
 
-				LogHelpers.Log( "Player " + data.Name + " deleted." );
+				LogLibraries.Log( "Player " + data.Name + " deleted." );
 			} catch( Exception e ) {
-				LogHelpers.Log( "PlayerFileHelpers.ErasePlayer - Path: " + data.Path + " - " + e.ToString() );
+				LogLibraries.Log( "PlayerFileHelpers.ErasePlayer - Path: " + data.Path + " - " + e.ToString() );
 			}
 		}
 	}

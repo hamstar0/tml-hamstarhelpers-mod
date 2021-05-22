@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.XNA;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.XNA;
 using HamstarHelpers.Services.Timers;
 
 
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Classes.UI.Menu {
 				} );
 			} else {
 				bool _;
-				XNAHelpers.DrawBatch( (sb) => this.DrawMenuItem(),
+				XNALibraries.DrawBatch( (sb) => this.DrawMenuItem(),
 					SpriteSortMode.Deferred,
 					BlendState.AlphaBlend,
 					SamplerState.LinearClamp,

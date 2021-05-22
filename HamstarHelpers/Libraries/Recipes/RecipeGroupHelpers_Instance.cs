@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Recipes {
+namespace HamstarHelpers.Libraries.Recipes {
 	/// @private
-	public partial class RecipeGroupHelpers {
+	public partial class RecipeGroupLibraries {
 		private IDictionary<string, RecipeGroup> _Groups = null;
 	}
 }

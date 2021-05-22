@@ -6,11 +6,11 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Collisions {
+namespace HamstarHelpers.Libraries.Collisions {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to collisions between objects and/or tiles.
 	/// </summary>
-	public class TileCollisionHelpers {
+	public class TileCollisionLibraries {
 		/// <summary>
 		/// Measures world distance to the nearest tile from a given point and heading.
 		/// </summary>

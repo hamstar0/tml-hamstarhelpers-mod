@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using System.Collections.Generic;
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 			ISet<string> onTags = this.Manager.GetTagsWithGivenState( 1 );
 
 			if( this.Manager.AllModTagsSnapshot == null ) {
-				LogHelpers.Alert( "AllModTagsSnapshot == null" );
+				LogLibraries.Alert( "AllModTagsSnapshot == null" );
 			} else if( this.Manager.AllModTagsSnapshot.ContainsKey( modName ) == true ) {
 				// No changes?
 				if( onTags.SetEquals( this.Manager.AllModTagsSnapshot[modName] ) ) {

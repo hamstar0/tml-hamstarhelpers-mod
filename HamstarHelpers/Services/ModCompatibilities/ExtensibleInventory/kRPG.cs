@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using System;
 using Terraria.ModLoader;
 
@@ -21,26 +21,26 @@ namespace HamstarHelpers.Services.ModCompatibilities.ExtensibleInventoryCompat {
 			float bookPosY, pagePosY, pageTickPosY,
 				newBookPosY, newPagePosY, newPageTickPosY;
 
-			ReflectionHelpers.Get( eiConfig, "BookPositionY", out bookPosY );
-			ReflectionHelpers.Get( eiConfig, "PagePositionY", out pagePosY );
-			ReflectionHelpers.Get( eiConfig, "PageTicksPositionY", out pageTickPosY );
-			ReflectionHelpers.Get( newEIConifg, "BookPositionY", out newBookPosY );
-			ReflectionHelpers.Get( newEIConifg, "PagePositionY", out newPagePosY );
-			ReflectionHelpers.Get( newEIConifg, "PageTicksPositionY", out newPageTickPosY );
+			ReflectionLibraries.Get( eiConfig, "BookPositionY", out bookPosY );
+			ReflectionLibraries.Get( eiConfig, "PagePositionY", out pagePosY );
+			ReflectionLibraries.Get( eiConfig, "PageTicksPositionY", out pageTickPosY );
+			ReflectionLibraries.Get( newEIConifg, "BookPositionY", out newBookPosY );
+			ReflectionLibraries.Get( newEIConifg, "PagePositionY", out newPagePosY );
+			ReflectionLibraries.Get( newEIConifg, "PageTicksPositionY", out newPageTickPosY );
 			
 			if( bookPosY == newBookPosY ) {
-				if( !ReflectionHelpers.Set( eiConfig, "BookPositionY", bookPosY + 112 ) ) {
-					LogHelpers.Alert( "Could not set BookPositionY for ExtensibleInventory" );
+				if( !ReflectionLibraries.Set( eiConfig, "BookPositionY", bookPosY + 112 ) ) {
+					LogLibraries.Alert( "Could not set BookPositionY for ExtensibleInventory" );
 				}
 			}
 			if( pagePosY == newPagePosY ) {
-				if( !ReflectionHelpers.Set( eiConfig, "PagePositionY", pagePosY + 112 ) ) {
-					LogHelpers.Alert( "Could not set PagePositionY for ExtensibleInventory" );
+				if( !ReflectionLibraries.Set( eiConfig, "PagePositionY", pagePosY + 112 ) ) {
+					LogLibraries.Alert( "Could not set PagePositionY for ExtensibleInventory" );
 				}
 			}
 			if( pageTickPosY == newPageTickPosY ) {
-				if( !ReflectionHelpers.Set( eiConfig, "PageTicksPositionY", pageTickPosY + 112 ) ) {
-					LogHelpers.Alert( "Could not set PageTicksPositionY for ExtensibleInventory" );
+				if( !ReflectionLibraries.Set( eiConfig, "PageTicksPositionY", pageTickPosY + 112 ) ) {
+					LogLibraries.Alert( "Could not set PageTicksPositionY for ExtensibleInventory" );
 				}
 			}
 		}

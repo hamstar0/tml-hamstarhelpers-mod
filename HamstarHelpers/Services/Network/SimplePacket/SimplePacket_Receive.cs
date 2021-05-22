@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Services.Network.SimplePacket {
 					.IsDefined( typeof( IsNoisyAttribute ), false );
 
 				if( !isNoisy ) {
-					LogHelpers.Log( "<" + dataType.Name );
+					LogLibraries.Log( "<" + dataType.Name );
 				}
 			}
 

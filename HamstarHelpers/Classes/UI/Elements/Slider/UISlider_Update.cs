@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Timers;
 
 

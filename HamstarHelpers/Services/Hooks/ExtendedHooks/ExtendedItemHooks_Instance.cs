@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Terraria;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
@@ -21,7 +21,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		////////////////
 		
 		internal static void BeginScanningForLootDrops( NPC npc ) {
-			var eih = TmlHelpers.SafelyGetInstance<ExtendedItemHooks>();
+			var eih = TmlLibraries.SafelyGetInstance<ExtendedItemHooks>();
 
 			if( eih.OnNPCLootHooks.Count > 0 ) {
 				eih.LootNPC = npc;
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		}
 		
 		internal static void FinishScanningForLootDropsAndThenRunHooks() {
-			var eih = TmlHelpers.SafelyGetInstance<ExtendedItemHooks>();
+			var eih = TmlLibraries.SafelyGetInstance<ExtendedItemHooks>();
 			if( eih.ItemsSnapshot == null ) {
 				return;
 			}

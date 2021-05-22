@@ -2,11 +2,11 @@
 using Terraria.Graphics.Shaders;
 
 
-namespace HamstarHelpers.Helpers.Misc {
+namespace HamstarHelpers.Libraries.Misc {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to shaders.
 	/// </summary>
-	public class ShaderHelpers {
+	public class ShaderLibraries {
 		/// <summary>
 		/// Generalized getter for shader ids from item types.
 		/// </summary>

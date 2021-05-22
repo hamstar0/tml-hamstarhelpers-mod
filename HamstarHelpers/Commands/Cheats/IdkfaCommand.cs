@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.User;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.User;
+using HamstarHelpers.Libraries.Players;
 
 
 namespace HamstarHelpers.Commands.Cheats {
@@ -26,7 +26,7 @@ namespace HamstarHelpers.Commands.Cheats {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				LogHelpers.Alert( "Not supposed to run on client." );
+				LogLibraries.Alert( "Not supposed to run on client." );
 				return;
 			}
 
@@ -55,9 +55,9 @@ namespace HamstarHelpers.Commands.Cheats {
 			this.GiveInventoryItem( caller.Player, ItemID.MinecartMech, i++ );
 			this.GiveInventoryItem( caller.Player, ItemID.DualHook, i++ );
 			this.GiveInventoryItem( caller.Player, ItemID.SuperHealingPotion, i++, 30 );
-			i = PlayerItemHelpers.VanillaInventoryLastCoinSlot - 3;
+			i = PlayerItemLibraries.VanillaInventoryLastCoinSlot - 3;
 			this.GiveInventoryItem( caller.Player, ItemID.PlatinumCoin, i++, 99 );
-			i = PlayerItemHelpers.VanillaInventoryLastAmmoSlot - 3;
+			i = PlayerItemLibraries.VanillaInventoryLastAmmoSlot - 3;
 			this.GiveInventoryItem( caller.Player, ItemID.ChlorophyteBullet, i++, 999 );
 			this.GiveInventoryItem( caller.Player, ItemID.ChlorophyteBullet, i++, 999 );
 			this.GiveInventoryItem( caller.Player, ItemID.ChlorophyteBullet, i++, 999 );

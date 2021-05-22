@@ -6,11 +6,11 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.Players;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.Players;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Classes.PlayerData {
@@ -22,11 +22,11 @@ namespace HamstarHelpers.Classes.PlayerData {
 			Player player = Main.player[playerWho];
 
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
-			IEnumerable<Type> plrDataTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof( CustomPlayerData ) );
-			string uid = PlayerIdentityHelpers.GetUniqueId( player );
+			IEnumerable<Type> plrDataTypes = ReflectionLibraries.GetAllAvailableSubTypesFromMods( typeof( CustomPlayerData ) );
+			string uid = PlayerIdentityLibraries.GetUniqueId( player );
 
 			if( ModHelpersConfig.Instance.DebugModeHelpersInfo ) {
-				LogHelpers.Alert( "Player "+player.name+" ("+playerWho+"; "+uid+") entered the game." );
+				LogLibraries.Alert( "Player "+player.name+" ("+playerWho+"; "+uid+") entered the game." );
 			}
 
 			foreach( Type plrDataType in plrDataTypes ) {
@@ -45,13 +45,13 @@ namespace HamstarHelpers.Classes.PlayerData {
 
 				var typedParam = new TypedMethodParameter( typeof( object ), data );
 
-				ReflectionHelpers.RunMethod(
+				ReflectionLibraries.RunMethod(
 					instance: plrData,
 					methodName: "OnEnter",
 					args: new object[] { typedParam },
 					returnVal: out object _
 				);
-				ReflectionHelpers.RunMethod(
+				ReflectionLibraries.RunMethod(
 					instance: plrData,
 					methodName: "OnEnter",
 					args: new object[] { Main.myPlayer == playerWho, typedParam },
@@ -68,10 +68,10 @@ namespace HamstarHelpers.Classes.PlayerData {
 				string uid = "";
 
 				if( plr != null ) {
-					uid = PlayerIdentityHelpers.GetUniqueId( Main.player[playerWho] );
+					uid = PlayerIdentityLibraries.GetUniqueId( Main.player[playerWho] );
 				}
 
-				LogHelpers.Alert( "Player "+(plr?.name ?? "null")+" ("+playerWho+", "+uid+") exited the game." );
+				LogLibraries.Alert( "Player "+(plr?.name ?? "null")+" ("+playerWho+", "+uid+") exited the game." );
 			}
 
 			CustomPlayerData singleton = ModContent.GetInstance<CustomPlayerData>();
@@ -84,7 +84,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 				object data = plrData.OnExit();
 
 				if( data != null ) {
-					CustomPlayerData.SaveFileData( plrData.GetType().Name, PlayerIdentityHelpers.GetUniqueId(), data );
+					CustomPlayerData.SaveFileData( plrData.GetType().Name, PlayerIdentityLibraries.GetUniqueId(), data );
 				}
 			}
 
@@ -97,7 +97,7 @@ namespace HamstarHelpers.Classes.PlayerData {
 		////////////////
 
 		internal static void UpdateAll() {
-			var singleton = TmlHelpers.SafelyGetInstance<CustomPlayerData>();
+			var singleton = TmlLibraries.SafelyGetInstance<CustomPlayerData>();
 			if( singleton == null ) {
 				return;
 			}

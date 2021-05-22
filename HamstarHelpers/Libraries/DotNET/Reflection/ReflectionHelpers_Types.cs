@@ -1,17 +1,17 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Reflection {
+namespace HamstarHelpers.Libraries.DotNET.Reflection {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
-	public partial class ReflectionHelpers {
+	public partial class ReflectionLibraries {
 		/// <summary>
 		/// Gets a class's type by it's proper name from a given assembly.
 		/// </summary>
@@ -40,8 +40,8 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="className"></param>
 		/// <returns></returns>
 		public static IList<Type> GetTypesFromAssembly( string assemblyName, string className ) {
-			Assembly assemblies = ReflectionHelpers.GetAssembly( assemblyName );
-			return ReflectionHelpers.GetTypesFromAssembly( assemblies, className );
+			Assembly assemblies = ReflectionLibraries.GetAssembly( assemblyName );
+			return ReflectionLibraries.GetTypesFromAssembly( assemblies, className );
 		}
 
 		/// <summary>
@@ -69,7 +69,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 					}
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return new List<Type>();
 			}
 
@@ -97,7 +97,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			try {
 				classTypeList = new List<Type> { assembly.GetType( namespacedType ) };
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return null;
 			}
 
@@ -113,7 +113,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <returns></returns>
 		public static IEnumerable<Type> GetAllAvailableSubTypesFromMods( Type parentType ) {
 			IEnumerable<Assembly> asses = ModLoader.Mods.SafeSelect( mod => mod.GetType().Assembly );
-			return ReflectionHelpers.GetAllAvailableSubTypesFromAssemblies( asses, parentType );
+			return ReflectionLibraries.GetAllAvailableSubTypesFromAssemblies( asses, parentType );
 		}
 
 		/// <summary>

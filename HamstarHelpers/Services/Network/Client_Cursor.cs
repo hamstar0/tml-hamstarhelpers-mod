@@ -5,8 +5,8 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
 using HamstarHelpers.Internals.NetProtocols;
 
 
@@ -50,7 +50,7 @@ namespace HamstarHelpers.Services.Network {
 
 			Timers.Timers.SetTimer( timerName, 15, false, () => {
 				bool canBroadcast = Main.player[Main.myPlayer].active
-					&& LoadHelpers.IsWorldBeingPlayed();
+					&& LoadLibraries.IsWorldBeingPlayed();
 
 				if( canBroadcast ) {
 					CursorPositionProtocol.BroadcastCursorIf();

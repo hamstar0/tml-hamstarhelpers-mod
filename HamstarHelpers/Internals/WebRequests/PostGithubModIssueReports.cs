@@ -5,13 +5,13 @@ using Newtonsoft.Json.Linq;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.DotNET.Encoding;
-using HamstarHelpers.Helpers.Info;
-using HamstarHelpers.Helpers.ModHelpers;
-using HamstarHelpers.Helpers.Net;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.DotNET.Encoding;
+using HamstarHelpers.Libraries.Info;
+using HamstarHelpers.Libraries.ModHelpers;
+using HamstarHelpers.Libraries.Net;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
@@ -38,15 +38,15 @@ namespace HamstarHelpers.Internals.WebRequests {
 					string issueBody,
 					Action<Exception, string> onError,
 					Action<bool, string> onCompletion ) {
-			if( !ModFeaturesHelpers.HasGithub( mod ) ) {
+			if( !ModFeaturesLibraries.HasGithub( mod ) ) {
 				throw new ModHelpersException( "Mod is not eligable for submitting issues." );
 			}
 
 			int maxLines = ModHelpersConfig.Instance.ModIssueReportErrorLogMaxLines;
 
-			IEnumerable<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder();
-			string bodyInfo = string.Join( "\n \n", FormattedGameInfoHelpers.GetFormattedGameInfo( mods ) );
-			string bodyErrors = string.Join( "\n", GameInfoHelpers.GetErrorLog( maxLines ) );
+			IEnumerable<Mod> mods = ModListLibraries.GetAllLoadedModsPreferredOrder();
+			string bodyInfo = string.Join( "\n \n", FormattedGameInfoLibraries.GetFormattedGameInfo( mods ) );
+			string bodyErrors = string.Join( "\n", GameInfoLibraries.GetErrorLog( maxLines ) );
 
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "Reported from in-game: " + issueTitle;
@@ -55,8 +55,8 @@ namespace HamstarHelpers.Internals.WebRequests {
 			body += "\n \n" + issueBody;
 
 			var json = new GithubModIssueReportData {
-				githubuser = ModFeaturesHelpers.GetGithubUserName( mod ),
-				githubproject = ModFeaturesHelpers.GetGithubProjectName( mod ),
+				githubuser = ModFeaturesLibraries.GetGithubUserName( mod ),
+				githubproject = ModFeaturesLibraries.GetGithubProjectName( mod ),
 				title = title,
 				body = body
 			};
@@ -66,7 +66,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				string processedOutput = "";
 
 				if( success ) {
-					string sanitizedOutput = EncodingHelpers.SanitizeForASCII( output );
+					string sanitizedOutput = EncodingLibraries.SanitizeForASCII( output );
 					JObject respJson = JObject.Parse( sanitizedOutput );
 					JToken data = respJson.SelectToken( "Data.html_url" );
 					JToken msg = respJson.SelectToken( "Msg" );
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 					if( data != null ) {
 						string issueUrl = data.ToObject<string>();
 						if( !string.IsNullOrEmpty( issueUrl ) ) {
-							SystemHelpers.OpenUrl( issueUrl );
+							SystemLibraries.OpenUrl( issueUrl );
 						}
 					}
 
@@ -90,11 +90,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 			};
 
 			Action<Exception, string> wrappedOnError = ( Exception e, string str ) => {
-				LogHelpers.Log( "!ModHelpers.PostGithubModIssueReports.ReportIssue - Failed for POST to "+url+" : " + jsonStr );
+				LogLibraries.Log( "!ModHelpers.PostGithubModIssueReports.ReportIssue - Failed for POST to "+url+" : " + jsonStr );
 				onError( e, str );
 			};
 
-			WebConnectionHelpers.MakePostRequestAsync( url, jsonStr, e => wrappedOnError(e, ""), wrappedOnCompletion );
+			WebConnectionLibraries.MakePostRequestAsync( url, jsonStr, e => wrappedOnError(e, ""), wrappedOnCompletion );
 		}
 	}
 }

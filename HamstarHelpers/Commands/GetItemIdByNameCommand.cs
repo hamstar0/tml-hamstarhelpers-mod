@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.Items.Attributes;
-using HamstarHelpers.Helpers.TModLoader.Commands;
+﻿using HamstarHelpers.Libraries.Items.Attributes;
+using HamstarHelpers.Libraries.TModLoader.Commands;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
@@ -30,12 +30,12 @@ namespace HamstarHelpers.Commands {
 
 			int _;
 			string itemName;
-			if( CommandsHelpers.GetQuotedStringFromArgsAt(args, 0, out _, out itemName) ) {
-				if( !ItemAttributeHelpers.DisplayNamesToIds.ContainsKey(itemName) ) {
+			if( CommandsLibraries.GetQuotedStringFromArgsAt(args, 0, out _, out itemName) ) {
+				if( !ItemAttributeLibraries.DisplayNamesToIds.ContainsKey(itemName) ) {
 					throw new UsageException( "Invalid item type." );
 				}
 
-				caller.Reply( "Item id for " + itemName + ": " + ItemAttributeHelpers.DisplayNamesToIds[itemName], Color.Lime );
+				caller.Reply( "Item id for " + itemName + ": " + ItemAttributeLibraries.DisplayNamesToIds[itemName], Color.Lime );
 			}
 		}
 	}

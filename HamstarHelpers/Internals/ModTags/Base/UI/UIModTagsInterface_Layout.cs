@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.ModTagDefinitions;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using Microsoft.Xna.Framework;
@@ -41,7 +41,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI {
 
 				foreach( ModTagDefinition tagDef in group ) {
 					if( !this.TagButtons.TryGetValue( tagDef.Tag, out tagButton ) ) {
-						LogHelpers.AlertOnce( "Missing tag button "+tagDef.Tag );
+						LogLibraries.AlertOnce( "Missing tag button "+tagDef.Tag );
 						continue;
 					}
 

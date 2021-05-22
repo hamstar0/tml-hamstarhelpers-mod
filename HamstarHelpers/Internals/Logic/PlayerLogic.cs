@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader.IO;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using HamstarHelpers.Services.Cheats;
 using HamstarHelpers.Internals.UI;
 
@@ -131,7 +131,7 @@ namespace HamstarHelpers.Internals.Logic {
 					this.ActiveCheats = (CheatModeType)tags.GetInt( "cheats" );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 			}
 
 			this.HasLoadedOldUID = true;

@@ -1,8 +1,8 @@
 ﻿using System;
 using Terraria;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
@@ -16,7 +16,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// </summary>
 		/// <param name="hook"></param>
 		public static void AddNPCLootHook( NPCLootDelegate hook ) {
-			var eih = TmlHelpers.SafelyGetInstance<ExtendedItemHooks>();
+			var eih = TmlLibraries.SafelyGetInstance<ExtendedItemHooks>();
 
 			eih.OnNPCLootHooks.Add( hook );
 		}

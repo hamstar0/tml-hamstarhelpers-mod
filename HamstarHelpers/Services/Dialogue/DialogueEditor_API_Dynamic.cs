@@ -2,9 +2,9 @@
 using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Services.Dialogue {
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="npcType"></param>
 		/// <returns></returns>
 		public static DynamicDialogueHandler GetDynamicDialogueHandler( int npcType ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 			return de.DynamicHandlers.GetOrDefault( npcType );
 		}
 
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="npcType"></param>
 		/// <param name="handler"></param>
 		public static void SetDynamicDialogueHandler( int npcType, DynamicDialogueHandler handler ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 			de.DynamicHandlers[ npcType ] = handler;
 		}
 
@@ -65,7 +65,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="npcType"></param>
 		/// <returns></returns>
 		public static bool RemoveDynamicDialogueHandler( int npcType ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 
 			de.MarkerCleanupNeeded = true;
 

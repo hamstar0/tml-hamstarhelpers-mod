@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items.Attributes;
-using HamstarHelpers.Helpers.Recipes;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Items.Attributes;
+using HamstarHelpers.Libraries.Recipes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -124,7 +124,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpName: "Any Yoyo",
 				grpDeps: null,
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
-					return ItemAttributeHelpers.IsYoyo( item );
+					return ItemAttributeLibraries.IsYoyo( item );
 				} )
 			) );
 
@@ -136,7 +136,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.magic ) { return false; }
 
-					string name = ItemAttributeHelpers.GetQualifiedName( item );
+					string name = ItemAttributeLibraries.GetQualifiedName( item );
 					return name.Contains( "Staff" ) ||
 						name.Contains( "Scepter" ) ||
 						name.Contains( "Wand" );
@@ -148,7 +148,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					if( !item.magic ) { return false; }
 
-					string name = ItemAttributeHelpers.GetQualifiedName( item );
+					string name = ItemAttributeLibraries.GetQualifiedName( item );
 					return name.Contains( "Rod" );
 				} )
 			) );
@@ -163,7 +163,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						return true;
 					}
 
-					string name = ItemAttributeHelpers.GetQualifiedName( item );
+					string name = ItemAttributeLibraries.GetQualifiedName( item );
 					return name.Contains( "Gun" ) ||
 						name.Contains( "Rifle" ) ||
 						name.Contains( "Ray" ) ||
@@ -186,10 +186,10 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						return true;
 					}
 
-					bool isCraftedWith = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ {ItemID.SpellTome, 1} } );
+					bool isCraftedWith = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ {ItemID.SpellTome, 1} } );
 					if( isCraftedWith ) { return true; }
 
-					string name = ItemAttributeHelpers.GetQualifiedName( item );
+					string name = ItemAttributeLibraries.GetQualifiedName( item );
 					return name.Contains( "Book" ) ||
 						name.Contains( "Tome" );
 				} )

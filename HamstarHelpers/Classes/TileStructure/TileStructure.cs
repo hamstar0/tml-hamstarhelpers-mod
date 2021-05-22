@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
 namespace HamstarHelpers.Classes.TileStructure {
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Classes.TileStructure {
 						this.Structure[idx] = new SerializeableTile( Framing.GetTileSafely(x, y) );
 						this.TileCount++;
 					} else {
-						LogHelpers.LogOnce( "Pattern match failed: "+collideType );
+						LogLibraries.LogOnce( "Pattern match failed: "+collideType );
 					}
 				}
 			}

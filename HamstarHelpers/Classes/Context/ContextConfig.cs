@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using Terraria;
 using Terraria.ModLoader.Config;
-using HamstarHelpers.Helpers.NPCs;
+using HamstarHelpers.Libraries.NPCs;
 using HamstarHelpers.Classes.Tiles.TilePattern;
 
 

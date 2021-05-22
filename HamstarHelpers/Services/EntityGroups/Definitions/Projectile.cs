@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Projectiles.Attributes;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Projectiles.Attributes;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpDeps: null,
 				matcher: new ProjectileGroupMatcher( ( proj, grp ) => {
 					int _;
-					return ProjectileAttributeHelpers.IsExplosive( proj.type, out _, out _ );
+					return ProjectileAttributeLibraries.IsExplosive( proj.type, out _, out _ );
 				} )
 			) );
 		}

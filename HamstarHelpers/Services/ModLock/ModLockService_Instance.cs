@@ -8,9 +8,9 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 
 
@@ -70,7 +70,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 
 			ISet<string> reqModNames = this.WorldModLocks[ modworld.ObsoleteId2] ;
 			ISet<string> checkedModNames = new HashSet<string>();
-			IEnumerable<Mod> allMods = ModListHelpers.GetAllLoadedModsPreferredOrder();
+			IEnumerable<Mod> allMods = ModListLibraries.GetAllLoadedModsPreferredOrder();
 
 			foreach( Mod mod in allMods ) {
 				if( !reqModNames.Contains( mod.Name ) ) {
@@ -147,7 +147,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 //if( (this.ExitDuration % 60) == 0 ) {LogHelpers.Log( "bye? IsInitialized:"+this.IsInitialized+" IsMismatched:"+this.IsMismatched+"," + ( this.ExitDuration / 60) );}
 			
 			if( Main.netMode == NetmodeID.Server && !this.MismatchBroadcastMade ) {
-				if( LoadHelpers.IsWorldSafelyBeingPlayed() ) {
+				if( LoadLibraries.IsWorldSafelyBeingPlayed() ) {
 					this.MismatchBroadcastMade = true;
 
 					int eta = this.ExitDuration / 60;
@@ -161,9 +161,9 @@ namespace HamstarHelpers.Services.ModHelpers {
 				this.ExitDuration--;
 			} else {
 				if( Main.netMode == NetmodeID.SinglePlayer || Main.netMode == NetmodeID.MultiplayerClient ) {
-					TmlHelpers.ExitToMenu( false );
+					TmlLibraries.ExitToMenu( false );
 				} else if( Main.netMode == NetmodeID.Server ) {
-					TmlHelpers.ExitToDesktop( false );
+					TmlLibraries.ExitToDesktop( false );
 				}
 			}
 		}
@@ -176,7 +176,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 			if( !this.IsMismatched ) { return; }
 
 			int eta = this.ExitDuration / 60;
-			IEnumerable<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder();
+			IEnumerable<Mod> mods = ModListLibraries.GetAllLoadedModsPreferredOrder();
 
 			string warning = "World mod mismatch! Auto-exiting in " + eta;
 

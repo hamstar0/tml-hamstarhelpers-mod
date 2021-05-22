@@ -5,11 +5,11 @@ using Terraria.ID;
 using HamstarHelpers.Classes.DataStructures;
 
 
-namespace HamstarHelpers.Helpers.Tiles.Walls {
+namespace HamstarHelpers.Libraries.Tiles.Walls {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile walls.
 	/// </summary>
-	public class TileWallGroupIdentityHelpers {
+	public class TileWallGroupIdentityLibraries {
 		/// <summary></summary>
 		public static ISet<int> UnsafeDungeonWallTypes { get; } = new ReadOnlySet<int>( new HashSet<int> {
 			WallID.BlueDungeonSlabUnsafe,

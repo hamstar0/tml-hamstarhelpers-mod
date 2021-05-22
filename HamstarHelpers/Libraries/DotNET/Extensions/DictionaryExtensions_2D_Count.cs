@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Extensions {
+namespace HamstarHelpers.Libraries.DotNET.Extensions {
 	/// <summary>
 	/// Assorted static extension "helper" functions pertaining to dictionaries.
 	/// </summary>

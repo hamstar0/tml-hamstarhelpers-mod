@@ -4,11 +4,11 @@ using Microsoft.Xna.Framework;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the current world's chests.
 	/// </summary>
-	public partial class WorldChestHelpers {
+	public partial class WorldChestLibraries {
 		/// <summary>
 		/// Implants the current item(s) from a given chest type, in a given area (if specified).
 		/// </summary>

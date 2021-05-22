@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.GameContent.Events;
 
 
-namespace HamstarHelpers.Helpers.NPCs {
+namespace HamstarHelpers.Libraries.NPCs {
 	/// <summary></summary>
 	[Flags]
 	public enum VanillaEventFlag {
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPC invasions
 	/// </summary>
-	public partial class NPCInvasionHelpers {
+	public partial class NPCInvasionLibraries {
 		/// <summary>
 		/// Gets an enum flag type representing a given invasion type (internal code).
 		/// </summary>
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// <returns></returns>
 		public static VanillaEventFlag GetCurrentEventTypeSet() {
 			int flags = 0;
-			int invasionEventType = (int)NPCInvasionHelpers.GetEventTypeOfInvasionType( Main.invasionType );
+			int invasionEventType = (int)NPCInvasionLibraries.GetEventTypeOfInvasionType( Main.invasionType );
 
 			if( ((VanillaEventFlag)invasionEventType & VanillaEventFlag.None) == 0 ) {
 				flags |= invasionEventType;

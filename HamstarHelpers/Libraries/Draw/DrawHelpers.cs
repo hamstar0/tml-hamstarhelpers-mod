@@ -1,15 +1,15 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Draw {
+namespace HamstarHelpers.Libraries.Draw {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to drawing to the screen. 
 	/// </summary>
-	public partial class DrawHelpers {
+	public partial class DrawLibraries {
 		/// <summary>
 		/// Draws a bordered rectangle.
 		/// </summary>
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Helpers.Draw {
 		/// <param name="size"></param>
 		/// <param name="borderWidth"></param>
 		public static void DrawBorderedRect( SpriteBatch sb, Color bgColor, Color borderColor, Vector2 position, Vector2 size, int borderWidth ) {
-			DrawHelpers.DrawBorderedRect( sb, bgColor, new Color?( borderColor ), position, size, borderWidth );
+			DrawLibraries.DrawBorderedRect( sb, bgColor, new Color?( borderColor ), position, size, borderWidth );
 		}
 		/// <summary>
 		/// Draws a bordered rectangle.
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Helpers.Draw {
 		/// <param name="rect">Position and dimensions of rectangle.</param>
 		/// <param name="borderWidth"></param>
 		public static void DrawBorderedRect( SpriteBatch sb, Color bgColor, Color borderColor, Rectangle rect, int borderWidth ) {
-			DrawHelpers.DrawBorderedRect( sb, bgColor, new Color?( borderColor ), rect, borderWidth );
+			DrawLibraries.DrawBorderedRect( sb, bgColor, new Color?( borderColor ), rect, borderWidth );
 		}
 
 		/// <summary>

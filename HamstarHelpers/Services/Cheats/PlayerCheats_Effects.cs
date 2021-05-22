@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Buffs;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Players;
 
 
 namespace HamstarHelpers.Services.Cheats {
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Services.Cheats {
 				tileY = Main.maxTilesY - tileY;
 			}
 
-			PlayerWarpHelpers.Teleport( player, new Vector2(tileX*16, tileY*16) );
+			PlayerWarpLibraries.Teleport( player, new Vector2(tileX*16, tileY*16) );
 		}
 
 

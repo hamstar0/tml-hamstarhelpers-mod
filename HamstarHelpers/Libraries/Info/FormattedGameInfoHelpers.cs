@@ -6,18 +6,18 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.DotNET.Formatting;
-using HamstarHelpers.Helpers.Items;
-using HamstarHelpers.Helpers.NPCs;
-using HamstarHelpers.Helpers.World;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.DotNET.Formatting;
+using HamstarHelpers.Libraries.Items;
+using HamstarHelpers.Libraries.NPCs;
+using HamstarHelpers.Libraries.World;
 
 
-namespace HamstarHelpers.Helpers.Info {
+namespace HamstarHelpers.Libraries.Info {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to game information formatted for output
 	/// </summary>
-	public partial class FormattedGameInfoHelpers {
+	public partial class FormattedGameInfoLibraries {
 		/// <summary>
 		/// Gets a list of assorted game data statistics, formatted for (markdown) output.
 		/// </summary>
@@ -27,15 +27,15 @@ namespace HamstarHelpers.Helpers.Info {
 			var list = new List<string>();
 
 			var modsList = mods.OrderBy( m => m.Name )
-				.SafeSelect( m => StringFormattingHelpers.SanitizeMarkdown(m.DisplayName) + " " + m.Version.ToString() )
+				.SafeSelect( m => StringFormattingLibraries.SanitizeMarkdown(m.DisplayName) + " " + m.Version.ToString() )
 				.ToArray();
 			bool isDay = Main.dayTime;
 			double timeOfDay = Main.time;
-			int halfDays = WorldStateHelpers.GetElapsedHalfDays();
-			string worldSize = WorldHelpers.GetSize().ToString();
-			string[] worldProg = GameInfoHelpers.GetVanillaProgressList().ToArray();
-			int activeItems = ItemHelpers.GetActive().Count;
-			int activeNpcs = NPCHelpers.GetActive().Count;
+			int halfDays = WorldStateLibraries.GetElapsedHalfDays();
+			string worldSize = WorldLibraries.GetSize().ToString();
+			string[] worldProg = GameInfoLibraries.GetVanillaProgressList().ToArray();
+			int activeItems = ItemLibraries.GetActive().Count;
+			int activeNpcs = NPCLibraries.GetActive().Count;
 			//string[] playerInfos = InfoHelpers.GetCurrentPlayerInfo().ToArray();
 			//string[] playerEquips = InfoHelpers.GetCurrentPlayerEquipment().ToArray();
 			int activePlayers = Main.ActivePlayersCount;
@@ -55,18 +55,18 @@ namespace HamstarHelpers.Helpers.Info {
 			float uiZoom = Main.UIScale;
 
 			list.Add( "tModLoader version: " + ModLoader.version.ToString() );
-			list.Add( FormattedGameInfoHelpers.RenderMarkdownModTable( modsList ) );
-			list.Add( FormattedGameInfoHelpers.RenderMarkdownPlayersTable() );
+			list.Add( FormattedGameInfoLibraries.RenderMarkdownModTable( modsList ) );
+			list.Add( FormattedGameInfoLibraries.RenderMarkdownPlayersTable() );
 
 			for( int i=0; i<Main.player.Length; i++ ) {
 				Player plr = Main.player[i];
 				if( plr == null || !plr.active ) { continue; }
 
-				list.Add( FormattedGameInfoHelpers.RenderMarkdownPlayerEquipsTable(plr) );
+				list.Add( FormattedGameInfoLibraries.RenderMarkdownPlayerEquipsTable(plr) );
 			}
 
 			list.Add( "Is day: " + isDay + ", Time of day/night: " + timeOfDay + ", Elapsed half days: " + halfDays );  //+ ", Total time (seconds): " + Main._drawInterfaceGameTime.TotalGameTime.Seconds;
-			list.Add( "World name: " + StringFormattingHelpers.SanitizeMarkdown(Main.worldName) + ", world size: " + worldSize );
+			list.Add( "World name: " + StringFormattingLibraries.SanitizeMarkdown(Main.worldName) + ", world size: " + worldSize );
 			list.Add( "World progress: " + (worldProg.Length > 0 ? string.Join(", ", worldProg) : "none") );
 			list.Add( "Items on ground: " + activeItems + ", Npcs active: " + activeNpcs );
 			//list.Add( "Player info: " + string.Join( ", ", playerInfos ) );

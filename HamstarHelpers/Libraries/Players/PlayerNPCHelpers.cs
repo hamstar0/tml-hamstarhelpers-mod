@@ -3,11 +3,11 @@ using System;
 using Terraria;
 using Terraria.Localization;
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players relative to NPCs.
 	/// </summary>
-	public class PlayerNPCHelpers {
+	public class PlayerNPCLibraries {
 		/// <summary>
 		/// Indicates if a player is 'near' a boss (5000 radius).
 		/// </summary>

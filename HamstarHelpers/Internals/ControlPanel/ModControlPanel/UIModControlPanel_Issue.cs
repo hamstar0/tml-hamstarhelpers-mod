@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.ModHelpers;
+﻿using HamstarHelpers.Libraries.ModHelpers;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 		private void SubmitIssue() {
 			if( this.CurrentModListItem == null ) { return; }
-			if( !ModFeaturesHelpers.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
+			if( !ModFeaturesLibraries.HasGithub( this.CurrentModListItem.Mod ) ) { return; }
 
 			string issueTitle = this.IssueTitleInput.Text;
 			string issueBody = this.IssueBodyInput.Text;

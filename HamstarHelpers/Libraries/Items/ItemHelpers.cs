@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Players;
 
 
-namespace HamstarHelpers.Helpers.Items {
+namespace HamstarHelpers.Libraries.Items {
 	/// <summary>
 	/// Assorted static functions pertaining to general use of item.
 	/// </summary>
-	public partial class ItemHelpers {
+	public partial class ItemLibraries {
 		/// <summary>
 		/// Get all active items found lying around in the world.
 		/// </summary>
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <param name="idx"></param>
 		public static void DestroyWorldItem( int idx ) {
 			Item item = Main.item[idx];
-			ItemHelpers.DestroyItem( item );
+			ItemLibraries.DestroyItem( item );
 
 			if( Main.netMode != NetmodeID.SinglePlayer ) {	// Server
 				NetMessage.SendData( MessageID.SyncItem, -1, -1, null, idx );
@@ -87,7 +87,7 @@ namespace HamstarHelpers.Helpers.Items {
 				Player plr = Main.player[i];
 				if( plr?.active != true ) { continue; }
 
-				Item selectItem = plr.inventory[ PlayerItemHelpers.VanillaInventorySelectedSlot ];
+				Item selectItem = plr.inventory[ PlayerItemLibraries.VanillaInventorySelectedSlot ];
 
 				if( selectItem == item ) {
 					if( Main.mouseItem.type == item.type && Main.mouseItem.stack == item.stack ) {
@@ -122,7 +122,7 @@ namespace HamstarHelpers.Helpers.Items {
 		public static void ReduceWorldItemStack( int idx, int amt ) {
 			Item item = Main.item[ idx ];
 
-			ItemHelpers.ReduceStack( item, amt );
+			ItemLibraries.ReduceStack( item, amt );
 		}
 
 		////////////////

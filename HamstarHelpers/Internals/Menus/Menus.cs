@@ -9,11 +9,11 @@ using Terraria.UI;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Menus;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Helpers.XNA;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.TModLoader;
+using HamstarHelpers.Libraries.TModLoader.Menus;
+using HamstarHelpers.Libraries.XNA;
 using HamstarHelpers.Internals.Menus.MenuTweaks;
 using HamstarHelpers.Internals.Menus.ModUpdates;
 using HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext;
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Internals.Menus {
 
 		private static void InitializeOpenConfigButton() {
 			bool isShowingMem = false;
-			ReflectionHelpers.Get( typeof(ModLoader), null, "showMemoryEstimates", out isShowingMem );
+			ReflectionLibraries.Get( typeof(ModLoader), null, "showMemoryEstimates", out isShowingMem );
 
 			var button = new UITextPanelButton( UITheme.Vanilla, "Open Mod Config Folder" );
 			button.Top.Set( isShowingMem ? -2f : 11f, 0f );
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Internals.Menus {
 			button.Width.Set( 208f, 0f );
 			button.Height.Set( 20f, 0f );
 			button.OnClick += ( UIMouseEvent evt, UIElement listeningElement ) => {
-				string fullpath = Main.SavePath + Path.DirectorySeparatorChar + TmlHelpers.ConfigRelativeFolder;
+				string fullpath = Main.SavePath + Path.DirectorySeparatorChar + TmlLibraries.ConfigRelativeFolder;
 
 				try {
 					Process.Start( fullpath );
@@ -95,7 +95,7 @@ namespace HamstarHelpers.Internals.Menus {
 
 		private static void DebugModeMenuInfo( GameTime _ ) {
 			bool __;
-			XNAHelpers.DrawBatch( ( sb ) => {
+			XNALibraries.DrawBatch( ( sb ) => {
 				sb.DrawString(
 					Main.fontMouseText,
 					Main.menuMode + "",

@@ -2,11 +2,11 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Tiles.Walls {
+namespace HamstarHelpers.Libraries.Tiles.Walls {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players relative to tile Wall resources (e.g. textures).
 	/// </summary>
-	public partial class TileWallResourceHelpers {
+	public partial class TileWallResourceLibraries {
 		/// <summary>
 		/// Gets a wall's texture. Loads walls as needed.
 		/// </summary>

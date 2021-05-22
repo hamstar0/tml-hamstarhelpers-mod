@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.NPCs {
+namespace HamstarHelpers.Libraries.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to finding world NPCs.
 	/// </summary>
-	public class NPCFinderHelpers {
+	public class NPCFinderLibraries {
 		private static IDictionary<int, int> AnyWhoOfType = new Dictionary<int, int>();
 
 
@@ -22,13 +22,13 @@ namespace HamstarHelpers.Helpers.NPCs {
 		public static NPC FindFirstNpcByType( int npcType ) {
 			NPC npc = null;
 
-			if( NPCFinderHelpers.AnyWhoOfType.Keys.Contains( npcType ) ) {
-				npc = Main.npc[NPCFinderHelpers.AnyWhoOfType[npcType]];
+			if( NPCFinderLibraries.AnyWhoOfType.Keys.Contains( npcType ) ) {
+				npc = Main.npc[NPCFinderLibraries.AnyWhoOfType[npcType]];
 
 				if( npc != null && npc.active && npc.type == npcType ) {
 					return npc;
 				} else {
-					NPCFinderHelpers.AnyWhoOfType.Remove( npcType );
+					NPCFinderLibraries.AnyWhoOfType.Remove( npcType );
 				}
 			}
 
@@ -36,7 +36,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 				npc = Main.npc[i];
 
 				if( npc != null && npc.active && npc.type == npcType ) {
-					NPCFinderHelpers.AnyWhoOfType[npcType] = i;
+					NPCFinderLibraries.AnyWhoOfType[npcType] = i;
 					break;
 				}
 			}

@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.TModLoader;
 using HamstarHelpers.Services.Cheats;
 using HamstarHelpers.Services.Timers;
 
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Buffs {
 		/// <param name="radius"></param>
 		/// <param name="particles"></param>
 		public static void AnimateAttackBurstFX( Vector2 position, float radius, int particles ) {
-			UnifiedRandom rand = TmlHelpers.SafelyGetRand();
+			UnifiedRandom rand = TmlLibraries.SafelyGetRand();
 
 			for( int i = 0; i < particles; i++ ) {
 				Vector2 dir = new Vector2( rand.NextFloat() - 0.5f, rand.NextFloat() - 0.5f );

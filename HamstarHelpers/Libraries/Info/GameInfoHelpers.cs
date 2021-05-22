@@ -5,16 +5,16 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.NPCs;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.NPCs;
+using HamstarHelpers.Libraries.Players;
 
 
-namespace HamstarHelpers.Helpers.Info {
+namespace HamstarHelpers.Libraries.Info {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to game information.
 	/// </summary>
-	public partial class GameInfoHelpers {
+	public partial class GameInfoLibraries {
 		/// <summary>
 		/// Gets the current world's (vanilla) progress stage in human-readable form.
 		/// </summary>
@@ -92,7 +92,7 @@ namespace HamstarHelpers.Helpers.Info {
 		/// </summary>
 		/// <returns></returns>
 		public static IList<string> GetCurrentVanillaEvents() {
-			VanillaEventFlag flags = NPCInvasionHelpers.GetCurrentEventTypeSet();
+			VanillaEventFlag flags = NPCInvasionLibraries.GetCurrentEventTypeSet();
 
 			IList<string> outList = new List<string>();
 
@@ -200,10 +200,10 @@ namespace HamstarHelpers.Helpers.Info {
 					key = "Body";
 				} else if( i == 2 ) {
 					key = "Legs";
-				} else if( PlayerItemHelpers.IsAccessorySlot( player, i ) ) {
+				} else if( PlayerItemLibraries.IsAccessorySlot( player, i ) ) {
 					key = "Accessory "+acc;
 					acc++;
-				} else if( PlayerItemHelpers.IsVanitySlot( player, i ) ) {
+				} else if( PlayerItemLibraries.IsVanitySlot( player, i ) ) {
 					key = "Vanity "+van;
 					van++;
 				} else {

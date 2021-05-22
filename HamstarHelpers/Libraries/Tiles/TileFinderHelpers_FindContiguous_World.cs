@@ -4,14 +4,14 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.World.Generation;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile finding.
 	/// </summary>
-	public partial class TileFinderHelpers {
+	public partial class TileFinderLibraries {
 		/// <summary>
 		/// Scans the entire world to find the encompassing box of the given tile pattern. Leaves a 1 tile
 		/// padding around map edges.
@@ -180,7 +180,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 					}
 
 					ISet<(ushort, ushort)> matches;
-					matches = TileFinderHelpers.GetAllContiguousMatchingTilesAt( pattern, x, y, out _ );
+					matches = TileFinderLibraries.GetAllContiguousMatchingTilesAt( pattern, x, y, out _ );
 					if( matches.Count == 0 ) {
 						continue;
 					}

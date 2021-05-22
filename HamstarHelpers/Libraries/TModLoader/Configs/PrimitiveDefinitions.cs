@@ -3,7 +3,7 @@ using System;
 using Terraria.ModLoader.Config;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Configs {
+namespace HamstarHelpers.Libraries.TModLoader.Configs {
 	/// <summary>
 	/// Allows defining a "full" int value (furthest positive and negative values). Used for array/list/etc. entries.
 	/// </summary>

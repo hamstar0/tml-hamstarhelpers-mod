@@ -5,11 +5,11 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.NPCs {
+namespace HamstarHelpers.Libraries.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPCs.
 	/// </summary>
-	public partial class NPCHelpers {
+	public partial class NPCLibraries {
 		/// <summary>
 		/// Gets all active NPCs in the world.
 		/// </summary>
@@ -36,7 +36,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// <param name="damage"></param>
 		public static void RawHurt( NPC npc, int damage ) {
 			if( damage >= npc.life ) {
-				NPCHelpers.Kill( npc );
+				NPCLibraries.Kill( npc );
 			} else {
 				npc.life -= damage;
 				if( Main.netMode != NetmodeID.SinglePlayer ) {

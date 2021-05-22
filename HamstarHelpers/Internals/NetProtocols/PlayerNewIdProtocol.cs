@@ -2,8 +2,8 @@
 using Terraria;
 using System.Collections.Generic;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Players;
 using HamstarHelpers.Services.Network.SimplePacket;
 
 
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			var protocol = new PlayerNewIdProtocol(
 				(Dictionary<int, string>)ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds
 			);
-			protocol.PlayerIds[Main.myPlayer] = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer );
+			protocol.PlayerIds[Main.myPlayer] = PlayerIdentityLibraries.GetUniqueId( Main.LocalPlayer );
 
 			SimplePacket.SendToServer( protocol );
 		}
@@ -79,7 +79,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			if( playerIds == null ) {
 				this.PlayerIds = new Dictionary<int, string>();
 
-				LogHelpers.Warn( "Player ids not specified." );
+				LogLibraries.Warn( "Player ids not specified." );
 				return;
 			}
 			this.PlayerIds = playerIds;
@@ -93,11 +93,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				if( this.PlayerIds.TryGetValue( fromWho, out string uid ) ) {
 					ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[fromWho] = uid;
 				} else {
-					LogHelpers.Warn( "No UID reported from player id'd " + fromWho );
+					LogLibraries.Warn( "No UID reported from player id'd " + fromWho );
 				}
 			} catch {
 				this.PlayerIds = new Dictionary<int, string>();
-				LogHelpers.Warn( "Deserialization error." );
+				LogLibraries.Warn( "Deserialization error." );
 			}
 		}
 
@@ -106,7 +106,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				this.PlayerIds.TryGetValue( 0, out string _ );
 			} catch {
 				this.PlayerIds = new Dictionary<int, string>();
-				LogHelpers.Warn( "Deserialization error." );
+				LogLibraries.Warn( "Deserialization error." );
 			}
 			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds = this.PlayerIds;
 		}

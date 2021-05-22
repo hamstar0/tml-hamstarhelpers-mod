@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Menu;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Services.UI.Menus;
 using System;
 using System.Collections.Generic;
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Internals.Menus.MenuTweaks {
 		public override void OnActivationForSession( UIState ui ) {
 			UIElement elem = this.GetContainer( ui );
 			if( elem == null ) {
-				LogHelpers.Alert( "Container element not found for " + ui.GetType().Name );
+				LogLibraries.Alert( "Container element not found for " + ui.GetType().Name );
 				return;
 			}
 			
@@ -51,9 +51,9 @@ namespace HamstarHelpers.Internals.Menus.MenuTweaks {
 		}
 
 		public override void OnDeactivation() {
-			UIState ui = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+			UIState ui = MainMenuLibraries.GetMenuUI( this.MenuDefinitionOfContext );
 			if( ui == null ) {
-				LogHelpers.Warn( "Invalid UI." );
+				LogLibraries.Warn( "Invalid UI." );
 				return;
 			}
 
@@ -72,11 +72,11 @@ namespace HamstarHelpers.Internals.Menus.MenuTweaks {
 		public UIElement GetContainer( UIState ui ) {
 			UIElement elem;
 
-			if( !ReflectionHelpers.Get( ui, "_rootElement", out elem ) || elem == null ) {
-				if( !ReflectionHelpers.Get( ui, "uIElement", out elem ) || elem == null ) {
+			if( !ReflectionLibraries.Get( ui, "_rootElement", out elem ) || elem == null ) {
+				if( !ReflectionLibraries.Get( ui, "uIElement", out elem ) || elem == null ) {
 					List<UIElement> elems;
 
-					if( !ReflectionHelpers.Get( ui, "Elements", out elems ) || elems == null || elems.Count == 0 ) {
+					if( !ReflectionLibraries.Get( ui, "Elements", out elems ) || elems == null || elems.Count == 0 ) {
 						return null;
 					}
 

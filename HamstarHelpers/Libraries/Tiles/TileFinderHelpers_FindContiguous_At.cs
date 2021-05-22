@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile finding.
 	/// </summary>
-	public partial class TileFinderHelpers {
+	public partial class TileFinderLibraries {
 		/// <summary>
 		/// Gets a list of all contiguous tiles matching the given pattern.
 		/// </summary>
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				: 0;
 
 			do {
-				TileFinderHelpers.IterateChartingContiguousMatchingTiles(
+				TileFinderLibraries.IterateChartingContiguousMatchingTiles(
 					pattern: pattern,
 					srcTileX: tileX,
 					srcTileY: tileY,
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 					int maxRadius = -1,
 					int tileQuota = -1 ) {
 			ISet<(ushort TileX, ushort TileY)> excessTileSet;
-			var matches = TileFinderHelpers.GetAllContiguousMatchingTilesAt(
+			var matches = TileFinderLibraries.GetAllContiguousMatchingTilesAt(
 				pattern, tileX, tileY, out excessTileSet, maxRadius, tileQuota
 			);
 
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			ISet<(ushort, ushort)> nextToScanTiles = new HashSet<(ushort, ushort)>();
 
 			foreach( (ushort x, ushort y) unchartedTile in unchartedTiles ) {
-				TileFinderHelpers.StepChartingTileMatchAt(
+				TileFinderLibraries.StepChartingTileMatchAt(
 					pattern: pattern,
 					srcTileX: srcTileX,
 					srcTileY: srcTileY,

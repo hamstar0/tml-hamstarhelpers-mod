@@ -1,12 +1,12 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tiles.
 	/// </summary>
-	public partial class TileHelpers {
+	public partial class TileLibraries {
 		/// <summary>
 		/// Reports if a tile is exactly identical to another tile.
 		/// </summary>
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			if( tile.active() || tile.wall > 0 ) {/*|| tile.type == 0*/
 				return false;
 			}
-			if( !isWireAir && TileHelpers.IsWire(tile) ) {
+			if( !isWireAir && TileLibraries.IsWire(tile) ) {
 				return false;
 			}
 			if( !isLiquidAir && tile.liquid != 0 ) {
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="isActuatedSolid"></param>
 		/// <returns></returns>
 		public static bool IsSolid( Tile tile, bool isPlatformSolid = false, bool isActuatedSolid = false ) {
-			if( TileHelpers.IsAir(tile) ) { return false; }
+			if( TileLibraries.IsAir(tile) ) { return false; }
 			if( !Main.tileSolid[tile.type] || !tile.active() ) { return false; }
 
 			if( !isPlatformSolid ) {

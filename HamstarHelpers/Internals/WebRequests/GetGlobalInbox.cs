@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 						CustomLoadHooks.TriggerHook( GetGlobalInbox.GlobalInboxReceivedHookValidator, GetGlobalInbox.GlobalInboxReceivedHookValidatorKey, args );
 					} catch( Exception e ) {
-						LogHelpers.Alert( e.ToString() );
+						LogLibraries.Alert( e.ToString() );
 					}
 				} );
 			} );

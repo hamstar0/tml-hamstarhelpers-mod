@@ -1,11 +1,11 @@
 ﻿using System;
 
 
-namespace HamstarHelpers.Helpers.Misc {
+namespace HamstarHelpers.Libraries.Misc {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to math.
 	/// </summary>
-	public class MathHelpers {
+	public class MathLibraries {
 		/// <summary>
 		/// Finds the value of a curved interpolation between 2 values.
 		/// </summary>

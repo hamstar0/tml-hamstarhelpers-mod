@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Draw;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Draw;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Services.ModTagDefinitions;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using Microsoft.Xna.Framework;
@@ -100,7 +100,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			this.SetMenuSpacePosition( this.PositionXCenterOffset, this.PositionY );*/
 
 			if( Main.MenuUI.CurrentState == null ) {
-				LogHelpers.Warn( "No menu UI loaded." );
+				LogLibraries.Warn( "No menu UI loaded." );
 				return;
 			}
 			if( this.Parent != null ) {
@@ -113,7 +113,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 			if( currentMenuContextUi == expectedMenuContextUi ) {
 				Main.MenuUI.CurrentState?.Append( this );
 			} else {
-				LogHelpers.Warn( "Found " + currentMenuContextUi + ", expected " + expectedMenuContextUi );
+				LogLibraries.Warn( "Found " + currentMenuContextUi + ", expected " + expectedMenuContextUi );
 			}
 		}
 
@@ -245,7 +245,7 @@ namespace HamstarHelpers.Internals.ModTags.Base.UI.Buttons {
 				rect.Width -= 4;
 				rect.Height -= 5;
 
-				DrawHelpers.DrawBorderedRect( sb, this.GetBgColor(), this.GetEdgeColor(), rect, 2 );
+				DrawLibraries.DrawBorderedRect( sb, this.GetBgColor(), this.GetEdgeColor(), rect, 2 );
 			}
 
 			base.Draw( sb );

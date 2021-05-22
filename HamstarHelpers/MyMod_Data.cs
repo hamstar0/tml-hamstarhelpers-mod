@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Misc;
+﻿using HamstarHelpers.Libraries.Misc;
 using Terraria.ModLoader;
 
 
@@ -21,7 +21,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		private bool LoadModData() {
-			var data = ModCustomDataFileHelpers.LoadJson<ModHelpersData>( this, "data" );
+			var data = ModCustomDataFileLibraries.LoadJson<ModHelpersData>( this, "data" );
 
 			if( data != null ) {
 				this.Data = data;
@@ -41,11 +41,11 @@ namespace HamstarHelpers {
 
 		internal void SaveModData() {
 			if( this.Data != null ) {
-				if( !ModCustomDataFileHelpers.SaveAsJson<ModHelpersData>(this, "data", true, this.Data) ) {
-					Helpers.Debug.LogHelpers.Warn( "Could not save Mod Helpers data." );
+				if( !ModCustomDataFileLibraries.SaveAsJson<ModHelpersData>(this, "data", true, this.Data) ) {
+					Libraries.Debug.LogLibraries.Warn( "Could not save Mod Helpers data." );
 				}
 			} else {
-				Helpers.Debug.LogHelpers.Warn( "No Mod Helpers data to save." );
+				Libraries.Debug.LogLibraries.Warn( "No Mod Helpers data to save." );
 			}
 
 			this.Data = new ModHelpersData();

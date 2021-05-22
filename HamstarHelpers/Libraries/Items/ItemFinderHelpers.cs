@@ -4,14 +4,14 @@ using System.Linq;
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 
 
-namespace HamstarHelpers.Helpers.Items {
+namespace HamstarHelpers.Libraries.Items {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to finding items in collections.
 	/// </summary>
-	public partial class ItemFinderHelpers {
+	public partial class ItemFinderLibraries {
 		/// <summary>
 		/// Finds index of the first valid item of a set of item types within a given collection.
 		/// </summary>
@@ -79,7 +79,7 @@ namespace HamstarHelpers.Helpers.Items {
 		/// <param name="itemTypes"></param>
 		/// <returns></returns>
 		public static int CountTotalOfEach( Item[] collection, ISet<int> itemTypes ) {
-			var set = ItemFinderHelpers.FindIndexOfEach( collection, itemTypes );
+			var set = ItemFinderLibraries.FindIndexOfEach( collection, itemTypes );
 			int total = 0;
 
 			foreach( int idx in set ) {
@@ -127,13 +127,13 @@ namespace HamstarHelpers.Helpers.Items {
 			int itemIdx;
 			var itemTypeSet = new HashSet<int> { itemType };
 
-			itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.inventory, itemTypeSet );
+			itemIdx = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.inventory, itemTypeSet );
 			if( itemIdx != -1 ) {
 				return player.inventory[ itemIdx ];
 			}
 
 			if( !skipArmors ) {
-				itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.armor, itemTypeSet );
+				itemIdx = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.armor, itemTypeSet );
 				if( itemIdx != -1 ) {
 					return player.armor[itemIdx];
 				}
@@ -141,25 +141,25 @@ namespace HamstarHelpers.Helpers.Items {
 
 			if( !skipBanks ) {
 				if( player.chest >= 0 && Main.chest[player.chest] != null ) {   // Player's current chest
-					itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( Main.chest[player.chest].item, itemTypeSet );
+					itemIdx = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( Main.chest[player.chest].item, itemTypeSet );
 					if( itemIdx != -1 ) {
 						return Main.chest[player.chest].item[itemIdx];
 					}
 				}
 				if( player.chest == -2 ) {  // Piggy bank
-					itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank.item, itemTypeSet );
+					itemIdx = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.bank.item, itemTypeSet );
 					if( itemIdx != -1 ) {
 						return player.bank.item[itemIdx];
 					}
 				}
 				if( player.chest == -3 ) {  // Safe
-					itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank2.item, itemTypeSet );
+					itemIdx = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.bank2.item, itemTypeSet );
 					if( itemIdx != -1 ) {
 						return player.bank2.item[itemIdx];
 					}
 				}
 				if( player.chest == -4 ) {  // ..whatever this is
-					itemIdx = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank3.item, itemTypeSet );
+					itemIdx = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.bank3.item, itemTypeSet );
 					if( itemIdx != -1 ) {
 						return player.bank3.item[itemIdx];
 					}

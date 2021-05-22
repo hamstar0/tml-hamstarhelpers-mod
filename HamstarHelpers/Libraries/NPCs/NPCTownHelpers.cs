@@ -4,14 +4,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.NPCs {
+namespace HamstarHelpers.Libraries.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPC townsfolk.
 	/// </summary>
-	public class NPCTownHelpers {
+	public class NPCTownLibraries {
 		/// <summary>
 		/// Spawns a town NPC at a given position, alerting the world of their arrival.
 		/// </summary>
@@ -58,7 +58,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// <param name="announce"></param>
 		public static void Leave( NPC npc, bool announce = true ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				LogHelpers.Warn( "NPCTownHelpers.Leave() called on client." );
+				LogLibraries.Warn( "NPCTownHelpers.Leave() called on client." );
 			}
 
 			int whoami = npc.whoAmI;
@@ -106,7 +106,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 		/// <returns></returns>
 		public static Chest GetShop( int npcType ) {
 			if( Main.instance == null ) {
-				LogHelpers.Log( "No main instance." );
+				LogLibraries.Log( "No main instance." );
 				return null;
 			}
 

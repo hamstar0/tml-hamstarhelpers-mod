@@ -2,14 +2,14 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.UI;
+using HamstarHelpers.Libraries.UI;
 
 
-namespace HamstarHelpers.Helpers.NPCs {
+namespace HamstarHelpers.Libraries.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPC drawing.
 	/// </summary>
-	public partial class NPCDrawHelpers {
+	public partial class NPCDrawLibraries {
 		/// <summary>
 		/// Draws an NPC.
 		/// </summary>
@@ -108,7 +108,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 			Vector2 pos = new Vector2(x, y) - Main.screenPosition;
 			if( applyZoom ) {
 				//pos = UIHelpers.ConvertToScreenPosition( pos );
-				pos = UIZoomHelpers.ApplyZoomFromScreenCenter( pos, null, false, null, null );
+				pos = UIZoomLibraries.ApplyZoomFromScreenCenter( pos, null, false, null, null );
 			}
 
 			sb.Draw( tex, pos, frameRect, color, rotation, origin, scale, fx, 1f );

@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.UI;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.UI;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Classes.UI.Theme;
 
 
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 			};
 			this.OnClick += ( _, __ ) => {
 				try {
-					SystemHelpers.OpenUrl( this.Url );
+					SystemLibraries.OpenUrl( this.Url );
 					//System.Diagnostics.Process.Start( this.Url );
 
 					this.IsVisited = true;
@@ -103,7 +103,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		/// <param name="sb">SpriteBatch to draw to. Usually `Main.spriteBatch`.</param>
 		public void DrawHoverEffects( SpriteBatch sb ) {
 			if( !string.IsNullOrEmpty(this.Url) ) {
-				Vector2 pos = UIHelpers.GetHoverTipPosition( this.Url );
+				Vector2 pos = UILibraries.GetHoverTipPosition( this.Url );
 				
 				Utils.DrawBorderStringFourWay( sb, Main.fontMouseText, this.Url, pos.X, pos.Y, Color.White, Color.Black, default(Vector2) );
 				//sb.DrawString( Main.fontMouseText, this.Url, UIHelpers.GetHoverTipPosition( this.Url ), Color.White );

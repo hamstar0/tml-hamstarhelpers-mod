@@ -2,7 +2,7 @@
 using System.IO;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Extensions {
+namespace HamstarHelpers.Libraries.DotNET.Extensions {
 	/// <summary>
 	/// Extension methods for BinaryReader.
 	/// </summary>

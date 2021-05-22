@@ -2,37 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Items;
 
 
-namespace HamstarHelpers.Helpers.Recipes {
+namespace HamstarHelpers.Libraries.Recipes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to common recipe groups.
 	/// </summary>
-	public partial class RecipeGroupHelpers {
+	public partial class RecipeGroupLibraries {
 		/// <summary>
 		/// Recipe group of items of an "evil" biome boss's drops (Shadow Scale and Tissue Sample).
 		/// </summary>
-		public static RecipeGroup EvilBiomeBossDrops => RecipeGroupHelpers.Groups["ModHelpers:EvilBiomeBossDrops"];
+		public static RecipeGroup EvilBiomeBossDrops => RecipeGroupLibraries.Groups["ModHelpers:EvilBiomeBossDrops"];
 		/// <summary>
 		/// Recipe group of light pet items of an "evil" biome (Shadow Orb and Crimson Heart).
 		/// </summary>
-		public static RecipeGroup EvilBiomeLightPet => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsEvilBiomeLightPet"];
+		public static RecipeGroup EvilBiomeLightPet => RecipeGroupLibraries.Groups["ModHelpers:EvilBossDropsEvilBiomeLightPet"];
 		/// <summary></summary>
-		public static RecipeGroup VanillaButterfly => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsVanillaButterfly"];
+		public static RecipeGroup VanillaButterfly => RecipeGroupLibraries.Groups["ModHelpers:EvilBossDropsVanillaButterfly"];
 		/// <summary></summary>
-		public static RecipeGroup VanillaGoldCritter => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsVanillaGoldCritter"];
+		public static RecipeGroup VanillaGoldCritter => RecipeGroupLibraries.Groups["ModHelpers:EvilBossDropsVanillaGoldCritter"];
 		/// <summary></summary>
-		public static RecipeGroup PressurePlates => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsPressurePlates"];
+		public static RecipeGroup PressurePlates => RecipeGroupLibraries.Groups["ModHelpers:EvilBossDropsPressurePlates"];
 		/// <summary></summary>
-		public static RecipeGroup WeightedPressurePlates => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsWeightedPressurePlates"];
+		public static RecipeGroup WeightedPressurePlates => RecipeGroupLibraries.Groups["ModHelpers:EvilBossDropsWeightedPressurePlates"];
 		/// <summary></summary>
-		public static RecipeGroup ConveyorBelts => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsConveyorBelts"];
+		public static RecipeGroup ConveyorBelts => RecipeGroupLibraries.Groups["ModHelpers:EvilBossDropsConveyorBelts"];
 		/// <summary></summary>
-		public static RecipeGroup NpcBanners => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsNpcBanners"];
+		public static RecipeGroup NpcBanners => RecipeGroupLibraries.Groups["ModHelpers:EvilBossDropsNpcBanners"];
 		/// <summary></summary>
-		public static RecipeGroup RecordedMusicBoxes => RecipeGroupHelpers.Groups["ModHelpers:EvilBossDropsRecordedMusicBoxes"];
+		public static RecipeGroup RecordedMusicBoxes => RecipeGroupLibraries.Groups["ModHelpers:EvilBossDropsRecordedMusicBoxes"];
 
 
 		////
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 				var mymod = ModHelpersMod.Instance;
 
 				if( mymod.RecipeGroupHelpers._Groups == null ) {
-					mymod.RecipeGroupHelpers._Groups = RecipeGroupHelpers.CreateRecipeGroups();
+					mymod.RecipeGroupHelpers._Groups = RecipeGroupLibraries.CreateRecipeGroups();
 				}
 				return mymod.RecipeGroupHelpers._Groups;
 			}
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 		////////////////
 
 		private static IDictionary<string, RecipeGroup> CreateRecipeGroups() {
-			IDictionary<string, ItemGroupDefinition> commonItemGrps = ItemGroupIdentityHelpers.GetCommonItemGroups();
+			IDictionary<string, ItemGroupDefinition> commonItemGrps = ItemGroupIdentityLibraries.GetCommonItemGroups();
 
 			IDictionary<string, RecipeGroup> groups = commonItemGrps.ToDictionary(
 				kv => {

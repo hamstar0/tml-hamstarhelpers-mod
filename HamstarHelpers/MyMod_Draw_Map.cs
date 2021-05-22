@@ -3,8 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.HUD;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.HUD;
 using HamstarHelpers.Services.Dialogue;
 using HamstarHelpers.Services.Maps;
 
@@ -38,7 +38,7 @@ namespace HamstarHelpers {
 			var wldPos = new Vector2( tileX * 16, tileY * 16 );
 			wldPos.X += 8f;
 			wldPos.Y += 8f;
-			var mapPos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( wldPos );
+			var mapPos = HUDMapLibraries.GetFullMapPositionAsScreenPosition( wldPos );
 			if( !mapPos.IsOnScreen ) {
 				return;
 			}

@@ -6,7 +6,7 @@ using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.ModHelpers;
+using HamstarHelpers.Libraries.ModHelpers;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.UI.ControlPanel;
 
@@ -106,7 +106,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 		public override void Update( GameTime gameTime ) {
 			base.Update( gameTime );
 
-			if( this.AwaitingReport || this.CurrentModListItem == null || !ModFeaturesHelpers.HasGithub( this.CurrentModListItem.Mod ) ) {
+			if( this.AwaitingReport || this.CurrentModListItem == null || !ModFeaturesLibraries.HasGithub( this.CurrentModListItem.Mod ) ) {
 				this.DisableIssueInput();
 			} else {
 				this.EnableIssueInput();

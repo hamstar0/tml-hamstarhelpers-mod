@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.Tiles;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// <summary>
 	/// Definition for how to add filling to a given chest.
 	/// </summary>
@@ -136,7 +136,7 @@ namespace HamstarHelpers.Helpers.World {
 
 			var addTiles = new List<(int?, int?)>( tiles );
 
-			foreach( (string name, int frame) in TileFrameHelpers.VanillaChestFramesByTypeName ) {
+			foreach( (string name, int frame) in TileFrameLibraries.VanillaChestFramesByTypeName ) {
 				switch( name ) {
 				case "Chest":
 					break;

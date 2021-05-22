@@ -1,13 +1,13 @@
 ﻿using System;
-using HamstarHelpers.Helpers.Misc;
+using HamstarHelpers.Libraries.Misc;
 using Microsoft.Xna.Framework;
 
 
-namespace HamstarHelpers.Helpers.XNA {
+namespace HamstarHelpers.Libraries.XNA {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to XNA's Color struct. 
 	/// </summary>
-	public static partial class XNAColorHelpers {
+	public static partial class XNAColorLibraries {
 		/// <summary>
 		/// Adds to the RGB(A) of a color by a fixed amount.
 		/// </summary>
@@ -203,7 +203,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// <param name="c"></param>
 		/// <returns></returns>
 		public static float AvgRGBA( Color c ) {
-			return (float)XNAColorHelpers.SumRGBA(c) * 0.25f;
+			return (float)XNAColorLibraries.SumRGBA(c) * 0.25f;
 		}
 		/// <summary>
 		/// Gets the averaged value of a color's RGB.
@@ -211,7 +211,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// <param name="c"></param>
 		/// <returns></returns>
 		public static float AvgRGB( Color c ) {
-			return (float)XNAColorHelpers.SumRGB( c ) / 3f;
+			return (float)XNAColorLibraries.SumRGB( c ) / 3f;
 		}
 
 		
@@ -236,7 +236,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// <param name="color"></param>
 		/// <returns></returns>
 		public static string RenderHex( Color color ) {
-			return MiscHelpers.RenderColorHex( color );
+			return MiscLibraries.RenderColorHex( color );
 		}
 	}
 }

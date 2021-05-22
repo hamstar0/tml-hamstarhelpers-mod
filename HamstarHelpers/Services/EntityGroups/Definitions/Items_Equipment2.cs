@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
-using HamstarHelpers.Helpers.Items.Attributes;
+using HamstarHelpers.Libraries.Items.Attributes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -30,7 +30,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						|| grps[ItemGroupIDs.AnyTool].Contains( item.type )
 						|| grps[ItemGroupIDs.AnyAccessory].Contains( item.type )
 						|| grps[ItemGroupIDs.AnyArmor].Contains( item.type )
-						|| ItemAttributeHelpers.IsGrapple( item );
+						|| ItemAttributeLibraries.IsGrapple( item );
 				} )
 			) );
 			defs.Add( new EntityGroupMatcherDefinition<Item>(

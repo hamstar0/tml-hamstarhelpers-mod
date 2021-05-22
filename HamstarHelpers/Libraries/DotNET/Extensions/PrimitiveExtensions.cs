@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Extensions {
+namespace HamstarHelpers.Libraries.DotNET.Extensions {
 	/// <summary>
 	/// Extensions for general types.
 	/// </summary>

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections;
@@ -91,7 +91,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 						CustomLoadHooks.TriggerHook( GetModTags.TagsReceivedHookValidator, GetModTags.TagsReceivedHookValidatorKey, args );
 					} catch( Exception e ) {
-						LogHelpers.Alert( e.ToString() );
+						LogLibraries.Alert( e.ToString() );
 					}
 				} );
 			} );

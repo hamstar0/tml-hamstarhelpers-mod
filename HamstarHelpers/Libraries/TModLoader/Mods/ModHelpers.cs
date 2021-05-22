@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -7,11 +7,11 @@ using System.Text;
 using Terraria.ModLoader.Core;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Mods {
+namespace HamstarHelpers.Libraries.TModLoader.Mods {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to mods.
 	/// </summary>
-	public partial class ModHelpers {
+	public partial class ModLibraries {
 		/// <summary>
 		/// Loads a file contained within a given mod file (.tmod).
 		/// </summary>

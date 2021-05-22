@@ -6,9 +6,9 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Debug {
+namespace HamstarHelpers.Libraries.Debug {
 	/// @private
-	public partial class LogHelpers {
+	public partial class LogLibraries {
 		private static object MyLock { get; } = new object();
 
 
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Helpers.Debug {
 
 		////////////////
 
-		internal LogHelpers() {
+		internal LogLibraries() {
 			this.Reset();
 		}
 
@@ -96,7 +96,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		////////////////
 
 		internal void OutputDirect( string fileName, string logEntry ) {
-			lock( LogHelpers.MyLock ) {
+			lock( LogLibraries.MyLock ) {
 				string path = this.GetLogPath();
 
 				try {

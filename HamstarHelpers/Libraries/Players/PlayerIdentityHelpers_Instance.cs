@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// @private
-	public partial class PlayerIdentityHelpers {
+	public partial class PlayerIdentityLibraries {
 		internal IDictionary<int, string> PlayerIds = new Dictionary<int, string>();
 
 

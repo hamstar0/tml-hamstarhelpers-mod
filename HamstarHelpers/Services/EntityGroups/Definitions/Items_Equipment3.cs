@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items.Attributes;
-using HamstarHelpers.Helpers.Recipes;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Items.Attributes;
+using HamstarHelpers.Libraries.Recipes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -84,7 +84,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					ISet<int> oreBarGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, oreBarGrp.ToDictionary(i=>i, i=>1) );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, oreBarGrp.ToDictionary(i=>i, i=>1) );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -97,7 +97,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					string name = ItemAttributeHelpers.GetQualifiedName( item );
+					string name = ItemAttributeLibraries.GetQualifiedName( item );
 
 					if( !isEquip || !name.Contains( "Tiki" ) ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -110,7 +110,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Cactus, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Cactus, 1} } );
 
 					if( !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -123,7 +123,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Wood, 2} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Wood, 2} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -135,7 +135,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.BorealWood, 2} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.BorealWood, 2} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -147,7 +147,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.PalmWood, 2} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.PalmWood, 2} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -159,7 +159,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.RichMahogany, 2} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.RichMahogany, 2} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -171,7 +171,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Ebonwood, 2} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Ebonwood, 2} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -183,7 +183,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Shadewood, 2} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Shadewood, 2} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -195,7 +195,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Pearlwood, 2} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Pearlwood, 2} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -207,7 +207,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.SpookyWood, 2} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.SpookyWood, 2} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -220,7 +220,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TinBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TinBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -232,7 +232,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.CopperBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.CopperBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -245,7 +245,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.IronBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.IronBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -257,7 +257,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.LeadBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.LeadBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -270,7 +270,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.SilverBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.SilverBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -282,7 +282,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TungstenBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TungstenBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -295,7 +295,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.GoldBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.GoldBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -307,7 +307,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.PlatinumBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.PlatinumBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -320,7 +320,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.MeteoriteBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.MeteoriteBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -332,7 +332,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.DemoniteBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.DemoniteBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -344,7 +344,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.CrimtaneBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.CrimtaneBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -356,7 +356,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.JungleSpores, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.JungleSpores, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -368,7 +368,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.BeeWax, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.BeeWax, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -380,7 +380,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Bone, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.Bone, 1} } );
 					
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -392,7 +392,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.HellstoneBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.HellstoneBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -405,7 +405,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.CobaltBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.CobaltBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -417,7 +417,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.PalladiumBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.PalladiumBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -429,7 +429,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.MythrilBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.MythrilBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -441,7 +441,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.OrichalcumBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.OrichalcumBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -453,7 +453,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.AdamantiteBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.AdamantiteBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -465,7 +465,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TitaniumBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TitaniumBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -478,7 +478,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FrostCore, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FrostCore, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -490,7 +490,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.AncientBattleArmorMaterial, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.AncientBattleArmorMaterial, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -502,7 +502,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.HallowedBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.HallowedBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -514,7 +514,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.ChlorophyteBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.ChlorophyteBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -526,7 +526,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.ShroomiteBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.ShroomiteBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -538,7 +538,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.SpectreBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.SpectreBar, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -550,8 +550,8 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has1 = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.BeetleShell, 1} } );
-					bool has2 = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TurtleShell, 1} } );
+					bool has1 = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.BeetleShell, 1} } );
+					bool has2 = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.TurtleShell, 1} } );
 
 					if( !isEquip || (!has1 && !has2) ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -564,7 +564,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentNebula, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentNebula, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -576,7 +576,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentVortex, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentVortex, 1} } );
 
 					if( !isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -588,7 +588,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool isCraftedWithSolar = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentSolar, 1} } );
+					bool isCraftedWithSolar = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentSolar, 1} } );
 
 					if( !isEquip || !isCraftedWithSolar ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -600,7 +600,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool isCraftedWithStardust = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentStardust, 1} } );
+					bool isCraftedWithStardust = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { {ItemID.FragmentStardust, 1} } );
 
 					if( !isEquip || !isCraftedWithStardust ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;
@@ -612,7 +612,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					ISet<int> equipGrp = grps[ItemGroupIDs.AnyEquipment];
 					bool isEquip = equipGrp.Contains( item.type );
-					bool has = RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int> { { ItemID.LunarBar, 1} } );
+					bool has = RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int> { { ItemID.LunarBar, 1} } );
 
 					if( isEquip || !has ) { return false; }
 					return item.createTile == -1 && item.createWall == -1;

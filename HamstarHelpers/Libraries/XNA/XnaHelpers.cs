@@ -1,15 +1,15 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.XNA {
+namespace HamstarHelpers.Libraries.XNA {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to XNA. 
 	/// </summary>
-	public partial class XNAHelpers {
+	public partial class XNALibraries {
 		/// <summary>
 		/// "Scans" a rectangle with a provided custom function, returning on the function reporting success. Skips over
 		/// another given rectangle, if overlapping.
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// <param name="isBegun"></param>
 		/// <returns>If `false`, could not determine one way or the other.</returns>
 		public static bool IsMainSpriteBatchBegun( out bool isBegun ) {
-			return XNAHelpers.IsSpriteBatchBegun( Main.spriteBatch, out isBegun );
+			return XNALibraries.IsSpriteBatchBegun( Main.spriteBatch, out isBegun );
 		}
 
 
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Helpers.XNA {
 		/// <param name="forceDraw">Forces drawing even when the SpriteBatch is already `Begun()`.</param>
 		/// <returns>`true` if no issues occurred with the drawing.</returns>
 		public static bool DrawBatch( Action<SpriteBatch> draw, out bool isBegun, bool forceDraw=true ) {
-			if( !XNAHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
+			if( !XNALibraries.IsMainSpriteBatchBegun( out isBegun ) ) {
 				return false; // take no chances
 			}
 
@@ -92,17 +92,17 @@ namespace HamstarHelpers.Helpers.XNA {
 				try {
 					draw( Main.spriteBatch );
 				} catch( Exception e ) {
-					LogHelpers.WarnOnce( e.ToString() );
+					LogLibraries.WarnOnce( e.ToString() );
 				}
 				
 				Main.spriteBatch.End();
 			} else {
 				if( forceDraw ) {
-					LogHelpers.WarnOnce( DebugHelpers.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
+					LogLibraries.WarnOnce( DebugLibraries.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
 					try {
 						draw( Main.spriteBatch );
 					} catch( Exception e ) {
-						LogHelpers.WarnOnce( e.ToString() );
+						LogLibraries.WarnOnce( e.ToString() );
 					}
 				}
 			}
@@ -138,7 +138,7 @@ namespace HamstarHelpers.Helpers.XNA {
 				out bool isBegun,
 				bool forceBeginAnew = false,
 				bool forceDraw = true ) {
-			if( !XNAHelpers.IsMainSpriteBatchBegun( out isBegun ) ) {
+			if( !XNALibraries.IsMainSpriteBatchBegun( out isBegun ) ) {
 				return false; // take no chances
 			}
 
@@ -153,17 +153,17 @@ namespace HamstarHelpers.Helpers.XNA {
 				try {
 					draw( Main.spriteBatch );
 				} catch( Exception e ) {
-					LogHelpers.WarnOnce( e.ToString() );
+					LogLibraries.WarnOnce( e.ToString() );
 				}
 
 				Main.spriteBatch.End();
 			} else {
 				if( forceDraw ) {
-					LogHelpers.WarnOnce( DebugHelpers.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
+					LogLibraries.WarnOnce( DebugLibraries.GetCurrentContext( 2 ) + " - SpriteBatch already begun. Drawing anyway..." );
 					try {
 						draw( Main.spriteBatch );
 					} catch( Exception e ) {
-						LogHelpers.WarnOnce( e.ToString() );
+						LogLibraries.WarnOnce( e.ToString() );
 					}
 				}
 			}

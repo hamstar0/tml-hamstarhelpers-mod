@@ -1,16 +1,16 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Threading;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Threading;
 using System;
 using System.Net;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Net {
+namespace HamstarHelpers.Libraries.Net {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to connecting to the web.
 	/// </summary>
-	public partial class WebConnectionHelpers {
+	public partial class WebConnectionLibraries {
 		private static void HandleResponse(
 					object _,
 					UploadStringCompletedEventArgs args,
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Helpers.Net {
 					onError( args.Error );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.GetType().Name + " - " + e.Message );
+				LogLibraries.Warn( e.GetType().Name + " - " + e.Message );
 			}
 		}
 
@@ -49,7 +49,7 @@ namespace HamstarHelpers.Helpers.Net {
 					onError( args.Error );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.GetType().Name + " - " + e?.Message );
+				LogLibraries.Warn( e.GetType().Name + " - " + e?.Message );
 			}
 		}
 
@@ -89,7 +89,7 @@ namespace HamstarHelpers.Helpers.Net {
 						client.UploadStringAsync( new Uri(url), "POST", jsonData );//UploadValuesAsync( new Uri( url ), "POST", values );
 						client.UploadStringCompleted += (sender, e) => {
 							if( token.IsCancellationRequested ) { return; }
-							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
+							WebConnectionLibraries.HandleResponse( sender, e, onError, onCompletion );
 						};
 					}
 				} catch( WebException e ) {
@@ -140,7 +140,7 @@ namespace HamstarHelpers.Helpers.Net {
 						client.DownloadStringAsync( new Uri( url ) );
 						client.DownloadStringCompleted += ( sender, e ) => {
 							if( token.IsCancellationRequested ) { return; }
-							WebConnectionHelpers.HandleResponse( sender, e, onError, onCompletion );
+							WebConnectionLibraries.HandleResponse( sender, e, onError, onCompletion );
 						};
 						//client.UploadStringAsync( new Uri(url), "GET", "" );//UploadValuesAsync( new Uri( url ), "POST", values );
 					}

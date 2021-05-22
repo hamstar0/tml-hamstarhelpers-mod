@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.TModLoader.Commands;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+﻿using HamstarHelpers.Libraries.TModLoader.Commands;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 using HamstarHelpers.Internals.WebRequests;
 using Microsoft.Xna.Framework;
 using System;
@@ -26,17 +26,17 @@ namespace HamstarHelpers.Commands {
 
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
-			IList<Mod> mods = ModListHelpers.GetAllLoadedModsPreferredOrder().ToList();
+			IList<Mod> mods = ModListLibraries.GetAllLoadedModsPreferredOrder().ToList();
 			int argIdx = 1;
 
 			string title;
-			if( !CommandsHelpers.GetQuotedStringFromArgsAt( args, argIdx, out argIdx, out title ) ) {
+			if( !CommandsLibraries.GetQuotedStringFromArgsAt( args, argIdx, out argIdx, out title ) ) {
 				caller.Reply( "Invalid issue report title string", Color.Red );
 				return;
 			}
 
 			string body;
-			if( !CommandsHelpers.GetQuotedStringFromArgsAt( args, argIdx, out argIdx, out body ) ) {
+			if( !CommandsLibraries.GetQuotedStringFromArgsAt( args, argIdx, out argIdx, out body ) ) {
 				caller.Reply( "Invalid issue report description string", Color.Red );
 				return;
 			}

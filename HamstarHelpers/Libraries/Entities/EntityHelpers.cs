@@ -2,16 +2,16 @@
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Items.Attributes;
-using HamstarHelpers.Helpers.NPCs.Attributes;
-using HamstarHelpers.Helpers.Projectiles.Attributes;
+using HamstarHelpers.Libraries.Items.Attributes;
+using HamstarHelpers.Libraries.NPCs.Attributes;
+using HamstarHelpers.Libraries.Projectiles.Attributes;
 
 
-namespace HamstarHelpers.Helpers.Entities {
+namespace HamstarHelpers.Libraries.Entities {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to `Entity`s (parent class of Item, NPC, Player, and Projectile).
 	/// </summary>
-	public class EntityHelpers {
+	public class EntityLibraries {
 		/// <summary>
 		/// Gets a hash value to attempt to uniquely identify a given entity. Not recommended if the specific entity's
 		/// `GetVanillaSnapshotHash(...)` (via. the respective Helper) is available.
@@ -95,13 +95,13 @@ namespace HamstarHelpers.Helpers.Entities {
 		/// <returns></returns>
 		public static string GetQualifiedName( Entity ent ) {
 			if( ent is Item ) {
-				return ItemAttributeHelpers.GetQualifiedName( (Item)ent );
+				return ItemAttributeLibraries.GetQualifiedName( (Item)ent );
 			}
 			if( ent is NPC ) {
-				return NPCAttributeHelpers.GetQualifiedName( (NPC)ent );
+				return NPCAttributeLibraries.GetQualifiedName( (NPC)ent );
 			}
 			if( ent is Projectile ) {
-				return ProjectileAttributeHelpers.GetQualifiedName( (Projectile)ent );
+				return ProjectileAttributeLibraries.GetQualifiedName( (Projectile)ent );
 			}
 			if( ent is Player ) {
 				return ( (Player)ent ).name;

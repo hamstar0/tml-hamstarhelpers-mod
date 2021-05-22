@@ -3,7 +3,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Terraria.UI;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
 namespace HamstarHelpers.Classes.UI.Elements.Slider {

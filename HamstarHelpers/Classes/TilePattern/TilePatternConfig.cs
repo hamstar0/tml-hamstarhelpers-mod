@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.UI.Config;
-using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Libraries.Tiles;
 
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {

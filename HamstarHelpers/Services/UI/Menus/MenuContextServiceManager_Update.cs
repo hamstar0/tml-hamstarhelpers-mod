@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Menus;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			// Out with the old
 			if( closingUiDef != 0 && this.Contexts.ContainsKey(closingUiDef) ) {
 				foreach( (string ctxName, MenuContext ctx) in this.Contexts[closingUiDef] ) {
-					ctx.Hide( MainMenuHelpers.GetMenuUI(closingUiDef) );
+					ctx.Hide( MainMenuLibraries.GetMenuUI(closingUiDef) );
 				}
 			}
 
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			if( ui != null ) {
 				if( !Enum.TryParse( ui.GetType().Name, out openingUiDef ) ) {
 					if( ModHelpersConfig.Instance.DebugModeMenuInfo ) {
-						LogHelpers.WarnOnce( "Could not get MenuUIDefinition " + ui.GetType().Name );
+						LogLibraries.WarnOnce( "Could not get MenuUIDefinition " + ui.GetType().Name );
 					}
 					this.CurrentMenuUI = 0;
 					return;

@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using HamstarHelpers.Internals.ModTags.ModInfo.UI;
 using HamstarHelpers.Internals.WebRequests;
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 		public void SetCurrentModAsync( string modName ) {
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				if( !args.Found ) {
-					LogHelpers.Warn();
+					LogLibraries.Warn();
 					return false;
 				}
 

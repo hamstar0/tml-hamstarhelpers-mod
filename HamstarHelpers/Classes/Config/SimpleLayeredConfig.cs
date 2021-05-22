@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using Terraria.ModLoader.Config;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Classes.Config {
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Classes.Config {
 		////
 
 		private T GetBase<T>( string propName ) {
-			if( !ReflectionHelpers.Get( this, propName, out T myval ) ) {
+			if( !ReflectionLibraries.Get( this, propName, out T myval ) ) {
 				throw new ModHelpersException( "Invalid property " + propName + " of type " + typeof( T ).Name );
 			}
 
@@ -78,7 +78,7 @@ namespace HamstarHelpers.Classes.Config {
 		/// <param name="propName"></param>
 		/// <param name="value"></param>
 		public void SetLayered<T>( string propName, T value ) {
-			if( !ReflectionHelpers.Get( this, propName, out T _ ) ) {
+			if( !ReflectionLibraries.Get( this, propName, out T _ ) ) {
 				throw new ModHelpersException( "Invalid property " + propName + " of type " + typeof( T ).Name );
 			}
 			this.Overrides[propName] = value;

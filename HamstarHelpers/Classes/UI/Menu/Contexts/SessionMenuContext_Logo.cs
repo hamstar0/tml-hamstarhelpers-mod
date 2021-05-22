@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Menus;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Classes.UI.Menu {
 			if( ohMod == null ) { return false; }
 			
 			Type ohModType = ohMod.GetType();
-			var ohLogoPosField = ohModType.GetField( "mainMenuDataOffset", ReflectionHelpers.MostAccess );
+			var ohLogoPosField = ohModType.GetField( "mainMenuDataOffset", ReflectionLibraries.MostAccess );
 
 			if( ohLogoPosField != null ) {
 				if( this.OldOverhaulLogoPos != default( Vector2 ) ) {
@@ -70,10 +70,10 @@ namespace HamstarHelpers.Classes.UI.Menu {
 				}
 				ohLogoPosField.SetValue( ohMod, newValue );
 			} else {	// For version 3.3
-				Type classType = ReflectionHelpers.GetTypeFromAssembly( ohModType.AssemblyQualifiedName, "TerrariaOverhaul.UI.OverhaulUI" );
+				Type classType = ReflectionLibraries.GetTypeFromAssembly( ohModType.AssemblyQualifiedName, "TerrariaOverhaul.UI.OverhaulUI" );
 				if( classType == null ) { return false; }
 
-				ReflectionHelpers.Set( classType, null, "mainMenuDataOffset", newValue );
+				ReflectionLibraries.Set( classType, null, "mainMenuDataOffset", newValue );
 			}
 
 			return true;

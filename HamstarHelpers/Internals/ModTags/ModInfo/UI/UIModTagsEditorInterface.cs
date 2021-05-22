@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using HamstarHelpers.Classes.UI.Theme;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons;
@@ -78,8 +78,8 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 			string desc = viewer?.Description;
 
 			if( viewer == null || string.IsNullOrEmpty( desc ) ) {
-				if( !ModMenuHelpers.GetModDescriptionFromCurrentMenuUI( out desc ) ) {
-					LogHelpers.WarnOnce( "Failed for "+modName+": "+desc );
+				if( !ModMenuLibraries.GetModDescriptionFromCurrentMenuUI( out desc ) ) {
+					LogLibraries.WarnOnce( "Failed for "+modName+": "+desc );
 					return;
 				}
 			}

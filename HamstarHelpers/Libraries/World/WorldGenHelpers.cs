@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.World.Generation;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to world generation.
 	/// </summary>
-	public class WorldGenHelpers {
+	public class WorldGenLibraries {
 		/*public static readonly string[] VanillaWorldGenTaskNames = new string[] {
 			"Reset",
 			"Terrain",
@@ -118,10 +118,10 @@ namespace HamstarHelpers.Helpers.World {
 		/// </summary>
 		/// <returns></returns>
 		public static IList<GenPass> GetWorldGenPasses() {
-			if( !ReflectionHelpers.Get(typeof(WorldGen), null, "_generator", out WorldGenerator generator) ) {
+			if( !ReflectionLibraries.Get(typeof(WorldGen), null, "_generator", out WorldGenerator generator) ) {
 				return null;
 			}
-			if( !ReflectionHelpers.Get(typeof(WorldGenerator), generator, "_passes", out IList<GenPass> passes) ) {
+			if( !ReflectionLibraries.Get(typeof(WorldGenerator), generator, "_passes", out IList<GenPass> passes) ) {
 				return null;
 			}
 			return passes;

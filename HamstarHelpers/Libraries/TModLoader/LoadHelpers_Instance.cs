@@ -1,11 +1,11 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 
 
-namespace HamstarHelpers.Helpers.TModLoader {
+namespace HamstarHelpers.Libraries.TModLoader {
 	/// @private
-	public partial class LoadHelpers {
+	public partial class LoadLibraries {
 		internal uint WorldStartupDelay = 0;
 
 		internal bool IsLocalPlayerInGame_Hackish = false;
@@ -15,7 +15,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 		////////////////
 
-		internal LoadHelpers() {
+		internal LoadLibraries() {
 			LoadHooks.AddWorldLoadEachHook( () => {
 				this.WorldStartupDelay = 0;
 			} );

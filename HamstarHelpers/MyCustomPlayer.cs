@@ -3,8 +3,8 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.PlayerData;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers {
@@ -27,10 +27,10 @@ namespace HamstarHelpers {
 			}
 
 			if( Main.netMode == NetmodeID.SinglePlayer ) {
-				var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );
+				var myplayer = TmlLibraries.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );
 				myplayer.Logic.OnSingleEnterWorld( this.Player );
 			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );
+				var myplayer = TmlLibraries.SafelyGetModPlayer<ModHelpersPlayer>( this.Player );
 				myplayer.Logic.OnCurrentClientEnterWorld( this.Player );
 			} else if( Main.netMode == NetmodeID.Server ) {
 			}

@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.TModLoader.Menus;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Internals.ModTags.ModInfo.Manager;
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 
 		protected ModTagsEditorMenuContext( MenuUIDefinition menuDef, string contextName )
 				: base( menuDef, contextName ) {
-			UIState uiModInfo = MainMenuHelpers.GetMenuUI( menuDef );
+			UIState uiModInfo = MainMenuLibraries.GetMenuUI( menuDef );
 
 			if( uiModInfo == null || uiModInfo.GetType().Name != "UIModInfo" ) {
 				throw new ModHelpersException( "UI context not UIModInfo, found "
@@ -66,36 +66,36 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 
 		public override void OnActivationForModTags( UIState ui ) {
 			if( ui.GetType().Name != "UIModInfo" ) {
-				LogHelpers.Warn( "Invalid UI. Expected UIModInfo, found " + ui.GetType().Name + "." );
+				LogLibraries.Warn( "Invalid UI. Expected UIModInfo, found " + ui.GetType().Name + "." );
 				return;
 			}
 
 			UIElement elem;
-			if( ReflectionHelpers.Get( ui, "_uIElement", out elem ) ) {
+			if( ReflectionLibraries.Get( ui, "_uIElement", out elem ) ) {
 				elem.Left.Pixels += UITagMenuButton.ButtonWidth;
 				elem.Top.Set( 80f, 0f );
 				elem.Height.Set( -88f, 1f );
 
 				elem.Recalculate();
 			} else {
-				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + ui.GetType().Name );
+				LogLibraries.Warn( "Could not get uiElement for mod info tags context " + ui.GetType().Name );
 			}
 		}
 
 		public override void OnDeactivation() {
-			UIState modInfoUi = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+			UIState modInfoUi = MainMenuLibraries.GetMenuUI( this.MenuDefinitionOfContext );
 			if( modInfoUi.GetType().Name != "UIModInfo" ) {
-				LogHelpers.Warn( "Invalid UI. Expected UIModInfo, found " + modInfoUi.GetType().Name + "." );
+				LogLibraries.Warn( "Invalid UI. Expected UIModInfo, found " + modInfoUi.GetType().Name + "." );
 				return;
 			}
 
 			UIElement elem;
-			if( ReflectionHelpers.Get( modInfoUi, "_uIElement", out elem ) ) {
+			if( ReflectionLibraries.Get( modInfoUi, "_uIElement", out elem ) ) {
 				elem.Left.Pixels -= UITagMenuButton.ButtonWidth;
 
 				elem.Recalculate();
 			} else {
-				LogHelpers.Warn( "Could not get uiElement for mod info tags context " + modInfoUi.GetType().Name );
+				LogLibraries.Warn( "Could not get uiElement for mod info tags context " + modInfoUi.GetType().Name );
 			}
 		}
 

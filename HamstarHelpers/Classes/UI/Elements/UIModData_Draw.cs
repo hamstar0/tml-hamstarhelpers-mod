@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.ModTagDefinitions;
 using HamstarHelpers.Services.AnimatedColor;
 using Microsoft.Xna.Framework;

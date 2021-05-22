@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary></summary>
 	public enum PlayerTeamName {
 		/// <summary></summary>
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Helpers.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player multiplayer teams.
 	/// </summary>
-	public partial class PlayerTeamHelpers {
+	public partial class PlayerTeamLibraries {
 		/// <summary>
 		/// Gets the team name and color by a given player team code number.
 		/// </summary>

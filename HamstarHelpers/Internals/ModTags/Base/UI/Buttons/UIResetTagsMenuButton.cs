@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Elements.Menu;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using Terraria.UI;
 

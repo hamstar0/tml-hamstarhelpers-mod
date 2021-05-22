@@ -1,15 +1,15 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.UI;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.UI;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.HUD {
+namespace HamstarHelpers.Libraries.HUD {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the HUD map.
 	/// </summary>
-	public partial class HUDMapHelpers {
+	public partial class HUDMapLibraries {
 		/// <summary>
 		/// Gets the scale (zoom) of the full screen map.
 		/// </summary>
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
 		/// boundaries.</returns>
 		public static (Vector2 ScreenPosition, bool IsOnScreen) GetFullMapPositionAsScreenPosition( Vector2 worldPosition ) {    //Main.mapFullscreen
-			return HUDMapHelpers.GetFullMapPositionAsScreenPosition(
+			return HUDMapLibraries.GetFullMapPositionAsScreenPosition(
 				new Rectangle( (int)worldPosition.X, (int)worldPosition.Y, 0, 0 )
 			);
 		}
@@ -40,9 +40,9 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// <returns>A tuple indicating the screen-relative position and whether the point is within the screen
 		/// boundaries.</returns>
 		public static (Vector2 ScreenPosition, bool IsOnScreen) GetFullMapPositionAsScreenPosition( Rectangle worldArea ) {    //Main.mapFullscreen
-			float mapScale = HUDMapHelpers.GetFullMapScale();
+			float mapScale = HUDMapLibraries.GetFullMapScale();
 			//var scrSize = UIHelpers.GetScreenSize();
-			var scrSize = UIZoomHelpers.GetScreenSize( null, false );
+			var scrSize = UIZoomLibraries.GetScreenSize( null, false );
 
 			//float offscrLitX = 10f * mapScale;
 			//float offscrLitY = 10f * mapScale;
@@ -80,8 +80,8 @@ namespace HamstarHelpers.Helpers.HUD {
 			float baseX = Main.screenPosition.X;
 			float baseY = Main.screenPosition.Y;
 
-			Vector2 mapBasePos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).ScreenPosition;
-			Vector2 mapNewPos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).ScreenPosition;
+			Vector2 mapBasePos = HUDMapLibraries.GetFullMapPositionAsScreenPosition( new Rectangle( (int)baseX, (int)baseY, 0, 0 ) ).ScreenPosition;
+			Vector2 mapNewPos = HUDMapLibraries.GetFullMapPositionAsScreenPosition( new Rectangle( (int)(baseX + width), (int)(baseY + height), 0, 0 ) ).ScreenPosition;
 
 			return mapNewPos - mapBasePos;
 		}
@@ -129,7 +129,7 @@ namespace HamstarHelpers.Helpers.HUD {
 		/// </summary>
 		/// <returns></returns>
 		public static (int TileX, int TileY, bool IsOnScreen) FindTopLeftTileOfFullscreenMap() {
-			return HUDMapHelpers.FindTopLeftTileOfFullscreenMapStartingAt( Main.maxTilesX / 2, Main.maxTilesY / 2 );
+			return HUDMapLibraries.FindTopLeftTileOfFullscreenMapStartingAt( Main.maxTilesX / 2, Main.maxTilesY / 2 );
 		}
 
 		private static (int TileX, int TileY, bool IsOnScreen) FindTopLeftTileOfFullscreenMapStartingAt( int tileX, int tileY ) {
@@ -164,7 +164,7 @@ namespace HamstarHelpers.Helpers.HUD {
 			float prefScrY = float.MaxValue;
 
 			while( true ) {
-				mapPos = HUDMapHelpers.GetFullMapPositionAsScreenPosition( new Vector2(tileX << 4, tileY << 4) );
+				mapPos = HUDMapLibraries.GetFullMapPositionAsScreenPosition( new Vector2(tileX << 4, tileY << 4) );
 //LogHelpers.LogOnce( "x:"+tileX+", y:"+tileY+" -- lx:"+prevLeftX+", rx:"+prevRightX+", uy:"+prevTopY+", dy:"+prevBotY+" -- sx:"+mapPos.ScreenPosition.ToString());
 
 				if( mapPos.ScreenPosition.X < 0f ) {

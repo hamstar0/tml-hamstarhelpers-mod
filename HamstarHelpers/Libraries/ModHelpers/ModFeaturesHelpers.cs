@@ -3,11 +3,11 @@ using System.Reflection;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.ModHelpers {
+namespace HamstarHelpers.Libraries.ModHelpers {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to Mod Helpers control panel features.
 	/// </summary>
-	public partial class ModFeaturesHelpers {
+	public partial class ModFeaturesLibraries {
 		private static PropertyInfo GetGithubUserNameProp( Mod mod ) {
 			return mod.GetType().GetProperty( "GithubUserName", BindingFlags.Static | BindingFlags.Public );
 		}
@@ -19,8 +19,8 @@ namespace HamstarHelpers.Helpers.ModHelpers {
 		////
 
 		private static bool DetectGithub( Mod mod ) {
-			if( ModFeaturesHelpers.GetGithubUserNameProp( mod ) == null ) { return false; }
-			if( ModFeaturesHelpers.GetGitubProjectNameProp( mod ) == null ) { return false; }
+			if( ModFeaturesLibraries.GetGithubUserNameProp( mod ) == null ) { return false; }
+			if( ModFeaturesLibraries.GetGitubProjectNameProp( mod ) == null ) { return false; }
 			return true;
 		}
 
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Helpers.ModHelpers {
 			var self = ModHelpersMod.Instance.ModFeaturesHelpers;
 			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
-			PropertyInfo gitUserProp = ModFeaturesHelpers.GetGithubUserNameProp( mod );
+			PropertyInfo gitUserProp = ModFeaturesLibraries.GetGithubUserNameProp( mod );
 			return (string)gitUserProp.GetValue( null );
 		}
 
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Helpers.ModHelpers {
 			var self = ModHelpersMod.Instance.ModFeaturesHelpers;
 			if( !self.GithubMods.ContainsKey( mod.Name ) ) { return null; }
 
-			PropertyInfo gitProjProp = ModFeaturesHelpers.GetGitubProjectNameProp( mod );
+			PropertyInfo gitProjProp = ModFeaturesLibraries.GetGitubProjectNameProp( mod );
 			return (string)gitProjProp.GetValue( null );
 		}
 	}

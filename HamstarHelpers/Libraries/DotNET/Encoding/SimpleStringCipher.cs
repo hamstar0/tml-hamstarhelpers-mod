@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Encoding {
+namespace HamstarHelpers.Libraries.DotNET.Encoding {
 	/// <summary>
 	/// Simple string cipher encrypting and decrypting.
 	/// 

@@ -1,13 +1,13 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using System;
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Helpers.NPCs {
+namespace HamstarHelpers.Libraries.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPC-dropped banners.
 	/// </summary>
-	public partial class NPCBannerHelpers {
+	public partial class NPCBannerLibraries {
 		private IDictionary<int, int> NpcTypesToBannerItemTypes;
 		private ISet<int> BannerItemTypes;
 		private IDictionary<int, ISet<int>> BannerItemTypesToNpcTypes;
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 		internal void InitializeBanners() {
 			this.BannerItemTypesToNpcTypes = new Dictionary<int, ISet<int>>();
-			this.NpcTypesToBannerItemTypes = NPCBannerHelpers.GetNpcToBannerItemTypes();
+			this.NpcTypesToBannerItemTypes = NPCBannerLibraries.GetNpcToBannerItemTypes();
 
 			foreach( var kv in this.NpcTypesToBannerItemTypes ) {
 				if( !this.BannerItemTypesToNpcTypes.ContainsKey(kv.Value) ) {

@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using System;
 using System.Reflection;
 using Terraria;
@@ -8,7 +8,7 @@ using Terraria.GameContent.UI.States;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Menus {
+namespace HamstarHelpers.Libraries.TModLoader.Menus {
 	/*public enum VanillaMenuDefinition {
 		WorldEvilSelect = -71,
 		WorldDifficultySelect = -7,
@@ -194,8 +194,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 
 		private static UIState GetMainMenuUI( string menuFieldName ) {
 			UIState menuUI;
-			if( !ReflectionHelpers.Get( typeof(Main), null, menuFieldName, out menuUI ) ) {
-				LogHelpers.Warn( "Could not find Main."+menuFieldName );
+			if( !ReflectionLibraries.Get( typeof(Main), null, menuFieldName, out menuUI ) ) {
+				LogLibraries.Warn( "Could not find Main."+menuFieldName );
 				return null;
 			}
 
@@ -203,18 +203,18 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		}
 
 		private static UIState GetInterfacesMenuUI( string menuFieldName ) {
-			Assembly ass = ReflectionHelpers.GetMainAssembly();
+			Assembly ass = ReflectionLibraries.GetMainAssembly();
 			//Type interfaceType = ass.GetType( "Terraria.ModLoader.Interface" );
 
-			Type type = ReflectionHelpers.GetTypeFromAssembly( ass, "Terraria.ModLoader.UI.Interface" );
+			Type type = ReflectionLibraries.GetTypeFromAssembly( ass, "Terraria.ModLoader.UI.Interface" );
 			if( type == null ) {
-				LogHelpers.Warn( "Could not find Terraria.ModLoader.UI.Interface" );
+				LogLibraries.Warn( "Could not find Terraria.ModLoader.UI.Interface" );
 				return null;
 			}
 
 			UIState menuUI;
-			if( !ReflectionHelpers.Get(type, null, menuFieldName, out menuUI) ) {
-				LogHelpers.Warn( "Could not find Terraria.ModLoader.UI.Interface." + menuFieldName );
+			if( !ReflectionLibraries.Get(type, null, menuFieldName, out menuUI) ) {
+				LogLibraries.Warn( "Could not find Terraria.ModLoader.UI.Interface." + menuFieldName );
 				return null;
 			}
 			return menuUI;

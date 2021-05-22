@@ -9,7 +9,7 @@ using HamstarHelpers.Buffs;
 using HamstarHelpers.Internals.ControlPanel;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Cheats;
 using HamstarHelpers.Services.Debug.DataDumper;
 using HamstarHelpers.Services.UI.ControlPanel;
@@ -152,7 +152,7 @@ namespace HamstarHelpers {
 					}
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( "(1) - " + e.ToString() );
+				LogLibraries.Warn( "(1) - " + e.ToString() );
 				return;
 			}
 
@@ -163,11 +163,11 @@ namespace HamstarHelpers {
 						string msg = "Dumped latest debug data to log file " + fileName;
 
 						Main.NewText( msg, Color.Azure );
-						LogHelpers.Log( msg );
+						LogLibraries.Log( msg );
 					}
 				}
 			} catch(Exception e ) {
-				LogHelpers.Warn( "(2) - " + e.ToString() );
+				LogLibraries.Warn( "(2) - " + e.ToString() );
 				return;
 			}
 
@@ -176,7 +176,7 @@ namespace HamstarHelpers {
 					mymod.CustomHotkeys.ProcessTriggers( triggersSet );
 				}
 			} catch(Exception e ) {
-				LogHelpers.Warn( "(3) - " + e.ToString() );
+				LogLibraries.Warn( "(3) - " + e.ToString() );
 				return;
 			}
 			//DataStore.Add( DebugHelpers.GetCurrentContext()+"_"+this.player.name+":"+this.player.whoAmI+"_B", 1 );

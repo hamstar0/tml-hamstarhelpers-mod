@@ -5,8 +5,8 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Stream;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Threading;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Threading;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				string jsonStr = JsonConvert.SerializeObject( this );
-				LogHelpers.Log( ">" + this.GetPacketName() + " SendToServer: " + jsonStr );
+				LogLibraries.Log( ">" + this.GetPacketName() + " SendToServer: " + jsonStr );
 			}
 		}
 
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				string jsonStr = JsonConvert.SerializeObject( this );
-				LogHelpers.Log( ">" + this.GetPacketName() + " SendToClient " + toWho + ", " + ignoreWho + ": " + jsonStr );
+				LogLibraries.Log( ">" + this.GetPacketName() + " SendToClient " + toWho + ", " + ignoreWho + ": " + jsonStr );
 			}
 		}
 
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 				this.WriteStream( packet );
 				packet.Send( toWho, ignoreWho );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return;
 			}
 		}

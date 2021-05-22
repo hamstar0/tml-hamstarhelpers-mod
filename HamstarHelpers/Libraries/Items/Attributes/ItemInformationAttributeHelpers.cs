@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Items.Attributes {
+namespace HamstarHelpers.Libraries.Items.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to information attributes of items (e.g. tooltips).
 	/// </summary>
-	public partial class ItemInformationAttributeHelpers {
+	public partial class ItemInformationAttributeLibraries {
 		/// <summary>
 		/// Convenience function (meant to be called in any ModifyTooltips hook) to show a tooltip for an item at
 		/// the end of its list. Adapts to item context.
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		/// <param name="tip"></param>
 		/// <returns>`true` if tooltip added.</returns>
 		public static bool AppendTooltipToFurthest( IList<TooltipLine> tooltips, TooltipLine tip ) {
-			return ItemInformationAttributeHelpers.ApplyTooltipAtFurthest(
+			return ItemInformationAttributeLibraries.ApplyTooltipAtFurthest(
 				tooltips,
 				tip,
 				new HashSet<VanillaTooltipName> {

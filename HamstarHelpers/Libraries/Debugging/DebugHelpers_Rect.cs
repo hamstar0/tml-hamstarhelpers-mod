@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Draw;
+﻿using HamstarHelpers.Libraries.Draw;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,11 +7,11 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Debug {
+namespace HamstarHelpers.Libraries.Debug {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to debugging and debug outputs.
 	/// </summary>
-	public partial class DebugHelpers {
+	public partial class DebugLibraries {
 		private static object MyRectLock = new object();
 
 		////////////////
@@ -33,27 +33,27 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="isWorldPos"></param>
 		/// <param name="duration"></param>
 		public static void DrawRect( string id, Rectangle rect, bool isWorldPos, int duration ) {
-			lock( DebugHelpers.MyRectLock ) {
+			lock( DebugLibraries.MyRectLock ) {
 				if( isWorldPos ) {
 					rect.X -= (int)Main.screenPosition.X;
 					rect.Y -= (int)Main.screenPosition.Y;
 				}
 
-				DebugHelpers.Rects[id] = rect;
-				DebugHelpers.RectsTime[id] = duration;
-				DebugHelpers.RectsTimeStart[id] = duration;
-				DebugHelpers.RectsShade[id] = 255;
+				DebugLibraries.Rects[id] = rect;
+				DebugLibraries.RectsTime[id] = duration;
+				DebugLibraries.RectsTimeStart[id] = duration;
+				DebugLibraries.RectsShade[id] = 255;
 
-				if( DebugHelpers.Rects.Count > 16 ) {
-					foreach( string key in DebugHelpers.RectsTime.Keys.ToList() ) {
-						if( DebugHelpers.RectsTime[key] > 0 ) { continue; }
+				if( DebugLibraries.Rects.Count > 16 ) {
+					foreach( string key in DebugLibraries.RectsTime.Keys.ToList() ) {
+						if( DebugLibraries.RectsTime[key] > 0 ) { continue; }
 
-						DebugHelpers.Rects.Remove( key );
-						DebugHelpers.RectsTime.Remove( key );
-						DebugHelpers.RectsTimeStart.Remove( key );
-						DebugHelpers.RectsShade.Remove( key );
+						DebugLibraries.Rects.Remove( key );
+						DebugLibraries.RectsTime.Remove( key );
+						DebugLibraries.RectsTimeStart.Remove( key );
+						DebugLibraries.RectsShade.Remove( key );
 
-						if( DebugHelpers.Rects.Count <= 16 ) { break; }
+						if( DebugLibraries.Rects.Count <= 16 ) { break; }
 					}
 				}
 			}
@@ -65,27 +65,27 @@ namespace HamstarHelpers.Helpers.Debug {
 			int yPos = 0;
 			var rects = new List<(Rectangle, Color)>();
 
-			lock( DebugHelpers.MyRectLock ) {
-				foreach( string key in DebugHelpers.Rects.Keys.ToList() ) {
-					Rectangle rect = DebugHelpers.Rects[key];
+			lock( DebugLibraries.MyRectLock ) {
+				foreach( string key in DebugLibraries.Rects.Keys.ToList() ) {
+					Rectangle rect = DebugLibraries.Rects[key];
 					Color color = Color.White;
 
-					if( DebugHelpers.RectsShade.ContainsKey(key) ) {
-						int shade = DebugHelpers.RectsShade[key];
-						if( DebugHelpers.RectsTime.ContainsKey(key) ) {
-							float timeRatio = (float)DebugHelpers.RectsTime[key] / (float)DebugHelpers.RectsTimeStart[key];
+					if( DebugLibraries.RectsShade.ContainsKey(key) ) {
+						int shade = DebugLibraries.RectsShade[key];
+						if( DebugLibraries.RectsTime.ContainsKey(key) ) {
+							float timeRatio = (float)DebugLibraries.RectsTime[key] / (float)DebugLibraries.RectsTimeStart[key];
 							shade = (int)Math.Min( 255f, 255f * timeRatio );
 						} else {
-							DebugHelpers.RectsShade[key]--;
+							DebugLibraries.RectsShade[key]--;
 						}
 						color.R = color.G = color.B = color.A = (byte)Math.Max(shade, 16);
 					}
 
 					rects.Add( (rect, color) );
 
-					if( DebugHelpers.RectsTime.ContainsKey(key) ) {
-						if( DebugHelpers.RectsTime[key] > 0 ) {
-							DebugHelpers.RectsTime[key]--;
+					if( DebugLibraries.RectsTime.ContainsKey(key) ) {
+						if( DebugLibraries.RectsTime[key] > 0 ) {
+							DebugLibraries.RectsTime[key]--;
 						}
 					}
 					yPos += 24;
@@ -93,7 +93,7 @@ namespace HamstarHelpers.Helpers.Debug {
 			}
 
 			foreach( (Rectangle rect, Color color) in rects ) {
-				DrawHelpers.DrawBorderedRect( sb, null, color, rect, 1 );
+				DrawLibraries.DrawBorderedRect( sb, null, color, rect, 1 );
 			}
 		}
 	}

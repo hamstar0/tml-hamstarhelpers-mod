@@ -6,9 +6,9 @@ using Terraria.UI;
 using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 
@@ -134,7 +134,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 			if( !this.TabButtonHover[idx] ) {
 				this.TabButtonHover[idx] = true;
-				ReflectionHelpers.Set( button, "_isMouseHovering", true );
+				ReflectionLibraries.Set( button, "_isMouseHovering", true );
 			}
 
 			var evt = new UIMouseEvent( button, new Vector2( Main.mouseX, Main.mouseY ) );

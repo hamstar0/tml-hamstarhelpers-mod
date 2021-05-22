@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.UI;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.UI;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.UI;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					this.SetText( newText );
 				}
 
-				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
+				if( UILibraries.JustPressedKey(Keys.Escape) || UILibraries.JustPressedKey(Keys.Enter) ) {
 					this.Unfocus();
 				}
 			}
@@ -229,7 +229,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					}
 				}
 			} catch( Exception e ) {
-				LogHelpers.Log( e.ToString() );
+				LogLibraries.Log( e.ToString() );
 			}
 		}
 

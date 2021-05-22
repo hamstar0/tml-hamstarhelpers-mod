@@ -7,9 +7,9 @@ using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.TileStructure;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.User;
-using HamstarHelpers.Helpers.Misc;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.User;
+using HamstarHelpers.Libraries.Misc;
 
 
 namespace HamstarHelpers.Commands {
@@ -39,12 +39,12 @@ namespace HamstarHelpers.Commands {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				LogHelpers.Warn( "Not supposed to run on client." );
+				LogLibraries.Warn( "Not supposed to run on client." );
 				return;
 			}
 
 			if( Main.netMode == NetmodeID.Server && caller.CommandType != CommandType.Console ) {
-				if( !UserHelpers.HasBasicServerPrivilege( caller.Player ) ) {
+				if( !UserLibraries.HasBasicServerPrivilege( caller.Player ) ) {
 					caller.Reply( "Access denied.", Color.Red );
 					return;
 				}
@@ -164,9 +164,9 @@ namespace HamstarHelpers.Commands {
 
 			var tiles = new TileStructure( tileX, tileY, tileX + width, tileY + height, pattern );
 
-			ModCustomDataFileHelpers.PrepareDir( ModHelpersMod.Instance );
+			ModCustomDataFileLibraries.PrepareDir( ModHelpersMod.Instance );
 			string fileNameWithExt = "Tile Sample "+DateTime.UtcNow.ToFileTime()+".dat";
-			string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
+			string fullPath = ModCustomDataFileLibraries.GetFullPath( mod, fileNameWithExt );
 
 			output = tiles.TileCount+" tiles (from "+tiles.Bounds.Width+"x"+tiles.Bounds.Height+" area)";
 			return tiles.Save( fullPath );

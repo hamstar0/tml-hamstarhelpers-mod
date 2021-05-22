@@ -1,14 +1,14 @@
 ﻿using System;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tiles.
 	/// </summary>
-	public partial class TileHelpers {
+	public partial class TileLibraries {
 		/// <summary>
 		/// Places a given tile of a given type. Synced.
 		/// </summary>
@@ -25,7 +25,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 				int chestIdx = WorldGen.PlaceChest( tileX, tileY, (ushort)tileType, false, placeStyle );
 				if( chestIdx == -1 ) { return false; }
 
-				int? chestType = Attributes.TileAttributeHelpers.GetChestTypeCode( tileType );
+				int? chestType = Attributes.TileAttributeLibraries.GetChestTypeCode( tileType );
 				if( !chestType.HasValue ) { return false; }
 
 				NetMessage.SendData(
@@ -98,14 +98,14 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 			try {
 				if( isContainer ) {
-					isTileKilled = TileHelpers.KillContainerTileSynced( tileX, tileY, effectOnly, dropsItem );
+					isTileKilled = TileLibraries.KillContainerTileSynced( tileX, tileY, effectOnly, dropsItem );
 				} else {
 					WorldGen.KillTile( tileX, tileY, false, effectOnly, !dropsItem );
 					isTileKilled = effectOnly || !Main.tile[ tileX, tileY ].active();
 				}
 			} catch( Exception e ) {
 				if( !suppressErrors ) {
-					LogHelpers.WarnOnce( "Could not kill type (with sync) at "+tileX+", "+tileY
+					LogLibraries.WarnOnce( "Could not kill type (with sync) at "+tileX+", "+tileY
 						+" (effectOnly:"+effectOnly+", dropsItem:"+dropsItem
 						+": "+e.Message );
 					throw e;

@@ -2,11 +2,11 @@
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.Items {
+namespace HamstarHelpers.Libraries.Items {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to music box items.
 	/// </summary>
-	public class MusicBoxHelpers {
+	public class MusicBoxLibraries {
 		/// <summary>
 		/// Gets a set of all vanilla music box item ids.
 		/// </summary>

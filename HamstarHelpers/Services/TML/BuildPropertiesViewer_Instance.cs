@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Reflection;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Services.TML {
@@ -58,7 +58,7 @@ namespace HamstarHelpers.Services.TML {
 				var modRefsRaw = (object)this.GetField( "modReferences" );
 				int length;
 
-				if( !ReflectionHelpers.Get( modRefsRaw, "Length", out length ) ) {
+				if( !ReflectionLibraries.Get( modRefsRaw, "Length", out length ) ) {
 					//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReferences" );
 					throw new ModHelpersException( "Invalid modReferences" );
 				}
@@ -69,13 +69,13 @@ namespace HamstarHelpers.Services.TML {
 				
 				for( int i=0; i<length; i++ ) {
 					object modRef;
-					if( !ReflectionHelpers.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
+					if( !ReflectionLibraries.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
 						//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.ModReferences - Invalid modReference array value "+i );
 						throw new ModHelpersException( "Invalid modReference array value " + i );
 					}
 
-					if( !ReflectionHelpers.Get( modRef, "mod", out name ) ) { continue; }
-					if( !ReflectionHelpers.Get( modRef, "target", out vers ) ) { continue; }
+					if( !ReflectionLibraries.Get( modRef, "mod", out name ) ) { continue; }
+					if( !ReflectionLibraries.Get( modRef, "target", out vers ) ) { continue; }
 					dict[ name ] = vers;
 				}
 				return dict;
@@ -88,7 +88,7 @@ namespace HamstarHelpers.Services.TML {
 				var modRefsRaw = (object)this.GetField( "modReferences" );
 				int length;
 
-				if( !ReflectionHelpers.Get( modRefsRaw, "Length", out length ) ) {
+				if( !ReflectionLibraries.Get( modRefsRaw, "Length", out length ) ) {
 					//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReferences" );
 					throw new ModHelpersException( "Invalid modReferences" );
 				}
@@ -99,13 +99,13 @@ namespace HamstarHelpers.Services.TML {
 
 				for( int i = 0; i < length; i++ ) {
 					object modRef;
-					if( !ReflectionHelpers.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
+					if( !ReflectionLibraries.RunMethod( modRefsRaw, "GetValue", new object[] { i }, out modRef ) ) {
 						//throw new HamstarException( "!ModHelpers.BuildPropertiesEditor.WeakReferences - Invalid modReference array value " + i );
 						throw new ModHelpersException( "Invalid modReference array value " + i );
 					}
 
-					if( !ReflectionHelpers.Get( modRef, "mod", out name ) ) { continue; }
-					if( !ReflectionHelpers.Get( modRef, "target", out vers ) ) { continue; }
+					if( !ReflectionLibraries.Get( modRef, "mod", out name ) ) { continue; }
+					if( !ReflectionLibraries.Get( modRef, "target", out vers ) ) { continue; }
 					dict[name] = vers;
 				}
 				return dict;

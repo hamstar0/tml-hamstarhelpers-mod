@@ -2,11 +2,11 @@
 using System;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Formatting {
+namespace HamstarHelpers.Libraries.DotNET.Formatting {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to formatting string data.
 	/// </summary>
-	public class StringFormattingHelpers {
+	public class StringFormattingLibraries {
 		/// <summary>
 		/// Escapes common markdown formatting characters.
 		/// </summary>

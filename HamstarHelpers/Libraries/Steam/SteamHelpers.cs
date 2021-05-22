@@ -1,11 +1,11 @@
 ﻿using System;
 
 
-namespace HamstarHelpers.Helpers.Steam {
+namespace HamstarHelpers.Libraries.Steam {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the Steam platform.
 	/// </summary>
-	public class SteamHelpers {
+	public class SteamLibraries {
 		/// <summary>
 		/// Attempts to get the current Steam user's Steam ID.
 		/// </summary>

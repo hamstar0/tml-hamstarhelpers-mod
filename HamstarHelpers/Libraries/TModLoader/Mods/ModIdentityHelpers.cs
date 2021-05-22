@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.Net;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.Net;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.TML;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Mods {
+namespace HamstarHelpers.Libraries.TModLoader.Mods {
 	/// <summary>
 	/// Very basic informational representation of a given mod.
 	/// </summary>
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to mod identification.
 	/// </summary>
-	public class ModIdentityHelpers {
+	public class ModIdentityLibraries {
 		/// <summary>
 		/// Reports whether a given mod (by the given internal name) is "properly presented": Has a valid description,
 		/// homepage, and any other needed checks (in future considerations).
@@ -56,13 +56,13 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 		public static bool IsLoadedModProperlyPresented( string modName ) {
 			Mod mod = ModLoader.GetMod( modName );
 			if( mod == null ) {
-				LogHelpers.Alert( "Invalid mod "+modName );
+				LogLibraries.Alert( "Invalid mod "+modName );
 				return false;
 			}
 
-			IDictionary<string, BuildPropertiesViewer> modInfos = ModListHelpers.GetLoadedModNamesWithBuildProps();
+			IDictionary<string, BuildPropertiesViewer> modInfos = ModListLibraries.GetLoadedModNamesWithBuildProps();
 			if( !modInfos.ContainsKey(modName) ) {
-				LogHelpers.Alert( "Missing mod "+modName );
+				LogLibraries.Alert( "Missing mod "+modName );
 				return false;
 			}
 
@@ -71,7 +71,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 				mod.Version, modInfos[modName].Description, modInfos[modName].Homepage
 			);
 
-			return ModIdentityHelpers.IsProperlyPresented( modInfo );
+			return ModIdentityLibraries.IsProperlyPresented( modInfo );
 		}
 
 
@@ -88,12 +88,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 				if( args.Found && modDb.ContainsKey( modName ) ) {
 					BasicModInfo modInfo = modDb[modName];
 
-					bool isProper = ModIdentityHelpers.IsProperlyPresented( modInfo );
+					bool isProper = ModIdentityLibraries.IsProperlyPresented( modInfo );
 
 					callback( isProper );
 				} else {
 					if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-						LogHelpers.Log( "Error retrieving mod data for '" + modName + "'" ); //+ "': " + reason );
+						LogLibraries.Log( "Error retrieving mod data for '" + modName + "'" ); //+ "': " + reason );
 					}
 				}
 				return false;
@@ -121,7 +121,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			//if( homepage.Contains( "discord.gg/" ) ) { return false; }
 
 			// Go away, url shorteners
-			foreach( string url in WebHelpers.UrlShortenerList ) {
+			foreach( string url in WebLibraries.UrlShortenerList ) {
 				if( homepage.Contains("/"+url+"/") ) { return false; }
 				if( homepage.Contains("."+url+"/") ) { return false; }
 			}

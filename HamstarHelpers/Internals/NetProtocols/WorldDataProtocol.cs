@@ -1,9 +1,9 @@
 ﻿using System;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Helpers.World;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
+using HamstarHelpers.Libraries.World;
 using HamstarHelpers.Services.Network.SimplePacket;
 
 
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public WorldDataProtocol() {
 			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 
-			this.HalfDays = WorldStateHelpers.GetElapsedHalfDays();
+			this.HalfDays = WorldStateLibraries.GetElapsedHalfDays();
 			this.HasObsoletedWorldId = myworld.HasObsoleteId;
 			this.ObsoletedWorldId = myworld.ObsoleteId;
 		}
@@ -62,7 +62,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public override void ReceiveOnClient() {
 			var mymod = ModHelpersMod.Instance;
 			var myworld = ModContent.GetInstance<ModHelpersWorld>();
-			var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
+			var myplayer = (ModHelpersPlayer)TmlLibraries.SafelyGetModPlayer( Main.LocalPlayer, ModHelpersMod.Instance, "ModHelpersPlayer" );
 
 			myworld.HasObsoleteId = this.HasObsoletedWorldId;
 			myworld.ObsoleteId = this.ObsoletedWorldId;

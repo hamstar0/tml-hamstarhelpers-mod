@@ -2,14 +2,14 @@
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Net {
+namespace HamstarHelpers.Libraries.Net {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to network play.
 	/// </summary>
-	public partial class NetPlayHelpers {
+	public partial class NetPlayLibraries {
 		/// <summary>
 		/// Gets the internet-facing IP address of the current machine.
 		/// </summary>

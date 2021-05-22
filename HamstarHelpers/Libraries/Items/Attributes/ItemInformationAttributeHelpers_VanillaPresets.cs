@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Items.Attributes {
+namespace HamstarHelpers.Libraries.Items.Attributes {
 	/// <summary>
 	/// A type of common vanilla tooltip.
 	/// </summary>

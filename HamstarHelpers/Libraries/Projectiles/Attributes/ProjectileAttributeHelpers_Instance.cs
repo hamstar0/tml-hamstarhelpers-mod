@@ -4,11 +4,11 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Projectiles.Attributes {
+namespace HamstarHelpers.Libraries.Projectiles.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to gameplay attributes of NPCs.
 	/// </summary>
-	public partial class ProjectileAttributeHelpers {
+	public partial class ProjectileAttributeLibraries {
 		private ReadOnlyDictionaryOfSets<string, int> _DisplayNamesToIds = null;
 
 
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Helpers.Projectiles.Attributes {
 
 		////////////////
 
-		internal ProjectileAttributeHelpers() { }
+		internal ProjectileAttributeLibraries() { }
 
 
 		////////////////
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.Projectiles.Attributes {
 			var dict = new Dictionary<string, ISet<int>>();
 
 			for( int i = 1; i < ProjectileLoader.ProjectileCount; i++ ) {
-				string name = ProjectileAttributeHelpers.GetQualifiedName( i );
+				string name = ProjectileAttributeLibraries.GetQualifiedName( i );
 
 				if( dict.ContainsKey( name ) ) {
 					dict[name].Add( i );

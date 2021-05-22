@@ -1,15 +1,16 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Terraria;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Internals.NetProtocols;
 using HamstarHelpers.Classes.Tiles.TilePattern;
 
-namespace HamstarHelpers.Helpers.Tiles {
+
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tiles relative to the world.
 	/// </summary>
-	public static class TileWorldHelpers {
+	public static class TileWorldLibraries {
 		/// <summary>
 		/// Indicates if a given tiles is within the visible player-accessible world's boundaries.
 		/// </summary>
@@ -88,7 +89,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			
 			for( int x = minX; x < maxX; x += sectX ) {
 				for( int y = minY; y < maxY; y += sectY ) {
-					TileWorldHelpers.RequestChunkFromServer( Netplay.GetSectionX(x), Netplay.GetSectionY(y) );
+					TileWorldLibraries.RequestChunkFromServer( Netplay.GetSectionX(x), Netplay.GetSectionY(y) );
 				}
 			}
 		}
@@ -101,7 +102,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		/// <param name="minimumMatchingNeighbors"></param>
 		/// <returns></returns>
 		public static Rectangle? FindBoxForAllOf( TilePattern pattern, int minimumMatchingNeighbors = 1 ) {
-			return TileFinderHelpers.FindBoxForAllOf( pattern, minimumMatchingNeighbors );
+			return TileFinderLibraries.FindBoxForAllOf( pattern, minimumMatchingNeighbors );
 		}
 	}
 }

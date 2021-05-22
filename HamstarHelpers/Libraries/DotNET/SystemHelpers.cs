@@ -3,11 +3,11 @@ using System;
 using System.Diagnostics;
 
 
-namespace HamstarHelpers.Helpers.DotNET {
+namespace HamstarHelpers.Libraries.DotNET {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to system-level functions.
 	/// </summary>
-	public class SystemHelpers {
+	public class SystemLibraries {
 		/// <summary>
 		/// Returns a timestamp spanning between 1970 and the present.
 		/// </summary>

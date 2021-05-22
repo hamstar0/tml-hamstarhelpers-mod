@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Reflection {
+namespace HamstarHelpers.Libraries.DotNET.Reflection {
 	/// <summary>
 	/// Attribute for indicating reference parameters that must be expected to sometimes occur as null
 	/// </summary>
@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
-	public partial class ReflectionHelpers {
+	public partial class ReflectionLibraries {
 		/*/// <summary>
 		/// Defines a parameter (to be passed into RunMethod) to properly identify generic parameters.
 		/// </summary>

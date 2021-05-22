@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Menus;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 
 				this.Contexts.Clear();
 			} catch( Exception e ) {
-				LogHelpers.Warn( "Could not finish unloading menu contexts: "+e.ToString() );
+				LogLibraries.Warn( "Could not finish unloading menu contexts: "+e.ToString() );
 			}
 		}
 
@@ -54,14 +54,14 @@ namespace HamstarHelpers.Services.UI.Menus {
 
 			MenuUIDefinition menuDef = this.CurrentMenuUI;
 			if( !this.Contexts.ContainsKey( menuDef ) ) {
-				LogHelpers.Warn( "Missing menu context " + menuDef );
+				LogLibraries.Warn( "Missing menu context " + menuDef );
 				return;
 			}
 
 			IDictionary<string, MenuContext> contexts = this.Contexts[ menuDef ];
 
 			foreach( MenuContext context in contexts.Values ) {
-				context.Hide( MainMenuHelpers.GetMenuUI(this.CurrentMenuUI) );
+				context.Hide( MainMenuLibraries.GetMenuUI(this.CurrentMenuUI) );
 			}
 		}
 

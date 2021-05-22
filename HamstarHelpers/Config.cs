@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
-using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Libraries.User;
 
 
 namespace HamstarHelpers {
@@ -329,7 +329,7 @@ namespace HamstarHelpers {
 
 		/// @private
 		public override bool AcceptClientChanges( ModConfig pendingConfig, int whoAmI, ref string message ) {
-			if( !UserHelpers.HasBasicServerPrivilege( Main.player[whoAmI] ) ) {
+			if( !UserLibraries.HasBasicServerPrivilege( Main.player[whoAmI] ) ) {
 				message = "Not authorized.";
 
 				var newConfig = pendingConfig as ModHelpersPrivilegedUserConfig;

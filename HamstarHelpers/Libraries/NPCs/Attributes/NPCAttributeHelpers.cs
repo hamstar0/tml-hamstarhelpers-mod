@@ -3,11 +3,11 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.NPCs.Attributes {
+namespace HamstarHelpers.Libraries.NPCs.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to gameplay attributes of NPCs.
 	/// </summary>
-	public partial class NPCAttributeHelpers {
+	public partial class NPCAttributeLibraries {
 		/// <summary>
 		/// Table of NPC ids by qualified names.
 		/// </summary>

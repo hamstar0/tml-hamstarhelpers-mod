@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.UI.FreeHUD;
 using HamstarHelpers.Services.UI.LayerDisable;
 
@@ -67,7 +67,7 @@ namespace HamstarHelpers {
 				try {
 					this.ModLock.DrawWarningIfMismatched( Main.spriteBatch );
 				} catch( Exception e ) {
-					LogHelpers.Warn( "modlockLayerDraw - " + e.ToString() );
+					LogLibraries.Warn( "modlockLayerDraw - " + e.ToString() );
 				}
 				return true;
 			};
@@ -122,7 +122,7 @@ namespace HamstarHelpers {
 
 				this.Inbox.Draw( sb );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 			}
 		}
 	}

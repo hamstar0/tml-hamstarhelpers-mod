@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
 
 
-namespace HamstarHelpers.Helpers.Fx {
+namespace HamstarHelpers.Libraries.Fx {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to visual effects.
 	/// </summary>
-	public partial class LightningFxHelpers {
+	public partial class LightningFxLibraries {
 		/// <summary>
 		/// Creates a lightning effect. Must be called in a Draw function.
 		/// </summary>
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// <param name="scale"></param>
 		/// <param name="color"></param>
 		public static void DrawLightning( Vector2 wldStartPos, Vector2 wldEndPos, float scale, Color color ) {
-			LightningFxHelpers.DrawScreenLightning( wldStartPos - Main.screenPosition, wldEndPos - Main.screenPosition, scale, color );
+			LightningFxLibraries.DrawScreenLightning( wldStartPos - Main.screenPosition, wldEndPos - Main.screenPosition, scale, color );
 		}
 
 		/// <summary>
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// <param name="scale"></param>
 		/// <param name="color"></param>
 		public static void DrawScreenLightning( Vector2 screenStartPos, Vector2 screenEndPos, float scale, Color color ) {
-			var rand = TmlHelpers.SafelyGetRand();
+			var rand = TmlLibraries.SafelyGetRand();
 			var segs = new List<(Vector2 Beg, Vector2 End)>();
 
 			Vector2 startPos = screenStartPos;
@@ -65,7 +65,7 @@ namespace HamstarHelpers.Helpers.Fx {
 //	+", scrStart: "+screenStartPos.ToShortString()+", scrEnd: "+screenEndPos.ToShortString()
 //	+", segs: "+string.Join(", ", segs.Select(seg=>seg.Beg.ToShortString()+"->"+seg.End.ToShortString())));
 			for( int i=0; i<segs.Count; i++ ) {
-				LightningFxHelpers.DrawLightningBeam( segs[i].Beg, segs[i].End, scale, color );
+				LightningFxLibraries.DrawLightningBeam( segs[i].Beg, segs[i].End, scale, color );
 			}
 		}
 

@@ -2,11 +2,11 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Projectiles {
+namespace HamstarHelpers.Libraries.Projectiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players relative to projectile resources (e.g. textures).
 	/// </summary>
-	public partial class ProjectileResourceHelpers {
+	public partial class ProjectileResourceLibraries {
 		/// <summary>
 		/// Gets a projectile's texture. Loads projectiles as needed.
 		/// </summary>

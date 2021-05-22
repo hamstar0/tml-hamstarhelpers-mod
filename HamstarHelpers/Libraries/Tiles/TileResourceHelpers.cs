@@ -2,11 +2,11 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players relative to Tile resources (e.g. textures).
 	/// </summary>
-	public partial class TileResourceHelpers {
+	public partial class TileResourceLibraries {
 		/// <summary>
 		/// Gets a tile's texture. Loads tiles as needed.
 		/// </summary>

@@ -1,13 +1,13 @@
-﻿using HamstarHelpers.Helpers.TModLoader;
+﻿using HamstarHelpers.Libraries.TModLoader;
 using System;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// @private
-	public partial class WorldStateHelpers {
+	public partial class WorldStateLibraries {
 		private bool IsDay;
 		private int HalfDaysElapsed;
 		private long TicksElapsed;
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Helpers.World {
 		internal void UpdateUponWorldBeingPlayed() {
 			var mymod = ModHelpersMod.Instance;
 
-			if( !LoadHelpers.IsWorldSafelyBeingPlayed() ) {
+			if( !LoadLibraries.IsWorldSafelyBeingPlayed() ) {
 				this.IsDay = Main.dayTime;
 			} else {
 				if( this.IsDay != Main.dayTime ) {

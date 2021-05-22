@@ -1,14 +1,14 @@
-﻿using HamstarHelpers.Helpers.UI;
+﻿using HamstarHelpers.Libraries.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Projectiles {
+namespace HamstarHelpers.Libraries.Projectiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players relative to projectiles.
 	/// </summary>
-	public partial class ProjectileHelpers {
+	public partial class ProjectileLibraries {
 		/// <summary>
 		/// Draws a given projectile
 		/// </summary>
@@ -38,7 +38,7 @@ namespace HamstarHelpers.Helpers.Projectiles {
 			Vector2 newpos;
 			if( applyZoom ) {
 				//newpos = UIHelpers.ConvertToScreenPosition( pos );
-				newpos = UIZoomHelpers.ApplyZoomFromScreenCenter( pos - Main.screenPosition, null, false, null, null );
+				newpos = UIZoomLibraries.ApplyZoomFromScreenCenter( pos - Main.screenPosition, null, false, null, null );
 			} else {
 				newpos = pos - Main.screenPosition;
 			}

@@ -7,11 +7,11 @@ using ReLogic.Graphics;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Debug {
+namespace HamstarHelpers.Libraries.Debug {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to debugging and debug outputs.
 	/// </summary>
-	public partial class DebugHelpers {
+	public partial class DebugLibraries {
 		private static object MyPrintLock = new object();
 
 		////////////////
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Helpers.Debug {
 				msg = string.Join( ".", afterMsgSplit );
 			}
 
-			DebugHelpers.Print( label, msg );
+			DebugLibraries.Print( label, msg );
 		}
 
 		/// <summary>
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// displayed message of this identifier.</param>
 		/// <param name="msg">Message to display.</param>
 		public static void Print( string msgLabel, string msg ) {
-			DebugHelpers.Print( msgLabel, msg, 20 );
+			DebugLibraries.Print( msgLabel, msg, 20 );
 		}
 
 		/// <summary>
@@ -75,22 +75,22 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="msg">Message to display.</param>
 		/// <param name="tickDuration">Tick duration to display the given message.</param>
 		public static void Print( string msgLabel, string msg, int tickDuration ) {
-			lock( DebugHelpers.MyPrintLock ) {
-				DebugHelpers.Texts[msgLabel] = msg;
-				DebugHelpers.TextTimes[msgLabel] = tickDuration;
-				DebugHelpers.TextTimeStart[msgLabel] = tickDuration;
-				DebugHelpers.TextShade[msgLabel] = 255;
+			lock( DebugLibraries.MyPrintLock ) {
+				DebugLibraries.Texts[msgLabel] = msg;
+				DebugLibraries.TextTimes[msgLabel] = tickDuration;
+				DebugLibraries.TextTimeStart[msgLabel] = tickDuration;
+				DebugLibraries.TextShade[msgLabel] = 255;
 
-				if( DebugHelpers.Texts.Count > 16 ) {
-					foreach( string key in DebugHelpers.TextTimes.Keys.ToList() ) {
-						if( DebugHelpers.TextTimes[key] > 0 ) { continue; }
+				if( DebugLibraries.Texts.Count > 16 ) {
+					foreach( string key in DebugLibraries.TextTimes.Keys.ToList() ) {
+						if( DebugLibraries.TextTimes[key] > 0 ) { continue; }
 
-						DebugHelpers.Texts.Remove( key );
-						DebugHelpers.TextTimes.Remove( key );
-						DebugHelpers.TextTimeStart.Remove( key );
-						DebugHelpers.TextShade.Remove( key );
+						DebugLibraries.Texts.Remove( key );
+						DebugLibraries.TextTimes.Remove( key );
+						DebugLibraries.TextTimeStart.Remove( key );
+						DebugLibraries.TextShade.Remove( key );
 
-						if( DebugHelpers.Texts.Count <= 16 ) { break; }
+						if( DebugLibraries.Texts.Count <= 16 ) { break; }
 					}
 				}
 			}
@@ -102,18 +102,18 @@ namespace HamstarHelpers.Helpers.Debug {
 			int yPos = 0;
 			var strings = new List<(string, Vector2, Color)>();
 
-			lock( DebugHelpers.MyPrintLock ) {
-				foreach( string key in DebugHelpers.Texts.Keys.ToList() ) {
-					string msg = key + ":  " + DebugHelpers.Texts[key];
+			lock( DebugLibraries.MyPrintLock ) {
+				foreach( string key in DebugLibraries.Texts.Keys.ToList() ) {
+					string msg = key + ":  " + DebugLibraries.Texts[key];
 					Color color = Color.White;
 
-					if( DebugHelpers.TextShade.ContainsKey(key) ) {
-						int shade = DebugHelpers.TextShade[key];
-						if( DebugHelpers.TextTimes.ContainsKey(key) ) {
-							float timeRatio = (float)DebugHelpers.TextTimes[key] / (float)DebugHelpers.TextTimeStart[key];
+					if( DebugLibraries.TextShade.ContainsKey(key) ) {
+						int shade = DebugLibraries.TextShade[key];
+						if( DebugLibraries.TextTimes.ContainsKey(key) ) {
+							float timeRatio = (float)DebugLibraries.TextTimes[key] / (float)DebugLibraries.TextTimeStart[key];
 							shade = (int)Math.Min( 255f, 255f * timeRatio );
 						} else {
-							DebugHelpers.TextShade[key]--;
+							DebugLibraries.TextShade[key]--;
 						}
 						color.R = color.G = color.B = color.A = (byte)Math.Max(shade, 16);
 						color.R = (byte)Math.Min( (int)((float)color.R * 1.25f), 255 );
@@ -123,9 +123,9 @@ namespace HamstarHelpers.Helpers.Debug {
 
 					strings.Add( (msg, pos, color) );
 
-					if( DebugHelpers.TextTimes.ContainsKey(key) ) {
-						if( DebugHelpers.TextTimes[key] > 0 ) {
-							DebugHelpers.TextTimes[key]--;
+					if( DebugLibraries.TextTimes.ContainsKey(key) ) {
+						if( DebugLibraries.TextTimes[key] > 0 ) {
+							DebugLibraries.TextTimes[key]--;
 						}
 					}
 					yPos += 24;

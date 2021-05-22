@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;

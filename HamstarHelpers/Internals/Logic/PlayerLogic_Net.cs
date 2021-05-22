@@ -2,7 +2,7 @@
 using Terraria;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Internals.NetProtocols;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
 namespace HamstarHelpers.Internals.Logic {
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public void OnSingleEnterWorld( Player player ) {
 			if( !this.HasLoadedOldUID ) {
-				LogHelpers.Warn( "No (old) UID for " + player.name + " (" + player.whoAmI + ")" );
+				LogLibraries.Warn( "No (old) UID for " + player.name + " (" + player.whoAmI + ")" );
 				this.HasLoadedOldUID = true;	// Ugly failsafe; don't really know why data from ModPlayer.Load isn't available here
 			}
 			
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public void OnCurrentClientEnterWorld( Player player ) {
 			if( !this.HasLoadedOldUID ) {
-				LogHelpers.Alert( "No (old) UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
+				LogLibraries.Alert( "No (old) UID for " + player.name + " (" + player.whoAmI + ") to send to server" );
 				this.HasLoadedOldUID = true;	// Ugly failsafe; don't really know why data from ModPlayer.Load isn't available here
 			}
 
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Internals.Logic {
 		public void FinishWorldDataSyncOnLocal() {
 			this.HasSyncedWorldData = true;
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-				LogHelpers.Alert();
+				LogLibraries.Alert();
 			}
 			if( this.HasAllSyncedState() ) {
 				this.FinishAllSyncOnLocal();
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public bool HasAllSyncedState() {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-				LogHelpers.AlertOnce(
+				LogLibraries.AlertOnce(
 					"HasSyncedWorldData: " + this.HasSyncedWorldData +
 					", HasLoadedOldUID: " + this.HasLoadedOldUID
 				);
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Internals.Logic {
 			var mymod = ModHelpersMod.Instance;
 
 			if( ModHelpersConfig.Instance.DebugModeNetInfo ) {
-				LogHelpers.Alert();
+				LogLibraries.Alert();
 			}
 
 			this.IsSynced = true;

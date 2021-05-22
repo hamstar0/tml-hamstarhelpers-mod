@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile finding.
 	/// </summary>
-	public partial class TileFinderHelpers {
+	public partial class TileFinderLibraries {
 		/// <summary>
 		/// Counts tile types within the player's vicinity (used for checking biomes and stuff).
 		/// </summary>

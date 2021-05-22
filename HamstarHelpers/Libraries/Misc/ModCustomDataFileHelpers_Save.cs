@@ -4,15 +4,15 @@ using Newtonsoft.Json;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
 
 
-namespace HamstarHelpers.Helpers.Misc {
+namespace HamstarHelpers.Libraries.Misc {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to file IO for mod custom data.
 	/// </summary>
-	public partial class ModCustomDataFileHelpers {
+	public partial class ModCustomDataFileLibraries {
 		/// <summary>
 		/// Saves a custom mod data JSON file.
 		/// </summary>
@@ -29,22 +29,22 @@ namespace HamstarHelpers.Helpers.Misc {
 				JsonSerializerSettings jsonSettings,
 				bool overrides, T data )
 				where T : class {
-			string relDir = ModCustomDataFileHelpers.GetRelativeDirectoryPath( mod );
+			string relDir = ModCustomDataFileLibraries.GetRelativeDirectoryPath( mod );
 
 			if( data == null ) {
-				LogHelpers.Warn( "Failed to save json file " + fileNameNoExt + " at " + relDir + " - Data is null." );
+				LogLibraries.Warn( "Failed to save json file " + fileNameNoExt + " at " + relDir + " - Data is null." );
 				return false;
 			}
 
 			try {
-				ModCustomDataFileHelpers.PrepareDir( mod );
+				ModCustomDataFileLibraries.PrepareDir( mod );
 
-				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameNoExt + ".json" );
+				string fullPath = ModCustomDataFileLibraries.GetFullPath( mod, fileNameNoExt + ".json" );
 				string dataJson = JsonConvert.SerializeObject( data, jsonSettings );
 
-				return FileHelpers.SaveTextFile( dataJson, fullPath, false, !overrides );
+				return FileLibraries.SaveTextFile( dataJson, fullPath, false, !overrides );
 			} catch( IOException e ) {
-				LogHelpers.Warn( "Failed to save json file " + fileNameNoExt + " at " + relDir + " - " + e.ToString() );
+				LogLibraries.Warn( "Failed to save json file " + fileNameNoExt + " at " + relDir + " - " + e.ToString() );
 				throw new IOException( "Failed to save json file " + fileNameNoExt + " at " + relDir, e );
 			}
 		}
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="data"></param>
 		/// <returns></returns>
 		public static bool SaveAsJson<T>( Mod mod, string fileNameNoExt, bool overrides, T data ) where T : class {
-			return ModCustomDataFileHelpers.SaveAsJson<T>( mod, fileNameNoExt, new JsonSerializerSettings(), overrides, data );
+			return ModCustomDataFileLibraries.SaveAsJson<T>( mod, fileNameNoExt, new JsonSerializerSettings(), overrides, data );
 		}
 
 
@@ -81,23 +81,23 @@ namespace HamstarHelpers.Helpers.Misc {
 				bool overrides,
 				T data ) where T : class {
 			if( data == null ) {
-				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
-				LogHelpers.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
+				string fullPath = ModCustomDataFileLibraries.GetFullPath( mod, fileNameWithExt );
+				LogLibraries.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
 				return;
 			}
 
 			try {
-				ModCustomDataFileHelpers.PrepareDir( mod );
+				ModCustomDataFileLibraries.PrepareDir( mod );
 
-				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
+				string fullPath = ModCustomDataFileLibraries.GetFullPath( mod, fileNameWithExt );
 
 				string dataJson = JsonConvert.SerializeObject( data, jsonSettings );
 				byte[] dataBytes = System.Text.Encoding.UTF8.GetBytes( dataJson );
 
-				FileHelpers.SaveBinaryFile( dataBytes, fullPath, false, !overrides );
+				FileLibraries.SaveBinaryFile( dataBytes, fullPath, false, !overrides );
 			} catch( IOException e ) {
-				string fullDir = ModCustomDataFileHelpers.GetFullDirectoryPath( mod );
-				LogHelpers.Warn( "Failed to save binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
+				string fullDir = ModCustomDataFileLibraries.GetFullDirectoryPath( mod );
+				LogLibraries.Warn( "Failed to save binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
 				throw new IOException( "Failed to save binary file " + fileNameWithExt + " at " + fullDir, e );
 			}
 		}
@@ -111,7 +111,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="overrides">Replaces any existing files.</param>
 		/// <param name="data"></param>
 		public static void SaveAsBinaryJson<T>( Mod mod, string fileNameWithExt, bool overrides, T data ) where T : class {
-			ModCustomDataFileHelpers.SaveAsBinaryJson<T>( mod, fileNameWithExt, new JsonSerializerSettings(), overrides, data );
+			ModCustomDataFileLibraries.SaveAsBinaryJson<T>( mod, fileNameWithExt, new JsonSerializerSettings(), overrides, data );
 		}
 
 
@@ -130,20 +130,20 @@ namespace HamstarHelpers.Helpers.Misc {
 				bool overrides,
 				byte[] data ) {
 			if( data == null ) {
-				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
-				LogHelpers.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
+				string fullPath = ModCustomDataFileLibraries.GetFullPath( mod, fileNameWithExt );
+				LogLibraries.Warn( "Failed to save binary file " + fullPath + " - Data is null." );
 				return;
 			}
 
 			try {
-				ModCustomDataFileHelpers.PrepareDir( mod );
+				ModCustomDataFileLibraries.PrepareDir( mod );
 
-				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
+				string fullPath = ModCustomDataFileLibraries.GetFullPath( mod, fileNameWithExt );
 
-				FileHelpers.SaveBinaryFile( data, fullPath, false, !overrides );
+				FileLibraries.SaveBinaryFile( data, fullPath, false, !overrides );
 			} catch( IOException e ) {
-				string fullDir = ModCustomDataFileHelpers.GetFullDirectoryPath( mod );
-				LogHelpers.Warn( "Failed to save binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
+				string fullDir = ModCustomDataFileLibraries.GetFullDirectoryPath( mod );
+				LogLibraries.Warn( "Failed to save binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
 				throw new IOException( "Failed to save binary file " + fileNameWithExt + " at " + fullDir, e );
 			}
 		}

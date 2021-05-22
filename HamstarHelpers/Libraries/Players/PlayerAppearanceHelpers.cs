@@ -3,11 +3,11 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player's appearance.
 	/// </summary>
-	public class PlayerAppearanceHelpers {
+	public class PlayerAppearanceLibraries {
 		/// <summary>
 		/// Indicates if player has something on their back.
 		/// </summary>

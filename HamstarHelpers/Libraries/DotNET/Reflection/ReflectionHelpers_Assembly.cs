@@ -1,15 +1,15 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using System;
 using System.Reflection;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Reflection {
+namespace HamstarHelpers.Libraries.DotNET.Reflection {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
-	public partial class ReflectionHelpers {
+	public partial class ReflectionLibraries {
 		/// <summary>
 		/// Returns the "main" assembly of tModLoader/Terraria.
 		/// </summary>

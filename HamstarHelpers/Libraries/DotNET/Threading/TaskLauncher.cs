@@ -5,11 +5,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Timers;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Threading {
+namespace HamstarHelpers.Libraries.DotNET.Threading {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to threading.
 	/// </summary>
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Helpers.DotNET.Threading {
 
 			Task[] tasks = this.Tasks.Where(t=>t!=null).ToArray();
 			if( !Task.WaitAll( tasks, new TimeSpan( 0, 0, 10 ) ) ) {
-				LogHelpers.Alert( "Not all tasks successfully cancelled." );
+				LogLibraries.Alert( "Not all tasks successfully cancelled." );
 			}
 
 			this.CancelTokenSrc.Dispose();

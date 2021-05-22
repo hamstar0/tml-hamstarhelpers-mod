@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					reQueuedCounts.AddOrSet( matcher, 1 );
 
 					if( reQueuedCounts[matcher] > 100 ) {
-						LogHelpers.Warn( "Could not find all dependencies for " + matcher.GroupName );
+						LogLibraries.Warn( "Could not find all dependencies for " + matcher.GroupName );
 						return false;
 					}
 				}
@@ -84,12 +84,12 @@ namespace HamstarHelpers.Services.EntityGroups {
 					}
 					//}
 				} catch( Exception ) {
-					LogHelpers.Alert( "Compute fail for '"+matcher.GroupName+"' with ent ("+i+") "+(entityPool[i] == null ? "null" : entityPool[i].ToString()) );
+					LogLibraries.Alert( "Compute fail for '"+matcher.GroupName+"' with ent ("+i+") "+(entityPool[i] == null ? "null" : entityPool[i].ToString()) );
 				}
 			}
 
 			if( entityIdsOfGroup.Count == 0 ) {
-				LogHelpers.Info( "!Group "+matcher.GroupName+" has no entries." );
+				LogLibraries.Info( "!Group "+matcher.GroupName+" has no entries." );
 			}
 /*lock( EntityGroups.MatchersLock ) {
 LogHelpers.Log( "ComputeGroupMatch "+typeof(T).Name+" (pool="+entityPool.GetType().GenericTypeArguments?.First().Name+" "+entityPool.Count+")"

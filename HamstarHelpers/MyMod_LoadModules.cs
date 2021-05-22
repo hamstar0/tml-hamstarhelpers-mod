@@ -25,23 +25,23 @@ using HamstarHelpers.Services.ModHelpers;
 using HamstarHelpers.Services.Network;
 using HamstarHelpers.Services.RecipeHack;
 using HamstarHelpers.Services.UI.Menus;
-using HamstarHelpers.Helpers.Audio;
-using HamstarHelpers.Helpers.Misc;
-using HamstarHelpers.Helpers.TModLoader;
-using HamstarHelpers.Helpers.World;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Net;
-using HamstarHelpers.Helpers.Buffs;
-using HamstarHelpers.Helpers.Items.Attributes;
-using HamstarHelpers.Helpers.NPCs;
-using HamstarHelpers.Helpers.NPCs.Attributes;
-using HamstarHelpers.Helpers.Projectiles.Attributes;
-using HamstarHelpers.Helpers.Recipes;
-using HamstarHelpers.Helpers.XNA;
-using HamstarHelpers.Helpers.Players;
-using HamstarHelpers.Helpers.ModHelpers;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Libraries.Audio;
+using HamstarHelpers.Libraries.Misc;
+using HamstarHelpers.Libraries.TModLoader;
+using HamstarHelpers.Libraries.World;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Net;
+using HamstarHelpers.Libraries.Buffs;
+using HamstarHelpers.Libraries.Items.Attributes;
+using HamstarHelpers.Libraries.NPCs;
+using HamstarHelpers.Libraries.NPCs.Attributes;
+using HamstarHelpers.Libraries.Projectiles.Attributes;
+using HamstarHelpers.Libraries.Recipes;
+using HamstarHelpers.Libraries.XNA;
+using HamstarHelpers.Libraries.Players;
+using HamstarHelpers.Libraries.ModHelpers;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 
 
 namespace HamstarHelpers {
@@ -74,24 +74,24 @@ namespace HamstarHelpers {
 		internal WorldTimeHooks WorldTimeHooks;
 
 		// Helpers
-		internal ModFeaturesHelpers ModFeaturesHelpers;
-		internal LogHelpers LogHelpers;
-		internal NetPlayHelpers NetHelpers;
-		internal BuffHelpers BuffHelpers;
-		internal NPCAttributeHelpers NPCAttributeHelpers;
-		internal ProjectileAttributeHelpers ProjectileAttributeHelpers;
-		internal BuffAttributesHelpers BuffIdentityHelpers;
-		internal NPCBannerHelpers NPCBannerHelpers;
-		internal RecipeFinderHelpers RecipeFinderHelpers;
-		internal RecipeGroupHelpers RecipeGroupHelpers;
-		internal LoadHelpers LoadHelpers;
-		internal WorldStateHelpers WorldStateHelpers;
-		internal Helpers.Audio.MusicHelpers MusicHelpers;
-		internal PlayerIdentityHelpers PlayerIdentityHelpers;
-		internal ReflectionHelpers ReflectionHelpers;
-		internal XNAHelpers XnaHelpers;
-		internal ModListHelpers ModListHelpers;
-		internal ItemAttributeHelpers ItemAttributeHelpers;
+		internal ModFeaturesLibraries ModFeaturesHelpers;
+		internal LogLibraries LogHelpers;
+		internal NetPlayLibraries NetHelpers;
+		internal BuffLibraries BuffHelpers;
+		internal NPCAttributeLibraries NPCAttributeHelpers;
+		internal ProjectileAttributeLibraries ProjectileAttributeHelpers;
+		internal BuffAttributesLibraries BuffIdentityHelpers;
+		internal NPCBannerLibraries NPCBannerHelpers;
+		internal RecipeFinderLibraries RecipeFinderHelpers;
+		internal RecipeGroupLibraries RecipeGroupHelpers;
+		internal LoadLibraries LoadHelpers;
+		internal WorldStateLibraries WorldStateHelpers;
+		internal Libraries.Audio.MusicLibraries MusicHelpers;
+		internal PlayerIdentityLibraries PlayerIdentityHelpers;
+		internal ReflectionLibraries ReflectionHelpers;
+		internal XNALibraries XnaHelpers;
+		internal ModListLibraries ModListHelpers;
+		internal ItemAttributeLibraries ItemAttributeHelpers;
 
 		// Internals
 		internal InboxControl Inbox;
@@ -109,9 +109,9 @@ namespace HamstarHelpers {
 		////////////////
 		
 		private void InitializeModules() {
-			this.LogHelpers = new LogHelpers();
+			this.LogHelpers = new LogLibraries();
 			this.Loadables = new LoadableManager();
-			this.ReflectionHelpers = new ReflectionHelpers();
+			this.ReflectionHelpers = new ReflectionLibraries();
 
 			this.ExceptionMngr = new ModHelpersExceptionManager();
 			this.AnimatedColors = new AnimatedColorsManager();
@@ -124,23 +124,23 @@ namespace HamstarHelpers {
 			this.DataStore = new DataStore();
 			this.LoadHooks = new LoadHooks();
 			this.CustomLoadHooks = new CustomLoadHooks();
-			this.LoadHelpers = new LoadHelpers();
+			this.LoadHelpers = new LoadLibraries();
 
 			this.Timers = new Timers();
-			this.ModFeaturesHelpers = new ModFeaturesHelpers();
+			this.ModFeaturesHelpers = new ModFeaturesLibraries();
 			this.PacketProtocolMngr = new PacketProtocolManager();
 
-			this.BuffHelpers = new BuffHelpers();
-			this.NetHelpers = new NetPlayHelpers();
-			this.NPCAttributeHelpers = new NPCAttributeHelpers();
-			this.ProjectileAttributeHelpers = new ProjectileAttributeHelpers();
-			this.BuffIdentityHelpers = new BuffAttributesHelpers();
-			this.NPCBannerHelpers = new NPCBannerHelpers();
-			this.RecipeFinderHelpers = new RecipeFinderHelpers();
-			this.RecipeGroupHelpers = new RecipeGroupHelpers();
+			this.BuffHelpers = new BuffLibraries();
+			this.NetHelpers = new NetPlayLibraries();
+			this.NPCAttributeHelpers = new NPCAttributeLibraries();
+			this.ProjectileAttributeHelpers = new ProjectileAttributeLibraries();
+			this.BuffIdentityHelpers = new BuffAttributesLibraries();
+			this.NPCBannerHelpers = new NPCBannerLibraries();
+			this.RecipeFinderHelpers = new RecipeFinderLibraries();
+			this.RecipeGroupHelpers = new RecipeGroupLibraries();
 			this.PlayerHooks = new ExtendedPlayerHooks();
 			this.WorldTimeHooks = new WorldTimeHooks();
-			this.WorldStateHelpers = new WorldStateHelpers();
+			this.WorldStateHelpers = new WorldStateLibraries();
 			this.ControlPanelUI = new UIControlPanel();
 			this.ModLock = new ModLockService();
 			this.EntityGroups = new EntityGroups();
@@ -150,18 +150,18 @@ namespace HamstarHelpers {
 			this.GetModTags = new GetModTags();
 			this.MenuItemMngr = new MenuItemManager();
 			this.MenuContextMngr = new MenuContextServiceManager();
-			this.MusicHelpers = new Helpers.Audio.MusicHelpers();
-			this.PlayerIdentityHelpers = new PlayerIdentityHelpers();
+			this.MusicHelpers = new Libraries.Audio.MusicLibraries();
+			this.PlayerIdentityHelpers = new PlayerIdentityLibraries();
 			this.CustomHotkeys = new CustomHotkeys();
-			this.XnaHelpers = new XNAHelpers();
+			this.XnaHelpers = new XNALibraries();
 			this.Server = new Server();
 			//this.PlayerDataMngr = new PlayerDataManager();
 			this.SupportInfo = new SupportInfoDisplay();
 #pragma warning disable CS0618 // Type or member is obsolete
 			this.RecipeHack = new RecipeHack();
 #pragma warning restore CS0618 // Type or member is obsolete
-			this.ModListHelpers = new ModListHelpers();
-			this.ItemAttributeHelpers = new ItemAttributeHelpers();
+			this.ModListHelpers = new ModListLibraries();
+			this.ItemAttributeHelpers = new ItemAttributeLibraries();
 		}
 
 
@@ -244,7 +244,7 @@ namespace HamstarHelpers {
 		private void AddRecipeGroupsModules() {
 			NPCBannerHelpers.InitializeBanners();
 
-			foreach( var kv in RecipeGroupHelpers.Groups ) {
+			foreach( var kv in RecipeGroupLibraries.Groups ) {
 				RecipeGroup.RegisterGroup( kv.Key, kv.Value );
 			}
 		}

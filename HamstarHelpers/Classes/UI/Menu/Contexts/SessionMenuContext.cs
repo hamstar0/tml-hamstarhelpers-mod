@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Classes.UI.Menus;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Services.UI.Menus;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

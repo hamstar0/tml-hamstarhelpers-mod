@@ -2,11 +2,11 @@
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.Projectiles {
+namespace HamstarHelpers.Libraries.Projectiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players relative to projectiles.
 	/// </summary>
-	public partial class ProjectileHelpers {
+	public partial class ProjectileLibraries {
 		/// <summary>
 		/// Applies projectile "hits", as if to make the effect of impacting something (including consuming penetrations).
 		/// </summary>

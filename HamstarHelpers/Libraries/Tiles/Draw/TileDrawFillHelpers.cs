@@ -5,11 +5,11 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Tiles.Draw {
+namespace HamstarHelpers.Libraries.Tiles.Draw {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to fill-'drawing' tiles into the world.
 	/// </summary>
-	public class TileDrawFillHelpers {
+	public class TileDrawFillLibraries {
 		/// <summary>
 		/// Fills an area (of the given pattern) with the given tile type.
 		/// </summary>

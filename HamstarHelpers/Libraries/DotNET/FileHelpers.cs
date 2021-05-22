@@ -4,11 +4,11 @@ using System.IO.Compression;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Helpers.DotNET {
+namespace HamstarHelpers.Libraries.DotNET {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to basic file IO.
 	/// </summary>
-	public partial class FileHelpers {
+	public partial class FileLibraries {
 		/// <summary>
 		/// Sanitizes a string to work correctly as a file path.
 		/// </summary>

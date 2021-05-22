@@ -2,8 +2,8 @@
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 
 
 namespace HamstarHelpers.Services.Maps {

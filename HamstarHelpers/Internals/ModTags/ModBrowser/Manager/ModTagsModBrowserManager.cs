@@ -1,9 +1,9 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Menu.UI;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using HamstarHelpers.Internals.ModTags.ModBrowser.UI;
 using HamstarHelpers.Internals.WebRequests;
@@ -37,8 +37,8 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.Manager {
 			CustomLoadHooks.AddHook( GetModTags.TagsReceivedHookValidator, ( args ) => {
 				Timers.SetTimer( "ModBrowserDefaultTagStates", 15, true, () => {
 					bool isLoading;
-					if( !ReflectionHelpers.Get( modBrowserUi, "loading", out isLoading ) ) {
-						LogHelpers.Warn( "ModBrowserTagsMenuContext - No 'loading'." );
+					if( !ReflectionLibraries.Get( modBrowserUi, "loading", out isLoading ) ) {
+						LogLibraries.Warn( "ModBrowserTagsMenuContext - No 'loading'." );
 						return false;
 					}
 

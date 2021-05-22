@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Services.UI.Menus;
 using System;
@@ -10,11 +10,11 @@ using Terraria.ModLoader.Config;
 using Terraria.UI;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Menus {
+namespace HamstarHelpers.Libraries.TModLoader.Menus {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the main menu.
 	/// </summary>
-	public class MainMenuHelpers {
+	public class MainMenuLibraries {
 		/// <summary>
 		/// Gets a menu UI corresponding to a given menu definition.
 		/// </summary>
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 			string menuUiName = Enum.GetName( typeof(MenuUIDefinition), menuDef );
 
 			UIState menuUi;
-			ReflectionHelpers.Get( typeof(MenuUIs), null, menuUiName, out menuUi );
+			ReflectionLibraries.Get( typeof(MenuUIs), null, menuUiName, out menuUi );
 
 			return menuUi;
 		}
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// Switches to the list of mod configs menu.
 		/// </summary>
 		public static void OpenModConfigListUI() {
-			Type interfaceType = ReflectionHelpers.GetMainAssembly()
+			Type interfaceType = ReflectionLibraries.GetMainAssembly()
 				.GetType( "Terraria.ModLoader.UI.Interface" );
 
 			if( !Main.gameMenu ) {
@@ -45,16 +45,16 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				Main.npcChatText = "";
 				Main.inFancyUI = true;
 			} else {
-				if( !ReflectionHelpers.Get(interfaceType, null, "modConfigID", out Main.menuMode) ) {
-					LogHelpers.Warn( "Could not get Interface.modConfigID" );
+				if( !ReflectionLibraries.Get(interfaceType, null, "modConfigID", out Main.menuMode) ) {
+					LogLibraries.Warn( "Could not get Interface.modConfigID" );
 					return;
 				}
 			}
 
 			UIState modConfigListInterfaceObj;
-			if( !ReflectionHelpers.Get(interfaceType, null, "modConfigList", out modConfigListInterfaceObj)
+			if( !ReflectionLibraries.Get(interfaceType, null, "modConfigList", out modConfigListInterfaceObj)
 					|| modConfigListInterfaceObj == null ) {
-				LogHelpers.Warn( "Could not get Interface.modConfigList" );
+				LogLibraries.Warn( "Could not get Interface.modConfigList" );
 				return;
 			}
 
@@ -69,7 +69,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// </summary>
 		/// <param name="config"></param>
 		public static void OpenModConfigUI( ModConfig config ) {
-			Type interfaceType = ReflectionHelpers.GetMainAssembly()
+			Type interfaceType = ReflectionLibraries.GetMainAssembly()
 				.GetType( "Terraria.ModLoader.UI.Interface" );
 
 			if( !Main.gameMenu ) {
@@ -80,21 +80,21 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				Main.npcChatText = "";
 				Main.inFancyUI = true;
 			} else {
-				if( !ReflectionHelpers.Get( interfaceType, null, "modConfigID", out Main.menuMode ) ) {
-					LogHelpers.Warn( "Could not get Interface.modConfigID" );
+				if( !ReflectionLibraries.Get( interfaceType, null, "modConfigID", out Main.menuMode ) ) {
+					LogLibraries.Warn( "Could not get Interface.modConfigID" );
 					return;
 				}
 			}
 
 			UIState modConfigInterfaceObj;
-			if( !ReflectionHelpers.Get(interfaceType, null, "modConfig", out modConfigInterfaceObj) || modConfigInterfaceObj == null ) {
-				LogHelpers.Warn( "Could not get Interface.modConfig" );
+			if( !ReflectionLibraries.Get(interfaceType, null, "modConfig", out modConfigInterfaceObj) || modConfigInterfaceObj == null ) {
+				LogLibraries.Warn( "Could not get Interface.modConfig" );
 				return;
 			}
 
 			object _;
-			if( !ReflectionHelpers.RunMethod(modConfigInterfaceObj, "SetMod", new object[] { config.mod, config }, out _) ) {
-				LogHelpers.Warn( "Could not run Interface.modConfig.SetMod" );
+			if( !ReflectionLibraries.RunMethod(modConfigInterfaceObj, "SetMod", new object[] { config.mod, config }, out _) ) {
+				LogLibraries.Warn( "Could not run Interface.modConfig.SetMod" );
 				return;
 			}
 
@@ -108,12 +108,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// Loads the mod browser menu.
 		/// </summary>
 		public static void OpenModBrowserMenu() {
-			Type interfaceType = ReflectionHelpers.GetMainAssembly()
+			Type interfaceType = ReflectionLibraries.GetMainAssembly()
 				.GetType( "Terraria.ModLoader.UI.Interface" );
 
 			int modBrowserMenuMode;
-			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowserID", out modBrowserMenuMode ) ) {
-				LogHelpers.Warn( "Could not switch to mod browser menu context." );
+			if( !ReflectionLibraries.Get( interfaceType, null, "modBrowserID", out modBrowserMenuMode ) ) {
+				LogLibraries.Warn( "Could not switch to mod browser menu context." );
 				return;
 			}
 
@@ -121,8 +121,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 			Main.menuMode = modBrowserMenuMode;
 
 			UIState modBrowserUi;
-			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowser", out modBrowserUi ) ) {
-				LogHelpers.Warn( "Could not acquire mod browser UI." );
+			if( !ReflectionLibraries.Get( interfaceType, null, "modBrowser", out modBrowserUi ) ) {
+				LogLibraries.Warn( "Could not acquire mod browser UI." );
 				return;
 			}
 
@@ -132,7 +132,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				}
 
 				bool isLoading;
-				if( !ReflectionHelpers.Get( modBrowserUi, "loading", out isLoading ) ) {
+				if( !ReflectionLibraries.Get( modBrowserUi, "loading", out isLoading ) ) {
 					return false;
 				}
 
@@ -140,7 +140,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 					return true;
 				}
 
-				ModMenuHelpers.ApplyModBrowserFilter( "", false, new List<string>() );
+				ModMenuLibraries.ApplyModBrowserFilter( "", false, new List<string>() );
 				return false;
 			} );
 		}
@@ -153,12 +153,12 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 		/// <param name="packTitle">Name of the set.</param>
 		/// <param name="modNames">Mod (internal) names of the set.</param>
 		public static void OpenModBrowserWithDownloadList( string packTitle, List<string> modNames ) {
-			Type interfaceType = ReflectionHelpers.GetMainAssembly()
+			Type interfaceType = ReflectionLibraries.GetMainAssembly()
 				.GetType( "Terraria.ModLoader.UI.Interface" );
 
 			int modBrowserMenuMode;
-			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowserID", out modBrowserMenuMode ) ) {
-				LogHelpers.Warn( "Could not switch to mod browser menu context." );
+			if( !ReflectionLibraries.Get( interfaceType, null, "modBrowserID", out modBrowserMenuMode ) ) {
+				LogLibraries.Warn( "Could not switch to mod browser menu context." );
 				return;
 			}
 
@@ -166,8 +166,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 			Main.menuMode = modBrowserMenuMode;
 
 			UIState modBrowserUi;
-			if( !ReflectionHelpers.Get( interfaceType, null, "modBrowser", out modBrowserUi ) ) {
-				LogHelpers.Warn( "Could not acquire mod browser UI." );
+			if( !ReflectionLibraries.Get( interfaceType, null, "modBrowser", out modBrowserUi ) ) {
+				LogLibraries.Warn( "Could not acquire mod browser UI." );
 				return;
 			}
 
@@ -177,7 +177,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 				}
 
 				bool isLoading;
-				if( !ReflectionHelpers.Get( modBrowserUi, "loading", out isLoading ) ) {
+				if( !ReflectionLibraries.Get( modBrowserUi, "loading", out isLoading ) ) {
 					return false;
 				}
 
@@ -185,7 +185,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Menus {
 					return true;
 				}
 
-				ModMenuHelpers.ApplyModBrowserFilter( packTitle, true, modNames );
+				ModMenuLibraries.ApplyModBrowserFilter( packTitle, true, modNames );
 				return false;
 			} );
 

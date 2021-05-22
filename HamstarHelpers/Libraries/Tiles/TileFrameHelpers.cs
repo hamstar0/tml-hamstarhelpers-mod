@@ -4,11 +4,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile frames.
 	/// </summary>
-	public class TileFrameHelpers {
+	public class TileFrameLibraries {
 		/// <summary></summary>
 		public const int PlainChestFrame = 0;
 
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 
 		////
 
-		static TileFrameHelpers() {
+		static TileFrameLibraries() {
 			var chestTypesByFrame = new Dictionary<int, string> {
 				{ 0, "Chest" },
 				{ 1, "Gold Chest" },
@@ -123,10 +123,10 @@ namespace HamstarHelpers.Helpers.Tiles {
 				{ 53, "Golden Chest" },
 			};
 
-			TileFrameHelpers.VanillaChestTypeNamesByFrame = new ReadOnlyDictionary<int, string>(
+			TileFrameLibraries.VanillaChestTypeNamesByFrame = new ReadOnlyDictionary<int, string>(
 				chestTypesByFrame
 			);
-			TileFrameHelpers.VanillaChestFramesByTypeName = new ReadOnlyDictionary<string, int>(
+			TileFrameLibraries.VanillaChestFramesByTypeName = new ReadOnlyDictionary<string, int>(
 				chestTypesByFrame.ToDictionary( kv => kv.Value, kv => kv.Key )
 			);
 		}

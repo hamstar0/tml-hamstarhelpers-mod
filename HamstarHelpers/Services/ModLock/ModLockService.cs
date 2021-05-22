@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 
 
 namespace HamstarHelpers.Services.ModHelpers {
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Services.ModHelpers {
 			var modlock = mymod.ModLock;
 			var modworld = ModContent.GetInstance<ModHelpersWorld>();
 
-			IEnumerable<Mod> allMods = ModListHelpers.GetAllLoadedModsPreferredOrder();
+			IEnumerable<Mod> allMods = ModListLibraries.GetAllLoadedModsPreferredOrder();
 			ISet<string> modNames = new HashSet<string>();
 
 			foreach( Mod mod in allMods ) {

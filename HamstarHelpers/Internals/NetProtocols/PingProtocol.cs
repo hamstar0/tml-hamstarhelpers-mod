@@ -1,5 +1,5 @@
 ﻿using System;
-using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Libraries.DotNET;
 using HamstarHelpers.Services.Network.SimplePacket;
 
 
@@ -23,14 +23,14 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public PingProtocol() {
-			this.StartTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
+			this.StartTime = (long)SystemLibraries.TimeStamp().TotalMilliseconds;
 		}
 
 
 		////////////////
 
 		public override void ReceiveOnServer( int fromWho ) {
-			this.ServerBounceTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
+			this.ServerBounceTime = (long)SystemLibraries.TimeStamp().TotalMilliseconds;
 
 			if( this.ClientRoundTripTime == -1 ) {
 				SimplePacket.SendToClient( this, fromWho, -1 );
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 
 		public override void ReceiveOnClient() {
-			this.ClientRoundTripTime = (long)SystemHelpers.TimeStamp().TotalMilliseconds;
+			this.ClientRoundTripTime = (long)SystemLibraries.TimeStamp().TotalMilliseconds;
 
 			SimplePacket.SendToServer( this );
 

@@ -5,11 +5,11 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.HUD {
+namespace HamstarHelpers.Libraries.HUD {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the HUD health bar. 
 	/// </summary>
-	public class HUDHealthBarHelpers {
+	public class HUDHealthBarLibraries {
 		/// <summary>
 		/// Gets the screen coordinates of the last non-empty heart in the vanilla life bar.
 		/// </summary>

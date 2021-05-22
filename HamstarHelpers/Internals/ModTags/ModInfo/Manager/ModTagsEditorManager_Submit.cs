@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.UI.Menus;
@@ -16,7 +16,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 			if( string.IsNullOrEmpty( this.CurrentModName ) ) {
 				UIState prevMenuUI = MenuContextService.GetPreviousMenuUI();
 				UIState currMenuUI = MenuContextService.GetCurrentMenuUI();
-				this.CurrentModName = ModMenuHelpers.GetModName( prevMenuUI, currMenuUI ) ?? "";
+				this.CurrentModName = ModMenuLibraries.GetModName( prevMenuUI, currMenuUI ) ?? "";
 
 				if( string.IsNullOrEmpty( this.CurrentModName ) ) {
 					throw new ModHelpersException( "Invalid mod name." );
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 				} else {
 					this.SetInfoText( "Error (exception): " + e.Message, Color.Red );
 				}
-				LogHelpers.Log( e.ToString() );
+				LogLibraries.Log( e.ToString() );
 			};
 
 			ISet<string> newTags = this.GetTagsWithGivenState( 1 );
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.Manager {
 		private void PostSubmitTags( bool success, string output ) {
 			if( success ) {
 				this.SetInfoText( output, Color.Lime );
-				LogHelpers.Log( "Mod info submit result: " + output );
+				LogLibraries.Log( "Mod info submit result: " + output );
 			}
 
 			this.TagsUI.RefreshControls();

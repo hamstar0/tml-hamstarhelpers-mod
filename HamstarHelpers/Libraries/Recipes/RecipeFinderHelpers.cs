@@ -1,17 +1,17 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Recipes {
+namespace HamstarHelpers.Libraries.Recipes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to recipe finding.
 	/// </summary>
-	public partial class RecipeFinderHelpers {
+	public partial class RecipeFinderLibraries {
 		/// <summary>
 		/// Gets the `Main.recipe` indexes of each recipe that crafts a given item.
 		/// </summary>
@@ -25,7 +25,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 			var mymod = ModHelpersMod.Instance;
 			IDictionary<int, ISet<int>> recipeIdxLists = mymod.RecipeFinderHelpers.RecipeIndexesByItemNetID;
 			
-			lock( RecipeFinderHelpers.MyLock ) {
+			lock( RecipeFinderLibraries.MyLock ) {
 				if( recipeIdxLists.Count == 0 ) {
 					mymod.RecipeFinderHelpers.CacheItemRecipes();
 				}
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 		/// <param name="itemNetID"></param>
 		/// <returns></returns>
 		public static IList<Recipe> GetRecipesOfItem( int itemNetID ) {
-			return RecipeFinderHelpers.GetRecipeIndexesOfItem( itemNetID )
+			return RecipeFinderLibraries.GetRecipeIndexesOfItem( itemNetID )
 				.Select( idx=>Main.recipe[idx] )
 				.ToList();
 		}
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 			var mymod = ModHelpersMod.Instance;
 			IDictionary<int, ISet<int>> recipeIdxSets = mymod.RecipeFinderHelpers.RecipeIndexesOfIngredientNetIDs;
 
-			lock( RecipeFinderHelpers.MyLock ) {
+			lock( RecipeFinderLibraries.MyLock ) {
 				if( recipeIdxSets.Count == 0 ) {
 					mymod.RecipeFinderHelpers.CacheIngredientRecipes();
 				}

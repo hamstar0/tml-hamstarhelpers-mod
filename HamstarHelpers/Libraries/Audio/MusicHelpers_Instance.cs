@@ -5,9 +5,9 @@ using Terraria;
 using Terraria.ModLoader.Audio;
 
 
-namespace HamstarHelpers.Helpers.Audio {
+namespace HamstarHelpers.Libraries.Audio {
 	/// @private
-	public partial class MusicHelpers {
+	public partial class MusicLibraries {
 		private float Scale = 1f;
 
 		private Func<bool> OnTickGet;
@@ -16,13 +16,13 @@ namespace HamstarHelpers.Helpers.Audio {
 
 		////////////////
 
-		internal MusicHelpers() {
+		internal MusicLibraries() {
 			this.OnTickGet = Timers.MainOnTickGet();
-			Main.OnTick += MusicHelpers._Update;
+			Main.OnTick += MusicLibraries._Update;
 
 			LoadHooks.AddModUnloadHook( () => {
 				try {
-					Main.OnTick -= MusicHelpers._Update;
+					Main.OnTick -= MusicLibraries._Update;
 				} catch { }
 			} );
 		}

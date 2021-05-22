@@ -3,10 +3,10 @@ using System.Linq;
 using Terraria.ModLoader;
 using Terraria.UI;
 using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Threading;
-using HamstarHelpers.Helpers.ModHelpers;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Threading;
+using HamstarHelpers.Libraries.ModHelpers;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 
 
 namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
@@ -71,7 +71,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 				var mymod = ModHelpersMod.Instance;
 				int i = 1;
 
-				foreach( var mod in ModListHelpers.GetAllLoadedModsPreferredOrder() ) {
+				foreach( var mod in ModListLibraries.GetAllLoadedModsPreferredOrder() ) {
 					UIModData moditem = this.CreateModListItem( i, mod );
 					if( moditem == null ) {
 						continue;
@@ -107,7 +107,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 
 			this.Logic.SetCurrentMod( mod );
 
-			if( !ModFeaturesHelpers.HasGithub( mod ) ) {
+			if( !ModFeaturesLibraries.HasGithub( mod ) ) {
 				this.DisableIssueInput();
 			} else {
 				this.EnableIssueInput();

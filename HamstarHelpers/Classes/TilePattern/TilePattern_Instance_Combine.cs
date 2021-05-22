@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Terraria;
-using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Libraries.Tiles;
 
 
 namespace HamstarHelpers.Classes.Tiles.TilePattern {

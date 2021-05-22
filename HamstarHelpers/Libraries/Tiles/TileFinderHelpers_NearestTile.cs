@@ -1,15 +1,15 @@
 ﻿using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile finding.
 	/// </summary>
-	public partial class TileFinderHelpers {
+	public partial class TileFinderLibraries {
 		/// <summary>
 		/// Attempts to find an area of a given matching tile pattern within a larger area. Search begins from the
 		/// center.

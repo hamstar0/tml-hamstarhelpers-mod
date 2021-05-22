@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.GameInput;
 using Terraria.UI;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.UI;
+using HamstarHelpers.Libraries.UI;
 using HamstarHelpers.Services.Timers;
 
 
@@ -57,11 +57,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					Main.chatText = "";
 					Main.chatRelease = false;
 				}
-				if( !this.IsInteractive || !UIHelpers.IsUIAvailable(keyboardNotInVanillaUI: true) ) {
+				if( !this.IsInteractive || !UILibraries.IsUIAvailable(keyboardNotInVanillaUI: true) ) {
 					this.Unfocus();
 					return;
 				}
-				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
+				if( UILibraries.JustPressedKey(Keys.Escape) || UILibraries.JustPressedKey(Keys.Enter) ) {
 					this.Unfocus();
 					return;
 				}

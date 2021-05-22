@@ -1,14 +1,14 @@
 ﻿using System;
-using HamstarHelpers.Helpers.Dusts;
+using HamstarHelpers.Libraries.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Fx {
+namespace HamstarHelpers.Libraries.Fx {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to visual particle and dust effects.
 	/// </summary>
-	public class ParticleFxHelpers {
+	public class ParticleFxLibraries {
 		/// <summary>
 		/// Creates a dust cloud.
 		/// </summary>
@@ -53,7 +53,7 @@ namespace HamstarHelpers.Helpers.Fx {
 					int height=30,
 					float scale = 1f ) {
 			void makeDust( int type, int num ) {
-				DustHelpers.CreateMany(
+				DustLibraries.CreateMany(
 					dustType: type,
 					position: position,
 					quantity: num,
@@ -79,7 +79,7 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// <param name="scale"></param>
 		public static void MakeTeleportFx( Vector2 position, int quantity, int width=30, int height=30, float scale = 1f ) {
 			void makeDust( int type, int num ) {
-				DustHelpers.CreateMany(
+				DustLibraries.CreateMany(
 					dustType: type,
 					position: position,
 					quantity: num,
@@ -89,7 +89,7 @@ namespace HamstarHelpers.Helpers.Fx {
 				);
 			}
 
-			makeDust( DustHelpers.TeleportSparkleTypeID, quantity );
+			makeDust( DustLibraries.TeleportSparkleTypeID, quantity );
 		}
 
 		/// <summary>
@@ -102,7 +102,7 @@ namespace HamstarHelpers.Helpers.Fx {
 		/// <param name="scale"></param>
 		public static void MakeGoldGlitter( Vector2 position, int quantity, int width=30, int height=30, float scale = 1f ) {
 			void makeDust( int type, int num ) {
-				DustHelpers.CreateMany(
+				DustLibraries.CreateMany(
 					dustType: type,
 					position: position,
 					quantity: num,
@@ -112,7 +112,7 @@ namespace HamstarHelpers.Helpers.Fx {
 				);
 			}
 
-			makeDust( DustHelpers.GoldGlitterTypeID, quantity );
+			makeDust( DustLibraries.GoldGlitterTypeID, quantity );
 		}
 
 

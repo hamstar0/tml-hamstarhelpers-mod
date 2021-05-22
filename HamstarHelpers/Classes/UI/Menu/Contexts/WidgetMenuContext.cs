@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.TModLoader.Menus;
+﻿using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Services.UI.Menus;
 using Terraria.UI;
 
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Classes.UI.Menus {
 
 		/// @private
 		public override void OnDeactivation() {
-			UIState ui = MainMenuHelpers.GetMenuUI( this.MenuDefinitionOfContext );
+			UIState ui = MainMenuLibraries.GetMenuUI( this.MenuDefinitionOfContext );
 
 			this.MyElement.Remove();
 

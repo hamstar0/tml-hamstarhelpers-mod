@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -8,11 +8,11 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Misc {
+namespace HamstarHelpers.Libraries.Misc {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to file IO for mod custom data.
 	/// </summary>
-	public partial class ModCustomDataFileHelpers {
+	public partial class ModCustomDataFileLibraries {
 		/// <summary>
 		/// Loads a custom data JSON file of a given mod.
 		/// </summary>
@@ -24,20 +24,20 @@ namespace HamstarHelpers.Helpers.Misc {
 		public static T LoadJson<T>( Mod mod, string fileNameNoExt, JsonSerializerSettings jsonSettings )
 				where T : class {
 			try {
-				ModCustomDataFileHelpers.PrepareDir( mod );
+				ModCustomDataFileLibraries.PrepareDir( mod );
 
-				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameNoExt + ".json" );
-				string dataStr = FileHelpers.LoadTextFile( fullPath, false );
+				string fullPath = ModCustomDataFileLibraries.GetFullPath( mod, fileNameNoExt + ".json" );
+				string dataStr = FileLibraries.LoadTextFile( fullPath, false );
 
 				if( dataStr != null ) {
 					return JsonConvert.DeserializeObject<T>( dataStr, jsonSettings );
 				} else {
-					LogHelpers.Alert( "No json file "+fileNameNoExt+"." );
+					LogLibraries.Alert( "No json file "+fileNameNoExt+"." );
 					return null;
 				}
 			} catch( IOException e ) {
-				string fullDir = ModCustomDataFileHelpers.GetFullDirectoryPath( mod );
-				LogHelpers.Warn( "Failed to load json file " + fileNameNoExt + " at " + fullDir + " - " + e.ToString() );
+				string fullDir = ModCustomDataFileLibraries.GetFullDirectoryPath( mod );
+				LogLibraries.Warn( "Failed to load json file " + fileNameNoExt + " at " + fullDir + " - " + e.ToString() );
 				throw new IOException( "Failed to load json file " + fileNameNoExt + " at " + fullDir, e );
 			} catch( Exception e ) {
 				throw new ModHelpersException( "From "+fileNameNoExt+" ("+typeof(T).Name+")", e );
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="fileNameNoExt"></param>
 		/// <returns></returns>
 		public static T LoadJson<T>( Mod mod, string fileNameNoExt ) where T : class {
-			return ModCustomDataFileHelpers.LoadJson<T>( mod, fileNameNoExt, new JsonSerializerSettings() );
+			return ModCustomDataFileLibraries.LoadJson<T>( mod, fileNameNoExt, new JsonSerializerSettings() );
 		}
 
 
@@ -69,10 +69,10 @@ namespace HamstarHelpers.Helpers.Misc {
 		public static T LoadBinaryJson<T>( Mod mod, string fileNameWithExt, JsonSerializerSettings jsonSettings )
 				where T : class {
 			try {
-				ModCustomDataFileHelpers.PrepareDir( mod );
+				ModCustomDataFileLibraries.PrepareDir( mod );
 
-				string fullPath = ModCustomDataFileHelpers.GetFullPath( mod, fileNameWithExt );
-				byte[] dataBytes = FileHelpers.LoadBinaryFile( fullPath, false );
+				string fullPath = ModCustomDataFileLibraries.GetFullPath( mod, fileNameWithExt );
+				byte[] dataBytes = FileLibraries.LoadBinaryFile( fullPath, false );
 				if( dataBytes == null ) {
 					return null;
 				}
@@ -82,12 +82,12 @@ namespace HamstarHelpers.Helpers.Misc {
 				if( dataBytes != null ) {
 					return JsonConvert.DeserializeObject<T>( dataJson, jsonSettings );
 				} else {
-					LogHelpers.Alert( "No json file " + fileNameWithExt + "." );
+					LogLibraries.Alert( "No json file " + fileNameWithExt + "." );
 					return null;
 				}
 			} catch( IOException e ) {
-				string fullDir = ModCustomDataFileHelpers.GetFullDirectoryPath( mod );
-				LogHelpers.Warn( "Failed to load binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
+				string fullDir = ModCustomDataFileLibraries.GetFullDirectoryPath( mod );
+				LogLibraries.Warn( "Failed to load binary file " + fileNameWithExt + " at " + fullDir + " - " + e.ToString() );
 				throw new IOException( "Failed to load binary file " + fileNameWithExt + " at " + fullDir, e );
 			} catch( Exception e ) {
 				throw new ModHelpersException( "From " + fileNameWithExt + " (" + typeof( T ).Name + ")", e );
@@ -102,7 +102,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// <param name="fileNameHasExt"></param>
 		/// <returns></returns>
 		public static T LoadBinaryJson<T>( Mod mod, string fileNameHasExt ) where T : class {
-			return ModCustomDataFileHelpers.LoadBinaryJson<T>( mod, fileNameHasExt, new JsonSerializerSettings() );
+			return ModCustomDataFileLibraries.LoadBinaryJson<T>( mod, fileNameHasExt, new JsonSerializerSettings() );
 		}
 	}
 }

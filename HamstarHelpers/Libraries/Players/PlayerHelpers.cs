@@ -2,16 +2,16 @@
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Items;
-using HamstarHelpers.Helpers.Items.Attributes;
+using HamstarHelpers.Libraries.Items;
+using HamstarHelpers.Libraries.Items.Attributes;
 using HamstarHelpers.Internals.NetProtocols;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players.
 	/// </summary>
-	public partial class PlayerHelpers {
+	public partial class PlayerLibraries {
 		/// <summary></summary>
 		public const int InventorySize = 58;
 		/// <summary></summary>
@@ -77,33 +77,33 @@ namespace HamstarHelpers.Helpers.Players {
 			float armorCount=0, miscCount=0;
 			float hotbarTech=0, armorTech=0, miscTech=0;
 
-			for( int i=0; i<PlayerHelpers.InventoryHotbarSize; i++ ) {
+			for( int i=0; i<PlayerLibraries.InventoryHotbarSize; i++ ) {
 				Item item = player.inventory[i];
-				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant(item) ) { continue; }
+				if( item == null || item.IsAir || !ItemAttributeLibraries.IsGameplayRelevant(item) ) { continue; }
 
-				float tech = ItemAttributeHelpers.LooselyAppraise( item );
+				float tech = ItemAttributeLibraries.LooselyAppraise( item );
 				hotbarTech = hotbarTech > tech ? hotbarTech : tech;
 			}
 
 			int maxArmorSlot = 8 + player.extraAccessorySlots;
 			for( int i=0; i<maxArmorSlot; i++ ) {
 				Item item = player.inventory[i];
-				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant( item ) ) { continue; }
+				if( item == null || item.IsAir || !ItemAttributeLibraries.IsGameplayRelevant( item ) ) { continue; }
 
-				armorTech += ItemAttributeHelpers.LooselyAppraise( item );
+				armorTech += ItemAttributeLibraries.LooselyAppraise( item );
 				armorCount += 1;
 			}
 
 			for( int i = 0; i < player.miscEquips.Length; i++ ) {
 				Item item = player.miscEquips[i];
-				if( item == null || item.IsAir || !ItemAttributeHelpers.IsGameplayRelevant( item ) ) { continue; }
+				if( item == null || item.IsAir || !ItemAttributeLibraries.IsGameplayRelevant( item ) ) { continue; }
 
-				miscTech += ItemAttributeHelpers.LooselyAppraise( item );
+				miscTech += ItemAttributeLibraries.LooselyAppraise( item );
 				miscCount += 1;
 			}
 
-			float techFactor = armorTech / (armorCount * ItemRarityAttributeHelpers.HighestVanillaRarity);
-			techFactor += miscTech / (miscCount * ItemRarityAttributeHelpers.HighestVanillaRarity);
+			float techFactor = armorTech / (armorCount * ItemRarityAttributeLibraries.HighestVanillaRarity);
+			techFactor += miscTech / (miscCount * ItemRarityAttributeLibraries.HighestVanillaRarity);
 			techFactor += hotbarTech + hotbarTech;
 			techFactor /= 4;
 
@@ -181,9 +181,9 @@ namespace HamstarHelpers.Helpers.Players {
 			} else if( Main.netMode == NetmodeID.Server ) {
 				PlayerPermaDeathProtocol.BroadcastFromServer( player.whoAmI, deathMsg, false );
 
-				PlayerHelpers.ApplyPermaDeathState( player, deathMsg );
+				PlayerLibraries.ApplyPermaDeathState( player, deathMsg );
 			} else {
-				PlayerHelpers.ApplyPermaDeathState( player, deathMsg );
+				PlayerLibraries.ApplyPermaDeathState( player, deathMsg );
 			}
 		}
 

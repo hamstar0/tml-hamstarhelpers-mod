@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.UI;
+using HamstarHelpers.Libraries.UI;
 using HamstarHelpers.Services.Messages.Inbox;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
@@ -91,7 +91,7 @@ namespace HamstarHelpers.Internals.Inbox {
 			int unread = InboxMessages.CountUnreadMessages();
 
 			var rect = new Rectangle( (int)this.IconPos.X, (int)this.IconPos.Y, this.Icon.Width, this.Icon.Height );
-			bool isHover = UIHelpers.MouseInRectangle( rect );
+			bool isHover = UILibraries.MouseInRectangle( rect );
 			Vector2 mousePos = new Vector2( Main.mouseX + 16, Main.mouseY + 12 );
 
 			if( Main.mouseLeft && isHover ) {
@@ -136,7 +136,7 @@ namespace HamstarHelpers.Internals.Inbox {
 			if( hasLeft ) {
 				var lArrowRect = new Rectangle( (int)this.IconAreaPos.X - 1, (int)this.IconAreaPos.Y - 2, this.ArrowLeft.Width, this.ArrowLeft.Height );
 
-				if( Main.mouseLeft && UIHelpers.MouseInRectangle( lArrowRect ) ) {
+				if( Main.mouseLeft && UILibraries.MouseInRectangle( lArrowRect ) ) {
 					if( !this.IsLeftArrowClicked ) {
 						this.IsLeftArrowClicked = true;
 
@@ -160,7 +160,7 @@ namespace HamstarHelpers.Internals.Inbox {
 				var rArrowRect = new Rectangle( (int)( ( this.IconAreaPos.X + this.Icon.Width + 1 ) - this.ArrowRight.Width ),
 					(int)this.IconAreaPos.Y - 2, this.ArrowRight.Width, this.ArrowRight.Height );
 
-				if( Main.mouseLeft && UIHelpers.MouseInRectangle( rArrowRect ) ) {
+				if( Main.mouseLeft && UILibraries.MouseInRectangle( rArrowRect ) ) {
 					if( !this.IsRightArrowClicked ) {
 						this.IsRightArrowClicked = true;
 

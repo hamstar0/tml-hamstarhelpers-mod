@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Services.Timers {
@@ -54,7 +54,7 @@ namespace HamstarHelpers.Services.Timers {
 		/// </summary>
 		/// <param name="action"></param>
 		public static void RunNow( Action action ) {
-			string ctx = TmlHelpers.SafelyGetRand().NextDouble() + "_" + action.GetHashCode();
+			string ctx = TmlLibraries.SafelyGetRand().NextDouble() + "_" + action.GetHashCode();
 			Timers.SetTimer( ctx, 0, true, () => {
 				action();
 				return false;
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Services.Timers {
 		/// <param name="func">Return `true` to repeat timer.</param>
 		/// <param name="runsWhilePaused"></param>
 		public static void RunUntil( Func<bool> func, bool runsWhilePaused ) {
-			string ctx = TmlHelpers.SafelyGetRand().NextDouble() + "_" + func.GetHashCode();
+			string ctx = TmlLibraries.SafelyGetRand().NextDouble() + "_" + func.GetHashCode();
 			Timers.SetTimer( ctx, 1, runsWhilePaused, () => {
 				return func();
 			} );
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Services.Timers {
 		/// <param name="times"></param>
 		/// <param name="runsWhilePaused"></param>
 		public static void RunUntil( Func<bool> func, int times, bool runsWhilePaused ) {
-			string ctx = TmlHelpers.SafelyGetRand().NextDouble() + "_" + func.GetHashCode();
+			string ctx = TmlLibraries.SafelyGetRand().NextDouble() + "_" + func.GetHashCode();
 			Timers.SetTimer( ctx, 1, runsWhilePaused, () => {
 				if( !func() ) {
 					return false;
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Services.Timers {
 		/// <param name="func">Action to run. Returns `true` to make the action repeat after another period of the
 		/// given tick duration.</param>
 		public static void SetTimer( int tickDuration, bool runsWhilePaused, Func<bool> func ) {
-			string ctx = TmlHelpers.SafelyGetRand().NextDouble() + "_" + func.GetHashCode();
+			string ctx = TmlLibraries.SafelyGetRand().NextDouble() + "_" + func.GetHashCode();
 
 			Timers.SetTimer( ctx, tickDuration, runsWhilePaused, func );
 		}

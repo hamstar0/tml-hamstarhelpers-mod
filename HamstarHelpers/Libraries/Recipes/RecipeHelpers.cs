@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Players;
 
 
-namespace HamstarHelpers.Helpers.Recipes {
+namespace HamstarHelpers.Libraries.Recipes {
 	/// <summary></summary>
 	[Flags]
 	public enum RecipeCraftFailReason {
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to recipes.
 	/// </summary>
-	public partial class RecipeHelpers {
+	public partial class RecipeLibraries {
 		/// <summary>
 		/// Reports all the reasons a given recipe for a givne player will fail with a given set of ingredients (defaults to
 		/// the player's inventory).
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 					.Where( item => !item.IsAir );
 
 				bool? _;
-				Item[] chest = PlayerItemHelpers.GetCurrentlyOpenChest( player, out _ );
+				Item[] chest = PlayerItemLibraries.GetCurrentlyOpenChest( player, out _ );
 				if( chest != null ) {
 					availableIngredients = availableIngredients.Concat( chest );
 				}
@@ -151,7 +151,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 			ISet<int> possibleRecipeIdxs = new HashSet<int>();
 
 			foreach( Item ingredient in ingredients ) {
-				IEnumerable<int> ingredientRecipeIdxs = RecipeFinderHelpers.GetRecipeIndexesOfItem( ingredient.netID );
+				IEnumerable<int> ingredientRecipeIdxs = RecipeFinderLibraries.GetRecipeIndexesOfItem( ingredient.netID );
 
 				foreach( int recipeIdx in ingredientRecipeIdxs ) {
 					possibleRecipeIdxs.Add( recipeIdx );
@@ -162,7 +162,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 				Recipe recipe = Main.recipe[recipeIdx];
 				if( recipe.createItem.type == ItemID.None ) { continue; } // Just in case?
 
-				if( RecipeHelpers.GetRecipeFailReasons( player, recipe, out _, out __, ingredients ) == 0 ) {
+				if( RecipeLibraries.GetRecipeFailReasons( player, recipe, out _, out __, ingredients ) == 0 ) {
 					addedRecipeIndexes.Add( recipeIdx );
 				}
 			}

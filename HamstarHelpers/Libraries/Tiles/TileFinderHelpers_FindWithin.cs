@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile finding.
 	/// </summary>
-	public partial class TileFinderHelpers {
+	public partial class TileFinderLibraries {
 		/// <summary>
 		/// Attempts to find an area of contiguous matching tiles within a larger area.
 		/// </summary>
@@ -50,7 +50,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 		public static IList<(ushort TileY, ushort TileX)> GetTileMatchesInWorldRectangle(
 					Rectangle worldRect,
 					TilePattern pattern ) {
-			return TileFinderHelpers.GetTileMatchesInWorldRectangle( worldRect, pattern, null );
+			return TileFinderLibraries.GetTileMatchesInWorldRectangle( worldRect, pattern, null );
 		}
 
 		/// <summary>

@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Audio;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
 namespace HamstarHelpers.Services.OverlaySounds {

@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.UI;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 
 
 namespace HamstarHelpers.Services.UI.FreeHUD {

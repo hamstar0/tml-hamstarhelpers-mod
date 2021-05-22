@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Helpers.XNA;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Menus;
+using HamstarHelpers.Libraries.XNA;
 using HamstarHelpers.Services.AnimatedColor;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -56,12 +56,12 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				var mymod = ModHelpersMod.Instance;
 				
 				bool _;
-				XNAHelpers.DrawBatch( ( sb ) => {
+				XNALibraries.DrawBatch( ( sb ) => {
 					mymod.SupportInfo?.Update();
 					mymod.SupportInfo?.Draw( sb );
 				}, out _, true );
 			} catch( Exception e ) {
-				LogHelpers.LogOnce( e.ToString() );
+				LogLibraries.LogOnce( e.ToString() );
 			}
 		}
 

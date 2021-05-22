@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using System;
 using System.IO;
 using Terraria;
@@ -6,11 +6,11 @@ using Terraria.IO;
 using Terraria.Social;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to world files (.wld or .twld).
 	/// </summary>
-	public class WorldFileHelpers {
+	public class WorldFileLibraries {
 		/*public static void EraseWorld_WIN( int which ) {
 			WorldFileData data = Main.WorldList[which];
 
@@ -63,9 +63,9 @@ namespace HamstarHelpers.Helpers.World {
 					SocialAPI.Cloud.Delete( tPath );
 				}
 
-				LogHelpers.Log( "WorldFileHelpers.EraseWorld - World \"" + data.Name + "\" deleted. ("+data.Path+")" );
+				LogLibraries.Log( "WorldFileHelpers.EraseWorld - World \"" + data.Name + "\" deleted. ("+data.Path+")" );
 			} catch( Exception e ) {
-				LogHelpers.Log( "WorldFileHelpers.EraseWorld - Error (path: " + data.Path + ") - " + e.ToString() );
+				LogLibraries.Log( "WorldFileHelpers.EraseWorld - Error (path: " + data.Path + ") - " + e.ToString() );
 			}
 
 			Main.LoadWorlds();

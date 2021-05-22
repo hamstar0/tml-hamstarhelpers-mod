@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Menus;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using System;
 using System.Collections.Generic;
 using Terraria;

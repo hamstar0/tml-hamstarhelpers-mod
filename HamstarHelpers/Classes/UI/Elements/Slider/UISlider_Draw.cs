@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Draw;
+using HamstarHelpers.Libraries.Draw;
 
 
 namespace HamstarHelpers.Classes.UI.Elements.Slider {
@@ -127,7 +127,7 @@ namespace HamstarHelpers.Classes.UI.Elements.Slider {
 					inputLitRect.Y += 6;
 					inputLitRect.Height -= 6;
 
-					DrawHelpers.DrawBorderedRect( sb, null, Color.Yellow * 0.5f, inputLitRect, 2 );
+					DrawLibraries.DrawBorderedRect( sb, null, Color.Yellow * 0.5f, inputLitRect, 2 );
 				}
 			}
 		}

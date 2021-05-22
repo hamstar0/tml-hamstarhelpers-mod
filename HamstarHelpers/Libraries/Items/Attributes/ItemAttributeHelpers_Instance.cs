@@ -4,11 +4,11 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Items.Attributes {
+namespace HamstarHelpers.Libraries.Items.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to gameplay attributes of items.
 	/// </summary>
-	public partial class ItemAttributeHelpers {
+	public partial class ItemAttributeLibraries {
 		private IDictionary<long, ISet<int>> PurchasableItems = new Dictionary<long, ISet<int>>();
 
 		private ReadOnlyDictionaryOfSets<string, int> _DisplayNamesToIds = null;
@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 
 		////////////////
 
-		internal ItemAttributeHelpers() { }
+		internal ItemAttributeLibraries() { }
 
 
 

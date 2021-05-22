@@ -3,7 +3,7 @@ using System.IO;
 using System.Reflection;
 using Newtonsoft.Json;
 using HamstarHelpers.Classes.Protocols.Stream;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 				this.ReadStream( reader );
 			} catch( Exception e ) {
 				string name = protNamespace + "." + protName;
-				LogHelpers.Warn( "Stream read error for "+name+" - " + e.ToString() );
+				LogLibraries.Warn( "Stream read error for "+name+" - " + e.ToString() );
 				//reader.BaseStream.Position = 0;
 				//TODO: Output what remains of stram
 				return;
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				string name = protNamespace + "." + protName;
 				string jsonStr = JsonConvert.SerializeObject( this );
-				LogHelpers.Log( "<" + name + " ReceiveWithEitherBase: " + jsonStr );
+				LogLibraries.Log( "<" + name + " ReceiveWithEitherBase: " + jsonStr );
 			}
 
 			foreach( FieldInfo myField in mytype.GetFields() ) {
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 				if( yourField == null ) {
 					string name = protNamespace + "." + protName;
-					LogHelpers.Warn( "Missing " + name + " protocol field for " + myField.Name );
+					LogLibraries.Warn( "Missing " + name + " protocol field for " + myField.Name );
 					return;
 				}
 
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 				if( val == null ) {
 					string name = protNamespace + "." + protName;
-					LogHelpers.Warn( "Missing " + name + " protocol value for " + yourField.Name );
+					LogLibraries.Warn( "Missing " + name + " protocol value for " + yourField.Name );
 					return;
 				}
 				myField.SetValue( this, val );
@@ -73,7 +73,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();
 				string name = mytype.Namespace + "." + mytype.Name;
-				LogHelpers.Log( "<" + name + " ReceiveRequestWithClientBase..." );
+				LogLibraries.Log( "<" + name + " ReceiveRequestWithClientBase..." );
 			}
 			
 			this.SetClientDefaults();
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
 				Type mytype = this.GetType();
 				string name = mytype.Namespace + "." + mytype.Name;
-				LogHelpers.Log( "<" + name + " ReceiveRequestWithServerBase..." );
+				LogLibraries.Log( "<" + name + " ReceiveRequestWithServerBase..." );
 			}
 			
 			this.SetServerDefaults( fromWho );

@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using HamstarHelpers.Services.TML;
 using System;
 using System.Collections.Generic;
@@ -8,11 +8,11 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Mods {
+namespace HamstarHelpers.Libraries.TModLoader.Mods {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to mod list building.
 	/// </summary>
-	public partial class ModListHelpers {
+	public partial class ModListLibraries {
 		/// <summary>
 		/// Gets the "preferred" order of all loaded mods for listing use (subjective; not relevant to internal load order).
 		/// </summary>
@@ -31,8 +31,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			foreach( var kv in self.ConfigMods ) {
 				if( kv.Key == mymod.Name ) { continue; }
 				TmodFile modFile;
-				if( !ReflectionHelpers.Get( kv.Value, "File", out modFile) || modFile == null ) {
-					LogHelpers.Warn( "Could not get mod file from mod "+kv.Key );
+				if( !ReflectionLibraries.Get( kv.Value, "File", out modFile) || modFile == null ) {
+					LogLibraries.Warn( "Could not get mod file from mod "+kv.Key );
 					continue;
 				}
 
@@ -46,8 +46,8 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 				if( modSet.Contains( mod.Name ) ) { continue; }
 
 				TmodFile modFile;
-				if( !ReflectionHelpers.Get(mod, "File", out modFile) || modFile == null ) {
-					LogHelpers.Warn( "Could not get mod file from mod " + mod.Name );
+				if( !ReflectionLibraries.Get(mod, "File", out modFile) || modFile == null ) {
+					LogLibraries.Warn( "Could not get mod file from mod " + mod.Name );
 					continue;
 				}
 

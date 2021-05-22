@@ -2,11 +2,11 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.NPCs {
+namespace HamstarHelpers.Libraries.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to players relative to NPC resources (e.g. textures).
 	/// </summary>
-	public partial class NPCResourceHelpers {
+	public partial class NPCResourceLibraries {
 		/// <summary>
 		/// Gets a NPC's texture. Loads NPC as needed.
 		/// </summary>

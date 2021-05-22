@@ -6,9 +6,9 @@ using NetSerializer;
 using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.DotNET.Serialization;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.DotNET.Serialization;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		////////////////
 
 		void ILoadable.OnModsLoad() {
-			IList<Type> payloadTypes = ReflectionHelpers
+			IList<Type> payloadTypes = ReflectionLibraries
 				.GetAllAvailableSubTypesFromMods( typeof(NetIOPayload) )
 				.OrderBy( t => t.Namespace + "." + t.Name )
 				.ToList();
@@ -39,14 +39,14 @@ namespace HamstarHelpers.Services.Network.NetIO {
 			foreach( Type payloadType in payloadTypes.ToArray() ) {
 				if( !payloadType.IsSerializable ) {
 					payloadTypes.Remove( payloadType );
-					LogHelpers.Warn( "Invalid payload type "+payloadType.Name+" "
+					LogLibraries.Warn( "Invalid payload type "+payloadType.Name+" "
 						+"(in "+payloadType.Assembly.GetName().Name+")" );
 					continue;
 				}
 				foreach( FieldInfo field in payloadType.GetFields() ) {
 					if( !field.FieldType.IsSerializable && !field.IsNotSerialized ) {
 						payloadTypes.Remove( payloadType );
-						LogHelpers.Warn( "Invalid payload type "+payloadType.Name+"; field "+field.Name+" not serializeable "
+						LogLibraries.Warn( "Invalid payload type "+payloadType.Name+"; field "+field.Name+" not serializeable "
 							+"(in "+payloadType.Assembly.GetName().Name+")" );
 					}
 				}

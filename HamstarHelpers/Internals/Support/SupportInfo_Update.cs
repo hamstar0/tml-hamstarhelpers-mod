@@ -2,8 +2,8 @@
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.ModBrowser.MenuContext;
 using HamstarHelpers.Internals.ModTags.ModInfo.MenuContext;
 using HamstarHelpers.Services.Timers;
@@ -94,7 +94,7 @@ namespace HamstarHelpers.Internals.Menus.Support {
 				ModTagsModBrowserMenuContext.Initialize();
 
 				Timers.SetTimer( "ModHelpersModBrowserActivate", 5, true, () => {
-					MainMenuHelpers.OpenModBrowserMenu();
+					MainMenuLibraries.OpenModBrowserMenu();
 					return false;
 				} );
 			}

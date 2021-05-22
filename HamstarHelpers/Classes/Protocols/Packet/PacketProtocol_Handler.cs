@@ -2,8 +2,8 @@
 using System.IO;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Stream;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Threading;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Threading;
 
 
 namespace HamstarHelpers.Classes.Protocols.Packet {

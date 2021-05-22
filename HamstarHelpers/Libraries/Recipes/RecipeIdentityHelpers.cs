@@ -1,15 +1,15 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Recipes {
+namespace HamstarHelpers.Libraries.Recipes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to recipe identification.
 	/// </summary>
-	public partial class RecipeIdentityHelpers {
+	public partial class RecipeIdentityLibraries {
 		/// <summary>
 		/// Indicates if any 2 recipes are identical.
 		/// </summary>
@@ -52,19 +52,19 @@ namespace HamstarHelpers.Helpers.Recipes {
 		/// @private
 		[Obsolete( "use RecipeFinderHelpers", true )]
 		public static ISet<int> GetRecipeIndexesOfItem( int itemNetID ) {
-			return RecipeFinderHelpers.GetRecipeIndexesOfItem( itemNetID );
+			return RecipeFinderLibraries.GetRecipeIndexesOfItem( itemNetID );
 		}
 
 		/// @private
 		[Obsolete( "use RecipeFinderHelpers", true )]
 		public static IList<Recipe> GetRecipesOfItem( int itemNetID ) {
-			return RecipeFinderHelpers.GetRecipesOfItem( itemNetID );
+			return RecipeFinderLibraries.GetRecipesOfItem( itemNetID );
 		}
 
 		/// @private
 		[Obsolete( "use RecipeFinderHelpers", true )]
 		public static ISet<int> GetRecipeIndexesUsingIngredient( int itemNetID ) {
-			return RecipeFinderHelpers.GetRecipeIndexesUsingIngredient( itemNetID );
+			return RecipeFinderLibraries.GetRecipeIndexesUsingIngredient( itemNetID );
 		}
 	}
 }

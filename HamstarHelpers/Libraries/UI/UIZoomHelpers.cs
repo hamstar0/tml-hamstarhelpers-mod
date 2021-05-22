@@ -3,11 +3,11 @@ using Microsoft.Xna.Framework;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.UI {
+namespace HamstarHelpers.Libraries.UI {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the in-game UI zoom and positions.
 	/// </summary>
-	public class UIZoomHelpers {
+	public class UIZoomLibraries {
 		/// <summary>
 		/// Gets the current screen size according to the given scales.
 		/// </summary>
@@ -17,8 +17,8 @@ namespace HamstarHelpers.Helpers.UI {
 		/// removed, and applies it.</param>
 		/// <returns></returns>
 		public static (float Width, float Height) GetScreenSize( bool? uiZoomState, bool? gameZoomState ) {
-			float width = UIZoomHelpers.ApplyZoom( Main.screenWidth, uiZoomState, gameZoomState );
-			float height = UIZoomHelpers.ApplyZoom( Main.screenHeight, uiZoomState, gameZoomState );
+			float width = UIZoomLibraries.ApplyZoom( Main.screenWidth, uiZoomState, gameZoomState );
+			float height = UIZoomLibraries.ApplyZoom( Main.screenHeight, uiZoomState, gameZoomState );
 
 			return (width, height);
 		}
@@ -32,8 +32,8 @@ namespace HamstarHelpers.Helpers.UI {
 		/// removed, and applies it.</param>
 		/// <returns></returns>
 		public static Rectangle GetWorldFrameOfScreen( bool? uiZoomState, bool? gameZoomState ) {
-			float width = UIZoomHelpers.ApplyZoom( Main.screenWidth, uiZoomState, gameZoomState );
-			float height = UIZoomHelpers.ApplyZoom( Main.screenHeight, uiZoomState, gameZoomState );
+			float width = UIZoomLibraries.ApplyZoom( Main.screenWidth, uiZoomState, gameZoomState );
+			float height = UIZoomLibraries.ApplyZoom( Main.screenHeight, uiZoomState, gameZoomState );
 
 			int scrX = (int)Main.screenPosition.X;
 			scrX += (int)( ( (float)Main.screenWidth - width ) * 0.5f );
@@ -56,7 +56,7 @@ namespace HamstarHelpers.Helpers.UI {
 		/// removed, and applies it.</param>
 		/// <returns></returns>
 		public static Vector2 ConvertToScreenPosition( Vector2 worldCoords, bool? uiZoomState, bool? gameZoomState ) {
-			var wldScrFrame = UIZoomHelpers.GetWorldFrameOfScreen( uiZoomState, gameZoomState );
+			var wldScrFrame = UIZoomLibraries.GetWorldFrameOfScreen( uiZoomState, gameZoomState );
 			var wldScrPos = new Vector2( wldScrFrame.X, wldScrFrame.Y );
 
 			return worldCoords - wldScrPos;
@@ -142,8 +142,8 @@ namespace HamstarHelpers.Helpers.UI {
 					bool? uiZoomStateForCenterOffset,
 					bool? gameZoomStateForCenterOffset ) {
 			var scrMid = new Vector2( Main.screenWidth, Main.screenHeight ) * 0.5f;
-			value -= UIZoomHelpers.ApplyZoom( scrMid, uiZoomStateForCenterOffset, gameZoomStateForCenterOffset );
-			value = UIZoomHelpers.ApplyZoom( value, uiZoomState, gameZoomState );
+			value -= UIZoomLibraries.ApplyZoom( scrMid, uiZoomStateForCenterOffset, gameZoomStateForCenterOffset );
+			value = UIZoomLibraries.ApplyZoom( value, uiZoomState, gameZoomState );
 			value += scrMid;
 
 			return value;

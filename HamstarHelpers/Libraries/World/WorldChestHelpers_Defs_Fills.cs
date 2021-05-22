@@ -3,7 +3,7 @@ using System.Linq;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// <summary>
 	/// Definition for how to add filling to a given chest.
 	/// </summary>

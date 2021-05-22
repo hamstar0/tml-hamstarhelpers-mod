@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using HamstarHelpers.Services.TML;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -19,8 +19,8 @@ namespace HamstarHelpers.Classes.UI.Elements {
 		private bool InitializeMe( int? idx, Mod mod, bool willDrawOwnHoverElements = true ) {
 			var self = this;
 			TmodFile modfile;
-			if( !ReflectionHelpers.Get(mod, "File", out modfile) || modfile == null ) {
-				LogHelpers.Warn( "Could not find mod "+mod.Name+"'s File" );
+			if( !ReflectionLibraries.Get(mod, "File", out modfile) || modfile == null ) {
+				LogLibraries.Warn( "Could not find mod "+mod.Name+"'s File" );
 				return false;
 			}
 
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 							this.Append( this.IconElem );
 						}
 					} catch( Exception e ) {
-						LogHelpers.Warn( e.ToString() );
+						LogLibraries.Warn( e.ToString() );
 					}
 				}
 			}

@@ -1,15 +1,15 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using System;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Reflection {
+namespace HamstarHelpers.Libraries.DotNET.Reflection {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
-	public partial class ReflectionHelpers {
+	public partial class ReflectionLibraries {
 		private static bool GetMemberValue<T>( MemberInfo member, object instance, out T result ) {
 			var field = member as FieldInfo;
 			if( field != null ) {
@@ -66,7 +66,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 				throw new ModHelpersException( "Cannot get fields or properties from Type. Use the other Get<T>(...)." );
 			}
 
-			return ReflectionHelpers.Get<T>( instance.GetType(), instance, fieldOrPropName, out result );
+			return ReflectionLibraries.Get<T>( instance.GetType(), instance, fieldOrPropName, out result );
 		}
 
 		/// <summary>
@@ -79,14 +79,14 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="result"></param>
 		/// <returns>`true` if field or property exist.</returns>
 		public static bool Get<T>( Type classType, object instance, string fieldOrPropName, out T result ) {
-			ReflectionHelpers rh = ReflectionHelpers.Instance;
+			ReflectionLibraries rh = ReflectionLibraries.Instance;
 			MemberInfo rawMember = rh.GetCachedInfoMember( classType, fieldOrPropName );
 			if( rawMember == null ) {
 				result = default( T );
 				return false;
 			}
 
-			return ReflectionHelpers.GetMemberValue( rawMember, instance, out result );
+			return ReflectionLibraries.GetMemberValue( rawMember, instance, out result );
 		}
 
 		////////////////
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="value"></param>
 		/// <returns>`true` if member exists.</returns>
 		public static bool Set( object instance, string fieldOrPropName, object value ) {
-			return ReflectionHelpers.Set( instance.GetType(), instance, fieldOrPropName, value );
+			return ReflectionLibraries.Set( instance.GetType(), instance, fieldOrPropName, value );
 		}
 
 		/// <summary>
@@ -111,13 +111,13 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="newValue"></param>
 		/// <returns>`true` if member exists.</returns>
 		public static bool Set( Type classType, object instance, string fieldOrPropName, object newValue ) {
-			ReflectionHelpers rh = ReflectionHelpers.Instance;
+			ReflectionLibraries rh = ReflectionLibraries.Instance;
 			MemberInfo rawMember = rh.GetCachedInfoMember( classType, fieldOrPropName );
 			if( rawMember == null ) { 
 				return false;
 			}
 
-			return ReflectionHelpers.SetMemberValue( rawMember, instance, newValue );
+			return ReflectionLibraries.SetMemberValue( rawMember, instance, newValue );
 		}
 
 
@@ -132,7 +132,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="result">Deepest member's value.</param>
 		/// <returns>`true` if member is found.</returns>
 		public static bool GetDeep<T>( object instance, string concatenatedNames, out T result ) {
-			return ReflectionHelpers.GetDeep<T>( instance, concatenatedNames.Split('.'), out result );
+			return ReflectionLibraries.GetDeep<T>( instance, concatenatedNames.Split('.'), out result );
 		}
 
 		/// <summary>
@@ -150,7 +150,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			for( int i=0; i<len; i++ ) {
 				string name = nestedNames[i];
 
-				if( !ReflectionHelpers.Get( prevObj, name, out prevObj ) ) {
+				if( !ReflectionLibraries.Get( prevObj, name, out prevObj ) ) {
 					result = default( T );
 					return false;
 				}
@@ -170,7 +170,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="value"></param>
 		/// <returns>`true` if member is found.</returns>
 		public static bool SetDeep( object instance, string concatenatedNames, object value ) {
-			return ReflectionHelpers.SetDeep( instance, concatenatedNames.Split('.'), value );
+			return ReflectionLibraries.SetDeep( instance, concatenatedNames.Split('.'), value );
 		}
 
 		/// <summary>
@@ -187,12 +187,12 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			if( namesLenCropped > 0 ) {
 				string[] nestedNamesCropped = nestedNames.Copy( namesLenCropped );
 
-				if( !ReflectionHelpers.GetDeep( instance, nestedNamesCropped, out finalObj ) ) {
+				if( !ReflectionLibraries.GetDeep( instance, nestedNamesCropped, out finalObj ) ) {
 					return false;
 				}
 			}
 
-			return ReflectionHelpers.Set( finalObj, nestedNames[namesLenCropped], newValue );
+			return ReflectionLibraries.Set( finalObj, nestedNames[namesLenCropped], newValue );
 		}
 	}
 }

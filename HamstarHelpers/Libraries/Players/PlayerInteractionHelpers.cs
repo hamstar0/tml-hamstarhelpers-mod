@@ -3,18 +3,18 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player interactions with game things.
 	/// </summary>
-	public class PlayerInteractionHelpers {
+	public class PlayerInteractionLibraries {
 		/// <summary>
 		/// Detects a given point exists within the player's reach.
 		/// </summary>
 		/// <param name="tilePos"></param>
 		/// <returns></returns>
 		public static bool IsWithinTilePlacementReach( (int tileX, int tileY) tilePos ) {
-			return PlayerInteractionHelpers.IsWithinTilePlacementReach( tilePos.tileX << 4, tilePos.tileY << 4 );
+			return PlayerInteractionLibraries.IsWithinTilePlacementReach( tilePos.tileX << 4, tilePos.tileY << 4 );
 		}
 
 		/// <summary>
@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="worldPos"></param>
 		/// <returns></returns>
 		public static bool IsWithinTilePlacementReach( Vector2 worldPos ) {
-			return PlayerInteractionHelpers.IsWithinTilePlacementReach( (int)worldPos.X, (int)worldPos.Y );
+			return PlayerInteractionLibraries.IsWithinTilePlacementReach( (int)worldPos.X, (int)worldPos.Y );
 		}
 
 		/// <summary>

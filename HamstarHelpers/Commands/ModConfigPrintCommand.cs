@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Commands {
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Commands {
 			}
 
 			string className = args[0];
-			IEnumerable<Type> configTypes = ReflectionHelpers.GetAllAvailableSubTypesFromMods( typeof(ModConfig) );
+			IEnumerable<Type> configTypes = ReflectionLibraries.GetAllAvailableSubTypesFromMods( typeof(ModConfig) );
 			Type classType = System.Type.GetType( className );
 			Type configType = null;
 
@@ -52,7 +52,7 @@ namespace HamstarHelpers.Commands {
 			}
 
 			ModConfig configSingleton;
-			bool success = ReflectionHelpers.RunMethod<ModConfig>( //ModContent.GetInstance<T>();
+			bool success = ReflectionLibraries.RunMethod<ModConfig>( //ModContent.GetInstance<T>();
 				classType: typeof( ModContent ),
 				instance: null,
 				methodName: "GetInstance",
@@ -68,7 +68,7 @@ namespace HamstarHelpers.Commands {
 			string configJson = JsonConvert.SerializeObject( configSingleton );
 
 			Main.NewText( configJson );
-			LogHelpers.Log( configJson );
+			LogLibraries.Log( configJson );
 		}
 	}
 }

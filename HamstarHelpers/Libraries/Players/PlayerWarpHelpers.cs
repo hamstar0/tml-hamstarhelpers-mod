@@ -5,11 +5,11 @@ using Terraria.ID;
 using HamstarHelpers.Services.DataStore;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player warping/teleporting/spawn return.
 	/// </summary>
-	public partial class PlayerWarpHelpers {
+	public partial class PlayerWarpLibraries {
 		private static object SpawnPointKey = new object();
 
 		/// <summary></summary>
@@ -107,7 +107,7 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="tileY"></param>
 		public static void SetSpawnPoint( Player player, int tileX, int tileY ) {
 			IDictionary<string, IDictionary<int, int>> spawnMap;
-			bool success = DataStore.Get( PlayerWarpHelpers.SpawnPointKey, out spawnMap );
+			bool success = DataStore.Get( PlayerWarpLibraries.SpawnPointKey, out spawnMap );
 
 			player.SpawnX = tileX;
 			player.SpawnY = tileY;
@@ -129,7 +129,7 @@ namespace HamstarHelpers.Helpers.Players {
 					spawnMap[key1][key2] = i;
 				}
 
-				DataStore.Set( PlayerWarpHelpers.SpawnPointKey, spawnMap );
+				DataStore.Set( PlayerWarpLibraries.SpawnPointKey, spawnMap );
 			}
 
 			if( spawnMap.ContainsKey( Main.worldName ) && spawnMap[ Main.worldName ].ContainsKey( Main.worldID ) ) {
@@ -140,7 +140,7 @@ namespace HamstarHelpers.Helpers.Players {
 			} else {
 				player.ChangeSpawn( tileX, tileY );
 
-				DataStore.Remove( PlayerWarpHelpers.SpawnPointKey );	// <- Force rebuild
+				DataStore.Remove( PlayerWarpLibraries.SpawnPointKey );	// <- Force rebuild
 			}
 		}
 	}

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items.Attributes;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Items.Attributes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -81,7 +81,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 						|| grps[ItemGroupIDs.AnyCelestialEquipment].Contains( item.type )
 						|| ( grps[ ItemGroupIDs.AnyEquipment ].Contains( item.type )
 							&& !grps[ ItemGroupIDs.AnyOreEquipment ].Contains( item.type ) )
-						|| ItemAttributeHelpers.IsGrapple( item );
+						|| ItemAttributeLibraries.IsGrapple( item );
 				} )
 			) );
 		}

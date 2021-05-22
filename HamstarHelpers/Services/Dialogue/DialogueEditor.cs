@@ -6,9 +6,9 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.TModLoader;
 using HamstarHelpers.Services.Maps;
 
 
@@ -18,7 +18,7 @@ namespace HamstarHelpers.Services.Dialogue {
 	/// </summary>
 	public partial class DialogueEditor : ILoadable {
 		internal static void UpdateAlertIconsOnMap() {
-			var dialogEdit = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			var dialogEdit = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 			IDictionary<int, DynamicDialogueHandler> dynHandlers = dialogEdit.DynamicHandlers;
 			if( dynHandlers.Count == 0 && !dialogEdit.MarkerCleanupNeeded ) {
 				return;

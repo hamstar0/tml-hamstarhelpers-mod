@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+﻿using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 using HamstarHelpers.Services.TML;
 using Microsoft.Xna.Framework;
 using System;
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Commands {
 			}
 
 			IList<string> reply = new List<string>( ModLoader.Mods.Length );
-			IDictionary<BuildPropertiesViewer, Mod> modList = ModListHelpers.GetLoadedModsAndBuildInfo();
+			IDictionary<BuildPropertiesViewer, Mod> modList = ModListLibraries.GetLoadedModsAndBuildInfo();
 
 			foreach( var kv in modList ) {
 				string modInfo = ModListCommand.GetBasicModInfo( kv.Value, kv.Key );

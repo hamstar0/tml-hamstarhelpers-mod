@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.TModLoader;
 using Terraria;
 
 
@@ -8,7 +8,7 @@ namespace HamstarHelpers.Internals.UI {
 		public static DialogManager Instance {
 			get {
 				try {
-					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer(
+					var myplayer = (ModHelpersPlayer)TmlLibraries.SafelyGetModPlayer(
 						Main.LocalPlayer,
 						ModHelpersMod.Instance,
 						"ModHelpersPlayer" );

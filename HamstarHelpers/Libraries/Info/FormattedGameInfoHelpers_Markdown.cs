@@ -1,16 +1,16 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.DotNET.Formatting;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.DotNET.Formatting;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Info {
+namespace HamstarHelpers.Libraries.Info {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to game information formatted for output.
 	/// </summary>
-	public partial class FormattedGameInfoHelpers {
+	public partial class FormattedGameInfoLibraries {
 		/// <summary>
 		/// Renders a list of mod names into a markdown table.
 		/// </summary>
@@ -48,10 +48,10 @@ namespace HamstarHelpers.Helpers.Info {
 				Player plr = Main.player[i];
 				if( plr == null || !plr.active ) { continue; }
 
-				playerInfos = GameInfoHelpers.GetPlayerInfo(plr);
+				playerInfos = GameInfoLibraries.GetPlayerInfo(plr);
 				cols = playerInfos.Count > cols ? playerInfos.Count : cols;
 
-				playerInfos["Name"] = StringFormattingHelpers.SanitizeMarkdown( playerInfos["Name"] );
+				playerInfos["Name"] = StringFormattingLibraries.SanitizeMarkdown( playerInfos["Name"] );
 				
 				columns += "| " + string.Join(" | ", playerInfos.Values) + " |";
 			}
@@ -73,10 +73,10 @@ namespace HamstarHelpers.Helpers.Info {
 		/// <param name="player"></param>
 		/// <returns></returns>
 		public static string RenderMarkdownPlayerEquipsTable( Player player ) {
-			IDictionary<string, string> playerEquips = GameInfoHelpers.GetPlayerEquipment( player );
+			IDictionary<string, string> playerEquips = GameInfoLibraries.GetPlayerEquipment( player );
 			int cols = playerEquips.Count;
 
-			string playerLabel = "**Player "+ StringFormattingHelpers.SanitizeMarkdown(player.name)+"'s ("+player.whoAmI+") equipment:**";
+			string playerLabel = "**Player "+ StringFormattingLibraries.SanitizeMarkdown(player.name)+"'s ("+player.whoAmI+") equipment:**";
 
 			string equipsLabels = cols > 0 ? string.Join( " | ", playerEquips.Keys ) : "-";
 			string header = "| " + equipsLabels + " |";
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Helpers.Info {
 				subheader += " :--- |";
 			}
 
-			string equips = string.Join( " | ", playerEquips.Values.SafeSelect(e=> StringFormattingHelpers.SanitizeMarkdown(e)) );
+			string equips = string.Join( " | ", playerEquips.Values.SafeSelect(e=> StringFormattingLibraries.SanitizeMarkdown(e)) );
 			string equipsCols = cols > 0 ? equips : "-";
 			string columns = "| " + equipsCols + " |";
 

@@ -4,11 +4,11 @@ using System.Diagnostics;
 using System.Reflection;
 
 
-namespace HamstarHelpers.Helpers.Debug {
+namespace HamstarHelpers.Libraries.Debug {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to debugging and debug outputs.
 	/// </summary>
-	public partial class DebugHelpers {
+	public partial class DebugLibraries {
 		/// <summary>
 		/// Gets a slice of the current method call (context) stack trace beginning at the specified frame (stack
 		/// depth).

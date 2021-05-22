@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.TModLoader;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		////////////////
 
 		private static void _Update() {	// <- seems to help avoid Mystery Bugs(TM)
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			var eth = TmlLibraries.SafelyGetInstance<ExtendedTileHooks>();
 			eth.Update();
 		}
 

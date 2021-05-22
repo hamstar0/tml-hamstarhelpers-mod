@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Threading;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Threading;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
@@ -97,7 +97,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 					this._InitCheck++;
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( "Initialization failed 1 (at #" + this._InitCheck + "): " + e.ToString() );
+				LogLibraries.Warn( "Initialization failed 1 (at #" + this._InitCheck + "): " + e.ToString() );
 				return;
 			}
 
@@ -124,7 +124,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				try {
 					Task.WaitAll( tasks );
 				} catch( Exception e ) {
-					LogHelpers.Warn( "Entity group compute threads failed 1: " + e.ToString() );
+					LogLibraries.Warn( "Entity group compute threads failed 1: " + e.ToString() );
 					return;
 				}
 
@@ -146,7 +146,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				try {
 					Task.WaitAll( tasks );
 				} catch( Exception e ) {
-					LogHelpers.Warn( "Entity group compute threads failed 2: " + e.ToString() );
+					LogLibraries.Warn( "Entity group compute threads failed 2: " + e.ToString() );
 					return;
 				}
 

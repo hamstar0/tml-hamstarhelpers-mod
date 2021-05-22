@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Extensions {
+namespace HamstarHelpers.Libraries.DotNET.Extensions {
 	/// <summary>
 	/// Extensions for `KeyValuePair`.
 	/// </summary>

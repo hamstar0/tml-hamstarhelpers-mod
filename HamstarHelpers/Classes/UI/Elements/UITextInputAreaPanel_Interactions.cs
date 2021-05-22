@@ -5,8 +5,8 @@ using Terraria;
 using Terraria.UI;
 using Terraria.GameInput;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.UI;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.UI;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -66,11 +66,11 @@ namespace HamstarHelpers.Classes.UI.Elements {
 
 		private void UpdateFocus() {
 			if( this.HasFocus ) {
-				if( !this.IsInteractive || !UIHelpers.IsUIAvailable(keyboardNotInVanillaUI: true) ) {
+				if( !this.IsInteractive || !UILibraries.IsUIAvailable(keyboardNotInVanillaUI: true) ) {
 					this.Unfocus();
 					return;
 				}
-				if( UIHelpers.JustPressedKey(Keys.Escape) || UIHelpers.JustPressedKey(Keys.Enter) ) {
+				if( UILibraries.JustPressedKey(Keys.Escape) || UILibraries.JustPressedKey(Keys.Enter) ) {
 					this.Unfocus();
 					return;
 				}

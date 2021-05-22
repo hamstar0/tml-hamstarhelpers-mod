@@ -3,11 +3,11 @@ using System;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Collisions {
+namespace HamstarHelpers.Libraries.Collisions {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to general collision detecting and handling.
 	/// </summary>
-	public partial class CollisionHelpers {
+	public partial class CollisionLibraries {
 		/// <summary>
 		/// Casts a ray from a given world point along a given heading.
 		/// </summary>

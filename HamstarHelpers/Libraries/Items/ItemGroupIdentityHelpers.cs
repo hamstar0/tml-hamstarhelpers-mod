@@ -1,15 +1,15 @@
 ﻿using System;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.NPCs;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.NPCs;
 using HamstarHelpers.Classes.DataStructures;
 
 
-namespace HamstarHelpers.Helpers.Items {
+namespace HamstarHelpers.Libraries.Items {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to item identification.
 	/// </summary>
-	public partial class ItemGroupIdentityHelpers {
+	public partial class ItemGroupIdentityLibraries {
 		/// <summary>
 		/// Gets all vanilla item types of a given "container context".
 		/// </summary>

@@ -2,16 +2,16 @@
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Entities;
-using HamstarHelpers.Helpers.Items;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Entities;
+using HamstarHelpers.Libraries.Items;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to unique player identification.
 	/// </summary>
-	public partial class PlayerIdentityHelpers {
+	public partial class PlayerIdentityLibraries {
 		/// <summary></summary>
 		public const int InventorySize = 58;
 		/// <summary></summary>
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Helpers.Players {
 
 			if( !mymod.PlayerIdentityHelpers.PlayerIds.TryGetValue( player.whoAmI, out id ) ) {
 				if( Main.netMode != NetmodeID.Server && player.whoAmI == Main.myPlayer ) {
-					id = PlayerIdentityHelpers.GetUniqueId();
+					id = PlayerIdentityLibraries.GetUniqueId();
 					mymod.PlayerIdentityHelpers.PlayerIds[ player.whoAmI ] = id;
 				} else {
 					//throw new HamstarException( "!ModHelpers.PlayerIdentityHelpers.GetProperUniqueId - Could not find player " + player.name + "'s id." );
@@ -71,7 +71,7 @@ namespace HamstarHelpers.Helpers.Players {
 //LogHelpers.Log( "GetPlayerByProperId: "+PlayerIdentityHelpers.GetProperUniqueId( plr )+" == "+uid+": "+plr.name+" ("+plr.whoAmI+")" );
 				if( plr == null /*|| !plr.active*/ ) { continue; }	// <- This is WEIRD!
 				
-				if( PlayerIdentityHelpers.GetUniqueId(plr) == uid ) {
+				if( PlayerIdentityLibraries.GetUniqueId(plr) == uid ) {
 					return plr;
 				}
 			}
@@ -99,7 +99,7 @@ namespace HamstarHelpers.Helpers.Players {
 
 			//
 
-			int hash = EntityHelpers.GetVanillaSnapshotHash( player, noContext );
+			int hash = EntityLibraries.GetVanillaSnapshotHash( player, noContext );
 			int itemHash;
 
 			hash += ( "statLifeMax" + player.statLifeMax ).GetHashCode() * Pow();
@@ -133,7 +133,7 @@ namespace HamstarHelpers.Helpers.Players {
 				if( item == null || !item.active || item.stack == 0 ) {
 					itemHash = ( "inv" + i ).GetHashCode();
 				} else {
-					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
+					itemHash = i + ItemIdentityLibraries.GetVanillaSnapshotHash( item, noContext, true );
 				}
 				hash += itemHash * Pow();
 			}
@@ -142,7 +142,7 @@ namespace HamstarHelpers.Helpers.Players {
 				if( item == null || !item.active || item.stack == 0 ) {
 					itemHash = ( "arm" + i ).GetHashCode();
 				} else {
-					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
+					itemHash = i + ItemIdentityLibraries.GetVanillaSnapshotHash( item, noContext, true );
 				}
 				hash += itemHash * Pow();
 			}
@@ -151,7 +151,7 @@ namespace HamstarHelpers.Helpers.Players {
 				if( item == null || !item.active || item.stack == 0 ) {
 					itemHash = ( "bank" + i ).GetHashCode();
 				} else {
-					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
+					itemHash = i + ItemIdentityLibraries.GetVanillaSnapshotHash( item, noContext, true );
 				}
 				hash += itemHash * Pow();
 			}
@@ -160,7 +160,7 @@ namespace HamstarHelpers.Helpers.Players {
 				if( item == null || !item.active || item.stack == 0 ) {
 					itemHash = ( "bank2" + i ).GetHashCode();
 				} else {
-					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
+					itemHash = i + ItemIdentityLibraries.GetVanillaSnapshotHash( item, noContext, true );
 				}
 				hash += itemHash;
 			}
@@ -169,7 +169,7 @@ namespace HamstarHelpers.Helpers.Players {
 				if( item == null || !item.active || item.stack == 0 ) {
 					itemHash = ( "bank3" + i ).GetHashCode();
 				} else {
-					itemHash = i + ItemIdentityHelpers.GetVanillaSnapshotHash( item, noContext, true );
+					itemHash = i + ItemIdentityLibraries.GetVanillaSnapshotHash( item, noContext, true );
 				}
 				hash += itemHash * Pow();
 			}

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
 using Terraria.UI;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
 
@@ -36,7 +36,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		public bool IsTogglerUpdateAlertShown( out string tabName ) {
 			var mymod = ModHelpersMod.Instance;
 			if( mymod.Data == null ) {
-				LogHelpers.WarnOnce( "No mod data." );
+				LogLibraries.WarnOnce( "No mod data." );
 				tabName = null;
 				return false;
 			}

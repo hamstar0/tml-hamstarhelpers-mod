@@ -3,16 +3,16 @@ using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using HamstarHelpers.Classes.Errors;
 
 
-namespace HamstarHelpers.Helpers.TModLoader {
+namespace HamstarHelpers.Libraries.TModLoader {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tModLoader.
 	/// </summary>
-	public static partial class TmlHelpers {
+	public static partial class TmlLibraries {
 		private static UnifiedRandom BackupRand = null;
 
 
@@ -26,7 +26,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// <typeparam name="T"></typeparam>
 		/// <returns></returns>
 		public static T SafelyGetInstance<T>() where T : class {
-			lock( TmlHelpers.MyLock ) {
+			lock( TmlLibraries.MyLock ) {
 				T instance = ModContent.GetInstance<T>();
 				if( instance != null ) {
 					return instance;
@@ -56,8 +56,8 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// <param name="classType"></param>
 		/// <returns></returns>
 		public static object SafelyGetInstanceForType( Type classType ) {
-			lock( TmlHelpers.MyLock ) {
-				MethodInfo method = typeof( TmlHelpers ).GetMethod( "SafelyGetInstance" );
+			lock( TmlLibraries.MyLock ) {
+				MethodInfo method = typeof( TmlLibraries ).GetMethod( "SafelyGetInstance" );
 				MethodInfo genericMethod = method.MakeGenericMethod( classType );
 
 				object rawInstance = genericMethod.Invoke( null, new object[] { } );
@@ -75,8 +75,8 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		private static void ForceSetupPlayer( Player player ) {
 			ModPlayer[] modPlayers;
 
-			if( !ReflectionHelpers.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
-				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", ReflectionHelpers.MostAccess );
+			if( !ReflectionLibraries.Get( player, "modPlayers", out modPlayers ) || modPlayers.Length == 0 ) {
+				MethodInfo setupPlayerMethod = typeof( PlayerHooks ).GetMethod( "SetupPlayer", ReflectionLibraries.MostAccess );
 				if( setupPlayerMethod == null ) {
 					throw new ModHelpersException( "Could not run SetupPlayer for " + ( player?.name ?? "null player" ) );
 				}
@@ -96,7 +96,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// <param name="modPlayerName"></param>
 		/// <returns></returns>
 		public static ModPlayer SafelyGetModPlayer( Player player, Mod mod, string modPlayerName ) {    // Solely for Main.LocalPlayer?
-			TmlHelpers.ForceSetupPlayer( player );
+			TmlLibraries.ForceSetupPlayer( player );
 			return player.GetModPlayer( mod, modPlayerName );
 		}
 
@@ -108,7 +108,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// <param name="player"></param>
 		/// <returns></returns>
 		public static T SafelyGetModPlayer<T>( Player player ) where T : ModPlayer {
-			TmlHelpers.ForceSetupPlayer( player );
+			TmlLibraries.ForceSetupPlayer( player );
 			return player.GetModPlayer<T>();
 		}
 
@@ -123,10 +123,10 @@ namespace HamstarHelpers.Helpers.TModLoader {
 			if( Main.rand != null ) {
 				return Main.rand;
 			}
-			if( TmlHelpers.BackupRand == null ) {
-				TmlHelpers.BackupRand = new UnifiedRandom( (int)DateTime.UtcNow.ToFileTime() );
+			if( TmlLibraries.BackupRand == null ) {
+				TmlLibraries.BackupRand = new UnifiedRandom( (int)DateTime.UtcNow.ToFileTime() );
 			}
-			return TmlHelpers.BackupRand;
+			return TmlLibraries.BackupRand;
 		}
 	}
 }

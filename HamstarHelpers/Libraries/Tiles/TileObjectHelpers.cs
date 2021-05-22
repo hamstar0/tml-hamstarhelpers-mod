@@ -4,11 +4,11 @@ using Terraria;
 using Terraria.ObjectData;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile objects.
 	/// </summary>
-	public class TileObjectHelpers {
+	public class TileObjectLibraries {
 		/// <summary>
 		/// Predicts the top left position of the given tile object of a given tile, assuming a contiguous object.
 		/// </summary>

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Recipes;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Recipes;
 
 
 namespace HamstarHelpers.Services.RecipeHack {
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 
 			// Find all potential recipes of each individual ingredient
 			foreach( Item ingredient in ingredients ) {
-				IEnumerable<int> ingredientRecipeIdxs = RecipeIdentityHelpers.GetRecipeIndexesUsingIngredient( ingredient.netID );
+				IEnumerable<int> ingredientRecipeIdxs = RecipeIdentityLibraries.GetRecipeIndexesUsingIngredient( ingredient.netID );
 				possibleRecipeIdxs.UnionWith( ingredientRecipeIdxs );
 			}
 
@@ -64,7 +64,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 				Recipe recipe = Main.recipe[recipeIdx];
 				if( recipe == null || recipe.createItem.type == ItemID.None ) { continue; } // Just in case?
 
-				if( RecipeHelpers.GetRecipeFailReasons( player, recipe, out _, out __, ingredients ) == 0 ) {
+				if( RecipeLibraries.GetRecipeFailReasons( player, recipe, out _, out __, ingredients ) == 0 ) {
 					addedRecipeIdxs.Add( recipeIdx );
 				}
 			}

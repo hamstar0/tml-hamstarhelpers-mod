@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Internals.ModTags.ModBrowser.Manager;

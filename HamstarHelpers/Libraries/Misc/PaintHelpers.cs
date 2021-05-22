@@ -1,15 +1,15 @@
-﻿using HamstarHelpers.Helpers.XNA;
+﻿using HamstarHelpers.Libraries.XNA;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Misc {
+namespace HamstarHelpers.Libraries.Misc {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to game music.
 	/// </summary>
-	public class PaintHelpers {
+	public class PaintLibraries {
 		private static IDictionary<int, byte> CachedMatches = new Dictionary<int, byte>();  // Static; shouldn't expect to change
 
 
@@ -26,8 +26,8 @@ namespace HamstarHelpers.Helpers.Misc {
 				(((int)color.G >> 3) << 11) +
 				(((int)color.B >> 3) << 19 );
 
-			if( PaintHelpers.CachedMatches.ContainsKey( colorCode ) ) {
-				return PaintHelpers.CachedMatches[ colorCode ];
+			if( PaintLibraries.CachedMatches.ContainsKey( colorCode ) ) {
+				return PaintLibraries.CachedMatches[ colorCode ];
 			}
 
 			float minVal = 9999;
@@ -35,8 +35,8 @@ namespace HamstarHelpers.Helpers.Misc {
 
 			for( int i=1; i<=30; i++ ) {
 				Color compare = WorldGen.paintColor( i );
-				Color dist = XNAColorHelpers.DistanceRGB( color, compare );
-				float distAmt = Math.Abs( XNAColorHelpers.SumRGB( dist ) );
+				Color dist = XNAColorLibraries.DistanceRGB( color, compare );
+				float distAmt = Math.Abs( XNAColorLibraries.SumRGB( dist ) );
 
 				if( minVal > distAmt ) {
 					minVal = distAmt;
@@ -44,7 +44,7 @@ namespace HamstarHelpers.Helpers.Misc {
 				}
 			}
 
-			PaintHelpers.CachedMatches[ colorCode ] = (byte)minIdx;
+			PaintLibraries.CachedMatches[ colorCode ] = (byte)minIdx;
 
 			return (byte)minIdx;
 		}

@@ -4,9 +4,9 @@ using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Classes.Loadable {
@@ -37,7 +37,7 @@ namespace HamstarHelpers.Classes.Loadable {
 							continue;
 						}
 
-						var loadable = TmlHelpers.SafelyGetInstanceForType(classType) as ILoadable;
+						var loadable = TmlLibraries.SafelyGetInstanceForType(classType) as ILoadable;
 						if( loadable == null ) {
 							continue;
 						}

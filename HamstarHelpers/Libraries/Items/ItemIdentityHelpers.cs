@@ -4,11 +4,11 @@ using Terraria.ID;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Items {
+namespace HamstarHelpers.Libraries.Items {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to item identification.
 	/// </summary>
-	public partial class ItemIdentityHelpers {
+	public partial class ItemIdentityLibraries {
 		/// <summary>
 		/// Gets a (human readable) unique key (as segments) from a given item type.
 		/// </summary>
@@ -46,7 +46,7 @@ namespace HamstarHelpers.Helpers.Items {
 
 			//
 
-			int hash = Entities.EntityHelpers.GetVanillaSnapshotHash( item, noContext );
+			int hash = Entities.EntityLibraries.GetVanillaSnapshotHash( item, noContext );
 
 			string id = ItemID.GetUniqueKey( item );
 

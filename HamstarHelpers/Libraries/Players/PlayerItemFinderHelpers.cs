@@ -1,13 +1,13 @@
-﻿using HamstarHelpers.Helpers.Items;
+﻿using HamstarHelpers.Libraries.Items;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to unique player identification.
 	/// </summary>
-	public class PlayerItemFinderHelpers {
+	public class PlayerItemFinderLibraries {
 		/// <summary>
 		/// Counts the total of a given set of items owned by a given player.
 		/// </summary>
@@ -16,12 +16,12 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="includeBanks"></param>
 		/// <returns></returns>
 		public static int CountTotalOfEach( Player player, ISet<int> itemTypes, bool includeBanks ) {
-			int total = ItemFinderHelpers.CountTotalOfEach( player.inventory, itemTypes );
+			int total = ItemFinderLibraries.CountTotalOfEach( player.inventory, itemTypes );
 
 			if( includeBanks ) {
-				total += ItemFinderHelpers.CountTotalOfEach( player.bank.item, itemTypes );
-				total += ItemFinderHelpers.CountTotalOfEach( player.bank2.item, itemTypes );
-				total += ItemFinderHelpers.CountTotalOfEach( player.bank3.item, itemTypes );
+				total += ItemFinderLibraries.CountTotalOfEach( player.bank.item, itemTypes );
+				total += ItemFinderLibraries.CountTotalOfEach( player.bank2.item, itemTypes );
+				total += ItemFinderLibraries.CountTotalOfEach( player.bank3.item, itemTypes );
 			}
 
 			return total;
@@ -36,31 +36,31 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="includeBanks"></param>
 		/// <returns></returns>
 		public static Item FindFirstOfPossessedItemFor( Player player, ISet<int> itemTypes, bool includeBanks ) {
-			int found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.inventory, itemTypes );
+			int found = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.inventory, itemTypes );
 			if( found != -1 ) {
 				return player.inventory[found];
 			}
 
-			found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.armor, itemTypes );
+			found = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.armor, itemTypes );
 			if( found != -1 ) {
 				return player.armor[found];
 			}
 
-			found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.miscEquips, itemTypes );
+			found = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.miscEquips, itemTypes );
 			if( found != -1 ) {
 				return player.miscEquips[found];
 			}
 
 			if( includeBanks ) {
-				found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank.item, itemTypes );
+				found = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.bank.item, itemTypes );
 				if( found != -1 ) {
 					return player.bank.item[found];
 				}
-				found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank2.item, itemTypes );
+				found = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.bank2.item, itemTypes );
 				if( found != -1 ) {
 					return player.bank2.item[found];
 				}
-				found = ItemFinderHelpers.FindIndexOfFirstOfItemInCollection( player.bank3.item, itemTypes );
+				found = ItemFinderLibraries.FindIndexOfFirstOfItemInCollection( player.bank3.item, itemTypes );
 				if( found != -1 ) {
 					return player.bank3.item[found];
 				}
@@ -141,7 +141,7 @@ namespace HamstarHelpers.Helpers.Players {
 		public static ISet<int> UnusedInventorySlots( Player player ) {
 			var myset = new HashSet<int>();
 
-			for( int i = 0; i < PlayerItemHelpers.VanillaInventoryLastMainSlot; i++ ) {
+			for( int i = 0; i < PlayerItemLibraries.VanillaInventoryLastMainSlot; i++ ) {
 				if( player.inventory[i] == null || player.inventory[i].IsAir ) {
 					myset.Add( i );
 				}

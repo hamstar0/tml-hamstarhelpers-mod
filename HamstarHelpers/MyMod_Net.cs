@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Protocols.Packet;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Network.NetIO;
 using HamstarHelpers.Services.Network.SimplePacket;
 
@@ -30,7 +30,7 @@ namespace HamstarHelpers {
 					PacketProtocol.HandlePacketOnServer( protocolCode, reader, playerWho );
 				}
 			} catch( Exception e ) {
-				LogHelpers.Alert( e.ToString() );
+				LogLibraries.Alert( e.ToString() );
 			}
 //Services.DataStore.DataStore.Add( DebugHelpers.GetCurrentContext()+"_B", 1 );
 		}

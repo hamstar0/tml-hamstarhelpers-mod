@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using HamstarHelpers.Services.Camera;
-using HamstarHelpers.Helpers.Misc;
+using HamstarHelpers.Libraries.Misc;
 
 
 namespace HamstarHelpers.Classes.CameraAnimation {
@@ -80,7 +80,7 @@ namespace HamstarHelpers.Classes.CameraAnimation {
 		/// <param name="percent"></param>
 		protected override void ApplyAnimation( float percent ) {
 			if( this.IsSmoothed ) {
-				percent = (float)MathHelpers.CosineInterpolate( 0d, 1d, (double)percent );
+				percent = (float)MathLibraries.CosineInterpolate( 0d, 1d, (double)percent );
 			}
 
 			float zoom = MathHelper.Lerp( this.ZoomFrom, this.ZoomTo, percent );

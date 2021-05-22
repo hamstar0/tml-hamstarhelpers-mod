@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.NPCs {
+namespace HamstarHelpers.Libraries.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to identifying common groups of NPCs.
 	/// </summary>
-	public partial class NPCGroupIdentityHelpers {
+	public partial class NPCGroupIdentityLibraries {
 		/// <summary></summary>
 		public static readonly ReadOnlySet<int> VanillaBloodMoonTypes;
 		/// <summary></summary>
@@ -37,7 +37,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 
 
 
-		static NPCGroupIdentityHelpers() {
+		static NPCGroupIdentityLibraries() {
 			var bloodMoon = new HashSet<int> {
 				NPCID.TheGroom, NPCID.TheBride, NPCID.BloodZombie, NPCID.Drippler,
 				NPCID.CorruptBunny, NPCID.CorruptGoldfish, NPCID.CorruptPenguin,
@@ -103,19 +103,19 @@ namespace HamstarHelpers.Helpers.NPCs {
 				NPCID.LunarTowerStardust
 			};
 
-			NPCGroupIdentityHelpers.VanillaBloodMoonTypes = new ReadOnlySet<int>( bloodMoon );
-			NPCGroupIdentityHelpers.VanillaGoblinArmyTypes = new ReadOnlySet<int>( goblins );
-			NPCGroupIdentityHelpers.VanillaFrostLegionTypes = new ReadOnlySet<int>( frostLegion );
-			NPCGroupIdentityHelpers.VanillaPirateTypes = new ReadOnlySet<int>( pirates );
-			NPCGroupIdentityHelpers.VanillaMartianTypes = new ReadOnlySet<int>( martians );
-			NPCGroupIdentityHelpers.VanillaSolarEclipseTypes = new ReadOnlySet<int>( solarEclipse );
-			NPCGroupIdentityHelpers.VanillaPumpkingMoonTypes = new ReadOnlySet<int>( pumpkinMoon );
-			NPCGroupIdentityHelpers.VanillaFrostMoonTypes = new ReadOnlySet<int>( frostMoon );
-			NPCGroupIdentityHelpers.VanillaOldOnesArmyTypes = new ReadOnlySet<int>( oldOnesArmy );
-			NPCGroupIdentityHelpers.VanillaSolarPillarTypes = new ReadOnlySet<int>( solarPillar );
-			NPCGroupIdentityHelpers.VanillaNebulaPillarTypes = new ReadOnlySet<int>( nebulaPillar );
-			NPCGroupIdentityHelpers.VanillaVortexPillarTypes = new ReadOnlySet<int>( vortexPillar );
-			NPCGroupIdentityHelpers.VanillaStardustPillarTypes = new ReadOnlySet<int>( stardustPillar );
+			NPCGroupIdentityLibraries.VanillaBloodMoonTypes = new ReadOnlySet<int>( bloodMoon );
+			NPCGroupIdentityLibraries.VanillaGoblinArmyTypes = new ReadOnlySet<int>( goblins );
+			NPCGroupIdentityLibraries.VanillaFrostLegionTypes = new ReadOnlySet<int>( frostLegion );
+			NPCGroupIdentityLibraries.VanillaPirateTypes = new ReadOnlySet<int>( pirates );
+			NPCGroupIdentityLibraries.VanillaMartianTypes = new ReadOnlySet<int>( martians );
+			NPCGroupIdentityLibraries.VanillaSolarEclipseTypes = new ReadOnlySet<int>( solarEclipse );
+			NPCGroupIdentityLibraries.VanillaPumpkingMoonTypes = new ReadOnlySet<int>( pumpkinMoon );
+			NPCGroupIdentityLibraries.VanillaFrostMoonTypes = new ReadOnlySet<int>( frostMoon );
+			NPCGroupIdentityLibraries.VanillaOldOnesArmyTypes = new ReadOnlySet<int>( oldOnesArmy );
+			NPCGroupIdentityLibraries.VanillaSolarPillarTypes = new ReadOnlySet<int>( solarPillar );
+			NPCGroupIdentityLibraries.VanillaNebulaPillarTypes = new ReadOnlySet<int>( nebulaPillar );
+			NPCGroupIdentityLibraries.VanillaVortexPillarTypes = new ReadOnlySet<int>( vortexPillar );
+			NPCGroupIdentityLibraries.VanillaStardustPillarTypes = new ReadOnlySet<int>( stardustPillar );
 		}
 	}
 }

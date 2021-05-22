@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using HamstarHelpers.Helpers.Recipes;
+using HamstarHelpers.Libraries.Recipes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -48,7 +48,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 					IDictionary<int, int> anyEquipGrp = grps[ItemGroupIDs.AnyEquipment].ToDictionary( id=>id, id=>1 );
 					IDictionary<int, int> anyWoodGrp = grps["Any Wood"].ToDictionary( id => id, id=>1 );
 
-					bool isCraftedWithWood = RecipeHelpers.ItemHasIngredients( item.type, anyWoodGrp );
+					bool isCraftedWithWood = RecipeLibraries.ItemHasIngredients( item.type, anyWoodGrp );
 
 
 					if( !anyEquipGrp.ContainsKey(item.type) || !isCraftedWithWood ) { return false; }

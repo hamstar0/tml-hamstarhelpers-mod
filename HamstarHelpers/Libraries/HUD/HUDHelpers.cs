@@ -2,7 +2,7 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.HUD {
+namespace HamstarHelpers.Libraries.HUD {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to general HUD. 
 	/// </summary>

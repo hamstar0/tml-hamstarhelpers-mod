@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.DotNET;
+﻿using HamstarHelpers.Libraries.DotNET;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;

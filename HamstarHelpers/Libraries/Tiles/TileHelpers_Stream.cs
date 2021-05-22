@@ -2,14 +2,14 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tiles.
 	/// </summary>
-	public partial class TileHelpers {
+	public partial class TileLibraries {
 		/// <summary></summary>
 		/// <param name="writer"></param>
 		/// <param name="tile"></param>

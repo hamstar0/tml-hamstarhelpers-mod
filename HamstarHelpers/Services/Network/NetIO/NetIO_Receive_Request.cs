@@ -4,8 +4,8 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using HamstarHelpers.Services.Network.NetIO.PayloadTypes;
 
 
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 					.IsDefined( typeof( IsNoisyAttribute ), false );
 
 				if( !isNoisy ) {
-					LogHelpers.Log( "<" + dataType.Name );
+					LogLibraries.Log( "<" + dataType.Name );
 				}
 			}
 
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		private static void ProcessRequestOnServer( NetIORequest data, int playerWho, NetIOClientPayload reply ) {
 			bool success;
 
-			if( !ReflectionHelpers.RunMethod(
+			if( !ReflectionLibraries.RunMethod(
 				data,
 				"PreReplyOnServer",
 				new object[] { reply, playerWho },
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 					NetIOBidirectionalPayload reply ) {
 			bool success;
 
-			if( !ReflectionHelpers.RunMethod(
+			if( !ReflectionLibraries.RunMethod(
 				data,
 				"PreReplyOnServer",
 				new object[] { reply, playerWho },
@@ -127,7 +127,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		private static void ProcessRequestOnClient( NetIORequest data, NetIOServerPayload reply ) {
 			bool success;
 
-			if( !ReflectionHelpers.RunMethod(
+			if( !ReflectionLibraries.RunMethod(
 				data,
 				"PreReplyOnClient",
 				new object[] { reply },
@@ -147,7 +147,7 @@ namespace HamstarHelpers.Services.Network.NetIO {
 		private static void ProcessRequestOnClient( NetIORequest data, NetIOBidirectionalPayload reply ) {
 			bool success;
 
-			if( !ReflectionHelpers.RunMethod(
+			if( !ReflectionLibraries.RunMethod(
 				data,
 				"PreReplyOnClient",
 				new object[] { reply },

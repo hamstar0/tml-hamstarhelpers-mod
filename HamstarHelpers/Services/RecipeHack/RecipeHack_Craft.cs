@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items;
-using HamstarHelpers.Helpers.Recipes;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Items;
+using HamstarHelpers.Libraries.Recipes;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 			Recipe recipe = Main.recipe[ recipeIdx ];
 			IDictionary<int, int> missingItemTypesStacks;
 
-			if( RecipeHelpers.GetRecipeFailReasons( Main.LocalPlayer, recipe, out _, out missingItemTypesStacks) != 0 ) {
+			if( RecipeLibraries.GetRecipeFailReasons( Main.LocalPlayer, recipe, out _, out missingItemTypesStacks) != 0 ) {
 				RecipeHack.AwaitingRecipeIdx = recipeIdx;
 				RecipeHack.AwaitingRecipeMissingIngredients = missingItemTypesStacks;
 			} else {
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 			if( RecipeHack.AwaitingRecipeIdx == -1 || RecipeHack.AwaitingRecipeMissingIngredients == null ) {
 				return;
 			}
-			if( !RecipeIdentityHelpers.Equals( Main.recipe[RecipeHack.AwaitingRecipeIdx], recipe ) ) {
+			if( !RecipeIdentityLibraries.Equals( Main.recipe[RecipeHack.AwaitingRecipeIdx], recipe ) ) {
 				RecipeHack.AwaitingRecipeIdx = -1;
 				RecipeHack.AwaitingRecipeMissingIngredients = null;
 				return;
@@ -60,7 +60,7 @@ namespace HamstarHelpers.Services.RecipeHack {
 			
 			IEnumerable<Item> outsourcedItemTypeAmounts = RecipeHack.GetOutsourcedItems( player );
 
-			if( ItemHelpers.ConsumeItems( outsourcedItemTypeAmounts, RecipeHack.AwaitingRecipeMissingIngredients, true ) ) {
+			if( ItemLibraries.ConsumeItems( outsourcedItemTypeAmounts, RecipeHack.AwaitingRecipeMissingIngredients, true ) ) {
 				RecipeHack.AwaitingRecipeIdx = -1;
 				RecipeHack.AwaitingRecipeMissingIngredients = null;
 			}

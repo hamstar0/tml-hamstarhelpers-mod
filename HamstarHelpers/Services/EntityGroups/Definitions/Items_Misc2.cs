@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Terraria;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Recipes;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Recipes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -22,7 +22,7 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 				grpDeps: new string[] { ItemGroupIDs.AnyFood },
 				matcher: new ItemGroupMatcher( ( item, grps ) => {
 					foreach( int foodId in grps[ItemGroupIDs.AnyFood] ) {
-						IEnumerable<Recipe> recipes = RecipeFinderHelpers.GetRecipesOfItem( foodId );
+						IEnumerable<Recipe> recipes = RecipeFinderLibraries.GetRecipesOfItem( foodId );
 
 						foreach( Recipe recipe in recipes ) {
 							for( int i = 0; i < recipe.requiredItem.Length; i++ ) {

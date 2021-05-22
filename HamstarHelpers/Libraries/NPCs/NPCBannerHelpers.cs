@@ -1,15 +1,15 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.NPCs {
+namespace HamstarHelpers.Libraries.NPCs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to NPC-dropped banners.
 	/// </summary>
-	public partial class NPCBannerHelpers {
+	public partial class NPCBannerLibraries {
 		/// <summary>
 		/// Gets table of npc types to their respective banner item types.
 		/// </summary>
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Helpers.NPCs {
 					Item item = new Item();
 					item.SetDefaults( bannerItemType );
 				} catch( Exception ) {
-					LogHelpers.Log( "Could not find banner of item id " + bannerItemType + " for npc id " + npcType );
+					LogLibraries.Log( "Could not find banner of item id " + bannerItemType + " for npc id " + npcType );
 					continue;
 				}
 

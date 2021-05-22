@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.NPCs;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.NPCs;
 using HamstarHelpers.Classes.DataStructures;
 
 
-namespace HamstarHelpers.Helpers.Items {
+namespace HamstarHelpers.Libraries.Items {
 	/// <summary></summary>
 	public class ItemGroupDefinition {
 		/// <summary></summary>
@@ -33,14 +33,14 @@ namespace HamstarHelpers.Helpers.Items {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to item identification.
 	/// </summary>
-	public partial class ItemGroupIdentityHelpers {
+	public partial class ItemGroupIdentityLibraries {
 		/// <summary>
 		/// Gets a set of "common" item groups (i.e. for RecipeGroup use).
 		/// </summary>
 		/// <returns>Group names mapped to group description and a set of item ids.</returns>
 		public static IDictionary<string, ItemGroupDefinition> GetCommonItemGroups() {
-			IEnumerable<PropertyInfo> itemGrpFields = typeof( ItemGroupIdentityHelpers )
-					.GetProperties( ReflectionHelpers.MostAccess );
+			IEnumerable<PropertyInfo> itemGrpFields = typeof( ItemGroupIdentityLibraries )
+					.GetProperties( ReflectionLibraries.MostAccess );
 
 			itemGrpFields = itemGrpFields.Where( field => {
 				return field.PropertyType == typeof( ItemGroupDefinition );
@@ -72,7 +72,7 @@ namespace HamstarHelpers.Helpers.Items {
 		public static ItemGroupDefinition MobBanners =>
 			new ItemGroupDefinition(
 				"Mob Banners",
-				NPCBannerHelpers.GetBannerItemTypes()
+				NPCBannerLibraries.GetBannerItemTypes()
 			);
 
 		/// <summary>
@@ -81,7 +81,7 @@ namespace HamstarHelpers.Helpers.Items {
 		public static ItemGroupDefinition VanillaRecordedMusicBoxes =>
 			new ItemGroupDefinition(
 				"Recorded Music Box (vanilla)",
-				MusicBoxHelpers.GetVanillaMusicBoxItemIds()
+				MusicBoxLibraries.GetVanillaMusicBoxItemIds()
 			);
 
 		/// <summary>
@@ -287,7 +287,7 @@ namespace HamstarHelpers.Helpers.Items {
 		public static ItemGroupDefinition Banners =>
 			new ItemGroupDefinition(
 				"Banners",
-				new HashSet<int>( NPCBannerHelpers.GetBannerItemTypes() )
+				new HashSet<int>( NPCBannerLibraries.GetBannerItemTypes() )
 			);
 	}
 }

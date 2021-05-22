@@ -2,16 +2,16 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Items.Attributes;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Items.Attributes;
 using HamstarHelpers.Internals.NetProtocols;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player inventory or equips.
 	/// </summary>
-	public partial class PlayerItemHelpers {
+	public partial class PlayerItemLibraries {
 		/// <summary></summary>
 		public const int VanillaInventorySize = 58;
 		/// <summary></summary>
@@ -22,9 +22,6 @@ namespace HamstarHelpers.Helpers.Players {
 		public const int VanillaInventoryLastMainSlot = 49;
 		/// <summary></summary>
 		public const int VanillaInventoryLastCoinSlot = 53;
-		/// @private
-		[Obsolete( "use VanillaInventoryLastAmmoSlot", true )]
-		public const int VanillaInventoryLastAmmolot = 57;
 		/// <summary></summary>
 		public const int VanillaInventoryLastAmmoSlot = 57;
 		/// <summary></summary>
@@ -73,7 +70,7 @@ namespace HamstarHelpers.Helpers.Players {
 					player.inventory[i] = new Item();
 				}
 
-				if( Main.mouseItem.type == itemType && i == PlayerItemHelpers.VanillaInventorySelectedSlot ) {
+				if( Main.mouseItem.type == itemType && i == PlayerItemLibraries.VanillaInventorySelectedSlot ) {
 					Main.mouseItem = player.inventory[i].Clone();
 				}
 
@@ -110,7 +107,7 @@ namespace HamstarHelpers.Helpers.Players {
 
 			player.inventory[ slot ] = new Item();
 
-			if( slot == PlayerItemHelpers.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
+			if( slot == PlayerItemLibraries.VanillaInventorySelectedSlot && player.whoAmI == Main.myPlayer ) {
 				Main.mouseItem = new Item();
 			}
 
@@ -215,8 +212,8 @@ namespace HamstarHelpers.Helpers.Players {
 			bool isUnhanded = false;
 
 			// Drop mouse item always
-			if( player.selectedItem == PlayerItemHelpers.VanillaInventorySelectedSlot ) {
-				PlayerItemHelpers.DropInventoryItem( player, PlayerItemHelpers.VanillaInventorySelectedSlot );
+			if( player.selectedItem == PlayerItemLibraries.VanillaInventorySelectedSlot ) {
+				PlayerItemLibraries.DropInventoryItem( player, PlayerItemLibraries.VanillaInventorySelectedSlot );
 				isUnhanded = true;
 			}
 			// Preferably select a blank slot
@@ -332,7 +329,7 @@ namespace HamstarHelpers.Helpers.Players {
 			Item item = player.HeldItem;
 			if( item == null || item.IsAir ) { return Vector2.Zero; }
 
-			return PlayerItemHelpers.TipOfHeldItem( player, item, item.useStyle, Vector2.Zero ) ?? Vector2.Zero;
+			return PlayerItemLibraries.TipOfHeldItem( player, item, item.useStyle, Vector2.Zero ) ?? Vector2.Zero;
 		}
 
 		/// <summary>
@@ -385,10 +382,10 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="player"></param>
 		/// <returns></returns>
 		public static Item GetGrappleItem( Player player ) {
-			if( ItemAttributeHelpers.IsGrapple( player.miscEquips[4] ) ) {
+			if( ItemAttributeLibraries.IsGrapple( player.miscEquips[4] ) ) {
 				return player.miscEquips[4];
 			}
-			for( int i = 0; i < PlayerItemHelpers.VanillaInventorySize; i++ ) {
+			for( int i = 0; i < PlayerItemLibraries.VanillaInventorySize; i++ ) {
 				if( Main.projHook[player.inventory[i].shoot] ) {
 					return player.inventory[i];
 				}
@@ -405,7 +402,7 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="slot"></param>
 		/// <returns></returns>
 		public static bool IsArmorSlot( int slot ) {
-			return slot < PlayerItemHelpers.VanillaAccessorySlotFirst;
+			return slot < PlayerItemLibraries.VanillaAccessorySlotFirst;
 		}
 
 		/// <summary>
@@ -415,7 +412,7 @@ namespace HamstarHelpers.Helpers.Players {
 		/// <param name="slot"></param>
 		/// <returns></returns>
 		public static bool IsAccessorySlot( Player player, int slot ) {
-			return slot >= PlayerItemHelpers.VanillaAccessorySlotFirst
+			return slot >= PlayerItemLibraries.VanillaAccessorySlotFirst
 				&& slot < 8 + player.extraAccessorySlots;
 		}
 

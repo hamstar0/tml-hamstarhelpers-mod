@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 using NetSerializer;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Services.Network.SimplePacket {
@@ -58,7 +58,7 @@ namespace HamstarHelpers.Services.Network.SimplePacket {
 
 				packet.Write( (int)code );
 
-				MethodInfo method = ser.GetType().GetMethod( "SerializeDirect", ReflectionHelpers.MostAccess );
+				MethodInfo method = ser.GetType().GetMethod( "SerializeDirect", ReflectionLibraries.MostAccess );
 				method = method.MakeGenericMethod( new Type[] { dataType } );
 				method.Invoke( ser, new object[] { packet.BaseStream, data } );
 
@@ -69,13 +69,13 @@ namespace HamstarHelpers.Services.Network.SimplePacket {
 						.IsDefined( typeof(IsNoisyAttribute), false );
 
 					if( !isNoisy ) {
-						LogHelpers.Log( ">" + dataType.Name + " "+toWho+" "+ignoreWho );
+						LogLibraries.Log( ">" + dataType.Name + " "+toWho+" "+ignoreWho );
 					}
 				}
 
 				return true;
 			} catch( Exception e ) {
-				LogHelpers.WarnOnce( e.ToString() );
+				LogLibraries.WarnOnce( e.ToString() );
 			}
 			
 			return false;

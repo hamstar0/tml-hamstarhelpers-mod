@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Entities;
+﻿using HamstarHelpers.Libraries.Entities;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -20,7 +20,7 @@ namespace HamstarHelpers.Services.Debug.EntityData {
 		/// Dumps all NPC data to a JSON file in the ModLoader folder.
 		/// </summary>
 		public static void DumpAllNpcDataToJson() {
-			string json = JsonConvert.SerializeObject( EntityInfoHelpers.GetAllNpcInfo() );
+			string json = JsonConvert.SerializeObject( EntityInfoLibraries.GetAllNpcInfo() );
 			
 			lock( EntityData.MyFileLock ) {
 				File.WriteAllText( Main.SavePath + Path.DirectorySeparatorChar + "All NPCs.json", json );
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Services.Debug.EntityData {
 		/// Dumps all Item data to a JSON file in the ModLoader folder.
 		/// </summary>
 		public static void DumpAllItemDataToJson() {
-			string json = JsonConvert.SerializeObject( EntityInfoHelpers.GetAllItemInfo() );
+			string json = JsonConvert.SerializeObject( EntityInfoLibraries.GetAllItemInfo() );
 
 			lock( EntityData.MyFileLock ) {
 				File.WriteAllText( Main.SavePath + Path.DirectorySeparatorChar + "All Items.json", json );
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Services.Debug.EntityData {
 		/// Dumps all Projectile data to a JSON file in the ModLoader folder.
 		/// </summary>
 		public static void DumpAllProjectileDataToJson() {
-			string json = JsonConvert.SerializeObject( EntityInfoHelpers.GetAllProjectileInfo() );
+			string json = JsonConvert.SerializeObject( EntityInfoLibraries.GetAllProjectileInfo() );
 
 			lock( EntityData.MyFileLock ) {
 				File.WriteAllText( Main.SavePath + Path.DirectorySeparatorChar + "All Projectiles.json", json );

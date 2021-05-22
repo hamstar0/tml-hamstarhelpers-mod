@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.User;
 using HamstarHelpers.Internals.NetProtocols;
 
 
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 		/// <returns></returns>
 		public static bool CanRequestDumpOnServer() {
 			return ModHelpersConfig.Instance.DebugModeDumpAlsoServer
-				|| UserHelpers.HasBasicServerPrivilege( Main.LocalPlayer );
+				|| UserLibraries.HasBasicServerPrivilege( Main.LocalPlayer );
 		}
 
 		/// <summary></summary>
@@ -42,7 +42,7 @@ namespace HamstarHelpers.Services.Debug.DataDumper {
 			string fullPath = fullFolder + Path.DirectorySeparatorChar + fileNameWithExtension;
 
 			DataDumper.PrepareDir();
-			return FileHelpers.SaveTextFile( data, fullPath, false, false );
+			return FileLibraries.SaveTextFile( data, fullPath, false, false );
 		}
 
 		////////////////

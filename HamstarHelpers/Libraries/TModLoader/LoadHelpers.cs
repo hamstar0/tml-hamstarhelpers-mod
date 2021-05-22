@@ -2,15 +2,15 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
-namespace HamstarHelpers.Helpers.TModLoader {
+namespace HamstarHelpers.Libraries.TModLoader {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the state of the game.
 	/// </summary>
-	public partial class LoadHelpers {
+	public partial class LoadLibraries {
 		/// <summary>
 		/// Indicates if mods Mod Helpers is fully loaded (recipes, content, etc.).
 		/// </summary>
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// <returns></returns>
 		public static bool IsCurrentPlayerInGame() {
 			bool isTimerActive;
-			ReflectionHelpers.Get( Main.ActivePlayerFileData, "_isTimerActive", out isTimerActive );
+			ReflectionLibraries.Get( Main.ActivePlayerFileData, "_isTimerActive", out isTimerActive );
 
 			return !Main.gameMenu && isTimerActive;
 		}
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// </summary>
 		/// <returns></returns>
 		public static bool IsWorldLoaded() {
-			if( !LoadHelpers.IsModLoaded() ) {  return false; }
+			if( !LoadLibraries.IsModLoaded() ) {  return false; }
 
 			var myworld = ModContent.GetInstance<ModHelpersWorld>();
 			if( !myworld.HasObsoleteId ) { return false; }
@@ -64,14 +64,14 @@ namespace HamstarHelpers.Helpers.TModLoader {
 					return false;
 				}
 
-				var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer(
+				var myplayer = (ModHelpersPlayer)TmlLibraries.SafelyGetModPlayer(
 					Main.LocalPlayer,
 					ModHelpersMod.Instance,
 					"ModHelpersPlayer"
 				);
 				return myplayer.Logic.IsSynced;
 			} else {
-				if( !LoadHelpers.IsWorldLoaded() ) {
+				if( !LoadLibraries.IsWorldLoaded() ) {
 					return false;
 				}
 				if( !mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish ) {
@@ -98,9 +98,9 @@ namespace HamstarHelpers.Helpers.TModLoader {
 
 			if( ModHelpersConfig.Instance.DebugModeHelpersInfo && !notSafelyPlayed ) {
 				if( Main.netMode != NetmodeID.Server && !Main.dedServ ) {
-					var myplayer = (ModHelpersPlayer)TmlHelpers.SafelyGetModPlayer( Main.LocalPlayer, mymod, "ModHelpersPlayer" );
+					var myplayer = (ModHelpersPlayer)TmlLibraries.SafelyGetModPlayer( Main.LocalPlayer, mymod, "ModHelpersPlayer" );
 
-					LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
+					LogLibraries.LogOnce( DebugLibraries.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
 						+ "StartupDelay: "+!(mymod.LoadHelpers.WorldStartupDelay < (60 * 2))
 						+ ", IsLocalPlayerInGame_Hackish: " + mymod.LoadHelpers.IsLocalPlayerInGame_Hackish+" (true?)"
 						+ ", IsSynced: "+(myplayer?.Logic.IsSynced.ToString() ?? "null")+" (true?) = "
@@ -109,9 +109,9 @@ namespace HamstarHelpers.Helpers.TModLoader {
 					);
 				} else {
 					var myworld = ModContent.GetInstance<ModHelpersWorld>();
-					LogHelpers.LogOnce( DebugHelpers.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
+					LogLibraries.LogOnce( DebugLibraries.GetCurrentContext( 2 ) + " - IsWorldSafelyBeingPlayed - "
 						+ "StartupDelay: "+!(mymod.LoadHelpers.WorldStartupDelay < (60 * 2))
-						+ ", IsModLoaded(): "+LoadHelpers.IsModLoaded()+" (true?)"
+						+ ", IsModLoaded(): "+LoadLibraries.IsModLoaded()+" (true?)"
 						+ ", HasObsoleteId: "+myworld.HasObsoleteId+" (false?)"
 						+ ", HasServerBegunHavingPlayers_Hackish: " + mymod.LoadHelpers.HasServerBegunHavingPlayers_Hackish+" (true?)"
 						+ ", HasSetupContent: "+mymod.HasSetupContent+" (true?)"

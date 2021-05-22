@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Reflection {
+namespace HamstarHelpers.Libraries.DotNET.Reflection {
 	/// <summary>
 	/// Simple wrapper to enable `ReflectionHelpers.RunMethod` to know parameter types. Useful for null values.
 	/// </summary>
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
-	public partial class ReflectionHelpers {
+	public partial class ReflectionLibraries {
 		/// <summary>
 		/// Invokes a method, first validating the supplied parameters for type consistency.
 		/// </summary>
@@ -92,7 +92,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 				returnVal = default( T );
 				return false;
 			}
-			return ReflectionHelpers.RunMethod<T>( instance.GetType(), instance, methodName, args, out returnVal );
+			return ReflectionLibraries.RunMethod<T>( instance.GetType(), instance, methodName, args, out returnVal );
 		}
 
 		/// <summary>
@@ -107,7 +107,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 		/// <param name="returnVal">Return value of method.</param>
 		/// <returns>`true` if method found and invoked successfully.</returns>
 		public static bool RunMethod<T>( Type classType, Object instance, string methodName, object[] args, out T returnVal ) {
-			return ReflectionHelpers.RunMethod<T>( classType, instance, methodName, args, new Type[] { }, out returnVal );
+			return ReflectionLibraries.RunMethod<T>( classType, instance, methodName, args, new Type[] { }, out returnVal );
 		}
 
 		/// <summary>
@@ -132,7 +132,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			returnVal = default( T );
 
 			if( args.Any(a => a == null) ) {
-				LogHelpers.AlertOnce( "`null` argument detected for "+classType.Name+"."+methodName
+				LogLibraries.AlertOnce( "`null` argument detected for "+classType.Name+"."+methodName
 					+ ". Wrap nullable arguments with `TypedMethodParameter`." );
 				return false;
 			}
@@ -159,7 +159,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 			MethodInfo method = classType.GetMethod(
 				name: methodName,
-				bindingAttr: ReflectionHelpers.MostAccess,
+				bindingAttr: ReflectionLibraries.MostAccess,
 				binder: null,
 				types: paramTypes,
 				modifiers: null
@@ -167,7 +167,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 			if( method == null ) {
 				if( classType.BaseType != null && classType.BaseType != typeof(object) ) {
-					return ReflectionHelpers.RunMethod<T>(
+					return ReflectionLibraries.RunMethod<T>(
 						classType: classType.BaseType,
 						instance: instance,
 						methodName: methodName,
@@ -183,7 +183,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 				method = method.MakeGenericMethod( generics );
 			}
 
-			returnVal = (T)ReflectionHelpers.SafeCall( method, instance, args );
+			returnVal = (T)ReflectionLibraries.SafeCall( method, instance, args );
 			return true;
 		}
 	}

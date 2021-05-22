@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// <summary></summary>
 	public enum WorldRegionFlags {
 		/// <summary></summary>

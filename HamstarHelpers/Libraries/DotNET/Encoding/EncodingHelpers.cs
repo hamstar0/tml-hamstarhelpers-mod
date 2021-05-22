@@ -2,11 +2,11 @@
 using System.Text;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Encoding {
+namespace HamstarHelpers.Libraries.DotNET.Encoding {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to ASCII strings.
 	/// </summary>
-	public class EncodingHelpers {
+	public class EncodingLibraries {
 		/// <summary>
 		/// Strips non-ASCII (unicode) characters from a given string.
 		/// </summary>

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Network.SimplePacket;
 
 
@@ -67,7 +67,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			Player player = Main.player[ this.PlayerWho ];
 			if( player == null || !player.active ) {
 //LogHelpers.Log( "ModHelpers.PlayerDataProtocol.ReceiveWithClient - Inactive player indexed as " + this.PlayerWho );
-				LogHelpers.Log( DebugHelpers.GetCurrentContext() + " - Inactive player indexed as " + this.PlayerWho );
+				LogLibraries.Log( DebugLibraries.GetCurrentContext() + " - Inactive player indexed as " + this.PlayerWho );
 				return;
 			}
 

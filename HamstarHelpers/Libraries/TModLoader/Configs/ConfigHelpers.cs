@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 using Newtonsoft.Json;
 using System;
 using System.Collections;
@@ -13,11 +13,11 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.Config;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Configs {
+namespace HamstarHelpers.Libraries.TModLoader.Configs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to configs (ModConfig, primarily).
 	/// </summary>
-	public partial class ConfigHelpers {
+	public partial class ConfigLibraries {
 		/// <summary>
 		/// Syncs to everyone. Use with caution.
 		/// </summary>
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 			if( typeof(T).IsAbstract ) {
 				throw new ModHelpersException( "Cannot merge abstract class "+typeof(T).Name+" (did you mean "+to.GetType().Name+"?)" );
 			}
-			ConfigHelpers.MergeConfigsForType( typeof(T), to, fro );
+			ConfigLibraries.MergeConfigsForType( typeof(T), to, fro );
 		}
 
 		internal static void MergeConfigsForType( Type configType, ModConfig toConfig, ModConfig froConfig ) {
@@ -97,10 +97,10 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 					continue;
 				}
 
-				if( !ReflectionHelpers.Get(froConfig, memb.Name, out froVal) ) {
+				if( !ReflectionLibraries.Get(froConfig, memb.Name, out froVal) ) {
 					throw new ModHelpersException( "Could retrieve member "+memb.Name+" from 'fro' instance of "+configType.Name );
 				}
-				if( !ReflectionHelpers.Get(defaultConfig, memb.Name, out defaultVal) ) {
+				if( !ReflectionLibraries.Get(defaultConfig, memb.Name, out defaultVal) ) {
 					throw new ModHelpersException( "Could retrieve member "+memb.Name+" from template instance of "+configType.Name );
 				}
 
@@ -111,7 +111,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Configs {
 					&& (froVal == null || ((IEnumerable)froVal).Cast<object>().Count() == 0);
 				
 				if( (!froValueIsCollection && !froValueIsDefault) || (froValueIsCollection && !froValueIsEmpty) ) {
-					if( !ReflectionHelpers.Set(toConfig, memb.Name, froVal) ) {
+					if( !ReflectionLibraries.Set(toConfig, memb.Name, froVal) ) {
 						throw new ModHelpersException( "Could set merged field/property "+memb.Name+" for "+configType.Name );
 					}
 				}

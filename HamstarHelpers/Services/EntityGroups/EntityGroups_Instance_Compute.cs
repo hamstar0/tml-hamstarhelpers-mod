@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				lock( EntityGroups.MatchersLock ) {
 					foreach( EntityGroupMatcherDefinition<T> def in matchers ) {
 						if( !groups.ContainsKey( def.GroupName ) ) {
-							LogHelpers.Log( "!Entity group " + def.GroupName + " not loaded." );
+							LogLibraries.Log( "!Entity group " + def.GroupName + " not loaded." );
 						}
 					}
 

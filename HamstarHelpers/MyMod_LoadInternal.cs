@@ -1,10 +1,10 @@
-﻿using HamstarHelpers.Helpers.World;
-using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.World;
+using HamstarHelpers.Libraries.Debug;
 using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Players;
 using System.Reflection;
 using HamstarHelpers.Services.Debug.DataDumper;
 
@@ -14,7 +14,7 @@ namespace HamstarHelpers {
 	partial class ModHelpersMod : Mod {
 		private void LoadExceptionBehavior() {
 			if( ModHelpersConfig.Instance.DebugModeDisableSilentLogging ) {
-				var flags = Helpers.DotNET.Reflection.ReflectionHelpers.MostAccess;
+				var flags = Libraries.DotNET.Reflection.ReflectionLibraries.MostAccess;
 				FieldInfo fceField = typeof( AppDomain ).GetField( "FirstChanceException", flags );
 				if( fceField == null ) {
 					fceField = typeof( AppDomain ).GetField( "_firstChanceException", flags );
@@ -40,7 +40,7 @@ namespace HamstarHelpers {
 
 		private void LoadDataSources() {
 			DataDumper.SetDumpSource( "WorldUidWithSeed", () => {
-				return "  " + WorldHelpers.GetUniqueIdForCurrentWorld(true) + " (net mode: " + Main.netMode + ")";
+				return "  " + WorldLibraries.GetUniqueIdForCurrentWorld(true) + " (net mode: " + Main.netMode + ")";
 			} );
 
 			DataDumper.SetDumpSource( "PlayerUid", () => {
@@ -48,7 +48,7 @@ namespace HamstarHelpers {
 					return "  Unobtainable";
 				}
 
-				return "  " + PlayerIdentityHelpers.GetUniqueId();
+				return "  " + PlayerIdentityLibraries.GetUniqueId();
 			} );
 		}
 

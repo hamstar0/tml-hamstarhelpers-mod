@@ -6,8 +6,8 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
 using HamstarHelpers.Services.Network;
 using HamstarHelpers.Services.Network.Scraper;
 
@@ -54,7 +54,7 @@ namespace HamstarHelpers {
 			}
 
 			if( messageType == MessageID.TileSection ) {
-				var client = TmlHelpers.SafelyGetInstance<Client>();
+				var client = TmlLibraries.SafelyGetInstance<Client>();
 
 				if( client.TileSectionPacketSubs.Count > 0 ) {
 					this.HijackTileSectionData( reader, client.TileSectionPacketSubs );

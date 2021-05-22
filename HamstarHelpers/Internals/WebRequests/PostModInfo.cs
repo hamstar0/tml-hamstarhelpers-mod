@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Encoding;
-using HamstarHelpers.Helpers.Net;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Encoding;
+using HamstarHelpers.Libraries.Net;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
@@ -35,7 +35,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				string processedOutput = "";
 
 				if( success ) {
-					string sanitizedOutput = EncodingHelpers.SanitizeForASCII( output );
+					string sanitizedOutput = EncodingLibraries.SanitizeForASCII( output );
 					JObject respJson = JObject.Parse( sanitizedOutput );
 					JToken msg = respJson.SelectToken( "Msg" );
 
@@ -51,11 +51,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 			};
 
 			Action<Exception, string> wrappedOnError = ( Exception e, string str ) => {
-				LogHelpers.Log( "!ModHelpers.PostModInfo.SubmitModInfo - Failed for post: "+jsonStr );
+				LogLibraries.Log( "!ModHelpers.PostModInfo.SubmitModInfo - Failed for post: "+jsonStr );
 				onError( e, str );
 			};
 
-			WebConnectionHelpers.MakePostRequestAsync( url, jsonStr, e => wrappedOnError(e, ""), wrappedOnCompletion );
+			WebConnectionLibraries.MakePostRequestAsync( url, jsonStr, e => wrappedOnError(e, ""), wrappedOnCompletion );
 		}
 	}
 }

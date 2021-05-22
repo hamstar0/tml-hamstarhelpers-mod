@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary></summary>
 	public enum TileSlopeType : byte {
 		/// <summary></summary>
@@ -101,7 +101,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile state (slope, actuation, etc.).
 	/// </summary>
-	public class TileStateHelpers {
+	public class TileStateLibraries {
 		/// <summary></summary>
 		/// <param name="tile"></param>
 		public static void FlipSlopeHorizontally( Tile tile ) {

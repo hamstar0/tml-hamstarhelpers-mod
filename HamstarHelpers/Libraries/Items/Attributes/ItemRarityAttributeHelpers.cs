@@ -4,11 +4,11 @@ using Microsoft.Xna.Framework;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.Items.Attributes {
+namespace HamstarHelpers.Libraries.Items.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the "rarity" attribute of items.
 	/// </summary>
-	public partial class ItemRarityAttributeHelpers {
+	public partial class ItemRarityAttributeLibraries {
 		/// <summary></summary>
 		public const int HighestVanillaRarity = 11;
 		/// <summary></summary>

@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Messages.Inbox;
 
 
@@ -20,7 +20,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		private static void UnhandledLogger( object sender, UnhandledExceptionEventArgs e ) {
-			LogHelpers.Log( "UNHANDLED crash? " + e.IsTerminating
+			LogLibraries.Log( "UNHANDLED crash? " + e.IsTerminating
 				+ " \nSender: " + sender.ToString()
 				+ " \nMessage: " + e.ExceptionObject.ToString() );
 		}
@@ -75,7 +75,7 @@ namespace HamstarHelpers {
 
 		public override void Unload() {
 			try {
-				LogHelpers.Alert( "Unloading mod..." );
+				LogLibraries.Alert( "Unloading mod..." );
 			} catch { }
 
 			this.UnloadFull();

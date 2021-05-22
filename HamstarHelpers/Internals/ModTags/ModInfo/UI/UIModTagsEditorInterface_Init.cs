@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Classes.UI.Menus;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.UI;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;
 using HamstarHelpers.Internals.ModTags.ModInfo.UI.Buttons;
@@ -61,8 +61,8 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 		private void InitializeHiddenControl( UIState modInfoUi ) {
 			Func<Rectangle> getRect = () => {
 				UIElement homepageButton;
-				if( !ReflectionHelpers.Get( modInfoUi, "_modHomepageButton", out homepageButton ) ) {
-					LogHelpers.Warn( "Could not get _modHomepageButton" );
+				if( !ReflectionLibraries.Get( modInfoUi, "_modHomepageButton", out homepageButton ) ) {
+					LogLibraries.Warn( "Could not get _modHomepageButton" );
 					return default( Rectangle );
 				}
 
@@ -71,8 +71,8 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.UI {
 
 			Action onHover = () => {
 				string url;
-				if( !ReflectionHelpers.Get( modInfoUi, "_url", out url ) ) {
-					LogHelpers.Warn( "Could not get url" );
+				if( !ReflectionLibraries.Get( modInfoUi, "_url", out url ) ) {
+					LogLibraries.Warn( "Could not get url" );
 					return;
 				}
 

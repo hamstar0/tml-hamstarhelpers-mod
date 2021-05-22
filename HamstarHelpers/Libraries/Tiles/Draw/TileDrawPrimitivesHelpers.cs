@@ -5,14 +5,14 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Utilities;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.TModLoader;
 
 
-namespace HamstarHelpers.Helpers.Tiles.Draw {
+namespace HamstarHelpers.Libraries.Tiles.Draw {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to 'drawing' primitive tile structures into the world.
 	/// </summary>
-	public class TileDrawPrimitivesHelpers {
+	public class TileDrawPrimitivesLibraries {
 		/// <summary>
 		/// Draws a rectangle (from top to bottom) of a given tile type (where the filter allows).
 		/// </summary>
@@ -150,7 +150,7 @@ namespace HamstarHelpers.Helpers.Tiles.Draw {
 					float minSize,
 					float maxSize,
 					Func<int, int, TileDrawDefinition> place ) {
-			UnifiedRandom rand = TmlHelpers.SafelyGetRand();
+			UnifiedRandom rand = TmlLibraries.SafelyGetRand();
 			var filled = new HashSet<(int, int)>();
 			var unfilled = new HashSet<(int, int)> { (tileX, tileY) };
 

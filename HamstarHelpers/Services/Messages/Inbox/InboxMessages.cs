@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Services.Messages.Inbox {
 			LoadHooks.AddPostWorldLoadOnceHook( () => {
 				InboxMessages inbox = ModHelpersMod.Instance.Inbox?.Messages;
 				if( inbox == null ) {
-					LogHelpers.Warn( "Inbox or Inbox.Messages is null" );
+					LogLibraries.Warn( "Inbox or Inbox.Messages is null" );
 					return;
 				}
 

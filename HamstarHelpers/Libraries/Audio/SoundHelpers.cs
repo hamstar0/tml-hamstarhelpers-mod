@@ -9,11 +9,11 @@ using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
 
 
-namespace HamstarHelpers.Helpers.Audio {
+namespace HamstarHelpers.Libraries.Audio {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to sounds.
 	/// </summary>
-	public class SoundHelpers : ILoadable {
+	public class SoundLibraries : ILoadable {
 		/// <summary>
 		/// Gets volume and pan data for a sound that would play at a given point.
 		/// </summary>
@@ -63,7 +63,7 @@ namespace HamstarHelpers.Helpers.Audio {
 			if( Main.netMode == NetmodeID.Server ) { return; }
 
 			LegacySoundStyle sound;
-			var sndHelp = ModContent.GetInstance<SoundHelpers>();
+			var sndHelp = ModContent.GetInstance<SoundLibraries>();
 
 			if( sndHelp.Sounds.ContainsKey( soundPath ) ) {
 				sound = sndHelp.Sounds[soundPath];
@@ -94,7 +94,7 @@ namespace HamstarHelpers.Helpers.Audio {
 		public static void PlaySound( string name, LegacySoundStyle sound, Vector2 position, float volume = 1f ) {
 			if( Main.netMode == NetmodeID.Server ) { return; }
 
-			var sndHelp = ModContent.GetInstance<SoundHelpers>();
+			var sndHelp = ModContent.GetInstance<SoundLibraries>();
 
 			if( sndHelp.Sounds.ContainsKey(name) ) {
 				sound = sndHelp.Sounds[name];

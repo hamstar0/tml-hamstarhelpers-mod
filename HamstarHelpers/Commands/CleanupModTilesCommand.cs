@@ -6,10 +6,10 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Default;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Threading;
-using HamstarHelpers.Helpers.Tiles;
-using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Threading;
+using HamstarHelpers.Libraries.Tiles;
+using HamstarHelpers.Libraries.User;
 
 
 namespace HamstarHelpers.Commands {
@@ -93,7 +93,7 @@ namespace HamstarHelpers.Commands {
 
 			try {
 				lock( CleanupModTilesCommand.MyLock ) {
-					TileHelpers.KillTileSynced( i, j, false, false, false );
+					TileLibraries.KillTileSynced( i, j, false, false, false );
 				}
 			} catch {
 				cts.Cancel();
@@ -129,12 +129,12 @@ namespace HamstarHelpers.Commands {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				LogHelpers.Log( "CleanupModTilesCommand - Not supposed to run on client." );
+				LogLibraries.Log( "CleanupModTilesCommand - Not supposed to run on client." );
 				return;
 			}
 
 			if( Main.netMode == NetmodeID.Server && caller.CommandType != CommandType.Console ) {
-				if( !UserHelpers.HasBasicServerPrivilege( caller.Player ) ) {
+				if( !UserLibraries.HasBasicServerPrivilege( caller.Player ) ) {
 					caller.Reply( "Access denied.", Color.Red );
 					return;
 				}

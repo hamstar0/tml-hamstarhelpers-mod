@@ -3,7 +3,7 @@ using System.IO;
 using Terraria;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Services.Network {
@@ -29,7 +29,7 @@ namespace HamstarHelpers.Services.Network {
 		/// </summary>
 		/// <param name="callback"></param>
 		public static void SubscribeToTileSectionPackets( TileSectionPacketSubscriber callback ) {
-			var client = TmlHelpers.SafelyGetInstance<Client>();
+			var client = TmlLibraries.SafelyGetInstance<Client>();
 			client.TileSectionPacketSubs.Add( callback );
 		}
 	}

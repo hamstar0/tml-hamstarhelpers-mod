@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Services.Timers {
 			LoadHooks.AddWorldUnloadEachHook( () => {
 				lock( Timers.MyLock ) {
 					foreach( (string timerName, (bool, Func<int>, int) timer) in this.Running ) {
-						LogHelpers.Log( "Aborted timer " + timerName );
+						LogLibraries.Log( "Aborted timer " + timerName );
 					}
 
 					this.Running.Clear();

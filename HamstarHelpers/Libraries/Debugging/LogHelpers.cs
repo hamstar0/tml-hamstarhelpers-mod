@@ -4,11 +4,11 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Debug {
+namespace HamstarHelpers.Libraries.Debug {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to log outputs.
 	/// </summary>
-	public partial class LogHelpers {
+	public partial class LogLibraries {
 		/// <summary>
 		/// Formats a given message as it would appear in the log output.
 		/// </summary>
@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// No output if -1 is set.</param>
 		/// <returns></returns>
 		public static string FormatMessage( string msg, int contextDepth = -1 ) {
-			return LogHelpers.FormatMessageFull( msg, contextDepth ).Full;
+			return LogLibraries.FormatMessageFull( msg, contextDepth ).Full;
 		}
 
 		/// <summary>
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.Debug {
 
 			if( mymod == null ) {
 				contextDepth = contextDepth == -1 ? 2 : contextDepth;
-				context = DebugHelpers.GetCurrentContext( contextDepth );
+				context = DebugLibraries.GetCurrentContext( contextDepth );
 
 				return ( context, "", "!Mod Helpers unloaded. Message called from: "+context );
 			}
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Helpers.Debug {
 			// Generate calling context output
 			if( contextDepth >= 0 ) {
 				try {
-					context = DebugHelpers.GetCurrentContext( contextDepth );
+					context = DebugLibraries.GetCurrentContext( contextDepth );
 				} catch {
 					context = "";
 				}
@@ -119,9 +119,9 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// </summary>
 		/// <param name="msg"></param>
 		public static void Log( string msg = "" ) {
-			lock( LogHelpers.MyLock ) {
+			lock( LogLibraries.MyLock ) {
 				try {
-					ModHelpersMod.Instance.Logger.Info( LogHelpers.FormatMessage( msg ) );
+					ModHelpersMod.Instance.Logger.Info( LogLibraries.FormatMessage( msg ) );
 				} catch { }
 			}
 		}
@@ -131,9 +131,9 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// </summary>
 		/// <param name="msg"></param>
 		public static void Alert( string msg = "" ) {
-			lock( LogHelpers.MyLock ) {
+			lock( LogLibraries.MyLock ) {
 				try {
-					string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
+					string fmtMsg = LogLibraries.FormatMessage( msg, 3 );
 
 					ModHelpersMod.Instance.Logger.Warn( fmtMsg );   //was Error(...)
 				} catch { }
@@ -146,9 +146,9 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// </summary>
 		/// <param name="msg"></param>
 		public static void Warn( string msg = "" ) {
-			lock( LogHelpers.MyLock ) {
+			lock( LogLibraries.MyLock ) {
 				try {
-					string fmtMsg = LogHelpers.FormatMessage( msg, 3 );
+					string fmtMsg = LogLibraries.FormatMessage( msg, 3 );
 
 					ModHelpersMod.Instance.Logger.Error( fmtMsg );	//was Fatal(...)
 				} catch { }
@@ -168,10 +168,10 @@ namespace HamstarHelpers.Helpers.Debug {
 		/// <param name="separator"></param>
 		/// <param name="spacer"></param>
 		public static void LogContext( string msg, bool omitNamespace=true, int max=-1, string separator="\n", string spacer="  " ) {
-			IList<string> contextSlice = DebugHelpers.GetContextSlice( 3, omitNamespace, max );
+			IList<string> contextSlice = DebugLibraries.GetContextSlice( 3, omitNamespace, max );
 			string context = string.Join( separator+spacer, contextSlice );
 
-			LogHelpers.Log( msg + " at " + context );
+			LogLibraries.Log( msg + " at " + context );
 		}
 	}
 }

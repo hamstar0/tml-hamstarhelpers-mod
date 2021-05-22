@@ -1,14 +1,14 @@
 ﻿using System;
 using Terraria;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile finding.
 	/// </summary>
-	public partial class TileFinderHelpers {
+	public partial class TileFinderLibraries {
 		/// <summary>
 		/// Finds the top left tile of a given area by a given pattern. Assumes the area is square (checks left first).
 		/// </summary>
@@ -84,7 +84,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 			floorY--;
 
-			return TileFinderHelpers.GetHorizontalWidthAt( nonFloorPattern, tileX, out floorX, floorY );
+			return TileFinderLibraries.GetHorizontalWidthAt( nonFloorPattern, tileX, out floorX, floorY );
 		}
 
 		/// <summary>
@@ -110,7 +110,7 @@ namespace HamstarHelpers.Helpers.Tiles {
 			}
 			ceilY++;
 
-			return TileFinderHelpers.GetHorizontalWidthAt( nonCeilingPattern, tileX, out ceilX, ceilY );
+			return TileFinderLibraries.GetHorizontalWidthAt( nonCeilingPattern, tileX, out ceilX, ceilY );
 		}
 
 

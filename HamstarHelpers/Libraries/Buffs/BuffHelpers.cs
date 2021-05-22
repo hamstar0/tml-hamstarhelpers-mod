@@ -1,11 +1,11 @@
 ﻿using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Buffs {
+namespace HamstarHelpers.Libraries.Buffs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to buffs.
 	/// </summary>
-	public partial class BuffHelpers {
+	public partial class BuffLibraries {
 		/// <summary>
 		/// Adds a permanent buff to a player. Will persist across saves.
 		/// </summary>

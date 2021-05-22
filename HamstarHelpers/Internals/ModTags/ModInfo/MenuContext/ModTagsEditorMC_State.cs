@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.MenuContext;
 using HamstarHelpers.Services.UI.Menus;
 using Terraria.UI;
@@ -16,13 +16,13 @@ namespace HamstarHelpers.Internals.ModTags.ModInfo.MenuContext {
 				prevUi = MenuContextService.GetPreviousMenuUI();
 			}
 
-			string modName = ModMenuHelpers.GetModName( prevUi, ui );
+			string modName = ModMenuLibraries.GetModName( prevUi, ui );
 
 			this.InfoDisplay.SetDefaultText( "" );
 			this.MyManager.MyTagsUI.ResetTagButtonOnStates( true );
 
 			if( modName == null ) {
-				LogHelpers.Warn( "Could not load mod tags; no mod found" );
+				LogLibraries.Warn( "Could not load mod tags; no mod found" );
 				return;
 			}
 

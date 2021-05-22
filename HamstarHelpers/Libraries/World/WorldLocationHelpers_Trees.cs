@@ -4,17 +4,17 @@ using System.Linq;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to locating things in the world.
 	/// </summary>
-	public partial class WorldLocationHelpers {
+	public partial class WorldLocationLibraries {
 		private static Rectangle GetGiantTreeAt( int tileX, int tileY ) {
 			int minY = 80;
-			int maxY = WorldHelpers.SurfaceLayerBottomTileY - 50;
+			int maxY = WorldLibraries.SurfaceLayerBottomTileY - 50;
 
 			Tile tile;
 			int xLeft = tileX, xRight = tileX + 1;
@@ -85,7 +85,7 @@ namespace HamstarHelpers.Helpers.World {
 			int minX = 300;
 			int maxX = Main.maxTilesX - 300;
 			int minY = 80;
-			int maxY = WorldHelpers.SurfaceLayerBottomTileY - 50;
+			int maxY = WorldLibraries.SurfaceLayerBottomTileY - 50;
 			int midX1 = ( Main.maxTilesX / 2 ) - 100;
 			int midX2 = ( Main.maxTilesX / 2 ) + 100;
 			Tile tile;
@@ -105,7 +105,7 @@ namespace HamstarHelpers.Helpers.World {
 						continue;
 					}
 					
-					Rectangle tree = WorldLocationHelpers.GetGiantTreeAt( x, y );
+					Rectangle tree = WorldLocationLibraries.GetGiantTreeAt( x, y );
 					trees[ tree.X ] = tree;
 
 					x = tree.X + tree.Width + 1;

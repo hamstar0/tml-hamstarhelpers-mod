@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 
 
-namespace HamstarHelpers.Helpers.Recipes {
+namespace HamstarHelpers.Libraries.Recipes {
 	/// @private
-	public partial class RecipeFinderHelpers {
+	public partial class RecipeFinderLibraries {
 		private static object MyLock = new object();
 
 
@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 		////////////////
 
 		private void CacheItemRecipes() {
-			lock( RecipeFinderHelpers.MyLock ) {
+			lock( RecipeFinderLibraries.MyLock ) {
 				for( int i = 0; i < Main.recipe.Length; i++ ) {
 					Recipe recipe = Main.recipe[i];
 					int recipeItemType = recipe.createItem.type;
@@ -38,7 +38,7 @@ namespace HamstarHelpers.Helpers.Recipes {
 
 
 		private void CacheIngredientRecipes() {
-			lock( RecipeFinderHelpers.MyLock ) {
+			lock( RecipeFinderLibraries.MyLock ) {
 				for( int i = 0; i < Main.recipe.Length; i++ ) {
 					Recipe recipe = Main.recipe[i];
 					if( recipe.createItem.type == ItemID.None ) {

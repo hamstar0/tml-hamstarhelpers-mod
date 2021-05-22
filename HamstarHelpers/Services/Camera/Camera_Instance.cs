@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Services.Camera {
@@ -69,7 +69,7 @@ namespace HamstarHelpers.Services.Camera {
 			Main.screenPosition.Y += this.OffsetY;
 
 			if( this.ShakeMagnitude > 0 ) {
-				var rand = TmlHelpers.SafelyGetRand();
+				var rand = TmlLibraries.SafelyGetRand();
 				float shakeX = rand.NextFloat() * this.ShakeMagnitude;
 				float shakeY = rand.NextFloat() * this.ShakeMagnitude;
 

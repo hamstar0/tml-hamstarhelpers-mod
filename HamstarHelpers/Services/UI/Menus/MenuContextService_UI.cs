@@ -1,6 +1,6 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using System;
 using System.Collections.Generic;
 using Terraria.GameContent.UI.Elements;
@@ -19,8 +19,8 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// <returns></returns>
 		public static UIElement GetMenuContainerOuter( UIState ui ) {
 			UIElement elem;
-			if( !ReflectionHelpers.Get( ui, "uIElement", out elem ) || elem == null ) {
-				LogHelpers.AlertOnce( "No uiElement for "+ui?.GetType().Name );
+			if( !ReflectionLibraries.Get( ui, "uIElement", out elem ) || elem == null ) {
+				LogLibraries.AlertOnce( "No uiElement for "+ui?.GetType().Name );
 				return null;
 			}
 
@@ -41,10 +41,10 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// <returns></returns>
 		public static UIElement GetMenuContainerInner( UIElement uiOuterBox ) {
 			List<UIElement> uiOuterBoxElems;
-			if( !ReflectionHelpers.Get( uiOuterBox, "Elements", out uiOuterBoxElems )
+			if( !ReflectionLibraries.Get( uiOuterBox, "Elements", out uiOuterBoxElems )
 					|| uiOuterBoxElems == null
 					|| uiOuterBoxElems.Count == 0 ) {
-				LogHelpers.AlertOnce( "No Elements for " + uiOuterBox?.GetType().Name );
+				LogLibraries.AlertOnce( "No Elements for " + uiOuterBox?.GetType().Name );
 				return null;
 			}
 
@@ -64,9 +64,9 @@ namespace HamstarHelpers.Services.UI.Menus {
 		/// <returns></returns>
 		public static UIElement GetMenuContainerInsertPoint( UIElement uiInnerContainer ) {
 			List<UIElement> uiContainerElems;
-			if( !ReflectionHelpers.Get( uiInnerContainer, "Elements", out uiContainerElems )
+			if( !ReflectionLibraries.Get( uiInnerContainer, "Elements", out uiContainerElems )
 					|| uiContainerElems == null ) {
-				LogHelpers.AlertOnce( "No Elements for " + uiInnerContainer?.GetType().Name );
+				LogLibraries.AlertOnce( "No Elements for " + uiInnerContainer?.GetType().Name );
 				return null;
 			}
 
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 				}
 			}
 
-			LogHelpers.AlertOnce( "Not found" );
+			LogLibraries.AlertOnce( "Not found" );
 			return null;
 		}
 
@@ -110,7 +110,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			if( mymod.MenuContextMngr.CurrentMenuUI == 0 ) {
 				return null;
 			}
-			return MainMenuHelpers.GetMenuUI( mymod.MenuContextMngr.CurrentMenuUI );
+			return MainMenuLibraries.GetMenuUI( mymod.MenuContextMngr.CurrentMenuUI );
 		}
 
 		/// <summary>
@@ -123,7 +123,7 @@ namespace HamstarHelpers.Services.UI.Menus {
 			if( mymod.MenuContextMngr.PreviousMenuUI == 0 ) {
 				return null;
 			}
-			return MainMenuHelpers.GetMenuUI( mymod.MenuContextMngr.PreviousMenuUI );
+			return MainMenuLibraries.GetMenuUI( mymod.MenuContextMngr.PreviousMenuUI );
 		}
 	}
 }

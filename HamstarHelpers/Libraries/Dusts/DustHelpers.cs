@@ -4,11 +4,11 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 
 
-namespace HamstarHelpers.Helpers.Dusts {
+namespace HamstarHelpers.Libraries.Dusts {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to dusts.
 	/// </summary>
-	public class DustHelpers {
+	public class DustLibraries {
 		/// <summary></summary>
 		public const int TeleportSparkleTypeID = 15;
 		

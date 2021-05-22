@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Libraries.Tiles;
 using Terraria;
 
 

@@ -4,8 +4,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.User;
 using HamstarHelpers.Services.Cheats;
 
 
@@ -28,7 +28,7 @@ namespace HamstarHelpers.Commands.Cheats {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				LogHelpers.Alert( "Not supposed to run on client." );
+				LogLibraries.Alert( "Not supposed to run on client." );
 				return;
 			}
 

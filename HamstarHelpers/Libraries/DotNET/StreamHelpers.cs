@@ -1,15 +1,15 @@
-﻿using HamstarHelpers.Helpers.DotNET.Extensions;
+﻿using HamstarHelpers.Libraries.DotNET.Extensions;
 using System;
 using System.IO;
 using System.IO.Compression;
 using Terraria.ModLoader.IO;
 
 
-namespace HamstarHelpers.Helpers.DotNET {
+namespace HamstarHelpers.Libraries.DotNET {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to basic stream IO.
 	/// </summary>
-	public partial class StreamHelpers {
+	public partial class StreamLibraries {
 		/// <summary>
 		/// Pumps a byte array to a stream (with compression).
 		/// </summary>

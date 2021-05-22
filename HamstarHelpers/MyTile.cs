@@ -2,8 +2,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
 using HamstarHelpers.Services.Hooks.ExtendedHooks;
 
 
@@ -12,7 +12,7 @@ namespace HamstarHelpers {
 		public override void KillTile( int i, int j, int type, ref bool fail, ref bool effectOnly, ref bool noItem ) {
 //ModContent.GetInstance<ModHelpersMod>().Logger.Info( "KillTile1 "+type+" ("+i+","+j+") - "
 //	+"fail:"+fail+", effectOnly:"+effectOnly+", noItem:"+noItem);
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			var eth = TmlLibraries.SafelyGetInstance<ExtendedTileHooks>();
 
 			if( !Main.gameMenu || Main.netMode == NetmodeID.Server ) {
 				eth.CallKillTileHooks( i, j, type, ref fail, ref effectOnly, ref noItem );
@@ -27,7 +27,7 @@ namespace HamstarHelpers {
 	class ModHelpersWall : GlobalWall {
 		public override void KillWall( int i, int j, int type, ref bool fail ) {
 			if( !Main.gameMenu || Main.netMode == NetmodeID.Server ) {
-				var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+				var eth = TmlLibraries.SafelyGetInstance<ExtendedTileHooks>();
 				eth.CallKillWallHooks( i, j, type, ref fail );
 			}
 		}

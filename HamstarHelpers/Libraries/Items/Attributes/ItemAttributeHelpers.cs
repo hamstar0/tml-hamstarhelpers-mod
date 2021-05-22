@@ -5,11 +5,11 @@ using Terraria.ModLoader;
 using HamstarHelpers.Classes.DataStructures;
 
 
-namespace HamstarHelpers.Helpers.Items.Attributes {
+namespace HamstarHelpers.Libraries.Items.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to gameplay attributes of items.
 	/// </summary>
-	public partial class ItemAttributeHelpers {
+	public partial class ItemAttributeLibraries {
 		private static IDictionary<int, int> _ProjPene = new Dictionary<int, int>();
 
 
@@ -57,15 +57,15 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		public static bool IsPenetrator( Item item ) {
 			if( item.shoot <= ProjectileID.None ) { return false; }
 
-			if( !ItemAttributeHelpers._ProjPene.Keys.Contains( item.shoot ) ) {
+			if( !ItemAttributeLibraries._ProjPene.Keys.Contains( item.shoot ) ) {
 				var proj = new Projectile();
 				proj.SetDefaults( item.shoot );
 
-				ItemAttributeHelpers._ProjPene[ item.shoot ] = proj.penetrate;
+				ItemAttributeLibraries._ProjPene[ item.shoot ] = proj.penetrate;
 			}
 
-			return  ItemAttributeHelpers._ProjPene[ item.shoot ] == -1 ||
-					ItemAttributeHelpers._ProjPene[ item.shoot ] >= 3;   // 3 seems fair?
+			return  ItemAttributeLibraries._ProjPene[ item.shoot ] == -1 ||
+					ItemAttributeLibraries._ProjPene[ item.shoot ] >= 3;   // 3 seems fair?
 		}
 
 
@@ -218,7 +218,7 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		/// <param name="includeCoins">Includes coin items (defaults to `false`).</param>
 		/// <returns></returns>
 		public static ReadOnlySet<int> FindItemsByValue( long buyValue, bool includeCoins = false ) {
-			ItemAttributeHelpers itemAttr = ModHelpersMod.Instance.ItemAttributeHelpers;
+			ItemAttributeLibraries itemAttr = ModHelpersMod.Instance.ItemAttributeHelpers;
 
 			if( !itemAttr.PurchasableItems.Keys.Contains(buyValue) ) {
 				itemAttr.PurchasableItems[buyValue] = new HashSet<int>();

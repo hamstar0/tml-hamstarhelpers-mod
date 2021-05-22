@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using HamstarHelpers.Services.ModTagDefinitions;
 using HamstarHelpers.Services.Timers;
 using HamstarHelpers.Internals.ModTags.Base.UI.Buttons;

@@ -5,9 +5,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.World;
-using HamstarHelpers.Helpers.XNA;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.World;
+using HamstarHelpers.Libraries.XNA;
 using HamstarHelpers.Internals.Logic;
 using HamstarHelpers.Services.Hooks.Draw;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -48,7 +48,7 @@ namespace HamstarHelpers {
 			var mymod = (ModHelpersMod)this.mod;
 
 			this.ObsoleteId = Guid.NewGuid().ToString( "D" );
-			this.ObsoleteId2 = WorldHelpers.GetUniqueIdForCurrentWorld( false );
+			this.ObsoleteId2 = WorldLibraries.GetUniqueIdForCurrentWorld( false );
 			this.HasObsoleteId = false;  // 'Load()' decides if no pre-existing one is found
 
 			this.WorldLogic = new WorldLogic();
@@ -134,9 +134,9 @@ namespace HamstarHelpers {
 					RasterizerState.CullCounterClockwise : RasterizerState.CullClockwise;
 
 			bool _;
-			XNAHelpers.DrawBatch(
+			XNALibraries.DrawBatch(
 				(sb) => {
-					DebugHelpers.DrawAllRects( sb );
+					DebugLibraries.DrawAllRects( sb );
 					ModContent.GetInstance<DrawHooksInternal>()?.RunPostDrawTilesActions();
 				},
 				SpriteSortMode.Deferred,

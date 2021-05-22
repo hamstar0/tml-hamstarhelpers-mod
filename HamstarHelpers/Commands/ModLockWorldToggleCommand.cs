@@ -2,8 +2,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.User;
 using HamstarHelpers.Services.ModHelpers;
 
 
@@ -32,12 +32,12 @@ namespace HamstarHelpers.Commands {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				LogHelpers.Log( "ModLockWorldToggleCommand - Not supposed to run on client." );
+				LogLibraries.Log( "ModLockWorldToggleCommand - Not supposed to run on client." );
 				return;
 			}
 
 			if( Main.netMode == NetmodeID.Server && caller.CommandType != CommandType.Console ) {
-				if( !UserHelpers.HasBasicServerPrivilege( caller.Player ) ) {
+				if( !UserLibraries.HasBasicServerPrivilege( caller.Player ) ) {
 					caller.Reply( "Access denied.", Color.Red );
 					return;
 				}

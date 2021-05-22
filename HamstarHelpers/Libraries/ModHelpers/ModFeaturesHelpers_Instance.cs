@@ -2,9 +2,9 @@
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.ModHelpers {
+namespace HamstarHelpers.Libraries.ModHelpers {
 	/// @private
-	public partial class ModFeaturesHelpers {
+	public partial class ModFeaturesLibraries {
 		internal IDictionary<string, Mod> GithubMods;
 		internal IDictionary<string, Mod> ConfigMods;
 		internal IDictionary<string, Mod> ConfigDefaultsResetMods;
@@ -12,7 +12,7 @@ namespace HamstarHelpers.Helpers.ModHelpers {
 
 		////////////////
 
-		internal ModFeaturesHelpers() {
+		internal ModFeaturesLibraries() {
 			this.GithubMods = new Dictionary<string, Mod>();
 			this.ConfigMods = new Dictionary<string, Mod>();
 			this.ConfigDefaultsResetMods = new Dictionary<string, Mod>();
@@ -27,7 +27,7 @@ namespace HamstarHelpers.Helpers.ModHelpers {
 			this.ConfigDefaultsResetMods = new Dictionary<string, Mod>();
 
 			foreach( Mod mod in ModLoader.Mods ) {
-				if( ModFeaturesHelpers.DetectGithub( mod ) ) {
+				if( ModFeaturesLibraries.DetectGithub( mod ) ) {
 					this.GithubMods[mod.Name] = mod;
 				}
 			}

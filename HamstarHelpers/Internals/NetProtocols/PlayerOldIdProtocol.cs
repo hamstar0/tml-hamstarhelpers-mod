@@ -1,8 +1,8 @@
 ﻿using System;
 using Terraria;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
 using HamstarHelpers.Services.Network.SimplePacket;
 
 
@@ -38,7 +38,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	class PlayerOldIdProtocol : SimplePacketPayload {	//NetIOBidirectionalPayload {
 		public static void QuickSendToServer() {
 			var protocol = new PlayerOldIdProtocol();
-			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.LocalPlayer );
+			var myplayer = TmlLibraries.SafelyGetModPlayer<ModHelpersPlayer>( Main.LocalPlayer );
 
 			protocol.ClientPrivateUID = myplayer.Logic.OldPrivateUID;
 			protocol.ClientHasUID = myplayer.Logic.HasLoadedOldUID;

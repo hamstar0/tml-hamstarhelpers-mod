@@ -1,29 +1,29 @@
-﻿using HamstarHelpers.Helpers.Items;
+﻿using HamstarHelpers.Libraries.Items;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria.Localization;
 
 
-namespace HamstarHelpers.Helpers.Misc {
+namespace HamstarHelpers.Libraries.Misc {
 	/// <summary>
 	/// Assorted static "helper" misc. functions.
 	/// </summary>
-	public partial class MiscHelpers {
+	public partial class MiscLibraries {
 		/// @private
 		[Obsolete( "use ItemMoneyHelpers.PlatinumCoinColor", true )]
-		public static Color PlatinumCoinColor => ItemMoneyHelpers.PlatinumCoinColor;
+		public static Color PlatinumCoinColor => ItemMoneyLibraries.PlatinumCoinColor;
 
 		/// @private
 		[Obsolete( "use ItemMoneyHelpers.GoldCoinColor", true )]
-		public static Color GoldCoinColor => ItemMoneyHelpers.GoldCoinColor;
+		public static Color GoldCoinColor => ItemMoneyLibraries.GoldCoinColor;
 
 		/// @private
 		[Obsolete( "use ItemMoneyHelpers.SilverCoinColor", true )]
-		public static Color SilverCoinColor => ItemMoneyHelpers.SilverCoinColor;
+		public static Color SilverCoinColor => ItemMoneyLibraries.SilverCoinColor;
 
 		/// @private
 		[Obsolete( "use ItemMoneyHelpers.CopperCoinColor", true )]
-		public static Color CopperCoinColor => ItemMoneyHelpers.CopperCoinColor;
+		public static Color CopperCoinColor => ItemMoneyLibraries.CopperCoinColor;
 
 
 
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Helpers.Misc {
 		/// @private
 		[Obsolete( "use ItemMoneyHelpers.RenderMoney", true )]
 		public static string RenderMoney( int money ) {
-			return ItemMoneyHelpers.RenderMoney( money );
+			return ItemMoneyLibraries.RenderMoney( money );
 		}
 
 

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Net;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Encoding;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.Net;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Encoding;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.Net;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
@@ -16,11 +16,11 @@ namespace HamstarHelpers.Internals.WebRequests {
 		private static void RetrieveGlobalInboxAsync( Action<bool, IDictionary<string, string>> onCompletion ) {
 			Action<Exception, string> onError = ( e, output ) => {
 				if( e is JsonReaderException ) {
-					LogHelpers.Alert( "Bad JSON: " + output.Trunc(64) );
+					LogLibraries.Alert( "Bad JSON: " + output.Trunc(64) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( (output.Trunc(64) ?? "...") + " - " + e.Message );
+					LogLibraries.Alert( (output.Trunc(64) ?? "...") + " - " + e.Message );
 				} else {
-					LogHelpers.Alert( (output.Trunc(64) ?? "...") + " - " + e.ToString() );
+					LogLibraries.Alert( (output.Trunc(64) ?? "...") + " - " + e.ToString() );
 				}
 			};
 
@@ -43,7 +43,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 
 			//
 
-			WebConnectionHelpers.MakeGetRequestAsync( GetGlobalInbox.GlobalInboxUrl, e => onError(e, ""), onWrappedCompletion );
+			WebConnectionLibraries.MakeGetRequestAsync( GetGlobalInbox.GlobalInboxUrl, e => onError(e, ""), onWrappedCompletion );
 		}
 
 
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			bool found = false;
 			globalInboxDb = new Dictionary<string, string>();
 
-			string sanitizedJsonData = EncodingHelpers.SanitizeForASCII( jsonData );
+			string sanitizedJsonData = EncodingLibraries.SanitizeForASCII( jsonData );
 			JObject respJson = JObject.Parse( sanitizedJsonData );
 
 			if( respJson.Count > 0 ) {

@@ -5,12 +5,12 @@ using System.Net;
 using Ionic.Zlib;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.DotNET.Encoding;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.Net;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.DotNET.Encoding;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.Net;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 
 
 namespace HamstarHelpers.Internals.WebRequests {
@@ -19,13 +19,13 @@ namespace HamstarHelpers.Internals.WebRequests {
 		private static void RetrieveAllModInfoAsync( Action<bool, BasicModInfoDatabase> onCompletion ) {
 			Action<Exception, string> onError = (e, jsonStr) => {
 				if( e == null ) {
-					LogHelpers.Alert( (jsonStr.Trunc(64) ?? "") + " - Invalid exception?" );
+					LogLibraries.Alert( (jsonStr.Trunc(64) ?? "") + " - Invalid exception?" );
 				} else if( e is JsonReaderException ) {
-					LogHelpers.Alert( "Bad JSON: " + jsonStr.Trunc(256) );
+					LogLibraries.Alert( "Bad JSON: " + jsonStr.Trunc(256) );
 				} else if( e is WebException || e is NullReferenceException ) {
-					LogHelpers.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.Message );
+					LogLibraries.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.Message );
 				} else {
-					LogHelpers.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.ToString() );
+					LogLibraries.Alert( ("'"+jsonStr.Trunc(64)+"'" ?? "...") + " - " + e.ToString() );
 				}
 			};
 
@@ -47,7 +47,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 				onCompletion( success, modInfoDb );
 			};
 
-			WebConnectionHelpers.MakeGetRequestAsync( GetModInfo.ModInfoUrl, e => onError(e, ""), onWrappedCompletion );
+			WebConnectionLibraries.MakeGetRequestAsync( GetModInfo.ModInfoUrl, e => onError(e, ""), onWrappedCompletion );
 		}
 
 
@@ -55,7 +55,7 @@ namespace HamstarHelpers.Internals.WebRequests {
 			modInfoDb = new BasicModInfoDatabase();
 			skipped = 0;
 
-			string sanitizedJsonData = EncodingHelpers.SanitizeForASCII( jsonData );
+			string sanitizedJsonData = EncodingLibraries.SanitizeForASCII( jsonData );
 			JObject respJson = JObject.Parse( sanitizedJsonData );
 			if( respJson.Count == 0 ) {
 				return false;

@@ -1,10 +1,10 @@
 ﻿using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.Items.Attributes;
-using HamstarHelpers.Helpers.NPCs.Attributes;
-using HamstarHelpers.Helpers.Projectiles.Attributes;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.Items.Attributes;
+using HamstarHelpers.Libraries.NPCs.Attributes;
+using HamstarHelpers.Libraries.Projectiles.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,11 +29,11 @@ namespace HamstarHelpers.Services.EntityGroups {
 				(itemType) => {
 					switch( type.Name ) {
 					case "Item":
-						return ItemAttributeHelpers.GetQualifiedName( itemType );
+						return ItemAttributeLibraries.GetQualifiedName( itemType );
 					case "NPC":
-						return NPCAttributeHelpers.GetQualifiedName( itemType );
+						return NPCAttributeLibraries.GetQualifiedName( itemType );
 					case "Projectile":
-						return ProjectileAttributeHelpers.GetQualifiedName( itemType );
+						return ProjectileAttributeLibraries.GetQualifiedName( itemType );
 					default:
 						throw new NotImplementedException();
 					}

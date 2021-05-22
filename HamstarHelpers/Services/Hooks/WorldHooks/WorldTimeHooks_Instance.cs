@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.TModLoader;
+﻿using HamstarHelpers.Libraries.TModLoader;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -19,7 +19,7 @@ namespace HamstarHelpers.Services.Hooks.WorldHooks {
 		internal void Update() {
 			var mymod = ModHelpersMod.Instance;
 
-			if( !LoadHelpers.IsWorldSafelyBeingPlayed() ) {
+			if( !LoadLibraries.IsWorldSafelyBeingPlayed() ) {
 				this.IsDay = Main.dayTime;
 			} else {
 				if( this.IsDay != Main.dayTime ) {

@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Terraria;
-using HamstarHelpers.Helpers.UI;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.UI;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.HUD {
+namespace HamstarHelpers.Libraries.HUD {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to in-game HUD elements. 
 	/// </summary>
-	public class HUDElementHelpers {
+	public class HUDElementLibraries {
 		/// <summary>
 		/// Top left screen position of player's health.
 		/// </summary>
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Helpers.HUD {
 
 			if( applyGameZoom ) {
 				//var worldFrame = UIHelpers.GetWorldFrameOfScreen();
-				var worldFrame = UIZoomHelpers.GetWorldFrameOfScreen( null, false );
+				var worldFrame = UIZoomLibraries.GetWorldFrameOfScreen( null, false );
 				screenOffset.X = worldFrame.X - Main.screenPosition.X;
 				screenOffset.Y = worldFrame.Y - Main.screenPosition.Y;
 			}

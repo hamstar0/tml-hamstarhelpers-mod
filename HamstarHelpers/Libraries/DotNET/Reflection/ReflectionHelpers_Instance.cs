@@ -3,15 +3,15 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Reflection;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Reflection {
+namespace HamstarHelpers.Libraries.DotNET.Reflection {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to reflection
 	/// </summary>
-	public partial class ReflectionHelpers {
-		internal static ReflectionHelpers Instance => ModHelpersMod.Instance?.ReflectionHelpers;
+	public partial class ReflectionLibraries {
+		internal static ReflectionLibraries Instance => ModHelpersMod.Instance?.ReflectionHelpers;
 
 
 
@@ -26,7 +26,7 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 
 		////////////////
 		
-		internal ReflectionHelpers() { }
+		internal ReflectionLibraries() { }
 
 
 		////////////////
@@ -40,9 +40,9 @@ namespace HamstarHelpers.Helpers.DotNET.Reflection {
 			}
 
 			if( !this.FieldPropMap[className].ContainsKey( fieldOrPropName ) ) {
-				result = (MemberInfo)classType.GetField( fieldOrPropName, ReflectionHelpers.MostAccess );
+				result = (MemberInfo)classType.GetField( fieldOrPropName, ReflectionLibraries.MostAccess );
 				if( result == null ) {
-					result = (MemberInfo)classType.GetProperty( fieldOrPropName, ReflectionHelpers.MostAccess );
+					result = (MemberInfo)classType.GetProperty( fieldOrPropName, ReflectionLibraries.MostAccess );
 				}
 
 				this.FieldPropMap[className][fieldOrPropName] = result;

@@ -2,7 +2,7 @@
 using Terraria;
 using HamstarHelpers.Classes.DataStructures;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Services.EntityGroups {
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 		/// </summary>
 		public static void Enable() {
 			var mymod = ModHelpersMod.Instance;
-			if( LoadHelpers.IsModLoaded() ) {
+			if( LoadLibraries.IsModLoaded() ) {
 				throw new ModHelpersException( "Entity Groups must be enabled before mods finish loading." );
 			}
 

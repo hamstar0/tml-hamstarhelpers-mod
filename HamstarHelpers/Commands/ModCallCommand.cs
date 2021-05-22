@@ -4,9 +4,9 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.User;
 
 
 namespace HamstarHelpers.Commands {
@@ -36,12 +36,12 @@ namespace HamstarHelpers.Commands {
 		/// @private
 		public override void Action( CommandCaller caller, string input, string[] args ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				LogHelpers.Warn( "Not supposed to run on client." );
+				LogLibraries.Warn( "Not supposed to run on client." );
 				return;
 			}
 
 			if( Main.netMode == NetmodeID.Server && caller.CommandType != CommandType.Console ) {
-				if( !UserHelpers.HasBasicServerPrivilege( caller.Player ) ) {
+				if( !UserLibraries.HasBasicServerPrivilege( caller.Player ) ) {
 					caller.Reply( "Access denied.", Color.Red );
 					return;
 				}
@@ -78,7 +78,7 @@ namespace HamstarHelpers.Commands {
 				object[] callArgs = new object[args.Length - 1];
 
 				for( int i = 1; i < args.Length; i++ ) {
-					callArgs[i - 1] = DotNetHelpers.ParseToInferredPrimitiveType( args[i] );
+					callArgs[i - 1] = DotNetLibraries.ParseToInferredPrimitiveType( args[i] );
 				}
 
 				callmod.Call( callArgs );

@@ -4,8 +4,8 @@ using System.Reflection;
 using Terraria.ModLoader;
 using Terraria.ModLoader.Core;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Services.TML {
@@ -23,7 +23,7 @@ namespace HamstarHelpers.Services.TML {
 				Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
 				foreach( var ass in assemblies ) {
-					IEnumerable<Type> types = ReflectionHelpers.GetTypesFromAssembly( ass, "BuildProperties" );
+					IEnumerable<Type> types = ReflectionLibraries.GetTypesFromAssembly( ass, "BuildProperties" );
 
 					foreach( Type t in types ) {
 						if( t.IsClass && t.Namespace == "Terraria.ModLoader.Core" && t.Name == "BuildProperties" ) {
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Services.TML {
 					}
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return (Type)null;
 			}
 			
@@ -50,19 +50,19 @@ namespace HamstarHelpers.Services.TML {
 		public static BuildPropertiesViewer GetBuildPropertiesForModFile( TmodFile modfile ) {
 			Type buildPropType = BuildPropertiesViewer.GetBuildPropertiesClassType();
 			if( buildPropType == null ) {
-				LogHelpers.Alert( "Could not get `Type` of build properties classes (eventually to get "+modfile.name+" props)" );
+				LogLibraries.Alert( "Could not get `Type` of build properties classes (eventually to get "+modfile.name+" props)" );
 				return (BuildPropertiesViewer)null;
 			}
 
 			MethodInfo method = buildPropType.GetMethod( "ReadModFile", BindingFlags.NonPublic | BindingFlags.Static );
 			if( method == null ) {
-				LogHelpers.Alert( "Could not get ReadModFile method of build properties class for " + modfile.name );
+				LogLibraries.Alert( "Could not get ReadModFile method of build properties class for " + modfile.name );
 				return (BuildPropertiesViewer)null;
 			}
 
 			object buildProps = method.Invoke( null, new object[] { modfile } );
 			if( buildProps == null ) {
-				LogHelpers.Log( "BuildProperties has changed." );
+				LogLibraries.Log( "BuildProperties has changed." );
 				return (BuildPropertiesViewer)null;
 			}
 
@@ -82,7 +82,7 @@ namespace HamstarHelpers.Services.TML {
 			}
 
 			TmodFile modFile;
-			if( !ReflectionHelpers.Get( mod, "File", out modFile ) || modFile == null ) {
+			if( !ReflectionLibraries.Get( mod, "File", out modFile ) || modFile == null ) {
 				return null;
 			}
 

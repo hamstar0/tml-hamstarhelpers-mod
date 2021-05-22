@@ -1,5 +1,5 @@
 ﻿using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.DotNET.Extensions;
+using HamstarHelpers.Libraries.DotNET.Extensions;
 using System;
 using Terraria;
 using Terraria.ModLoader;

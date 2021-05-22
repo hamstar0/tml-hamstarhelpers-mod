@@ -5,8 +5,8 @@ using Terraria;
 using Terraria.Utilities;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.DotNET.Extensions;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.DotNET.Extensions;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Services.Dialogue {
@@ -25,9 +25,9 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <returns>Returns `true` if a new chat message was picked, `false` if the no new chat was picked, or `null` if
 		/// another attempt (`npc.GetChat()`) is needed to get a new chat message.</returns>
 		public static bool? GetChat( NPC npc, ref string chat, float defaultChatsTotalWeight = 1f ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 			
-			UnifiedRandom rand = TmlHelpers.SafelyGetRand();
+			UnifiedRandom rand = TmlLibraries.SafelyGetRand();
 			float totalWeight = defaultChatsTotalWeight;
 			totalWeight += de.AddedChats.GetOrDefault(npc.type)?
 					.Select( wc => wc.Weight )
@@ -59,7 +59,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="npcType"></param>
 		/// <returns></returns>
 		public static string GetNewChat( int npcType ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 
 			float totalWeight = de.AddedChats.GetOrDefault( npcType )?
 					.Select( wc => wc.Weight )
@@ -69,7 +69,7 @@ namespace HamstarHelpers.Services.Dialogue {
 				return null;
 			}
 
-			UnifiedRandom rand = TmlHelpers.SafelyGetRand();
+			UnifiedRandom rand = TmlLibraries.SafelyGetRand();
 			float guessWeight = rand.NextFloat() * totalWeight;
 
 			float countedWeights = 0;
@@ -94,7 +94,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="chat"></param>
 		/// <returns></returns>
 		public static bool IsChatRemoved( int npcType, string chat ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 
 			if( de.RemovedChatFlatPatterns.ContainsKey( npcType ) ) {
 				foreach( string pattern in de.RemovedChatFlatPatterns[npcType] ) {
@@ -115,7 +115,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="npcType"></param>
 		/// <returns></returns>
 		public static IEnumerable<(float Weight, string Chat)> GetAddedChats( int npcType ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 
 			return new List<(float, string)>(
 				de.AddedChats.GetOrDefault( npcType )
@@ -130,7 +130,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="chat"></param>
 		/// <returns></returns>
 		public static bool RemoveAddedChat( int npcType, string chat ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 			if( !de.AddedChats.ContainsKey(npcType) ) {
 				return false;
 			}
@@ -160,7 +160,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="weight">How much favor is given to this chat to be picked from the NPC's pool. Note: All of an
 		/// NPC's default chats have a total weight of `1f`.</param>
 		public static void AddChatForNPC( int npcType, string chat, float weight=0.1f ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 			de.AddedChats.Append2D( npcType, (weight, chat) );
 		}
 
@@ -171,7 +171,7 @@ namespace HamstarHelpers.Services.Dialogue {
 		/// <param name="npcType"></param>
 		/// <param name="chatFlatPattern"></param>
 		public static void AddChatRemoveFlatPatternForNPC( int npcType, string chatFlatPattern ) {
-			DialogueEditor de = TmlHelpers.SafelyGetInstance<DialogueEditor>();
+			DialogueEditor de = TmlLibraries.SafelyGetInstance<DialogueEditor>();
 			de.RemovedChatFlatPatterns.Append2D( npcType, chatFlatPattern );
 		}
 	}

@@ -1,5 +1,5 @@
-﻿using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Misc;
+﻿using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Misc;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using System;
 using System.Collections.Generic;
@@ -45,7 +45,7 @@ namespace HamstarHelpers.Services.Messages.Inbox {
 		////////////////
 
 		internal bool LoadFromFile() {
-			var data = ModCustomDataFileHelpers.LoadJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox" );
+			var data = ModCustomDataFileLibraries.LoadJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox" );
 			if( data == null ) {
 				return false;
 			}
@@ -61,7 +61,7 @@ namespace HamstarHelpers.Services.Messages.Inbox {
 
 		internal void SaveToFile() {
 			if( this.Data != null ) {
-				ModCustomDataFileHelpers.SaveAsJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", true, this.Data );
+				ModCustomDataFileLibraries.SaveAsJson<InboxMessageData>( ModHelpersMod.Instance, "Inbox", true, this.Data );
 			}
 		}
 	}

@@ -5,11 +5,11 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.Buffs {
+namespace HamstarHelpers.Libraries.Buffs {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to buff attributes.
 	/// </summary>
-	public partial class BuffAttributesHelpers {
+	public partial class BuffAttributesLibraries {
 		/// <summary>
 		/// A map of buff names to their Terraria IDs.
 		/// </summary>

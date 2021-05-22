@@ -2,15 +2,15 @@
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Players;
 
 
-namespace HamstarHelpers.Helpers.User {
+namespace HamstarHelpers.Libraries.User {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the concept of "users" (corrently supports only a single,
 	/// config-defined "priviledged" user).
 	/// </summary>
-	public class UserHelpers {
+	public class UserLibraries {
 		/// <summary>
 		/// Indicates if the given player has special priviledge on a server. Currently, this is only defined by a config
 		/// setting (`PrivilegedUserId`) using the user's internal unique ID (see `PlayerIdentityHelpers.GetUniqueId()`).
@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.User {
 			}
 
 			var privConfig = ModHelpersPrivilegedUserConfig.Instance;
-			string uid = PlayerIdentityHelpers.GetUniqueId( player );
+			string uid = PlayerIdentityLibraries.GetUniqueId( player );
 
 			if( string.IsNullOrEmpty(privConfig.PrivilegedUserId) ) {
 				return false;

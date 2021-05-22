@@ -1,8 +1,8 @@
 ﻿using HamstarHelpers.Classes.UI.Menu;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.TModLoader.Menus;
-using HamstarHelpers.Helpers.TModLoader.Mods;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.TModLoader.Menus;
+using HamstarHelpers.Libraries.TModLoader.Mods;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 using HamstarHelpers.Services.Timers;
@@ -61,14 +61,14 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 
 		private void DisplayModListVersions( UIState modsUi, IDictionary<string, BasicModInfo> modInfo ) {
 			object items;
-			if( !ReflectionHelpers.Get( modsUi, "items", out items ) ) {
-				LogHelpers.Warn( "No 'items' field in ui " + modsUi );
+			if( !ReflectionLibraries.Get( modsUi, "items", out items ) ) {
+				LogLibraries.Warn( "No 'items' field in ui " + modsUi );
 				return;
 			}
 
 			UIList list;
-			if( !ReflectionHelpers.Get( modsUi, "modList", out list ) ) {
-				LogHelpers.Warn( "No 'modList' field in ui " + modsUi );
+			if( !ReflectionLibraries.Get( modsUi, "modList", out list ) ) {
+				LogLibraries.Warn( "No 'modList' field in ui " + modsUi );
 				return;
 			}
 
@@ -80,14 +80,14 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				object item = itemsArr.GetValue( i );
 
 				object mod;
-				if( !ReflectionHelpers.Get( item, "_mod", out mod ) || mod == null ) {
-					LogHelpers.Warn( "Could not get Mod from list item " + item.ToString() );
+				if( !ReflectionLibraries.Get( item, "_mod", out mod ) || mod == null ) {
+					LogLibraries.Warn( "Could not get Mod from list item " + item.ToString() );
 					continue;
 				}
 
 				TmodFile modFile;
-				if( !ReflectionHelpers.Get( mod, "modFile", out modFile ) || modFile == null ) {
-					LogHelpers.Warn( "Could not get modFile from list item " + item.ToString() + "'s mod " + mod.ToString() );
+				if( !ReflectionLibraries.Get( mod, "modFile", out modFile ) || modFile == null ) {
+					LogLibraries.Warn( "Could not get modFile from list item " + item.ToString() + "'s mod " + mod.ToString() );
 					continue;
 				}
 
@@ -110,12 +110,12 @@ namespace HamstarHelpers.Internals.Menus.ModUpdates {
 				object mod;
 				TmodFile modFile;
 
-				if( !ReflectionHelpers.Get( modItem, "_mod", out mod ) || mod == null ) {
-					LogHelpers.Warn( "Could not get mod for version check from mod list item " + modItem.ToString() );
+				if( !ReflectionLibraries.Get( modItem, "_mod", out mod ) || mod == null ) {
+					LogLibraries.Warn( "Could not get mod for version check from mod list item " + modItem.ToString() );
 					continue;
 				}
-				if( !ReflectionHelpers.Get( mod, "modFile", out modFile ) || modFile == null ) {
-					LogHelpers.Warn( "Could not get mod file for version check from mod " + mod.ToString() + "'s list item " + modItem.ToString() );
+				if( !ReflectionLibraries.Get( mod, "modFile", out modFile ) || modFile == null ) {
+					LogLibraries.Warn( "Could not get mod file for version check from mod " + mod.ToString() + "'s list item " + modItem.ToString() );
 					continue;
 				}
 

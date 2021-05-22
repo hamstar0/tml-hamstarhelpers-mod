@@ -9,8 +9,8 @@ using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Packet;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
 
 
 namespace HamstarHelpers.Classes.Protocols.Stream {
@@ -25,7 +25,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 			if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
 				var pp = this as PacketProtocol;
 				if( pp == null || pp.IsVerbose ) {
-					LogHelpers.Log( "  Begun reading packet " + this.GetType().Name + " (" + this.FieldCount + " fields)" );
+					LogLibraries.Log( "  Begun reading packet " + this.GetType().Name + " (" + this.FieldCount + " fields)" );
 				}
 			}
 
@@ -48,9 +48,9 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
 					var pp = this as PacketProtocol;
 					if( pp == null || pp.IsVerbose ) {
-						LogHelpers.Log( "  * Reading packet "+ this.GetType().Name
+						LogLibraries.Log( "  * Reading packet "+ this.GetType().Name
 							+" field ("+i+" of "+ this.FieldCount+") "+field.Name
-							+": "+DotNetHelpers.Stringify(fieldData, 32) );
+							+": "+DotNetLibraries.Stringify(fieldData, 32) );
 					}
 				}
 
@@ -208,7 +208,7 @@ namespace HamstarHelpers.Classes.Protocols.Stream {
 				if( ModHelpersConfig.Instance.DebugModePacketInfo ) {
 					var pp = this as PacketProtocol;
 					if( pp == null || pp.IsVerbose ) {
-						LogHelpers.Log( "    - ReadStreamObjectValue - type: " + fieldType.Name + ", raw value (" + rawJson.Length + "): \n  " + rawJson );
+						LogLibraries.Log( "    - ReadStreamObjectValue - type: " + fieldType.Name + ", raw value (" + rawJson.Length + "): \n  " + rawJson );
 					}
 				}
 

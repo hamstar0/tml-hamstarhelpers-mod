@@ -3,10 +3,10 @@ using Terraria;
 using Terraria.Enums;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles.Attributes {
+namespace HamstarHelpers.Libraries.Tiles.Attributes {
 	/// <summary></summary>
 	public enum VanillaTileCuttingContext {
 		/// <summary></summary>
@@ -25,7 +25,7 @@ namespace HamstarHelpers.Helpers.Tiles.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile attributes.
 	/// </summary>
-	public partial class TileAttributeHelpers {
+	public partial class TileAttributeLibraries {
 		/// <summary>
 		/// Indicates if a given tile type is an "object" (container, sign, station, etc.).
 		/// </summary>
@@ -64,7 +64,7 @@ namespace HamstarHelpers.Helpers.Tiles.Attributes {
 		/// <returns></returns>
 		public static bool IsNotVanillaBombable( int tileX, int tileY ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
-			return !TileLoader.CanExplode( tileX, tileY ) || TileHelpers.IsNotVanillaBombableType( tile.type );
+			return !TileLoader.CanExplode( tileX, tileY ) || TileLibraries.IsNotVanillaBombableType( tile.type );
 		}
 
 		/// <summary>

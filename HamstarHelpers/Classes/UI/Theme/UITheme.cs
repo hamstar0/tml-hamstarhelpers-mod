@@ -3,7 +3,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.UI.Elements;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Classes.UI.Theme {
@@ -162,7 +162,7 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		public virtual void ApplyInput( UIPanel panel ) {
 			panel.BackgroundColor = this.InputBgColor;
 			panel.BorderColor = this.InputEdgeColor;
-			ReflectionHelpers.Set( panel, "TextColor", this.InputTextColor );
+			ReflectionLibraries.Set( panel, "TextColor", this.InputTextColor );
 		}
 
 		////
@@ -184,7 +184,7 @@ namespace HamstarHelpers.Classes.UI.Theme {
 		public virtual void ApplyInputDisable( UIPanel panel ) {
 			panel.BackgroundColor = this.InputBgDisabledColor;
 			panel.BorderColor = this.InputEdgeDisabledColor;
-			ReflectionHelpers.Set( panel, "TextColor", this.InputTextDisabledColor );
+			ReflectionLibraries.Set( panel, "TextColor", this.InputTextDisabledColor );
 		}
 
 		////////////////

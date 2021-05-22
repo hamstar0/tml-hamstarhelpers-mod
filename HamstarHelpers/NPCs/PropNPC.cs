@@ -4,9 +4,9 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.UI;
-using HamstarHelpers.Helpers.Draw;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.UI;
+using HamstarHelpers.Libraries.Draw;
 
 
 namespace HamstarHelpers.NPCs {
@@ -90,7 +90,7 @@ namespace HamstarHelpers.NPCs {
 		/// @private
 		public override bool PreDraw( SpriteBatch sb, Color drawColor ) {
 			Texture2D tex = ModContent.GetTexture( this.Texture );
-			Vector2 pos = UIZoomHelpers.ConvertToScreenPosition( npc.Center, null, true );
+			Vector2 pos = UIZoomLibraries.ConvertToScreenPosition( npc.Center, null, true );
 
 			sb.Draw(
 				texture: tex,
@@ -111,7 +111,7 @@ namespace HamstarHelpers.NPCs {
 					(int)( npc.scale * (float)tex.Width ),
 					(int)( npc.scale * (float)tex.Height )
 				);
-				DrawHelpers.DrawBorderedRect( sb, Color.Transparent, Color.Red, rect, 2 );
+				DrawLibraries.DrawBorderedRect( sb, Color.Transparent, Color.Red, rect, 2 );
 			}
 
 			return false;

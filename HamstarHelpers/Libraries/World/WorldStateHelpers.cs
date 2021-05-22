@@ -2,11 +2,11 @@
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.World {
+namespace HamstarHelpers.Libraries.World {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the current world's state.
 	/// </summary>
-	public partial class WorldStateHelpers {
+	public partial class WorldStateLibraries {
 		/// <summary>
 		/// Tick duration of a daytime period.
 		/// </summary>
@@ -53,9 +53,9 @@ namespace HamstarHelpers.Helpers.World {
 		/// <returns></returns>
 		public static double GetDayOrNightPercentDone() {
 			if( Main.dayTime ) {
-				return Main.time / (double)WorldStateHelpers.VanillaDayDuration;
+				return Main.time / (double)WorldStateLibraries.VanillaDayDuration;
 			} else {
-				return Main.time / (double)WorldStateHelpers.VanillaNightDuration;
+				return Main.time / (double)WorldStateLibraries.VanillaNightDuration;
 			}
 		}
 	}

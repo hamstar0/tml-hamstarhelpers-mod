@@ -1,7 +1,7 @@
 ﻿using System;
 using Terraria;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Tiles;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Tiles;
 
 
 namespace HamstarHelpers.Classes.TileStructure {
@@ -96,10 +96,10 @@ namespace HamstarHelpers.Classes.TileStructure {
 				tile.lava( isLava );
 
 				if( flipHorizontally ) {
-					TileStateHelpers.FlipSlopeHorizontally( tile );
+					TileStateLibraries.FlipSlopeHorizontally( tile );
 				}
 				if( flipVertically ) {
-					TileStateHelpers.FlipSlopeVertically( tile );
+					TileStateLibraries.FlipSlopeVertically( tile );
 				}
 
 				Main.tile[i, j] = tile;

@@ -6,14 +6,14 @@ using Terraria.ID;
 using Terraria.IO;
 using Terraria.Social;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.TModLoader {
+namespace HamstarHelpers.Libraries.TModLoader {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tModLoader.
 	/// </summary>
-	public static partial class TmlHelpers {
+	public static partial class TmlLibraries {
 		/// <summary>
 		/// Path to config files.
 		/// </summary>
@@ -33,7 +33,7 @@ namespace HamstarHelpers.Helpers.TModLoader {
 		/// </summary>
 		/// <param name="save">Saves settings or world state.</param>
 		public static void ExitToDesktop( bool save = true ) {
-			LogHelpers.Log( "Exiting to desktop " + ( save ? "with save..." : "..." ) );
+			LogLibraries.Log( "Exiting to desktop " + ( save ? "with save..." : "..." ) );
 
 			if( Main.netMode == NetmodeID.SinglePlayer ) {
 				if( save ) { Main.SaveSettings(); }

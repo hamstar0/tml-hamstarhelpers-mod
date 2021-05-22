@@ -2,13 +2,13 @@
 using System.Net;
 using Terraria;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Timers;
 
 
-namespace HamstarHelpers.Helpers.Net {
+namespace HamstarHelpers.Libraries.Net {
 	/// @private
-	public partial class NetPlayHelpers {
+	public partial class NetPlayLibraries {
 		private string PublicIP = null;
 		
 		private int CurrentPing = -1;
@@ -17,7 +17,7 @@ namespace HamstarHelpers.Helpers.Net {
 
 		////////////////
 
-		internal NetPlayHelpers() {
+		internal NetPlayLibraries() {
 			if( ModHelpersConfig.Instance.DisableOwnIPCheck ) {
 				return;
 			}
@@ -69,13 +69,13 @@ namespace HamstarHelpers.Helpers.Net {
 
 			onFail = ( Exception e, string output ) => {
 				if( e is WebException ) {
-					LogHelpers.Log( "Could not acquire IP: " + e.Message );
+					LogLibraries.Log( "Could not acquire IP: " + e.Message );
 				} else {
-					LogHelpers.Alert( "Could not acquire IP: " + e.ToString() );
+					LogLibraries.Alert( "Could not acquire IP: " + e.ToString() );
 				}
 			};
 
-			WebConnectionHelpers.MakeGetRequestAsync( "http://checkip.dyndns.org/", e => onFail(e, ""), onCompletion );
+			WebConnectionLibraries.MakeGetRequestAsync( "http://checkip.dyndns.org/", e => onFail(e, ""), onCompletion );
 			//NetHelpers.MakeGetRequestAsync( "https://api.ipify.org/", onSuccess, onFail );
 			//using( WebClient webClient = new WebClient() ) {
 			//	this.PublicIP = webClient.DownloadString( "http://ifconfig.me/ip" );

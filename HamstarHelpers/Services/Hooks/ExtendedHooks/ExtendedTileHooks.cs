@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader;
 using System;
 using Terraria;
 
@@ -16,11 +16,11 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// </summary>
 		public static Func<bool> NonGameplayKillTileCondition {
 			get {
-				var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+				var eth = TmlLibraries.SafelyGetInstance<ExtendedTileHooks>();
 				return eth.KillTileSkipCondition;
 			}
 			set {
-				var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+				var eth = TmlLibraries.SafelyGetInstance<ExtendedTileHooks>();
 				eth.KillTileSkipCondition = value;
 			}
 		}
@@ -34,7 +34,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// </summary>
 		/// <param name="hook"></param>
 		public static void AddSafeKillTileHook( KillTileDelegate hook ) {
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			var eth = TmlLibraries.SafelyGetInstance<ExtendedTileHooks>();
 
 			lock( ExtendedTileHooks.MyLock ) {
 				eth.OnKillTileHooks.Add( hook );
@@ -49,7 +49,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// </summary>
 		/// <param name="hook"></param>
 		public static void AddSafeWallKillHook( KillWallDelegate hook ) {
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			var eth = TmlLibraries.SafelyGetInstance<ExtendedTileHooks>();
 
 			lock( ExtendedTileHooks.MyLock ) {
 				eth.OnKillWallHooks.Add( hook );
@@ -65,7 +65,7 @@ namespace HamstarHelpers.Services.Hooks.ExtendedHooks {
 		/// </summary>
 		/// <param name="hook"></param>
 		public static void AddKillMultiTileHook( KillMultiTileDelegate hook ) {
-			var eth = TmlHelpers.SafelyGetInstance<ExtendedTileHooks>();
+			var eth = TmlLibraries.SafelyGetInstance<ExtendedTileHooks>();
 
 			lock( ExtendedTileHooks.MyLock ) {
 				eth.OnKillMultiTileHooks.Add( hook );

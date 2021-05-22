@@ -5,11 +5,11 @@ using System.Reflection;
 using Newtonsoft.Json.Linq;
 
 
-namespace HamstarHelpers.Helpers.DotNET.Encoding {
+namespace HamstarHelpers.Libraries.DotNET.Encoding {
     /// <summary>
     /// Assorted static "helper" functions pertaining to hash codes.
     /// </summary>
-    public class JsonHelpers {
+    public class JsonLibraries {
         /// <summary>
         /// Removes incompatible entries from the input JSON object.
         /// </summary>

@@ -6,8 +6,8 @@ using Terraria.ModLoader;
 using NetSerializer;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Loadable;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
 namespace HamstarHelpers.Services.Network.SimplePacket {
@@ -31,7 +31,7 @@ namespace HamstarHelpers.Services.Network.SimplePacket {
 					return false;
 				}
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.Message );
+				LogLibraries.Warn( e.Message );
 
 				// Reset stream for other handlers:
 				reader.BaseStream.Seek( oldStreamPos, SeekOrigin.Begin );
@@ -65,7 +65,7 @@ namespace HamstarHelpers.Services.Network.SimplePacket {
 				Type dataType = self.PayloadCodeToType[ code ];
 				Serializer ser = self.PayloadCodeToSerializer[ code ];
 
-				MethodInfo method = ser.GetType().GetMethod( "DeserializeDirect", ReflectionHelpers.MostAccess );
+				MethodInfo method = ser.GetType().GetMethod( "DeserializeDirect", ReflectionLibraries.MostAccess );
 				method = method.MakeGenericMethod( new Type[] { dataType } );
 
 				var parameters = new object[] { reader.BaseStream, null };
@@ -74,7 +74,7 @@ namespace HamstarHelpers.Services.Network.SimplePacket {
 				data = parameters[1];
 				return true;
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.Message );
+				LogLibraries.Warn( e.Message );
 
 				data = null;
 				return false;

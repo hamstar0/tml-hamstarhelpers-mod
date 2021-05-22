@@ -4,11 +4,12 @@ using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.GameInput;
 
-namespace HamstarHelpers.Helpers.UI {
+
+namespace HamstarHelpers.Libraries.UI {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to the in-game UI (positions, interactions, etc.).
 	/// </summary>
-	public partial class UIHelpers {
+	public partial class UILibraries {
 		/// <summary></summary>
 		public static readonly int MinScreenWidth = 800;
 		/// <summary></summary>

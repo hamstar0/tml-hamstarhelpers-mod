@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.UI;
 using HamstarHelpers.Classes.UI.Theme;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
 namespace HamstarHelpers.Classes.UI.Elements {
@@ -51,7 +51,7 @@ namespace HamstarHelpers.Classes.UI.Elements {
 					}
 				}
 			} catch( Exception e ) {
-				LogHelpers.Log( e.ToString() );
+				LogLibraries.Log( e.ToString() );
 			}
 		}
 	}

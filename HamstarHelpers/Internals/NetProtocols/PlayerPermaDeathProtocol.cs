@@ -2,8 +2,8 @@
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Players;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Players;
 using HamstarHelpers.Services.Network.SimplePacket;
 
 
@@ -64,11 +64,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public override void ReceiveOnClient() {
 			Player player = Main.player[this.PlayerWho];
 			if( player == null || !player.active ) {
-				LogHelpers.Alert( "Inactive player indexed as " + this.PlayerWho );
+				LogLibraries.Alert( "Inactive player indexed as " + this.PlayerWho );
 				return;
 			}
 
-			PlayerHelpers.ApplyPermaDeathState( player, this.Msg );
+			PlayerLibraries.ApplyPermaDeathState( player, this.Msg );
 		}
 	}
 }

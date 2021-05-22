@@ -2,8 +2,8 @@
 using Terraria;
 using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.User;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.User;
 using HamstarHelpers.Services.Debug.DataDumper;
 using HamstarHelpers.Services.Network.SimplePacket;
 
@@ -42,8 +42,8 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				return;
 			}
 
-			if( !UserHelpers.HasBasicServerPrivilege(Main.player[fromWho]) ) {
-				LogHelpers.Alert( "Player "+Main.player[fromWho].ToString()+" lacks server privilege." );
+			if( !UserLibraries.HasBasicServerPrivilege(Main.player[fromWho]) ) {
+				LogLibraries.Alert( "Player "+Main.player[fromWho].ToString()+" lacks server privilege." );
 
 				return;
 			}

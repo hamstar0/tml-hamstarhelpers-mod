@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Reflection;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.DotNET.Reflection;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.DotNET.Reflection;
 
 
-namespace HamstarHelpers.Helpers.TModLoader.Mods {
+namespace HamstarHelpers.Libraries.TModLoader.Mods {
 	/// <summary>
 	/// Assorted static "helper" functions for alleviating tedious "boilerplate" code.
 	/// </summary>
-	public class ModBoilerplateHelpers {
+	public class ModBoilerplateLibraries {
 		/// <summary>
 		/// Allows using a class to bind its public static methods as `Mod.Call(...)` bindings (complete with parameter
 		/// validations). Meant to be called within `Mod.Call(...)`.
@@ -23,7 +23,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 
 			string callType = args[0] as string;
 			if( callType == null ) {
-				LogHelpers.Alert( "Invalid call binding: " + args[0] );
+				LogLibraries.Alert( "Invalid call binding: " + args[0] );
 				return null;
 			}
 
@@ -32,7 +32,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 				var argsList = args.SafeSelect( a => a.GetType().Name + ": " + a == null ? "null" : a.ToString() );
 				string argsListStr = string.Join( ", ", argsList );
 
-				LogHelpers.Alert( apiClassType.Name+" has no Call binding for " + callType + " with args: "+argsListStr );
+				LogLibraries.Alert( apiClassType.Name+" has no Call binding for " + callType + " with args: "+argsListStr );
 				return null;
 			}
 
@@ -40,7 +40,7 @@ namespace HamstarHelpers.Helpers.TModLoader.Mods {
 			Array.Copy( args, 1, newArgs, 0, args.Length - 1 );
 
 			try {
-				return ReflectionHelpers.SafeCall( methodInfo, null, newArgs );
+				return ReflectionLibraries.SafeCall( methodInfo, null, newArgs );
 			} catch( Exception e ) {
 				throw new ModHelpersException( apiClassType.Name+" failed to execute Call binding " +callType, e );
 			}

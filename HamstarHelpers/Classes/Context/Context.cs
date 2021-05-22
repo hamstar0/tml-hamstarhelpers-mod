@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader.Config;
 using HamstarHelpers.Classes.Tiles.TilePattern;
-using HamstarHelpers.Helpers.NPCs;
-using HamstarHelpers.Helpers.Info;
+using HamstarHelpers.Libraries.NPCs;
+using HamstarHelpers.Libraries.Info;
 using System.Linq;
 
 
@@ -128,7 +128,7 @@ namespace HamstarHelpers.Classes.Context {
 			}
 
 			if( this.Events != null ) {
-				VanillaEventFlag currentEvents = NPCInvasionHelpers.GetCurrentEventTypeSet();
+				VanillaEventFlag currentEvents = NPCInvasionLibraries.GetCurrentEventTypeSet();
 
 				foreach( VanillaEventFlag events in this.Events ) {
 					if( (events & currentEvents) != events ) {
@@ -138,7 +138,7 @@ namespace HamstarHelpers.Classes.Context {
 			}
 
 			if( this.Progress != null ) {
-				if( !this.Progress.Contains(GameInfoHelpers.GetVanillaProgress()) ) {
+				if( !this.Progress.Contains(GameInfoLibraries.GetVanillaProgress()) ) {
 					return false;
 				}
 			}

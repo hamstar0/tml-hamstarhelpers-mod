@@ -7,8 +7,8 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Commands;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Services.Hooks.LoadHooks;
 
 
@@ -49,7 +49,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			this.OpenConfigList.Left.Set( -188f, 1f );
 			this.OpenConfigList.Width.Set( 160f, 0f );
 			this.OpenConfigList.OnClick += ( _, __ ) => {
-				MainMenuHelpers.OpenModConfigListUI();
+				MainMenuLibraries.OpenModConfigListUI();
 			};
 			this.Append( this.OpenConfigList );
 
@@ -242,7 +242,7 @@ namespace HamstarHelpers.Internals.ControlPanel.ModControlPanel {
 			try {
 				elem = new UIModData( this.Theme, idx, mod, false );
 			} catch {
-				LogHelpers.WarnAndPrintOnce( "Could not load mod " + mod?.DisplayName, Color.Red );
+				LogLibraries.WarnAndPrintOnce( "Could not load mod " + mod?.DisplayName, Color.Red );
 				return null;
 			}
 

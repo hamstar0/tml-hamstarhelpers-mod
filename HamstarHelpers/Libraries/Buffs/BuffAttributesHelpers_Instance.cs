@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using Terraria;
 
 
-namespace HamstarHelpers.Helpers.Buffs {
+namespace HamstarHelpers.Libraries.Buffs {
 	/// @private
-	public partial class BuffAttributesHelpers {
+	public partial class BuffAttributesLibraries {
 		private ReadOnlyDictionaryOfSets<string, int> _NamesToIds = null;
 
 
@@ -15,7 +15,7 @@ namespace HamstarHelpers.Helpers.Buffs {
 			var dict = new Dictionary<string, ISet<int>>();
 
 			for( int i = 1; i < Main.buffTexture.Length; i++ ) {
-				string name = BuffAttributesHelpers.GetBuffDisplayName( i );
+				string name = BuffAttributesLibraries.GetBuffDisplayName( i );
 
 				if( dict.ContainsKey( name ) ) {
 					dict[name].Add( i );

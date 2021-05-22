@@ -4,18 +4,18 @@ using Terraria;
 using Terraria.ModLoader;
 
 
-namespace HamstarHelpers.Helpers.NPCs.Attributes {
+namespace HamstarHelpers.Libraries.NPCs.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to gameplay attributes of NPCs.
 	/// </summary>
-	public partial class NPCAttributeHelpers {
+	public partial class NPCAttributeLibraries {
 		private ReadOnlyDictionaryOfSets<string, int> _DisplayNamesToIds = null;
 
 
 
 		////////////////
 
-		internal NPCAttributeHelpers() { }
+		internal NPCAttributeLibraries() { }
 
 
 		////////////////
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Helpers.NPCs.Attributes {
 			var dict = new Dictionary<string, ISet<int>>();
 
 			for( int i = 1; i < NPCLoader.NPCCount; i++ ) {
-				string name = NPCAttributeHelpers.GetQualifiedName( i );
+				string name = NPCAttributeLibraries.GetQualifiedName( i );
 
 				if( dict.ContainsKey( name ) ) {
 					dict[name].Add( i );

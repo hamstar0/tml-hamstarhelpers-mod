@@ -3,34 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
-namespace HamstarHelpers.Helpers.Tiles.Attributes {
+namespace HamstarHelpers.Libraries.Tiles.Attributes {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile attributes.
 	/// </summary>
-	public partial class TileAttributeHelpers {
+	public partial class TileAttributeLibraries {
 		private static IDictionary<int, IDictionary<int, string>> VanillaTileNamesByTypeAndSubtype;
 		private static IDictionary<string, Tuple<int, List<int>>> VanillaTileTypeandSubtypeByName;
 
 		////
 
-		static TileAttributeHelpers() {
-			TileAttributeHelpers.VanillaTileNamesByTypeAndSubtype = new Dictionary<int, IDictionary<int, string>>();
-			TileAttributeHelpers.VanillaTileTypeandSubtypeByName = new Dictionary<string, Tuple<int, List<int>>>();
+		static TileAttributeLibraries() {
+			TileAttributeLibraries.VanillaTileNamesByTypeAndSubtype = new Dictionary<int, IDictionary<int, string>>();
+			TileAttributeLibraries.VanillaTileTypeandSubtypeByName = new Dictionary<string, Tuple<int, List<int>>>();
 
 			Action<int, IDictionary<int, string>> t = ( tileId, tileData ) => {
-				TileAttributeHelpers.VanillaTileNamesByTypeAndSubtype[ tileId ] = tileData;
+				TileAttributeLibraries.VanillaTileNamesByTypeAndSubtype[ tileId ] = tileData;
 
 				foreach( var kv in tileData ) {
 					int subType = kv.Key;
 					string tileName = kv.Value;
 
-					if( !TileAttributeHelpers.VanillaTileTypeandSubtypeByName.ContainsKey(tileName) ) {
-						TileAttributeHelpers.VanillaTileTypeandSubtypeByName[tileName] = Tuple.Create( subType, new List<int>() );
+					if( !TileAttributeLibraries.VanillaTileTypeandSubtypeByName.ContainsKey(tileName) ) {
+						TileAttributeLibraries.VanillaTileTypeandSubtypeByName[tileName] = Tuple.Create( subType, new List<int>() );
 					}
-					TileAttributeHelpers.VanillaTileTypeandSubtypeByName[ tileName ].Item2.Add( subType );
+					TileAttributeLibraries.VanillaTileTypeandSubtypeByName[ tileName ].Item2.Add( subType );
 				}
 			};
 			
@@ -2949,7 +2949,7 @@ namespace HamstarHelpers.Helpers.Tiles.Attributes {
 					{ -1, "Crystal Table" }
 				} );
 			} catch( Exception e ) {
-				LogHelpers.Log( e.ToString() );
+				LogLibraries.Log( e.ToString() );
 			}
 		}
 
@@ -2962,10 +2962,10 @@ namespace HamstarHelpers.Helpers.Tiles.Attributes {
 		/// <param name="tileType"></param>
 		/// <returns></returns>
 		public static KeyValuePair<int, string>[] GetVanillaTileDisplayNames( int tileType ) {
-			if( !TileAttributeHelpers.VanillaTileNamesByTypeAndSubtype.ContainsKey( tileType ) ) {
+			if( !TileAttributeLibraries.VanillaTileNamesByTypeAndSubtype.ContainsKey( tileType ) ) {
 				return new KeyValuePair<int, string>[0];
 			}
-			return TileAttributeHelpers.VanillaTileNamesByTypeAndSubtype[ tileType ].ToArray();
+			return TileAttributeLibraries.VanillaTileNamesByTypeAndSubtype[ tileType ].ToArray();
 		}
 
 		/// <summary>
@@ -2975,11 +2975,11 @@ namespace HamstarHelpers.Helpers.Tiles.Attributes {
 		/// <param name="subType"></param>
 		/// <returns></returns>
 		public static string GetVanillaTileDisplayName( int tileType, int subType=-1 ) {
-			if( !TileAttributeHelpers.VanillaTileNamesByTypeAndSubtype.ContainsKey( tileType ) ||
-				!TileAttributeHelpers.VanillaTileNamesByTypeAndSubtype[ tileType ].ContainsKey( subType ) ) {
+			if( !TileAttributeLibraries.VanillaTileNamesByTypeAndSubtype.ContainsKey( tileType ) ||
+				!TileAttributeLibraries.VanillaTileNamesByTypeAndSubtype[ tileType ].ContainsKey( subType ) ) {
 				return "";
 			}
-			return TileAttributeHelpers.VanillaTileNamesByTypeAndSubtype[tileType][subType];
+			return TileAttributeLibraries.VanillaTileNamesByTypeAndSubtype[tileType][subType];
 		}
 	}
 }

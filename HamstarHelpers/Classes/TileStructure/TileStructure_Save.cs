@@ -2,8 +2,8 @@
 using Terraria;
 using Terraria.ModLoader;
 using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.DotNET;
-using HamstarHelpers.Helpers.TModLoader;
+using HamstarHelpers.Libraries.DotNET;
+using HamstarHelpers.Libraries.TModLoader;
 
 
 namespace HamstarHelpers.Classes.TileStructure {
@@ -24,7 +24,7 @@ namespace HamstarHelpers.Classes.TileStructure {
 
 			var loader = ModContent.GetInstance<TileStructureLoader>();
 			byte[] rawCompressedData = mod.GetFileBytes( pathOfModFile );
-			byte[] rawData = FileHelpers.DecompressFileData( rawCompressedData );
+			byte[] rawData = FileLibraries.DecompressFileData( rawCompressedData );
 
 			TileStructure tiles = loader.Load( rawData );
 			tiles.RecountTiles();
@@ -39,7 +39,7 @@ namespace HamstarHelpers.Classes.TileStructure {
 		/// <returns></returns>
 		public static TileStructure Load( string systemPath ) {
 			var loader = ModContent.GetInstance<TileStructureLoader>();
-			byte[] rawData = FileHelpers.LoadBinaryFile( systemPath, false );
+			byte[] rawData = FileLibraries.LoadBinaryFile( systemPath, false );
 			if( rawData == null ) {
 				throw new ModHelpersException( "System file not found ("+systemPath+")." );
 			}
@@ -60,10 +60,10 @@ namespace HamstarHelpers.Classes.TileStructure {
 		/// <param name="systemPath">Note: Use `Path.DirectorySeparatorChar` for folders.</param>
 		/// <returns>Returns `true` if file saved successfully.</returns>
 		public bool Save( string systemPath ) {
-			var tileStructLoader = TmlHelpers.SafelyGetInstance<TileStructureLoader>();
+			var tileStructLoader = TmlLibraries.SafelyGetInstance<TileStructureLoader>();
 			byte[] rawData = tileStructLoader.Save( this );
 
-			return FileHelpers.SaveBinaryFile( rawData, systemPath, false, false );
+			return FileLibraries.SaveBinaryFile( rawData, systemPath, false, false );
 		}
 	}
 }

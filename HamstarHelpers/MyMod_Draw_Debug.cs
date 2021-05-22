@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 
 
 namespace HamstarHelpers {
@@ -15,9 +15,9 @@ namespace HamstarHelpers {
 			try {
 				this.PlayerMessages.Draw( sb );
 				this.DrawMouseData( sb );
-				DebugHelpers.PrintAll( sb );
+				DebugLibraries.PrintAll( sb );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 			}
 		}
 

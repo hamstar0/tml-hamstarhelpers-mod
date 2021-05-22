@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.Tiles {
+namespace HamstarHelpers.Libraries.Tiles {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to tile group identification.
 	/// </summary>
-	public class TileGroupIdentityHelpers {
+	public class TileGroupIdentityLibraries {
 		/// <summary>
 		/// Tile types that typically comprise "earth" (now includes underworld ash).
 		/// </summary>

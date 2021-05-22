@@ -1,7 +1,7 @@
 ﻿using HamstarHelpers.Classes.Errors;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.DotNET.Reflection;
-using HamstarHelpers.Helpers.TModLoader.Menus;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.DotNET.Reflection;
+using HamstarHelpers.Libraries.TModLoader.Menus;
 using HamstarHelpers.Internals.ModTags.Base.Manager;
 using HamstarHelpers.Internals.WebRequests;
 using HamstarHelpers.Services.Hooks.LoadHooks;
@@ -28,13 +28,13 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.Manager {
 		////////////////
 
 		private void ApplyModsFilter() {
-			UIState menuUi = MainMenuHelpers.GetMenuUI( this.MenuDefinition );
+			UIState menuUi = MainMenuLibraries.GetMenuUI( this.MenuDefinition );
 
 			IList<string> modNames = new List<string>();
 
 			object items;
-			if( !ReflectionHelpers.Get( menuUi, "_items", out items ) ) {
-				LogHelpers.Warn( "No 'items' field in ui " + menuUi );
+			if( !ReflectionLibraries.Get( menuUi, "_items", out items ) ) {
+				LogLibraries.Warn( "No 'items' field in ui " + menuUi );
 				return;
 			}
 
@@ -46,10 +46,10 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.Manager {
 				object item = itemsArr.GetValue( i );
 				string modName;
 
-				if( ReflectionHelpers.Get(item, "ModName", out modName) ) {
+				if( ReflectionLibraries.Get(item, "ModName", out modName) ) {
 					modNames.Add( modName );
 				} else {
-					LogHelpers.Warn( "No 'ModName' field or property in mod browser list ('_items')." );
+					LogLibraries.Warn( "No 'ModName' field or property in mod browser list ('_items')." );
 					return;
 				}
 			}
@@ -78,10 +78,10 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.Manager {
 				}
 			}
 
-			if( ReflectionHelpers.Set( _menuUi, "UpdateFilterMode", (UpdateFilter)0 ) ) {
-				ModMenuHelpers.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
+			if( ReflectionLibraries.Set( _menuUi, "UpdateFilterMode", (UpdateFilter)0 ) ) {
+				ModMenuLibraries.ApplyModBrowserFilter( filterName, isFiltered, (List<string>)filteredModNameList );
 			} else {
-				LogHelpers.Alert( "Could not set UpdateFilterMode for the mod browser" );
+				LogLibraries.Alert( "Could not set UpdateFilterMode for the mod browser" );
 			}
 		}
 
@@ -131,7 +131,7 @@ namespace HamstarHelpers.Internals.ModTags.ModBrowser.Manager {
 			}
 
 			if( ModHelpersConfig.Instance.DebugModeHelpersInfo ) {
-				LogHelpers.Log( "Filtered to " + filteredModNameList.Count + " mods."
+				LogLibraries.Log( "Filtered to " + filteredModNameList.Count + " mods."
 					+ ( onTags.Count > 0 ? "\nWith tags: " + string.Join( ", ", onTags ) : "" )
 					+ ( offTags.Count > 0 ? "\nWithout tags: " + string.Join( ", ", offTags ) : "" )
 				);

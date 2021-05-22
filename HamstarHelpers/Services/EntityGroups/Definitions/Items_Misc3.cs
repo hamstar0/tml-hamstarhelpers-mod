@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using HamstarHelpers.Helpers.Debug;
-using HamstarHelpers.Helpers.Recipes;
+using HamstarHelpers.Libraries.Debug;
+using HamstarHelpers.Libraries.Recipes;
 
 
 namespace HamstarHelpers.Services.EntityGroups.Definitions {
@@ -97,40 +97,40 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 					}
 
 					if( item.type <= ItemID.Count ) {
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.VilePowder, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.VilePowder, 1} } ) ) {
 							return true;
 						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.DemoniteOre, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.DemoniteOre, 1} } ) ) {
 							return true;
 						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.DemoniteBar, 1} } ) ) {
-							return true;
-						}
-
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.ShadowScale, 1} } ) ) {
-							return true;
-						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CursedFlames, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.DemoniteBar, 1} } ) ) {
 							return true;
 						}
 
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.Ebonwood, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.ShadowScale, 1} } ) ) {
 							return true;
 						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.PurpleIceBlock, 1} } ) ) {
-							return true;
-						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.EbonstoneBlock, 1} } ) ) {
-							return true;
-						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.EbonstoneBrick, 1} } ) ) {
-							return true;
-						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.DemoniteBrick, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CursedFlames, 1} } ) ) {
 							return true;
 						}
 
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CorruptSeeds, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.Ebonwood, 1} } ) ) {
+							return true;
+						}
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.PurpleIceBlock, 1} } ) ) {
+							return true;
+						}
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.EbonstoneBlock, 1} } ) ) {
+							return true;
+						}
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.EbonstoneBrick, 1} } ) ) {
+							return true;
+						}
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.DemoniteBrick, 1} } ) ) {
+							return true;
+						}
+
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CorruptSeeds, 1} } ) ) {
 							return true;
 						}
 					}
@@ -197,43 +197,43 @@ namespace HamstarHelpers.Services.EntityGroups.Definitions {
 					}
 
 					if( item.type <= ItemID.Count ) {
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.ViciousPowder, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.ViciousPowder, 1} } ) ) {
 							return true;
 						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.Vertebrae, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.Vertebrae, 1} } ) ) {
 							return true;
 						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimtaneOre, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimtaneOre, 1} } ) ) {
 							return true;
 						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimtaneBar, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimtaneBar, 1} } ) ) {
 							return true;
 						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.Ichor, 1} } ) ) {
-							return true;
-						}
-
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.TissueSample, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.Ichor, 1} } ) ) {
 							return true;
 						}
 
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.Shadewood, 1} } ) ) {
-							return true;
-						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.RedIceBlock, 1} } ) ) {
-							return true;
-						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimstoneBlock, 1} } ) ) {
-							return true;
-						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimtaneBrick, 1} } ) ) {
-							return true;
-						}
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.FleshBlock, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.TissueSample, 1} } ) ) {
 							return true;
 						}
 
-						if( RecipeHelpers.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimsonSeeds, 1} } ) ) {
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.Shadewood, 1} } ) ) {
+							return true;
+						}
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.RedIceBlock, 1} } ) ) {
+							return true;
+						}
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimstoneBlock, 1} } ) ) {
+							return true;
+						}
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimtaneBrick, 1} } ) ) {
+							return true;
+						}
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.FleshBlock, 1} } ) ) {
+							return true;
+						}
+
+						if( RecipeLibraries.ItemHasIngredients( item.type, new Dictionary<int, int>{ { ItemID.CrimsonSeeds, 1} } ) ) {
 							return true;
 						}
 					}

@@ -1,4 +1,4 @@
-﻿using HamstarHelpers.Helpers.Debug;
+﻿using HamstarHelpers.Libraries.Debug;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -77,7 +77,7 @@ namespace HamstarHelpers.Services.EntityGroups {
 				try {
 					list[i].SetDefaults( i );
 				} catch( Exception e ) {
-					LogHelpers.Log( "GetProjPool " + i + " - " + e.ToString() );
+					LogLibraries.Log( "GetProjPool " + i + " - " + e.ToString() );
 				}
 			} 
 

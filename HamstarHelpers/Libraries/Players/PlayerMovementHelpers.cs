@@ -3,11 +3,11 @@ using Terraria;
 using Terraria.ID;
 
 
-namespace HamstarHelpers.Helpers.Players {
+namespace HamstarHelpers.Libraries.Players {
 	/// <summary>
 	/// Assorted static "helper" functions pertaining to player movement.
 	/// </summary>
-	public class PlayerMovementHelpers {
+	public class PlayerMovementLibraries {
 		/// <summary>
 		/// Indicates if player is "relaxed".
 		/// </summary>
@@ -127,7 +127,7 @@ namespace HamstarHelpers.Helpers.Players {
 				player.jumpAgainFart ||
 				player.jumpAgainSail ||
 				player.jumpAgainUnicorn ||
-				PlayerMovementHelpers.IsOnFloor( player ) ||
+				PlayerMovementLibraries.IsOnFloor( player ) ||
 				(player.mount.Active && player.mount.Type == MountID.Slime && player.wetSlime > 0) ||
 				(player.wet && player.accFlipper && (!player.mount.Active || !player.mount.Cart));
 		}
@@ -146,11 +146,11 @@ namespace HamstarHelpers.Helpers.Players {
 				return false;
 			}
 
-			if( !PlayerMovementHelpers.IsJumpPrimed( player ) ) {
+			if( !PlayerMovementLibraries.IsJumpPrimed( player ) ) {
 				return false;
 			}
 			
-			if( !player.releaseJump && !(player.autoJump && PlayerMovementHelpers.IsOnFloor(player)) ) {
+			if( !player.releaseJump && !(player.autoJump && PlayerMovementLibraries.IsOnFloor(player)) ) {
 				return false;
 			}
 

@@ -1,6 +1,6 @@
 ﻿using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Classes.Protocols.Stream;
-using HamstarHelpers.Helpers.Debug;
+using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Services.Timers;
 using System;
 using Terraria.ModLoader;
@@ -15,12 +15,12 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 				packet.Send( toWho, ignoreWho );
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return;
 			}
 
 			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
-				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToClient " + toWho + ", " + ignoreWho );
+				LogLibraries.Log( ">" + this.GetPacketName() + " SendRequestToClient " + toWho + ", " + ignoreWho );
 			}
 			
 			this.RetryRequestToClientIfTimeout( toWho, ignoreWho, retries );
@@ -33,12 +33,12 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 
 				packet.Send();
 			} catch( Exception e ) {
-				LogHelpers.Warn( e.ToString() );
+				LogLibraries.Warn( e.ToString() );
 				return;
 			}
 
 			if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
-				LogHelpers.Log( ">" + this.GetPacketName() + " SendRequestToServer" );
+				LogLibraries.Log( ">" + this.GetPacketName() + " SendRequestToServer" );
 			}
 
 			this.RetryRequestToServerIfTimeout( retries );
@@ -64,7 +64,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 				}
 
 				if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
-					LogHelpers.Log( "  Request (to client) timed out. Retrying " + this.GetType().Name + " request "
+					LogLibraries.Log( "  Request (to client) timed out. Retrying " + this.GetType().Name + " request "
 						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
 				}
 
@@ -93,7 +93,7 @@ namespace HamstarHelpers.Classes.Protocols.Packet {
 				}
 
 				if( ModHelpersConfig.Instance.DebugModeNetInfo && this.IsVerbose ) {
-					LogHelpers.Log( "  Request (to server) timed out. Retrying " + this.GetType().Name + " request "
+					LogLibraries.Log( "  Request (to server) timed out. Retrying " + this.GetType().Name + " request "
 						+ ( retries > 0 ? ( retries + " tries left" ) : ( "until success" ) ) + ")..." );
 				}
 
