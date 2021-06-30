@@ -64,7 +64,7 @@ namespace HamstarHelpers.Libraries.Tiles.Attributes {
 		/// <returns></returns>
 		public static bool IsNotVanillaBombable( int tileX, int tileY ) {
 			Tile tile = Framing.GetTileSafely( tileX, tileY );
-			return !TileLoader.CanExplode( tileX, tileY ) || TileLibraries.IsNotVanillaBombableType( tile.type );
+			return !TileLoader.CanExplode( tileX, tileY ) || TileAttributeLibraries.IsNotVanillaBombableType( tile.type );
 		}
 
 		/// <summary>

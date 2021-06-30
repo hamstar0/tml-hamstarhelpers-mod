@@ -1,7 +1,7 @@
-﻿using HamstarHelpers.Libraries.UI;
+﻿using System;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
+using HamstarHelpers.Libraries.UI;
 
 
 namespace HamstarHelpers.Libraries.HUD {

@@ -1,6 +1,8 @@
 ﻿using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
+using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Libraries.Debug;
 using HamstarHelpers.Libraries.TModLoader;
 using HamstarHelpers.Libraries.World;
@@ -11,6 +13,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
 	class WorldDataRequestProtocol : SimplePacketPayload {	//NetIORequestPayloadFromServer<WorldDataProtocol> {
 		public static void QuickRequest() {
+			if( Main.netMode == NetmodeID.Server ) {
+				throw new ModHelpersException( "No client." );
+			}
 			SimplePacket.SendToServer( new WorldDataRequestProtocol() );
 		}
 
@@ -23,7 +28,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public override void ReceiveOnServer( int fromWho ) {
-			SimplePacket.SendToClient( new WorldDataRequestProtocol(), fromWho, -1 );
+			SimplePacket.SendToClient( new WorldDataProtocol(), fromWho, -1 );
 		}
 
 		public override void ReceiveOnClient() {
