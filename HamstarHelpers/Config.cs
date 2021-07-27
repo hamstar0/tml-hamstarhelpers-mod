@@ -274,7 +274,7 @@ namespace HamstarHelpers {
 		[Label( "Disable mod tags" )]
 		[Tooltip( "Disables mod tags UI for mod browser and mod info." )]
 		//[ReloadRequired]
-		public bool DisableModTags { get; set; } = false;
+		public bool DisableModTags { get; set; } = true;
 
 		/// <summary>
 		/// Disable 'judgmental' mod tags.
@@ -288,7 +288,7 @@ namespace HamstarHelpers {
 		/// </summary>
 		[Label( "Disable mod menu updates overlay" )]
 		[Tooltip( "Disables mod version updates overlay display in the mod menu." )]
-		public bool DisableModMenuUpdates { get; set; } = false;
+		public bool DisableModMenuUpdates { get; set; } = true;
 
 		/// <summary>
 		/// Disables IP address checks from checkip.dyndns.org.
