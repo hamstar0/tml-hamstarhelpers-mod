@@ -273,6 +273,7 @@ namespace HamstarHelpers {
 		/// </summary>
 		[Label( "Disable mod tags" )]
 		[Tooltip( "Disables mod tags UI for mod browser and mod info." )]
+		[DefaultValue(true)]
 		//[ReloadRequired]
 		public bool DisableModTags { get; set; } = true;
 
@@ -288,6 +289,7 @@ namespace HamstarHelpers {
 		/// </summary>
 		[Label( "Disable mod menu updates overlay" )]
 		[Tooltip( "Disables mod version updates overlay display in the mod menu." )]
+		[DefaultValue( true )]
 		public bool DisableModMenuUpdates { get; set; } = true;
 
 		/// <summary>
