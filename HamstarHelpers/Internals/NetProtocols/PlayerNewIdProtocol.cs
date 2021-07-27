@@ -13,7 +13,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public static void QuickRequestToClient( int playerWho ) {
 			var protocol = new PlayerNewIdRequestProtocol( playerWho );
 
-			SimplePacket.SendToServer( protocol );
+			SimplePacket.SendToClient( protocol, playerWho, -1 );
 		}
 
 

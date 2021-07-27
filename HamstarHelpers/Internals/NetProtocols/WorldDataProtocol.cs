@@ -23,7 +23,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		////////////////
 
 		public override void ReceiveOnServer( int fromWho ) {
-			SimplePacket.SendToClient( new WorldDataRequestProtocol(), fromWho, -1 );
+			SimplePacket.SendToClient( new WorldDataProtocol(), fromWho, -1 );
 		}
 
 		public override void ReceiveOnClient() {
