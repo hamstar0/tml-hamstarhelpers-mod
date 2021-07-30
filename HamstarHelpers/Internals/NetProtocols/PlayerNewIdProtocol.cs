@@ -1,6 +1,7 @@
 ﻿using System;
 using Terraria;
 using System.Collections.Generic;
+using Terraria.ID;
 using HamstarHelpers.Classes.Errors;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.Players;
@@ -9,7 +10,7 @@ using HamstarHelpers.Services.Network.SimplePacket;
 
 namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
-	class PlayerNewIdRequestProtocol : SimplePacketPayload {	//NetIORequest<PlayerNewIdProtocol>
+	class PlayerNewIdRequestProtocol : SimplePacketPayload {    //NetIORequest<PlayerNewIdProtocol>
 		public static void QuickRequestToClient( int playerWho ) {
 			var protocol = new PlayerNewIdRequestProtocol( playerWho );
 
@@ -39,11 +40,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		public override void ReceiveOnClient() {
-			var protocol = new PlayerNewIdProtocol(
-				(Dictionary<int, string>)ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds
-			);
-
-			SimplePacket.SendToClient( protocol, this.PlayerWho );
+			PlayerNewIdProtocol.QuickSendToServer();
 		}
 	}
 
@@ -53,9 +50,15 @@ namespace HamstarHelpers.Internals.NetProtocols {
 	[Serializable]
 	class PlayerNewIdProtocol : SimplePacketPayload {   //NetIOBidirectionalPayload
 		public static void QuickSendToServer() {
+			if( Main.netMode != NetmodeID.MultiplayerClient ) {
+				throw new ModHelpersException( "Not client." );
+			}
+
+			var mymod = ModHelpersMod.Instance;
 			var protocol = new PlayerNewIdProtocol(
-				(Dictionary<int, string>)ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds
+				(Dictionary<int, string>)mymod.PlayerIdentityHelpers.PlayerIds
 			);
+
 			protocol.PlayerIds[Main.myPlayer] = PlayerIdentityHelpers.GetUniqueId( Main.LocalPlayer );
 
 			SimplePacket.SendToServer( protocol );
@@ -82,6 +85,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 				LogHelpers.Warn( "Player ids not specified." );
 				return;
 			}
+
 			this.PlayerIds = playerIds;
 		}
 
@@ -90,7 +94,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 
 		public override void ReceiveOnServer( int fromWho ) {
 			try {
-				if( this.PlayerIds.TryGetValue( fromWho, out string uid ) ) {
+				if( this.PlayerIds.TryGetValue(fromWho, out string uid) ) {
 					ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds[fromWho] = uid;
 				} else {
 					LogHelpers.Warn( "No UID reported from player id'd " + fromWho );
@@ -102,13 +106,7 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		}
 
 		public override void ReceiveOnClient() {
-			try {
-				this.PlayerIds.TryGetValue( 0, out string _ );
-			} catch {
-				this.PlayerIds = new Dictionary<int, string>();
-				LogHelpers.Warn( "Deserialization error." );
-			}
-			ModHelpersMod.Instance.PlayerIdentityHelpers.PlayerIds = this.PlayerIds;
+			throw new NotImplementedException( "Player IDs cannot be received from server." );
 		}
 	}
 }

@@ -1,15 +1,16 @@
-﻿using HamstarHelpers.Classes.UI.Elements;
+﻿using System;
+using System.Linq;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
+using ReLogic.Graphics;
+using HamstarHelpers.Classes.UI.Elements;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Helpers.TModLoader.Menus;
 using HamstarHelpers.Helpers.XNA;
 using HamstarHelpers.Services.AnimatedColor;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Graphics;
-using System;
-using System.Linq;
-using Terraria;
-using Terraria.GameContent.UI.Elements;
 
 
 namespace HamstarHelpers.Internals.Menus.Support {
@@ -24,6 +25,10 @@ namespace HamstarHelpers.Internals.Menus.Support {
 			
 			var mymod = ModHelpersMod.Instance;
 			if( mymod == null || ModHelpersConfig.Instance == null || Main.MenuUI == null ) {
+				return false;
+			}
+
+			if( ModLoader.GetMod("ModLibsCore") != null ) {
 				return false;
 			}
 			

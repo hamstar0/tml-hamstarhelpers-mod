@@ -66,9 +66,11 @@ namespace HamstarHelpers.Internals.NetProtocols {
 			Player player = Main.player[fromWho];
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
-			myplayer.Logic.NetReceiveUIDOnServer( this.ClientHasUID, this.ClientPrivateUID );
+			myplayer.Logic.NetReceiveOldUidOnServer( this.ClientHasUID, this.ClientPrivateUID );
 		}
 
-		public override void ReceiveOnClient() { }
+		public override void ReceiveOnClient() {
+			throw new NotImplementedException();
+		}
 	}
 }

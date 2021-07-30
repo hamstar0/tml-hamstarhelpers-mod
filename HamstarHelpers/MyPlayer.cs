@@ -44,7 +44,7 @@ namespace HamstarHelpers {
 
 		public override void SyncPlayer( int toWho, int fromWho, bool newPlayer ) {
 			if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				if( toWho == -1 && fromWho == -1 && newPlayer ) {
+				if( /*toWho == -1 && fromWho == -1 &&*/ newPlayer ) {
 					this.Logic.OnCurrentClientConnect();
 				}
 			}

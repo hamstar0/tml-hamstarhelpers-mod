@@ -109,7 +109,7 @@ namespace HamstarHelpers {
 
 		private void DrawCP( SpriteBatch sb ) {
 			try {
-				if( !ModHelpersConfig.Instance.DisableControlPanel ) {
+				if( !ModHelpersConfig.Instance.DisableControlPanel && ModLoader.GetMod("ModControlPanel") == null ) {
 					this.ControlPanelUI.UpdateToggler();
 					this.ControlPanelUI.DrawToggler( sb );
 				}

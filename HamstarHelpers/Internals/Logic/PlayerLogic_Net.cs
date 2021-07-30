@@ -114,7 +114,7 @@ namespace HamstarHelpers.Internals.Logic {
 
 		////
 
-		public void NetReceiveUIDOnServer( bool hasUid, string uid ) {
+		public void NetReceiveOldUidOnServer( bool hasUid, string uid ) {
 			this.HasLoadedOldUID = hasUid;
 			this.OldPrivateUID = uid;
 			
