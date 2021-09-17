@@ -21,7 +21,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void ModifyDrawLayers( List<PlayerLayer> layers ) {
-			PlayerCheats.ModifyDrawLayers( layers, this.Logic.ActiveCheats );
+			PlayerCheats.ModifyDrawLayers( layers, this.Logic.GetActiveCheatFlags() );
 		}
 	}
 }

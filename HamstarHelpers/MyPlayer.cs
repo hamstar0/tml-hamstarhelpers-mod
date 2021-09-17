@@ -131,7 +131,7 @@ namespace HamstarHelpers {
 		////////////////
 
 		public override void ModifyWeaponDamage( Item item, ref float add, ref float mult, ref float flat ) {
-			PlayerCheats.OnHit( ref mult, ref flat, this.Logic.ActiveCheats );
+			PlayerCheats.OnHit( ref mult, ref flat, this.Logic.GetActiveCheatFlags() );
 		}
 
 

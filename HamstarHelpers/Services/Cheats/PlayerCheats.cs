@@ -40,14 +40,14 @@ namespace HamstarHelpers.Services.Cheats {
 		/// <param name="cheatFlags"></param>
 		public static void ToggleCheats( Player player, CheatModeType cheatFlags ) {
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
-			CheatModeType toggledCheats = myplayer.Logic.ActiveCheats ^ cheatFlags;
+			CheatModeType toggledCheats = myplayer.Logic.GetActiveCheatFlags() ^ cheatFlags;
 
-			myplayer.Logic.SetCheats( toggledCheats );
-
-			if( Main.netMode == NetmodeID.Server ) {
-				PlayerCheatModeProtocol.BroadcastToClients( player, toggledCheats );
-			} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
-				PlayerCheatModeProtocol.BroadcastFromClient( toggledCheats );
+			if( myplayer.Logic.SetCheats(toggledCheats) ) {
+				if( Main.netMode == NetmodeID.Server ) {
+					PlayerCheatModeProtocol.BroadcastToClients( player, toggledCheats );
+				} else if( Main.netMode == NetmodeID.MultiplayerClient ) {
+					PlayerCheatModeProtocol.BroadcastFromClient( toggledCheats );
+				}
 			}
 		}
 
@@ -90,7 +90,7 @@ namespace HamstarHelpers.Services.Cheats {
 		/// <returns></returns>
 		public static IList<string> OutputActiveCheats( Player player ) {
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
-			return PlayerCheats.OutputCheatFlags( myplayer.Logic.ActiveCheats );
+			return PlayerCheats.OutputCheatFlags( myplayer.Logic.GetActiveCheatFlags() );
 		}
 
 		/// <summary>

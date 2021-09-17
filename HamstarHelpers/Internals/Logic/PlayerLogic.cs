@@ -20,13 +20,13 @@ namespace HamstarHelpers.Internals.Logic {
 
 		public DialogManager DialogManager = new DialogManager();
 
+		private CheatModeType ActiveCheats;
+
 
 		////////////////
 
 		public string OldPrivateUID { get; private set; }
 		public bool HasLoadedOldUID { get; private set; }
-
-		public CheatModeType ActiveCheats { get; private set; }
 
 		public bool HasSyncedWorldData { get; private set; }
 		public bool IsSynced { get; private set; }
@@ -74,9 +74,6 @@ namespace HamstarHelpers.Internals.Logic {
 			if( !clone.EquipSlotsToItemTypes.Compare(this.EquipSlotsToItemTypes) ) {
 				return false;
 			}
-			if( clone.ActiveCheats != this.ActiveCheats ) {
-				return false;
-			}
 			if( clone.TestPing != this.TestPing ) {
 				return false;
 			}
@@ -105,7 +102,6 @@ namespace HamstarHelpers.Internals.Logic {
 			return this.PermaBuffsById.GetHashCode()
 				+ this.HasBuffIds.GetHashCode()
 				+ this.EquipSlotsToItemTypes.GetHashCode()
-				+ this.ActiveCheats.GetHashCode()
 				+ this.TestPing.GetHashCode()
 				+ this.DialogManager.GetHashCode()
 				+ this.OldPrivateUID.GetHashCode()
@@ -144,13 +140,6 @@ namespace HamstarHelpers.Internals.Logic {
 			tags["uid"] = this.OldPrivateUID;
 			tags["perma_buffs"] = permaBuffs;
 			tags["cheats"] = (int)this.ActiveCheats;
-		}
-
-
-		////////////////
-
-		internal void SetCheats( CheatModeType cheat ) {
-			this.ActiveCheats = cheat;
 		}
 	}
 }

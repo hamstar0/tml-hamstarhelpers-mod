@@ -42,9 +42,9 @@ namespace HamstarHelpers.Internals.NetProtocols {
 		public override void ReceiveOnServer( int fromWho ) {
 			var myplayer = TmlHelpers.SafelyGetModPlayer<ModHelpersPlayer>( Main.player[fromWho] );
 
-			myplayer.Logic.SetCheats( (CheatModeType)this.CheatFlags );
-
-			SimplePacket.SendToClient( this );
+			if( myplayer.Logic.SetCheats( (CheatModeType)this.CheatFlags ) ) {
+				SimplePacket.SendToClient( this );
+			}
 		}
 
 		public override void ReceiveOnClient() {

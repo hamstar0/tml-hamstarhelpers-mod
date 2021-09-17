@@ -62,7 +62,7 @@ namespace HamstarHelpers.Buffs {
 		public override void Update( Player player, ref int buffIndex ) {
 			var myplayer = player.GetModPlayer<ModHelpersPlayer>();
 
-			if( (myplayer.Logic.ActiveCheats & CheatModeType.BilboMode) == 0 ) {
+			if( (myplayer.Logic.GetActiveCheatFlags() & CheatModeType.BilboMode) == 0 ) {
 				this.ApplyFx( player );
 			}
 
