@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="C:\Users\Spinach\Documents\My Games\Terraria\ModLoader\references\tModLoader.targets" />
+  <Import Project="$(USERPROFILE)\Documents\My Games\Terraria\ModLoader\references\tModLoader.targets" />
   <PropertyGroup>
     <AssemblyName>HamstarHelpers</AssemblyName>
     <TargetFramework>net452</TargetFramework>
@@ -13,7 +13,7 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>C:\Users\Spinach\Documents\Projects\DotNET\Projects\Mod Helpers\Project\HamstarHelpers\HamstarHelpers.xml</DocumentationFile>
+    <DocumentationFile>HamstarHelpers.xml</DocumentationFile>
   </PropertyGroup>
   <Target Name="BuildMod" AfterTargets="Build">
     <Exec Command="&quot;$(tMLBuildServerPath)&quot; -build $(ProjectDir) -eac $(TargetPath) -unsafe $(AllowUnsafeBlocks)" />
