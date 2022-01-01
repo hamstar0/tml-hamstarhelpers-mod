@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <Import Project="..\..\references\tModLoader.targets" />
+  <Import Project="$(USERPROFILE)\Documents\My Games\Terraria\ModLoader\references\tModLoader.targets" />
   <PropertyGroup>
     <AssemblyName>HamstarHelpers</AssemblyName>
     <TargetFramework>net452</TargetFramework>
