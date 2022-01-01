@@ -19,7 +19,14 @@ namespace HamstarHelpers.Internals.Inbox {
 		
 		private Vector2 IconAreaPos {
 			get {
-				return new Vector2( ModHelpersConfig.Instance.InboxIconX, ModHelpersConfig.Instance.InboxIconY );
+				return new Vector2( 
+					ModHelpersConfig.Instance.InboxIconX < 0 ?
+					Main.screenWidth + ModHelpersConfig.Instance.InboxIconX
+					: ModHelpersConfig.Instance.InboxIconX,
+					ModHelpersConfig.Instance.InboxIconY < 0 ?
+					Main.screenHeight + ModHelpersConfig.Instance.InboxIconY
+					: ModHelpersConfig.Instance.InboxIconY
+				);
 			}
 		}
 		private Vector2 IconPos {

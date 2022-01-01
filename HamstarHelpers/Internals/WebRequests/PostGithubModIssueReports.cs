@@ -51,7 +51,10 @@ namespace HamstarHelpers.Internals.WebRequests {
 			string url = "http://hamstar.pw/hamstarhelpers/issue_submit/";
 			string title = "Reported from in-game: " + issueTitle;
 			string body = bodyInfo;
-			body += "\n \n \n \n" + "Recent error logs:\n```\n" + bodyErrors + "\n```";
+            if (mod.Call("GetInfoStringForBugReport", issueTitle) is string modSpecificInfo && !string.IsNullOrWhiteSpace(modSpecificInfo)) {
+                body += "\n \n \n \nInformation appended by " + mod.DisplayName + ":\n" + modSpecificInfo;
+            }
+            body += "\n \n \n \n" + "Recent error logs:\n```\n" + bodyErrors + "\n```";
 			body += "\n \n" + issueBody;
 
 			var json = new GithubModIssueReportData {
