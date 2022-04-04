@@ -64,7 +64,7 @@ namespace HamstarHelpers.Internals.ControlPanel {
 
 		public bool IsTogglerShown() {
 			return Main.playerInventory
-				&& ModLoader.GetMod("ModUtilityPanels") != null;
+				&& ModLoader.GetMod("ModUtilityPanels") == null;
 		}
 
 
