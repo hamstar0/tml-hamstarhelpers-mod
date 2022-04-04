@@ -2,7 +2,7 @@
 using Terraria;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Services.Cheats;
-using Microsoft.Xna.Framework;
+
 
 namespace HamstarHelpers.Internals.Logic {
 	/// @private

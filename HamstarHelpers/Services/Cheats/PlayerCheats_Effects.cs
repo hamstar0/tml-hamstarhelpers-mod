@@ -82,7 +82,7 @@ namespace HamstarHelpers.Services.Cheats {
 		internal static void ModifyDrawLayers( List<PlayerLayer> layers, CheatModeType cheatFlags ) {
 			if( (cheatFlags & CheatModeType.BilboMode) != 0 ) {
 				foreach( PlayerLayer layer in layers ) {
-					layer.visible = false;
+				//	layer.visible = false;
 				}
 			}
 		}

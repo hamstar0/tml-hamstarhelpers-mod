@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Graphics;
 using Terraria;
 using Terraria.UI;
+using Terraria.ModLoader;
 using HamstarHelpers.Helpers.Debug;
 using HamstarHelpers.Internals.ControlPanel.ModControlPanel;
 using HamstarHelpers.Services.AnimatedColor;
@@ -62,7 +63,8 @@ namespace HamstarHelpers.Internals.ControlPanel {
 		////////////////
 
 		public bool IsTogglerShown() {
-			return Main.playerInventory;
+			return Main.playerInventory
+				&& ModLoader.GetMod("ModUtilityPanels") != null;
 		}
 
 
