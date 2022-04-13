@@ -24,7 +24,11 @@ namespace HamstarHelpers.Helpers.NPCs.Attributes {
 		/// <param name="npc"></param>
 		/// <returns></returns>
 		public static string GetQualifiedName( NPC npc ) {
-			return Lang.GetNPCNameValue( npc.netID );
+			try {
+				return Lang.GetNPCNameValue( npc.netID );
+			} catch {
+				return "";
+			}
 		}
 
 		/// <summary>
@@ -33,7 +37,11 @@ namespace HamstarHelpers.Helpers.NPCs.Attributes {
 		/// <param name="netid"></param>
 		/// <returns></returns>
 		public static string GetQualifiedName( int netid ) {    //npcType?
-			return Lang.GetNPCNameValue( netid );
+			try {
+				return Lang.GetNPCNameValue( netid );
+			} catch {
+				return "";
+			}
 		}
 	}
 }

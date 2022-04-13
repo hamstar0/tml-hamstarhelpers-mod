@@ -27,7 +27,12 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 			var dict = new Dictionary<string, ISet<int>>();
 
 			for( int i = 1; i < ItemLoader.ItemCount; i++ ) {
-				string name = Lang.GetItemNameValue( i );
+				string name;
+				try {
+					name = Lang.GetItemNameValue( i );
+				} catch {
+					name = "";
+				}
 
 				if( dict.ContainsKey( name ) ) {
 					dict[name].Add( i );

@@ -23,8 +23,11 @@ namespace HamstarHelpers.Helpers.Projectiles.Attributes {
 		/// <param name="projType"></param>
 		/// <returns></returns>
 		public static string GetQualifiedName( int projType ) {
-			string name = Lang.GetProjectileName( projType ).Value;
-			return name;
+			try {
+				return Lang.GetProjectileName( projType ).Value;
+			} catch {
+				return "";
+			}
 		}
 
 

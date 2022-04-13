@@ -34,7 +34,11 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		/// <param name="item"></param>
 		/// <returns></returns>
 		public static string GetQualifiedName( Item item ) {
-			return Lang.GetItemNameValue( item.type );  // not netID?
+			try {
+				return Lang.GetItemNameValue( item.type );
+			} catch {
+				return "";
+			}
 		}
 
 		/// <summary>
@@ -43,7 +47,11 @@ namespace HamstarHelpers.Helpers.Items.Attributes {
 		/// <param name="itemType"></param>
 		/// <returns></returns>
 		public static string GetQualifiedName( int itemType ) {
-			return Lang.GetItemNameValue( itemType );
+			try {
+				return Lang.GetItemNameValue( itemType );
+			} catch {
+				return "";
+			}
 		}
 
 

@@ -36,7 +36,11 @@ namespace HamstarHelpers.Helpers.Buffs {
 					?? "null";
 			}
 
-			return Lang.GetBuffName( buffType );
+			try {
+				return Lang.GetBuffName( buffType );
+			} catch {
+				return "";
+			}
 		}
 	}
 }
